@@ -958,7 +958,17 @@ if (isBlocked && blockSave)
 			}
 		}
 	}
+<<<<<<< Updated upstream
 	if(critical > 0.0 && !blockSave)
+=======
+<<<<<<< Updated upstream
+	else
+=======
+	//Есть ли оружие у цели
+	bool isSetBalde = (CheckAttribute(enemy, "equip.blade"));//(SendMessage(enemy, "ls", MSG_CHARACTER_EX_MSG, "IsSetBalde") != 0);
+	/*if(LAi_grp_alarmactive == false)
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 	{
         AddCharacterExpToSkill(attack, SKILL_FORTUNE, 5);
 		critical += GetCharacterSPECIALSimple(attack, SPECIAL_L)*0.02;//бонусный урон крита от удачи
@@ -1117,6 +1127,7 @@ void LAi_SetResultOfDeath(ref attack, ref enemy, bool isSetBalde)
 void LAi_ApplyCharacterFireDamage(aref attack, aref enemy, float kDist)
 {
 	Lai_CharacterChangeEnergy(attack, -4); // жрем энергию за выстрел boal 20/06/06
+	if(IsCharacterPerkOn(attack,"buccaneer")) Lai_CharacterChangeEnergy(enemy, -LAi_GetCharacterMaxEnergy(enemy)*0.35);
 	//Если неубиваемый, то нетрогаем его
 	if(CheckAttribute(enemy, "chr_ai.immortal"))
 	{
@@ -1207,6 +1218,14 @@ void LAi_ApplyCharacterFireDamage(aref attack, aref enemy, float kDist)
 	}
 	if(damage > 0.0)
 	{
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+		//Начисляем опыт
+=======
+>>>>>>> Stashed changes
+		float exp = LAi_GunCalcExperience(attack, enemy, damage);
+>>>>>>> Stashed changes
 		if(IsEquipCharacterByArtefact(attack, "talisman1"))
 		{
 			if (rand(5)==0)	{LAi_ApplyCharacterDamage(enemy, MakeInt(damage + 0.5)*2); Log_Info("Критический выстрел");}
@@ -1219,8 +1238,15 @@ void LAi_ApplyCharacterFireDamage(aref attack, aref enemy, float kDist)
 	}
 	//Есть ли оружие у цели
 	bool isSetBalde = (CheckAttribute(enemy, "equip.blade"));//(SendMessage(enemy, "ls", MSG_CHARACTER_EX_MSG, "IsSetBalde") != 0);
+<<<<<<< Updated upstream
 	//Начисляем опыт
 	float exp = LAi_GunCalcExperience(attack, enemy, damage);
+=======
+<<<<<<< Updated upstream
+=======
+	
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 	/*if(LAi_grp_alarmactive == false)
 	{
 		if(CheckAttribute(pchar, "sneak.success"))
@@ -1396,17 +1422,30 @@ float LAi_NPC_GetAttackWeightFeint()
 float LAi_NPC_GetAttackDefence()
 {
 	aref chr = GetEventData();
+	string fencing_type = LAi_GetBladeFencingType(chr);
+	string sAction;
 	float level = LAi_GetCharacterFightLevel(chr);
+<<<<<<< Updated upstream
 	if (LAi_GetBladeFencingType(pchar) == "FencingHeavy")
 	{
 		npc_return_tmp = 1 + level * 0.35;
 		return npc_return_tmp;
 	}
 	else
+=======
+	switch (fencing_type)
+>>>>>>> Stashed changes
 	{
-		npc_return_tmp = 0.35 + level * 0.35;
-		return npc_return_tmp;
+		case "fencing":
+			sAction = "fast";
+		break;
+		case "fencing_heavy":
+			sAction = "break";
+		break;
 	}
+	if(Lai_CharacterGetEnergy(chr) < LAi_CalcUseEnergyForBlade(chr,sAction)) npc_return_tmp = 100.0;
+	else  npc_return_tmp = 20.0;
+	return npc_return_tmp;
 }
 
 // boal 20.01.08 коммент - забавно, что спустя два года, понал как и что с вероятностями. Они все приводятся к 0-1 от веса общей суммы, то есть фактически умножение на сложность или цифры распределяют сумму по другим акшенам, а не усиливают этот
