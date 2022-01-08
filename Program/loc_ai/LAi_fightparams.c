@@ -958,17 +958,8 @@ if (isBlocked && blockSave)
 			}
 		}
 	}
-<<<<<<< Updated upstream
+
 	if(critical > 0.0 && !blockSave)
-=======
-<<<<<<< Updated upstream
-	else
-=======
-	//Есть ли оружие у цели
-	bool isSetBalde = (CheckAttribute(enemy, "equip.blade"));//(SendMessage(enemy, "ls", MSG_CHARACTER_EX_MSG, "IsSetBalde") != 0);
-	/*if(LAi_grp_alarmactive == false)
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 	{
         AddCharacterExpToSkill(attack, SKILL_FORTUNE, 5);
 		critical += GetCharacterSPECIALSimple(attack, SPECIAL_L)*0.02;//бонусный урон крита от удачи
@@ -1030,27 +1021,9 @@ if (isBlocked && blockSave)
 	//Есть ли оружие у цели
 	bool isSetBalde = (CheckAttribute(enemy, "equip.blade"));//(SendMessage(enemy, "ls", MSG_CHARACTER_EX_MSG, "IsSetBalde") != 0);
 	//Начисляем опыта
-	/*if(LAi_grp_alarmactive == false)
-	{
-		if(CheckAttribute(pchar, "sneak.success"))
-		{
-			if(sti(pchar.sneak.success) == 1)
-			{
-				pchar.sneak.success = 0;
-			}
-		}
-	} */
 	if(LAi_IsDead(enemy) && isSetBalde)
 	{
 		//Начислим за убийство
-		//exp = exp + LAi_CalcDeadExp(attack, enemy);
-		//exp = LAi_GetCharacterMaxHP(enemy) * 10;
-		//noExp = false;
-		//DoCharacterKilledStatistics(sti(attack.index), sti(enemy.index));
-		/*if(!isSetBalde)
-		{
-			//LAi_ChangeReputation(attack, -3);
-		}*/
 		// boal  check skill -->
 		float ra = 1.0;
 	    float re = 1.0;
@@ -1218,14 +1191,8 @@ void LAi_ApplyCharacterFireDamage(aref attack, aref enemy, float kDist)
 	}
 	if(damage > 0.0)
 	{
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
 		//Начисляем опыт
-=======
->>>>>>> Stashed changes
 		float exp = LAi_GunCalcExperience(attack, enemy, damage);
->>>>>>> Stashed changes
 		if(IsEquipCharacterByArtefact(attack, "talisman1"))
 		{
 			if (rand(5)==0)	{LAi_ApplyCharacterDamage(enemy, MakeInt(damage + 0.5)*2); Log_Info("Критический выстрел");}
@@ -1237,38 +1204,10 @@ void LAi_ApplyCharacterFireDamage(aref attack, aref enemy, float kDist)
 		LAi_CheckKillCharacter(enemy);
 	}
 	//Есть ли оружие у цели
-	bool isSetBalde = (CheckAttribute(enemy, "equip.blade"));//(SendMessage(enemy, "ls", MSG_CHARACTER_EX_MSG, "IsSetBalde") != 0);
-<<<<<<< Updated upstream
-	//Начисляем опыт
-	float exp = LAi_GunCalcExperience(attack, enemy, damage);
-=======
-<<<<<<< Updated upstream
-=======
-	
->>>>>>> Stashed changes
->>>>>>> Stashed changes
-	/*if(LAi_grp_alarmactive == false)
-	{
-		if(CheckAttribute(pchar, "sneak.success"))
-		{
-			if(sti(pchar.sneak.success) == 1)
-			{
-				pchar.sneak.success = 0;
-			}
-		}
-	}  */
+	bool isSetBalde = CheckAttribute(enemy, "equip.blade");
+
 	if(LAi_IsDead(enemy) && isSetBalde)
 	{
-		//Начислим за убийство
-		//exp = exp + LAi_CalcDeadExp(attack, enemy);
-		//exp = LAi_GetCharacterMaxHP(enemy) * 10;
-		//noExp = false;
-		//if(!isSetBalde)
-		//{
-			//LAi_ChangeReputation(attack, -3);
-		//	exp = 0.0;
-		//}
-		//DoCharacterKilledStatistics(sti(attack.index), sti(enemy.index));
 		// boal skill -->
 		float ra = 1.0;
 	    float re = 1.0;
@@ -1292,9 +1231,6 @@ void LAi_ApplyCharacterFireDamage(aref attack, aref enemy, float kDist)
         Statistic_KillChar(attack, enemy, "_g");
         // boal statistic info 17.12.2003 <--
         
-        //Начислим за убийство
-		/*exp = exp + */
-        //LAi_CalcDeadExp(attack, enemy); // начисляем только за удар и смерть
   		LAi_SetResultOfDeath(attack, enemy, isSetBalde);
 	}
 	if(!isSetBalde)
@@ -1425,16 +1361,7 @@ float LAi_NPC_GetAttackDefence()
 	string fencing_type = LAi_GetBladeFencingType(chr);
 	string sAction;
 	float level = LAi_GetCharacterFightLevel(chr);
-<<<<<<< Updated upstream
-	if (LAi_GetBladeFencingType(pchar) == "FencingHeavy")
-	{
-		npc_return_tmp = 1 + level * 0.35;
-		return npc_return_tmp;
-	}
-	else
-=======
 	switch (fencing_type)
->>>>>>> Stashed changes
 	{
 		case "fencing":
 			sAction = "fast";
@@ -1784,19 +1711,4 @@ float cirass_break(aref enemy, aref attack, string fencing_type)
 		return 0.0;
 	}
 }
-int ActivateRush(ref rChar)
-{
-	int num = FindNearCharacters(rChar, 10.0, -1.0, -1.0, 1.0, false, true);
-	int iTemp;
-			if(num > 0)
-			{
-				for(i = 0; i < num; i++)
-				{
-					iTemp = chrFindNearCharacters[i].index;
-					if(LAi_group_IsEnemy(rChar, &characters[iTemp]))
-					{
-						LAi_SetStayType(&characters[iTemp]);
-					}
-				}
-			}
-}
+
