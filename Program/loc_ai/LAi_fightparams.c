@@ -1370,7 +1370,7 @@ float LAi_NPC_GetAttackDefence()
 			sAction = "break";
 		break;
 	}
-	if(Lai_CharacterGetEnergy(chr) < LAi_CalcUseEnergyForBlade(chr,sAction)) npc_return_tmp = 100.0;
+	if(Lai_CharacterGetEnergy(chr) < LAi_CalcUseEnergyForBlade(chr,sAction)) npc_return_tmp = 90.0;
 	else  npc_return_tmp = 20.0;
 	return npc_return_tmp;
 }
