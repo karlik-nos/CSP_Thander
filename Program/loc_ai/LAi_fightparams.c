@@ -1000,6 +1000,7 @@ if (isBlocked && blockSave)
 	cirign = false;
 	if(dmg > 0.0)
 	{
+		float exp = LAi_CalcExperienceForBlade(attack, enemy, attackType, isBlocked, dmg, blockSave);
 		//Наносим повреждение
 		if(!IsCharacterPerkOn(attack, "Grunt"))
 		{
@@ -1019,7 +1020,6 @@ if (isBlocked && blockSave)
 	//Есть ли оружие у цели
 	bool isSetBalde = (CheckAttribute(enemy, "equip.blade"));//(SendMessage(enemy, "ls", MSG_CHARACTER_EX_MSG, "IsSetBalde") != 0);
 	//Начисляем опыта
-	float exp = LAi_CalcExperienceForBlade(attack, enemy, attackType, isBlocked, dmg, blockSave);
 	/*if(LAi_grp_alarmactive == false)
 	{
 		if(CheckAttribute(pchar, "sneak.success"))
