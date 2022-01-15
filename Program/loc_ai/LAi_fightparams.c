@@ -1422,21 +1422,18 @@ float LAi_NPC_StunChance()
 	return npc_return_tmp;
 }
 
-//вес выбора отскока добавил Lipsar
-/*#event_handler("NPC_Event_GetDefenceWeightRecoil", "LAi_NPC_GetDefenceWeightRecoil");
-float LAi_NPC_GetDefenceWeightRecoil()
-{
-	aref chr = GetEventData();
-	npc_return_tmp = 50.0;
-	if (LAi_GetBladeFencingType(pchar) == "FencingHeavy")
-	{
-		npc_return_tmp = 80.0;
-	}
-	npc_return_tmp = npc_return_tmp * (0.5 + (0.05 * MOD_SKILL_ENEMY_RATE));
-	return npc_return_tmp;
-}*/
-
 //Параметры стрельбы
+
+//Shot through allies
+#event_handler("NPC_Event_ShotEnemyTest", "LAi_NPC_ShotEnemyTest");
+bool LAi_NPC_ShotEnemyTest()
+{
+	npc_return_tmpb = false;
+	if(LAi_IsFightMode(pchar)) npc_return_tmpb = true;
+	return npc_return_tmpb;
+}
+
+
 //Вероятность желания выстрелить - кубик с такой вероятностью кидается 2 раза в секунду
 #event_handler("NPC_Event_GetFireActive", "LAi_NPC_GetFireActive");
 float LAi_NPC_GetFireActive()
