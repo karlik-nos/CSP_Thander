@@ -1425,14 +1425,11 @@ float LAi_NPC_StunChance()
 //Параметры стрельбы
 
 //Shot through allies
-#event_handler("NPC_Event_ShotEnemyTest", "LAi_NPC_ShotEnemyTest");
-bool LAi_NPC_ShotEnemyTest()
+#event_handler("NPC_Event_ShotOnlyEnemyTest", "LAi_NPC_ShotOnlyEnemyTest");
+bool LAi_NPC_ShotOnlyEnemyTest()
 {
-	npc_return_tmpb = false;
-	if(LAi_IsFightMode(pchar)) npc_return_tmpb = true;
-	return npc_return_tmpb;
+	return LAi_grp_alarmactive;
 }
-
 
 //Вероятность желания выстрелить - кубик с такой вероятностью кидается 2 раза в секунду
 #event_handler("NPC_Event_GetFireActive", "LAi_NPC_GetFireActive");
