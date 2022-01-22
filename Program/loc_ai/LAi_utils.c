@@ -1531,14 +1531,17 @@ void MakeBloodingAttack(aref enemy, aref attacked, float coeff) // Кровот�
 void MakeSwiftAttack(aref enemy, aref attacked, float coeff) // Резкий удар
 {
 	float Swift = 0.0;
-	enemy.chr_ai.curen = stf(enemy.chr_ai.energy);
 	if(CheckAttribute(enemy, "chr_ai.Swift"))
 	{
 		Swift = stf(enemy.chr_ai.Swift);
 		if(Swift < 1.0) Swift = 1.0;
+		enemy.chr_ai.Swift = Swift + (1+rand(4)+coeff);
 	}
-	 // Продолжительность 1+(от 0 до 4)+коэфф
-	enemy.chr_ai.Swift = Swift + (1+rand(4)+coeff);
+	else
+	{
+		enemy.chr_ai.curen = stf(enemy.chr_ai.energy);
+		enemy.chr_ai.Swift = Swift + (1+rand(4)+coeff);
+	}
 	FXMarkCharacter(enemy,"FX_StanS");
 	//if(stf(enemy.chr_ai.Swift) > 200.0) enemy.chr_ai.Swift = 200.0;
 }
