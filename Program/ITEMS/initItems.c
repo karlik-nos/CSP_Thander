@@ -1415,16 +1415,16 @@ int InitItems()
 	itm.Generation.Weight.max = 4.8;
 	n++;
 
-	// ГПК Чиавона
+	// ККС, Офицерский Клеванг
 	makeref(itm,Items[n]);
-	itm.id = "blade24";
+	itm.id = "blade46";
 	itm.groupID = BLADE_ITEM_TYPE;
-	itm.name = "itmname_blade24";
-	itm.describe = "itmdescr_blade24";
+	itm.name = "itmname_blade46";
+	itm.describe = "itmdescr_blade46";
 	itm.folder = "items";
-	itm.model = "blade24";
-	itm.picIndex = 5;
-	itm.picTexture = "ITEMS_8";
+	itm.model = "blade46";
+	itm.picIndex = 10;
+	itm.picTexture = "ITEMS_16";
 	// boal 19.01.2004 -->
 	itm.piercing = 58.0;
 	itm.special.valueSS = 12; //Резкий удар
@@ -1701,16 +1701,16 @@ int InitItems()
 	itm.quality = "excellent";
 	n++;
 
-	// ККС, Офицерский Клеванг
+	// ГПК Кракемарт
     makeref(itm,Items[n]);
-	itm.id = "blade46";
+	itm.id = "blade13";
 	itm.groupID = BLADE_ITEM_TYPE;
-	itm.name = "itmname_blade46";
-	itm.describe = "itmdescr_blade46";
+	itm.name = "itmname_blade13";
+	itm.describe = "itmdescr_blade13";
 	itm.folder = "items";
-	itm.model = "blade46";
-	itm.picIndex = 10;
-	itm.picTexture = "ITEMS_16";
+	itm.model = "blade13";
+	itm.picIndex = 6;
+	itm.picTexture = "ITEMS_3";
 	// boal 19.01.2004 -->
 	itm.piercing = 88.0;
 	itm.special.valueStS = 4; //Стан
@@ -1930,16 +1930,16 @@ int InitItems()
 	itm.Generation.Weight.max = 10.0;
 	n++;
 
-	// ГПК Кракемарт
+	// ККС Чиавона
 	makeref(itm,Items[n]);
-	itm.id = "blade13";
+	itm.id = "blade24";
 	itm.groupID = BLADE_ITEM_TYPE;
-	itm.name = "itmname_blade13";
-	itm.describe = "itmdescr_blade13";
+	itm.name = "itmname_blade24";
+	itm.describe = "itmdescr_blade24";
 	itm.folder = "items";
-	itm.model = "blade13";
-	itm.picIndex = 6;
-	itm.picTexture = "ITEMS_3";
+	itm.model = "blade24";
+	itm.picIndex = 5;
+	itm.picTexture = "ITEMS_8";
 	// boal 19.01.2004 -->
 	itm.piercing = 65;
 	itm.special.valueT = 10; //Травмы
