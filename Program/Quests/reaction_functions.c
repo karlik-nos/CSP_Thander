@@ -5323,6 +5323,13 @@ void LSC_takeStormIsland(string qName)
 	DeleteAttribute(&Islands[i], "MaxSeaHeight");
 
 	// Return to LSC - Gregg
+	pchar.ReturnToLSC = true;
+	for(int xx=0; xx<MAX_CHARACTERS; xx++)
+	{
+		sld = &characters[xx];
+		if (CheckAttribute(sld, "city") && sld.city == "LostShipsCity")
+			LAi_group_MoveCharacter(sld, "");
+	}
 	Islands[i].reload.l2.emerge = "reload1_back";
 	Islands[i].reload_enable = true;
 	Islands[i].visible = true;
@@ -11152,7 +11159,7 @@ void LooserGenerator_InStore(string s)
 	int i;
 	string str;
 
-	if(CheckAttribute(pchar, "HOTP_CasinoQuest.store") && locations[n].reload.l1.go == pchar.HOTP_CasinoQuest.store)
+	if(CheckAttribute(pchar, "HOTP_CasinoQuest.store") && locations[n].id == "CommonPackhouse_1")
 	{
 		DeleteAttribute(pchar, "HOTP_CasinoQuest.store");
 		Log_Info("Кажется я на месте...");
@@ -11207,7 +11214,7 @@ void LooserGenerator_InShipyard(string s)
 	int i;
 	string str;
 
-	if(CheckAttribute(pchar, "HOTP_CasinoQuest.shipyard") && locations[n].reload.l1.go == pchar.HOTP_CasinoQuest.shipyard)
+	if(CheckAttribute(pchar, "HOTP_CasinoQuest.shipyard") && locations[n].reload.l1.go == "CommonPackhouse_2")
 	{
 		DeleteAttribute(pchar, "HOTP_CasinoQuest.shipyard");
 		Log_Info("Кажется я на месте...");

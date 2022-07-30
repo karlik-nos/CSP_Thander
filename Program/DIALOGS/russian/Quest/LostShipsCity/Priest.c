@@ -15,6 +15,14 @@ void ProcessDialogEvent()
 	string NodeName = Dialog.CurrentNode;
 	string NodePrevName = "";
 	if (CheckAttribute(NextDiag, "PrevNode")) NodePrevName = NextDiag.PrevNode;
+	if (CheckAttribute(pchar, "ReturnToLSC") && !CheckAttribute(NPChar,"MetAgain"))
+	{
+		NPChar.MetAgain = true;
+		dialog.text = "Капитан, вы всё-таки выжили? Не могу поверить своим глазам!";
+		link.l1 = "Как видите, падре."
+		link.l1.go = "MetAgain1";
+		return;
+	}
 
 	switch(Dialog.CurrentNode)
 	{
@@ -78,8 +86,21 @@ void ProcessDialogEvent()
 					link.l8 = "Святой отец, я имею к вам серьезное предложение.";
 					link.l8.go = "SeekCrew";
 				}
-				link.l10 = "Ничего...";
-				link.l10.go = "exit";
+				if (CheckAttribute(pchar, "ReturnToLSC"))
+				{
+					if (CheckAttribute(pchar,"Ship.Cargo.Goods.Medicament") && sti(pchar.Ship.Cargo.Goods.Medicament) > 0)
+					{
+						link.l9 = "Падре, я привёз лекарства в количестве "+pchar.Ship.Cargo.Goods.Medicament+" ед.";
+						link.l9.go = "TradeMed";
+					}
+					if (CheckAttribute(pchar,"Ship.Cargo.Goods.Clothes") && sti(pchar.Ship.Cargo.Goods.Clothes) > 0)
+					{
+						link.l10 = "Падре, я привёз одежду в количестве "+pchar.Ship.Cargo.Goods.Clothes+" ед.";
+						link.l10.go = "TradeCloth";
+					}
+				}
+				link.l11 = "Ничего...";
+				link.l11.go = "exit";
 			}
 		break;
 
@@ -504,6 +525,87 @@ void ProcessDialogEvent()
 		case "SeekCrew_2":
 			dialog.text = "На все воля Господа, "+ GetSexPhrase("сын мой","дочь моя") +". Я остаюсь.";
 			link.l1 = "Ну что же, как знаете, святой отец.";
+			link.l1.go = "exit";
+		break;
+		case "MetAgain1":
+			dialog.text = "Провидение бога, не иначе. Само это место решило отпустить вас и тех, кто решился пойти с вами.";
+			link.l1 = "Я бы списал"+ GetSexPhrase("","а") +" всё на везение падре, но спорить с вами не стану.";
+			link.l1.go = "MetAgain2";
+		break;
+		case "MetAgain2":
+			dialog.text = "Так или иначе, почему вы решили вернуться, капитан?.";
+			link.l1 = "Зная о том, что Остров изолирован и о его существовании мало кто знает - я решил"+ GetSexPhrase("","а") +" предложить свои услуги по завозу товаров первой и не очень необходимости. К примеру, лекарства, ела и одежда.";
+			link.l1.go = "MetAgain3";
+		break;
+		case "MetAgain3":
+			dialog.text = "Это верная мысль. С едой тебе лучше обратиться в нашу таверну на ''Флероне''. А вот лекарства и одежда - будут не лишними.";
+			link.l1 = "Ну, теперь я знаю, что могу везти вам. До встречи!";
+			link.l1.go = "exit";
+		break;
+		case "TradeMed":
+			dialog.text = "Сколько из этого количества ты привёз нам?";
+			Link.l1.edit = 1;
+			link.l1 = "";
+			link.l1.go = "TradeMed2";
+			link.l2 = "Мне надо подумать.";
+			link.l2.go = "exit";
+		break;
+		case "TradeMed2":
+			npchar.amount = GetStrSmallRegister(dialogEditStrings[1]);
+			NPChar.sumtotal = sti(npchar.amount)*10;
+			dialog.text = "Значит, что получается? Я беру лекарства по 10 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. За каждые 15 тысяч идёт кредитный сундук. Предложение устраивает?"; 
+			link.l1 = "Да.";
+			link.l1.go = "TradeMed3";
+			link.l2 = "Мне надо подумать.";
+			link.l2.go = "exit";
+		break;
+		case "TradeMed3":
+			pchar.Ship.Cargo.Goods.Medicament = sti(pchar.Ship.Cargo.Goods.Medicament)-sti(npchar.amount);
+			dialog.text = "Благодарю вас, капитан!";
+			AddCharacterExpToSkill(pchar, "Commerce", sti(NPChar.sumtotal) / 2000.0);
+			ChangeCharacterReputation(pchar, sti(NPChar.sumtotal) / 10000.0);
+			if (sti(NPChar.sumtotal) >= 15000)
+			{
+				int chestsamount = makeint(sti(NPChar.sumtotal)/15000);
+				TakenItems(pchar,"Chest",chestsamount);
+				NPChar.sumtotal = sti(NPChar.sumtotal)-(15000*chestsamount);
+				log_info("Получены кредитные сундуке в количестве "+chestsamount+" шт.");
+			}
+			AddMoneyToCharacter(pchar, sti(NPChar.sumtotal));
+			link.l1 = "Рад был помочь. До встречи!";
+			link.l1.go = "exit";
+		break;
+		case "TradeCloth":
+			dialog.text = "Сколько из этого количества ты привёз нам?";
+			Link.l1.edit = 1;
+			link.l1 = "";
+			link.l1.go = "TradeCloth2";
+			link.l2 = "Мне надо подумать.";
+			link.l2.go = "exit";
+		break;
+		case "TradeCloth2":
+			npchar.amount = GetStrSmallRegister(dialogEditStrings[1]);
+			NPChar.sumtotal = sti(npchar.amount)*5;
+			dialog.text = "Значит, что получается? Я беру одежду по 5 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. За каждые 15 тысяч идёт кредитный сундук. Предложение устраивает?"; 
+			link.l1 = "Да.";
+			link.l1.go = "TradeCloth3";
+			link.l2 = "Мне надо подумать.";
+			link.l2.go = "exit";
+		break;
+		case "TradeCloth3":
+			pchar.Ship.Cargo.Goods.Clothes = sti(pchar.Ship.Cargo.Goods.Clothes)-sti(npchar.amount);
+			dialog.text = "Благодарю вас, капитан!";
+			AddCharacterExpToSkill(pchar, "Commerce", sti(NPChar.sumtotal) / 2000.0);
+			ChangeCharacterReputation(pchar, sti(NPChar.sumtotal) / 10000.0);
+			if (sti(NPChar.sumtotal) >= 15000)
+			{
+				int chestsamount1 = makeint(sti(NPChar.sumtotal)/15000);
+				TakenItems(pchar,"Chest",chestsamount1);
+				NPChar.sumtotal = sti(NPChar.sumtotal)-(15000*chestsamount1);
+				log_info("Получены кредитные сундуке в количестве "+chestsamount1+" шт.");
+			}
+			AddMoneyToCharacter(pchar, sti(NPChar.sumtotal));
+			link.l1 = "Рад был помочь. До встречи!";
 			link.l1.go = "exit";
 		break;
 	}
