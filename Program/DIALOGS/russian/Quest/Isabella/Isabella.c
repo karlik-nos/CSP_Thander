@@ -792,6 +792,7 @@ void ProcessDialogEvent()
 			link.l1 = "Ну что же, свои обещания я помню прекрасно. Я согласен с таким раскладом, дорогая.";
 			link.l1.go = "exit";
 			NextDiag.TempNode = "NewLife";
+			UnlockAchievement("Isabella_quest", 3);
 			AddDialogExitQuest("Romantic_afterFirstTime");
 		break;
 //************************************ новая жизнь бывшего корсара ********************************
