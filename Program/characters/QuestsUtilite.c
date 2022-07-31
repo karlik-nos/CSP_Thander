@@ -1243,7 +1243,7 @@ string NPCStringReactionRepeat(string _strNormal, string _strBad1, string _strBa
         case "2":
             if (_strBad2 == "none" || _strBad2 == "")
             {
-                strBack = LinkRandPhrase("Еще раз повторяю, что я не хочу говорить об одном и том же по десять раз!",
+                strBack = LinkRandPhrase("Ещё раз повторяю, что я не хочу говорить об одном и том же по десять раз!",
                           "Повторяю, мы уже говорили об этом!",
                           "Я же говорю, мы это уже обсуждали. Проблемы с памятью?");
             }

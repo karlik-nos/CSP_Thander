@@ -269,7 +269,7 @@ void ProcessDialogEvent()
 			Link.l1.go = "DH_mercenary_SK_vavern_1";
 		break;
 		case "DH_mercenary_SK_vavern_1":
-			dialog.Text = "Да-да-да. Знаю, но с учетом обстоятельств я бы предпочел сопровождать вас до банка Кюрасао. ";
+			dialog.Text = "Да-да-да. Знаю, но с учётом обстоятельств я бы предпочел сопровождать вас до банка Кюрасао. ";
 			Link.l1 = "А что до остальных?";
 			Link.l1.go = "DH_mercenary_SK_vavern_2";
 		break;

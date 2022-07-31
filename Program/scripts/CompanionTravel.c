@@ -211,16 +211,16 @@ float CompanionTravel_CalculateSinkChance(ref _NPC, String _sColony)
 
 	Log_TestInfo("База - "+fChance);
 	if(iHPPercent < 50) fChance = fChance+(50-iHPPercent)*1.5; // Проценты потопления за состояние корпуса
-	Log_TestInfo("База + учет корпуса - "+fChance);
+	Log_TestInfo("База + учёт корпуса - "+fChance);
 
 	if(iSPPercent < 50) fChance = fChance+(50-iSPPercent)*0.5; // За состояние парусов
-	Log_TestInfo("База + учет корпуса + учет парусов - "+fChance);
+	Log_TestInfo("База + учёт корпуса + учёт парусов - "+fChance);
 
 	if(iSailSkill < iNeedSailSkill) fChance = fChance+(iNeedSailSkill-iSailSkill)*0.8; // Учитываем скилл навигации
-	Log_TestInfo("База + учет корпуса + учет парусов + учет навы - "+fChance);
+	Log_TestInfo("База + учёт корпуса + учёт парусов + учёт навы - "+fChance);
 
 	if(iDays > 7) fChance = fChance*((iDays-7)*0.1+1);
-	Log_TestInfo("( База + учет корпуса + учет парусов + учет навы ) * учет дней - "+fChance);
+	Log_TestInfo("( База + учёт корпуса + учёт парусов + учёт навы ) * учёт дней - "+fChance);
 	Log_TestInfo("=============== Шанс потопления рассчитан. Шанс - "+fChance+" ===============");
 
 	return fChance;
