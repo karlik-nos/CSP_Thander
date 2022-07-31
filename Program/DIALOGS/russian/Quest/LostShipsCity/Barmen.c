@@ -1045,27 +1045,27 @@ void ProcessDialogEvent()
 			{
 				case 1:
 					NPChar.sumtotal = sti(npchar.amount)*10;
-					dialog.text = "Значит, что тут у нас получается? Ага, вот. Я беру провиант по 10 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. За каждые 15 тысяч идёт кредитный сундук. Предложение устраивает?"; 
+					dialog.text = "Значит, что тут у нас получается? Ага, вот. Я беру провиант по 10 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. Предложение устраивает?"; 
 				break;
 				case 2: 
 					NPChar.sumtotal = sti(npchar.amount)*150;
-					dialog.text = "Значит, что тут у нас получается? Ага, вот. Я беру вино по 150 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. За каждые 15 тысяч идёт кредитный сундук. Предложение устраивает?"; 
+					dialog.text = "Значит, что тут у нас получается? Ага, вот. Я беру вино по 150 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. Предложение устраивает?"; 
 				break;
 				case 3: 
 					NPChar.sumtotal = sti(npchar.amount)*40;
-					dialog.text = "Значит, что тут у нас получается? Ага, вот. Я беру эль по 40 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. За каждые 15 тысяч идёт кредитный сундук. Предложение устраивает?";
+					dialog.text = "Значит, что тут у нас получается? Ага, вот. Я беру эль по 40 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. Предложение устраивает?";
 				break;
 				case 4: 
 					NPChar.sumtotal = sti(npchar.amount)*20;
-					dialog.text = "Значит, что тут у нас получается? Ага, вот. Я беру ром по 20 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. За каждые 15 тысяч идёт кредитный сундук. Предложение устраивает?";
+					dialog.text = "Значит, что тут у нас получается? Ага, вот. Я беру ром по 20 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. Предложение устраивает?";
 				break;
 				case 4: 
 					NPChar.sumtotal = sti(npchar.amount)*20;
-					dialog.text = "Значит, что тут у нас получается? Ага, вот. Я беру ром по 20 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. За каждые 15 тысяч идёт кредитный сундук. Предложение устраивает?";
+					dialog.text = "Значит, что тут у нас получается? Ага, вот. Я беру ром по 20 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. Предложение устраивает?";
 				break;
 				case 5: 
 					NPChar.sumtotal = sti(npchar.amount)*50;
-					dialog.text = "Значит, что тут у нас получается? Ага, вот. Я беру фрукты по 50 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. За каждые 15 тысяч идёт кредитный сундук. Предложение устраивает?";
+					dialog.text = "Значит, что тут у нас получается? Ага, вот. Я беру фрукты по 50 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. Предложение устраивает?";
 				break;
 			}
 			link.l1 = "Да. По рукам!";
@@ -1094,13 +1094,13 @@ void ProcessDialogEvent()
 			}
 			dialog.text = "С вами приятно иметь дело. Получите и распишитесь!";
 			AddCharacterExpToSkill(pchar, "Commerce", sti(NPChar.sumtotal) / 2500.0);
-			if (sti(NPChar.sumtotal) >= 15000)
+			/*if (sti(NPChar.sumtotal) >= 15000)
 			{
 				int chestsamount = makeint(sti(NPChar.sumtotal)/15000);
 				TakenItems(pchar,"Chest",chestsamount);
 				NPChar.sumtotal = sti(NPChar.sumtotal)-(15000*chestsamount);
 				log_info("Получены кредитные сундуке в количестве "+chestsamount+" шт.");
-			}
+			}*/
 			AddMoneyToCharacter(pchar, sti(NPChar.sumtotal));
 			link.l1 = "С тобой тоже. До встречи!";
 			link.l1.go = "exit";

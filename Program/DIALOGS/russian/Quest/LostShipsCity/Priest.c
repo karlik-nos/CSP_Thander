@@ -553,7 +553,8 @@ void ProcessDialogEvent()
 		case "TradeMed2":
 			npchar.amount = GetStrSmallRegister(dialogEditStrings[1]);
 			NPChar.sumtotal = sti(npchar.amount)*10;
-			dialog.text = "Значит, что получается? Я беру лекарства по 10 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. За каждые 15 тысяч идёт кредитный сундук. Предложение устраивает?"; 
+			//dialog.text = "Значит, что получается? Я беру лекарства по 10 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. За каждые 15 тысяч идёт кредитный сундук. Предложение устраивает?"; 
+			dialog.text = "Значит, что получается? Я беру лекарства по 10 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. Предложение устраивает?"; 
 			link.l1 = "Да.";
 			link.l1.go = "TradeMed3";
 			link.l2 = "Мне надо подумать.";
@@ -564,13 +565,13 @@ void ProcessDialogEvent()
 			dialog.text = "Благодарю вас, капитан!";
 			AddCharacterExpToSkill(pchar, "Commerce", sti(NPChar.sumtotal) / 2000.0);
 			ChangeCharacterReputation(pchar, sti(NPChar.sumtotal) / 10000.0);
-			if (sti(NPChar.sumtotal) >= 15000)
+			/*if (sti(NPChar.sumtotal) >= 15000)
 			{
 				int chestsamount = makeint(sti(NPChar.sumtotal)/15000);
 				TakenItems(pchar,"Chest",chestsamount);
 				NPChar.sumtotal = sti(NPChar.sumtotal)-(15000*chestsamount);
 				log_info("Получены кредитные сундуке в количестве "+chestsamount+" шт.");
-			}
+			}*/
 			AddMoneyToCharacter(pchar, sti(NPChar.sumtotal));
 			link.l1 = "Рад был помочь. До встречи!";
 			link.l1.go = "exit";
@@ -586,7 +587,8 @@ void ProcessDialogEvent()
 		case "TradeCloth2":
 			npchar.amount = GetStrSmallRegister(dialogEditStrings[1]);
 			NPChar.sumtotal = sti(npchar.amount)*5;
-			dialog.text = "Значит, что получается? Я беру одежду по 5 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. За каждые 15 тысяч идёт кредитный сундук. Предложение устраивает?"; 
+			//dialog.text = "Значит, что получается? Я беру одежду по 5 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. За каждые 15 тысяч идёт кредитный сундук. Предложение устраивает?"; 
+			dialog.text = "Значит, что получается? Я беру одежду по 5 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. Предложение устраивает?"; 
 			link.l1 = "Да.";
 			link.l1.go = "TradeCloth3";
 			link.l2 = "Мне надо подумать.";
@@ -597,13 +599,13 @@ void ProcessDialogEvent()
 			dialog.text = "Благодарю вас, капитан!";
 			AddCharacterExpToSkill(pchar, "Commerce", sti(NPChar.sumtotal) / 2000.0);
 			ChangeCharacterReputation(pchar, sti(NPChar.sumtotal) / 10000.0);
-			if (sti(NPChar.sumtotal) >= 15000)
+			/*if (sti(NPChar.sumtotal) >= 15000)
 			{
 				int chestsamount1 = makeint(sti(NPChar.sumtotal)/15000);
 				TakenItems(pchar,"Chest",chestsamount1);
 				NPChar.sumtotal = sti(NPChar.sumtotal)-(15000*chestsamount1);
 				log_info("Получены кредитные сундуке в количестве "+chestsamount1+" шт.");
-			}
+			}*/
 			AddMoneyToCharacter(pchar, sti(NPChar.sumtotal));
 			link.l1 = "Рад был помочь. До встречи!";
 			link.l1.go = "exit";
