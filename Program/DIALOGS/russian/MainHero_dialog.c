@@ -557,7 +557,14 @@ void ProcessDialogEvent()
 				Link.lSmugglingFlag = "Отключить автоматическую смену флага во время контрабандных сделок.";
 				Link.lSmugglingFlag.go = "SmugglingFlag";
 			}
-
+			if (CheckAttribute(loadedLocation,"id"))
+			{
+				if (loadedLocation.id == "SanGabrielMechanic" && CheckAttribute(pchar,"VedekerDiscount"))
+				{
+					Link.lhenric = "Попросить Хенрика подготовить костюм к новому погружению.";
+					Link.lhenric.go = "RechargeCostume";
+				}
+			}
 			Link.l14 = RandPhraseSimple("Не сейчас. Нет времени.", "Некогда. Дела ждут.");
 			Link.l14.go = "exit";
 		break;
@@ -1520,6 +1527,44 @@ void ProcessDialogEvent()
 			Link.l1.go = "exit";
 			NextDiag.TempNode = "TalkSelf_Main";
 			chrDisableReloadToLocation = false;
+		break;
+		case "RechargeCostume":
+			if (!CheckAttribute(pchar,"questTemp.LSC.immersions"))
+			{
+				dialog.Text = "Хенрик сказал, что всё готово к погружению.";
+				Link.l1 = "Ну и отлично.";
+				Link.l1.go = "exit";
+				pchar.questTemp.LSC = "toUnderwater";
+				pchar.questTemp.LSC.immersions = 0;
+				pchar.questTemp.LSC.immersions.pay = true;
+				SaveCurrentQuestDateParam("questTemp.LSC.immersions");
+				WaitDate("", 0, 0, 0, 1, 0);
+				break;
+			}
+			if (CheckAttribute(pchar,"questTemp.LSC.immersions") && pchar.questTemp.LSC.immersions.pay == true)
+			{
+				dialog.Text = "Костюм уже готов, можно погружаться.";
+				Link.l1 = "Ну и отлично.";
+				Link.l1.go = "exit";
+				break;
+			}
+			if (GetQuestPastDayParam("questTemp.LSC.immersions") > 1)
+			{
+				dialog.Text = "Хенрик сказал, что всё готово к погружению.";
+				Link.l1 = "Ну и отлично.";
+				Link.l1.go = "exit";
+				pchar.questTemp.LSC = "toUnderwater";
+				pchar.questTemp.LSC.immersions = 0;
+				pchar.questTemp.LSC.immersions.pay = true;
+				SaveCurrentQuestDateParam("questTemp.LSC.immersions");
+				WaitDate("", 0, 0, 0, 1, 0);
+			}
+			else
+			{
+				dialog.Text = "Хенрик сказал, что костюм не готов к погружению и попросил проверить завтра.";
+				Link.l1 = "Что поделать...";
+				Link.l1.go = "exit";
+			}
 		break;
 
 	}
