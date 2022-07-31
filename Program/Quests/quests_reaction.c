@@ -9751,58 +9751,58 @@ void QuestComplete(string sQuestName, string qname)
 
 //========================  Квест "Альбрехт".  =======================
 		case "PDM_Albreht_Saditsya_na_korabl":
-			sld = CharacterFromID("Albreht_Zalpfer")   //ссылается на персонажа
-			SetCharacterRemovable(sld, true);   // можно ставить на должность
+			sld = CharacterFromID("Albreht_Zalpfer")
+			SetCharacterRemovable(sld, true);
 			LAi_SetImmortal(sld, false);
 			sld.HalfImmortal = true;
 			GiveItem2Character(sld, "topor_05");
 			EquipCharacterByItem(sld, "topor_05");
 
-			bDisableFastReload = false;          //быстрое перемещение
-			chrDisableReloadToLocation = false;      //блокировка всех выходов
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
         break;
 
 		case "PDM_Albreht_Vhod":
-			chrDisableReloadToLocation = false;   //блокировка всех выходов
-            sld = CharacterFromID("Albreht_Zalpfer");  //ссылается на персонажа
-	        sld.dialog.currentnode = "Ja_1";         //название диалога
-			sld.greeting = "Albrecht_Zalpfer";    //приветствие
-			LAi_SetActorType(sld);            //актёр или житель
-			LAi_ActorDialog(sld, pchar, "", 0.5, 0);  //начинает говорить
-			PlaceCharacter(sld, "goto", PChar.location);   //где стоит
+			chrDisableReloadToLocation = false;
+            sld = CharacterFromID("Albreht_Zalpfer");
+	        sld.dialog.currentnode = "Ja_1";
+			sld.greeting = "Albrecht_Zalpfer";
+			LAi_SetActorType(sld);
+			LAi_ActorDialog(sld, pchar, "", 0.5, 0);
+			PlaceCharacter(sld, "goto", PChar.location);
 			Locations[FindLocation("PortRoyal_town")].reload.l23.disable = false;   //открывает архитектора
         break;
 
 		case "PDM_Albreht_Vihod":
-			sld = CharacterFromID("Albreht_Zalpfer")   //ссылается на персонажа
-			ChangeCharacterAddressGroup(sld, "PortRoyal_town", "none", "");   //переместить
+			sld = CharacterFromID("Albreht_Zalpfer")
+			ChangeCharacterAddressGroup(sld, "PortRoyal_town", "none", "");
         break;
 
 //========================  Квест "Проклятый идол".  =======================
 
 		case "PDM_Callow_RodjerVozvrat":
-			sld = CharacterFromID("PDM_LeFransua_Mayor_Klon")   //убираем клона
-			ChangeCharacterAddressGroup(sld, "LeFransua_town", "none", "");   //переместить
+			sld = CharacterFromID("PDM_LeFransua_Mayor_Klon")
+			ChangeCharacterAddressGroup(sld, "LeFransua_town", "none", "");
 
-			sld = CharacterFromID("LeFransua_Mayor")   //возвращаем губернатора
-			ChangeCharacterAddressGroup(sld, "LeFransua_townhall", "sit", "sit1");   //переместить
+			sld = CharacterFromID("LeFransua_Mayor")
+			ChangeCharacterAddressGroup(sld, "LeFransua_townhall", "sit", "sit1");
 		break;
 
 		case "PDM_Callow_RodjerFin":
-			sld = CharacterFromID("James_Callow")   //ссылается на персонажа
+			sld = CharacterFromID("James_Callow")
 			sld.dialog.filename = "Quest/PDM/Cursed_Idol.c";
 			sld.dialog.currentnode = "CollowRad_1";
 		break;
 
 		case "PDM_Callow_RadPoka":
-			sld = CharacterFromID("James_Callow")   //ссылается на персонажа
-			ChangeCharacterAddressGroup(sld, "LaVega_town", "none", "");   //переместить
+			sld = CharacterFromID("James_Callow")
+			ChangeCharacterAddressGroup(sld, "LaVega_town", "none", "");
 		break;
 
 		case "PDM_FraOff_Bitva_1_Posle":
-			chrDisableReloadToLocation = false;   //Теперь можно уйти
-			bDisableFastReload = false;	         	//Открываем быстрые перемещения
-			sld = CharacterFromID("James_Callow")   //ссылается на персонажа
+			chrDisableReloadToLocation = false;
+			bDisableFastReload = false;
+			sld = CharacterFromID("James_Callow")
 			sld.dialog.filename = "Quest/PDM/Cursed_Idol.c";
 			sld.dialog.currentnode = "CollowNeRad_1";
 		break;
@@ -9814,7 +9814,7 @@ void QuestComplete(string sQuestName, string qname)
 			AddQuestRecord("PDM_Cursed_Idol", "9");
 			chrDisableReloadToLocation = false;
 			bDisableFastReload = false;
-			LAi_LocationFightDisable(loadedLocation, true); //запрещаем оружие
+			LAi_LocationFightDisable(loadedLocation, true);
 
 			sld = CharacterFromID("Tortuga_usurer")
 			sld.dialog.filename = "Usurer_dialog.c";
