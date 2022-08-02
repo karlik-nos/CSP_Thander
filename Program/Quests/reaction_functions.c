@@ -11159,7 +11159,7 @@ void LooserGenerator_InStore(string s)
 	int i;
 	string str;
 
-	if(CheckAttribute(pchar, "HOTP_CasinoQuest.store") && locations[n].id == "CommonPackhouse_1")
+	if(CheckAttribute(pchar, "HOTP_CasinoQuest.store") && locations[n].reload.l1.go == pchar.HOTP_CasinoQuest.store)
 	{
 		DeleteAttribute(pchar, "HOTP_CasinoQuest.store");
 		Log_Info("Кажется я на месте...");
@@ -11214,7 +11214,7 @@ void LooserGenerator_InShipyard(string s)
 	int i;
 	string str;
 
-	if(CheckAttribute(pchar, "HOTP_CasinoQuest.shipyard") && locations[n].reload.l1.go == "CommonPackhouse_2")
+	if(CheckAttribute(pchar, "HOTP_CasinoQuest.shipyard") && locations[n].reload.l1.go == pchar.HOTP_CasinoQuest.shipyard)
 	{
 		DeleteAttribute(pchar, "HOTP_CasinoQuest.shipyard");
 		Log_Info("Кажется я на месте...");
