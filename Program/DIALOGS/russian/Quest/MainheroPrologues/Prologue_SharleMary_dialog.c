@@ -82,7 +82,7 @@ void ProcessDialogEvent()
 			StartInstantDialog("SharleMary", "SMPirate1_3", "Quest\MainheroPrologues\Prologue_SharleMary_dialog.c");
 		break;
 		case "SMPirate1_3":
-			dialog.text = "Да, наши друзья заплатят вам за неудобства и вам зачтётся богоугодное дело, помощь нуждающимся.";
+			dialog.text = "(к пирату) Да, наши друзья заплатят вам за неудобства и вам зачтётся богоугодное дело, помощь нуждающимся.";
 			link.l1 = "";
 			link.l1.go = "SMPirate1_4";
 			LAi_SetActorTypeNoGroup(npchar);
@@ -112,7 +112,7 @@ void ProcessDialogEvent()
 
 		case "3":
 			dialog.text = "Я "+GetSexPhrase("думала","думал")+" встретить наших друзей мискито, а тут обитают каннибалы. Нужно скорей выбираться отсюда. Пойдём на пляж, возможно, ещё кого-то прибило к берегу. И нужно что-то сделать с твоей раной на голове. Выглядит скверно.";
-			link.l1 = "Пойдём.";
+			link.l1 = "Пойдём, "+GetSexPhrase("Мэри","Шарль")+".";
 			link.l1.go = "Exit_follow";
 		break;
 

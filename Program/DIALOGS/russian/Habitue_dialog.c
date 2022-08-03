@@ -217,7 +217,7 @@ void ProcessDialogEvent()
 	        			    link.l1.go = "exit";
 	        			    link.l2 = RandPhraseSimple("Как ты со мной разговариваешь, скотина! Сейчас я научу тебя хорошим манерам.", "Вот я тресну тебя сейчас по башке, вмиг протрезвеешь.");
 	        	            link.l2.go = "tavern_keeper";
-							if (SharleMaryIsHere())
+							if (SharleMaryIsHere() && PChar.sex != "woman")
 							{
 								link.l1 = "";
 								link.l1.go = "Mary_Zastupaetsya_1";
