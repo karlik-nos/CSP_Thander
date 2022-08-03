@@ -18,7 +18,7 @@ void ProcessDialogEvent()
 				chrDisableReloadToLocation = false;
 				LAi_SetPlayerType(PChar);
 				LAi_SetImmortal(NPChar, true);
-				dialog.text = GetSexPhrase("Мой дорогой Шарль! Ты весь в крови!","Любовь моя! Ты вся в крови!");
+				dialog.text = GetSexPhrase("Шарль! Ты весь в крови!","Мэри! Ты вся в крови!");
 				link.l1 = "Пустяки. "+GetSexPhrase("приложился","приложилась")+" об камни на берегу. Тебя не задели? Эти дьяволы отравляют своё оружие.";
 				link.l1.go = "2";
 				

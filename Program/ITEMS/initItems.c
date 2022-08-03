@@ -9074,13 +9074,13 @@ int InitItems()
 	//Джокер "Проигравшийся игрок"
 	makeref(itm,Items[n]);
 	itm.id = "Joker";
-	itm.groupID = IDOLS_LEFT_ITEM_TYPE;
+	itm.groupID = TALISMAN_ITEM_TYPE;
 	itm.name = "itmname_Joker";
 	itm.describe = "itmdescr_Joker";
 	itm.picIndex = 7;
 	itm.picTexture = "ITEMS_20";
-	itm.price = 5000;
-	itm.weight = 0.1;
+	itm.price = 20000;
+	itm.weight = 0.5;
 	itm.ItemType = "QUESTITEMS";
 	n++;
 

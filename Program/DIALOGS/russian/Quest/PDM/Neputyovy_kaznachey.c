@@ -244,7 +244,7 @@ void ProcessDialogEvent()
 				link.l1 = "Сейчас у меня нет таких денег, Виктор, но я зайду позже и заплачу за Андреаса.";
 				link.l1.go = "exit";
 			}
-			link.l2 = "Мне надоело таскаться по всему архипелагу из-за дурацкого твоего фрахта. Мог бы уже 100 раз поднять свою задницу, и добыть себе деньги сам, старый ты пень!";
+			link.l2 = "Мне надоело таскаться по всему архипелагу из-за твоего дурацкого фрахта. Мог бы уже 100 раз поднять свою задницу, и добыть себе деньги сам, старый ты пень!";
 			link.l2.go = "Konec";
 			NextDiag.TempNode = "Viktor_VernulsyDengi";
 		break;
@@ -268,7 +268,7 @@ void ProcessDialogEvent()
 			GiveItem2Character(sld, "mineral9");
 			AddItems(sld, "jewelry1", rand(7)+2);
 			AddItems(sld, "jewelry3", rand(7)+2);
-			AddItems(sld, "jewelry6", 2);
+			AddItems(sld, "jewelry6", 1);
 			TakeItemFromCharacter(sld, "spyglass3");
 
 			PChar.quest.PDM_NK_Viktor.win_condition.l1 = "NPC_Death";

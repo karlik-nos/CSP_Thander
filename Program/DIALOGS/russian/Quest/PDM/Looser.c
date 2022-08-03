@@ -12,7 +12,7 @@ void ProcessDialogEvent()
 	switch(Dialog.CurrentNode)
 	{
 		case "first time":
-			dialog.text = "Слушаю тебя.";
+			dialog.text = "Слушаю тебя, приятель.";
 			link.l1 = "Мне не удалось сделать, как ты просил.";
 			link.l1.go = "1";
 		break;
@@ -67,7 +67,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Jdet_1":
-			dialog.text = "Слушаю тебя.";
+			dialog.text = "Слушаю тебя, приятель.";
 			link.l1 = "Я скоро достану твои деньги, не переживай.";
 			link.l1.go = "exit";
 			NextDiag.TempNode = "Jdet_1";
