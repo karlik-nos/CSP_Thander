@@ -30,6 +30,10 @@ void ProcessDialogEvent()
 	{
 		// ============= хозяйка борделя =============
 		case "First time":
+			if (PChar.sex == "woman")
+			{
+				npchar.greeting = "hostess_lady";
+			}
 			if (LAi_grp_playeralarm > 0)
 			{
        			dialog.text = NPCharRepPhrase(pchar,
