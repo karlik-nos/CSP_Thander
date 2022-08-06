@@ -1542,7 +1542,7 @@ void GoToShipChange() // нажатие ОК на табличке ок-отме
 			ExitShipChangeMenu();
 			// первый проход - кэп еще жив
 			SetFormatedText("CAPTURE_TEXT", XI_ConvertString("Surrendered_captain_capture"));
-			SetNewPicture("CAPTUR_PICTURE", "interfaces\portraits\128\face_" + xi_refCharacter.FaceId + ".tga");
+			SetNewPicture("CAPTURE_PICTURE", "interfaces\portraits\128\face_" + xi_refCharacter.FaceId + ".tga");
 			ShowCaptureWindow();
 			SetNodeUsing("CAPTURE_CREW_KILL",  false);
 			SetNodeUsing("CAPTURE_CREW_PRISON",  false);
@@ -2317,7 +2317,7 @@ void ShowCrewCaptureAsk()
 	{
 		// второй проход - Команда
 		SetFormatedText("CAPTURE_TEXT_CREW", XI_ConvertString("Surrendered_crew_capture"));
-		SetNewPicture("CAPTUR_CREW_PICTURE", "interfaces\portraits\128\face_" + xi_refCharacter.FaceId + ".tga");
+		SetNewPicture("CAPTURE_CREW_PICTURE", "interfaces\portraits\128\face_" + xi_refCharacter.FaceId + ".tga");
 		ShowCaptureCrewWindow();
 
 		int iMode = CheckEnemyShipHPFree();
