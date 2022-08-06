@@ -1710,12 +1710,7 @@ void GoToShipChange() // нажатие ОК на табличке ок-отме
 		break;
 
 		case "AskEnterCompanionCapturedTransfer": // возможность автоматически распорядиться добычей компаньона
-			if (CheckChanceOfBetterShip(refCharacter, xi_refCharacter))
-			{
-				SeaExchangeCharactersShips(refCharacter, xi_refCharacter, true, true);
-			}
-			DoTakeAbordageGoods(refCharacter, xi_refCharacter);
-			ShipDead(sti(xi_refCharacter.index), KILL_BY_ABORDAGE, sti(refCharacter.index));
+			CompaniontDefaultCapturedDecision(refCharacter, xi_refCharacter);
 			IDoExit(RC_INTERFACE_RANSACK_MAIN_EXIT);
 		break;
 	}
