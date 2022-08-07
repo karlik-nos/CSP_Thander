@@ -525,7 +525,7 @@ float Ship_MastDamage()
 			switch (iBallType)
 			{
 				case GOOD_BALLS:
-					baseDamage = pow((nClass+1), 2.4) * 0.008; //pow(nClass, 2.0) * 0.005; //0.025; - больше зависимость класса, меньше изначальный урон.
+					baseDamage = pow((nClass+1), 2.4) * 0.005; //pow(nClass, 2.0) * 0.005; //0.025; - больше зависимость класса, меньше изначальный урон.
 				break;
 				case GOOD_GRAPES:
 					baseDamage = 0.0;
@@ -533,10 +533,10 @@ float Ship_MastDamage()
 					fClsMDamage = 0.0;
 				break;
 				case GOOD_KNIPPELS:
-					baseDamage = pow((nClass+1), 2.4) * 0.0066; //0.015;
+					baseDamage = pow((nClass+1), 2.4) * 0.0043; //0.015;
 				break;
 				case GOOD_BOMBS:
-					baseDamage = pow((nClass+1), 2.4) * 0.0025; //0.005;
+					baseDamage = pow((nClass+1), 2.4) * 0.001; //0.005;
 				break;
 			}
 			tempDamage = baseDamage * fCbrMDamage + fClsMDamage;
