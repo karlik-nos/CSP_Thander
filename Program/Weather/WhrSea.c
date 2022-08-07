@@ -55,7 +55,7 @@ void WhrCreateSeaEnvironment()
 			/*FogDensity = 20.0;
 			FogSeaDensity = 20.0;*/
 
-			Sea.Sea2.LodScale = 0.5;
+			Sea.Sea2.LodScale = 0.17;
 			Sea.Sea2.GridStep = 0.07;
 			Sea.Sea2.BumpScale = 0.3;
             //SetSeaSettings();
@@ -234,7 +234,7 @@ void SetSeaSettings()
 	//Sea.GridStep = GridStepPC;
 	Sea.GridStep = 0.1 + 0.1 * (1.0 - stf(InterfaceStates.SeaDetails));
 
-	Sea.Sea2.LodScale = 0.5;
+	Sea.Sea2.LodScale = 0.17;
 	Sea.Sea2.GridStep = 0.07 + 0.1 * (1.0 - stf(InterfaceStates.SeaDetails));
 }
 
