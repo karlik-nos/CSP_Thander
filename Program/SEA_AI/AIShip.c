@@ -1386,7 +1386,7 @@ void Ship_CheckSituation()
 					        else
 					        {
 						        // смертники!!!
-						        if (HPPercent < 15)
+						        if ((HPPercent < 8) && (0.03 * stf(rCharacter.skill.LeaderShip) * MinCrewQuantity >= CrewQuantity) && (rShip.Type.War == true))
 						        {
 						            if (rand(20) == 1)// очень часто плохо - убивает все вокруг
 						            {
