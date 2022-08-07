@@ -1411,7 +1411,8 @@ void ProcessDialogEvent()
 
 		case "loan_return":
 			addMoneyToCharacter(Pchar, -(makeint(Pchar.Quest.Loans.(NPC_Area).Result)));
-			AddCharacterExpToSkill(Pchar, "Leadership", (sti(Pchar.Quest.Loans.(NPC_Area).Result) - makeint(Pchar.Quest.Loans.(NPC_Area).Sum)) / 50);
+			iPastMonths = GetPastTime("Month", makeint(Pchar.Quest.Loans.(NPC_Area).StartYear),makeint(Pchar.Quest.Loans.(NPC_Area).StartMonth),makeint(Pchar.Quest.Loans.(NPC_Area).StartDay), makefloat(Pchar.Quest.Loans.(NPC_Area).StartTime), getDataYear(),getDataMonth(),GetDataDay(), GetTime());
+			AddCharacterExpToSkill(Pchar, "Leadership", Pchar.Quest.Loans.(NPC_Area).Sum / 12000 * iPastMonths);
 			DeleteAttribute(PChar, "quest.Loans_" + NPC_Area); // bug fix
 			DeleteAttribute(PChar, "quest.Loans." + NPC_Area);
 			Dialog.snd1 = "voice\USDI\USDI024";
