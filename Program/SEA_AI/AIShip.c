@@ -3863,10 +3863,13 @@ void Ship_UpdateParameters()
 					{
 						Ship_SetLightsOff(rCharacter, 15.0, true, true, false);
 					}
-					if (sti(rCharacter.Ship.SP) > 50 && rand(100) > 80)  // не выкидывать, если не убежать, а то нет смысла брать приз
+
+					float speedDiff = FindShipSpeed(rCharacter) - FindShipSpeed(rTargetCharacter);
+					if ((speedDiff > -1) && (speedDiff > 3) && (rand(100) > 80))  // не выкидывать, если все равно не убежать, или убежать и так можно
 					{
 						PostEvent(SHIP_DROP_GOOD, 1000, "a", rCharacter);
 					}
+
 					// сброс мины 09.07.07 boal -->
 					if (sti(rCharacter.Ship.SP) < 60 && GetCargoGoods(rCharacter, GOOD_POWDER) >= MINE_POWDER*2 && rand(39) == 5)
 					{
@@ -4235,8 +4238,11 @@ void DropGoodsToSea()
 	ref rGood;
 	string sGood;
 
-	for (int i=GOOD_MEDICAMENT; i<GOOD_CULVERINE_32; i++)
+	for (int i = GOOD_MEDICAMENT; i < GOODS_QUANTITY; i++)
 	{
+		// Не выбрасывать дорогие товары.
+		if (Goods[i].Cost / Goods[i].Weight > 20) continue;
+
 		sGood = Goods[i].name;
 
 		if(CheckAttribute(rCharacter, "Ship.Cargo.Goods."+sGood))
