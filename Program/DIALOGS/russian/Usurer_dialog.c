@@ -1411,13 +1411,7 @@ void ProcessDialogEvent()
 
 		case "loan_return":
 			addMoneyToCharacter(Pchar, -(makeint(Pchar.Quest.Loans.(NPC_Area).Result)));
-			// boal 27.01.2004 -->
-            if (npchar.quest.trade_date != lastspeak_date) // дыра с прокачкой была
-            {
-    			AddCharacterExpToSkill(Pchar, "Commerce", makeint(Pchar.Quest.Loans.(NPC_Area).Result) / 350);
-    			AddCharacterExpToSkill(Pchar, "Leadership", makeint(Pchar.Quest.Loans.(NPC_Area).Result) / 700);
-			}
-			// boal 27.01.2004 <--
+			AddCharacterExpToSkill(Pchar, "Leadership", (sti(Pchar.Quest.Loans.(NPC_Area).Result) - makeint(Pchar.Quest.Loans.(NPC_Area).Sum)) / 50);
 			DeleteAttribute(PChar, "quest.Loans_" + NPC_Area); // bug fix
 			DeleteAttribute(PChar, "quest.Loans." + NPC_Area);
 			Dialog.snd1 = "voice\USDI\USDI024";
