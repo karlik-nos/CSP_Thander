@@ -2862,6 +2862,7 @@ void LoginDeadmansGod()
 	if (bHardBoss) sld.AlwaysReload = true;//перезарядка независимо от Дозарядки
 	ChangeCharacterAddressGroup(sld, "Temple_great", "goto", "goto1");
 	LAi_SetActorType(sld);
+	LAi_group_MoveCharacter(sld, "EnemyFight");
 	LAi_ActorDialog(sld, pchar, "", 0.0, 0);
 	LAi_CharacterPlaySound(sld, "DeadmansGod");
 }
