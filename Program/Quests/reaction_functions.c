@@ -11158,7 +11158,7 @@ void scareOfficers(int minSkill)
 	}
 }
 
-//Генераторный квест. Проигравшийся игрок. -->
+//Квест. Проигравшийся игрок. -->
 void LooserGenerator_sart_Magazin(string s)		//Украл владелец магазина
 {
 	ChangeCharacterReputation(pchar, -5);
@@ -11426,7 +11426,46 @@ void LooserGenerator_DopProverka(string s)
 		pchar.KIP_PI_ZapisVSJ = "KIP_PI_ZapisVSJ";
 	}
 }
-//<-- Генераторный квест. Проигравшийся игрок.
+//<-- Квест. Проигравшийся игрок.
+
+//Квест. Чудесное спасение на рифах. -->
+void KSM_Nashli_Ship(string qName)
+{
+	bDisableFastReload = true;
+	chrDisableReloadToLocation = true;
+	DoQuestFunctionDelay("KSM_Nashli_Ship_2", 1.0);
+}
+void KSM_Nashli_Ship_2(string qName)
+{
+	SetLaunchFrameFormParam("Вы на лодке отправились на разбитое судно. Через 15 минут вы уже спускаетесь в трюм, пытаясь найти выживший экипаж и ценный груз.", "", 0, 6.5);
+	LaunchFrameForm();
+	DoQuestFunctionDelay("KSM_V_trume", 6.5);
+}
+void KSM_V_trume(string qName)
+{
+	DoQuestReloadToLocation("My_Deck", "rld", "loc1", "KSM_Lovushka");
+}
+void KSM_V_trume_2(string qName)
+{
+	LAi_SetPlayerType(pchar);
+	sld = CharacterFromID("KSM_Alloka")
+	FantomMakeCoolFighter(sld, sti(pchar.rank), 15 + MOD_SKILL_ENEMY_RATE * 4, 15 + MOD_SKILL_ENEMY_RATE * 4, "blade46", "pistol9", 50 + MOD_SKILL_ENEMY_RATE * 4);
+	sld.SaveItemsForDead = true;
+	sld.DontChangeGun = true;
+	TakeItemFromCharacter(sld, "spyglass3");
+	TakeNItems(sld, "food1", -10);
+	AddMoneyToCharacter(sld, 10000);
+	AddItems(sld, "chest", 2);
+	AddItems(sld, "jewelry2", 30);
+	AddItems(sld, "jewelry3", 35);
+	AddItems(sld, "jewelry4", 20);
+	AddItems(sld, "jewelry5", 75);
+	PlaceCharacter(sld, "rld", PChar.location);
+	LAi_ActorDialog(sld, pchar, "", 1.5, 0);
+	sld.Dialog.Filename = "Quest/KSM/Spasenie_na_rifah.c";
+	sld.dialog.currentnode   = "REEFS";
+}
+//<-- Квест. Чудесное спасение на рифах.
 
 
 void FishHDS(string s)

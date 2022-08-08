@@ -590,6 +590,8 @@ void initStartState2Character(ref ch)
 	SilencePriceInit();
 	// ==> Квесты Проклятие Дальних Морей Sinistra
 	PDMQuestsInit();
+	// ==> Квесты Корсары: Сундук Мертвеца
+	KSMQuestsInit();
 	// ==>  флаги и иниты бергларов
 	BerglarsInit();
 	// ==>  нищие

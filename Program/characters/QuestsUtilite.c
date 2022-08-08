@@ -2622,6 +2622,23 @@ void PDMQuestsInit()
 	LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
 	ChangeCharacterAddressGroup(sld,"SentJons_tavern","goto","goto1");
 }
+//Сундук Мертвеца
+void KSMQuestsInit()
+{
+	ref sld;
+	//******Спасение на рифах******
+	//Джеймс Аллока
+	sld = GetCharacter(NPC_GenerateCharacter("KSM_Alloka", "trader_1", "man", "man", 10, ENGLAND, -1, false));
+	sld.name	= "Джеймс";
+	sld.lastname	= "Аллока";
+	sld.Dialog.Filename = "Quest/KSM/Spasenie_na_rifah.c";
+	LAi_SetCitizenType(sld);
+	LAi_SetLoginTime(sld, 6.0, 21.99);
+	sld.talker = 7;
+	LAi_SetImmortal(sld, true);
+	LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
+	ChangeCharacterAddressGroup(sld,"PortRoyal_town","goto","goto12");
+}
 void OfficerGirlInit()
 {
     ref sld;
