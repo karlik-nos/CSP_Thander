@@ -270,6 +270,7 @@ void ProcessDialogEvent()
 			AddItems(sld, "jewelry3", rand(7)+2);
 			AddItems(sld, "jewelry6", 1);
 			TakeItemFromCharacter(sld, "spyglass3");
+			TakeNItems(sld, "food1", -10);
 
 			PChar.quest.PDM_NK_Viktor.win_condition.l1 = "NPC_Death";
 			PChar.quest.PDM_NK_Viktor.win_condition.l1.character = "PDM_NK_Viktor";

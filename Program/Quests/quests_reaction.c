@@ -9780,6 +9780,21 @@ void QuestComplete(string sQuestName, string qname)
 
 //========================  Квест "Проклятый идол".  =======================
 
+		case "PDM_Callow_sadis_na_stul":
+			ChangeCharacterAddressGroup(pchar, "LaVega_tavern", "sit", "sit_front3");
+			LAi_SetSitType(pchar);
+			LAi_SetSitType(npchar);
+			sld = CharacterFromID("James_Callow")
+			LAi_SetActorType(sld);
+			LAi_ActorSetSitMode(sld);
+			LAi_ActorDialogDelay(sld, pchar, "", 1.2);
+		break;
+		
+		case "PDM_Callow_vstaem":
+			ChangeCharacterAddressGroup(pchar, "LaVega_tavern", "tables", "stay1");
+			LAi_SetPlayerType(pchar);
+		break;
+
 		case "PDM_Callow_RodjerVozvrat":
 			sld = CharacterFromID("PDM_LeFransua_Mayor_Klon")
 			ChangeCharacterAddressGroup(sld, "LeFransua_town", "none", "");
@@ -9835,22 +9850,31 @@ void QuestComplete(string sQuestName, string qname)
             LAi_SetFightMode(Pchar, true);
 			Log_SetStringToLog("Скелеты атакуют!!!");
 			//Скелеты
-            for (i=1; i<=8; i++)
+            for (i=1; i<=6; i++)
 			{
-				sTemp = "skel_"+(rand(5)+1);
+				sTemp = "skel_"+(rand(3)+1);
 				sld = GetCharacter(NPC_GenerateCharacter("PDM_PI_skel_"+i, sTemp, "skeleton", "skeleton", 10, PIRATE, -1, true));
-				FantomMakeCoolFighter(sld, sti(pchar.rank), 10 + MOD_SKILL_ENEMY_RATE * 2, 10 + MOD_SKILL_ENEMY_RATE * 2, "blade2", "", 10 + MOD_SKILL_ENEMY_RATE * 2);
+				FantomMakeCoolFighter(sld, sti(pchar.rank), 10 + MOD_SKILL_ENEMY_RATE * 2, 10 + MOD_SKILL_ENEMY_RATE * 2, BLADE_LONG, "", 10 + MOD_SKILL_ENEMY_RATE * 2);
 				//ChangeCharacterAddressGroup(sld, pchar.location, "goto", "goto2");
 				PlaceCharacter(sld, "goto", "random_free");
 				LAi_SetWarriorType(sld);
 				LAi_group_MoveCharacter(sld, "EnemyFight");
+				sld.SaveItemsForDead = true;
+				sld.DontChangeBlade = true;
+				TakeItemFromCharacter(sld, "spyglass3");
+				TakeNItems(sld, "food1", -10);
+				TakeNItems(sld, "potion2", -10);
+				AddMoneyToCharacter(sld, 250);
+				AddItems(sld, "mineral6", rand(100));
+				AddItems(sld, "mineral10", rand(15));
+				AddItems(sld, "compcraft_flint", rand(3));
 			}
 			//Матросы 1
-			for (i=9; i<=12; i++)
+			for (i=7; i<=10; i++)
 			{
 				sTemp = "shipowner_"+(rand(28)+1);
 				sld = GetCharacter(NPC_GenerateCharacter("PDM_PI_Matrosiki_"+i, sTemp, "man", "man", 10, PIRATE, -1, true));
-				FantomMakeCoolFighter(sld, sti(pchar.rank), 15, 15, "blade7", "", 10);
+				FantomMakeCoolFighter(sld, sti(pchar.rank), 15, 15, BLADE_LONG, "", 25);
 				//ChangeCharacterAddressGroup(sld, pchar.location, "goto", "goto2");
 				PlaceCharacter(sld, "goto", "random");
 				LAi_SetWarriorType(sld);
@@ -9874,7 +9898,7 @@ void QuestComplete(string sQuestName, string qname)
             pchar.quest.Munity = "Deads";
             //LAi_group_SetAlarm(LAI_GROUP_PLAYER, "EnemyFight", 0.0);
             LAi_SetFightMode(Pchar, false);
-			SetTimerFunction("PDM_PI_Skelety_v_more", 0, 0, 5);
+			SetTimerFunction("PDM_PI_Skelety_v_more", 0, 0, 14);
         break;
 //========================  Квест "Новая Родина".  =======================
 

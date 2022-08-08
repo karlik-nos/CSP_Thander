@@ -10386,21 +10386,37 @@ void PDM_Callow_RodjerProdolg(string qName)
     int Rank = sti(pchar.rank) - 5 + MOD_SKILL_ENEMY_RATE;
 	if (Rank < 1) Rank = 1;
 	sld = GetCharacter(NPC_GenerateCharacter("PDM_Pinki_Skelet", "skel3", "skeleton", "skeleton", Rank, PIRATE, -1, true));
-	sld.name = "Пинки";
+	sld.name = "Пинкамина";
 	sld.lastname = "Пай";
-    FantomMakeCoolFighter(sld, sti(pchar.rank), 15 + MOD_SKILL_ENEMY_RATE * 4, 15 + MOD_SKILL_ENEMY_RATE * 4, "blade18", "", 25 + MOD_SKILL_ENEMY_RATE * 4);
+    FantomMakeCoolFighter(sld, sti(pchar.rank), 15 + MOD_SKILL_ENEMY_RATE * 4, 15 + MOD_SKILL_ENEMY_RATE * 4, "blade36", "", 25 + MOD_SKILL_ENEMY_RATE * 4);
+	sld.SaveItemsForDead = true;
+	sld.DontChangeBlade = true;
+	TakeItemFromCharacter(sld, "spyglass3");
+	TakeNItems(sld, "food1", -10);
+	AddMoneyToCharacter(sld, 5000);
+	AddItems(sld, "jewelry2", 10);
+	AddItems(sld, "jewelry5", 10);
+	AddItems(sld, "jewelry17", 10);
+	AddItems(sld, "mineral5", 10);
 	ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto2");
 	LAi_SetActorType(sld);
 	sld.dialog.filename   = "Quest/PDM/Cursed_Idol.c";
 	sld.dialog.currentnode   = "FraOff_1";
 	LAi_ActorDialog(sld, pchar, "", -1, 0);
 	int j;
-	j = (GetOfficersQuantity(Pchar) + 1) * 2 + 1;
+	if (pchar.rank <= 10)
+	{
+		j = (GetOfficersQuantity(Pchar) + 3);
+	}
+	else
+	{
+		j = (GetOfficersQuantity(Pchar) + 5);
+	}
 	for (i=1; i<=j; i++)
     {
-        sTemp = "skel_"+(rand(5)+1);
+        sTemp = "skel_"+(rand(3)+1);
  		sld = GetCharacter(NPC_GenerateCharacter("PDM_PI_skel_"+i, sTemp, "skeleton", "skeleton", Rank, PIRATE, -1, true));
-        FantomMakeCoolFighter(sld, sti(pchar.rank), 10 + MOD_SKILL_ENEMY_RATE * 2, 10 + MOD_SKILL_ENEMY_RATE * 2, "blade2", "", 10 + MOD_SKILL_ENEMY_RATE * 2);
+        FantomMakeCoolFighter(sld, sti(pchar.rank), 10 + MOD_SKILL_ENEMY_RATE * 2, 10 + MOD_SKILL_ENEMY_RATE * 2, BLADE_LONG, "", 10 + MOD_SKILL_ENEMY_RATE * 2);
         ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto2");
 		LAi_SetActorType(sld);
 		LAi_ActorFollow(sld, pchar, "", -1);
@@ -10416,7 +10432,7 @@ void PDM_PI_Skelety_v_more(string qName)
 	}
 	if(!IsEntity(worldMap) && CheckAttribute(pchar, "questTemp.PDM_PI_Skelety_v_more"))
 	{
-		SetTimerFunction("PDM_PI_Skelety_v_more_2", 0, 0, 5);
+		SetTimerFunction("PDM_PI_Skelety_v_more_2", 0, 0, 1);
 	}
 }
 void PDM_PI_Skelety_v_more_2(string qName)
@@ -10429,7 +10445,7 @@ void PDM_PI_Skelety_v_more_2(string qName)
 	}
 	if(!IsEntity(worldMap) && CheckAttribute(pchar, "questTemp.PDM_PI_Skelety_v_more"))
 	{
-		SetTimerFunction("PDM_PI_Skelety_v_more", 0, 0, 5);
+		SetTimerFunction("PDM_PI_Skelety_v_more", 0, 0, 3);
 	}
 }
 void PDM_PI_Skelety_v_more_paluba(string qName)
