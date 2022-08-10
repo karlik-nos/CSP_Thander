@@ -206,8 +206,8 @@ void ProcessDialogEvent()
 
                     if (CheckAttribute(aData, "HelpColony") && sti(aData.HelpColony) == true )
                     {
-                        dialog.text = "Мы вроде все уже обсудили, не так ли?";
-                        link.l1 = "Все верно - не стану вас более задерживать.";
+                        dialog.text = "Мы вроде всё уже обсудили, не так ли?";
+                        link.l1 = "Всё верно - не стану вас более задерживать.";
                         link.l1.go = "exit";
 
                     }
@@ -893,7 +893,7 @@ void ProcessDialogEvent()
 		case "TakeRing_1":
 			dialog.text = "Мне известно, что вы, как бы это сказать... "+ GetSexPhrase("завсегдатай борделей","бываете в борделях") +". Поэтому и решил к вам обратиться за помощью.\n"+
 				"Вы знаете, стыдно признаться, но я там был недавно...";
-			link.l1 = "Хм, а зачем этого стыдиться? Все в порядке, влечение и все дела...";
+			link.l1 = "Хм, а зачем этого стыдиться? Всё в порядке, влечение и все дела...";
 			link.l1.go = "TakeRing_2";
 		break;
 		case "TakeRing_2":
@@ -1019,8 +1019,8 @@ void ProcessDialogEvent()
 
                 if (CheckAttribute(aData, "HelpColony") && sti(aData.HelpColony) == true )
                 {
-                    dialog.text = "Мы вроде все уже обсудили, не так ли?";
-                    link.l1 = "Все верно - не стану вас более задерживать.";
+                    dialog.text = "Мы вроде всё уже обсудили, не так ли?";
+                    link.l1 = "Всё верно - не стану вас более задерживать.";
                     link.l1.go = "exit";
 
                 }
@@ -1204,7 +1204,7 @@ void ProcessDialogEvent()
 		    }
 		    if (sti(npchar.Money) < 3000)
 		    {
-                dialog.text = "Все! Нужно завязывать с картами, а то запишут в растратчики и сместят с поста...";
+                dialog.text = "Всё! Нужно завязывать с картами, а то запишут в растратчики и сместят с поста...";
                 link.l1 = "Жаль.";
 			    link.l1.go = "exit";
 			    break;
@@ -1329,7 +1329,7 @@ void ProcessDialogEvent()
 		    }
 		    if (sti(npchar.Money) < 3000)
 		    {
-                dialog.text = "Все! Нужно завязывать с играми, а то запишут в растратчики и сместят с поста...";
+                dialog.text = "Всё! Нужно завязывать с играми, а то запишут в растратчики и сместят с поста...";
                 link.l1 = "Жаль.";
 			    link.l1.go = "exit";
 			    break;
@@ -1517,7 +1517,7 @@ void ProcessDialogEvent()
 						case "Execute":
 							if (CheckAttribute(pchar,"Kamikazi") && pchar.Kamikazi == "Meet")
 							{
-								dialog.text = "Что? Вы еще живы, капитан?";
+								dialog.text = "Что? Вы ещё живы, капитан?";
 								link.l1 = "Так вы знали, что по джунглям бродит скелет, который мог взорвать любого встречного? Ну вы и сволочь!";
 								link.l1.go = "All_Execute_1";
 								AddCharacterExpToSkill(PChar, "Leadership", 500);
@@ -1594,14 +1594,14 @@ void ProcessDialogEvent()
 							{
 								dialog.text = LinkRandPhrase("Задание на доставку мне письма вами уже получено. Выполняйте!",
 									"Вы уже имеете задание на доставку мне письма лично в руки. Я жду результатов, мне нужно это письмо как можно быстрей!",
-									"Пока вы тут прохлаждаетесь у меня в резиденции, нужная мне информация до сих пор у того, кто должен ее отправить! Немедленно приступайте к заданию, доставьте мне письмо!");
+									"Пока вы тут прохлаждаетесь у меня в резиденции, нужная мне информация до сих пор у того, кто должен её отправить! Немедленно приступайте к заданию, доставьте мне письмо!");
 								link.l1 = RandPhraseSimple("Хорошо, " + GetAddress_FormToNPC(NPChar) + ".", "Займусь прямо сейчас, "+ GetAddress_FormToNPC(NPChar) + ".");
 								link.l1.go = "exit";
 							}
 						break;
 						case "Execute":
 							dialog.text = RandPhraseSimple("Вы доставили ожидаемое мной письмо?", "Говорите же быстрей, пакет у вас?!");
-							link.l1 = "Да, я все сделал"+ GetSexPhrase("","а") +". Как мы и договаривались - вручаю лично в руки.";
+							link.l1 = "Да, я всё сделал"+ GetSexPhrase("","а") +". Как мы и договаривались - вручаю лично в руки.";
 							if (GetQuestPastDayParam("GenQuest.Intelligence") > sti(pchar.GenQuest.Intelligence.Terms))
 							{
 								link.l1.go = "Intelligence_ExecuteLate";
@@ -1843,7 +1843,7 @@ void ProcessDialogEvent()
 			}
 			else
 			{
-				dialog.text = LinkRandPhrase("Сегодня я уже ничего не могу предложить в качестве работы.", "На сегодня работы для вас уже нет.", "На сегодня уже все, работы нет. Все вопросы по поводу работы - завтра.");
+				dialog.text = LinkRandPhrase("Сегодня я уже ничего не могу предложить в качестве работы.", "На сегодня работы для вас уже нет.", "На сегодня уже всё, работы нет. Все вопросы по поводу работы - завтра.");
 				link.l1 = RandPhraseSimple("Жаль...", "Эх, очень жаль, "+ GetAddress_FormToNPC(NPChar) + ". ");
         		link.l1.go = "exit";
 			}
@@ -2001,7 +2001,7 @@ void ProcessDialogEvent()
             // fix от грабежа 5 раз на дню -->
             if (!CheckNPCQuestDate(npchar, "GrabbingTownDate"))
 			{
-                dialog.Text = "Вы уже все забрали. Что вам еще нужно?";
+                dialog.Text = "Вы уже всё забрали. Что вам ещё нужно?";
                 Link.l1 = "Да, точно, ошиб"+ GetSexPhrase("ся","лась") +" городом.";
                 Link.l1.go = "Exit_City";
 
@@ -2037,7 +2037,7 @@ void ProcessDialogEvent()
 					{
 						if (CheckAttribute(FortChref, "Default.Prison"))
 	    				{
-	    					Link.l1 = "Поговори еще! Этот город отныне принадлежит мне, а вашу эскадру я отправлю на свидание к морскому дьяволу. Эй, парни, возьмите эту свинку и посадите за решетку.";
+	    					Link.l1 = "Поговори ещё! Этот город отныне принадлежит мне, а вашу эскадру я отправлю на свидание к морскому дьяволу. Эй, парни, возьмите эту свинку и посадите за решетку.";
 	    				}
 	    				else
 	    				{
@@ -2097,13 +2097,13 @@ void ProcessDialogEvent()
         case "City_patent":
             ChangeCharacterReputation(GetMainCharacter(), -20); // пираты мы, но у нас патент
             dialog.Text = "На этот раз ваша взяла, но знайте, скоро прибудет наша эскадра, и от вас мокрого места не останется.";
-			Link.l1 = "Поговори еще! Эта колония отныне принадлежит мне, а вашу эскадру я отправлю на свидание к морскому дьяволу. Эй, парни, возьмите эту свинку и посадите за решетку.";
+			Link.l1 = "Поговори ещё! Эта колония отныне принадлежит мне, а вашу эскадру я отправлю на свидание к морскому дьяволу. Эй, парни, возьмите эту свинку и посадите за решетку.";
 			Link.l1.go = "City";
         break;
 
         case "Exit_for_pay":
-			dialog.Text = "Что вам от меня еще нужно?";
-            Link.l1 = "Смотрю, все ли я забрал"+ GetSexPhrase("","а") +"...";
+			dialog.Text = "Что вам от меня ещё нужно?";
+            Link.l1 = "Смотрю, всё ли я забрал"+ GetSexPhrase("","а") +"...";
             Link.l1.go = "exit";
 
             NextDiag.TempNode = "Exit_for_pay";
@@ -2149,7 +2149,7 @@ void ProcessDialogEvent()
 
         case "City_nation":
 			dialog.Text = "Что ж, мы отдаемся на милость победителей.";
-			Link.l1 = "Советую вам побыстрее покинуть пределы города, еще неизвестно, как на вашем здоровье отразятся грядущие перемены. Прощайте.";
+			Link.l1 = "Советую вам побыстрее покинуть пределы города, ещё неизвестно, как на вашем здоровье отразятся грядущие перемены. Прощайте.";
 			Link.l1.go = "Exit_City";
 			NPChar.NoGiveMoney = true;
 
@@ -2192,7 +2192,7 @@ void ProcessDialogEvent()
 	    break;
 
 	    case "Prison":
-			dialog.Text = "Что вам от меня еще надо, негодяй"+ GetSexPhrase("","ка") +"?";
+			dialog.Text = "Что вам от меня ещё надо, негодяй"+ GetSexPhrase("","ка") +"?";
 			/*Link.l1 = "Не дерзи мне, жирная скотина.";
 			Link.l1.go = "Strike";
 			if (!CheckAttribute(NPChar, "NotHaveFort"))
@@ -2403,8 +2403,8 @@ void ProcessDialogEvent()
 				}
 				pchar.GenQuest.Intelligence.SpyId = sTemp; //Id нашего шпиона в городе
 				dialog.text = "Прекрасно! Теперь по делу. В " + XI_ConvertString("Colony"+pchar.GenQuest.Intelligence.City+"Dat") + " вам необходимо разыскать местного " + GetWorkTypeOfMan(&characters[GetCharacterIndex(sTemp)], "Gen") +
-					", его зовут " + GetFullName(&characters[GetCharacterIndex(sTemp)]) + ". Ему вы назовете мое имя, и получите пакет документов. На доставку этого пакета лично мне в руки я даю вам " + FindRussianDaysString(sti(pchar.GenQuest.Intelligence.Terms)) + ". И имейте в виду, что все нужно сделать тихо. В случае вашего обнаружения в городе, агент не будет подвергать себя риску и не пойдет на контакт. Вам все ясно?";
-				link.l1 = "Да, я все понял"+ GetSexPhrase("","а") +", " + GetAddress_FormToNPC(NPChar) + ". Немедленно приступаю к выполнению задания.";
+					", его зовут " + GetFullName(&characters[GetCharacterIndex(sTemp)]) + ". Ему вы назовете мое имя, и получите пакет документов. На доставку этого пакета лично мне в руки я даю вам " + FindRussianDaysString(sti(pchar.GenQuest.Intelligence.Terms)) + ". И имейте в виду, что всё нужно сделать тихо. В случае вашего обнаружения в городе, агент не будет подвергать себя риску и не пойдет на контакт. Вам всё ясно?";
+				link.l1 = "Да, я всё понял"+ GetSexPhrase("","а") +", " + GetAddress_FormToNPC(NPChar) + ". Немедленно приступаю к выполнению задания.";
 				link.l1.go = "exit";
 				pchar.GenQuest.Intelligence.MayorId  = npchar.id; //Id мэра, чтобы знать, кто дал квест
 				SaveCurrentQuestDateParam("GenQuest.Intelligence"); //запись даты получения квеста
@@ -2425,7 +2425,7 @@ void ProcessDialogEvent()
 			QuestName = pchar.GenQuest.questName;
 			pchar.GenQuest.(QuestName).Money = sti(pchar.GenQuest.(QuestName).Money) / 2);
 			dialog.text = RandPhraseSimple("Это неплохо. Однако, вы не уложились в отведенные сроки, поэтому я вынужден уменьшить сумму вашего вознаграждения. Ваш гонорар теперь составляет " + FindRussianMoneyString(sti(pchar.GenQuest.(QuestName).Money)) + ". Извольте получить.",
-				"Это хорошо. Однако вы не уложились в отведенное время, а я ждал это письма раньше. Вы спутали мои планы, поэтому я вынужден сократить сумму вашего гонорара. Итак, я все же рад вручить вам положенное вознаграждение - " + FindRussianMoneyString(sti(pchar.GenQuest.(QuestName).Money))  + ". Извольте получить.");
+				"Это хорошо. Однако вы не уложились в отведенное время, а я ждал это письма раньше. Вы спутали мои планы, поэтому я вынужден сократить сумму вашего гонорара. Итак, я всё же рад вручить вам положенное вознаграждение - " + FindRussianMoneyString(sti(pchar.GenQuest.(QuestName).Money))  + ". Извольте получить.");
 			link.l1 = "Не сказал"+ GetSexPhrase("","а") +" бы, что мне это приятно, но, в конце концов, установленные сроки действительно были нарушены. Поэтому я претензий не имею, " + GetAddress_FormToNPC(NPChar) + ".";
 		    link.l1.go = "All_Execute_1";
 			//--> слухи
@@ -2483,7 +2483,7 @@ void ProcessDialogEvent()
 			pchar.GenQuest.DestroyPirate.Terms = dRand(3) + (15 - MOD_SKILL_ENEMY_RATE); //сроки выполнения задания
 			pchar.GenQuest.DestroyPirate.Money = ((dRand(5) + 5) * 500) + (sti(pchar.rank) * 200); //вознаграждение
 			sld = characterFromId("MQPirate");
-			dialog.text = "Мне нужно, чтобы вы выследили и уничтожили этого пирата. Потопите его, возьмите на абордаж - мне все равно. Мне лишь нужно, чтобы этот проклятый корсар, охотящийся в здешних водах, не мешал торговле " + XI_ConvertString("Colony"+npchar.city+"Gen") +
+			dialog.text = "Мне нужно, чтобы вы выследили и уничтожили этого пирата. Потопите его, возьмите на абордаж - мне всё равно. Мне лишь нужно, чтобы этот проклятый корсар, охотящийся в здешних водах, не мешал торговле " + XI_ConvertString("Colony"+npchar.city+"Gen") +
 				". На выполнение этого задания я даю вам " + FindRussianDaysString(sti(pchar.GenQuest.DestroyPirate.Terms)) + ", ваше вознаграждение в случае успеха устанавливается в размере " + FindRussianMoneyString(sti(pchar.GenQuest.DestroyPirate.Money)) + ". Итак, вы беретесь за это дело?";
 			link.l1 = "Да, " + GetAddress_FormToNPC(NPChar) + ", берусь.";
 		    link.l1.go = "DestroyPirate_agree";
@@ -2516,7 +2516,7 @@ void ProcessDialogEvent()
 			QuestName = pchar.GenQuest.questName;
 			dialog.text = RandPhraseSimple("Ну, что я могу сказать - очень плохо. Я рассчитывал на вас, а в итоге попусту потратил время. Я разочарован.",
 				"М-да, признаться, я разочарован в вас донельзя... У меня в резиденции всегда полно народу, готового выполнять такие поручения, а я тратил время на вас. М-да...");
-			link.l1 = "Простите, " + GetAddress_FormToNPC(NPChar) + ", я сделал все, что мог.";
+			link.l1 = "Простите, " + GetAddress_FormToNPC(NPChar) + ", я сделал"+ GetSexPhrase("","а") +" всё, что мог"+ GetSexPhrase("","ла") +".";
 		    link.l1.go = "exit";
 			//--> слухи
 			AddSimpleRumour(LinkRandPhrase("Вы знаете, губернатор " + GetFullName(npchar) + " очень недоволен капитаном " + GetMainCharacterNameDat() + ". Представляете, тот не успел выполнить его поручение!",
@@ -2528,13 +2528,13 @@ void ProcessDialogEvent()
 			DeleteAttribute(pchar, "GenQuest." + QuestName);
 			DeleteAttribute(pchar, "GenQuest.questName");
 			npchar.greeting = NationShortName(sti(npchar.nation)) + "_gov_common"; //реплику вертаем
-			SaveCurrentNpcQuestDateParam(npchar, "work_date"); //сразу еще один не даем
+			SaveCurrentNpcQuestDateParam(npchar, "work_date"); //сразу ещё один не даем
 			CloseQuestHeader("MayorsQuestsList");
 		break;
 		case "All_Found":
 			QuestName = pchar.GenQuest.questName;
 			dialog.text = RandPhraseSimple("Я просто в шоке! Суметь разыскать цель, но не позаботиться в достаточной мере о создании превосходства - это, знаете ли, верх безрассудства. Я разочарован!",
-				"М-да, признаться, я разочарован в вас. Мало найти цель, нужно уметь ее уничтожить. У меня в резиденции обретается достаточно головорезов, готовых выполнять такого рода задачи. Почему я связался с вами?..");
+				"М-да, признаться, я разочарован в вас. Мало найти цель, нужно уметь её уничтожить. У меня в резиденции обретается достаточно головорезов, готовых выполнять такого рода задачи. Почему я связался с вами?..");
 			link.l1 = "Простите, " + GetAddress_FormToNPC(NPChar) + ", но я не хочу рисковать собственной жизнью так безрассудно.";
 		    link.l1.go = "exit";
 			//--> слухи
@@ -2547,7 +2547,7 @@ void ProcessDialogEvent()
 			DeleteAttribute(pchar, "GenQuest." + QuestName);
 			DeleteAttribute(pchar, "GenQuest.questName");
 			npchar.greeting = NationShortName(sti(npchar.nation)) + "_gov_common"; //реплику вертаем
-			SaveCurrentNpcQuestDateParam(npchar, "work_date"); //сразу еще один не даем
+			SaveCurrentNpcQuestDateParam(npchar, "work_date"); //сразу ещё один не даем
 			CloseQuestHeader("MayorsQuestsList");
 			AddQuestRecord("MayorsQuestsList", "21");
 			AddQuestUserData("MayorsQuestsList", "ColonyName", XI_ConvertString("Colony"+npchar.city+"Gen"));
@@ -2576,7 +2576,7 @@ void ProcessDialogEvent()
 			}
 			else
 			{
-				dialog.text = RandPhraseSimple("Ну, вот и славно. Можете заходить ко мне еще, возможно, я найду для вас работу.", "Ну что же, прекрасно! Пожалуй, я буду еще предлагать вам работу подобного рода.");
+				dialog.text = RandPhraseSimple("Ну, вот и славно. Можете заходить ко мне ещё, возможно, я найду для вас работу.", "Ну что же, прекрасно! Пожалуй, я буду ещё предлагать вам работу подобного рода.");
 				link.l1 = RandPhraseSimple("Отлично.", "Прекрасно.");
 				link.l1.go = "exit";
 			}
@@ -2597,7 +2597,7 @@ void ProcessDialogEvent()
 			DeleteAttribute(pchar, "GenQuest." + QuestName);
 			DeleteAttribute(pchar, "GenQuest.questName");
 			npchar.greeting = NationShortName(sti(npchar.nation)) + "_gov_common"; //реплику вертаем
-			SaveCurrentNpcQuestDateParam(npchar, "work_date"); //сразу еще один не даем
+			SaveCurrentNpcQuestDateParam(npchar, "work_date"); //сразу ещё один не даем
 			// инкремент в базу заданий мэров
 			sTemp = npchar.City;
 			if (!CheckAttribute(pchar, "GenQuest.MayorQuestsList." + sTemp)) pchar.GenQuest.MayorQuestsList.(sTemp) = 0;

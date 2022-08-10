@@ -6,7 +6,7 @@ PGGWhisper {Посягнуть на святое}
 
 TheLastMass {Последняя месса}
 
-BSHangover {Тяжелое похмелье}
+BSHangover {Тяжёлое похмелье}
 
 BSUrka {Неуловимая 'Урка'}
 
@@ -112,7 +112,7 @@ Pir_Line_0_Waiting {Капитан Гудли в Пуэрто-Принсипе}
 
 Pir_Line_1_JohnBolton {Услуга Моргану}
 
-Pir_Line_2_BlackLabel {Черная Метка}
+Pir_Line_2_BlackLabel {Чёрная Метка}
 
 Pir_Line_3_KillLoy {Разыскать и убить Эдварда Лоу}
 
@@ -160,7 +160,7 @@ ISS_takeCandles {Свечи для прихода}
 
 ISS_takeStoreMoney {Пробраться в жилые помещения магазина на 'Эсмеральде'}
 
-ISS_ElisHusband {Непутевый муж Элис Тейло.}
+ISS_ElisHusband {Непутёвый муж Элис Тейло.}
 
 LSC_findDekster {Пропавший пират Лейтон Декстер}
 

@@ -211,7 +211,7 @@ void ProcessDialogEvent()
 				}
 				else	// Полная инфа уже есть
 				{
-					link.l1 = "Господин начальник порта, мне нужна информация о судне '" + PChar.GenQuest.ChurchQuest_1.CapShipName + "', капитана " + PChar.GenQuest.ChurchQuest_1.CapFullName + ".";
+					link.l1 = "Господин начальник порта, мне нужна информация о судне '" + PChar.GenQuest.ChurchQuest_1.CapShipName + "', капитана по имени " + PChar.GenQuest.ChurchQuest_1.CapFullName + ".";
 					if(CheckAttribute(PChar, "GenQuest.ChurchQuest_1.NextColonyIsLast")) // Он здесь, в этой колонии!
 						link.l1.go = "Church_GenQuest1_Node_CapOnThisColony_1";
 					else // Отправляет в рандомную колонию
@@ -1287,10 +1287,31 @@ void ProcessDialogEvent()
 			dialog.text = XI_ConvertString(npchar.quest.PortmansSeekShip.shipTapeName) + " с именем '" + npchar.quest.PortmansSeekShip.shipName + "'. Украден был ночью " + FindRussianDaysString(rand(5)+10) + " назад. Вахтенный убит.";
 			link.l1 = "Хм, они уже успели уйти, небось, прилично. В общем, о горячих следах говорить не приходится...";
 			link.l1.go = "SeekShip_3";
+			link.l2 = LinkRandPhrase("Извините, но я не могу выполнить это ответственное поручение...", "Нет, мне это не подходит...", "К сожалению, вынужден"+ GetSexPhrase("","а") +" отказаться от поисков...");
+			link.l2.go = "SeekShip_Icantfindship";
+		break;
+		case "SeekShip_Icantfindship":
+			dialog.text = "Очень жаль, " + GetAddress_Form(npchar) + "... Я на вас очень рассчитывал...";
+			link.l1 = "Ещё раз прошу меня простить... Прощайте.";
+			link.l1.go = "exit";
+			sTemp = "SeekShip_checkAbordage" + npchar.index;
+			pchar.quest.(sTemp).over = "yes"; //снимаем прерывание на абордаж
+			cn = GetCharacterIndex("SeekCap_" + npchar.index);
+			//если кэп-вор еще жив - убираем его
+			if (cn > 0)
+			{
+				characters[cn].LifeDay = 0; 
+				Map_ReleaseQuestEncounter(characters[cn].id);
+				group_DeleteGroup("SeekCapShip_" + characters[cn].index);
+			}
+			DeleteAttribute(npchar, "quest.PortmansSeekShip");
+			npchar.quest = ""; //освобождаем личный флаг квеста для портмана
+			
+			ChangeCharacterReputation(pchar, -2);
 		break;
 		case "SeekShip_3":
 			dialog.text = "Да, верно. Но и смысла мне сразу панику поднимать не было. Военные если и догонят, то разнесут корабль в щепки, а это не совсем то, что мне нужно.";
-			link.l1 = "Понятно. Ну что же, приступаю к поискам. Надеюсь, мне повезет.";
+			link.l1 = "Понятно. Ну что же, приступаю к поискам. Надеюсь, мне повезёт.";
 			link.l1.go = "exit";
 			sTitle = npchar.id + "Portmans_SeekShip";
 			ReOpenQuestHeader(sTitle);
@@ -1329,7 +1350,7 @@ void ProcessDialogEvent()
 		case "SeekShip_good":
 			if (npchar.quest == "SeekShip_sink")
 			{
-				dialog.text = "Отлично! Однако, полагаю, что это не совсем тот корабль, что был украден... Хотя, собственно, все равно! Я беру его у вас.";
+				dialog.text = "Отлично! Однако, полагаю, что это не совсем тот корабль, что был украден... Хотя, собственно, всё равно! Я беру его у вас.";
 				link.l1 = "Да, действительно...";
 				//npchar.quest.money = makeint(sti(npchar.quest.money) / 4); //снижаем оплату
 				ChangeCharacterReputation(pchar, 5);

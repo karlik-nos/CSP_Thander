@@ -749,7 +749,7 @@ void ApplayNewSkill(ref _chref, string _skill, int _addValue)
             }
             else
             {
-                Log_Info("Новый уровень у "+ _chref.name + " "+_chref.lastname);
+                Log_Info(""+ _chref.name + " "+_chref.lastname + " получает новый уровень!");
             }
         }
 		if (sti(_chref.index) == GetMainCharacterIndex())
