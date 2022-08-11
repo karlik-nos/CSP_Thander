@@ -10482,7 +10482,8 @@ void QuestComplete(string sQuestName, string qname)
 			bDisableFastReload = true;
 			chrDisableReloadToLocation = true;
 			sld = CharacterFromID("KSM_Alloka")
-			AddPassenger(pchar, sld, true);
+			AddPassenger(pchar, sld, false);
+			SetCharacterRemovable(sld, false);
 			LAi_SetActorType(sld);
 			LAi_ActorRunToLocation(sld, "reload", "reload1", "none", "", "", "KSM_EndloosTraider_2", 0.5);
 			
