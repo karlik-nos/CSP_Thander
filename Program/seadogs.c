@@ -1153,7 +1153,7 @@ void ProcessControls()
 				}
 			}
 			break;
-		    // boal -->
+/*		    // boal -->
             case "ChrBackward": //ChrStrafeLeft ChrStrafeRight
                 if (bLandInterfaceStart && LAi_IsFightMode(pchar))
                 {
@@ -1175,7 +1175,7 @@ void ProcessControls()
                 {
                     pchar.chr_ai.energy = stf(pchar.chr_ai.energy) - 3;
                     if (stf(pchar.chr_ai.energy) < 0) pchar.chr_ai.energy = 0;
-                }
+                }	*/
             return;
             break;
             case "BOAL_UsePotion": // boal KEY_X
@@ -1581,7 +1581,7 @@ void ProcessControls()
 			}
 		break;
 		// <-- ugeen
-		// boal -->
+	/*	// boal -->
 		case "ChrBackward": //ChrStrafeLeft ChrStrafeRight
             if (bLandInterfaceStart && LAi_IsFightMode(pchar))
             {
@@ -1605,7 +1605,7 @@ void ProcessControls()
  				if (stf(pchar.chr_ai.energy) < 0) pchar.chr_ai.energy = 0;
 	        }
 		break;
-
+*/
 		case "BOAL_UsePotion": // boal KEY_C
             if (bLandInterfaceStart)
             {
