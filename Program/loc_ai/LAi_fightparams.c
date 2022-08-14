@@ -1995,8 +1995,6 @@ int LAi_Chr_CheckHitFire() // 1 - не попал, 2 - попал
 		if (shooter.index == GetMainCharacterIndex())
 			Log_SetStringToLog("Мазила!");
 	}
-	if (res == 1) Log_SetStringToLog("Промах!");
-	if (res == 2) Log_SetStringToLog("Попадание!");
 	return res;
 }
 // EvgAnat - уклонение от выстрела <--
@@ -2011,8 +2009,6 @@ bool LAi_Chr_CheckHitAttack() // попала ли атака
 	bool res = true;
 	if (isRecoil)
 		res = false;	
-	if (res == 0) Log_SetStringToLog("Промах!");
-	if (res == 1) Log_SetStringToLog("Попадание!");
 	return res;
 }
 // EvgAnat - уклонение от атаки <--
