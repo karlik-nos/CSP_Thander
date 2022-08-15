@@ -1219,6 +1219,7 @@ void Ship_CheckSituation()
 	    }
     }
 	bool bIsCompanion = IsCompanion(rCharacter);
+	bool bIsDefender = CheckAttribute(rCharacter, "fortDefender") && sti(rCharacter.fortDefender) == 1;
 
 	// check some tasks
 	if (CheckAttribute(rCharacter, "SeaAI.Task") && CheckAttribute(rCharacter, "SeaAI.Task.Target"))
@@ -1270,6 +1271,33 @@ void Ship_CheckSituation()
     if (!bIsCompanion) //fix 171204 boal Не нужно наших с толку сбивать
     {
         string sGroupID = Ship_GetGroupID(rCharacter);
+		//Lipsar --->ИИ сторожей
+		if (bIsDefender)
+		{
+			ref rFortChref = GetFortCommander(rCharacter.IslandShips);
+
+			int attackChar = sti(rCharacter.Ship.LastBallCharacter);
+			if (attackChar == -1)
+			{
+				if (GetNationRelation2MainCharacter(sti(rCharacter.nation)) == RELATION_ENEMY)
+					attackChar = GetMainCharacterIndex();
+				else
+				{
+					if (GetNationRelation2Character(sti(rCharacter.nation), PChar.Ship.LastBallCharacter) == RELATION_ENEMY)
+						attackChar = PChar.Ship.LastBallCharacter;
+				}
+			}
+
+			if (attackChar != -1)
+			{
+				Group_SetEnemyToCharacter(sGroupID, attackChar);
+				SetCharacterRelationBoth(sti(rCharacter.index), attackChar, RELATION_ENEMY);
+				Group_SetTaskAttack(sGroupID, Ship_GetGroupID(GetCharacter(attackChar)));
+				Group_LockTask(sGroupID);
+				DoQuestCheckDelay("NationUpdate", 0.5);
+				return;
+			}
+		}//<---Lipsar ИИ сторожей
 		if (CheckAttribute(rCharacter, "SeaAI.Task.Target"))
 		{
 	        if (iNewBallType < 0 || iShipCannonsNum < (sti(rShip.CannonsQuantity) / 2))
@@ -1352,8 +1380,8 @@ void Ship_CheckSituation()
 								if (CheckAttribute(rCharacter, "AnalizeShips"))
 								{
 									// Warship fix Должно быть здесь
-										iCharactersNum1 =  Group_GetLiveCharactersNum(rCharacter.SeaAI.Group.Name);
-										iCharactersNum2 =  Group_GetLiveCharactersNum(characters[sti(rCharacter.Ship.LastBallCharacter)].SeaAI.Group.Name);
+									iCharactersNum1 =  Group_GetLiveCharactersNum(rCharacter.SeaAI.Group.Name);
+									iCharactersNum2 =  Group_GetLiveCharactersNum(characters[sti(rCharacter.Ship.LastBallCharacter)].SeaAI.Group.Name);
 
 									if(stf(rCharacter.ship.hp) < (stf(characters[sti(rCharacter.Ship.LastBallCharacter)].ship.hp) / 2))
 									{
