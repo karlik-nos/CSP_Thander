@@ -96,6 +96,24 @@ int dRand2(int _max2)
 
 	return MakeInt(dayRandom2 * (_max2+1));
 }
+
+int dRand3(int _max3)
+{
+	float dayRandom3;
+
+	if(CheckAttribute(PChar, "dayRandom3"))
+	{
+		dayRandom3 = stf(PChar.dayRandom3);
+		// Log_Info(""+dayRandom2);
+		// Log_Info(""+MakeInt(dayRandom2 * (_max2+1)));
+		return MakeInt(dayRandom3 * (_max3+1)); // 1.0 / (_max + 1) - для округления, иначе _max не выпадет никогда
+	}
+
+	dayRandom3 = Random();
+	PChar.dayRandom3 = dayRandom3;
+
+	return MakeInt(dayRandom3 * (_max3+1));
+}
 // <-- Warship 30.07.09
 
 // cRand() - античитовый рандом Эдди. Юзать не рекомендуется, за место него - dRand()
