@@ -97,7 +97,8 @@ void InitShips()
 	refShip.MaxCaliber						= 8;
 	refShip.Weight								= Tonnes2CWT(10);
 	refShip.Capacity							= 50;
-	refShip.CannonsQuantity				= 0;
+	refShip.MaxCannonDiff						= 0;
+	refShip.CannonsQuantity						= 0;
 	refShip.rcannon 							= 0;
 	refShip.lcannon 							= 0;
 	refShip.fcannon 							= 0;
@@ -137,6 +138,7 @@ void InitShips()
 	refShip.MaxCaliber							= 8;
 	refShip.Weight								= Tonnes2CWT(10);
 	refShip.Capacity							= 50;
+	refShip.MaxCannonDiff						= 0;
 	refShip.CannonsQuantity						= 0;
 	refShip.rcannon 									= 0;
 	refShip.lcannon 									= 0;
@@ -203,6 +205,7 @@ void InitShips()
 	refShip.MaxCaliber							= 8;
 	refShip.Weight								= Tonnes2CWT(10);
 	refShip.Capacity							= 210;
+	refShip.MaxCannonDiff						= 0;
 	refShip.CannonsQuantity						= 6;
 	refShip.rcannon 									= 3;
 	refShip.lcannon 									= 3;
@@ -270,6 +273,7 @@ void InitShips()
 	refShip.MaxCaliber							= 8;
 	refShip.Weight								= Tonnes2CWT(10);
 	refShip.Capacity							= 210;
+	refShip.MaxCannonDiff						= 1;
 	refShip.CannonsQuantity						= 8;
 	refShip.rcannon 									= 4;
 	refShip.lcannon 									= 4;
@@ -341,6 +345,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 12;
 	refShip.Weight						= Tonnes2CWT(150);
 	refShip.Capacity        			= 600;
+	refShip.MaxCannonDiff				= 1;
 	refShip.CannonsQuantity				= 8;
 	refShip.rcannon 							= 4;
 	refShip.lcannon 							= 4;
@@ -411,6 +416,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 8;
 	refShip.Weight						= Tonnes2CWT(200);
 	refShip.Capacity       				= 1200;
+	refShip.MaxCannonDiff				= 1;
 	refShip.CannonsQuantity				= 10;
 	refShip.rcannon 							= 5;
 	refShip.lcannon 							= 5;
@@ -486,6 +492,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 12;
 	refShip.Weight						= Tonnes2CWT(160);
 	refShip.Capacity        			= 700;
+	refShip.MaxCannonDiff				= 1;
 	refShip.CannonsQuantity				= 12;
 	refShip.rcannon 							= 5;
 	refShip.lcannon 							= 5;
@@ -556,6 +563,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 12;
 	refShip.Weight						= Tonnes2CWT(150);
 	refShip.Capacity        			= 600;
+	refShip.MaxCannonDiff				= 1;
 	refShip.CannonsQuantity				= 12;
 	refShip.rcannon 							= 4;
 	refShip.lcannon 							= 4;
@@ -632,6 +640,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 12;
 	refShip.Weight						= Tonnes2CWT(200);
 	refShip.Capacity        			= 900;
+	refShip.MaxCannonDiff				= 1;
 	refShip.CannonsQuantity				= 12;
 	refShip.rcannon 							= 4;
 	refShip.lcannon 							= 4;
@@ -702,6 +711,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 12;
 	refShip.Weight						= Tonnes2CWT(250);
 	refShip.Capacity        			= 1000;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 14;
 	refShip.rcannon 							= 7;
 	refShip.lcannon 							= 7;
@@ -780,6 +790,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 12;
 	refShip.Weight						= Tonnes2CWT(200);
 	refShip.Capacity        			= 800;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 14;
 	refShip.rcannon 							= 5;
 	refShip.lcannon 							= 5;
@@ -855,6 +866,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 12;
 	refShip.Weight						= Tonnes2CWT(170);
 	refShip.Capacity        			= 1950;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 16;
 	refShip.rcannon 							= 6;
 	refShip.lcannon 							= 6;
@@ -927,6 +939,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 12;
 	refShip.Weight						= Tonnes2CWT(170);
 	refShip.Capacity        			= 800;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 16;
 	refShip.rcannon 							= 6;
 	refShip.lcannon 							= 6;
@@ -1001,6 +1014,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 12;
 	refShip.Weight						= Tonnes2CWT(175);
 	refShip.Capacity        			= 1200;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 16;
 	refShip.rcannon 							= 7;
 	refShip.lcannon 							= 7;
@@ -1076,6 +1090,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 12;
 	refShip.Weight						= Tonnes2CWT(190);
 	refShip.Capacity        			= 950;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 16;
 	refShip.rcannon 							= 8;
 	refShip.lcannon 							= 8;
@@ -1149,6 +1164,7 @@ void InitShips()
 	refShip.MaxCaliber 			= 12;
 	refShip.Weight 				= Tonnes2CWT(400);
 	refShip.Capacity 			= 1600;
+	refShip.MaxCannonDiff		= 2;
 	refShip.CannonsQuantity 	= 18;
 	refShip.rcannon 					= 7;
 	refShip.lcannon 					= 7;
@@ -1227,6 +1243,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 12;
 	refShip.Weight						= Tonnes2CWT(400);
 	refShip.Capacity        			= 2250;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 14;
 	refShip.rcannon 							= 7;
 	refShip.lcannon 							= 7;
@@ -1300,6 +1317,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(350);
 	refShip.Capacity       				= 2300;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 16;
 	refShip.rcannon 							= 7;
 	refShip.lcannon 							= 7;
@@ -1376,6 +1394,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 12;
 	refShip.Weight						= Tonnes2CWT(550);
 	refShip.Capacity        			= 1200;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 20;
 	refShip.rcannon 							= 10;
 	refShip.lcannon 							= 10;
@@ -1457,6 +1476,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 12;
 	refShip.Weight						= Tonnes2CWT(200);
 	refShip.Capacity        			= 1400;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 20;
 	refShip.rcannon 							= 8;
 	refShip.lcannon 							= 8;
@@ -1533,6 +1553,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 12;
 	refShip.Weight						= Tonnes2CWT(180);
 	refShip.Capacity        			= 1100;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 20;
 	refShip.rcannon 							= 8;
 	refShip.lcannon 							= 8;
@@ -1605,6 +1626,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 12;
 	refShip.Weight						= Tonnes2CWT(200);
 	refShip.Capacity        			= 1800;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 20;
 	refShip.rcannon 							= 8;
 	refShip.lcannon 							= 8;
@@ -1677,6 +1699,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 12;
 	refShip.Weight						= Tonnes2CWT(200);
 	refShip.Capacity        			= 1300;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 20;
 	refShip.rcannon 							= 8;
 	refShip.lcannon 							= 8;
@@ -1747,6 +1770,7 @@ void InitShips()
 	refShip.MaxCaliber 			= 8;
 	refShip.Weight				= Tonnes2CWT(400);
 	refShip.Capacity   			= 1600;
+	refShip.MaxCannonDiff		= 2;
 	refShip.CannonsQuantity		= 20;
 	refShip.rcannon 					= 7;
 	refShip.lcannon 					= 7;
@@ -1822,6 +1846,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 12;
 	refShip.Weight						= Tonnes2CWT(200);
 	refShip.Capacity        			= 1000;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 22;
 	refShip.rcannon 							= 9;
 	refShip.lcannon 							= 9;
@@ -1893,6 +1918,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 12;
 	refShip.Weight						= Tonnes2CWT(250);
 	refShip.Capacity        			= 1300;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 22;
 	refShip.rcannon 							= 8;
 	refShip.lcannon 							= 8;
@@ -1969,6 +1995,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 12;
 	refShip.Weight						= Tonnes2CWT(550);
 	refShip.Capacity        			= 1450;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 22;
 	refShip.rcannon 							= 9;
 	refShip.lcannon 							= 9;
@@ -2047,6 +2074,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 12;
 	refShip.Weight						= Tonnes2CWT(350);
 	refShip.Capacity        			= 1300;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 22;
 	refShip.rcannon 							= 8;
 	refShip.lcannon 							= 8;
@@ -2122,6 +2150,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 8;
 	refShip.Weight						= Tonnes2CWT(250);
 	refShip.Capacity        			= 1950;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 22;
 	refShip.rcannon 							= 9;
 	refShip.lcannon 							= 9;
@@ -2202,6 +2231,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(400);
 	refShip.Capacity        			= 1800;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 16;
 	refShip.rcannon 							= 6;
 	refShip.lcannon 							= 6;
@@ -2282,6 +2312,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(400);
 	refShip.Capacity        			= 2000;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 16;
 	refShip.rcannon 							= 6;
 	refShip.lcannon 							= 6;
@@ -2359,6 +2390,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(350);
 	refShip.Capacity       				= 2200;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 16;
 	refShip.rcannon 							= 6;
 	refShip.lcannon 							= 6;
@@ -2439,6 +2471,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(350);
 	refShip.Capacity        			= 1400;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 16;
 	refShip.rcannon 							= 7;
 	refShip.lcannon 							= 7;
@@ -2517,6 +2550,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(650);
 	refShip.Capacity        			= 1600;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 16;
 	refShip.rcannon 							= 7;
 	refShip.lcannon 							= 7;
@@ -2595,6 +2629,7 @@ void InitShips()
 	refShip.MaxCaliber      	= 16;
 	refShip.Weight				= Tonnes2CWT(450);
 	refShip.Capacity        	= 2600;
+	refShip.MaxCannonDiff		= 2;
 	refShip.CannonsQuantity		= 16;
 	refShip.rcannon 					= 8;
 	refShip.lcannon 					= 8;
@@ -2666,33 +2701,34 @@ void InitShips()
 	/// Interceptor			Ост-индец
 	///////////////////////////////////////////////////////////////////////////
 	makeref(refShip,ShipsTypes[SHIP_INTERCEPTOR]);
-	refShip.Name = 								"Interceptor";
-	refship.Soundtype = 						"lugger";
-	refShip.Class = 							4;
-	refShip.Cannon = 							CANNON_TYPE_CANNON_LBS8;
-	refShip.MaxCaliber = 						16;
-	refShip.Weight = 							Tonnes2CWT(450);
-	refShip.Capacity = 							1900;
-	refShip.CannonsQuantity = 					18;
-	refShip.rcannon = 									8;
-	refShip.lcannon = 									8;
-	refShip.fcannon = 									2;
-	refShip.bcannon = 									0;
-	refShip.MaxCrew = 								160;
-	refShip.MinCrew = 								32;
-	refShip.SpeedRate = 					15;
-	refShip.TurnRate = 						40;
-	refShip.Price = 							71825;
-	refShip.HP = 									2800;
-	refShip.SP = 									100;
-	refShip.MastMultiplier = 						1.6;
-	refship.CanEncounter = 						true;
-	refship.Type.Merchant = 					true;
-	refship.Type.War = 							false;
-	refShip.fWindAgainstSpeed = 				2.0;
-	refShip.sea_enchantment = 					1.8;
-	refShip.lowpolycrew = 						12;
-	refShip.buildtime = 						60;
+	refShip.Name						= "Interceptor";
+	refship.Soundtype					= "lugger";
+	refShip.Class						= 4;
+	refShip.Cannon						= CANNON_TYPE_CANNON_LBS8;
+	refShip.MaxCaliber					= 16;
+	refShip.Weight						= Tonnes2CWT(450);
+	refShip.Capacity					= 1900;
+	refShip.MaxCannonDiff				= 2;
+	refShip.CannonsQuantity				= 18;
+	refShip.rcannon						= 8;
+	refShip.lcannon						= 8;
+	refShip.fcannon						= 2;
+	refShip.bcannon						= 0;
+	refShip.MaxCrew						= 160;
+	refShip.MinCrew						= 32;
+	refShip.SpeedRate					= 15;
+	refShip.TurnRate					= 40;
+	refShip.Price						= 71825;
+	refShip.HP							= 2800;
+	refShip.SP							= 100;
+	refShip.MastMultiplier				= 1.6;
+	refship.CanEncounter				= true;
+	refship.Type.Merchant				= true;
+	refship.Type.War					= false;
+	refShip.fWindAgainstSpeed			= 2.0;
+	refShip.sea_enchantment				= 1.8;
+	refShip.lowpolycrew					= 12;
+	refShip.buildtime					= 60;
 
 	refship.Rocking.y = 0.5;
 	refship.Rocking.az = 0.04;
@@ -2750,6 +2786,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(450);
 	refShip.Capacity        			= 3000;
+	refShip.MaxCannonDiff				= 2;
 	refShip.CannonsQuantity				= 18;
 	refShip.rcannon 							= 7;
 	refShip.lcannon 							= 7;
@@ -2826,6 +2863,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(450);
 	refShip.Capacity        			= 3200;
+	refShip.MaxCannonDiff						= 2;
 	refShip.CannonsQuantity						= 20;
 	refShip.rcannon 							= 8;
 	refShip.lcannon 							= 8;
@@ -2891,6 +2929,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(800);
 	refShip.Capacity        			= 3400;
+	refShip.MaxCannonDiff						= 2;
 	refShip.CannonsQuantity						= 20;
 	refShip.rcannon 							= 8;
 	refShip.lcannon 							= 8;
@@ -2970,7 +3009,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(250);
 	refShip.Capacity        			= 1600;
-	refShip.CannonsQuantity				= 22;
+	refShip.MaxCannonDiff						= 2;
+	refShip.CannonsQuantity						= 22;
 	refShip.rcannon 							= 10;
 	refShip.lcannon 							= 10;
 	refShip.fcannon 							= 0;
@@ -3049,6 +3089,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(500);
 	refShip.Capacity        			= 1400;
+	refShip.MaxCannonDiff						= 2;
 	refShip.CannonsQuantity						= 22;
 	refShip.rcannon 							= 9;
 	refShip.lcannon 							= 9;
@@ -3119,7 +3160,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(500);
 	refShip.Capacity        			= 1900;
-	refShip.CannonsQuantity				= 22;
+	refShip.MaxCannonDiff						= 2;
+	refShip.CannonsQuantity						= 22;
 	refShip.rcannon 							= 9;
 	refShip.lcannon 							= 9;
 	refShip.fcannon 							= 2;
@@ -3194,7 +3236,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(1000);
 	refShip.Capacity        			= 1700;
-	refShip.CannonsQuantity				= 24;
+	refShip.MaxCannonDiff						= 2;
+	refShip.CannonsQuantity						= 24;
 	refShip.rcannon 							= 10;
 	refShip.lcannon 							= 10;
 	refShip.fcannon 							= 2;
@@ -3276,7 +3319,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(400);
 	refShip.Capacity        			= 1700;
-	refShip.CannonsQuantity				= 24;
+	refShip.MaxCannonDiff						= 2;
+	refShip.CannonsQuantity						= 24;
 	refShip.rcannon 							= 12;
 	refShip.lcannon 							= 12;
 	refShip.fcannon 							= 0;
@@ -3353,7 +3397,8 @@ void InitShips()
 	refShip.MaxCaliber  				= 16;
 	refShip.Weight						= Tonnes2CWT(600);
 	refShip.Capacity   					= 2200;
-	refShip.CannonsQuantity				= 24;
+	refShip.MaxCannonDiff						= 2;
+	refShip.CannonsQuantity						= 24;
 	refShip.rcannon 							= 10;
 	refShip.lcannon 							= 10;
 	refShip.fcannon 							= 2;
@@ -3428,7 +3473,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(500);
 	refShip.Capacity        			= 3000;
-	refShip.CannonsQuantity				= 30;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 30;
 	refShip.rcannon 							= 13;
 	refShip.lcannon 							= 13;
 	refShip.fcannon 							= 2;
@@ -3502,7 +3548,8 @@ void InitShips()
     refShip.MaxCaliber      			= 16;
     refShip.Weight						= Tonnes2CWT(900);
     refShip.Capacity        			= 2300;
-    refShip.CannonsQuantity				= 30;
+	refShip.MaxCannonDiff							= 3;
+    refShip.CannonsQuantity							= 30;
     refShip.rcannon 								= 14;
     refShip.lcannon 								= 14;
     refShip.fcannon 								= 0;
@@ -3586,7 +3633,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(1000);
 	refShip.Capacity        			= 2000;
-	refShip.CannonsQuantity				= 32;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 32;
 	refShip.rcannon 							= 14;
 	refShip.lcannon 							= 14;
 	refShip.fcannon 							= 2;
@@ -3665,7 +3713,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(500);
 	refShip.Capacity        			= 2800;
-	refShip.CannonsQuantity				= 32;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 32;
 	refShip.rcannon 							= 14;
 	refShip.lcannon 							= 14;
 	refShip.fcannon 							= 2;
@@ -3735,7 +3784,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(405);
 	refShip.Capacity        			= 3000;
-	refShip.CannonsQuantity				= 34;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 34;
 	refShip.rcannon 							= 15;
 	refShip.lcannon 							= 15;
 	refShip.fcannon 							= 2;
@@ -3809,7 +3859,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(405);
 	refShip.Capacity        			= 2700;
-	refShip.CannonsQuantity				= 34;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 34;
 	refShip.rcannon 							= 15;
 	refShip.lcannon 							= 15;
 	refShip.fcannon 							= 2;
@@ -3883,7 +3934,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(1100);
 	refShip.Capacity        			= 5000;
-	refShip.CannonsQuantity				= 34;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 34;
 	refShip.rcannon 							= 15;
 	refShip.lcannon 							= 15;
 	refShip.fcannon 							= 2;
@@ -3954,7 +4006,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(1100);
 	refShip.Capacity        			= 4000;
-	refShip.CannonsQuantity				= 36;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 36;
 	refShip.rcannon 							= 15;
 	refShip.lcannon 							= 15;
 	refShip.fcannon 							= 2;
@@ -4029,7 +4082,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(800);
 	refShip.Capacity        			= 4000;
-	refShip.CannonsQuantity				= 18;
+	refShip.MaxCannonDiff						= 2;
+	refShip.CannonsQuantity						= 18;
 	refShip.rcannon 							= 6;
 	refShip.lcannon 							= 6;
 	refShip.fcannon 							= 2;
@@ -4114,7 +4168,8 @@ void InitShips()
 	refShip.MaxCaliber      	= 24;
 	refShip.Weight				= Tonnes2CWT(600);
 	refShip.Capacity        	= 3000;
-	refShip.CannonsQuantity		= 20;
+	refShip.MaxCannonDiff				= 2;
+	refShip.CannonsQuantity				= 20;
 	refShip.rcannon 					= 8;
 	refShip.lcannon 					= 8;
 	refShip.fcannon 					= 2;
@@ -4190,7 +4245,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(800);
 	refShip.Capacity        			= 3600;
-	refShip.CannonsQuantity				= 30;
+	refShip.MaxCannonDiff					= 3;
+	refShip.CannonsQuantity					= 30;
 	refShip.rcannon 						= 13;
 	refShip.lcannon 						= 13;
 	refShip.fcannon 						= 2;
@@ -4262,7 +4318,8 @@ void InitShips()
 	refShip.MaxCaliber  				= 24;
 	refShip.Weight						= Tonnes2CWT(900);
 	refShip.Capacity   					= 2600;
-	refShip.CannonsQuantity				= 30;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 30;
 	refShip.rcannon 							= 13;
 	refShip.lcannon 							= 13;
 	refShip.fcannon 							= 2;
@@ -4335,7 +4392,8 @@ void InitShips()
 	refShip.MaxCaliber      	= 32;
 	refShip.Weight				= Tonnes2CWT(900);
 	refShip.Capacity        	= 4950;
-	refShip.CannonsQuantity		= 30;
+	refShip.MaxCannonDiff				= 3;
+	refShip.CannonsQuantity				= 30;
 	refShip.rcannon 					= 14;
 	refShip.lcannon 					= 14;
 	refShip.fcannon 					= 0;
@@ -4413,7 +4471,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(600);
 	refShip.Capacity        			= 2000;
-	refShip.CannonsQuantity				= 30;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 30;
 	refShip.rcannon 							= 13;
 	refShip.lcannon 							= 13;
 	refShip.fcannon 							= 2;
@@ -4491,7 +4550,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(600);
 	refShip.Capacity        			= 2250;
-	refShip.CannonsQuantity				= 32;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 32;
 	refShip.rcannon 							= 13;
 	refShip.lcannon 							= 13;
 	refShip.fcannon 							= 2;
@@ -4572,7 +4632,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(600);
 	refShip.Capacity        			= 2000;
-	refShip.CannonsQuantity				= 32;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 32;
 	refShip.rcannon 							= 13;
 	refShip.lcannon 							= 13;
 	refShip.fcannon 							= 2;
@@ -4653,7 +4714,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(600);
 	refShip.Capacity        			= 2500;
-	refShip.CannonsQuantity				= 32;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 32;
 	refShip.rcannon 							= 13;
 	refShip.lcannon 							= 13;
 	refShip.fcannon 							= 2;
@@ -4728,7 +4790,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 32;
 	refShip.Weight						= Tonnes2CWT(600);
 	refShip.Capacity        			= 2000;
-	refShip.CannonsQuantity				= 32;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 32;
 	refShip.rcannon 							= 13;
 	refShip.lcannon 							= 13;
 	refShip.fcannon 							= 2;
@@ -4803,13 +4866,14 @@ void InitShips()
     refShip.MaxCaliber      			= 24;
     refShip.Weight						= Tonnes2CWT(900);
     refShip.Capacity        			= 3200;
-    refShip.CannonsQuantity				= 32;
-    refShip.rcannon 								= 15;
-    refShip.lcannon 								= 15;
-    refShip.fcannon 								= 2;
-    refShip.bcannon 								= 0;
-    refShip.MaxCrew         					= 290;
-    refShip.MinCrew         					= 58;
+	refShip.MaxCannonDiff						= 3;
+    refShip.CannonsQuantity						= 32;
+    refShip.rcannon 							= 15;
+    refShip.lcannon 							= 15;
+    refShip.fcannon 							= 2;
+    refShip.bcannon 							= 0;
+    refShip.MaxCrew         			= 290;
+    refShip.MinCrew         			= 58;
     refShip.SpeedRate				= 15;
     refShip.TurnRate        		= 45;
     refShip.Price           			= 194427;
@@ -4886,7 +4950,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(1000);
 	refShip.Capacity        			= 2400;
-	refShip.CannonsQuantity				= 36;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 36;
 	refShip.rcannon 							= 16;
 	refShip.lcannon 							= 16;
 	refShip.fcannon 							= 2;
@@ -4962,7 +5027,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(1100);
 	refShip.Capacity        			= 4500;
-	refShip.CannonsQuantity				= 36;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 36;
 	refShip.rcannon 							= 15;
 	refShip.lcannon 							= 15;
 	refShip.fcannon 							= 0;
@@ -5042,7 +5108,8 @@ void InitShips()
 	refShip.MaxCaliber      		= 24;
 	refShip.Weight					= Tonnes2CWT(1000);
 	refShip.Capacity        		= 4000;
-	refShip.CannonsQuantity			= 36;
+	refShip.MaxCannonDiff					= 3;
+	refShip.CannonsQuantity					= 36;
 	refShip.rcannon 						= 15;
 	refShip.lcannon 						= 15;
 	refShip.fcannon 						= 2;
@@ -5122,7 +5189,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 32;
 	refShip.Weight						= Tonnes2CWT(1100);
 	refShip.Capacity        			= 4650;
-	refShip.CannonsQuantity				= 36;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 36;
 	refShip.rcannon 							= 17;
 	refShip.lcannon 							= 17;
 	refShip.fcannon 							= 0;
@@ -5204,7 +5272,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(1100);
 	refShip.Capacity        			= 5950;
-	refShip.CannonsQuantity				= 38;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 38;
 	refShip.rcannon 							= 16;
 	refShip.lcannon 							= 16;
 	refShip.fcannon 							= 2;
@@ -5284,7 +5353,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(1700);
 	refShip.Capacity        			= 4800;
-	refShip.CannonsQuantity				= 38;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 38;
 	refShip.rcannon 							= 16;
 	refShip.lcannon 							= 16;
 	refShip.fcannon 							= 2;
@@ -5357,7 +5427,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(1700);
 	refShip.Capacity        			= 4000;
-	refShip.CannonsQuantity				= 38;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 38;
 	refShip.rcannon 							= 16;
 	refShip.lcannon 							= 16;
 	refShip.fcannon 							= 2;
@@ -5432,7 +5503,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 32;
 	refShip.Weight						= Tonnes2CWT(1000);
 	refShip.Capacity        			= 3300;
-	refShip.CannonsQuantity				= 38;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 38;
 	refShip.rcannon 							= 18;
 	refShip.lcannon 							= 18;
 	refShip.fcannon 							= 2;
@@ -5511,7 +5583,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 32;
 	refShip.Weight						= Tonnes2CWT(1100);
 	refShip.Capacity        			= 4000;
-	refShip.CannonsQuantity				= 40;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 40;
 	refShip.rcannon 							= 19;
 	refShip.lcannon 							= 19;
 	refShip.fcannon 							= 0;
@@ -5584,7 +5657,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 32;
 	refShip.Weight						= Tonnes2CWT(1700);
 	refShip.Capacity        			= 3500;
-	refShip.CannonsQuantity				= 40;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 40;
 	refShip.rcannon 							= 17;
 	refShip.lcannon 							= 17;
 	refShip.fcannon 							= 2;
@@ -5668,7 +5742,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(1100);
 	refShip.Capacity        			= 4000;
-	refShip.CannonsQuantity				= 40;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 40;
 	refShip.rcannon 							= 17;
 	refShip.lcannon 							= 17;
 	refShip.fcannon 							= 2;
@@ -5743,7 +5818,8 @@ void InitShips()
 	refShip.MaxCaliber 			= 24;
 	refShip.Weight 				= Tonnes2CWT(1000);
 	refShip.Capacity 			= 2300;
-	refShip.CannonsQuantity 	= 42;
+	refShip.MaxCannonDiff				= 3;
+	refShip.CannonsQuantity 			= 42;
 	refShip.rcannon 					= 19;
 	refShip.lcannon 					= 19;
 	refShip.fcannon 					= 2;
@@ -5822,7 +5898,8 @@ void InitShips()
 	refShip.MaxCaliber 					= 24;
 	refShip.Weight 						= Tonnes2CWT(900);
 	refShip.Capacity 					= 3300;
-	refShip.CannonsQuantity 			= 42;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity 					= 42;
 	refShip.rcannon 							= 19;
 	refShip.lcannon 							= 19;
 	refShip.fcannon 							= 2;
@@ -5899,7 +5976,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(1000);
 	refShip.Capacity        			= 2700;
-	refShip.CannonsQuantity				= 44;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 44;
 	refShip.rcannon 							= 19;
 	refShip.lcannon 							= 19;
 	refShip.fcannon 							= 2;
@@ -5976,7 +6054,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(1100);
 	refShip.Capacity        			= 3600;
-	refShip.CannonsQuantity				= 44;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 44;
 	refShip.rcannon 							= 19;
 	refShip.lcannon 							= 19;
 	refShip.fcannon 							= 2;
@@ -6051,7 +6130,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(1100);
 	refShip.Capacity        			= 2500;
-	refShip.CannonsQuantity				= 44;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 44;
 	refShip.rcannon 							= 20;
 	refShip.lcannon 							= 20;
 	refShip.fcannon 							= 2;
@@ -6126,6 +6206,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(1000);
 	refShip.Capacity        			= 2800;
+	refShip.MaxCannonDiff						= 3;
 	refShip.CannonsQuantity						= 44;
 	refShip.rcannon 							= 19;
 	refShip.lcannon 							= 19;
@@ -6201,7 +6282,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 32;
 	refShip.Weight						= Tonnes2CWT(860);
 	refShip.Capacity        			= 2100;
-	refShip.CannonsQuantity 			= 46;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity 					= 46;
 	refShip.rcannon 							= 20;
 	refShip.lcannon 							= 20;
 	refShip.fcannon 							= 2;
@@ -6276,7 +6358,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(1000);
 	refShip.Capacity        			= 3000;
-	refShip.CannonsQuantity				= 46;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 46;
 	refShip.rcannon 							= 21;
 	refShip.lcannon 							= 21;
 	refShip.fcannon 							= 2;
@@ -6362,7 +6445,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 32;
 	refShip.Weight						= Tonnes2CWT(1000);
 	refShip.Capacity        			= 2800;
-	refShip.CannonsQuantity				= 50;
+	refShip.MaxCannonDiff						= 4;
+	refShip.CannonsQuantity						= 50;
 	refShip.rcannon 							= 22;
 	refShip.lcannon 							= 22;
 	refShip.fcannon 							= 2;
@@ -6439,7 +6523,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(2500);
 	refShip.Capacity        			= 6500;
-	refShip.CannonsQuantity				= 56;
+	refShip.MaxCannonDiff						= 4;
+	refShip.CannonsQuantity						= 56;
 	refShip.rcannon 							= 26;
 	refShip.lcannon 							= 26;
 	refShip.fcannon 							= 2;
@@ -6511,7 +6596,8 @@ void InitShips()
 	refShip.MaxCaliber      		= 32;
 	refShip.Weight					= Tonnes2CWT(2300);
 	refShip.Capacity        		= 7500;
-	refShip.CannonsQuantity			= 42;
+	refShip.MaxCannonDiff					= 3;
+	refShip.CannonsQuantity					= 42;
 	refShip.rcannon 						= 20;
 	refShip.lcannon 						= 20;
 	refShip.fcannon 						= 0;
@@ -6587,7 +6673,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 32;
 	refShip.Weight						= Tonnes2CWT(920);
 	refShip.Capacity        			= 3200;
-	refShip.CannonsQuantity				= 42;
+	refShip.MaxCannonDiff						= 4;
+	refShip.CannonsQuantity						= 42;
 	refShip.rcannon 							= 17;
 	refShip.lcannon 							= 17;
 	refShip.fcannon 							= 4;
@@ -6663,7 +6750,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(1300);
 	refShip.Capacity        			= 3700;
-	refShip.CannonsQuantity				= 46;
+	refShip.MaxCannonDiff						= 3;
+	refShip.CannonsQuantity						= 46;
 	refShip.rcannon 							= 20;
 	refShip.lcannon 							= 20;
 	refShip.fcannon 							= 2;
@@ -6744,7 +6832,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 32;
 	refShip.Weight						= Tonnes2CWT(1200);
 	refShip.Capacity        			= 3500;
-	refShip.CannonsQuantity				= 50;
+	refShip.MaxCannonDiff						= 4;
+	refShip.CannonsQuantity						= 50;
 	refShip.rcannon 							= 20;
 	refShip.lcannon 							= 20;
 	refShip.fcannon 							= 4;
@@ -6819,7 +6908,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 32;
 	refShip.Weight						= Tonnes2CWT(1100);
 	refShip.Capacity        			= 5500;
-	refShip.CannonsQuantity				= 52;
+	refShip.MaxCannonDiff						= 4;
+	refShip.CannonsQuantity						= 52;
 	refShip.rcannon 							= 25;
 	refShip.lcannon 							= 25;
 	refShip.fcannon 							= 0;
@@ -6891,7 +6981,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(1100);
 	refShip.Capacity        			= 5000;
-	refShip.CannonsQuantity				= 54;
+	refShip.MaxCannonDiff						= 4;
+	refShip.CannonsQuantity						= 54;
 	refShip.rcannon 							= 23;
 	refShip.lcannon 							= 23;
 	refShip.fcannon 							= 2;
@@ -6961,7 +7052,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 32;
 	refShip.Weight						= Tonnes2CWT(1050);
 	refShip.Capacity        			= 5300;
-	refShip.CannonsQuantity				= 54;
+	refShip.MaxCannonDiff						= 4;
+	refShip.CannonsQuantity						= 54;
 	refShip.rcannon 							= 22;
 	refShip.lcannon 							= 22;
 	refShip.fcannon 							= 4;
@@ -7033,7 +7125,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(1100);
 	refShip.Capacity        			= 4000;
-	refShip.CannonsQuantity				= 56;
+	refShip.MaxCannonDiff						= 4;
+	refShip.CannonsQuantity						= 56;
 	refShip.rcannon 							= 25;
 	refShip.lcannon 							= 25;
 	refShip.fcannon 							= 2;
@@ -7108,7 +7201,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 32;
 	refShip.Weight						= Tonnes2CWT(2000);
 	refShip.Capacity        			= 4350;
-	refShip.CannonsQuantity				= 56;
+	refShip.MaxCannonDiff						= 4;
+	refShip.CannonsQuantity						= 56;
 	refShip.rcannon 							= 25;
 	refShip.lcannon 							= 25;
 	refShip.fcannon 							= 2;
@@ -7192,7 +7286,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 32;
 	refShip.Weight						= Tonnes2CWT(2300);
 	refShip.Capacity        			= 5500;
-	refShip.CannonsQuantity				= 56;
+	refShip.MaxCannonDiff						= 4;
+	refShip.CannonsQuantity						= 56;
 	refShip.rcannon 							= 27;
 	refShip.lcannon 							= 27;
 	refShip.fcannon 							= 0;
@@ -7275,7 +7370,8 @@ void InitShips()
 	refShip.MaxCaliber 							= 32;
 	refShip.Weight 								= Tonnes2CWT(1000);
 	refShip.Capacity 							= 3000;
-	refShip.CannonsQuantity 					= 56;
+	refShip.MaxCannonDiff								= 4;
+	refShip.CannonsQuantity 							= 56;
 	refShip.rcannon 									= 26;
 	refShip.lcannon 									= 26;
 	refShip.fcannon 									= 2;
@@ -7352,7 +7448,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(860);
 	refShip.Capacity        			= 3300;
-	refShip.CannonsQuantity 			= 58;
+	refShip.MaxCannonDiff						= 4;
+	refShip.CannonsQuantity 					= 58;
 	refShip.rcannon 							= 26;
 	refShip.lcannon 							= 26;
 	refShip.fcannon 							= 2;
@@ -7427,7 +7524,8 @@ void InitShips()
 	refShip.MaxCaliber      		= 32;
 	refShip.Weight					= Tonnes2CWT(2000);
 	refShip.Capacity        		= 3800;
-	refShip.CannonsQuantity			= 60;
+	refShip.MaxCannonDiff					= 4;
+	refShip.CannonsQuantity					= 60;
 	refShip.rcannon 						= 26;
 	refShip.lcannon 						= 26;
 	refShip.fcannon 						= 4;
@@ -7500,7 +7598,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 32;
 	refShip.Weight						= Tonnes2CWT(2500);
 	refShip.Capacity        			= 4500;
-	refShip.CannonsQuantity				= 60;
+	refShip.MaxCannonDiff						= 4;
+	refShip.CannonsQuantity						= 60;
 	refShip.rcannon 							= 28;
 	refShip.lcannon 							= 28;
 	refShip.fcannon 							= 2;
@@ -7576,7 +7675,8 @@ void InitShips()
 	refShip.MaxCaliber      		= 32;
 	refShip.Weight					= Tonnes2CWT(2000);
 	refShip.Capacity        		= 4000;
-	refShip.CannonsQuantity			= 60;
+	refShip.MaxCannonDiff					= 4;
+	refShip.CannonsQuantity					= 60;
 	refShip.rcannon 						= 28;
 	refShip.lcannon 						= 28;
 	refShip.fcannon 						= 2;
@@ -7655,7 +7755,8 @@ void InitShips()
 	refShip.MaxCaliber      		= 32;
 	refShip.Weight					= Tonnes2CWT(3000);
 	refShip.Capacity        		= 6500;
-	refShip.CannonsQuantity			= 64;
+	refShip.MaxCannonDiff					= 4;
+	refShip.CannonsQuantity					= 64;
 	refShip.rcannon 						= 24;
 	refShip.lcannon 						= 24;
 	refShip.fcannon 						= 8;
@@ -7729,7 +7830,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 32;
 	refShip.Weight						= Tonnes2CWT(2000);
 	refShip.Capacity        			= 4400;
-	refShip.CannonsQuantity				= 64;
+	refShip.MaxCannonDiff						= 4;
+	refShip.CannonsQuantity						= 64;
 	refShip.rcannon 							= 29;
 	refShip.lcannon 							= 29;
 	refShip.fcannon 							= 2;
@@ -7802,7 +7904,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 32;
 	refShip.Weight						= Tonnes2CWT(2000);
 	refShip.Capacity        			= 5300;
-	refShip.CannonsQuantity				= 64;
+	refShip.MaxCannonDiff						= 4;
+	refShip.CannonsQuantity						= 64;
 	refShip.rcannon 							= 30;
 	refShip.lcannon 							= 30;
 	refShip.fcannon 							= 2;
@@ -7881,7 +7984,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 32;
 	refShip.Weight						= Tonnes2CWT(2500);
 	refShip.Capacity        			= 5000;
-	refShip.CannonsQuantity				= 66;
+	refShip.MaxCannonDiff						= 4;
+	refShip.CannonsQuantity						= 66;
 	refShip.rcannon 							= 30;
 	refShip.lcannon 							= 30;
 	refShip.fcannon 							= 2;
@@ -7965,7 +8069,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(3000);
 	refShip.Capacity        			= 4800;
-	refShip.CannonsQuantity				= 74;
+	refShip.MaxCannonDiff						= 4;
+	refShip.CannonsQuantity						= 74;
 	refShip.rcannon 							= 34;
 	refShip.lcannon 							= 34;
 	refShip.fcannon 							= 2;
@@ -8043,7 +8148,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(1200);
 	refShip.Capacity        			= 5400;
-	refShip.CannonsQuantity				= 82;
+	refShip.MaxCannonDiff						= 5;
+	refShip.CannonsQuantity						= 82;
 	refShip.rcannon 							= 37;
 	refShip.lcannon 							= 37;
 	refShip.fcannon 							= 2;
@@ -8124,7 +8230,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(2500);
 	refShip.Capacity        			= 3400;
-	refShip.CannonsQuantity				= 66;
+	refShip.MaxCannonDiff						= 4;
+	refShip.CannonsQuantity						= 66;
 	refShip.rcannon 							= 30;
 	refShip.lcannon 							= 30;
 	refShip.fcannon 							= 2;
@@ -8201,7 +8308,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(2500);
 	refShip.Capacity        			= 3900;
-	refShip.CannonsQuantity				= 68;
+	refShip.MaxCannonDiff						= 4;
+	refShip.CannonsQuantity						= 68;
 	refShip.rcannon 							= 32;
 	refShip.lcannon 							= 32;
 	refShip.fcannon 							= 2;
@@ -8273,7 +8381,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(990);
 	refShip.Capacity        			= 4400;
-	refShip.CannonsQuantity				= 72;
+	refShip.MaxCannonDiff						= 4;
+	refShip.CannonsQuantity						= 72;
 	refShip.rcannon 							= 32;
 	refShip.lcannon 							= 32;
 	refShip.fcannon 							= 4;
@@ -8348,7 +8457,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(3200);
 	refShip.Capacity        			= 4000;
-	refShip.CannonsQuantity				= 74;
+	refShip.MaxCannonDiff						= 4;
+	refShip.CannonsQuantity						= 74;
 	refShip.rcannon 							= 34;
 	refShip.lcannon 							= 34;
 	refShip.fcannon 							= 2;
@@ -8428,7 +8538,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(3500);
 	refShip.Capacity        			= 6000;
-	refShip.CannonsQuantity				= 78;
+	refShip.MaxCannonDiff						= 4;
+	refShip.CannonsQuantity						= 78;
 	refShip.rcannon 							= 37;
 	refShip.lcannon 							= 37;
 	refShip.fcannon 							= 2;
@@ -8504,7 +8615,8 @@ void InitShips()
 	refShip.MaxCaliber      		= 42;
 	refShip.Weight					= Tonnes2CWT(2500);
 	refShip.Capacity        		= 4500;
-	refShip.CannonsQuantity			= 78;
+	refShip.MaxCannonDiff					= 4;
+	refShip.CannonsQuantity					= 78;
 	refShip.rcannon 						= 37;
 	refShip.lcannon 						= 37;
 	refShip.fcannon 						= 2;
@@ -8582,7 +8694,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(3000);
 	refShip.Capacity        			= 4900;
-	refShip.CannonsQuantity				= 80;
+	refShip.MaxCannonDiff						= 5;
+	refShip.CannonsQuantity						= 80;
 	refShip.rcannon 							= 37;
 	refShip.lcannon 							= 37;
 	refShip.fcannon 							= 2;
@@ -8665,7 +8778,8 @@ void InitShips()
 	refShip.MaxCaliber      		= 42;
 	refShip.Weight					= Tonnes2CWT(3500);
 	refShip.Capacity        		= 5500;
-	refShip.CannonsQuantity			= 82;
+	refShip.MaxCannonDiff					= 5;
+	refShip.CannonsQuantity					= 82;
 	refShip.rcannon 						= 38;
 	refShip.lcannon 						= 38;
 	refShip.fcannon 						= 2;
@@ -8742,7 +8856,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(2500);
 	refShip.Capacity        			= 4500;
-	refShip.CannonsQuantity				= 84;
+	refShip.MaxCannonDiff						= 5;
+	refShip.CannonsQuantity						= 84;
 	refShip.rcannon 							= 40;
 	refShip.lcannon 							= 40;
 	refShip.fcannon 							= 2;
@@ -8825,7 +8940,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(3500);
 	refShip.Capacity        			= 4500;
-	refShip.CannonsQuantity				= 84;
+	refShip.MaxCannonDiff						= 5;
+	refShip.CannonsQuantity						= 84;
 	refShip.rcannon 							= 39;
 	refShip.lcannon 							= 39;
 	refShip.fcannon 							= 2;
@@ -8909,7 +9025,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(3500);
 	refShip.Capacity        			= 5500;
-	refShip.CannonsQuantity				= 84;
+	refShip.MaxCannonDiff						= 5;
+	refShip.CannonsQuantity						= 84;
 	refShip.rcannon 							= 39;
 	refShip.lcannon 							= 39;
 	refShip.fcannon 							= 2;
@@ -8982,6 +9099,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(2800);
 	refShip.Capacity        			= 5800;
+	refShip.MaxCannonDiff						= 5;
 	refShip.CannonsQuantity						= 92;
 	refShip.rcannon 							= 43;
 	refShip.lcannon 							= 43;
@@ -9061,7 +9179,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(3500);
 	refShip.Capacity        			= 6200;
-	refShip.CannonsQuantity				= 94;
+	refShip.MaxCannonDiff						= 5;
+	refShip.CannonsQuantity						= 94;
 	refShip.rcannon 							= 46;
 	refShip.lcannon 							= 46;
 	refShip.fcannon 							= 2;
@@ -9136,7 +9255,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(4000);
 	refShip.Capacity        			= 6000;
-	refShip.CannonsQuantity				= 100;
+	refShip.MaxCannonDiff						= 5;
+	refShip.CannonsQuantity						= 100;
 	refShip.rcannon 							= 46;
 	refShip.lcannon 							= 46;
 	refShip.fcannon 							= 4;
@@ -9211,7 +9331,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(4000);
 	refShip.Capacity        			= 6500;
-	refShip.CannonsQuantity				= 100;
+	refShip.MaxCannonDiff						= 5;
+	refShip.CannonsQuantity						= 100;
 	refShip.rcannon 							= 46;
 	refShip.lcannon 							= 46;
 	refShip.fcannon 							= 4;
@@ -9283,7 +9404,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(3500);
 	refShip.Capacity        			= 7000;
-	refShip.CannonsQuantity				= 100;
+	refShip.MaxCannonDiff						= 5;
+	refShip.CannonsQuantity						= 100;
 	refShip.rcannon 							= 45;
 	refShip.lcannon 							= 45;
 	refShip.fcannon 							= 2;
@@ -9359,7 +9481,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(1250);
 	refShip.Capacity        			= 5000;
-	refShip.CannonsQuantity				= 108;
+	refShip.MaxCannonDiff						= 5;
+	refShip.CannonsQuantity						= 108;
 	refShip.rcannon 							= 51;
 	refShip.lcannon 							= 51;
 	refShip.fcannon 							= 2;
@@ -9438,7 +9561,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(3000);
 	refShip.Capacity        			= 6800;
-	refShip.CannonsQuantity				= 100;
+	refShip.MaxCannonDiff						= 5;
+	refShip.CannonsQuantity						= 100;
 	refShip.rcannon 							= 46;
 	refShip.lcannon 							= 46;
 	refShip.fcannon 							= 4;
@@ -9520,7 +9644,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(4000);
 	refShip.Capacity        			= 6000;
-	refShip.CannonsQuantity				= 106;
+	refShip.MaxCannonDiff						= 5;
+	refShip.CannonsQuantity						= 106;
 	refShip.rcannon 							= 51;
 	refShip.lcannon 							= 51;
 	refShip.fcannon 							= 2;
@@ -9597,7 +9722,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(3000);
 	refShip.Capacity        			= 7500;
-	refShip.CannonsQuantity				= 102;
+	refShip.MaxCannonDiff						= 5;
+	refShip.CannonsQuantity						= 102;
 	refShip.rcannon 							= 45;
 	refShip.lcannon 							= 45;
 	refShip.fcannon 							= 4;
@@ -9675,7 +9801,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 16;
 	refShip.Weight						= Tonnes2CWT(145);
 	refShip.Capacity        			= 990;
-	refShip.CannonsQuantity				= 12;
+	refShip.MaxCannonDiff						= 0;
+	refShip.CannonsQuantity						= 12;
 	refShip.rcannon 							= 5;
 	refShip.lcannon 							= 5;
 	refShip.fcannon 							= 0;
@@ -9742,7 +9869,8 @@ void InitShips()
 	refShip.MaxCaliber  		= 20;
 	refShip.Weight				= Tonnes2CWT(380);
 	refShip.Capacity   			= 1800;
-	refShip.CannonsQuantity		= 30;
+	refShip.MaxCannonDiff				= 0;
+	refShip.CannonsQuantity				= 30;
 	refShip.rcannon 					= 13;
 	refShip.lcannon 					= 13;
 	refShip.fcannon 					= 2;
@@ -9815,7 +9943,8 @@ void InitShips()
 	refShip.MaxCaliber  		= 20;
 	refShip.Weight				= Tonnes2CWT(350);
 	refShip.Capacity   			= 2000;
-	refShip.CannonsQuantity		= 26;
+	refShip.MaxCannonDiff				= 0;
+	refShip.CannonsQuantity				= 26;
 	refShip.rcannon 					= 11;
 	refShip.lcannon 					= 11;
 	refShip.fcannon 					= 2;
@@ -9888,7 +10017,8 @@ void InitShips()
 	refShip.MaxCaliber  		= 20;
 	refShip.Weight				= Tonnes2CWT(400);
 	refShip.Capacity   			= 2100;
-	refShip.CannonsQuantity		= 24;
+	refShip.MaxCannonDiff				= 0;
+	refShip.CannonsQuantity				= 24;
 	refShip.rcannon 					= 10;
 	refShip.lcannon 					= 10;
 	refShip.fcannon 					= 2;
@@ -9961,7 +10091,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 32;
 	refShip.Weight						= Tonnes2CWT(800);
 	refShip.Capacity        			= 3300;
-	refShip.CannonsQuantity				= 38;
+	refShip.MaxCannonDiff						= 0;
+	refShip.CannonsQuantity						= 38;
 	refShip.rcannon 							= 17;
 	refShip.lcannon 							= 17;
 	refShip.fcannon 							= 2;
@@ -10033,7 +10164,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(680);
 	refShip.Capacity        			= 2700;
-	refShip.CannonsQuantity				= 40;
+	refShip.MaxCannonDiff						= 0;
+	refShip.CannonsQuantity						= 40;
 	refShip.rcannon 							= 18;
 	refShip.lcannon 							= 18;
 	refShip.fcannon 							= 2;
@@ -10106,6 +10238,7 @@ void InitShips()
 	refShip.MaxCaliber      			= 24;
 	refShip.Weight						= Tonnes2CWT(680);
 	refShip.Capacity        			= 3000;
+	refShip.MaxCannonDiff				= 0;
 	refShip.CannonsQuantity				= 40;
 	refShip.rcannon 					= 16;
 	refShip.lcannon 					= 16;
@@ -10181,7 +10314,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 32;
 	refShip.Weight						= Tonnes2CWT(1050);
 	refShip.Capacity        			= 3700;
-	refShip.CannonsQuantity				= 52;
+	refShip.MaxCannonDiff						= 0;
+	refShip.CannonsQuantity						= 52;
 	refShip.rcannon 							= 22;
 	refShip.lcannon 							= 22;
 	refShip.fcannon 							= 4;
@@ -10259,7 +10393,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 36;
 	refShip.Weight						= Tonnes2CWT(950);
 	refShip.Capacity        			= 3200;
-	refShip.CannonsQuantity				= 52;
+	refShip.MaxCannonDiff						= 0;
+	refShip.CannonsQuantity						= 52;
 	refShip.rcannon 							= 20;
 	refShip.lcannon 							= 20;
 	refShip.fcannon 							= 6;
@@ -10335,7 +10470,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(1250);
 	refShip.Capacity        			= 5400;
-	refShip.CannonsQuantity				= 52;
+	refShip.MaxCannonDiff						= 0;
+	refShip.CannonsQuantity						= 52;
 	refShip.rcannon 							= 22;
 	refShip.lcannon 							= 22;
 	refShip.fcannon 							= 4;
@@ -10410,7 +10546,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(1800);
 	refShip.Capacity        			= 4200;
-	refShip.CannonsQuantity				= 68;
+	refShip.MaxCannonDiff						= 0;
+	refShip.CannonsQuantity						= 68;
 	refShip.rcannon 							= 27;
 	refShip.lcannon 							= 27;
 	refShip.fcannon 							= 6;
@@ -10487,7 +10624,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(1800);
 	refShip.Capacity        			= 4200;
-	refShip.CannonsQuantity				= 68;
+	refShip.MaxCannonDiff						= 0;
+	refShip.CannonsQuantity						= 68;
 	refShip.rcannon 							= 29;
 	refShip.lcannon 							= 29;
 	refShip.fcannon 							= 6;
@@ -10563,7 +10701,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(3200);
 	refShip.Capacity        			= 5750;
-	refShip.CannonsQuantity				= 106;
+	refShip.MaxCannonDiff						= 0;
+	refShip.CannonsQuantity						= 106;
 	refShip.rcannon 							= 46;
 	refShip.lcannon 							= 46;
 	refShip.fcannon 							= 6;
@@ -10639,7 +10778,8 @@ void InitShips()
 	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(4500);
 	refShip.Capacity        			= 6800;
-	refShip.CannonsQuantity				= 112;
+	refShip.MaxCannonDiff						= 0;
+	refShip.CannonsQuantity						= 112;
 	refShip.rcannon 							= 52;
 	refShip.lcannon 							= 52;
 	refShip.fcannon 							= 4;
@@ -10718,6 +10858,7 @@ void InitShips()
 	refShip.MaxCaliber					= 48;
 	refShip.Weight								= Tonnes2CWT(22500);
 	refShip.Capacity							= 900000;
+	refShip.MaxCannonDiff						= 0;
 	refShip.CannonsQuantity						= 68;
 	refShip.rcannon 							= 68;
 	refShip.lcannon 							= 0;

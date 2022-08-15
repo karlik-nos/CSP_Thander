@@ -19,10 +19,9 @@ ref GetRealShip(int iType)
 	return &RealShips[iType];
 }
 
-// isLock - рудимент, можно выкидывать (26.05.06 boal)
-// новая жизнь isLock (04.07.06) теперь это признак ворованности (те цены на верфи)
+// isStolen это признак ворованности (те цены на верфи)
 // если 1 - ворованный, цена копеешная, 0 - честно купленный - можно перепродать.
-int GenerateShip(int iBaseType, bool isLock)
+int GenerateShip(int iBaseType, bool isStolen)
 {
 	int iShip = CreateBaseShip(iBaseType);
 
@@ -46,84 +45,10 @@ int GenerateShip(int iBaseType, bool isLock)
     }
 	rRealShip.ship.upgrades.sails = 1 + rand(2);  // только визуальная разница
 
-	switch (rand(1))
-	{
-		case 0: rRealShip.MastMultiplier = stf(stf(rRealShip.MastMultiplier)-makefloat(0.02*rand(15))); break;
-		case 1: rRealShip.MastMultiplier = stf(stf(rRealShip.MastMultiplier)+makefloat(0.02*rand(15))); break;
-	}
+	rRealShip.MastMultiplier = stf(stf(rRealShip.MastMultiplier)-0.3+makefloat(0.02*rand(30)));
 
 	if (!CheckAttribute(rRealShip, "isFort"))
 	{
-	    int iCaliber = sti(rRealShip.MaxCaliber);
-	    if (sti(rRealShip.Class) != 7)
-	    {  // чтоб не было баркаса с 16ф
-		    switch(iCaliber)
-		    {
-                case 8:
-					iCaliber = 0;
-				break;
-				case 12:
-					iCaliber = 1;
-				break;
-				case 16:
-					iCaliber = 2;
-				break;
-				case 20:
-					iCaliber = 3;
-				break;
-				case 24:
-					iCaliber = 4;
-				break;
-				case 32:
-					iCaliber = 5;
-				break;
-				case 36:
-					iCaliber = 6;
-				break;
-				case 42:
-					iCaliber = 7;
-				break;
-		    }
-			//iCaliber = iCaliber - rand(1);
-		    iCaliber = iCaliber; //Jason: согласно новой системе орудий калибр должен быть постоянен, но пока поставим рандом на единицу меньше, а больше - нельзя по определению, на рез. тестов решим, фиксировать или рандомить
-		    if (iCaliber < 0) iCaliber = 0;
-		    if (sti(rRealShip.Class) == 1)
-		    {
-		    	if (iCaliber > 7) iCaliber = 7;
-		    }
-		    else
-		    {
-		    	if (iCaliber > 6) iCaliber = 6;
-		    }
-		    switch(iCaliber)
-		    {
-                case 0:
-					iCaliber = 8;
-				break;
-				case 1:
-					iCaliber = 12;
-				break;
-				case 2:
-					iCaliber = 16;
-				break;
-				case 3:
-					iCaliber = 20;
-				break;
-				case 4:
-					iCaliber = 24;
-				break;
-				case 5:
-					iCaliber = 32;
-				break;
-				case 6:
-					iCaliber = 36;
-				break;
-				case 7:
-					iCaliber = 42;
-				break;
-		    }
-		    rRealShip.MaxCaliber = iCaliber;
-	    }
 	    rRealShip.SpeedRate	       = stf(rRealShip.SpeedRate) + frandSmall(stf(rRealShip.SpeedRate) / 5.0) - stf(rRealShip.SpeedRate) / 10.0;
 	    rRealShip.TurnRate         = stf(rRealShip.TurnRate) + frandSmall(stf(rRealShip.TurnRate) / 5.0) - stf(rRealShip.TurnRate) / 10.0;
 	    //rRealShip.Price            = sti(rRealShip.Price) + rand(makeint(sti(rRealShip.Price)/2)) - makeint(sti(rRealShip.Price)/4);
@@ -144,26 +69,17 @@ int GenerateShip(int iBaseType, bool isLock)
 	rRealShip.SailorCrew      = sti(rRealShip.OptCrew);
     // to_do del <--
 
-	int iDiffWeight			= sti(rRealShip.Weight) - sti(rBaseShip.Weight);
-	int iDiffCapacity		= sti(rRealShip.Capacity) - sti(rBaseShip.Capacity);
-	int iDiffMaxCrew		= sti(rRealShip.MaxCrew) - sti(rBaseShip.MaxCrew);
-	int iDiffMinCrew		= sti(rRealShip.MinCrew) - sti(rBaseShip.MinCrew);
-	float fDiffSpeedRate	= stf(rRealShip.SpeedRate) - stf(rBaseShip.SpeedRate);
-	int iDiffTurnRate		= sti(rRealShip.TurnRate) - sti(rBaseShip.TurnRate);
-	int iDiffHP	    		= sti(rRealShip.HP) - sti(rBaseShip.HP);
-
-	rRealShip.Price	= GetShipPriceByTTH(iShip, &NullCharacter); //(iDiffWeight + iDiffCapacity + iDiffMaxCrew*2 + iDiffMinCrew + fDiffSpeedRate*2 + iDiffTurnRate*2 + iDiffHP)*5 + sti(rRealShip.Price);
-
+	rRealShip.Price	= GetShipPriceByTTH(iShip, &NullCharacter);
 	if (sti(rRealShip.Price) <= 0) rRealShip.Price = 100;
 
-	rRealShip.Stolen = isLock;  // ворованность
+	rRealShip.Stolen = isStolen;  // ворованность
 
 	return iShip;
 }
 
 // -> added by ugeen 25.01.09 (на основе GenerateShip(.....)) - рандомизируем кол-во стволов на борту
 // 31.01.09 - добавил бонусы к корабельным статам если кол-во орудий на борту < базового
-int GenerateShipExt(int iBaseType, bool isLock, ref chr)
+int GenerateShipExt(int iBaseType, bool isStolen, ref chr)
 {
 	string  attr, sCity;
 	int 	i;
@@ -192,11 +108,9 @@ int GenerateShipExt(int iBaseType, bool isLock, ref chr)
         rRealShip.ship.upgrades.hull = 1 + rand(2);
     }
 	rRealShip.ship.upgrades.sails = 1 + rand(2);  // только визуальная разница
-	switch (rand(1))
-	{
-		case 0: rRealShip.MastMultiplier = stf(stf(rRealShip.MastMultiplier)-makefloat(0.02*rand(15))); break;
-		case 1: rRealShip.MastMultiplier = stf(stf(rRealShip.MastMultiplier)+makefloat(0.02*rand(15))); break;
-	}
+
+	if (!CheckAttribute(rRealShip, "QuestShip"))
+		rRealShip.MastMultiplier = stf(stf(rRealShip.MastMultiplier)-0.3+makefloat(0.02*rand(30)));
 
 	// ugeen --> если кораблик генерится на верфи, разброс статов более узкий
 	if (CheckAttribute(chr, "City"))
@@ -212,500 +126,10 @@ int GenerateShipExt(int iBaseType, bool isLock, ref chr)
 
 	if (!CheckAttribute(rRealShip, "isFort"))
 	{
-		int iCaliber = sti(rRealShip.MaxCaliber);
-		if (sti(rRealShip.Class) != 7 && !CheckAttribute(rRealShip, "QuestShip"))
-		{  // чтоб не было баркаса с 16ф
-			switch(iCaliber)
-			{
-				case 8:
-					iCaliber = 0;
-				break;
-				case 12:
-					iCaliber = 1;
-				break;
-				case 16:
-					iCaliber = 2;
-				break;
-				case 20:
-					iCaliber = 3;
-				break;
-				case 24:
-					iCaliber = 4;
-				break;
-				case 32:
-					iCaliber = 5;
-				break;
-				case 36:
-					iCaliber = 6;
-				break;
-				case 42:
-					iCaliber = 7;
-				break;
-			}
-			//iCaliber = iCaliber - rand(1);
-			iCaliber = iCaliber; //Jason: согласно новой системе орудий калибр должен быть постоянен, но пока поставим рандом на единицу меньше, а больше - нельзя по определению, на рез. тестов решим, фиксировать или рандомить
-			if (iCaliber < 0) iCaliber = 0;
-			if (sti(rRealShip.Class) == 1)
-			{
-				if (iCaliber > 7) iCaliber = 7;
-			}
-			else
-			{
-				if (iCaliber > 6) iCaliber = 6;
-			}
-			switch(iCaliber)
-			{
-				case 0:
-					iCaliber = 8;
-				break;
-				case 1:
-					iCaliber = 12;
-				break;
-				case 2:
-					iCaliber = 16;
-				break;
-				case 3:
-					iCaliber = 20;
-				break;
-				case 4:
-					iCaliber = 24;
-				break;
-				case 5:
-					iCaliber = 32;
-				break;
-				case 6:
-					iCaliber = 36;
-				break;
-				case 7:
-					iCaliber = 42;
-				break;
-			}
-			rRealShip.MaxCaliber = iCaliber;
-		}
+		int iDiffClass = 5 - makeint(sti(rRealShip.Class)/2);
 
-		int   iCannonDiff 		= 0;
-		int   iDiffClass  		= 5 - makeint(sti(rRealShip.Class)/2);
-
-		switch(rRealShip.BaseName)
-		{
-			// 7-й класс
-			case "WAR_TARTANE":
-				iCannonDiff = rand(1);  // 8, 6
-			break;
-			case "BERMSLOOP":
-				iCannonDiff = rand(1);  // 8, 6
-			break;
-			case "EMPRESS":
-				iCannonDiff = rand(1);  // 10, 8
-			break;
-			case "PINK":
-				iCannonDiff = rand(1);  // 12, 10
-			break;
-			case "LUGGER":
-				iCannonDiff = rand(1);  // 12, 10
-			break;
-			case "LUGGER_H":
-				iCannonDiff = rand(1);  // 12, 10
-			break;
-
-			// 6-й класс
-			case "SPEEDY":
-				iCannonDiff = rand(2);  // 14, 12, 10
-			break;
-			case "FR_SLOOP":
-				iCannonDiff = rand(2);  // 14, 12, 10
-			break;
-			case "POLACCA":
-				iCannonDiff = rand(2);  // 14, 12, 10
-			break;
-			case "SLOOP":
-				iCannonDiff = rand(2);  // 16, 14, 12
-			break;
-			case "GALEOTH_H":
-				iCannonDiff = rand(2);  // 16, 14, 12
-			break;
-			case "DERFFLINGER":
-				iCannonDiff = rand(2);  // 16, 14, 12
-			break;
-			case "BARQUE":
-				iCannonDiff = rand(2);  // 16, 14, 12
-			break;
-			case "NEPTUNUS":
-				iCannonDiff = rand(2);  // 16, 14, 12
-			break;
-			case "CASTELF":
-				iCannonDiff = rand(2);  // 16, 14, 12
-			break;
-			case "BARKENTINE":
-				iCannonDiff = rand(2);  // 16, 14, 12
-			break;
-			case "BRIGANTINE":
-				iCannonDiff = rand(2);  // 16, 14, 12
-			break;
-			case "BRIG":
-				iCannonDiff = rand(2);  // 16, 14, 12
-			break;
-			case "BRIGHEAVY":
-				iCannonDiff = rand(2);  // 16, 14, 12
-			break;
-			case "SLOOP_B":
-				iCannonDiff = rand(2);  // 16, 14, 12
-			break;
-			case "PINNACE":
-				iCannonDiff = rand(2);  // 18, 16, 14
-			break;
-			case "SOPHIE":
-				iCannonDiff = rand(2);  // 18, 16, 14
-			break;
-			case "FLEUT":
-				iCannonDiff = rand(2);  // 18, 16, 14
-			break;
-			case "INTERCEPTOR":
-				iCannonDiff = rand(2);  // 18, 16, 14
-			break;
-
-			// 5-й класс
-			case "FR_POSTILLIONEN":
-				iCannonDiff = rand(2);  // 20, 18, 16
-			break;
-			case "SCHOONER":
-				iCannonDiff = rand(2);  // 20, 18, 16
-			break;
-			case "COLONIALSCHOONER":
-				iCannonDiff = rand(2);  // 20, 18, 16
-			break;
-			case "DUTCHPINNACE":
-				iCannonDiff = rand(2);  // 20, 18, 16
-			break;
-			case "PO_FLEUT50":
-				iCannonDiff = rand(2);  // 20, 18, 16
-			break;
-			case "GALEON_L":
-				iCannonDiff = rand(2);  // 20, 18, 16
-			break;
-			case "XEBEC":
-				iCannonDiff = rand(2);  // 20, 18, 16
-			break;
-			case "BATTLEXEBEC":
-				iCannonDiff = rand(2);  // 20, 18, 16
-			break;
-			case "SCHOONERLIGHT":
-				iCannonDiff = rand(2);  // 22, 20, 18
-			break;
-			case "SHNYAVA":
-				iCannonDiff = rand(2);  // 22, 20, 18
-			break;
-			case "POLACRE":
-				iCannonDiff = rand(2);  // 22, 20, 18
-			break;
-			case "XEBECLIGHT":
-				iCannonDiff = rand(2);  // 22, 20, 18
-			break;
-			case "ENSLAVER":
-				iCannonDiff = rand(2);  // 22, 20, 18
-			break;
-			case "GREYHOUND":
-				iCannonDiff = rand(2);  // 22, 20, 18
-			break;
-			case "CORVETTELIGHT":
-				iCannonDiff = rand(2);  // 22, 20, 18
-			break;
-			case "PACKET_BRIG":
-				iCannonDiff = rand(2);  // 22, 20, 18
-			break;
-			case "MIRAGE":
-				iCannonDiff = rand(2);  // 22, 20, 18
-			break;
-			case "PDN":
-				iCannonDiff = rand(2);  // 24, 22, 20
-			break;
-			case "ENTERPRISE":
-				iCannonDiff = rand(2);  // 24, 22, 20
-			break;
-			case "POLACRE_H":
-				iCannonDiff = rand(2);  // 24, 22, 20
-			break;
-
-			// 4-й класс
-			case "CRIMSONBLOOD":
-				iCannonDiff = rand(3);  // 30, 28, 26, 24
-			break;
-			case "XEBEKVT":
-				iCannonDiff = rand(3);  // 30, 28, 26, 24
-			break;
-			case "FELIPE":
-				iCannonDiff = rand(3);  // 30, 28, 26, 24
-			break;
-			case "PINNACELIGHT":
-				iCannonDiff = rand(3);  // 30, 28, 26, 24
-			break;
-			case "CARAVEL":
-				iCannonDiff = rand(3);  // 30, 28, 26, 24
-			break;
-			case "FRIGATEMEDIUM":
-				iCannonDiff = rand(3);  // 30, 28, 26, 24
-			break;
-			case "CARAVEL2":
-				iCannonDiff = rand(3);  // 32, 30, 28, 26
-			break;
-			case "CORVETTE":
-				iCannonDiff = rand(3);  // 32, 30, 28, 26
-			break;
-			case "FRIGATE_l":
-				iCannonDiff = rand(3);  // 32, 30, 28, 26
-			break;
-			case "BLACKANGEL":
-				iCannonDiff = rand(3);  // 32, 30, 28, 26
-			break;
-			case "BATTLECORVETTE":
-				iCannonDiff = rand(3);  // 32, 30, 28, 26
-			break;
-			case "COASTALFRIGATE":
-				iCannonDiff = rand(3);  // 32, 30, 28, 26
-			break;
-			case "RAAFRIGATE":
-				iCannonDiff = rand(3);  // 32, 30, 28, 26
-			break;
-			case "FLEUTWAR":
-				iCannonDiff = rand(3);  // 34, 32, 30, 28
-			break;
-			case "FLEUTWARSAT":
-				iCannonDiff = rand(3);  // 34, 32, 30, 28
-			break;
-			case "GALEONTRADER":
-				iCannonDiff = rand(3);  // 34, 32, 30, 28
-			break;
-			case "JAMAICASHIP":
-				iCannonDiff = rand(3);  // 36, 34, 32, 30
-			break;
-			case "LYDIA":
-				iCannonDiff = rand(3);  // 36, 34, 32, 30
-			break;
-			case "THEBLACKPEARL":
-				iCannonDiff = rand(3);  // 36, 34, 32, 30
-			break;
-			case "FR_FRIGATE":
-				iCannonDiff = rand(3);  // 36, 34, 32, 30
-			break;
-			case "GALEON_H":
-				iCannonDiff = rand(3);  // 36, 34, 32, 30
-			break;
-			case "GALEON1":
-				iCannonDiff = rand(3);  // 38, 36, 34, 32
-			break;
-			case "LA_MARIANNA":
-				iCannonDiff = rand(3);  // 38, 36, 34, 32
-			break;
-			case "PIRATFASTGAL":
-				iCannonDiff = rand(3);  // 38, 36, 34, 32
-			break;
-			case "UNICORN":
-				iCannonDiff = rand(3);  // 38, 36, 34, 32
-			break;
-
-			// 3-й класс
-			case "REVENGE":
-				iCannonDiff = rand(3);  // 40, 38, 36, 34
-			break;
-			case "GALEON50":
-				iCannonDiff = rand(3);  // 40, 38, 36, 34
-			break;
-			case "LINEFRIGATE":
-				iCannonDiff = rand(3);  // 40, 38, 36, 34
-			break;
-			case "LIGHTFRIGATE":
-				iCannonDiff = rand(3);  // 40, 38, 36, 34
-			break;
-			case "BOUSSOLE":
-				iCannonDiff = rand(3);  // 42, 40, 38, 36
-			break;
-			case "FASTFRIGATE":
-				iCannonDiff = rand(3);  // 42, 40, 38, 36
-			break;
-			case "SURPRISE":
-				iCannonDiff = rand(3);  // 42, 40, 38, 36
-			break;
-			case "SALAMANDER":
-				iCannonDiff = rand(3);  // 44, 42, 40, 38
-			break;
-			case "FRIGATE_SAT":
-				iCannonDiff = rand(3);  // 44, 42, 40, 38
-			break;
-			case "BATTLEFRIGATE":
-				iCannonDiff = rand(3);  // 44, 42, 40, 38
-			break;
-			case "NIGHTMARE":
-				iCannonDiff = rand(3);  // 44, 42, 40, 38
-			break;
-			case "FRIGATE":
-				iCannonDiff = rand(3);  // 46, 44, 42, 40
-			break;
-			case "FR_ESSEX":
-				iCannonDiff = rand(3);  // 46, 44, 42, 40
-			break;
-			case "MORDAUNT":
-				iCannonDiff = rand(3);  // 46, 44, 42, 40
-			break;
-			case "FRIGATE_H":
-				iCannonDiff = rand(4);  // 50, 48, 46, 44, 42
-			break;
-			case "AMSTERDAM":
-				iCannonDiff = rand(4);  // 50, 48, 46, 44, 42
-			break;
-			case "WARGALLEON2":
-				iCannonDiff = rand(4);  // 52, 50, 48, 46, 44
-			break;
-			case "NL_PINNACEOFWAR47":
-				iCannonDiff = rand(4);  // 54, 52, 50, 48, 46
-			break;
-			case "HOLLGALEON_H":
-				iCannonDiff = rand(4);  // 54, 52, 50, 48, 46
-			break;
-			case "CARRACA":
-				iCannonDiff = rand(4);  // 56, 54, 52, 50, 48
-			break;
-			case "CONSTITUTION":
-				iCannonDiff = rand(4);  // 56, 54, 52, 50, 48
-			break;
-			case "FEARLESS":
-				iCannonDiff = rand(4);  // 56, 54, 52, 50, 48
-			break;
-			case "NL_FWZP":
-				iCannonDiff = rand(4);  // 56, 54, 52, 50, 48
-			break;
-			case "LINESHIP":
-				iCannonDiff = rand(4);  // 56, 54, 52, 50, 48
-			break;
-			case "OXFORD":
-				iCannonDiff = rand(4);  // 58, 56, 54, 52, 50
-			break;
-
-			// 2-й класс
-			case "DUTCHLINESHIP":
-				iCannonDiff = rand(4);  // 60, 58, 56, 54, 52
-			break;
-			case "DUTCHSHIP":
-				iCannonDiff = rand(4);  // 60, 58, 56, 54, 52
-			break;
-			case "NL_CONVOISHIP":
-				iCannonDiff = rand(4);  // 60, 58, 56, 54, 52
-			break;
-			case "COURONNE":
-				iCannonDiff = rand(4);  // 64, 62, 60, 58, 56
-			break;
-			case "ALEXIS":
-				iCannonDiff = rand(4);  // 64, 62, 60, 58, 56
-			break;
-			case "LINESHIPHEAVY":
-				iCannonDiff = rand(4);  // 64, 62, 60, 58, 56
-			break;
-			case "WARSHIP":
-				iCannonDiff = rand(4);  // 66, 64, 62, 60, 58
-			break;
-			case "POSEIDON":
-				iCannonDiff = rand(4);  // 66, 64, 62, 60, 58
-			break;
-			case "HMS_CENTURION":
-				iCannonDiff = rand(4);  // 68, 66, 64, 62, 60
-			break;
-			case "RESOLUTION":
-				iCannonDiff = rand(4);  // 70, 68, 66, 64, 62
-			break;
-			case "FR_SUPERIORWARSHIP1":
-				iCannonDiff = rand(4);  // 74, 72, 70, 68, 66
-			break;
-			case "HEAVYWARSHIP":
-				iCannonDiff = rand(4);  // 74, 72, 70, 68, 66
-			break;
-			case "LINK":
-				iCannonDiff = rand(4);  // 78, 76, 74, 72, 70
-			break;
-			case "SUPERBE":
-				iCannonDiff = rand(4);  // 78, 76, 74, 72, 70
-			break;
-
-			// 1-й класс
-			case "BATTLESHIP":
-				iCannonDiff = rand(5);  // 80, 78, 76, 74, 72, 70
-			break;
-			case "HEAVYLINESHIP":
-				iCannonDiff = rand(5);  // 82, 80, 78, 76, 74, 72
-			break;
-			case "LINK2":
-				iCannonDiff = rand(5);  // 84, 82, 80, 78, 76, 74
-			break;
-			case "BELLONA":
-				iCannonDiff = rand(5);  // 84, 82, 80, 78, 76, 74
-			break;
-			case "LINEARSHIP":
-				iCannonDiff = rand(5);  // 84, 82, 80, 78, 76, 74
-			break;
-			case "SHARK":
-				iCannonDiff = rand(5);  // 84, 82, 80, 78, 76, 74
-			break;
-			case "ZEVENPROVINCIEN":
-				iCannonDiff = rand(5);  // 92, 90, 88, 86, 84, 82
-			break;
-			case "FR_TRINITY":
-				iCannonDiff = rand(5);  // 96, 94, 92, 90, 88, 86
-			break;
-			case "MANOWAR_FAST":
-				iCannonDiff = rand(5);  // 100, 98, 96, 94, 92, 90
-			break;
-			case "BATTLEMANOWAR":
-				iCannonDiff = rand(5);  // 100, 98, 96, 94, 92, 90
-			break;
-			case "MANOWAR_GUB":
-				iCannonDiff = rand(5);  // 100, 98, 96, 94, 92, 90
-			break;
-			case "PRINCE":
-				iCannonDiff = rand(5);  // 102, 100, 98, 96, 94, 92
-			break;
-			case "MANOWAR":
-				iCannonDiff = rand(5);  // 102, 100, 98, 96, 94, 92
-			break;
-			case "HMS_VICTORY":
-				iCannonDiff = rand(5);  // 104, 102, 100, 98, 96, 94
-			break;
-			case "SP_SANFELIPE":
-				iCannonDiff = rand(5);  // 108, 106, 104, 102, 100, 98
-			break;
-
-			//стволы на квестовых  шипах тоже генерим рандомно
-			case "SoleyRu":
-				iCannonDiff = rand(5);  // 112, 110, 108,106,104,102
-			break;
-			case "BrigQeen":
-				iCannonDiff = rand(2);  // 24, 22, 20
-			break;
-			case "BrigSW":
-				iCannonDiff = rand(2);  // 24, 22, 20
-			break;
-			case "XebekVML":
-				iCannonDiff = rand(2);  // 22, 20, 18
-			break;
-			case "Clipper":
-				iCannonDiff = rand(3);  // 38, 36, 34, 32
-			break;
-			case "Corvette_quest":
-				iCannonDiff = rand(3);  // 40, 38, 36, 34
-			break;
-			case "Wh_corvette_quest":
-				iCannonDiff = rand(3);  // 40, 38, 36, 34
-			break;
-			case "ArabellaShip":
-				iCannonDiff = rand(3);  // 52, 50, 48, 46
-			break;
-			case "Flyingdutchman":
-				iCannonDiff = rand(4);  // 60, 58, 56, 54, 52
-			break;
-			case "Catherine":
-				iCannonDiff = rand(4);  // 60, 58, 56, 54, 52
-			break;
-		}
-		if(CheckAttribute(rRealShip, "QuestShip") || isShipyard) iCannonDiff = 0;
-
-		// if(rRealShip.BaseName == "FrigateQueen") iCannonDiff = 2; // делаем фрегат "Королева" 48-и пушечным
+		int iCannonDiff = 0;
+		if (!isShipyard) iCannonDiff = rand(sti(rRealShip.MaxCannonDiff));
 
 		// собственно сам рэндом стволов
 		makearef(refShip, chr.Ship);
@@ -814,7 +238,6 @@ int GenerateShipExt(int iBaseType, bool isLock, ref chr)
 	{
 		rRealShip.Capacity        = sti(rRealShip.Capacity) + makeint(Кdckyrd * (rand(makeint(sti(rRealShip.Capacity)/4)) - makeint(sti(rRealShip.Capacity)/8)));
 		rRealShip.OptCrew         = makeint(sti(rRealShip.OptCrew) + Кdckyrd * (rand(makeint(sti(rRealShip.OptCrew)/3)) - makeint(sti(rRealShip.OptCrew)/6)));
-		rRealShip.MaxCrew         = makeint(sti(rRealShip.OptCrew) * 1.25 + 0.5);  // 25 процентов перегруза
 		rRealShip.MinCrew         = makeint(sti(rRealShip.MinCrew) + Кdckyrd * (rand(makeint(sti(rRealShip.MinCrew)/3)) - makeint(sti(rRealShip.MinCrew)/6)));
 		rRealShip.Weight		  = sti(rRealShip.Weight) + makeint(Кdckyrd * (rand(sti(rRealShip.Weight)/20) - rand(sti(rRealShip.Weight)/20)));
 	}
@@ -834,22 +257,13 @@ int GenerateShipExt(int iBaseType, bool isLock, ref chr)
 		if(CheckAttribute(rRealShip, "Bonus_TurnRate"))	rRealShip.TurnRate = stf(rRealShip.TurnRate) + stf(rRealShip.Bonus_TurnRate);
 	}
 
-	int iDiffWeight			= sti(rRealShip.Weight) - sti(rBaseShip.Weight);
-	int iDiffCapacity		= sti(rRealShip.Capacity) - sti(rBaseShip.Capacity);
-	int iDiffMaxCrew		= sti(rRealShip.MaxCrew) - sti(rBaseShip.MaxCrew);
-	int iDiffMinCrew		= sti(rRealShip.MinCrew) - sti(rBaseShip.MinCrew);
-	float fDiffSpeedRate	= stf(rRealShip.SpeedRate) - stf(rBaseShip.SpeedRate);
-	int iDiffTurnRate		= sti(rRealShip.TurnRate) - sti(rBaseShip.TurnRate);
-	int iDiffHP	    		= sti(rRealShip.HP) - sti(rBaseShip.HP);
-
-	if (CheckAttribute(rRealShip, "QuestShip")) QuestShipDifficultyBoosts(rRealShip);
-	else SetCabinTypeEx(rRealShip, sti(rRealShip.Class)); //Выдача случайной каюты по классу не квестовым - Gregg
+	if (!CheckAttribute(rRealShip, "QuestShip"))
+		SetCabinTypeEx(rRealShip, sti(rRealShip.Class)); //Выдача случайной каюты по классу не квестовым - Gregg
 
 	rRealShip.Price	= GetShipPriceByTTH(iShip, chr);
-
 	if (sti(rRealShip.Price) <= 0) rRealShip.Price = 100;
 
-	rRealShip.Stolen = isLock;  // ворованность
+	rRealShip.Stolen = isStolen;  // ворованность
 	rRealShip.soiling = 0;
 	if (rand(4)==0) GetRandomSpecialUpgrade(rRealShip);
 
@@ -948,135 +362,6 @@ void SetCabinTypeEx(ref rRealShip, int shipclass) //Выдача случайн�
 			break;
 		}
 	}
-}
-
-// LEO: Пока ненужно всё это 16.12.2021
-void QuestShipDifficultyBoosts(ref rRealShip) //LEO & Gregg: Кастомные бафы для квестовых кораблей в зависимости от сложности
-{
-	if(rRealShip.BaseName == "LuggerQuest")
-	{
-		// rRealShip.Capacity = sti(rRealShip.Capacity) + (31 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.OptCrew = sti(rRealShip.OptCrew) + (3 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.WindAgainstSpeed = stf(rRealShip.WindAgainstSpeed) + (0.1 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.SpeedRate = stf(rRealShip.SpeedRate) + (0.1 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.TurnRate = stf(rRealShip.TurnRate) + (1.2 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.HP = sti(rRealShip.HP) + (40 * MOD_SKILL_ENEMY_RATE);
-		rRealShip.MastMultiplier = 1.3;
-	}
-	if(rRealShip.BaseName == "XebekVML")
-	{
-		// rRealShip.Capacity = sti(rRealShip.Capacity) + (50 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.OptCrew = sti(rRealShip.OptCrew) + (4 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.SpeedRate = stf(rRealShip.SpeedRate) + (0.1 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.WindAgainstSpeed = stf(rRealShip.WindAgainstSpeed) + (0.1 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.TurnRate = stf(rRealShip.TurnRate) + (1.0 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.HP = sti(rRealShip.HP) + (50 * MOD_SKILL_ENEMY_RATE);
-		rRealShip.MastMultiplier = 1.3;
-	}
-	if(rRealShip.BaseName == "BrigQeen")
-	{
-		// rRealShip.Capacity = sti(rRealShip.Capacity) + (50 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.OptCrew = sti(rRealShip.OptCrew) + (4 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.SpeedRate = stf(rRealShip.SpeedRate) + (0.1 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.TurnRate = stf(rRealShip.TurnRate) + (1.0 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.HP = sti(rRealShip.HP) + (50 * MOD_SKILL_ENEMY_RATE);
-		rRealShip.MastMultiplier = 1.3;
-	}
-	if(rRealShip.BaseName == "BrigSW")
-	{
-		// rRealShip.Capacity = sti(rRealShip.Capacity) + (50 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.OptCrew = sti(rRealShip.OptCrew) + (4 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.SpeedRate = stf(rRealShip.SpeedRate) + (0.1 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.TurnRate = stf(rRealShip.TurnRate) + (1.0 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.HP = sti(rRealShip.HP) + (50 * MOD_SKILL_ENEMY_RATE);
-		rRealShip.MastMultiplier = 1.3;
-	}
-	if(rRealShip.BaseName == "Clipper")
-	{
-		// rRealShip.Capacity = sti(rRealShip.Capacity) + (50 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.OptCrew = sti(rRealShip.OptCrew) + (7 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.SpeedRate = stf(rRealShip.SpeedRate) + (0.1 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.WindAgainstSpeed = stf(rRealShip.WindAgainstSpeed) + (0.15 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.TurnRate = stf(rRealShip.TurnRate) + (0.7 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.HP = sti(rRealShip.HP) + (70 * MOD_SKILL_ENEMY_RATE);
-		rRealShip.MastMultiplier = 1.3;
-	}
-	if(rRealShip.BaseName == "Corvette_quest")
-	{
-		// rRealShip.Capacity = sti(rRealShip.Capacity) + (50 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.OptCrew = sti(rRealShip.OptCrew) + (7 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.SpeedRate = stf(rRealShip.SpeedRate) + (0.1 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.WindAgainstSpeed = stf(rRealShip.WindAgainstSpeed) + (0.15 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.TurnRate = stf(rRealShip.TurnRate) + (0.7 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.HP = sti(rRealShip.HP) + (70 * MOD_SKILL_ENEMY_RATE);
-		rRealShip.MastMultiplier = 1.3;
-	}
-	if(rRealShip.BaseName == "Catherine")
-	{
-		// rRealShip.Capacity = sti(rRealShip.Capacity) + (50 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.OptCrew = sti(rRealShip.OptCrew) + (2 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.SpeedRate = stf(rRealShip.SpeedRate) + (0.1 * MOD_SKILL_ENEMY_RATE); // LEO: Нефиг летать быстрее всех. Для этого есть ЧЖ
-		// rRealShip.WindAgainstSpeed = stf(rRealShip.WindAgainstSpeed) + (0.15 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.TurnRate = stf(rRealShip.TurnRate) + (0.8 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.HP = sti(rRealShip.HP) + (60 * MOD_SKILL_ENEMY_RATE);
-		rRealShip.MastMultiplier = 1.3;
-	}
-	if(rRealShip.BaseName == "Wh_corvette_quest")
-	{
-		// rRealShip.Capacity = sti(rRealShip.Capacity) + (50 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.OptCrew = sti(rRealShip.OptCrew) + (2 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.SpeedRate = stf(rRealShip.SpeedRate) + (0.1 * MOD_SKILL_ENEMY_RATE); // LEO: Нефиг летать быстрее всех. Для этого есть ЧЖ
-		// rRealShip.WindAgainstSpeed = stf(rRealShip.WindAgainstSpeed) + (0.15 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.TurnRate = stf(rRealShip.TurnRate) + (0.8 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.HP = sti(rRealShip.HP) + (60 * MOD_SKILL_ENEMY_RATE);
-		rRealShip.MastMultiplier = 1.3;
-	}
-	if(rRealShip.BaseName == "ArabellaShip")
-	{
-		// rRealShip.Capacity = sti(rRealShip.Capacity) + (50 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.OptCrew = sti(rRealShip.OptCrew) + (7 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.SpeedRate = stf(rRealShip.SpeedRate) + (0.1 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.TurnRate = stf(rRealShip.TurnRate) + (0.8 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.HP = sti(rRealShip.HP) + (150 * MOD_SKILL_ENEMY_RATE);
-		rRealShip.MastMultiplier = 1.3;
-	}
-	if(rRealShip.BaseName == "FrigateQueen")
-	{
-		// rRealShip.Capacity = sti(rRealShip.Capacity) + (50 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.OptCrew = sti(rRealShip.OptCrew) + (7 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.SpeedRate = stf(rRealShip.SpeedRate) + (0.1 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.TurnRate = stf(rRealShip.TurnRate) + (0.8 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.HP = sti(rRealShip.HP) + (150 * MOD_SKILL_ENEMY_RATE);
-		rRealShip.MastMultiplier = 1.3;
-	}
-	if(rRealShip.BaseName == "Flyingdutchman")
-	{
-		// rRealShip.Capacity = sti(rRealShip.Capacity) + (50 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.OptCrew = sti(rRealShip.OptCrew) + (7 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.SpeedRate = stf(rRealShip.SpeedRate) + (0.1 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.TurnRate = stf(rRealShip.TurnRate) + (0.8 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.HP = sti(rRealShip.HP) + (150 * MOD_SKILL_ENEMY_RATE);
-		rRealShip.MastMultiplier = 1.3;
-	}
-	if(rRealShip.BaseName == "Santisima")
-	{
-		// rRealShip.Capacity = sti(rRealShip.Capacity) + (75 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.OptCrew = sti(rRealShip.OptCrew) + (10 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.SpeedRate = stf(rRealShip.SpeedRate) + (0.1 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.TurnRate = stf(rRealShip.TurnRate) + (0.5 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.HP = sti(rRealShip.HP) + (130 * MOD_SKILL_ENEMY_RATE);
-		rRealShip.MastMultiplier = 1.3;
-	}
-	if(rRealShip.BaseName == "SoleyRu")
-	{
-		// rRealShip.Capacity = sti(rRealShip.Capacity) + (120 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.OptCrew = sti(rRealShip.OptCrew) + (20 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.SpeedRate = stf(rRealShip.SpeedRate) + (0.1 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.TurnRate = stf(rRealShip.TurnRate) + (0.5 * MOD_SKILL_ENEMY_RATE);
-		// rRealShip.HP = sti(rRealShip.HP) + (200 * MOD_SKILL_ENEMY_RATE);
-		rRealShip.MastMultiplier = 1.3;
-	}
-	rRealShip.MaxCrew = makeint(sti(rRealShip.OptCrew) * 1.25 + 0.5); // перегруз
 }
 
 int CreateBaseShip(int iBaseType)
@@ -2817,7 +2102,7 @@ void CreateFortMerchants(ref ch, int iNation)
 }
 
 //Генерация топового корабля
-int GenerateShipTop(int iBaseType, bool isLock, ref chr)
+int GenerateShipTop(int iBaseType, bool isStolen, ref chr)
 {
 	string  attr, sCity;
 	int 	i;
@@ -2840,7 +2125,6 @@ int GenerateShipTop(int iBaseType, bool isLock, ref chr)
         nHulls -= 1;
         if(nHulls < 0) nHulls = 0;
         rRealShip.ship.upgrades.hull = 1 + rand(nHulls);
-        //Trace("Hull nums = " + rRealShip.hullNums);
     }
     else {
         rRealShip.ship.upgrades.hull = 1 + rand(2);
@@ -2874,77 +2158,6 @@ int GenerateShipTop(int iBaseType, bool isLock, ref chr)
 
 	if (!CheckAttribute(rRealShip, "isFort"))
 	{
-		int iCaliber = sti(rRealShip.MaxCaliber);
-		if (sti(rRealShip.Class) != 7 && !CheckAttribute(rRealShip, "QuestShip"))
-		{  // чтоб не было баркаса с 16ф
-			switch(iCaliber)
-			{
-				case 8:
-					iCaliber = 0;
-				break;
-				case 12:
-					iCaliber = 1;
-				break;
-				case 16:
-					iCaliber = 2;
-				break;
-				case 20:
-					iCaliber = 3;
-				break;
-				case 24:
-					iCaliber = 4;
-				break;
-				case 32:
-					iCaliber = 5;
-				break;
-				case 36:
-					iCaliber = 6;
-				break;
-				case 42:
-					iCaliber = 7;
-				break;
-			}
-			//iCaliber = iCaliber - rand(1);
-			iCaliber = iCaliber; //Jason: согласно новой системе орудий калибр должен быть постоянен, но пока поставим рандом на единицу меньше, а больше - нельзя по определению, на рез. тестов решим, фиксировать или рандомить
-			if (iCaliber < 0) iCaliber = 0;
-			if (sti(rRealShip.Class) == 1)
-			{
-				if (iCaliber > 7) iCaliber = 7;
-			}
-			else
-			{
-				if (iCaliber > 6) iCaliber = 6;
-			}
-			switch(iCaliber)
-			{
-				case 0:
-					iCaliber = 8;
-				break;
-				case 1:
-					iCaliber = 12;
-				break;
-				case 2:
-					iCaliber = 16;
-				break;
-				case 3:
-					iCaliber = 20;
-				break;
-				case 4:
-					iCaliber = 24;
-				break;
-				case 5:
-					iCaliber = 32;
-				break;
-				case 6:
-					iCaliber = 36;
-				break;
-				case 7:
-					iCaliber = 42;
-				break;
-			}
-			rRealShip.MaxCaliber = iCaliber;
-		}
-
 		makearef(refShip, chr.Ship);
 		ResetShipCannonsDamages(chr);
 
@@ -3045,11 +2258,11 @@ int GenerateShipTop(int iBaseType, bool isLock, ref chr)
 
 	SetCabinTypeEx(rRealShip, sti(rRealShip.Class)); //Выдача случайной каюты по классу не квестовым - Gregg
 
-	rRealShip.Price	= GetShipPriceByTTH(iShip, chr); //(iDiffWeight + iDiffCapacity + iDiffMaxCrew*2 + iDiffMinCrew + fDiffSpeedRate*2 + iDiffTurnRate*2 + iDiffHP)*5 + sti(rRealShip.Price);
+	rRealShip.Price	= GetShipPriceByTTH(iShip, chr);
 
 	if (sti(rRealShip.Price) <= 0) rRealShip.Price = 100;
 
-	rRealShip.Stolen = isLock;  // ворованность
+	rRealShip.Stolen = isStolen;  // ворованность
 	rRealShip.soiling = 0;
 	//if (rand(4)==0) GetRandomSpecialUpgrade(rRealShip);
 
@@ -3060,49 +2273,27 @@ int GenerateShipTop(int iBaseType, bool isLock, ref chr)
 int GetShootDistance(ref chref, string ball)
 {
 	float distance = 0.0;
+
 	ref	rCannon = GetCannonByType(sti(chref.Ship.Cannons.Type));
 	distance = stf(rCannon.FireRange);
+	distance = distance * (1.0 + GetCharacterSPECIALSimple(chref, SPECIAL_P) * 0.02);
+	if (CheckAttribute(chref, "perks.list.LongRangeShoot"))
+	{
+		distance = distance * 1.15;
+	}
 	switch(ball)
 	{
 		case "ball":
-			if (CheckAttribute(chref, "perks.list.LongRangeShoot"))
-			{
-				distance = distance * 1.15*(1.0+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
-			}
-			else
-			{
-				distance = distance * (1.0+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
-			}
+			distance = distance * 1.0;
 		break;
 		case "grape":
-			if (CheckAttribute(chref, "perks.list.LongRangeShoot"))
-			{
-				distance = distance * 0.6 * 1.15*(1.0+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
-			}
-			else
-			{
-				distance = distance * 0.6  * (1.0+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
-			}
+			distance = distance * 0.6;
 		break;
 		case "knippel":
-			if (CheckAttribute(chref, "perks.list.LongRangeShoot"))
-			{
-				distance = distance * 0.9  * 1.15*(1.0+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
-			}
-			else
-			{
-				distance = distance * 0.9  * (1.0+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
-			}
+			distance = distance * 0.9;
 		break;
 		case "bomb":
-			if (CheckAttribute(chref, "perks.list.LongRangeShoot"))
-			{
-				distance = distance * 0.8  * 1.15*(1.0+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
-			}
-			else
-			{
-				distance = distance * 0.8  * (1.0+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
-			}
+			distance = distance * 0.8;
 		break;
 	}
 	return makeint(distance+0.5);
