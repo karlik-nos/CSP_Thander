@@ -1219,6 +1219,7 @@ void Ship_CheckSituation()
 	    }
     }
 	bool bIsCompanion = IsCompanion(rCharacter);
+	bool bIsDefender = CheckAttribute(rCharacter, "fortDefender") && sti(rCharacter.fortDefender) == 1;
 
 	// check some tasks
 	if (CheckAttribute(rCharacter, "SeaAI.Task") && CheckAttribute(rCharacter, "SeaAI.Task.Target"))
@@ -1271,57 +1272,29 @@ void Ship_CheckSituation()
     {
         string sGroupID = Ship_GetGroupID(rCharacter);
 		//Lipsar --->ИИ сторожей
-		if(CheckAttribute(rCharacter, "fortDefender") && sti(rCharacter.fortDefender) == 1 && bSeaActive && rCharacter.SeaAI.Task == "3")
+		if (bIsDefender)
 		{
-			string defGroupID = rCharacter.SeaAI.Task.Target;
-			ref attckChar;
-			ref fortChar = &characters[sti(rCharacter.SeaAI.Task.Target)];
-			if (pchar.Ship.LastBallCharacter != -1 && GetNationRelation2MainCharacter(sti(rCharacter.nation)) == RELATION_ENEMY && sti(rCharacter.SeaAI.Task.Target) != GetMainCharacterIndex())
+			ref rFortChref = GetFortCommander(rCharacter.IslandShips);
+
+			int attackChar = sti(rCharacter.Ship.LastBallCharacter);
+			if (attackChar == -1)
 			{
-				sTemp = Ship_GetGroupID(&characters[sti(pchar.Ship.LastBallCharacter)]);
-				if (HasSubStr(sTemp,"IslandGroup") || HasSubStr(sTemp,"Fort_"))
+				if (GetNationRelation2MainCharacter(sti(rCharacter.nation)) == RELATION_ENEMY)
+					attackChar = GetMainCharacterIndex();
+				else
 				{
-					Group_SetEnemyToCharacter(sGroupID, GetMainCharacterIndex());
-					SetCharacterRelationBoth(sti(rCharacter.index), GetMainCharacterIndex(), RELATION_ENEMY);
-					Group_SetTaskAttack(sGroupID, PLAYER_GROUP);
-					Group_LockTask(sGroupID);
-					DoQuestCheckDelay("NationUpdate", 0.5);
-					return;
+					if (GetNationRelation2Character(sti(rCharacter.nation), PChar.Ship.LastBallCharacter) == RELATION_ENEMY)
+						attackChar = PChar.Ship.LastBallCharacter;
 				}
 			}
-			if (sti(rCharacter.Ship.LastBallCharacter) != -1 || CheckAttribute(fortChar,"Ship.LastBallCharacter"))
+
+			if (attackChar != -1)
 			{
-				if (sti(rCharacter.Ship.LastBallCharacter) != -1) attckChar = &characters[sti(rCharacter.Ship.LastBallCharacter)];
-				else attckChar = CharacterFromId(fortChar.Ship.LastBallCharacter);
-				if (attckChar.Ship.LastBallCharacter == defGroupID && GetNationRelation2Character(sti(rCharacter.nation), GetCharacterIndex(attckChar.id)) == RELATION_ENEMY && sti(rCharacter.SeaAI.Task.Target) != GetCharacterIndex(attckChar.id))
-				{
-					Group_SetEnemyToCharacter(sGroupID, GetMainCharacterIndex());
-					SetCharacterRelationBoth(sti(rCharacter.index), GetMainCharacterIndex(), RELATION_ENEMY);
-					Group_SetTaskAttack(sGroupID, PLAYER_GROUP);
-					rCharacter.SeaAI.Task = AITASK_ATTACK;
-					Group_LockTask(sGroupID);
-					DoQuestCheckDelay("NationUpdate", 0.5);
-					return;
-				}
-				if (GetNationRelation2Character(sti(rCharacter.nation), GetCharacterIndex(attckChar.id)) == RELATION_ENEMY && sti(rCharacter.SeaAI.Task.Target) != GetCharacterIndex(attckChar.id))
-				{
-					Group_SetEnemyToCharacter(sGroupID, GetCharacterIndex(attckChar.id));
-					Group_SetTaskAttack(sGroupID, Ship_GetGroupID(attckChar));
-					Group_LockTask(sGroupID);
-					rCharacter.SeaAI.Task = AITASK_ATTACK;
-					DoQuestCheckDelay("NationUpdate", 0.5);
-					rCharacter.SeaAI.Task.Target = GetCharacterIndex(attckChar.id);
-					return;
-				}
-			}
-			if(CheckAttribute(pchar, "point"))
-			{
-				Group_SetEnemyToCharacter(sGroupID, GetMainCharacterIndex());
-				SetCharacterRelationBoth(sti(rCharacter.index), GetMainCharacterIndex(), RELATION_ENEMY);
-				Group_SetTaskAttack(sGroupID, PLAYER_GROUP);
+				Group_SetEnemyToCharacter(sGroupID, attackChar);
+				SetCharacterRelationBoth(sti(rCharacter.index), attackChar, RELATION_ENEMY);
+				Group_SetTaskAttack(sGroupID, Ship_GetGroupID(GetCharacter(attackChar)));
 				Group_LockTask(sGroupID);
 				DoQuestCheckDelay("NationUpdate", 0.5);
-				DeleteAttribute(pchar, "point");
 				return;
 			}
 		}//<---Lipsar ИИ сторожей
@@ -1407,8 +1380,8 @@ void Ship_CheckSituation()
 								if (CheckAttribute(rCharacter, "AnalizeShips"))
 								{
 									// Warship fix Должно быть здесь
-										iCharactersNum1 =  Group_GetLiveCharactersNum(rCharacter.SeaAI.Group.Name);
-										iCharactersNum2 =  Group_GetLiveCharactersNum(characters[sti(rCharacter.Ship.LastBallCharacter)].SeaAI.Group.Name);
+									iCharactersNum1 =  Group_GetLiveCharactersNum(rCharacter.SeaAI.Group.Name);
+									iCharactersNum2 =  Group_GetLiveCharactersNum(characters[sti(rCharacter.Ship.LastBallCharacter)].SeaAI.Group.Name);
 
 									if(stf(rCharacter.ship.hp) < (stf(characters[sti(rCharacter.Ship.LastBallCharacter)].ship.hp) / 2))
 									{
@@ -1441,7 +1414,7 @@ void Ship_CheckSituation()
 					        else
 					        {
 						        // смертники!!!
-						        if (HPPercent < 15)
+						        if ((HPPercent < 8) && (0.03 * stf(rCharacter.skill.LeaderShip) * MinCrewQuantity >= CrewQuantity) && (rShip.Type.War == true))
 						        {
 						            if (rand(20) == 1)// очень часто плохо - убивает все вокруг
 						            {
@@ -2737,23 +2710,6 @@ void Ship_HullHitEvent()
 	ref		rBallCharacter = GetCharacter(iBallCharacterIndex);	// кто пуляет
 	ref		rOurCharacter = GetCharacter(iOurCharacterIndex);   // по кому
 
-	//--->Lipsar для ИИ сторожей
-	if(CheckAttribute(rBallCharacter, "fortDefender") && sti(rBallCharacter.fortDefender) == 1 && bSeaActive && sti(rBallCharacter.SeaAI.Task.Target) != GetCharacterIndex(rOurCharacter.id))
-	{
-		string sGroupID = Ship_GetGroupID(rBallCharacter);
-		if (GetNationRelation2Character(sti(rBallCharacter.nation), GetCharacterIndex(rOurCharacter.id)) == RELATION_ENEMY)
-		{
-			Group_SetEnemyToCharacter(sGroupID, GetCharacterIndex(rOurCharacter.id));
-			Group_SetTaskAttack(sGroupID, Ship_GetGroupID(rOurCharacter));
-			Group_LockTask(sGroupID);
-			rBallCharacter.SeaAI.Task = AITASK_ATTACK;
-			DoQuestCheckDelay("NationUpdate", 0.5);
-			rBallCharacter.SeaAI.Task.Target = GetCharacterIndex(rOurCharacter.id);
-		}
-	}
-	if(rBallCharacter == GetMainCharacter() && CheckAttribute(rOurCharacter, "fortDefender")) pchar.point = "1";
-	//<---Lipsar для ИИ сторожей
-
 	rOurCharacter.Ship.LastBallCharacter = iBallCharacterIndex;
 
 	float	x = GetEventData();
@@ -3935,10 +3891,13 @@ void Ship_UpdateParameters()
 					{
 						Ship_SetLightsOff(rCharacter, 15.0, true, true, false);
 					}
-					if (sti(rCharacter.Ship.SP) > 50 && rand(100) > 80)  // не выкидывать, если не убежать, а то нет смысла брать приз
+
+					float speedDiff = FindShipSpeed(rCharacter) - FindShipSpeed(rTargetCharacter);
+					if ((speedDiff > -1) && (speedDiff > 3) && (rand(100) > 80))  // не выкидывать, если все равно не убежать, или убежать и так можно
 					{
 						PostEvent(SHIP_DROP_GOOD, 1000, "a", rCharacter);
 					}
+
 					// сброс мины 09.07.07 boal -->
 					if (sti(rCharacter.Ship.SP) < 60 && GetCargoGoods(rCharacter, GOOD_POWDER) >= MINE_POWDER*2 && rand(39) == 5)
 					{
@@ -4307,8 +4266,11 @@ void DropGoodsToSea()
 	ref rGood;
 	string sGood;
 
-	for (int i=GOOD_MEDICAMENT; i<GOOD_CULVERINE_32; i++)
+	for (int i = GOOD_MEDICAMENT; i < GOODS_QUANTITY; i++)
 	{
+		// Не выбрасывать дорогие товары.
+		if (Goods[i].Cost / Goods[i].Weight > 20) continue;
+
 		sGood = Goods[i].name;
 
 		if(CheckAttribute(rCharacter, "Ship.Cargo.Goods."+sGood))
