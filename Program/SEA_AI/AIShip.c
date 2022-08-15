@@ -563,7 +563,6 @@ float Ship_MastDamage()
 	{
 		Play3DSound("mast_fall", x, y, z);
 		rCharacter.ship.sp = CalculateShipSP(rCharacter);  // рефрешим паруса от модели
-		rCharacter.Tmp.SpeedRecall = 0; // чтоб пересчитался маневр
 		RefreshBattleInterface();
 	}
 
@@ -800,7 +799,6 @@ void Ship_Add2Sea(int iCharacterIndex, bool bFromCoast, string sFantomType)
 	    rCharacter.CheckFlagYet = true;
 	}
     rCharacter.TmpSkillRecall = "0"; //boal 25.05.04 оптимизация расчета, когда == 0 считаем скилы
-    rCharacter.Tmp.SpeedRecall = 0; // оптимизация скорости и маневра
     rCharacter.Tmp.fShipSpeed  = 1; // начальная инициация
 	rCharacter.Tmp.fWatchFort  = rand(15); // оптимизация оглядок на форт
 	rCharacter.Tmp.fWatchFort.Qty = 15;
@@ -1966,12 +1964,11 @@ void Ship_Ship2IslandCollision()
 	ref rOurCharacter = GetCharacter(iOurCharacterIndex);
 
 	if (iOurCharacterIndex != GetMainCharacterIndex())
-		{
-			Ship_SetTaskDrift(SECONDARY_TASK, iOurCharacterIndex);
-			rOurCharacter.TmpPerks.Turn = true;
-			rOurCharacter.TmpPerks.Turn.Angle = PI/1.3;//корабли будут пытаться развернуться от острова
-			rOurCharacter.Tmp.SpeedRecall = 0;
-		}
+	{
+		Ship_SetTaskDrift(SECONDARY_TASK, iOurCharacterIndex);
+		rOurCharacter.TmpPerks.Turn = true;
+		rOurCharacter.TmpPerks.Turn.Angle = PI/1.3;//корабли будут пытаться развернуться от острова
+	}
 
     if (!sti(rOurCharacter.TmpPerks.SandbankManeuver) && !CheckAttribute(rOurCharacter, "AlwaysSandbankManeuver"))  //boal
     {
@@ -1981,10 +1978,9 @@ void Ship_Ship2IslandCollision()
 		if (fPower > 1.0)  Play3DSound("coll_ship2rock", x, y, z);
 	}
 	if (iOurCharacterIndex != GetMainCharacterIndex() && sti(rOurCharacter.SeaAI.Task)==AITASK_DRIFT)
-		{
-			Ship_SetTaskAttack(PRIMARY_TASK, sti(iOurCharacterIndex), GetMainCharacterIndex());//и вернуться к атаке; переделал Lipsar
-			rOurCharacter.Tmp.SpeedRecall = 0;
-		}
+	{
+		Ship_SetTaskAttack(PRIMARY_TASK, sti(iOurCharacterIndex), GetMainCharacterIndex());//и вернуться к атаке; переделал Lipsar
+	}
 }
 
 float Ship_GetAttackHP(int iCharacterIndex, float fDistance)
@@ -3503,11 +3499,6 @@ void Ship_DetonateSmall()
 	//}
 }
 
-void Ship_Turn180(ref rCharacter)
-{
-	rCharacter.Tmp.SpeedRecall = 0; // чтоб пересчитался маневр
-}
-
 // Big Boom on ship
 void Ship_Detonate(ref rCharacter, bool bMakeSmallBoom, bool bMakeDead)
 {
@@ -3563,11 +3554,11 @@ float AIShip_isPerksUse(string sPerk, float fOff, float fOn)
 // EVENT, calculate dynamic parameters for ship, one per second
 void Ship_UpdateParameters()
 {
-	int		iCharacterIndex = GetEventData();
-	ref		rCharacter = GetCharacter(iCharacterIndex);
-	float	fSailState = GetEventData();
+	int iCharacterIndex = GetEventData();
+	ref rCharacter = GetCharacter(iCharacterIndex);
+	float fSailState = GetEventData();
 
-	bool	bDead = LAi_IsDead(rCharacter);
+	bool bDead = LAi_IsDead(rCharacter);
 	//Log_Testinfo("Ship_UpdateParameters " + rCharacter.id);
 
 	if(sti(rCharacter.ship.type) == SHIP_NOTUSED || bDead)   // super fix boal
@@ -3575,7 +3566,7 @@ void Ship_UpdateParameters()
 		return;
 	}
     // рудимент bool	bStrand = sti(rCharacter.Ship.Strand);
-	aref	arTmpPerks;
+	aref arTmpPerks;
 	makearef(arTmpPerks, rCharacter.TmpPerks);
 
 	// update temporary skill storage
@@ -3584,30 +3575,16 @@ void Ship_UpdateParameters()
 	Cannon_RecalculateParameters(sti(rCharacter.index));
 
 	// some of ship parameters
-	aref	arCharShip; makearef(arCharShip, rCharacter.Ship);
-	ref		rShip = GetRealShip(sti(arCharShip.Type));
+	aref arCharShip; makearef(arCharShip, rCharacter.Ship);
+	ref rShip = GetRealShip(sti(arCharShip.Type));
 
-    float fShipSpeed, fShipTurnRate;
+	float fTRFromSailDamage = Bring2Range(0.1, 1.0, 0.1, 100.0, stf(rCharacter.ship.sp)); //0.3
+	float fShipSpeed    = FindShipSpeed(rCharacter) / fTRFromSailDamage;//убирает движковое дублирование расчета скорости от урона по парусам
+	float fShipTurnRate = FindShipTurnRate(rCharacter);
 
-	// boal кэш оптимизация -->
-	if (!CheckAttribute(rCharacter, "Tmp.SpeedRecall") || sti(rCharacter.Tmp.SpeedRecall) <= 0)
-	{
-		float fTRFromSailDamage = Bring2Range(0.1, 1.0, 0.1, 100.0, stf(rCharacter.ship.sp)); //0.3
-		fShipSpeed    = FindShipSpeed(rCharacter) / fTRFromSailDamage;//убирает движковое дублирование расчета скорости от урона по парусам
-		fShipTurnRate = FindShipTurnRate(rCharacter);
-
-		rCharacter.Tmp.SpeedRecall   = 8 + rand(5);
-		rCharacter.Tmp.fShipSpeed    = fShipSpeed;
-		rCharacter.Tmp.fShipTurnRate = fShipTurnRate;
-	}
-	else
-	{
-		fShipSpeed    = stf(rCharacter.Tmp.fShipSpeed);
-		fShipTurnRate = stf(rCharacter.Tmp.fShipTurnRate);
-
-		rCharacter.Tmp.SpeedRecall   = sti(rCharacter.Tmp.SpeedRecall) - 1;
-	}
-    // boal кэш оптимизация <--
+	// кэш
+	rCharacter.Tmp.fShipSpeed    = fShipSpeed;
+	rCharacter.Tmp.fShipTurnRate = fShipTurnRate;
 
 	// wind power
 	float	fWindPower = Whr_GetWindSpeed() / WIND_NORMAL_POWER;
@@ -3615,9 +3592,7 @@ void Ship_UpdateParameters()
     // boal -->
 	fShipSpeed = (fShipSpeed * fWindPower);  // boal крейсерская скорость до уменьшений при данном ветре.
 	arCharShip.MaxSpeedZ = fShipSpeed;
-	//Log_info("1 = " + arCharShip.MaxSpeedZ);
 	arCharShip.MaxSpeedZ = Sea_ApplyMaxSpeedZ(arCharShip, fWindDotShip); // учет парусов в др месте
-	//Log_info("2 = " + arCharShip.MaxSpeedZ);
 	// boal <--
 	//  поднимем выше и закэшируем float fShipTurnRate = FindShipTurnRate(rCharacter);
 
@@ -3671,12 +3646,7 @@ void Ship_UpdateParameters()
 		arCharShip.MaxSpeedZ = (2.5 * stf(arCharShip.MaxSpeedZ));
 		arCharShip.MaxSpeedY = (2.0 * stf(arCharShip.MaxSpeedY));
 	}
-	else
-	{
-		//arCharShip.MaxSpeedY = 0.75 * stf(arCharShip.MaxSpeedY);
-		arCharShip.MaxSpeedZ = (1.0 * stf(arCharShip.MaxSpeedZ));
-	}
-	//Log_Info("MaxSpeedY = "  + arCharShip.MaxSpeedY);
+
 	// calculate immersion
 	float fLoad = Clampf(GetCargoLoad(rCharacter) / stf(rShip.Capacity));
 	arCharShip.Immersion = (stf(rShip.SubSeaDependWeight) * fLoad); // это уровень погружения от веса
@@ -4296,7 +4266,6 @@ void DropGoodsToSea()
 			rCharacter.Ship.Cargo.Goods.(sGood) = 0;
             rCharacter.Ship.Cargo.RecalculateCargoLoad = true; // boal fix оптимизация
 			//RecalculateCargoLoad(rCharacter);
-            rCharacter.Tmp.SpeedRecall = 0; // чтоб пересчитались скорость и маневр
 
 			if (CheckAttribute(&Goods[i], "Swim"))
 			{

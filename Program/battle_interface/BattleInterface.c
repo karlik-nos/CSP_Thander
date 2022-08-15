@@ -875,7 +875,6 @@ void BI_LaunchCommand()
 		break;
 	case "BI_Turn180":
 		ActivateCharacterPerk(GetCharacter(charIdx),"Turn180");
-		Ship_Turn180(GetCharacter(charIdx));
 		PlayVoice("INTERFACE\SignalCompanion.wav");
 		break;
 	case "BI_SandbankManeuver":
