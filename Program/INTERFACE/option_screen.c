@@ -73,13 +73,6 @@ void InitInterface(string iniName)
 	aref ar; makearef(ar,objControlsState.key_codes);
 	SendMessage(&GameInterface,"lsla",MSG_INTERFACE_MSG_TO_NODE,"KEY_CHOOSER", 0,ar);
 
-	if( sti(Render.full_screen)==0 )
-	{
-		SetSelectable("GAMMA_SLIDE",false);
-		SetSelectable("BRIGHT_SLIDE",false);
-		SetSelectable("CONTRAST_SLIDE",false);
-	}
-
 	float ftmp1 = -1.0;
 	float ftmp2 = -1.0;
 	float ftmp3 = -1.0;
@@ -1286,17 +1279,14 @@ void ShowInfo()
 		case "GAMMA_SLIDE":
 			sHeader = XI_ConvertString("gamma");
 			sText1 = XI_ConvertString("gamma_descr");
-			sText3 = XI_ConvertString("FullScreenOnly");
 		break;
 		case "BRIGHT_SLIDE":
 			sHeader = XI_ConvertString("Brightness");
 			sText1 = XI_ConvertString("brightness_descr");
-			sText3 = XI_ConvertString("FullScreenOnly");
 		break;
 		case "CONTRAST_SLIDE":
 			sHeader = XI_ConvertString("Contrast");
 			sText1 = XI_ConvertString("Contrast_descr");
-			sText3 = XI_ConvertString("FullScreenOnly");
 		break;
 		case "SEA_DETAILS_SLIDE":
 			sHeader = XI_ConvertString("Sea Detail");
