@@ -749,7 +749,7 @@ void ATpr_OboronaSD_8(string qName)
 	for (i=1; i<=7; i++)
     {
 		sTemp = "pirate_"+(rand(24)+1);
- 		sld = GetCharacter(NPC_GenerateCharacter("TA_Pirate_1_1"+i, sTemp, "man", "man", 3, PIRATE, -1, true));
+ 		sld = GetCharacter(NPC_GenerateCharacter("TA_Pirate_1_1"+i, sTemp, "man", "man", 1, PIRATE, -1, true));
 		LAi_SetActorType(sld);
 		ChangeCharacterAddressGroup(sld, "SantoDomingo_ExitTown", "rld",  "loc0");
     }
@@ -791,7 +791,7 @@ void ATpr_OboronaSD_10(string qName)
 	for (i=1; i<=7; i++)
     {
 		sTemp = "pirate_"+(rand(24)+1);
- 		sld = GetCharacter(NPC_GenerateCharacter("TA_Pirate_1_2"+i, sTemp, "man", "man", 3, PIRATE, -1, true));
+ 		sld = GetCharacter(NPC_GenerateCharacter("TA_Pirate_1_2"+i, sTemp, "man", "man", 1, PIRATE, -1, true));
 		LAi_SetActorType(sld);
         ChangeCharacterAddressGroup(sld, "SantoDomingo_ExitTown", "rld",  "loc0");
 		LAi_ActorRunToLocation(sld, "rld", "loc13", "", "", "", "", -1);
@@ -817,7 +817,7 @@ void ATpr_OboronaSD_12(string qName)
 	for (i=1; i<=7; i++)
     {
 		sTemp = "pirate_"+(rand(24)+1);
- 		sld = GetCharacter(NPC_GenerateCharacter("TA_Pirate_2_1"+i, sTemp, "man", "man", 3, PIRATE, -1, true));
+ 		sld = GetCharacter(NPC_GenerateCharacter("TA_Pirate_2_1"+i, sTemp, "man", "man", 1, PIRATE, -1, true));
 		LAi_SetHP(sld, 1.0, 1.0);
 		LAi_SetWarriorType(sld);
         LAi_group_MoveCharacter(sld, "EnemyFight");
@@ -827,6 +827,16 @@ void ATpr_OboronaSD_12(string qName)
 	LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);			//true - если помирить
 	LAi_group_SetCheck("EnemyFight", "ATpr_3Volna");
 	DoQuestFunctionDelay("ATpr_OboronaSD_13", 3.0);
+	DoQuestFunctionDelay("ATpr_OboronaSD_12_1", 7.3);
+}
+void ATpr_OboronaSD_12_1(string qName)
+{
+	//Если пираты где-то застряли - добиваем
+	for (i=1; i<=7; i++)
+    {
+		sld = CharacterFromID("TA_Pirate_2_1"+i)
+		LAi_KillCharacter(sld);
+	}
 }
 void ATpr_OboronaSD_13(string qName)
 {
@@ -836,6 +846,7 @@ void ATpr_OboronaSD_13(string qName)
 		sld = CharacterFromID("AT_SpaMush_"+i)
 		LAi_SetWarriorType(sld);
 		sld.lifeday = 0;
+		LAi_CharacterDisableDialog(sld);
 		LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
 	}
 }
@@ -858,10 +869,10 @@ void ATpr_OboronaSD_15(string qName)
 void ATpr_OboronaSD_16(string qName)
 {	
 	//Пираты 3 волна (#1)
-	for (i=1; i<=20; i++)
+	for (i=1; i<=18; i++)
     {
 		sTemp = "pirate_"+(rand(24)+1);
- 		sld = GetCharacter(NPC_GenerateCharacter("TA_Pirate_3_1"+i, sTemp, "man", "man", 3, PIRATE, -1, true));
+ 		sld = GetCharacter(NPC_GenerateCharacter("TA_Pirate_3_1"+i, sTemp, "man", "man", 1, PIRATE, -1, true));
 		LAi_SetWarriorType(sld);
         LAi_group_MoveCharacter(sld, "EnemyFight");
         ChangeCharacterAddressGroup(sld, "SantoDomingo_ExitTown", "rld",  "loc0");
@@ -870,7 +881,7 @@ void ATpr_OboronaSD_16(string qName)
 	LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);
 	LAi_group_SetCheck("EnemyFight", "ATpr_3Volna_2");
 	
-	DoQuestFunctionDelay("ATpr_OboronaSD_17", 2.0);
+	DoQuestFunctionDelay("ATpr_OboronaSD_17", 1.5);
 	DoQuestFunctionDelay("ATpr_OboronaSD_18", 20.0);
 }
 void ATpr_OboronaSD_17(string qName)
@@ -879,9 +890,10 @@ void ATpr_OboronaSD_17(string qName)
 	for (i=1; i<=8; i++)
     {
 		sTemp = "sold_spa_"+(rand(7)+1);
- 		sld = GetCharacter(NPC_GenerateCharacter("TA_Spa_Guard_"+i, sTemp, "man", "man", 3, SPAIN, -1, true));
+ 		sld = GetCharacter(NPC_GenerateCharacter("TA_Spa_Guard_"+i, sTemp, "man", "man", 2, SPAIN, -1, true));
 		LAi_SetWarriorType(sld);
 		sld.lifeday = 0;
+		LAi_CharacterDisableDialog(sld);
         LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
         ChangeCharacterAddressGroup(sld, "SantoDomingo_ExitTown", "reload",  "reload1_back");
     }
@@ -893,9 +905,10 @@ void ATpr_OboronaSD_18(string qName)
 	for (i=7; i<=16; i++)
     {
 		sTemp = "sold_spa_"+(rand(7)+1);
- 		sld = GetCharacter(NPC_GenerateCharacter("TA_Spa_Guard_"+i, sTemp, "man", "man", 3, SPAIN, -1, true));
+ 		sld = GetCharacter(NPC_GenerateCharacter("TA_Spa_Guard_"+i, sTemp, "man", "man", 2, SPAIN, -1, true));
 		LAi_SetWarriorType(sld);
 		sld.lifeday = 0;
+		LAi_CharacterDisableDialog(sld);
         LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
         ChangeCharacterAddressGroup(sld, "SantoDomingo_ExitTown", "reload",  "reload1_back");
     }
@@ -904,24 +917,24 @@ void ATpr_OboronaSD_19(string qName)
 {	
 	PlayVoice("Interface\_musketshot_0.wav");
 	//ПИРАТ БОСС
-	sld = GetCharacter(NPC_GenerateCharacter("TA_Pirate_4", "BS_Vein", "man", "man", 4, PIRATE, -1, false));
-	FantomMakeCoolFighter(sld, 4, 30, 30, "blade12", "pistol6", 300);
+	sld = GetCharacter(NPC_GenerateCharacter("TA_Pirate_4", "BS_Vein", "man", "man", 1, PIRATE, -1, false));
+	FantomMakeCoolFighter(sld, 1, 10, 10, "blade12", "pistol6", 60);
 	LAi_SetWarriorType(sld);
 	LAi_group_MoveCharacter(sld, "EnemyFight");
 	ChangeCharacterAddressGroup(sld, "SantoDomingo_ExitTown", "rld",  "loc0");
 	sld.SaveItemsForDead = true;
 	sld.DontChangeBlade = true;
-	AddMoneyToCharacter(sld, 5000);
-	AddItems(sld, "jewelry5", rand(20)+80);
+	AddMoneyToCharacter(sld, 3000);
+	AddItems(sld, "jewelry5", rand(20)+30);
 	AddItems(sld, "jewelry13", rand(5)+15);
 	AddItems(sld, "mineral3", 20);
 	AddItems(sld, "totem_11", 1);
 	TakeItemFromCharacter(sld, "spyglass3");
 	//Пираты 3 волна (#2)
-	for (i=1; i<=12; i++)
+	for (i=1; i<=10; i++)
     {
 		sTemp = "pirate_"+(rand(24)+1);
- 		sld = GetCharacter(NPC_GenerateCharacter("TA_Pirate_3_2"+i, sTemp, "man", "man", 3, PIRATE, -1, true));
+ 		sld = GetCharacter(NPC_GenerateCharacter("TA_Pirate_3_2"+i, sTemp, "man", "man", 1, PIRATE, -1, true));
 		LAi_SetWarriorType(sld);
         LAi_group_MoveCharacter(sld, "EnemyFight");
         ChangeCharacterAddressGroup(sld, "SantoDomingo_ExitTown", "rld",  "loc0");

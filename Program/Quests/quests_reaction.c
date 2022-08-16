@@ -10588,7 +10588,7 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 		
 		case "AT_pr_Pobeda_v_grote":
-			AddQuestRecord("AT_Mechty_Sbivautsya", "1");
+			AddQuestRecord("AT_Mechty_Sbivautsya", "2");
 			chrDisableReloadToLocation = false;
 			
 			SetLocationCapturedState("LaVega_town", true);
@@ -10766,6 +10766,7 @@ void QuestComplete(string sQuestName, string qname)
 		
 		case "ATpr_VosstanovimGorod":	
 			LocatorReloadEnterDisable("SantoDomingo_town", "Reload1_back", false);
+			bDisableFastReload = false;
 			ChangeCharacterNationReputation(pchar, SPAIN, 18);
 			
 			sld = CharacterFromID("SantoDomingo_Mayor")

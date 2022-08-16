@@ -101,8 +101,8 @@ void ProcessDialogEvent()
 			
 			//Торговец на улице (продолжение квеста)
 			FreeSitLocator("LaVega_town", "protector2");
-			sld = GetCharacter(NPC_GenerateCharacter("Gasten_Kotes", "shipowner_13", "man", "man", 3, SPAIN, -1, false));
-			FantomMakeCoolFighter(sld, 3, 20, 20, "blade3", "", 40);
+			sld = GetCharacter(NPC_GenerateCharacter("Gasten_Kotes", "shipowner_13", "man", "man", 1, SPAIN, -1, false));
+			FantomMakeCoolFighter(sld, 1, 10, 10, "blade3", "", 10);
 			sld.name	= "Гастен";
 			sld.lastname	= "Котес";
 			sld.Dialog.Filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
@@ -124,6 +124,7 @@ void ProcessDialogEvent()
 			sld = CharacterFromID("Old Friend")
 			sld.Dialog.Filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
 			sld.dialog.currentnode = "man_shlyapa";
+			DeleteAttribute(sld, "talker");
 		break;
 		
 		case "LaVegaIspanski_Gubernator":
@@ -210,6 +211,7 @@ void ProcessDialogEvent()
         dialog.text = "Добрый день! Чем могу я быть вам любезен?";
 		link.l1 = "Здравствуйте! У вас чудная шляпа.";
 		link.l1.go = "exit";
+		NextDiag.TempNode = "man_shlyapa";
 		break;
 		
 		case "Torgovets_1":
@@ -416,10 +418,10 @@ void ProcessDialogEvent()
 			PChar.quest.AT_pr_Grot.win_condition.l1.location = "Hispaniola_Grot";
 			PChar.quest.AT_pr_Grot.function = "AT_pr_Grot";
 			
-			pchar.GenQuestBox.Hispaniola_Grot.box1.items.jewelry6 = 30;
-			pchar.GenQuestBox.Hispaniola_Grot.box1.items.jewelry11 = 15;
-			pchar.GenQuestBox.Hispaniola_Grot.box1.items.jewelry12 = 30;
-			pchar.GenQuestBox.Hispaniola_Grot.box1.items.jewelry3 = 25;
+			pchar.GenQuestBox.Hispaniola_Grot.box1.items.jewelry6 = 10;
+			pchar.GenQuestBox.Hispaniola_Grot.box1.items.jewelry17 = 5;
+			pchar.GenQuestBox.Hispaniola_Grot.box1.items.jewelry12 = 15;
+			pchar.GenQuestBox.Hispaniola_Grot.box1.items.jewelry3 = 10;
 			pchar.GenQuestBox.Hispaniola_Grot.box1.items.potionwine = 2;
 		
 			DialogExit();
@@ -675,7 +677,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ATpr_SD_Gubernator_10":
-			dialog.text = "Это не безопасно. С другой стороны, я по-прежнему не в полной мере вам доверяю, но у меня нет оснований вас задерживать. Так что может и к лучшему, если вы сеньорита, будете оставаться под нашим присмотром по собственной воле.";
+			dialog.text = "Если это так важно для вас, но не имею возражений. Вы можете принять участие в сражении и показать себя.";
 			link.l1 = "";
 			link.l1.go = "ATpr_SD_Gubernator_11";
 		break;
@@ -704,7 +706,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ATpr_SD_Gubernator_15":
-			dialog.text = "Да, да. Идите.";
+			dialog.text = "Да, можете идти.";
 			link.l1 = "";
 			link.l1.go = "ATpr_SD_Gubernator_16";
 			LAi_SetActorType(npchar);

@@ -83,6 +83,14 @@ void ProcessDialogEvent()
 				NextDiag.TempNode = "First time";
 				break;
             }
+			//Sinistra Пролог Анжелика Тич
+            if (pchar.questTemp.AnjelikaTichPrologue == "ATP")
+            {
+                dialog.Text = "Здравствуйте, сеньорита! Желаете что-нибудь прикупить? Может быть вам нужна соль? У меня много соли! Ах... Какая соль!",
+                Link.l1 = "Сеньор, с вами всё в порядке?";
+				Link.l1.go = "exit";
+				break;
+            }
 			if (npchar.id != "Pirates_trader" && npchar.id != "Caiman_trader" && CheckAttribute(pchar, "BSStart"))
 			{
 				//Black sails
