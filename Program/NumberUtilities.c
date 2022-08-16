@@ -104,8 +104,8 @@ int dRand3(int _max3)
 	if(CheckAttribute(PChar, "dayRandom3"))
 	{
 		dayRandom3 = stf(PChar.dayRandom3);
-		// Log_Info(""+dayRandom2);
-		// Log_Info(""+MakeInt(dayRandom2 * (_max2+1)));
+		// Log_Info(""+dayRandom3);
+		// Log_Info(""+MakeInt(dayRandom3 * (_max3+1)));
 		return MakeInt(dayRandom3 * (_max3+1)); // 1.0 / (_max + 1) - для округления, иначе _max не выпадет никогда
 	}
 
