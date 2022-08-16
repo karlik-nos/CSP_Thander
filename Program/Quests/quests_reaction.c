@@ -9341,7 +9341,7 @@ void QuestComplete(string sQuestName, string qname)
 		//ОЗГ, наймиты Крысы
 		case "RatHunters_Dead":
 			chrDisableReloadToLocation = false;
-			if (startHeroType == 2)
+			if (pchar.name == "Виспер")
 			{
 				if(CheckAttribute(pchar,"Whisper.EsFriendTown") && pchar.Whisper.EsFriendTown == "Villemstad")
 				{
@@ -10477,7 +10477,7 @@ void QuestComplete(string sQuestName, string qname)
 ////   	КВЕСТЫ "Проклятие Дальних Морей" КОНЕЦ
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		//Квест "Спасение на рифах"		
+//========================  Квест "Спасение на рифах".  =======================
 		case "KSM_EndloosTraider":
 			bDisableFastReload = true;
 			chrDisableReloadToLocation = true;
@@ -10521,8 +10521,7 @@ void QuestComplete(string sQuestName, string qname)
 			for (i=1; i<=3; i++)
 			{
 				sTemp = "pirate_"+(rand(24)+1);
-				sld = GetCharacter(NPC_GenerateCharacter("CSM_Snr_Bandity_"+i, sTemp, "man", "man", 10, PIRATE, -1, true));
-				FantomMakeCoolFighter(sld, sti(pchar.rank), 15 + MOD_SKILL_ENEMY_RATE * 2, 15 + MOD_SKILL_ENEMY_RATE * 2, BLADE_LONG, "", 0 + MOD_SKILL_ENEMY_RATE * 2);
+				sld = GetCharacter(NPC_GenerateCharacter("CSM_Snr_Bandity_"+i, sTemp, "man", "man", 4, PIRATE, -1, true));
 				LAi_SetWarriorType(sld);
 				LAi_group_MoveCharacter(sld, "EnemyFight");
 				ChangeCharacterAddressGroup(sld, pchar.location, "rld",  "aloc1");
@@ -10530,8 +10529,7 @@ void QuestComplete(string sQuestName, string qname)
 			for (i=4; i<=5; i++)
 			{
 				sTemp = "pirate_"+(rand(24)+1);
-				sld = GetCharacter(NPC_GenerateCharacter("CSM_Snr_Bandity_"+i, sTemp, "man", "man", 10, PIRATE, -1, true));
-				FantomMakeCoolFighter(sld, sti(pchar.rank), 15 + MOD_SKILL_ENEMY_RATE * 2, 15 + MOD_SKILL_ENEMY_RATE * 2, BLADE_LONG, "", 0 + MOD_SKILL_ENEMY_RATE * 2);
+				sld = GetCharacter(NPC_GenerateCharacter("CSM_Snr_Bandity_"+i, sTemp, "man", "man", 4, PIRATE, -1, true));
 				LAi_SetWarriorType(sld);
 				LAi_group_MoveCharacter(sld, "EnemyFight");
 				ChangeCharacterAddressGroup(sld, pchar.location, "reload",  "reload2");
@@ -10569,6 +10567,233 @@ void QuestComplete(string sQuestName, string qname)
 			locations[FindLocation("DeckWithReefs")].alwaysStorm = true;
 			locations[FindLocation("DeckWithReefs")].storm = true;
 			locations[FindLocation("DeckWithReefs")].tornado = true;
+		break;
+		
+//========================  Sinistra Пролог "Анжелика Тич"  =======================			
+		case "Draka_s_Kotesom_Pobeda":
+			LAi_group_Delete("EnemyFight");
+			DoQuestCheckDelay("hide_weapon", 1.2);
+			LAi_RemoveCheckMinHP(pchar);
+			sld = characterFromId("Gasten_Kotes");
+			LAi_SetActorType(sld);
+			LAi_ActorTurnToCharacter(sld, pchar);
+			LAi_ActorAnimation(sld, "kneeling_1", "Draka_s_Kotesom_Pobeda_2", 5.0);
+		break;
+		
+		case "Draka_s_Kotesom_Pobeda_2":
+			sld = CharacterFromID("AT_pr_Rebekka")
+			PlaceCharacter(sld, "goto", PChar.location);
+			sld.dialog.currentnode = "Rebekka_posle_draki";
+			LAi_ActorDialogDelay(sld, pchar, "", 1.0);
+		break;
+		
+		case "AT_pr_Pobeda_v_grote":
+			AddQuestRecord("AT_Mechty_Sbivautsya", "1");
+			chrDisableReloadToLocation = false;
+			
+			SetLocationCapturedState("LaVega_town", true);
+			locations[FindLocation("LaVega_town")].models.always.locatorsl3 = "LaVega_locators_quest";
+			locations[FindLocation("LaVega_town")].models.night.charactersPatch = "LaVega_patch_night_quest";
+			locations[FindLocation("LaVega_town")].models.always.locatorsl2 = "LaVega_1_quest";
+			
+			PChar.quest.AT_pr_tragedia.win_condition.l1 = "location";
+			PChar.quest.AT_pr_tragedia.win_condition.l1.location = "LaVega_town";
+			PChar.quest.AT_pr_tragedia.function = "AT_pr_tragedia";
+			
+			sld = CharacterFromID("Gasten_Kotes")
+			LAi_LoginInCaptureTown(sld, true);
+			LAi_SetStayType(sld);
+			sld.dialog.filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
+			sld.dialog.currentnode = "Stoim_na_pirse";
+			sld.talker = 5;
+			ChangeCharacterAddressGroup(sld, "LaVega_town", "officers", "reload1_2");
+			
+			pchar.Ship.Type = GenerateShipExt(SHIP_BARKENTINE, true, pchar);
+			pchar.Ship.name="Красный Бык";
+			SetBaseShipData(pchar);
+			ChangeCrewExp(pchar, "Sailors", 50);
+			ChangeCrewExp(pchar, "Cannoners", 20);
+			ChangeCrewExp(pchar, "Soldiers", 20);
+			pchar.ship.Crew.Morale = 50;
+			SetCharacterGoods(pchar, GOOD_FOOD, 200);
+			SetCharacterGoods(pchar, GOOD_RUM, 50 + rand(100));
+			SetCharacterGoods(pchar, GOOD_BALLS, 220);
+			SetCharacterGoods(pchar, GOOD_BOMBS, 80);
+			SetCharacterGoods(pchar, GOOD_POWDER, 240);
+			AddCharacterCrew(pchar, -120);
+			pchar.ship.HP = sti(pchar.ship.HP) - 450;
+			pchar.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS16;
+			realships[sti(pchar.ship.type)].SpeedRate = 14.0;
+			pchar.location.from_sea = "LaVega_town";
+			LocatorReloadEnterDisable("LaVega_town", "reload1_back", true);
+			setWDMPointXZ("LaVega_town");
+		break;
+		
+		case "AT_pr_Stoim_na_pirse_9":
+			sld = CharacterFromID("Gasten_Kotes")
+			AddPassenger(pchar, sld, false);
+			SetCharacterRemovable(sld, false);
+			ChangeCharacterAddressGroup(sld, "none", "", "");
+		
+			chrDisableReloadToLocation = false;
+			LocatorReloadEnterDisable("LaVega_town", "reload1_back", false);
+			AddQuestRecord("AT_Mechty_Sbivautsya", "3");
+			
+			//Создаём вражеские корабли
+			Group_FindOrCreateGroup("AT_Pir_Attack_1");
+			Group_SetType("AT_Pir_Attack_1", "war");
+            sld = GetCharacter(NPC_GenerateCharacter("AT_pr_1_CaptainAttack_1", "officer_"+(rand(57)+1), "man", "man", 1, PIRATE, -1, true));
+            FantomMakeCoolSailor(sld, SHIP_GALEON1, "", CANNON_TYPE_CANNON_LBS12, 15, 25, 15);
+            FantomMakeCoolFighter(sld, 1, 10, 10, "blade2", "", 10);
+    		Group_AddCharacter("AT_Pir_Attack_1", "AT_pr_1_CaptainAttack_1");
+			Group_SetGroupCommander("AT_Pir_Attack_1", "AT_pr_1_CaptainAttack_1");
+			Group_SetTaskAttack("AT_Pir_Attack_1", PLAYER_GROUP);
+			Group_LockTask("AT_Pir_Attack_1");
+			Group_SetAddress("AT_Pir_Attack_1", "Hispaniola1", "Quest_Ships", "Quest_ship_11");
+			
+			Group_FindOrCreateGroup("AT_Pir_Attack_2");
+			Group_SetType("AT_Pir_Attack_2", "war");
+			sld = GetCharacter(NPC_GenerateCharacter("AT_pr_1_CaptainAttack_2", "officer_"+(rand(57)+1), "man", "man", 1, PIRATE, -1, true));
+            FantomMakeCoolSailor(sld, SHIP_FLEUT, "", CANNON_TYPE_CULVERINE_LBS12, 15, 25, 15);
+            FantomMakeCoolFighter(sld, 1, 10, 10, "blade2", "", 10);
+    		Group_AddCharacter("AT_Pir_Attack_2", "AT_pr_1_CaptainAttack_2");
+			Group_SetGroupCommander("AT_Pir_Attack_2", "AT_pr_1_CaptainAttack_2");
+			Group_SetTaskAttack("AT_Pir_Attack_2", PLAYER_GROUP);
+			Group_LockTask("AT_Pir_Attack_2");
+			Group_SetAddress("AT_Pir_Attack_2", "Hispaniola1", "Quest_Ships", "Quest_ship_12");
+			realships[sti(sld.ship.type)].SpeedRate = 8.5;
+			
+			Group_FindOrCreateGroup("AT_Pir_Attack_3");
+			Group_SetType("AT_Pir_Attack_3", "war");
+			sld = GetCharacter(NPC_GenerateCharacter("AT_pr_1_CaptainAttack_3", "officer_"+(rand(57)+1), "man", "man", 1, PIRATE, -1, true));
+            FantomMakeCoolSailor(sld, SHIP_TARTANE, "", "", 20, 100, 100);
+            FantomMakeCoolFighter(sld, 30, 100, 100, "blade40", "", 100);
+    		Group_AddCharacter("AT_Pir_Attack_3", "AT_pr_1_CaptainAttack_3");
+			Group_SetGroupCommander("AT_Pir_Attack_3", "AT_pr_1_CaptainAttack_3");
+			Group_SetTaskAttack("AT_Pir_Attack_3", PLAYER_GROUP);
+			Group_LockTask("AT_Pir_Attack_3");
+			Group_SetAddress("AT_Pir_Attack_3", "Hispaniola1", "", "");
+			Group_SetPursuitGroup("AT_Pir_Attack_3", PLAYER_GROUP);
+			realships[sti(sld.ship.type)].SpeedRate = 5.0;
+			
+			sld = CharacterFromID("AT_pr_1_CaptainAttack_1")
+			AddCharacterCrew(sld, -330);
+			sld.ship.HP = sti(sld.ship.HP) - 2000;		
+			sld = CharacterFromID("AT_pr_1_CaptainAttack_2")
+			AddCharacterCrew(sld, -120);
+			sld.ship.HP = sti(sld.ship.HP) - 700;
+			
+			PChar.quest.AT_pr_Bejim_ot_piratov.win_condition.l1 = "EnterToSea"
+			PChar.quest.AT_pr_Bejim_ot_piratov.win_condition = "AT_pr_Bejim_ot_piratov";
+		break;
+		
+		case "AT_pr_Bejim_ot_piratov":
+			DoQuestFunctionDelay("AT_pr_Bejim_ot_piratov_2", 8.0);
+			DoQuestFunctionDelay("AT_pr_Bejim_ot_piratov_3", 150.0);
+			
+			PChar.quest.AT_pr_Santo_Domin.win_condition.l1 = "location";
+			PChar.quest.AT_pr_Santo_Domin.win_condition.l1.location = "SantoDomingo_town";
+			PChar.quest.AT_pr_Santo_Domin.win_condition = "AT_pr_Santo_Domin";
+			
+			EndQuestMovie();
+			DeleteAttribute(pchar, "questTemp.AnjelikaTichPrologue");
+			DeleteAttribute(pchar, "questTemp.AnjelikaTichPrologue2");
+			DeleteAttribute(pchar, "questTemp.ATPNapelsy");
+			
+			PChar.quest.ATpr_UbiraemKorabli.win_condition.l1 = "MapEnter";
+			PChar.quest.ATpr_UbiraemKorabli.win_condition = "ATpr_UbiraemKorabli";		
+			
+			SetTimerFunction("ATpr_SvobodaIgry", 0, 0, 5);		//Таймер провала миссии!!!
+		break;
+		
+		case "ATpr_UbiraemKorabli":
+			sld = CharacterFromID("AT_pr_1_CaptainAttack_1")
+			sld.lifeday = 0;
+			sld = CharacterFromID("AT_pr_1_CaptainAttack_2")
+			sld.lifeday = 0;
+			sld = CharacterFromID("AT_pr_1_CaptainAttack_3")
+			sld.lifeday = 0;
+		break;
+		
+		case "AT_pr_Santo_Domin":			//Важный кейс
+			sld = CharacterFromID("AT_pr_1_CaptainAttack_1")
+			sld.lifeday = 0;
+			sld = CharacterFromID("AT_pr_1_CaptainAttack_2")
+			sld.lifeday = 0;
+			sld = CharacterFromID("AT_pr_1_CaptainAttack_3")
+			sld.lifeday = 0;
+			
+			LocatorReloadEnterDisable("SantoDomingo_ExitTown", "reload3", false);	//Важная реакция
+			LocatorReloadEnterDisable("PortPax_ExitTown", "reload3", false);	//Важная реакция
+			bDisableFastReload = true;
+			LocatorReloadEnterDisable("SantoDomingo_town", "Reload1_back", true);	//Не даём выйти из города (квест продолжается)
+			LocatorReloadEnterDisable("SantoDomingo_town", "Reload3_back", true);	//Блакируем резиденцию
+			PChar.quest.ATpr_SvobodaIgry.over = "yes";				//Если успели в Санто-Доминго, то выключаем таймер
+			sld = GetCharacter(NPC_GenerateCharacter("AT_pr_OfficerRezid", "sold_spa_7", "man", "man", 10, SPAIN, -1, true));
+			ChangeCharacterAddressGroup(sld, "SantoDomingo_town", "officers", "Reload3_1");
+			LAi_SetActorType(sld);
+			LAi_ActorTurnToCharacter(sld, pchar);
+			LAi_SetLoginTime(sld, 6.0, 21.99);
+			LAi_SetStayType(sld);
+			sld.dialog.filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
+			sld.dialog.currentnode = "AT_pr_Officer_u_rezidenta";
+			sld.talker = 5;
+		break;
+		
+		case "ATpr_OboronaSD":
+			StartQuestMovie(true, true, true);
+			LAi_SetActorType(pchar);
+			DoQuestFunctionDelay("ATpr_OboronaSD_2", 0.1);
+			ChangeCharacterAddressGroup(pchar, "none", "", "");
+			chrDisableReloadToLocation = true;
+		break;
+		
+		case "ATpr_3Volna":
+			DoQuestFunctionDelay("ATpr_OboronaSD_14", 1.0);
+		break;
+		
+		case "ATpr_3Volna_2":
+			DoQuestFunctionDelay("ATpr_OboronaSD_19", 1.0);
+		break;
+		
+		case "ATpr_3Volna_3":
+			sld = CharacterFromID("Gasten_Kotes")
+			LAi_SetStayType(sld);
+			ChangeCharacterAddressGroup(sld, "SantoDomingo_ExitTown", "reload", "reload1_back");
+			sld.dialog.filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
+			sld.dialog.currentnode = "ATpr_SD_Koten_1";
+		break;
+		
+		case "ATpr_VosstanovimGorod":	
+			LocatorReloadEnterDisable("SantoDomingo_town", "Reload1_back", false);
+			ChangeCharacterNationReputation(pchar, SPAIN, 18);
+			
+			sld = CharacterFromID("SantoDomingo_Mayor")
+			sld.Dialog.Filename = "Common_Mayor.c";
+			sld.dialog.currentnode = "First time";
+			
+			AddQuestRecord("AT_Mechty_Sbivautsya", "4");
+			
+			//Восстанавливаем город из пепла
+			SetLocationCapturedState("LaVega_town", false);
+			SetCaptureTownByNation("LaVega", PIRATE);
+			locations[FindLocation("LaVega_town")].models.always.locatorsl3 = "LaVega_locators";
+			locations[FindLocation("LaVega_town")].models.night.charactersPatch = "LaVega_patch_night";
+			locations[FindLocation("LaVega_town")].models.always.locatorsl2 = "LaVega_1";			
+			sld = CharacterFromID("Edward Mansfield")
+			ChangeCharacterAddressGroup(sld, "LaVega_townhall", "sit", "sit1");
+			sld.Dialog.Filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
+			sld.dialog.currentnode = "Pirat_Guber";
+			
+			sld = CharacterFromID("spa_guber")
+			sld.Dialog.Filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
+			sld.dialog.currentnode = "Ispa_Guber";
+			
+			sld = CharacterFromID("AT_pr_devushka_na_rynke")
+			sld.lifeday = 0;
+			sld = CharacterFromID("Old Friend")
+			sld.Dialog.Filename = "Quest/SilencePrice/Luke.c";
+			sld.dialog.currentnode = "First Time";
 		break;
 
 		// Тичингиту

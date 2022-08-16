@@ -103,13 +103,13 @@ void ProcessDialogEvent()
 
                 // homo 05/08/06
 				dialog.Text =NPCharRepPhrase(npchar,
-                                LinkRandPhrase("Меня зовут ", "Мое имя ", "Можешь называть меня ")
+                                LinkRandPhrase("Меня зовут ", "Моё имя ", "Можешь называть меня ")
                                 +GetFullName(npchar)
                                 +LinkRandPhrase(". Чего тебе нужно?", ". Я тебя раньше здесь не "
                                 +NPCharSexPhrase(NPChar, "видел", "видела")
                                 +", кто ты так"+ GetSexPhrase("ой","ая") +"?", ". Кто ты и что тебе от меня надо?"),
 
-        		                LinkRandPhrase("Приветствую вас, " + GetAddress_Form(NPChar) + ". Мое имя " + GetFullName(npchar) + ". А как зовут вас?",
+        		                LinkRandPhrase("Приветствую вас, " + GetAddress_Form(NPChar) + ". Моё имя " + GetFullName(npchar) + ". А как зовут вас?",
                                  "Здравствуйте, " + GetAddress_Form(NPChar) + "! Я " + GetFullName(npchar) + ". Могу я узнать ваше имя?",
                                  "Да, " + GetAddress_Form(NPChar) + ". Что вы хотели? Кстати, меня зовут " + GetFullName(npchar) + ". А вас?"));
 
@@ -117,8 +117,65 @@ void ProcessDialogEvent()
                                 LinkRandPhrase("Разрази меня гром! ", "Тысяча чертей! ", "Чтоб тебе пусто было! ") + "Да я капитан "+ GetFullName(Pchar)+ LinkRandPhrase(", ты разве не слыхал"+NPCharSexPhrase(NPChar,"","а")+" обо мне"+NPCharSexPhrase(NPChar,", каналья?","?"), " и "+ GetSexPhrase("самый известный пират","самая известная женщина-пират") +" в этих водах! ", " и провалиться мне на этом месте, если это не так!"),
                                 LinkRandPhrase("Я " + GetFullName(Pchar) + ", капитан.", "Меня зовут " + GetFullName(Pchar) + ".", "Можешь называть меня капитан " + GetFullName(Pchar)));
 
-                //LinkRandPhrase("Я " + GetFullName(Pchar) + ", капитан.", "Меня зовут " + GetFullName(Pchar) + ".", "Можешь называть меня капитан " + GetFullName(Pchar));
+                //LinkRandPhrase("Я " + GetFullName(Pchar) + ", капитан.", "Меня зовут " + GetFullName(Pchar) + ".", "Можешь называть меня капитан " + GetFullName(Pchar));				
 				Link.l1.go = "Meeting";
+				
+				if (pchar.questTemp.AnjelikaTichPrologue == "ATP" && pchar.questTemp.AnjelikaTichPrologue2 == "ATP2")
+				{
+					pchar.ATP_MirJitId = npchar.id;
+					
+					int Phrase2;
+					Phrase2 = rand(1);
+					if (Phrase2 == 0)
+					{
+						dialog.text = "Добрый день, Анжелика, очень рад"+ NPCharSexPhrase(NPChar,"","а") +" вас видеть. Сегодня прекрасная погода для прогулки!";
+						link.l1 = "Здравствуйте, "+npchar.name+", я тоже рада вас видеть.";
+						link.l1.go = "ATP_0_1";
+					break;
+					}
+					if (Phrase2 == 1)
+					{
+						dialog.text = "Анжелика, какая же вы красивая. Приятно на вас смотреть. Сейчас иду на рынок, запастись запасами еды.";
+						link.l1 = "Спасибо за комплимент, "+npchar.name+". Удачи вам!";
+						link.l1.go = "ATP_0_1";
+					break;
+					}
+				}
+				if (pchar.questTemp.AnjelikaTichPrologue == "ATP")	//Sinistra Пролог Анжелики Шарп
+				{
+					pchar.ATP_MirJitId = npchar.id;
+					
+					int Phrase;
+					Phrase = rand(3);
+					if (Phrase == 0)
+					{
+						dialog.text = "Добрый день, Анжелика, Ребекка, очень рад"+ NPCharSexPhrase(NPChar,"","а") +" вас видеть. Сегодня прекрасная погода для прогулки!";
+						link.l1 = "Здравствуйте, "+npchar.name+", мы тоже рады вас видеть.";
+						link.l1.go = "ATP_1";
+					break;
+					}
+					if (Phrase == 1)
+					{
+						dialog.text = "Две красотки - Анжелика, Ребекка. Приятно на вас смотреть. Сейчас иду на рынок, запастись запасами еды.";
+						link.l1 = "Здравствуйте, "+npchar.name+".";
+						link.l1.go = "ATP_2";
+					break;
+					}
+					if (Phrase == 2)
+					{
+						dialog.text = ""+ NPCharSexPhrase(NPChar,"Приветствую вас, юные девушки.","Анжелика, здравствуй. Бекки! Ты совсем стала домоседкой, рада тебя видеть.") +"";
+						link.l1 = ""+ NPCharSexPhrase(NPChar,"Мы, кажется, уже встречались с утра, или это было во вчерашний в полдень.","Здравствуйте, "+npchar.name+".") +"";
+						link.l1.go = "ATP_3";
+					break;
+					}
+					if (Phrase == 3)
+					{
+						dialog.text = "Замечательный день, вы не находите? Лёгкий ветер немного сбил привычную жару.";
+						link.l1 = "Вчерашнее утро было таким-же, а к полудню солнце уже выжигало траву.";
+						link.l1.go = "ATP_4";
+					break;
+					}
+				}
 			}
 			else
 			{
@@ -584,6 +641,87 @@ void ProcessDialogEvent()
 			}
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First Time";
+		break;
+		
+		//Sinistra Пролог Анжелика Тич
+		case "ATP_0_0":
+			DialogExit();
+			
+			sld = CharacterFromID(pchar.ATP_MirJitId)
+			LAi_SetCitizenType(sld);
+			LAi_CharacterDisableDialog(sld);
+			
+			sld = CharacterFromID("AT_pr_Rebekka")
+			LAi_SetActorType(sld);
+			LAi_ActorFollow(sld, pchar, "", -1);
+		break;
+		
+		case "ATP_0_1":
+			DialogExit();
+			
+			sld = CharacterFromID(pchar.ATP_MirJitId)
+			LAi_SetCitizenType(sld);
+			LAi_CharacterDisableDialog(sld);
+		break;
+		
+		case "ATP_1":
+			DialogExit();
+			StartInstantDialog("AT_pr_Rebekka", "Rebekka_s_mirnymi_jitelyami_1", "Quest\MainheroPrologues\Prologue_AnjelikaTich.c");
+			
+			sld = CharacterFromID(pchar.ATP_MirJitId)
+			LAi_SetActorType(sld);
+			LAi_ActorTurnToCharacter(sld, pchar);
+		break;
+		
+		case "ATP_1_1":
+			dialog.text = "Спасибо, но у меня всё хорошо, я пойду дальше, удачи вам!");
+			link.l1 = "И вам всего хорошего!";
+			link.l1.go = "ATP_0_0";
+		break;
+		
+		case "ATP_2":
+			DialogExit();
+			StartInstantDialog("AT_pr_Rebekka", "Rebekka_s_mirnymi_jitelyami_2", "Quest\MainheroPrologues\Prologue_AnjelikaTich.c");
+			
+			sld = CharacterFromID(pchar.ATP_MirJitId)
+			LAi_SetActorType(sld);
+			LAi_ActorTurnToCharacter(sld, pchar);
+		break;
+		
+		case "ATP_2_1":
+			dialog.text = "Берегите себя!");
+			link.l1 = "Всего вам доброго!";
+			link.l1.go = "ATP_0_0";
+		break;
+		
+		case "ATP_3":
+			DialogExit();
+			StartInstantDialog("AT_pr_Rebekka", "Rebekka_s_mirnymi_jitelyami_3", "Quest\MainheroPrologues\Prologue_AnjelikaTich.c");
+			
+			sld = CharacterFromID(pchar.ATP_MirJitId)
+			LAi_SetActorType(sld);
+			LAi_ActorTurnToCharacter(sld, pchar);
+		break;
+		
+		case "ATP_3_1":
+			dialog.text = "Удачи вам!");
+			link.l1 = "Спасибо!";
+			link.l1.go = "ATP_0_0";
+		break;
+		
+		case "ATP_4":
+			DialogExit();
+			StartInstantDialog("AT_pr_Rebekka", "Rebekka_s_mirnymi_jitelyami_4", "Quest\MainheroPrologues\Prologue_AnjelikaTich.c");
+			
+			sld = CharacterFromID(pchar.ATP_MirJitId)
+			LAi_SetActorType(sld);
+			LAi_ActorTurnToCharacter(sld, pchar);
+		break;
+		
+		case "ATP_4_1":
+			dialog.text = "Да, да. Ваша сестра совершенна права.");
+			link.l1 = "Ну и ладно.";
+			link.l1.go = "ATP_0_0";
 		break;
 
 	}

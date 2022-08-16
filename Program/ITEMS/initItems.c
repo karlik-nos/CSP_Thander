@@ -9117,6 +9117,17 @@ int InitItems()
 	itm.weight = 0.1;
 	itm.ItemType = "QUESTITEMS";
 	n++;
+	
+	makeref(itm,Items[n]);	//Пролог "Анжелика Тич"
+	itm.id = "ATpr_pismo";	//Письмо
+	itm.name = "itmname_ATpr_pismo";
+	itm.describe = "itmdescr_ATpr_pismo";
+	itm.picIndex = 7;
+	itm.picTexture = "ITEMS_12";
+	itm.price = 0;
+	itm.weight = 0.1;
+	itm.ItemType = "QUESTITEMS";
+	n++;
 
 	//InitGunExt(id,	sAttr,  sBullet,  sGunPowder, DmgMin_NC, DmgMax_NC, DmgMin_C, DmgMax_C, EnergyP_NC, EnergyP_C, Stun_NC, Stun_C, MultiDamage, MisFire, SelfDamage, Explosion,Accuracy,ChargeSpeed,isDefault);
 	InitGunExt(		 "pistol1", "t1",  	     "cartridge",               "",  20.0, 100.0,  20.0, 100.0,  0.0,  0.0, 1, 0, 0, 0, 0, 0, 30,  8, 0);

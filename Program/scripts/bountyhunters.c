@@ -141,7 +141,7 @@ void LandHunterReactionResult(ref loc)  // отработает после вх�
 			order = false;
 			if (j == SPAIN)
 			{
-				if (startHeroType == 2 || startHeroType == 7 || CheckAttribute(pchar, "PGGWhisperComplete"))
+				if (pchar.name == "Виспер" || pchar.name == "Тёмный" || CheckAttribute(pchar, "PGGWhisperComplete"))
 				{
 					if (!CheckAttribute(pchar,"OrderDestroyed"))
 					{
@@ -149,7 +149,7 @@ void LandHunterReactionResult(ref loc)  // отработает после вх�
 						{
 							order = true;
 						}
-						if (startHeroType != 2 && sti(pchar.rank) >= 15)
+						if (pchar.name != "Виспер" && sti(pchar.rank) >= 15)
 						{
 							order = true;
 						}

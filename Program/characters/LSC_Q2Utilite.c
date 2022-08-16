@@ -592,6 +592,8 @@ void initStartState2Character(ref ch)
 	PDMQuestsInit();
 	// ==> Квесты Корсары: Сундук Мертвеца
 	KSMQuestsInit();
+	// ==> Все остальные НПС
+	VSEnpcInit()
 	// ==>  флаги и иниты бергларов
 	BerglarsInit();
 	// ==>  нищие

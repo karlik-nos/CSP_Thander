@@ -53,7 +53,7 @@ void ProcessDialogEvent()
 			              ". Я - машина с биологическим покрытием, киборг. Покрытие имело меньший срок службы, чем основная база из сплава металлических полимеров. За 170 лет биопокров был утерян. Мой ресурс на пределе. Ядерный источник питания сел, работаю на резерве.";
 			link.l1 = "Полтора века? Тогда я не понял"+ GetSexPhrase("","а") +", когда тебя породили - в 15-м веке или же в 21-м?";
 			link.l1.go = "Term_3";
-			if (startherotype > 0 && startherotype < 12) LAi_CharacterPlaySoundAtOnce(NPChar, "Terminator_3_"+startherotype);
+			if (startherotype > 0 && startherotype < 13) LAi_CharacterPlaySoundAtOnce(NPChar, "Terminator_3_"+startherotype);
 			else LAi_CharacterPlaySoundAtOnce(NPChar, "Terminator_3_unknown");
 		break;
 
@@ -133,7 +133,7 @@ void ProcessDialogEvent()
 				link.l1 = "Да, не повезло тебе. Ну ладно, если у тебя нет при себе функционирующей машины времени, то говорить нам больше не о чем. Я пойду, пожалуй.";
 			}
 			link.l1.go = "Term_11";
-			if (startherotype > 0 && startherotype < 12) LAi_CharacterPlaySoundAtOnce(NPChar, "Terminator_11_"+startherotype);
+			if (startherotype > 0 && startherotype < 13) LAi_CharacterPlaySoundAtOnce(NPChar, "Terminator_11_"+startherotype);
 			else
 			{
 				if (pchar.sex != "woman") LAi_CharacterPlaySoundAtOnce(NPChar, "Terminator_11_man");

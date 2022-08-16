@@ -74,7 +74,7 @@ void ProcessDialogEvent()
 			mc = GetMainCharacter();
 
 			mc.Ship.Type = GenerateShipExt(SHIP_SOPHIE, true, mc);
-			mc.Ship.name="Черная Вдова";
+			mc.Ship.name="Чёрная Вдова";
 			SetBaseShipData(mc);
 			mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS12;
 			SetCrewQuantityFull(mc);
@@ -138,7 +138,7 @@ void ProcessDialogEvent()
     			link.l1 = "...";
     			link.l1.go = "exit";
 				Pchar.quest.ToMansfield_OutFromFort.win_condition.l1 = "location";
-				Pchar.quest.ToMansfield_OutFromFort.win_condition.l1.location = "LaVega_port";
+				Pchar.quest.ToMansfield_OutFromFort.win_condition.l1.location = "LaVega_town";
 				Pchar.quest.ToMansfield_OutFromFort.win_condition = "ToMansfield_OutFromFort";
     		}
             // ==> Исп. линейка, квест №4: в спальне донны Анны
@@ -1404,7 +1404,7 @@ void ProcessDialogEvent()
             mc = GetMainCharacter();
 
 			mc.Ship.Type = GenerateShipExt(SHIP_SOPHIE, true, mc);
-			mc.Ship.name="Черная Вдова";
+			mc.Ship.name="Чёрная Вдова";
 			SetBaseShipData(mc);
 			mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS12;
 			SetCrewQuantityFull(mc);

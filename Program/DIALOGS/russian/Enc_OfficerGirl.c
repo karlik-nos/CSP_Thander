@@ -685,13 +685,14 @@ void ProcessDialogEvent()
 		break;
 		//Элен
 		case "Helen_meet":
-			if (startherotype == 5 || startherotype == 6)
+			if (pchar.name == "Шарль" || pchar.name == "Мэри")
 			{
 				if(npchar.id == "Beatrice")
 				{
 					dialog.text = "У тебя хватает наглости заявляться сюда, после того, что было? Прочь с глаз моих, пока я тебя не зарубила!";
 					link.l1 = "Прости, Элен...";
 					link.l1.go = "exit";
+					NextDiag.TempNode = "Helen_meet";
 					break;
 				}
 			}

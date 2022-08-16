@@ -23,7 +23,20 @@ void ProcessDialogEvent()
 			link.l1.go = "Vstrecha_2";
 			link.l2 = "Честно говоря, на самом деле я "+ GetSexPhrase("кроткий и мягкий","кроткая и мягкая") +". Извините, но я бы "+ GetSexPhrase("предпочёл","предпочла") +" ненадолго обратиться в паническое бегство.";
 			link.l2.go = "exit";
-			LAi_CharacterPlaySound(NPChar, "GR_Jamescallow_FirstTime");
+			if (pchar.questTemp.AnjelikaTichPrologue == "ATP")
+			{
+				dialog.text = "Я пью пену - волна...";
+				link.l1 = "...";
+				link.l1.go = "Slushat_Pesnu_1";
+				DeleteAttribute(link, "l2");
+			}
+			if (pchar.questTemp.AnjelikaTichPrologue == "ATP" && pchar.questTemp.ATPNapelsy == "Napelsy")
+			{
+				dialog.text = "Это брюхо вспорол мне... Коралловый риф... Ла-ла-ла-ла-ла!";
+				link.l1 = "";
+				link.l1.go = "exit";
+				DeleteAttribute(link, "l2");
+			}
 		break;
 
 		case "Vstrecha_2":
@@ -61,6 +74,7 @@ void ProcessDialogEvent()
             dialog.text = "Что ж, а я скажу тебе: все эти истории - чистая правда. Есть вещи, которые я никак иначе не могу объяснить. Я нашёл одну штуковину, и готов поклясться, что она проклята!";
             link.l1 = "Правда? И что заставляет тебя верить в это? Ты можешь пощупать этого духа? Или это проклятие является тебе по ночам и клянётся в собственной зловредности?";
 			link.l1.go = "Vstrecha_5";
+			LAi_CharacterPlaySound(NPChar, "GR_Jamescallow_FirstTime");
 		break;
 
 		case "Vstrecha_5":
@@ -766,6 +780,95 @@ void ProcessDialogEvent()
 			
 			NextDiag.CurrentNode = NextDiag.TempNode;
 			DialogExit();
+		break;
+		
+		case "Slushat_Pesnu_1":
+			dialog.text = "Не доходит до рта...";
+            link.l1 = "...";
+			link.l1.go = "Slushat_Pesnu_2";
+		break;
+		
+		case "Slushat_Pesnu_2":
+			dialog.text = "И от палуб до дна...";
+            link.l1 = "...";
+			link.l1.go = "Slushat_Pesnu_3";
+		break;
+		
+		case "Slushat_Pesnu_3":
+			dialog.text = "Обнажились борта...";
+            link.l1 = "...";
+			link.l1.go = "Slushat_Pesnu_4";
+		break;
+		
+		case "Slushat_Pesnu_4":
+			dialog.text = "А бока мои грязны...";
+            link.l1 = "...";
+			link.l1.go = "Slushat_Pesnu_5";
+		break;
+		
+		case "Slushat_Pesnu_5":
+			dialog.text = "Таи не таи...";
+            link.l1 = "...";
+			link.l1.go = "Slushat_Pesnu_6";
+		break;
+		
+		case "Slushat_Pesnu_6":
+			dialog.text = "Так любуйтесь на язвы...";
+            link.l1 = "...";
+			link.l1.go = "Slushat_Pesnu_7";
+		break;
+		
+		case "Slushat_Pesnu_7":
+			dialog.text = "И раны мои...";
+            link.l1 = "...";
+			link.l1.go = "Slushat_Pesnu_8";
+			link.l2 = "Скучная песня.";
+			link.l2.go = "exit";
+		break;
+		
+		case "Slushat_Pesnu_8":
+			dialog.text = "Вот дыра у ребра...";
+            link.l1 = "...";
+			link.l1.go = "Slushat_Pesnu_9";
+		break;
+		
+		case "Slushat_Pesnu_9":
+			dialog.text = "это след от ядра...";
+            link.l1 = "...";
+			link.l1.go = "Slushat_Pesnu_10";
+		break;
+		
+		case "Slushat_Pesnu_10":
+			dialog.text = "Вот рубцы от тарана, и даже...";
+            link.l1 = "...";
+			link.l1.go = "Slushat_Pesnu_11";
+		break;
+		
+		case "Slushat_Pesnu_11":
+			dialog.text = "Видно шрамы от крючьев - какой-то пират...";
+            link.l1 = "...";
+			link.l1.go = "Slushat_Pesnu_12";
+		break;
+		
+		case "Slushat_Pesnu_12":
+			dialog.text = "Мне хребет перебил в абордаже...";
+            link.l1 = "...";
+			link.l1.go = "Slushat_Pesnu_13";
+		break;
+		
+		case "Slushat_Pesnu_13":
+			dialog.text = "Ик... Э-э, как там дальше?";
+            link.l1 = "А ты хорош!";
+			link.l1.go = "Slushat_Pesnu_14";
+			pchar.questTemp.ATPNapelsy = "Napelsy";
+		break;
+		
+		case "Slushat_Pesnu_14":
+			DialogExit();
+			
+			AddCharacterExpToSkill(pchar, "Leadership", 40);
+			AddCharacterExpToSkill(pchar, "Fortune", 60);
+			Log_SetStringToLog("Вы получили опыт");
 		break;
 	}
 }

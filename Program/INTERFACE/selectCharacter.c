@@ -854,10 +854,12 @@ void selectEngland()
 	if (startHeroType == 2) SelectNation(PIRATE);
 	else SelectNation(ENGLAND);
 
-	if (startHeroType == 8) SelectNation(ENGLAND);
-	if (startHeroType == 9) SelectNation(FRANCE);
-	if (startHeroType == 10) SelectNation(SPAIN);
-	if (startHeroType == 11) SelectNation(HOLLAND);
+	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
+	
+	if (startHeroType == 9) SelectNation(ENGLAND);
+	if (startHeroType == 10) SelectNation(FRANCE);
+	if (startHeroType == 11) SelectNation(SPAIN);
+	if (startHeroType == 12) SelectNation(HOLLAND);
 }
 
 void selectFrance()
@@ -866,11 +868,13 @@ void selectFrance()
     if (startHeroType == 1) SelectNation(ENGLAND);
 	if (startHeroType == 2) SelectNation(PIRATE);
 	if (startHeroType > 2) SelectNation(FRANCE);
+	
+	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
 
-	if (startHeroType == 8) SelectNation(ENGLAND);
-	if (startHeroType == 9) SelectNation(FRANCE);
-	if (startHeroType == 10) SelectNation(SPAIN);
-	if (startHeroType == 11) SelectNation(HOLLAND);
+	if (startHeroType == 9) SelectNation(ENGLAND);
+	if (startHeroType == 10) SelectNation(FRANCE);
+	if (startHeroType == 11) SelectNation(SPAIN);
+	if (startHeroType == 12) SelectNation(HOLLAND);
 }
 
 void selectSpain()
@@ -880,10 +884,10 @@ void selectSpain()
 	if (startHeroType == 2) SelectNation(PIRATE);
 	if (startHeroType > 2) SelectNation(SPAIN);
 
-	if (startHeroType == 8) SelectNation(ENGLAND);
-	if (startHeroType == 9) SelectNation(FRANCE);
-	if (startHeroType == 10) SelectNation(SPAIN);
-	if (startHeroType == 11) SelectNation(HOLLAND);
+	if (startHeroType == 9) SelectNation(ENGLAND);
+	if (startHeroType == 10) SelectNation(FRANCE);
+	if (startHeroType == 11) SelectNation(SPAIN);
+	if (startHeroType == 12) SelectNation(HOLLAND);
 }
 
 void selectHolland()
@@ -892,11 +896,13 @@ void selectHolland()
     if (startHeroType == 1) SelectNation(ENGLAND);
 	if (startHeroType == 2) SelectNation(PIRATE);
 	if (startHeroType > 2) SelectNation(HOLLAND);
+	
+	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
 
-	if (startHeroType == 8) SelectNation(ENGLAND);
-	if (startHeroType == 9) SelectNation(FRANCE);
-	if (startHeroType == 10) SelectNation(SPAIN);
-	if (startHeroType == 11) SelectNation(HOLLAND);
+	if (startHeroType == 9) SelectNation(ENGLAND);
+	if (startHeroType == 10) SelectNation(FRANCE);
+	if (startHeroType == 11) SelectNation(SPAIN);
+	if (startHeroType == 12) SelectNation(HOLLAND);
 }
 
 void selectPirate()
@@ -904,11 +910,13 @@ void selectPirate()
     	//homo блокировка нации для Питера Блада
 	if (startHeroType == 1) SelectNation(ENGLAND);
 	else SelectNation(PIRATE);
+	
+	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
 
-	if (startHeroType == 8) SelectNation(ENGLAND);
-	if (startHeroType == 9) SelectNation(FRANCE);
-	if (startHeroType == 10) SelectNation(SPAIN);
-	if (startHeroType == 11) SelectNation(HOLLAND);
+	if (startHeroType == 9) SelectNation(ENGLAND);
+	if (startHeroType == 10) SelectNation(FRANCE);
+	if (startHeroType == 11) SelectNation(SPAIN);
+	if (startHeroType == 12) SelectNation(HOLLAND);
 }
 
 void IDoExit(int exitCode, bool bCode)
@@ -1191,7 +1199,7 @@ void SetVariable(bool _init)
 	pchar.lastname = GetNewMainCharacterParam("heroLastname_" + startHeroType);
 	pchar.sex = GetNewMainCharacterParam("sex_" + startHeroType);
 	pchar.FaceID = GetNewMainCharacterFace();
-	bool bRandCharNation = startHeroType > 7 && startHeroType < 12;
+	bool bRandCharNation = startHeroType > 8 && startHeroType < 13;
 	if (bRandCharNation || startHeroType < 3)	SetSelectable("RANDCHARNATION",false);
 	else	SetSelectable("RANDCHARNATION",true);
 

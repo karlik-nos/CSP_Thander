@@ -126,7 +126,7 @@ void InitPsHeros()
 
 void DeleteCloneHeros(ref sld)
 {
-	if (startHeroType > 1 && startHeroType < 7)
+	if (startHeroType > 1 && startHeroType < 8)
 	{
 		if (startHeroType == 2)
 		{

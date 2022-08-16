@@ -10416,7 +10416,7 @@ void PDM_Callow_RodjerProdolg(string qName)
     {
         sTemp = "skel_"+(rand(3)+1);
  		sld = GetCharacter(NPC_GenerateCharacter("PDM_PI_skel_"+i, sTemp, "skeleton", "skeleton", Rank, PIRATE, -1, true));
-        FantomMakeCoolFighter(sld, sti(pchar.rank), 10 + MOD_SKILL_ENEMY_RATE * 2, 10 + MOD_SKILL_ENEMY_RATE * 2, BLADE_LONG, "", 10 + MOD_SKILL_ENEMY_RATE * 2);
+        //FantomMakeCoolFighter(sld, sti(pchar.rank), 10 + MOD_SKILL_ENEMY_RATE * 2, 10 + MOD_SKILL_ENEMY_RATE * 2, BLADE_LONG, "", 10 + MOD_SKILL_ENEMY_RATE * 2);
         ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto2");
 		LAi_SetActorType(sld);
 		LAi_ActorFollow(sld, pchar, "", -1);

@@ -532,7 +532,7 @@ void ProcessDialogEvent()
 
 		case "EBStep_1":
 
-            dialog.text = "Доктор, я подготовил все, что вы просили.";
+            dialog.text = "Доктор, я подготовил всё, что вы просили.";
         	link.l1 = "Спасибо, поставьте там.";
             link.l1.go = "Exit";
             NextDiag.TempNode = "EBStep_2";

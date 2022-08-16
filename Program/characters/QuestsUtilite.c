@@ -2639,6 +2639,32 @@ void KSMQuestsInit()
 	LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
 	ChangeCharacterAddressGroup(sld,"PortRoyal_town","goto","goto12");
 }
+//Все остальные НПС
+void VSEnpcInit()
+{
+	ref sld;
+	//Стражники в адмиралтействе
+	sld = GetCharacter(NPC_GenerateCharacter("VSE_Admir_1", "sold_spa_2", "man", "man", 10, SPAIN, -1, true));
+	sld.Dialog.Filename = "Common_Soldier.c";
+	LAi_SetGuardianType(sld);
+	LAi_SetImmortal(sld, true);
+	LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
+	ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","soldiers","soldier1");
+	
+	sld = GetCharacter(NPC_GenerateCharacter("VSE_Admir_2", "sold_spa_1", "man", "man", 10, SPAIN, -1, true));
+	sld.Dialog.Filename = "Common_Soldier.c";
+	LAi_SetGuardianType(sld);
+	LAi_SetImmortal(sld, true);
+	LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
+	ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","soldiers","soldier2");
+	
+	sld = GetCharacter(NPC_GenerateCharacter("VSE_Admir_3", "sold_spa_3", "man", "man", 10, SPAIN, -1, true));
+	sld.Dialog.Filename = "Common_Soldier.c";
+	LAi_SetPatrolType(sld);
+	LAi_SetImmortal(sld, true);
+	LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
+	ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","goto","goto2");
+}
 void OfficerGirlInit()
 {
     ref sld;
@@ -3282,7 +3308,7 @@ void SetReefSkeletonsToLocation(aref _location, string loc)
 			}
 			if (loc != "MountainPath")
 			{
-				if (startHeroType != 2 && startHeroType != 7 && !CheckAttribute(pchar, "PGGWhisperQuest"))
+				if (pchar.name != "Виспер" && pchar.name != "Тёмный" && !CheckAttribute(pchar, "PGGWhisperQuest"))
 				{
 					Log_info("Вы пробудили проклятых!");
 					chrDisableReloadToLocation = true; //пока Злой Скелет Гигант жив - хер, а не выход

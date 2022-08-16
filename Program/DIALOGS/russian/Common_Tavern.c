@@ -75,6 +75,14 @@ void ProcessDialogEvent()
                 }
                 break;
     		}
+			//Sinistra пролог Анжелики Тич
+			if (pchar.questTemp.AnjelikaTichPrologue == "ATP")
+            {
+                dialog.Text = "Добрый день, сеньорита.";
+                Link.l1 = "Добрый день, " + NPChar.name + ".";
+				Link.l1.go = "At_pr_1";
+                break;
+    		}
 
 			if (drand2(100)==0 && sti(pchar.rank) >= 20 && GetCharacterItem(Pchar, "map_full") <= 0)
 			{
@@ -1521,6 +1529,24 @@ void ProcessDialogEvent()
             ChangeCharacterAddressGroup(sld, "CommonRoom_MH7", "goto", "goto1");
 			DialogExit();
 			NextDiag.CurrentNode = NextDiag.TempNode;
+		break;
+		//==> Sinistra пролог Анжелики Тич
+		case "AT_pr_1":
+			dialog.text = "Знаете, если мои постояльцы устроят здесь драку по вашей вине, я буду вынужден предъявить иск покрывающий ущерб на ваше имя.";
+			link.l1 = "Сеньор "+npchar.name+", вы, как никто другой, умеете так ненавязчиво и тактично произносить слово 'убирайся'.";
+			link.l1.go = "AT_pr_2";
+		break;
+		case "AT_pr_2":
+			dialog.text = "Ни в коем случае, я рад любому клиенту.";
+			link.l1 = "Конечно, конечно.";
+			link.l1.go = "exit";
+			NextDiag.TempNode = "AT_pr_3";
+		break;
+		case "AT_pr_3":
+			dialog.text = "Чего-нибудь налить?";
+			link.l1 = "Нет, ничего.";
+			link.l1.go = "exit";
+			NextDiag.TempNode = "AT_pr_3";
 		break;
 		//зачарованный город
 		case "MCTavern":

@@ -2385,7 +2385,7 @@ void CaptureCapitol_ShoreBattleRespite(string q)
 	DoQuestCheckDelay("hide_weapon", 2.0);
 	sld = GetCharacter(NPC_GenerateCharacter("CapitolLeader", "Dark_Incquisitor", "man", "man", 99, SPAIN, -1, true));
 
-	if (startherotype == 2)
+	if (pchar.name == "Виспер")
 	{
 		FantomMakeCoolFighter(sld, 100, 100, 100, "blade24", "pistol7shotgun", 80);
 		TakeNItems(sld, "12_gauge", 99);
@@ -2475,7 +2475,7 @@ void CaptureCapitol_OnLeaderDeath_1(string q)
 	LAi_LocationFightDisable(locLoad, true);
 	DoQuestCheckDelay("hide_weapon", 2.0);
 
-	if (startherotype == 2)	sld = CharacterFromID("Wh_Jim");
+	if (pchar.name == "Виспер")	sld = CharacterFromID("Wh_Jim");
 	else sld = GetCharacter(NPC_GenerateCharacter("Wh_Jim", "officer_"+(rand(63)+1), "man", "man", 5, PIRATE, -1, false));
 	ChangeCharacterAddressGroup(sld, pchar.location, "goto", "goto7");
 	LAi_SetActorTypeNoGroup(sld);

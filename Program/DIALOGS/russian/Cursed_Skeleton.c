@@ -38,6 +38,15 @@ void ProcessDialogEvent()
 				}
 				link.l3 = "Умри, отродье!";
 				link.l3.go = "skel_fight";
+				if (pchar.questTemp.AnjelikaTichPrologue == "ATP")	//Sinistra Пролог Анжелика Тич
+				{
+					dialog.text = "Не бойся меня, я хорошая нежить. Бери что хочешь, ни в чём себе не отказывай.";
+					link.l1 = "(шок) Мама дорогая!";
+					link.l1.go = "AT_pr_Uhoju";
+					npchar.lifeday = 0;
+					DeleteAttribute(link, "l2");
+					DeleteAttribute(link, "l3");
+				}
 				NextDiag.TempNode = "First time";
 				break;
 			}
@@ -198,6 +207,13 @@ void ProcessDialogEvent()
 			link.l1 = "Да хорош пугать меня. Так и быть, помогу тебе. Беру курс на "+ XI_ConvertString("Colony" + pchar.questTemp.Cursed.TownId + "Acc") +".";
 			pchar.cursed.waitingSkull = true;
 			link.l1.go = "exit";
+		break;
+		
+		case "AT_pr_Uhoju":
+			DialogExit();
+			
+			sld = CharacterFromID("CursedSkeleton")
+			ChangeCharacterAddressGroup(sld, "none", "", "");
 		break;
 
 

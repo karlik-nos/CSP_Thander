@@ -385,7 +385,17 @@ void WayBeginning(string _tmp)
 		DoQuestReloadToLocation("Shore_ship2", "goto", "goto4", "");
 		return;
     }
-	if (startHeroType == 7)
+	if (startHeroType == 7)	//Анжелика Тич
+    {
+    	pchar.quest.Tut_start.win_condition.l1          = "location";
+    	pchar.quest.Tut_start.win_condition.l1.location = "LaVega_MH12";
+    	pchar.quest.Tut_start.function                  = "AnjelikaTich_StartGame";
+        Pchar.questTemp.CapBloodLine = false;
+		Pchar.questTemp.WhisperLine = false;
+		DoQuestReloadToLocation("LaVega_MH12", "reload", "reload3", "");
+		return;
+    }
+	if (startHeroType == 8)
     {
     	pchar.quest.Tut_start.win_condition.l1          = "location";
     	pchar.quest.Tut_start.win_condition.l1.location = "My_Campus";
@@ -395,7 +405,7 @@ void WayBeginning(string _tmp)
 		DoQuestReloadToLocation("My_Campus", "goto", "goto5", "");
 		return;
     }
-	if (startHeroType > 7 && startHeroType <= 11)
+	if (startHeroType > 8 && startHeroType <= 12)
     {
     	pchar.quest.Tut_start.win_condition.l1          = "location";
     	pchar.quest.Tut_start.win_condition.l1.location = "Temple_skulls";
@@ -405,7 +415,7 @@ void WayBeginning(string _tmp)
 		DoQuestReloadToLocation("Temple_skulls", "goto", "goto2", "");
 		return;
     }
-	if (startHeroType > 11)
+	if (startHeroType > 12)
     {
     	pchar.quest.Tut_start.win_condition.l1          = "location";
     	pchar.quest.Tut_start.win_condition.l1.location = "Ship_deck_Low";
