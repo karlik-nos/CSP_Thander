@@ -585,7 +585,7 @@ float ShipSpeedBonusFromHP(ref _refCharacter)
 	float fShipHp = stf(_refCharacter.ship.hp);
 	float fShipMaxHp = stf(rShip.HP);
 	float fSpeedFromHp = fShipHp/fShipMaxHp;
-	fSpeedFromHp = 0.8 + fSpeedFromHp*0.3;
+	fSpeedFromHp = 0.8 + fSpeedFromHp * 0.3;
 	if(fSpeedFromHp > 1.0) fSpeedFromHp = 1.0;// некий запас перед снижением скорости
 	return fSpeedFromHp;
 }
@@ -596,8 +596,7 @@ float ShipSpeedBonusFromPeople(ref _refCharacter)
 	float fCrewOpt = stf(rShip.OptCrew);
 	float fCrewCur = stf(_refCharacter.Ship.Crew.Quantity);
 	if (fCrewCur > fCrewMax) fCrewCur = fCrewMax;
-	float  fTRFromPeople = 0.85 + ((GetCrewExp(_refCharacter, "Sailors") * fCrewCur) / (fCrewOpt * GetCrewExpRate())) * 0.15;
-	if (fTRFromPeople > 1) fTRFromPeople = 1;
+	float fTRFromPeople = Clampf(0.85 + ((GetCrewExp(_refCharacter, "Sailors") * fCrewCur) / (fCrewOpt * GetCrewExpRate())) * 0.15);
 	return fTRFromPeople;
 }
 float ShipSpeedBonusFromSails(ref _refCharacter)
@@ -615,16 +614,16 @@ float SpeedBySkill(aref refCharacter)
 {
 	float fSkill = GetSummonSkillFromNameToOld(refCharacter, SKILL_SAILING);
 
-	float fTRFromSkill = 0.7 + (0.03 *  fSkill);
+	float fTRFromSkill = 0.7 + (0.03 * fSkill);
 
     float fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "ShipSpeedUp"), 1.0, 1.15);   //slib
     fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "SailingProfessional"), fSpeedPerk, 1.20);
-	fSpeedPerk =  AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "SeaWolf"), fSpeedPerk, fSpeedPerk+0.05);
+	fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "SeaWolf"), fSpeedPerk, fSpeedPerk + 0.05);
 	//if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.SailsSpecial")) fSpeedPerk *= 0.85;
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.HullSpecial")) fSpeedPerk *= 0.75;
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.CuBot")) fSpeedPerk *= 1.05;
 
-	return fTRFromSKill*fSpeedPerk;
+	return fTRFromSKill * fSpeedPerk;
 }
 
 float FindShipSpeedBonus(ref refCharacter)
@@ -665,9 +664,8 @@ float ShipTurnRateBonusFromWeight(ref _refCharacter)
     if(!CheckAttribute(_refCharacter, "Cargo")) RecalculateCargoLoad(_refCharacter);
 	ref rShip = GetRealShip(sti(_refCharacter.ship.type));
 	float fLoad = Clampf(stf(_refCharacter.Ship.Cargo.Load) / stf(rShip.Capacity));
-	float fTRFromWeight;
-	if (iArcadeSails == 1) fTRFromWeight = Clampf(1.03 - stf(rShip.TurnDependWeight) * fLoad);
-		else fTRFromWeight = Clampf(1.03 - 2.0*stf(rShip.TurnDependWeight) * fLoad); // влияние веса больше
+	// в тактическом режиме влияние веса больше
+	float fTRFromWeight = Clampf(1.03 - (2 - iArcadeSails) * stf(rShip.TurnDependWeight) * fLoad);
 	return fTRFromWeight;
 }
 float ShipTurnRateBonusFromHP(ref _refCharacter)
@@ -689,7 +687,7 @@ float ShipTurnRateBonusFromPeople(ref _refCharacter)
 	if (fCrewCur > fCrewMax) fCrewCur = fCrewMax;
 	float  fTRFromPeople;
 	if (iArcadeSails == 1) fTRFromPeople = 0.3 + ((GetCrewExp(_refCharacter, "Sailors") * fCrewCur) / (fCrewOpt * GetCrewExpRate())) * 0.7;
-		else fTRFromPeople = 0.05 + ((GetCrewExp(_refCharacter, "Sailors") * fCrewCur) / (fCrewOpt * GetCrewExpRate())) * 0.95;
+	else fTRFromPeople = 0.05 + ((GetCrewExp(_refCharacter, "Sailors") * fCrewCur) / (fCrewOpt * GetCrewExpRate())) * 0.95;
 	if (fTRFromPeople > 1) fTRFromPeople = 1;
 	return fTRFromPeople;
 }
@@ -720,13 +718,13 @@ float TurnBySkill(aref refCharacter)
 
     float fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "ShipTurnRateUp"), 1.0, 1.15);   //slib
     fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "SailingProfessional"), fSpeedPerk, 1.20);
-	fSpeedPerk =  AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "SeaWolf"), fSpeedPerk, fSpeedPerk+0.05);
+	fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "SeaWolf"), fSpeedPerk, fSpeedPerk+0.05);
     float fFastTurn180 = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "Turn180"), 1.0, 4.0);
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.SailsSpecial")) fSpeedPerk *= 0.8;
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.HullSpecial")) fSpeedPerk *= 0.75;
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.CuBot")) fSpeedPerk *= 1.05;
 
-	return fTRFromSKill*fSpeedPerk*fFastTurn180;
+	return fTRFromSKill * fSpeedPerk * fFastTurn180;
 }
 
 float FindShipTurnRateBonus(aref refCharacter)
@@ -757,66 +755,7 @@ float FindShipTurnRateBonus(aref refCharacter)
 
 float FindShipTurnRate(aref refCharacter)
 {
-	if(!CheckAttribute(refCharacter, "Ship.type"))
-	{
-		trace("Character " + refCharacter.id + " have no ship!");
-		return 0.0;
-	}
-	int nShipType = sti(refCharacter.ship.type);
-	if(nShipType == SHIP_NOTUSED)
-	{
-		trace("Character " + refCharacter.id + " have invalid ship!");
-		return 1.0;
-	}
-	ref rShip = GetRealShip(nShipType);
-
-	float fShipHp = stf(refCharacter.ship.hp);
-	float fShipMaxHp = stf(rShip.HP);
-	float fSpeedFromHp = fShipHp/fShipMaxHp;
-	fSpeedFromHp = 0.7 + fSpeedFromHp * 0.3;
-    if(!CheckAttribute(refCharacter, "Cargo")) RecalculateCargoLoad(refCharacter);
-	float fLoad = Clampf(stf(refCharacter.Ship.Cargo.Load) / stf(rShip.Capacity));
-	float fTRFromWeight;
-	if (iArcadeSails == 1)
-	{
-		fTRFromWeight = Clampf(1.03 - stf(rShip.TurnDependWeight) * fLoad);
-	}
-	else
-	{
-		fTRFromWeight = Clampf(1.03 - 2.0*stf(rShip.TurnDependWeight) * fLoad); // влияние веса больше
-	}
-	// не реализовано, всегда 1 float fTRFromSpeed = 1.0 - stf(rShip.TurnDependSpeed);
-	// от команды
-	//float fCrewMin = stf(rShip.MinCrew);
-	float fCrewMax = stf(rShip.MaxCrew);
-	float fCrewOpt = stf(rShip.OptCrew);
-	float fCrewCur = stf(refCharacter.Ship.Crew.Quantity);
-	if (fCrewCur > fCrewMax)
-	{
-		fCrewCur = fCrewMax;
-	}
-	float  fTRFromPeople;
-	if (iArcadeSails == 1)
-	{
-		fTRFromPeople = 0.3 + ((GetCrewExp(refCharacter, "Sailors") * fCrewCur) / (fCrewOpt * GetCrewExpRate())) * 0.7;
-	}
-	else
-	{
-		fTRFromPeople = 0.05 + ((GetCrewExp(refCharacter, "Sailors") * fCrewCur) / (fCrewOpt * GetCrewExpRate())) * 0.95;
-	}
-	if (fTRFromPeople > 1) fTRFromPeople = 1;
-
-	float fTRFromSkill = TurnBySkill(refCharacter);
-
-	float fTRFromSailDamage = Bring2Range(0.05, 1.0, 0.1, 100.0, stf(refCharacter.ship.sp));
-
-	float fTurn = fTRFromWeight * fTRFromSkill * fTRFromPeople * fTRFromSailDamage * fSpeedFromHp;
-
-	float fSoiling = (100-(stf(refCharacter.ship.soiling)*0.15))/100;
-	fTurn = fTurn * fSoiling;
-
-	//Log_info(refCharacter.id + "  " + fTurn);
-	return fTurn;
+	return FindShipTurnRateBonus(refCharacter);
 }
 
 //================//
