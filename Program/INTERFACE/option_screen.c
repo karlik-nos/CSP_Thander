@@ -983,11 +983,9 @@ float ConvertGamma(float fGamma, bool Real2Slider)
 { // гамма от 0.5 до 2.0
 	if(Real2Slider)
 	{
-		if(fGamma<=1.0) {return fGamma-0.5;}
-		return fGamma*0.5;
+		return fGamma*2.0/3.0-1.0/3.0;
 	}
-	if(fGamma<=0.5) {return fGamma+0.5;}
-	return fGamma*2.0;
+	return fGamma*1.5+0.5;
 }
 
 float ConvertBright(float fBright, bool Real2Slider)
@@ -995,7 +993,7 @@ float ConvertBright(float fBright, bool Real2Slider)
 	if(Real2Slider) {
 		return (fBright+50.0)/100.0;
 	}
-	return fBright*100-50;
+	return fBright*100.0-50.0;
 }
 
 float ConvertSeaDetails(float fDetails, bool Real2Slider)
