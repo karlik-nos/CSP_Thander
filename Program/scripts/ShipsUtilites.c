@@ -38,7 +38,6 @@ int GenerateShip(int iBaseType, bool isStolen)
         nHulls -= 1;
         if(nHulls < 0) nHulls = 0;
         rRealShip.ship.upgrades.hull = 1 + rand(nHulls);
-        //Trace("Hull nums = " + rRealShip.hullNums);
     }
     else {
         rRealShip.ship.upgrades.hull = 1 + rand(2);
@@ -51,7 +50,6 @@ int GenerateShip(int iBaseType, bool isStolen)
 	{
 	    rRealShip.SpeedRate	       = stf(rRealShip.SpeedRate) + frandSmall(stf(rRealShip.SpeedRate) / 5.0) - stf(rRealShip.SpeedRate) / 10.0;
 	    rRealShip.TurnRate         = stf(rRealShip.TurnRate) + frandSmall(stf(rRealShip.TurnRate) / 5.0) - stf(rRealShip.TurnRate) / 10.0;
-	    //rRealShip.Price            = sti(rRealShip.Price) + rand(makeint(sti(rRealShip.Price)/2)) - makeint(sti(rRealShip.Price)/4);
 	    rRealShip.HP               = sti(rRealShip.HP) + rand(makeint(sti(rRealShip.HP)/5)) - makeint(sti(rRealShip.HP)/10);
 	    rRealShip.WindAgainstSpeed = stf(rRealShip.WindAgainstSpeed) + frandSmall(stf(rRealShip.WindAgainstSpeed)/5.0) - stf(rRealShip.WindAgainstSpeed)/10.0;
 	}
@@ -102,7 +100,6 @@ int GenerateShipExt(int iBaseType, bool isStolen, ref chr)
         nHulls -= 1;
         if(nHulls < 0) nHulls = 0;
         rRealShip.ship.upgrades.hull = 1 + rand(nHulls);
-        //Trace("Hull nums = " + rRealShip.hullNums);
     }
     else {
         rRealShip.ship.upgrades.hull = 1 + rand(2);
@@ -126,8 +123,6 @@ int GenerateShipExt(int iBaseType, bool isStolen, ref chr)
 
 	if (!CheckAttribute(rRealShip, "isFort"))
 	{
-		int iDiffClass = 5 - makeint(sti(rRealShip.Class)/2);
-
 		int iCannonDiff = 0;
 		if (!isShipyard) iCannonDiff = rand(sti(rRealShip.MaxCannonDiff));
 
@@ -221,14 +216,8 @@ int GenerateShipExt(int iBaseType, bool isStolen, ref chr)
 
 		if(!CheckAttribute(rRealShip, "QuestShip"))
 		{
-			rRealShip.Bonus_Capacity 	= makeint((sti(rRealShip.Capacity)*iCannonDiff)/(15 * iDiffClass));
-			rRealShip.Bonus_HP 			= makeint((sti(rRealShip.HP)*iCannonDiff)/(15 * iDiffClass));
-			rRealShip.Bonus_SpeedRate   = (stf(rRealShip.SpeedRate)*iCannonDiff)/(15 * iDiffClass);
-			rRealShip.Bonus_TurnRate    = (stf(rRealShip.TurnRate)*iCannonDiff)/(15 * iDiffClass);
-
 			rRealShip.SpeedRate	   		= stf(rRealShip.SpeedRate) + Кdckyrd * (frandSmall(stf(rRealShip.SpeedRate) / 5.0) - stf(rRealShip.SpeedRate) / 10.0);
 			rRealShip.TurnRate         	= stf(rRealShip.TurnRate) + Кdckyrd * (frandSmall(stf(rRealShip.TurnRate) / 5.0) - stf(rRealShip.TurnRate) / 10.0);
-			//rRealShip.Price            = sti(rRealShip.Price) + rand(makeint(sti(rRealShip.Price)/2)) - makeint(sti(rRealShip.Price)/4);
 			rRealShip.HP               	= sti(rRealShip.HP) + makeint(Кdckyrd * (rand(makeint(sti(rRealShip.HP)/5)) - makeint(sti(rRealShip.HP)/10)));
 			rRealShip.WindAgainstSpeed 	= stf(rRealShip.WindAgainstSpeed) + Кdckyrd * (frandSmall(stf(rRealShip.WindAgainstSpeed)/5.0) - stf(rRealShip.WindAgainstSpeed)/10.0);
 		}
@@ -248,14 +237,6 @@ int GenerateShipExt(int iBaseType, bool isStolen, ref chr)
 	rRealShip.CannonerCrew    = 0;
 	rRealShip.SailorCrew      = sti(rRealShip.OptCrew);
 	// to_do del <--
-
-	if(!CheckAttribute(rRealShip, "QuestShip"))
-	{
-		if(CheckAttribute(rRealShip, "Bonus_Capacity"))	rRealShip.Capacity = sti(rRealShip.Capacity) + sti(rRealShip.Bonus_Capacity);
-		if(CheckAttribute(rRealShip, "Bonus_HP")) rRealShip.HP = sti(rRealShip.HP) + sti(rRealShip.Bonus_HP);
-		if(CheckAttribute(rRealShip, "Bonus_SpeedRate")) rRealShip.SpeedRate = stf(rRealShip.SpeedRate) + stf(rRealShip.Bonus_SpeedRate);
-		if(CheckAttribute(rRealShip, "Bonus_TurnRate"))	rRealShip.TurnRate = stf(rRealShip.TurnRate) + stf(rRealShip.Bonus_TurnRate);
-	}
 
 	if (!CheckAttribute(rRealShip, "QuestShip"))
 		SetCabinTypeEx(rRealShip, sti(rRealShip.Class)); //Выдача случайной каюты по классу не квестовым - Gregg
