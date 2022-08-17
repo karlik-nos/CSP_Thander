@@ -60,13 +60,11 @@ void ProcessDialogEvent()
 					link.l4 = "Ну что, я готов"+ GetSexPhrase("","а") +" зайти в эту устрашающую дверь.";
 					link.l4.go = "StStart_1";
 				}
-				//поиск товаров на корвет
 				if (pchar.questTemp.LSC == "toSeekGoods")
 				{
 					link.l8 = "Слушай, я тут ищу некоторые товары.";
 					link.l8.go = "SeekGoods";
 				}
-				//поиски команды на корвет
 				if (pchar.questTemp.LSC == "toSeekPeopleInCrew")
 				{
 					link.l8 = "Знаешь, я набираю команду, чтобы уйти отсюда. Предлагаю тебе пойти ко мне матросом.";
@@ -470,7 +468,6 @@ void ProcessDialogEvent()
 			NextDiag.CurrentNode = NextDiag.TempNode;
 			DialogExit();
 		break;
-		//поиск товаров на корвет
 		case "SeekGoods":
 			dialog.text = NPCStringReactionRepeat("Что за товары?",
 				"Ты уже спрашивал"+ GetSexPhrase("","а") +" об этом.",
@@ -505,7 +502,7 @@ void ProcessDialogEvent()
 		break;
 		case "SeekCrew_2":
 			dialog.text = "Тогда и думать нечего! Я согласен.";
-			link.l1 = "Отлично! Прямо сейчас отправляйся на 'Сан Габриэль', там Механик переправит тебя на мой фрегат.";
+			link.l1 = "Отлично! Прямо сейчас отправляйся на 'Сан Габриэль', там Механик переправит тебя на мое судно.";
 			link.l1.go = "SeekCrew_3";
 		break;
 		case "SeekCrew_3":
