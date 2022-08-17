@@ -2645,21 +2645,24 @@ void VSEnpcInit()
 	ref sld;
 	//Стражники в адмиралтействе
 	sld = GetCharacter(NPC_GenerateCharacter("VSE_Admir_1", "sold_spa_2", "man", "man", 10, SPAIN, -1, true));
-	sld.Dialog.Filename = "Common_Soldier.c";
+	sld.Dialog.Filename = "Admiralty.c";
+	sld.dialog.currentnode = "Strajniki";
 	LAi_SetGuardianType(sld);
 	LAi_SetImmortal(sld, true);
 	LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
 	ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","soldiers","soldier1");
 	
 	sld = GetCharacter(NPC_GenerateCharacter("VSE_Admir_2", "sold_spa_1", "man", "man", 10, SPAIN, -1, true));
-	sld.Dialog.Filename = "Common_Soldier.c";
+	sld.Dialog.Filename = "Admiralty.c";
+	sld.dialog.currentnode = "Strajniki";
 	LAi_SetGuardianType(sld);
 	LAi_SetImmortal(sld, true);
 	LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
 	ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","soldiers","soldier2");
 	
 	sld = GetCharacter(NPC_GenerateCharacter("VSE_Admir_3", "sold_spa_3", "man", "man", 10, SPAIN, -1, true));
-	sld.Dialog.Filename = "Common_Soldier.c";
+	sld.Dialog.Filename = "Admiralty.c";
+	sld.dialog.currentnode = "Strajniki";
 	LAi_SetPatrolType(sld);
 	LAi_SetImmortal(sld, true);
 	LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");

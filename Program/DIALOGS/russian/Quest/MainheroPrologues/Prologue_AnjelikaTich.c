@@ -605,13 +605,15 @@ void ProcessDialogEvent()
 			
 			sld = GetCharacter(NPC_GenerateCharacter("AT_pr_OfficerRezid", "sold_spa_7", "man", "man", 10, SPAIN, -1, true));
 			ChangeCharacterAddressGroup(sld, "SantoDomingo_town", "officers", "Reload3_1");
-			//LAi_SetActorType(sld);
-			//LAi_ActorTurnToCharacter(sld, pchar);
 			LAi_SetLoginTime(sld, 6.0, 21.99);
 			LAi_SetStayType(sld);
 			sld.dialog.filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
 			sld.dialog.currentnode = "AT_pr_Officer_u_rezidenta";
 			sld.talker = 5;
+			
+			sld = CharacterFromID("LaVega_tavernkeeper")	//Возвращаем тавернщику его родной диалог
+			sld.Dialog.Filename = "Common_Tavern.c";
+			sld.dialog.currentnode = "First time";
 		break;
 		
 		case "AT_pr_Officer_u_rezidenta":
@@ -685,7 +687,7 @@ void ProcessDialogEvent()
 		
 		case "ATpr_SD_Gubernator_8":
 			DialogExit();
-			StartInstantDialog("SantoDomingo_Mayor_klon", "ATpr_SD_Gubernator_9", "Quest\MainheroPrologues\Prologue_AnjelikaTich.c");
+			StartInstantDialog("SantoDomingo_Mayor", "ATpr_SD_Gubernator_9", "Quest\MainheroPrologues\Prologue_AnjelikaTich.c");
 		break;
 		
 		case "ATpr_SD_Gubernator_9":
@@ -714,7 +716,7 @@ void ProcessDialogEvent()
 		
 		case "ATpr_SD_Gubernator_13":
 			DialogExit();
-			StartInstantDialog("SantoDomingo_Mayor_klon", "ATpr_SD_Gubernator_14", "Quest\MainheroPrologues\Prologue_AnjelikaTich.c");
+			StartInstantDialog("SantoDomingo_Mayor", "ATpr_SD_Gubernator_14", "Quest\MainheroPrologues\Prologue_AnjelikaTich.c");
 		break;
 		
 		case "ATpr_SD_Gubernator_14":
@@ -805,11 +807,11 @@ void ProcessDialogEvent()
 			LocatorReloadEnterDisable("SantoDomingo_town", "Reload3_back", false);
 			chrDisableReloadToLocation = false;
 			
-			sld = CharacterFromID("SantoDomingo_Mayor_klon")
-			sld.lifeday = 0;
 			sld = CharacterFromID("SantoDomingo_Mayor")
 			sld.Dialog.Filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
 			sld.dialog.currentnode = "ATpr_SD_Gubernator_20";
+			LAi_SetHuberType(sld);
+			ChangeCharacterAddressGroup(sld,"SantoDomingo_townhall","sit","sit1");
 		break;
 		
 		case "ATpr_SD_Gubernator_20":
@@ -908,18 +910,12 @@ void ProcessDialogEvent()
 		case "Ispa_Guber_3":
 			dialog.text = "Считайте это покрытием дополнительных издержек.";
 			link.l1 = "Не стану возражать, я сейчас нахожусь в непростом положении, и в связи с этим у меня есть вопрос, не столько государственного, сколько личного характера. Какая судьба ждёт утраченную Испанией колонию? Она долгое время была моим домом.";
-			link.l1.go = "Ispa_Guber_4";
-		break;
-		
-		case "Ispa_Guber_4":
-			dialog.text = "Хороших новостей не ждите. Форт Ла-Веги давно потерял своё стратегическое значение. Он располагается в стороне от наших основных торговых путей, а его содержание стоило короне больших ресурсов.";
-			link.l1 = "Возвращение под флаг Испании мало вероятно?";
 			link.l1.go = "Ispa_Guber_5";
 		break;
 		
 		case "Ispa_Guber_5":
-			dialog.text = "Окончательное решение ещё не принято, но на стратегическом совете я буду настаивать именно на возвращении Ла-Веги в состав Испании, и у меня в этом вопросе будет решающий голос. На данный момент есть более важные задачи.";
-			link.l1 = "Что ж, для меня это действительно не лучшее известие.";
+			dialog.text = "В данном вопросе нельзя принимать поспешных решений. Но я вам могу точно сказать, что Испания не оставит просто так тот кровавый разбой, который учинили пираты. Рано или поздно Ла Вега снова поднимет испанское знамя и справедливость восторжествует! А теперь я попрошу вас оставить меня, мне нужно работать.";
+			link.l1 = "Благодарю вас, ваше Превосходительство!";
 			link.l1.go = "Ispa_Guber_6";
 		break;
 		

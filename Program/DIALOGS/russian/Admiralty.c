@@ -49,13 +49,10 @@ void ProcessDialogEvent()
 			DeleteAttribute(pchar, "questTemp.AnjelikaTichPrologue3");
 			pchar.questTemp.AnjelikaTichPrologue3_1 = "ATP3_1";
 			
-			sld = GetCharacter(NPC_GenerateCharacter("SantoDomingo_Mayor_klon", "huber_spa", "man", "man", 30, SPAIN, -1, false));
-			sld.name	= "Губернатор";
-			sld.lastname	= "";
+			sld = CharacterFromID("SantoDomingo_Mayor")
 			sld.Dialog.Filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
 			sld.dialog.currentnode = "ATpr_SD_Gubernator_1";
 			LAi_SetStayType(sld);
-			LAi_SetImmortal(sld, true);
 			ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","quest","quest4");
 			
 			sld = GetCharacter(NPC_GenerateCharacter("ATpr_SD_Off_Guber_1", "off_spa_1", "man", "man", 30, SPAIN, -1, false));
@@ -67,6 +64,13 @@ void ProcessDialogEvent()
 			LAi_SetActorType(sld);
 			LAi_SetImmortal(sld, true);
 			ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","quest","quest2");
+		break;
+		
+		case "Strajniki":
+			dialog.text = RandPhraseSimple("Я слежу за вами.", ""+ GetSexPhrase("Сеньор","Сеньорита") +", это государственное учреждение, держитесь здесь в соответствии его статусу.");
+			Link.l1 = RandPhraseSimple("Буду иметь ввиду.", "Я понял"+ NPCharSexPhrase(NPChar,"","а") +".");
+			link.l1.go = "exit";
+			NextDiag.TempNode = "Strajniki";
 		break;
 	}
 }
