@@ -314,6 +314,7 @@ void AnjelikaTich_StartGame(string qName)
 	bDisableCharacterMenu = true;
 	SetCaptureTownByNation("LaVega", SPAIN);
 	pchar.questTemp.AnjelikaTichPrologue = "ATP";
+	pchar.questTemp.AnjelikaTichPrologue5 = "ATP5";
 	LocatorReloadEnterDisable("SantoDomingo_ExitTown", "reload3", true);
 	LocatorReloadEnterDisable("PortPax_ExitTown", "reload3", true);
 	
@@ -334,7 +335,6 @@ void AnjelikaTich_StartGame(string qName)
 	EquipCharacterbyItem(pchar, "blade9");
 	GiveItem2Character(pchar, "suit_2");
 	EquipCharacterbyItem(pchar, "suit_2");
-	AddItems(PChar, "suit_2", -1);
 	TakeNItems(pchar, "potion1", 3);
 	AddMoneyToCharacter(PChar, 500);
 	pchar.GenQuestBox.LaVega_MH12.box4.items.map_hisp = 1;
@@ -343,7 +343,6 @@ void AnjelikaTich_StartGame(string qName)
 	pchar.GenQuestBox.LaVega_MH12.box4.items.jewelry2 = 5;
 	
 	LAi_SetActorType(pchar);
-	//DoQuestCheckDelay("AnjelikaTich_Razgovor", 1.0);
 	DoQuestFunctionDelay("AnjelikaTich_Razgovor_1", 2.0);
 	StartQuestMovie(true, true, true);
 }
@@ -960,7 +959,9 @@ void ATpr_SvobodaIgry(string qName)
 	locations[FindLocation("LaVega_town")].models.always.locatorsl2 = "LaVega_1";			
 	sld = CharacterFromID("Edward Mansfield")
 	ChangeCharacterAddressGroup(sld, "LaVega_townhall", "sit", "sit1");
-			
+	
+	sld = CharacterFromID("AT_pr_OfficerRezid")
+	sld.lifeday = 0;
 	sld = CharacterFromID("AT_pr_devushka_na_rynke")
 	sld.lifeday = 0;
 	sld = CharacterFromID("Old Friend")

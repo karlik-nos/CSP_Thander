@@ -6283,7 +6283,7 @@ void QuestComplete(string sQuestName, string qname)
             WaitDate("", 0, 0, 1, 0, 0); //крутим день
 			SetCurrentTime(9, 20);
         	RecalculateJumpTable();
-            SetLaunchFrameFormParam("Прошел один день...", "", 0, 6);
+            SetLaunchFrameFormParam("Прошёл один день...", "", 0, 6);
             LaunchFrameForm();
 			npchar = characterFromId("hol_guber");
 			sld = GetCharacter(NPC_GenerateCharacter("GoverFantom", npchar.model, "man", npchar.model.animation, 15, HOLLAND, 0, false));
@@ -10729,15 +10729,6 @@ void QuestComplete(string sQuestName, string qname)
 			LocatorReloadEnterDisable("SantoDomingo_town", "Reload1_back", true);	//Не даём выйти из города (квест продолжается)
 			LocatorReloadEnterDisable("SantoDomingo_town", "Reload3_back", true);	//Блакируем резиденцию
 			PChar.quest.ATpr_SvobodaIgry.over = "yes";				//Если успели в Санто-Доминго, то выключаем таймер
-			sld = GetCharacter(NPC_GenerateCharacter("AT_pr_OfficerRezid", "sold_spa_7", "man", "man", 10, SPAIN, -1, true));
-			ChangeCharacterAddressGroup(sld, "SantoDomingo_town", "officers", "Reload3_1");
-			LAi_SetActorType(sld);
-			LAi_ActorTurnToCharacter(sld, pchar);
-			LAi_SetLoginTime(sld, 6.0, 21.99);
-			LAi_SetStayType(sld);
-			sld.dialog.filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
-			sld.dialog.currentnode = "AT_pr_Officer_u_rezidenta";
-			sld.talker = 5;
 		break;
 		
 		case "ATpr_OboronaSD":
@@ -11330,7 +11321,7 @@ void WaitNextHours(string qName)
 	pchar.locy = locy;
 	pchar.locz = locz;
 	sHour = "Прошло несколько часов...";
-	if(sti(pchar.quest.waithours) == 1)		sHour = "Прошел один час...";
+	if(sti(pchar.quest.waithours) == 1)		sHour = "Прошёл один час...";
 	if(sti(pchar.quest.waithours) == 24)	sHour = "Прошли одни сутки...";
 	if(isShipInside(pchar.location))
 	{

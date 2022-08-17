@@ -2433,7 +2433,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			DeleteAttribute(npchar, "WarDogUpgradePayment");
 			DialogExit();
 			AddCharacterExpToSkill(pchar, "Repair", 5000);
-			SetLaunchFrameFormParam("Прошел месяц. Наблюдая за работой Алексуса, вы узнали много нового о кораблестроении и плотницком ремесле.", "", 0.1, 15.0);
+			SetLaunchFrameFormParam("Прошёл месяц. Наблюдая за работой Алексуса, вы узнали много нового о кораблестроении и плотницком ремесле.", "", 0.1, 15.0);
 			LaunchFrameForm();
 			WaitDate("",0,0,30, 0, 20);
 			npchar.dialog.currentnode = "WarDogUpgrade_pay_1";

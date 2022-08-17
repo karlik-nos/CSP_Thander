@@ -76,6 +76,8 @@ void ProcessDialogEvent()
 			DialogExit();
 			EndQuestMovie();
 			bDisableCharacterMenu = false;
+			pchar.SystemInfo.ChangePIRATES = true;
+			LaunchCharacter(pchar);
 			
 			sld = CharacterFromID("AT_pr_Rebekka")
 			LAi_SetActorType(sld);
@@ -105,6 +107,12 @@ void ProcessDialogEvent()
 			FantomMakeCoolFighter(sld, 1, 10, 10, "blade3", "", 10);
 			sld.name	= "Гастен";
 			sld.lastname	= "Котес";
+			SetCharacterPerk(sld, "Trader");
+			SetCharacterPerk(sld, "BasicCommerce");
+			SetSPECIAL(sld, 6, 4, 8, 8, 10, 6, 7);
+			SetShipSkill(sld, 27, 45, 21, 14, 18, 21, 13, 9, 28);
+			TakeNItems(sld,"potion1", -10);
+			TakeNItems(sld,"potion2", -10);
 			sld.Dialog.Filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
 			sld.dialog.currentnode = "Torgovets_1";
 			LAi_SetStayType(sld);
@@ -594,6 +602,16 @@ void ProcessDialogEvent()
 			sld = CharacterFromID("Gasten_Kotes")
 			LAi_SetActorType(npchar);
 			LAi_ActorGoToLocator(sld, "reload", "reload1_back", "AT_pr_Stoim_na_pirse_9", -1);
+			
+			sld = GetCharacter(NPC_GenerateCharacter("AT_pr_OfficerRezid", "sold_spa_7", "man", "man", 10, SPAIN, -1, true));
+			ChangeCharacterAddressGroup(sld, "SantoDomingo_town", "officers", "Reload3_1");
+			//LAi_SetActorType(sld);
+			//LAi_ActorTurnToCharacter(sld, pchar);
+			LAi_SetLoginTime(sld, 6.0, 21.99);
+			LAi_SetStayType(sld);
+			sld.dialog.filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
+			sld.dialog.currentnode = "AT_pr_Officer_u_rezidenta";
+			sld.talker = 5;
 		break;
 		
 		case "AT_pr_Officer_u_rezidenta":
@@ -779,6 +797,7 @@ void ProcessDialogEvent()
 			LAi_SetImmortal(sld, false);
 			sld.HalfImmortal = true;
 			
+			DeleteAttribute(pchar, "questTemp.AnjelikaTichPrologue5");
 			RemoveCharacterEquip(pchar, CIRASS_ITEM_TYPE);
 			TakeItemFromCharacter(pchar, "suit_2");
 			DoQuestReloadToLocation("SantoDomingo_town", "reload", "gate_back", "");
