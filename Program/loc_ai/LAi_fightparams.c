@@ -347,8 +347,7 @@ float LAi_CalcExperienceForBlade(aref attack, aref enemy, string attackType, boo
 	ra = re/ra;
 	if (ra > 3.0)
 		ra = 3.0;//обрезание слишком большого множителя. кривые множители тоже решает
-	float exp = frandSmall(dmg * ra);//Lipsar передeлка опыта
-	// frandSmall на замену эффекта Lipsar-а
+	float exp = dmg * (0.8 + Random() * 0.2);
 
 	if(attackType == "feintc")
 		exp = exp * 1.5;
@@ -575,12 +574,9 @@ float LAi_GunCalcExperience(aref attack, aref enemy, float dmg)
 	ra = re/ra;
 	if (ra > 3.0)
 		ra = 3.0;//обрезание слишком большого множителя. кривые множители тоже решает
-	dmg = frandSmall(dmg * ra);//Lipsar передeлка опыта
-	// frandSmall на замену эффекта Lipsar-а
-	if(bRechargePistolOnLine || findsubstr(attack.model.animation, "mushketer" , 0) != -1)
-		{}
-	else
-		dmg *= 2;
+	dmg = dmg * (0.8 + Random() * 0.2);
+	if (findsubstr(attack.model.animation, "mushketer" , 0) != -1) dmg *= 0.8;
+	if (!bRechargePistolOnLine) dmg *= 2;
 	return dmg;
 }
 
@@ -926,7 +922,7 @@ void LAi_ApplyCharacterAttackDamage(aref attack, aref enemy, string attackType, 
 	//проверим на отравление
 	MakePoisonAttackCheckSex(enemy, attack);
 	//Есть ли оружие у цели
-	bool isSetBalde = (CheckAttribute(enemy, "equip.blade"));//(SendMessage(enemy, "ls", MSG_CHARACTER_EX_MSG, "IsSetBalde") != 0);
+	bool isSetBlade = (CheckAttribute(enemy, "equip.blade"));//(SendMessage(enemy, "ls", MSG_CHARACTER_EX_MSG, "isSetBlade") != 0);
 	if (CheckAttribute(attack,"vampire"))
 	{
 		float hp = attack.chr_ai.hp;
@@ -948,14 +944,14 @@ void LAi_ApplyCharacterAttackDamage(aref attack, aref enemy, string attackType, 
 			}
 		}
 	} */
-	if(LAi_IsDead(enemy) && isSetBalde)
+	if(LAi_IsDead(enemy) && isSetBlade)
 	{
 		//Начислим за убийство
 		//exp = exp + LAi_CalcDeadExp(attack, enemy);
 		//exp = LAi_GetCharacterMaxHP(enemy) * 10;
 		//noExp = false;
 		//DoCharacterKilledStatistics(sti(attack.index), sti(enemy.index));
-		/*if(!isSetBalde)
+		/*if(!isSetBlade)
 		{
 			//LAi_ChangeReputation(attack, -3);
 		}*/
@@ -980,9 +976,9 @@ void LAi_ApplyCharacterAttackDamage(aref attack, aref enemy, string attackType, 
         // boal statistic info 17.12.2003 -->
         Statistic_KillChar(attack, enemy, "_s");
         // boal statistic info 17.12.2003 <--
-        LAi_SetResultOfDeath(attack, enemy, isSetBalde);
+        LAi_SetResultOfDeath(attack, enemy, isSetBlade);
 	}
-	if(!isSetBalde)
+	if(!isSetBlade)
 	{
 		exp = 0.0;
 	}
@@ -990,7 +986,7 @@ void LAi_ApplyCharacterAttackDamage(aref attack, aref enemy, string attackType, 
 	if (!noExp)
     {
         //AddCharacterExp(attack, MakeInt(exp*0.5 + 0.5));
-        AddCharacterExpToSkill(attack, fencing_type, Makefloat(exp*0.2));
+        AddCharacterExpToSkill(attack, fencing_type, Makefloat(exp*0.12));
     }
 
 }
@@ -1364,13 +1360,13 @@ bool CheckForCirassBreak(ref attack, ref enemy, bool type)
 }
 
 //boal 19.09.05 -->
-void LAi_SetResultOfDeath(ref attack, ref enemy, bool isSetBalde)
+void LAi_SetResultOfDeath(ref attack, ref enemy, bool isSetBlade)
 {
     if (sti(attack.index) == GetMainCharacterIndex())
     {
 		if (GetRelation2BaseNation(sti(enemy.nation)) == RELATION_ENEMY)
 		{
-			if (!isSetBalde)
+			if (!isSetBlade)
 			{
 				LAi_ChangeReputation(attack, -1);   // to_do
 				if (rand(1) && CheckAttribute(enemy, "City"))
@@ -1532,7 +1528,7 @@ void LAi_ApplyCharacterFireDamage(aref attack, aref enemy, float kDist)
 		LAi_CheckKillCharacter(enemy);
 	}
 	//Есть ли оружие у цели
-	bool isSetBalde = (CheckAttribute(enemy, "equip.blade"));//(SendMessage(enemy, "ls", MSG_CHARACTER_EX_MSG, "IsSetBalde") != 0);
+	bool isSetBlade = (CheckAttribute(enemy, "equip.blade"));//(SendMessage(enemy, "ls", MSG_CHARACTER_EX_MSG, "isSetBlade") != 0);
 	/*if(LAi_grp_alarmactive == false)
 	{
 		if(CheckAttribute(pchar, "sneak.success"))
@@ -1543,13 +1539,13 @@ void LAi_ApplyCharacterFireDamage(aref attack, aref enemy, float kDist)
 			}
 		}
 	}  */
-	if(LAi_IsDead(enemy) && isSetBalde)
+	if(LAi_IsDead(enemy) && isSetBlade)
 	{
 		//Начислим за убийство
 		//exp = exp + LAi_CalcDeadExp(attack, enemy);
 		//exp = LAi_GetCharacterMaxHP(enemy) * 10;
 		//noExp = false;
-		//if(!isSetBalde)
+		//if(!isSetBlade)
 		//{
 			//LAi_ChangeReputation(attack, -3);
 		//	exp = 0.0;
@@ -1580,11 +1576,11 @@ void LAi_ApplyCharacterFireDamage(aref attack, aref enemy, float kDist)
         //Начислим за убийство
 		/*exp = exp + */
         //LAi_CalcDeadExp(attack, enemy); // начисляем только за удар и смерть
-  		LAi_SetResultOfDeath(attack, enemy, isSetBalde);
+  		LAi_SetResultOfDeath(attack, enemy, isSetBlade);
 	}
 	if(sBullet == "grapeshot")
 		exp *= 2;
-	if(!isSetBalde)
+	if(!isSetBlade)
 	{
 		//LAi_ChangeReputation(attack, -1);
 		exp = 0.0;
@@ -1592,7 +1588,7 @@ void LAi_ApplyCharacterFireDamage(aref attack, aref enemy, float kDist)
 
 	if(!noExp)
     {
-        AddCharacterExpToSkill(attack, SKILL_PISTOL, MakeFloat(exp*0.25));
+        AddCharacterExpToSkill(attack, SKILL_PISTOL, MakeFloat(exp*0.65));
     }
 }
 
