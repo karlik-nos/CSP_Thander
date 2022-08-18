@@ -7,13 +7,6 @@ int LocationInitLaVega(int n)
 	locations[n].id = "LaVega_town";
 	locations[n].id.label = "Street";
 	locations[n].image = "loading\jonny_load\city\Town_LaVega.tga";
-
-	// Порт Ла Веги
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	locations[n].id = "LaVega_port";
-	locations[n].id.label = "LaVega Port";
-	locations[n].image = "loading\jonny_load\shores\Shore01_Shore04.tga";
-	locations[n].worldmap = "LaVega_port";
 	//Town sack
 	locations[n].townsack = "LaVega";
 	//Sound
