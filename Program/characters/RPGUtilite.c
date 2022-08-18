@@ -38,6 +38,37 @@ int GetCharacterBaseHPValue(ref _refCharacter)
 	return ret;
 }
 
+// расчет максимального здоровья персонажа на основе ПИРАТЕС, ранга и добавленного здоровья
+int GetCharacterMaxHp(ref _refCharacter)
+{
+	int ret = GetCharacterBaseHpValue(_refCharacter) + GetCharacterAddHpValue(_refCharacter) * (sti(_refCharacter.rank) - 1);
+	if (CheckCharacterPerk(_refCharacter, "HPPlus"))
+	{
+		ret = ret + 80;
+	}
+	if (CheckCharacterPerk(_refCharacter, "HPPlusFixed"))
+	{
+		ret = ret + 60;
+	}
+	if (CheckAttribute(_refCharacter, "bonusHP"));
+	{
+		ret = ret + sti(_refCharacter.bonusHP);
+	}
+	return ret;
+}
+// добавить здоровья персонажу
+void AddBonusHpToCharacter(ref _refCharacter, int iHp)
+{
+	_refCharacter.bonusHP = sti(_refCharacter.bonusHP) + iHp;
+	SetHealthToCharacter(_refCharacter);
+}
+
+void SetHealthToCharacter(ref _refCharacter)
+{
+	_refCharacter.chr_ai.hp = GetCharacterMaxHp(_refCharacter);
+	_refCharacter.chr_ai.hp_max = GetCharacterMaxHp(_refCharacter);
+}
+
 float GetCharacterMaxEnergyValue(ref _refCharacter)
 {
     float ret = (30.0 + GetCharacterSPECIAL(_refCharacter, SPECIAL_A)*10);
@@ -635,6 +666,7 @@ void ApplayNewSkill(ref _chref, string _skill, int _addValue)
 			LAi_SetHP(_chref,nphp+60,nphp+60);
 		}
 	}
+	
 	//if (CheckCharacterPerk(_chref, "Buldozer"))
 	//{
 	//	SM_PusherSwitch();

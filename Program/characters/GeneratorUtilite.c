@@ -136,12 +136,33 @@ void Train_PPG(ref NPchar, bool setEquip bool increaseRank)   //WW
 	{
 		LAi_NPC_Equip(NPchar, sti(NPchar.rank), true, true);
 	}
-
-	if (sti(NPchar.SPECIAL.Strength) < 10) {NPchar.SPECIAL.Strength   = sti(NPchar.SPECIAL.Strength)+rand(1);}
-	if (sti(NPchar.SPECIAL.Endurance) < 10) {NPchar.SPECIAL.Endurance  = sti(NPchar.SPECIAL.Endurance)+rand(1);}
-	if (sti(NPchar.SPECIAL.Intellect) < 10) {NPchar.SPECIAL.Intellect  = sti(NPchar.SPECIAL.Intellect)+rand(1);}
-	if (sti(NPchar.SPECIAL.Agility) < 10) {NPchar.SPECIAL.Agility    = sti(NPchar.SPECIAL.Agility)+rand(1);}
-	if (sti(NPchar.SPECIAL.Luck) < 10) {NPchar.SPECIAL.Luck       = sti(NPchar.SPECIAL.Luck)+rand(1);}
+	
+	if (!CheckAttribute(npchar,"ssbackup")) {npchar.ssbackup = npchar.special.strength;} //backup stats before buff
+	if (!CheckAttribute(npchar,"esbackup")) {npchar.esbackup = npchar.special.endurance;} 
+	if (!CheckAttribute(npchar,"isbackup")) {npchar.isbackup = npchar.special.intellect;}  
+	if (!CheckAttribute(npchar,"asbackup")) {npchar.asbackup = npchar.special.agility;} 
+	if (!CheckAttribute(npchar,"lsbackup")) {npchar.lsbackup = npchar.special.luck;} 
+	
+	if (sti(NPchar.SPECIAL.Strength) < 10)
+	{
+		NPchar.SPECIAL.Strength = sti(NPchar.SPECIAL.Strength)+rand(1);
+	}
+	if (sti(NPchar.SPECIAL.Endurance) < 10)
+	{
+		NPchar.SPECIAL.Endurance = sti(NPchar.SPECIAL.Endurance)+rand(1);
+	}
+	if (sti(NPchar.SPECIAL.Intellect) < 10) 
+	{
+		NPchar.SPECIAL.Intellect = sti(NPchar.SPECIAL.Intellect)+rand(1);
+	}
+	if (sti(NPchar.SPECIAL.Agility) < 10) 
+	{
+		NPchar.SPECIAL.Agility = sti(NPchar.SPECIAL.Agility)+rand(1);
+	}
+	if (sti(NPchar.SPECIAL.Luck) < 10) 
+	{
+		NPchar.SPECIAL.Luck = sti(NPchar.SPECIAL.Luck)+rand(1);
+	}
 
 	NPchar.perks.list.AgileMan = "1";
 	ApplayNewSkill(NPchar, "AgileMan", 0);
@@ -164,6 +185,100 @@ void Train_PPG(ref NPchar, bool setEquip bool increaseRank)   //WW
 	TakeNItems(NPchar, "potion2", 5);
 	SetCharacterPerk(NPchar, prevPerk);
 	AddBonusEnergyToCharacter (NPchar, 15);
+	npchar.buffamount = sti(npchar.buffamount) + 1;
+}
+
+void Restore_PGG(ref npchar)
+{
+	if (!CheckAttribute(npchar,"PGGAi.Boosted")) {return; }
+	RemoveBonusEnergyFromCharacter(npchar,sti(npchar.buffamount) * 15);
+	npchar.SPECIAL.Strength   = npchar.ssbackup;
+	npchar.SPECIAL.Endurance  = npchar.esbackup;
+	npchar.SPECIAL.Intellect  = npchar.isbackup;
+	npchar.SPECIAL.Agility    = npchar.asbackup;
+	npchar.SPECIAL.Luck       = npchar.lsbackup;
+	SetHealthToCharacter(npchar);
+	CalculateSkillsForRank(npchar,sti(pchar.rank));
+	npchar.perks.list.AgileMan = "0";
+	if (npchar.model.animation == "man_fast") npchar.model.animation = "man";
+	if (npchar.model.animation == "Jessika_fast") npchar.model.animation = "Jessika";
+	if (npchar.model.animation == "YokoDias_fast") npchar.model.animation = "YokoDias";
+	if (npchar.model.animation == "Milenace_fast") npchar.model.animation = "Milenace";
+	if (npchar.model.animation == "Danielle_fast") npchar.model.animation = "Danielle";
+	if (npchar.model.animation == "Giant_fast") npchar.model.animation = "Giant";
+	if (npchar.model.animation == "Moscovit_fast") npchar.model.animation = "Moscovit";
+	if (npchar.model.animation == "Chani_fast") npchar.model.animation = "Chani";
+	if (npchar.model.animation == "skeleton_fast") npchar.model.animation = "skeleton";
+}
+
+// расчитать скиллы персонажу для заданного ранга на основе ПИРАТЕС
+void CalculateSkillsForRank (ref npchar, int rank)
+{
+	int i, ControlSum, Correction, CorrectionSum; 
+	float TempF, CorrectionCoeff;
+	string TempStr;
+	if (rank <= 0) {Log_TestInfo("Wrong argument"); return;}
+	npchar.rank_exp = 0;
+	npchar.rank = rank;
+	for (i = 1; i < 15; i++) // вычисления общего кол-ва скиллов на 1 ранге
+	{
+		TempStr = GetSkillNameByIdx(i);
+		TempF = MOD_EXP_RATE / GetCharacterExpRate(npchar,TempStr);
+		Correction += makeint(TempF + 0.5);
+	}
+	ControlSum = GetCharacterRankRate(npchar) * (rank - 1) + Correction; // необходимое кол-во скиллов на нужном ранге
+	if (ControlSum >= 1400) // для высоких рангов
+	{
+		SetSelfSkill(Npchar, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX);
+        SetShipSkill(Npchar, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX);
+		return;
+	}
+	CorrectionCoeff = 0;
+	for (i = 1; i < 8; i++)
+	{
+		TempStr = GetSkillNameByTRIdx("SPECIALType", i);
+		CorrectionCoeff += sti(npchar.SPECIAL.(TempStr));
+	}
+	CorrectionCoeff = 70 / (70 - (70 - CorrectionCoeff)); // магия, уменьшает количество итераций требуемых для расчета
+	Log_TestInfo("Coeff:" + FloatToString(CorrectionCoeff,3));
+	
+	Log_TestInfo("ControlSum:" + ControlSum);
+	for (i = 1; i < 15; i++)
+	{	
+		TempStr = GetSkillNameByIdx(i) + "_exp";
+		npchar.skill.(TempStr) = 0;
+		TempStr = GetSkillNameByIdx(i);
+		TempF = MOD_EXP_RATE / GetCharacterExpRate(npchar,TempStr);
+		Log_TestInfo(TempStr + ":" + FloatToString(TempF,1));
+		npchar.skill.(TempStr) = makeint(sti(TempF + 0.5) +  CorrectionCoeff * TempF / 10 * (rank - 1) * GetCharacterRankRate(npchar) / 14); 
+	}
+	Log_TestInfo("Total amount of skills on 1 rank:" + Correction);
+	CorrectSkillParam(npchar);
+	CorrectionSum = sti(Npchar.skill.FencingLight) + sti(Npchar.skill.FencingHeavy) + sti(Npchar.skill.Fortune) +
+                    sti(Npchar.skill.Pistol) + sti(Npchar.skill.Leadership) + sti(Npchar.skill.Fencing) +
+                    sti(Npchar.skill.Sailing) + sti(Npchar.skill.Accuracy) + sti(Npchar.skill.Cannons) +
+                    sti(Npchar.skill.Grappling) + sti(Npchar.skill.Repair) + sti(Npchar.skill.Defence) +
+                    sti(Npchar.skill.Commerce) + sti(Npchar.skill.Sneak);
+	Log_TestInfo("CorrectionSum:" + CorrectionSum);
+	Correction = ControlSum - CorrectionSum;
+	if(Correction < 0) {Log_TestInfo("Exception") return;}
+	Log_TestInfo("Correction2:" + Correction);
+	if (Correction == 0) {return; Log_TestInfo("Finalized after first calculation");}
+	while (Correction != 0)
+	{
+		for (i = 1; i < 15; i++) 
+		{	
+			if (Correction == 0) {return; }
+			TempStr = GetSkillNameByIdx(i);
+			if (npchar.skill.(TempStr) != SKILL_MAX)
+			{
+				npchar.skill.(TempStr) = sti(npchar.skill.(TempStr)) + 1;
+				Correction -= 1;
+			}
+		}
+	}
+	Log_TestInfo("Finalized after correction");
+	return;
 }
 
 // расчитать скилы заданного ранга, типа как от ГГ в будущем (ранг у НПС будет приблизительно, зависит от сложности)
@@ -281,13 +396,25 @@ void CalculateAppropriateSkills(ref NPchar)
 }
 
 void SetRankFromSkill(ref Npchar)
-{
-	if (CheckAttribute(NPchar,"indeprank")) return;
-    Npchar.rank = 1 + makeint( (sti(Npchar.skill.FencingLight) + sti(Npchar.skill.FencingHeavy) + sti(Npchar.skill.Fortune) +
-                           sti(Npchar.skill.Pistol) + sti(Npchar.skill.Leadership) + sti(Npchar.skill.Fencing) +
-                           sti(Npchar.skill.Sailing) + sti(Npchar.skill.Accuracy) + sti(Npchar.skill.Cannons) +
-                           sti(Npchar.skill.Grappling) + sti(Npchar.skill.Repair) + sti(Npchar.skill.Defence) +
-                           sti(Npchar.skill.Commerce) + sti(Npchar.skill.Sneak) - 84) / GetCharacterRankRate(Npchar) );
+{	
+	int Correction;
+	float TempF, CorrectionRank;
+	string TempStr;
+	if (CheckAttribute(Npchar,"indeprank")) return;
+	for (i = 1; i < 15; i++) // расчет кол-ва скиллов на 1 ранге 
+	{	
+		TempStr = GetSkillNameByIdx(i);
+		TempF = MOD_EXP_RATE / GetCharacterExpRate(npchar,TempStr);
+		Correction += makeint(TempF + 0.5);
+	}
+    CorrectionRank = 1 + (sti(Npchar.skill.FencingLight) + sti(Npchar.skill.FencingHeavy) + sti(Npchar.skill.Fortune) +
+                    sti(Npchar.skill.Pistol) + sti(Npchar.skill.Leadership) + sti(Npchar.skill.Fencing) +
+                    sti(Npchar.skill.Sailing) + sti(Npchar.skill.Accuracy) + sti(Npchar.skill.Cannons) +
+                    sti(Npchar.skill.Grappling) + sti(Npchar.skill.Repair) + sti(Npchar.skill.Defence) +
+                    sti(Npchar.skill.Commerce) + sti(Npchar.skill.Sneak) - Correction) / GetCharacterRankRate(Npchar);
+	Npchar.rank = makeint(CorrectionRank);
+	CorrectionRank = CorrectionRank - sti(Npchar.rank);
+	Npchar.rank_exp = makeint(CorrectionRank * GetCharacterRankRate(Npchar));
     if (sti(Npchar.rank) < 1)
     {
         Npchar.rank = 1;
