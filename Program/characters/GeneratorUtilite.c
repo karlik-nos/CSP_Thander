@@ -122,14 +122,17 @@ void Train_PPG(ref NPchar, bool setEquip bool increaseRank)   //WW
 	}
 	else
 	{
-		rank = sti(pchar.rank) + 10;
-		CalculateSkillsFromRank(Npchar, rank);
-		Npchar.rank = rank;
-		hp = LAi_GetCharacterMaxHP(NPchar);
-		LAi_SetHP(NPchar, hp*1.6, hp*1.6);
-		SetCharacterPerk(NPchar, prevPerk);
-		NPchar.PGGAi.Boosted = true;
-		NPchar.money = 0;
+		if (!CheckAttribute(NPchar, "PGGAi.Boosted")) // фактически дыра без проверки атрибута
+		{
+			rank = sti(pchar.rank) + 10; 
+			CalculateSkillsFromRank(Npchar, rank);
+			Npchar.rank = rank;
+			hp = LAi_GetCharacterMaxHP(NPchar);
+			LAi_SetHP(NPchar, hp*1.6, hp*1.6);
+			SetCharacterPerk(NPchar, prevPerk);
+			NPchar.PGGAi.Boosted = true;
+			NPchar.money = 0;
+		}
 	}
 
 	if (setEquip)
@@ -192,11 +195,11 @@ void Restore_PGG(ref npchar)
 {
 	if (!CheckAttribute(npchar,"PGGAi.Boosted")) {return; }
 	RemoveBonusEnergyFromCharacter(npchar,sti(npchar.buffamount) * 15);
-	npchar.SPECIAL.Strength   = npchar.ssbackup;
-	npchar.SPECIAL.Endurance  = npchar.esbackup;
-	npchar.SPECIAL.Intellect  = npchar.isbackup;
-	npchar.SPECIAL.Agility    = npchar.asbackup;
-	npchar.SPECIAL.Luck       = npchar.lsbackup;
+	npchar.SPECIAL.Strength   = sti(npchar.ssbackup);
+	npchar.SPECIAL.Endurance  = sti(npchar.esbackup);
+	npchar.SPECIAL.Intellect  = sti(npchar.isbackup);
+	npchar.SPECIAL.Agility    = sti(npchar.asbackup);
+	npchar.SPECIAL.Luck       = sti(npchar.lsbackup);
 	SetHealthToCharacter(npchar);
 	CalculateSkillsForRank(npchar,sti(pchar.rank));
 	npchar.perks.list.AgileMan = "0";
