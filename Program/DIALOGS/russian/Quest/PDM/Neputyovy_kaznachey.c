@@ -254,8 +254,14 @@ void ProcessDialogEvent()
 			link.l1 = "Меньше слов - к делу!";
 			link.l1.go = "fight_right_now";
 			sld = CharacterFromID("PDM_NK_Viktor")
-			FantomMakeCoolFighter(sld, Rank, Sila, Sila, "blade39", "Pistol1", DopHP);
-
+			if (MOD_SKILL_ENEMY_RATE <= 6)
+			{
+				FantomMakeCoolFighter(sld, Rank, Sila, Sila, "blade39", "Pistol1", DopHP);
+			}
+			else
+			{
+				FantomMakeCoolFighter(sld, Rank, Sila, Sila, "blade39", "Pistol2", DopHP);
+			}
 			sld.SaveItemsForDead = true;
 			sld.DontChangeBlade = true;
 			sld.DontChangeGun = true;
