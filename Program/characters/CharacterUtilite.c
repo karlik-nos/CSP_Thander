@@ -3684,6 +3684,7 @@ bool IsPCharHaveMushketerModel()
 
 	if(HasSubStr(sModel, "Blad") ||
 	HasSubStr(sModel, "Whisper") ||
+	HasSubStr(sModel, "PGG_Barhard") ||
 	HasSubStr(sModel, "PGG_Anamaria") ||
 	HasSubStr(sModel, "PGG_Victori") ||
 	HasSubStr(sModel, "PGG_Angellica") ||
