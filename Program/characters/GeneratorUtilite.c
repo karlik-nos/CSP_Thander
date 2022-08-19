@@ -202,7 +202,7 @@ void Restore_PGG(ref npchar)
 	npchar.SPECIAL.Luck       = sti(npchar.lsbackup);
 	CalculateSkillsForRank(npchar,sti(pchar.rank));
 	SetHealthToCharacter(npchar);
-	npchar.perks.list.AgileMan = "0";
+	DeleteAttribute(npchar,"perks.list.AgileMan");
 	if (npchar.model.animation == "man_fast") npchar.model.animation = "man";
 	if (npchar.model.animation == "Jessika_fast") npchar.model.animation = "Jessika";
 	if (npchar.model.animation == "YokoDias_fast") npchar.model.animation = "YokoDias";
