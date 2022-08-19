@@ -200,8 +200,8 @@ void Restore_PGG(ref npchar)
 	npchar.SPECIAL.Intellect  = sti(npchar.isbackup);
 	npchar.SPECIAL.Agility    = sti(npchar.asbackup);
 	npchar.SPECIAL.Luck       = sti(npchar.lsbackup);
-	SetHealthToCharacter(npchar);
 	CalculateSkillsForRank(npchar,sti(pchar.rank));
+	SetHealthToCharacter(npchar);
 	npchar.perks.list.AgileMan = "0";
 	if (npchar.model.animation == "man_fast") npchar.model.animation = "man";
 	if (npchar.model.animation == "Jessika_fast") npchar.model.animation = "Jessika";
@@ -223,6 +223,7 @@ void CalculateSkillsForRank (ref npchar, int rank)
 	if (rank <= 0) {Log_TestInfo("Wrong argument"); return;}
 	npchar.rank_exp = 0;
 	npchar.rank = rank;
+	Correction = 0;
 	for (i = 1; i < 15; i++) // вычисления общего кол-ва скиллов на 1 ранге
 	{
 		TempStr = GetSkillNameByIdx(i);
@@ -404,6 +405,7 @@ void SetRankFromSkill(ref Npchar)
 	float TempF, CorrectionRank;
 	string TempStr;
 	if (CheckAttribute(Npchar,"indeprank")) return;
+	Correction = 0;
 	for (i = 1; i < 15; i++) // расчет кол-ва скиллов на 1 ранге 
 	{	
 		TempStr = GetSkillNameByIdx(i);

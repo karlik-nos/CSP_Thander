@@ -38,35 +38,34 @@ int GetCharacterBaseHPValue(ref _refCharacter)
 	return ret;
 }
 
-// расчет максимального здоровья персонажа на основе ПИРАТЕС, ранга и добавленного здоровья
-int GetCharacterMaxHp(ref _refCharacter)
+int GetCharacterNormalHp(ref _refCharacter)
 {
 	int ret = GetCharacterBaseHpValue(_refCharacter) + GetCharacterAddHpValue(_refCharacter) * (sti(_refCharacter.rank) - 1);
 	if (CheckCharacterPerk(_refCharacter, "HPPlus"))
 	{
-		ret = ret + 80;
+		ret += 80;
 	}
 	if (CheckCharacterPerk(_refCharacter, "HPPlusFixed"))
 	{
-		ret = ret + 60;
-	}
-	if (CheckAttribute(_refCharacter, "bonusHP"));
-	{
-		ret = ret + sti(_refCharacter.bonusHP);
+		ret += 60;
 	}
 	return ret;
-}
-// добавить здоровья персонажу
-void AddBonusHpToCharacter(ref _refCharacter, int iHp)
-{
-	_refCharacter.bonusHP = sti(_refCharacter.bonusHP) + iHp;
-	SetHealthToCharacter(_refCharacter);
 }
 
 void SetHealthToCharacter(ref _refCharacter)
 {
-	_refCharacter.chr_ai.hp = GetCharacterMaxHp(_refCharacter);
-	_refCharacter.chr_ai.hp_max = GetCharacterMaxHp(_refCharacter);
+	_refCharacter.chr_ai.hp_max = GetCharacterNormalHp(_refCharacter);
+	if (!CheckAttribute(_refcharacter, "chr_ai.hp"))
+	{
+		_refcharacter.chr_ai.hp = GetCharacterNormalHp(_refCharacter);
+	}
+	else
+	{
+		if (sti(_refcharacter.chr_ai.hp) > sti(_refcharacter.chr_ai.hp_max))
+		{
+			_refcharacter.chr_ai.hp = _refcharacter.chr_ai.hp_max;
+		}
+	}		
 }
 
 float GetCharacterMaxEnergyValue(ref _refCharacter)
@@ -271,6 +270,7 @@ void SetRandSPECIAL_K(ref _refCharacter)  // для штурманов-казн�
 /// влияет только на СПЕЦИАЛ
 int ApplayNavyPenalty(ref _refCharacter, string skillName, int sumSkill)
 {
+	if (CheckAttribute(_refCharacter,"bchangepirates")) {return sumSkill;} // фикс неправильного расчета начальных значений скиллов при старте игры от наличия минусов от навигации
     if (IsCompanion(_refCharacter) && GetRemovable(_refCharacter))//пусть будет для компаньонов тоже sti(_refCharacter.index) == GetMainCharacterIndex()) // только для главного, чтоб не тормозить всю игру
     {
         int sailSkill;
@@ -291,6 +291,7 @@ int ApplayNavyPenalty(ref _refCharacter, string skillName, int sumSkill)
 // пенальти в скилы
 int ApplayNavyPenaltyToSkill(ref _refCharacter, string skillName, int sumSkill)
 {
+	if (CheckAttribute(_refCharacter,"bchangepirates")) {return sumSkill;}
     if (IsCompanion(_refCharacter) && GetRemovable(_refCharacter))//пусть будет для компаньонов тоже sti(_refCharacter.index) == GetMainCharacterIndex()) // только для главного, чтоб не тормозить всю игру
     {
         int sailSkill;
@@ -800,6 +801,7 @@ void ClearHPTubeEffect(string qName)
 	LAi_SetHP(pchar,nphp-sti(pchar.PerkValue.HPBONUS),nphp-sti(pchar.PerkValue.HPBONUS));
 	DeleteAttribute(pchar,"chr_ai.bonushptube");
 	DeleteAttribute(pchar,"PerkValue.HPBONUS");
+	RestoreModelsBeforeDrugs();
 }
 
 void ClearENTubeEffect(string qName)
