@@ -470,56 +470,12 @@ float Ship_MastDamage()
            	ref rCannon = GetCannonByType(sti(AIBalls.CurrentBallCannonType));
 			int	iBallType = sti(AIBalls.CurrentBallType);
 			int nCaliber = sti(rCannon.caliber);
-			/*
-			//<---- Lipsar резист урона мачтам от калибра и класса
-			int iXmark = 0;
-			switch(nCaliber)
-			{
-				case 8:
-					iXmark = 8;
-				break;
-				case 12:
-					iXmark = 5;
-				break;
-				case 16:
-					iXmark = 5;
-				break;
-				case 20:
-					iXmark = 5;
-				break;
-				case 24:
-					iXmark = 2;
-				break;
-				case 32:
-					iXmark = 1;
-				break;
-				case 36:
-					iXmark = 1;
-				break;
-				case 42:
-					iXmark = 0;
-				break;
-				case 48:
-					iXmark = 0;
-				break;
-			}
-			float iResist = 1;
-			if(iXmark > iClass)
-			{
-				iResist = 1 + 1.0 / (iXmark - iClass);
-			}
-			else
-			{
-				iResist = 1.0/(iClass-iXmark);
-			}
-		//<---- Lipsar резист урона мачтам от калибра и класса
-		*/
-            float nDirect = 0.45; //Glancing
+			float nDirect = 0.45; //Glancing
             int nKni = nCaliber;
             if(iBallType == GOOD_KNIPPELS)
                 nKni = (nKni + 8) * 1.6;
             if(rand(200 - nClass*25) < nKni)//20% ok 30% good 50+% penetrate
-                nDirect = 1.3; //Direct
+                nDirect = 1.3; 
             float fCbrMDamage = retMin(makefloat(nCaliber) / MAX_CAL_MAST_DMG, 1.0);
             float fClsMDamage = 0.03 * (nClass / 6);
             float tempDamage = 0.0;
@@ -527,7 +483,7 @@ float Ship_MastDamage()
 			switch (iBallType)
 			{
 				case GOOD_BALLS:
-					baseDamage = pow((nClass+1), 1.8) * 0.015; //* 0.005; //0.025;
+					baseDamage = pow((nClass+1), 1.8) * 0.015; //* 0.005;Leo //0.025;
 				break;
 				case GOOD_GRAPES:
 					baseDamage = 0.0;
@@ -543,8 +499,6 @@ float Ship_MastDamage()
 			}
 			tempDamage = baseDamage * fCbrMDamage + fClsMDamage;
 			tempDamage = tempDamage * nDirect;
-			//может выдержать попаданий в своем классе: I ~120 hits II 50 III 33 IV 25 V 20
-			// LEO: Общий дамаг по мачтам разделен на классы
 			string sShip = rBaseShip.BaseName;
 			if (sShip == "PRINCE" || sShip == "OXFORD" || sShip == "RESOLUTION" || sShip == "MORDAUNT") 
 				tempDamage = tempDamage * MastMulti * 0.8; //для хрупких кораблей сделать жирнее мачты
@@ -591,7 +545,6 @@ float Ship_MastDamage()
 		rCharacter.Tmp.SpeedRecall = 0; // чтоб пересчитался маневр
 		RefreshBattleInterface();
 	}
-	//Log_TestInfo("Damage "+fDamage+" Mast "+iMastNum);
 	return fDamage;
 	//procMastFall
 }

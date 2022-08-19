@@ -2451,7 +2451,6 @@ ref ProcessSailDamage()
 		arSail.hc = holeCount;
 		arSail.oldhd = holeData;
 	}
-	//Log_Info("NewHitCount "+arSail.NewHitCount+", HoleCount "+holeCount+", sailDmg "+sailDmg+", defendedCount "+arSail.defended);
 	
 	arSail.mhc = maxHoleCount;
 	arSail.sp = sailPower;
