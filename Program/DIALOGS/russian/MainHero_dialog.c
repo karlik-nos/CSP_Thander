@@ -490,7 +490,7 @@ void ProcessDialogEvent()
 			Link.l10 = "Установить приоритет использования еды.";
 	    	Link.l10.go = "food_priority";
 			if (pchar.location == Get_My_Cabin())
-				{
+			{
 				Link.l11 = "Использовать еду автоматически.";
 				Link.l11.go = "autofood";
 				if(CheckAttribute(pchar,"autofood"))
@@ -508,6 +508,19 @@ void ProcessDialogEvent()
 			{
 				link.lpotion = "Установить приоритет на использование лучших лечебных средств.";
 				Link.lpotion.go = "potion_priority";
+			}
+			if (pchar.location == Get_My_Cabin())
+			{
+				link.lcompanioncapture = "Проинструктировать компаньонов о распоряжении добычей при абордаже.";
+				if (CheckAttribute(PChar, "CompanionsLeaveCapturesDrift"))
+				{
+					link.lcompanioncapture = link.lcompanioncapture + " Приказать им действовать по-старому - поменять корабль если стоит, ограбить по-быстрому и утопить.";
+				}
+				else
+				{
+					link.lcompanioncapture = link.lcompanioncapture + " Приказать им оставлять призовой корабль дрейфовать.";
+				}
+				link.lcompanioncapture.go = "companion_capture";
 			}
 			if(startHeroType == 2)
 			{
@@ -842,6 +855,16 @@ void ProcessDialogEvent()
 			dialog.text = "Приоритет для еды установлен.";
 			PChar.autofood_betterfood = true;
 			link.l1 = "Славно!";
+			link.l1.go = "exit";
+		break;
+
+		case "companion_capture":
+			dialog.text = "Инструкции переданы.";			
+			if (CheckAttribute(PChar, "CompanionsLeaveCapturesDrift"))
+				DeleteAttribute(PChar, "CompanionsLeaveCapturesDrift");
+			else
+				PChar.CompanionsLeaveCapturesDrift = true;
+			link.l1 = "Отлично!";
 			link.l1.go = "exit";
 		break;
 

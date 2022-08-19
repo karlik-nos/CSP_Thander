@@ -1092,6 +1092,12 @@ void Ship_CheckSituation()
 
 	if (sti(rCharacter.index) == nMainCharacterIndex)  return;
 	if (LAi_IsDead(rCharacter) || sti(rCharacter.ship.type) == SHIP_NOTUSED) { return; }  // super fix boal
+	if (HasSubStr(rCharacter.id, "_DriftCap_"))
+	{
+		Ship_SetTaskDrift(PRIMARY_TASK, sti(rCharacter.index));
+		Ship_SetTaskDrift(SECONDARY_TASK, sti(rCharacter.index));
+		return;
+	}
 
 	// Log_Testinfo("Ship_CheckSituation " + rCharacter.id);
 
@@ -2534,7 +2540,6 @@ void ShipTaken(int iDeadCharacterIndex, int iKillStatus, int iKillerCharacterInd
 	ref rDead, rKillerCharacter, rMainCharacter, rBaseShip, rKillerBaseShip;
 
 	rDead = GetCharacter(iDeadCharacterIndex);
-	rDead.Killer.Index = iKillerCharacterIndex;
 	rBaseShip = GetRealShip(sti(rDead.Ship.Type));
 	rMainCharacter = GetMainCharacter();
     //#20180925-01
@@ -2589,7 +2594,6 @@ void ShipTakenFree(int iDeadCharacterIndex, int iKillStatus, int iKillerCharacte
 	ref rDead, rKillerCharacter, rMainCharacter, rBaseShip, rKillerBaseShip;
 
 	rDead = GetCharacter(iDeadCharacterIndex);
-	rDead.Killer.Index = iKillerCharacterIndex;
 	rBaseShip = GetRealShip(sti(rDead.Ship.Type));
 	rMainCharacter = GetMainCharacter();
     //#20180925-01

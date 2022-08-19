@@ -591,7 +591,7 @@ void BI_LaunchCommand()
         Sea_CabinStartNow();
 		break;
 	case "BI_Boat":
-		if (!CheckAttribute(Characters[targetNum], "LockBoat"))
+		if (!CheckAttribute(Characters[targetNum], "LockBoat") && !HasSubStr(Characters[targetNum].id, "_DriftCap_"))
 		{
 			// Warship 09.07.09 Мэри Селест
 			// Второй раз на нее выслать шлюпку низя
@@ -979,6 +979,7 @@ void AddShipToInterface(int charIndex)
 		}
 	}
 	int myShip = false;
+	int transferableShip = false;
 	int shipRelation = BI_RELATION_NEUTRAL;
 	switch( SeaAI_GetRelation(charIndex,nMainCharacterIndex) )
 	{
@@ -997,7 +998,8 @@ void AddShipToInterface(int charIndex)
 			myShip = true;
 		}
 	}
-
+	transferableShip = myShip;
+	if (HasSubStr(chRef.id, "_DriftCap_") && !LAi_IsDead(chRef)) transferableShip = true;
 
 	if( CharacterIsDead(chRef) )
 	{
@@ -1005,18 +1007,7 @@ void AddShipToInterface(int charIndex)
 			return;
 	}
 
-	if (myShip != true)
-	{
-		bCanSpeak = true;
-	}
-	//заглушка, убирающая интерфейс разговоров в море.
-	//кому из аддонщиков будет интересно привести систему разговоров в норм - раскоментарьте
-	//а у нас поставили сроки жесткие, програмеры в отпуске, и я банально не успеваю все оттестить
-	//и поправить, ибо некоторые баги програмерские
-	//для изьятия заглушки удалите нах следующую строчку
-	//bCanSpeak = false;
-
-	SendMessage(&BattleInterface,"llaall",BI_IN_CREATE_SHIP,charIndex,chRef,shipRef,myShip,shipRelation);
+	SendMessage(&BattleInterface,"llaallll",BI_IN_CREATE_SHIP,charIndex,chRef,shipRef,myShip,shipRelation,0,transferableShip);
 }
 
 void BI_DeleteShip()
@@ -3273,6 +3264,8 @@ ref procGetSRollSpeed()
 // скорость подъема паруса
 float GetRSRollSpeed(ref chref)
 {
+	if (HasSubStr(chref.id, "_DriftCap_")) return 3.0;
+
 	int iShip = sti(chref.ship.type);
 	if( iShip<0 || iShip>=REAL_SHIPS_QUANTITY ) {return 0.0;}
 
