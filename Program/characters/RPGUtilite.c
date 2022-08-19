@@ -667,7 +667,6 @@ void ApplayNewSkill(ref _chref, string _skill, int _addValue)
 			LAi_SetHP(_chref,nphp+60,nphp+60);
 		}
 	}
-	
 	//if (CheckCharacterPerk(_chref, "Buldozer"))
 	//{
 	//	SM_PusherSwitch();
