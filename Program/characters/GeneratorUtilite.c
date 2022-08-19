@@ -400,25 +400,12 @@ void CalculateAppropriateSkills(ref NPchar)
 
 void SetRankFromSkill(ref Npchar)
 {	
-	int Correction;
-	float TempF, CorrectionRank;
-	string TempStr;
-	if (CheckAttribute(Npchar,"indeprank")) return;
-	Correction = 0;
-	for (i = 1; i < 15; i++) // расчет кол-ва скиллов на 1 ранге 
-	{	
-		TempStr = GetSkillNameByIdx(i);
-		TempF = MOD_EXP_RATE / GetCharacterExpRate(npchar,TempStr);
-		Correction += makeint(TempF + 0.5);
-	}
-    CorrectionRank = 1 + (sti(Npchar.skill.FencingLight) + sti(Npchar.skill.FencingHeavy) + sti(Npchar.skill.Fortune) +
-                    sti(Npchar.skill.Pistol) + sti(Npchar.skill.Leadership) + sti(Npchar.skill.Fencing) +
-                    sti(Npchar.skill.Sailing) + sti(Npchar.skill.Accuracy) + sti(Npchar.skill.Cannons) +
-                    sti(Npchar.skill.Grappling) + sti(Npchar.skill.Repair) + sti(Npchar.skill.Defence) +
-                    sti(Npchar.skill.Commerce) + sti(Npchar.skill.Sneak) - Correction) / GetCharacterRankRate(Npchar);
-	Npchar.rank = makeint(CorrectionRank);
-	CorrectionRank = CorrectionRank - sti(Npchar.rank);
-	Npchar.rank_exp = makeint(CorrectionRank * GetCharacterRankRate(Npchar));
+	if (CheckAttribute(NPchar,"indeprank")) return;
+    Npchar.rank = 1 + makeint( (sti(Npchar.skill.FencingLight) + sti(Npchar.skill.FencingHeavy) + sti(Npchar.skill.Fortune) +
+                           sti(Npchar.skill.Pistol) + sti(Npchar.skill.Leadership) + sti(Npchar.skill.Fencing) +
+                           sti(Npchar.skill.Sailing) + sti(Npchar.skill.Accuracy) + sti(Npchar.skill.Cannons) +
+                           sti(Npchar.skill.Grappling) + sti(Npchar.skill.Repair) + sti(Npchar.skill.Defence) +
+                           sti(Npchar.skill.Commerce) + sti(Npchar.skill.Sneak) - 84) / GetCharacterRankRate(Npchar) );
     if (sti(Npchar.rank) < 1)
     {
         Npchar.rank = 1;
