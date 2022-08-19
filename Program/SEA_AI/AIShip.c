@@ -236,7 +236,7 @@ void CreateShipEnvironment()
 	SetEventHandler("Ship_BortReloadEvent", "Ship_BortReloadEvent", 0);
 }
 
-float Ship_GetBortFireDelta()
+float Ship_GetBortFireDelta()//смещение от центра цели при попытке попасть - ошибка расчета главного канонира
 {
 	aref aCharacter = GetEventData();
 	float x = GetEventData();
@@ -244,17 +244,9 @@ float Ship_GetBortFireDelta()
 	float z = GetEventData();
 	float fDistance = GetDistance2D(x, z, stf(aCharacter.Ship.Pos.x), stf(aCharacter.Ship.Pos.z));
 
-	float fAccuracy = 1.3 - stf(aCharacter.TmpSkill.Accuracy);
-
-	// to_do
-	if (iArcadeSails == 1)// && aCharacter.id == characters[nMainCharacterIndex].id)
-	{
-		fAccuracy  = fAccuracy - 0.2;
-		if (fAccuracy < 0.1)
-		{
-			fAccuracy = 0.1;
-		}
-	}
+	float fAccuracy = frand(0.1) + (1 - stf(aCharacter.TmpSkill.Accuracy))/3;
+	
+	if (iArcadeSails == 0){fAccuracy += 0.2;}
 
 	float fRadius = fAccuracy * Bring2Range(0.0, 120.0, 0.0, 1000.0, fDistance);
 	return fRadius;
@@ -2826,7 +2818,7 @@ void Ship_HullHitEvent()
 
 	if (bSeriousBoom == true)
 	{
-		if (rOurCharacter.id == pchar.id || rand(2) == 1)
+		if (rOurCharacter.id == pchar.id || rand(2) == 1 || iBallType == GOOD_BOMBS)
 		{
 			Ship_Serious_Boom(x, y, z);
 		}
