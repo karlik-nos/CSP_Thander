@@ -1206,7 +1206,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			AddCharacterExpToSkill(pchar, "FencingHeavy", 230);
 			AddCharacterExpToSkill(pchar, "Fencing", 250);
  			//слухи
-			AddSimpleRumour("Говорят, что капитан " + GetFullName(pchar) + " взялся за выполнения необычного задания - поиски какого-то загадочного библейского трактата. И говорят, что нашел.", HOLLAND, 5, 1);
+			AddSimpleRumour("Говорят, что капитан " + GetFullName(pchar) + " взялся за выполнения необычного задания - поиски какого-то загадочного библейского трактата. И говорят, что нашёл.", HOLLAND, 5, 1);
         break;
         //********************** Квест №9, Захват линейных кораблей. ************************
         case "Step_9_1":

@@ -129,7 +129,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 		//Пиратка, квест №5, ОЗГ
 		case "StepPL5Berm_1":
-			dialog.text = "Да вот, только что и забегал. Спросил, где живет Орри Брюс, и ушел. ";
+			dialog.text = "Да вот, только что и забегал. Спросил, где живет Орри Брюс, и ушёл. ";
 			link.l1 = "И где же этот Орри Брюс обитает?";
 			link.l1.go = "StepPL5Berm_2";
 		break;

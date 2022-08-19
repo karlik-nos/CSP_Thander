@@ -878,7 +878,7 @@ void ProcessDialogEvent()
 		}
 		else
 		{
-			sTmp += ", попал в шторм недалеко от " + sLoc + " и пошел на дно. Но они успели спасти часть груза и высадились в бухте " + GetConvertStr(PChar.GenQuest.PGG_Quest.Island.Shore, "LocLables.txt") +
+			sTmp += ", попал в шторм недалеко от " + sLoc + " и пошёл на дно. Но они успели спасти часть груза и высадились в бухте " + GetConvertStr(PChar.GenQuest.PGG_Quest.Island.Shore, "LocLables.txt") +
 				" Сейчас они ждут прихода своей эскадры.";
 		}
 

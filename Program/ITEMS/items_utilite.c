@@ -940,7 +940,7 @@ void QuestCheckEnterLocItem(aref _location, string _locator) /// <<<провер
 
 void QuestCheckExitLocItem(aref _location, string _locator) /// <<<проверка выхода ГГ из локаторов группы Item.<<<
 {
-	//=======> Испанская линейка, квест №4. В спальне нашел возле комода нашел недописанное письмо
+	//=======> Испанская линейка, квест №4. В спальне нашёл возле комода нашёл недописанное письмо
 	if (_location.id == "Havana_houseS1Bedroom" && pchar.questTemp.State == "Sp4Detection_toMirderPlace" && CheckCharacterItem(pchar, "letter_notes"))
     {
         DoQuestCheckDelay("TalkSelf_Quest", 0.1); //диалог сам-на-сам

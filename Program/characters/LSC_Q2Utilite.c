@@ -789,7 +789,7 @@ void QuestActions()
 	//************** линейка ГПК, завал первого каспера с помощь Армо *******************
 	if (CheckAttribute (pchar, "questTemp.LSC.Armo"))
 	{
-		//первый каспер пошел
+		//первый каспер пошёл
 		if (sti(pchar.questTemp.LSC.Armo) == 1 || sti(pchar.questTemp.LSC.Armo) == 3 || sti(pchar.questTemp.LSC.Armo) == 5)
 		{
 			if (pchar.location == "LostShipsCity_town" && GetHour() < 2)
@@ -1895,9 +1895,9 @@ string GetSharpRumour_default()
 	string sRumour;
 	switch (rand(2))
     {
-        case 0: sRumour = "Капитан Шарп был здесь, я его видел. Но сейчас его в городе нет, а куда ушел - не знаю."; break;
+        case 0: sRumour = "Капитан Шарп был здесь, я его видел. Но сейчас его в городе нет, а куда ушёл - не знаю."; break;
         case 1: sRumour = "Капитан Шарп заходил в наш город. Где он сейчас я не знаю, у нас его точно нет."; break;
-        case 2:	sRumour = "Капитан Барталомью Шарп ушел из города буквально на днях..."; break;
+        case 2:	sRumour = "Капитан Барталомью Шарп ушёл из города буквально на днях..."; break;
     }
 	return sRumour;
 }
@@ -1907,9 +1907,9 @@ string GetSharpRumour_toCityTarget()
 	string sRumour;
 	switch (rand(2))
     {
-        case 0: sRumour = "Капитан Бартоломью Шарп был у нас в городе и, как всегда, умудрился 'отметиться'... Но сейчас его здесь нет. По слухам он ушел в " + XI_ConvertString("Colony" + pchar.questTemp.Sharp.City + "Acc") + "."; break;
-        case 1: sRumour = "Знаете, капитан Шарп был в городе недавно. Веселый пират, этот Барталомью... Хорошо, однако, что он покинул наш город. Кажется он ушел в " + XI_ConvertString("Colony" + pchar.questTemp.Sharp.City + "Acc") + "."; break;
-        case 2:	sRumour = "Вы знаете, недавно нас почтил своим присутствием капитан Шарп. Но, к нашему большому разочарованию, нового карибского анекдота 'от Шарпа' не случилось. Жаль... А сейчас его нет у нас в городе. Говорят, он ушел в " + XI_ConvertString("Colony" + pchar.questTemp.Sharp.City + "Acc") + ". Может им повезет..."; break;
+        case 0: sRumour = "Капитан Бартоломью Шарп был у нас в городе и, как всегда, умудрился 'отметиться'... Но сейчас его здесь нет. По слухам он ушёл в " + XI_ConvertString("Colony" + pchar.questTemp.Sharp.City + "Acc") + "."; break;
+        case 1: sRumour = "Знаете, капитан Шарп был в городе недавно. Веселый пират, этот Барталомью... Хорошо, однако, что он покинул наш город. Кажется он ушёл в " + XI_ConvertString("Colony" + pchar.questTemp.Sharp.City + "Acc") + "."; break;
+        case 2:	sRumour = "Вы знаете, недавно нас почтил своим присутствием капитан Шарп. Но, к нашему большому разочарованию, нового карибского анекдота 'от Шарпа' не случилось. Жаль... А сейчас его нет у нас в городе. Говорят, он ушёл в " + XI_ConvertString("Colony" + pchar.questTemp.Sharp.City + "Acc") + ". Может им повезет..."; break;
     }
 	return sRumour;
 }
@@ -1966,7 +1966,7 @@ string GetBlueBirdRumour_Ship()
     {
         case 0: sRumour = "Вы знаете, местный торговец, " + GetFullName(characterFromId(pchar.questTemp.BlueBird.City + "_trader")) + ", опять отправляет собственный флейт '" + pchar.questTemp.BlueBird.Ship.Name + "' в Старый Свет за товаром. Недавно флейт вышел из порта."; break;
 		case 1: sRumour = "Хм, а дела у нашего негоцианта доморощенного идут неплохо! " + GetFullName(characterFromId(pchar.questTemp.BlueBird.City + "_trader")) + " вновь отправил собственный флейт '" + pchar.questTemp.BlueBird.Ship.Name + "' за товаром, тот только что вышел из нашего порта."; break;
-        case 2:	sRumour = "М-да, а " + GetFullName(characterFromId(pchar.questTemp.BlueBird.City + "_trader")) + " все богатеет и богатеет. Только вчера его парусник стоял под разгрузкой в порту, а сегодня порт уже попрощался с ним. Флейт '" + pchar.questTemp.BlueBird.Ship.Name + "' ушел опять за товаром, так то!"; break;
+        case 2:	sRumour = "М-да, а " + GetFullName(characterFromId(pchar.questTemp.BlueBird.City + "_trader")) + " все богатеет и богатеет. Только вчера его парусник стоял под разгрузкой в порту, а сегодня порт уже попрощался с ним. Флейт '" + pchar.questTemp.BlueBird.Ship.Name + "' ушёл опять за товаром, так то!"; break;
     }
 	return sRumour;
 }
@@ -2315,7 +2315,7 @@ void PortmansSeekShip_writeQuestBook(ref rid)
 		AddQuestUserData(sTitle, "sShipName", sld.Ship.name);
 		AddQuestUserData(sTitle, "sCity", XI_ConvertString("Colony" + rid.city + "Gen"));
 		iTemp = RealShips[sti(sld.Ship.Type)].basetype;
-		AddQuestUserData(sTitle, "sSexWord", GetShipSexWord(ShipsTypes[iTemp].name, "ушел", "ушла"));
+		AddQuestUserData(sTitle, "sSexWord", GetShipSexWord(ShipsTypes[iTemp].name, "ушёл", "ушла"));
 		AddQuestUserData(sTitle, "sTargetCity", XI_ConvertString("Colony" + sld.quest.targetCity + "Acc"));
 		if (GetIslandByCityName(sld.quest.targetCity) != sld.quest.targetCity)
 		{
@@ -2599,7 +2599,7 @@ void LSC_CasperIsHelp()
 	Log_SetStringToLog("Звуки борьбы были услышаны на барке 'Сан Габриэль'.");
 	chrDisableReloadToLocation = true;
 	pchar.questTemp.LSC = "toSeekMechanikCasperOff";
-	//если пошел навал, то чистим квест Армо
+	//если пошёл навал, то чистим квест Армо
 	pchar.questTemp.LSC.Armo = 15; //завязываем с дачей квестов от Армо
 	pchar.quest.LSC_KillOneCasper.over = "yes";
 	pchar.quest.LSC_checkCasperDead.over = "yes";

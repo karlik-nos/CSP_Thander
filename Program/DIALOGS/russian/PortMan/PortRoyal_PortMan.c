@@ -37,7 +37,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 
 		case "Step_E6_3":
-            dialog.text = "Пинас 'Санта Агуэда', ушел вчера с попутным ветром курсом на Сан-Хуан. А что тебе испанец?";
+            dialog.text = "Пинас 'Санта Агуэда', ушёл вчера с попутным ветром курсом на Сан-Хуан. А что тебе испанец?";
 			link.l1 = "Хочу свидеться с капитаном, он мне должен...";
 			link.l1.go = "Step_E6_4";
 		break;

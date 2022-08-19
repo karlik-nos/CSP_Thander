@@ -58,7 +58,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 
 		case "Jamaica_ratF_2":
-			dialog.text = "Ушел в море на своем корабле. А куда - не знаю. Он мне не докладывал.";
+			dialog.text = "Ушёл в море на своем корабле. А куда - не знаю. Он мне не докладывал.";
 			link.l1 = "Эх, жаль! Где ж я теперь его искать буду?";
 			link.l1.go = "Jamaica_ratF_3";
 		break;

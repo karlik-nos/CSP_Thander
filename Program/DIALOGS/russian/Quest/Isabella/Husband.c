@@ -88,7 +88,7 @@ void ProcessDialogEvent()
 			bDisableFastReload = false;
 		    NextDiag.TempNode = "Usual_1";
 			dialog.text = "Приятно увидеться с вами вновь. Что привело вас ко мне на сей раз?";
-			link.l1 = "Ничего особенного. Просто зашел навестить.";
+			link.l1 = "Ничего особенного. Просто зашёл навестить.";
 			link.l1.go = "Good_exit";
 			if (CheckAttribute(pchar, "quest.VisitStep"))
 			{

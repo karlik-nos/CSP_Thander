@@ -390,7 +390,7 @@ void CitizenFindItemMiniQuest_CheckItem()
 		DeleteGameModeCondition("CitizenFindItemMiniQuest_CheckItem");
 		PChar.GenQuest.CitizenFindItem.GiveItem = true; // Флаг - взяли предмет
 		string sCity = XI_ConvertString("Colony" + PChar.GenQuest.CitizenFindItem.City + "Gen");
-		Log_Info("Вот я и нашел обручальное кольцо девушки из " + sCity + ". Нужно отнести его ей.");
+		Log_Info("Вот я и нашёл обручальное кольцо девушки из " + sCity + ". Нужно отнести его ей.");
 	}
 }
 

@@ -85,7 +85,7 @@ void ProcessDialogEvent()
     			}
     			link.l1 = "Меня зовут " + GetFullName(Pchar) + ". У меня есть  к вам дело!";
     			link.l1.go = "quests";
-                link.l2 = "Ничего особенного, просто "+ GetSexPhrase("зашел","зашла") +" поприветствовать вас!";
+                link.l2 = "Ничего особенного, просто "+ GetSexPhrase("зашёл","зашла") +" поприветствовать вас!";
     			link.l2.go = "exit";
             }
             else
@@ -631,7 +631,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "QuestAboardCabinDialog_3_1":
-			Dialog.Text = ""+ GetSexPhrase("Пришел","Пришла") +", наследил"+ GetSexPhrase("","а") +", все отнял"+ GetSexPhrase("","а") +" и ещё меня в рабы? Фиг!";
+			Dialog.Text = ""+ GetSexPhrase("Пришёл","Пришла") +", наследил"+ GetSexPhrase("","а") +", все отнял"+ GetSexPhrase("","а") +" и ещё меня в рабы? Фиг!";
 			Link.l1 = "Тогда тапки белые готовь.";
 			Link.l1.go = "QuestAboardCabinDialog_1";
 		break;

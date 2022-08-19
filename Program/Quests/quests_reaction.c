@@ -377,7 +377,7 @@ void QuestComplete(string sQuestName, string qname)
 				DeleteAttribute(sld, "EmblemedSails.normalTex");
 				AddSimpleRumourTip(LinkRandPhrase("О, сожри меня акула! Так вы и есть "+ GetSexPhrase("тот самый капитан","та морячка") +", что взял"+ GetSexPhrase("","а") +" 'Летучего Голландца'?! Разрази меня гром! Знатная, наверное, была баталия! Скажите, правду говорят, что его бывший капитан водил дружбу с самим Морским Дьяволом? А в команде у него были сплошь проклятые и отвергнутые Господом демоны, питающиеся кровью своих жертв?",
 					"Капитан, а вы здесь весьма известны! Ходят слухи, что это вы упокоили старого Дейви Джонса и команду его мертвецов. Кто бы мог подумать, что 'Летучий Голландец' перестанет быть призраком! Меняются времена, что ни говори... вот и ещё одной легендой в этом мире стало меньше, хе-хе. Выпьем же за те тайны, которые океан хранит ещё в своих пучинах...",
-					"Слыхали, что 'Летучий Голландец' - этот неуловимый и непонятный человеку ужас морских стихий, нашел свой конец? И заметьте - от вполне смертных людей! Слышал я, один капитан смог разрушить проклятие и взял старого Дьявола призом, как простого купца... Вот так-то, в общем, бесславно и закончились бесчинства легендарного Корабля-Призрака."),
+					"Слыхали, что 'Летучий Голландец' - этот неуловимый и непонятный человеку ужас морских стихий, нашёл свой конец? И заметьте - от вполне смертных людей! Слышал я, один капитан смог разрушить проклятие и взял старого Дьявола призом, как простого купца... Вот так-то, в общем, бесславно и закончились бесчинства легендарного Корабля-Призрака."),
 					60, 5, "habitue", "");
             }
             else
@@ -2421,7 +2421,7 @@ void QuestComplete(string sQuestName, string qname)
 			AddQuestUserData("MayorsQuestsList", "MayorName", sTemp);
 			// слухи
 			AddSimpleRumour(RandPhraseSimple("Вы знаете, губернатор " + sTemp + " поручил неко"+ GetSexPhrase("ему капитану","й морячке") +" " + GetMainCharacterNameDat() + " найти в городе вражеского лазутчика. И вы знаете, он"+ GetSexPhrase("","а") +" его наш"+ GetSexPhrase("ел","ла") +" и убил"+ GetSexPhrase("","а") +"!",
-				"Наш губернатор дал задание капитану " + GetMainCharacterNameDat() + " разыскать в городе вражеского агента. И "+ GetSexPhrase("этот капитан нашел и прикончил","она нашла и прикончила") +" лазутчика! Прекрасная работа, скажу я вам..."), sti(characters[sti(pchar.GenQuest.SeekSpy.MayorId)].nation), 5, 1);
+				"Наш губернатор дал задание капитану " + GetMainCharacterNameDat() + " разыскать в городе вражеского агента. И "+ GetSexPhrase("этот капитан нашёл и прикончил","она нашла и прикончила") +" лазутчика! Прекрасная работа, скажу я вам..."), sti(characters[sti(pchar.GenQuest.SeekSpy.MayorId)].nation), 5, 1);
 		break;
  		////////////////////////////////////////////////////////////////////////
 		//  Конец    Поиск лазутчика в городе
@@ -2743,7 +2743,7 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 
 		case "DestroyPirate_after":
-			pchar.quest.DestroyPirate_PirateIsOut.over = "yes"; //снимаем прерывание на ушел с поля боя
+			pchar.quest.DestroyPirate_PirateIsOut.over = "yes"; //снимаем прерывание на ушёл с поля боя
 			pchar.quest.DestroyPirate_Late.over = "yes"; //снимаем таймер
 			LAi_group_Delete("MayorPirateGroup");
 			Group_DeleteGroup("MQGroupPirate");
@@ -3354,7 +3354,7 @@ void QuestComplete(string sQuestName, string qname)
 			pchar.Dovahkiin = 1;
         break;
 		case "PGGLeft":
-			Log_TestInfo("ПГГ ушел");
+			Log_TestInfo("ПГГ ушёл");
 			sld = CharacterFromID(pchar.chosenHero);
 			DeleteAttribute(pchar, "chosenHero");
 			string futureLoc = "none";
@@ -4744,7 +4744,7 @@ void QuestComplete(string sQuestName, string qname)
         case "DelivLettTortuga_BrigTimeOver":
             pchar.quest.DelivLettTortuga_AttackBrig.over = "yes";
             AddQuestRecord("Hol_Line_7_DelivLettTortuga", "7");
-            pchar.questTemp.State.KingResult = "BrigNotFound"; //флаг на вообще не нашел
+            pchar.questTemp.State.KingResult = "BrigNotFound"; //флаг на вообще не нашёл
         break;
 
         case "DelivLettTortuga_AttackBrig":
@@ -4779,7 +4779,7 @@ void QuestComplete(string sQuestName, string qname)
             group_DeleteGroup("Pirate_Attack");
             Island_SetReloadEnableGlobal("PuertoRico", true);
             AddQuestRecord("Hol_Line_7_DelivLettTortuga", "7");
-            pchar.questTemp.State.KingResult = "BrigNotFound"; //флаг на вообще не нашел
+            pchar.questTemp.State.KingResult = "BrigNotFound"; //флаг на вообще не нашёл
         break;
 
         case "DelivLettTortuga_AfterBrigSunk":
@@ -7264,7 +7264,7 @@ void QuestComplete(string sQuestName, string qname)
             group_DeleteGroup("Pirate_Attack");
             Island_SetReloadEnableGlobal("PortoBello", true);
             AddQuestRecord("Romantic_Line", "16");
-            QuestSetCurrentNode("Atilla", "Brig_DieHard"); //нода Атилле на бриг ушел от погони
+            QuestSetCurrentNode("Atilla", "Brig_DieHard"); //нода Атилле на бриг ушёл от погони
         break;
 
         case "Romantic_AfterBrigSunk":

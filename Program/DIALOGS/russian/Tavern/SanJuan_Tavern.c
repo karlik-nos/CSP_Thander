@@ -43,7 +43,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = "Step_E6_4";
 		break;
         case "Step_E6_4":
-			dialog.text = "Разгрузил трюмы и ушел. Теперь Сан-Хуан завален индиго да серебром. Цены упали...";
+			dialog.text = "Разгрузил трюмы и ушёл. Теперь Сан-Хуан завален индиго да серебром. Цены упали...";
 			link.l1 = "Так что, груз с пинаса распродан?";
 			link.l1.go = "Step_E6_5";
 		break;

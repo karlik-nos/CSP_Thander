@@ -62,7 +62,7 @@ void ProcessDialogEvent()
             if (pchar.questTemp.State == "MorrisWillams_ModifordGood5000" && npchar.id == "Morris_Willams")
             {
                 LAi_ActorSetSitMode(pchar);
-                dialog.text = "Черт возьми! Я послушался тебя, зашел в порт и у меня тут же конфисковали груз! Ты подставил"+ GetSexPhrase("","а") +" меня!";
+                dialog.text = "Черт возьми! Я послушался тебя, зашёл в порт и у меня тут же конфисковали груз! Ты подставил"+ GetSexPhrase("","а") +" меня!";
                 link.l1 = "Что? Кто конфисковал?";
                 link.l1.go = "Step_E6_2";
             }
@@ -75,7 +75,7 @@ void ProcessDialogEvent()
             if (pchar.questTemp.State == "MorrisWillams_PinnaceNotFound" || pchar.questTemp.State == "MorrisWillams_2PinnaceNotFound")
             {
                 dialog.text = "Ты захватил"+ GetSexPhrase("","а") +" мой индиго?";
-                link.l1 = "Я погнал"+ GetSexPhrase("ся","ась") +" за пинасом, но не смог"+ GetSexPhrase("","ла") +" увидеть даже его кормы, он ушел от меня. Извини...";
+                link.l1 = "Я погнал"+ GetSexPhrase("ся","ась") +" за пинасом, но не смог"+ GetSexPhrase("","ла") +" увидеть даже его кормы, он ушёл от меня. Извини...";
                 link.l1.go = "Step_E6_11";
             }
             if (pchar.questTemp.State == "MorrisWillams_PinnaceBoard" && npchar.id == "Morris_Willams")
@@ -99,7 +99,7 @@ void ProcessDialogEvent()
             if (pchar.questTemp.State == "MorrisWillams_PinnaceSink" && npchar.id == "Morris_Willams")
             {
                 dialog.text = "Ты захватил"+ GetSexPhrase("","а") +" мой индиго?";
-                link.l1 = "Чертов пинас пошел ко дну, а вместе с ним и весь твой приз. Я сделал"+ GetSexPhrase("","а") +" все, что мог"+ GetSexPhrase("","ла") +", извини.";
+                link.l1 = "Чертов пинас пошёл ко дну, а вместе с ним и весь твой приз. Я сделал"+ GetSexPhrase("","а") +" все, что мог"+ GetSexPhrase("","ла") +", извини.";
                 link.l1.go = "Step_E6_11";
             }
 			// ==> Квест №12, диалоги с полковником Томасом Линчем
@@ -288,7 +288,7 @@ void ProcessDialogEvent()
         break;
 
         case "Step_E6_6":
-            dialog.text = "Ты просто уничтожил"+ GetSexPhrase("","а") +" меня. Этот товар шел у меня в погашение долгов.\n"+
+            dialog.text = "Ты просто уничтожил"+ GetSexPhrase("","а") +" меня. Этот товар шёл у меня в погашение долгов.\n"+
                           "Как только я сошел на берег в порту, то к своему величайшему удивлению узнал, что все мои долговые расписки скупил местный ростовщик. Он заблокировал мне выход в море, а мой корабль находится под залогом выплаты долга. Вот так!";
             link.l1 = "Сколько ты должен?";
             link.l1.go = "Step_E6_7";

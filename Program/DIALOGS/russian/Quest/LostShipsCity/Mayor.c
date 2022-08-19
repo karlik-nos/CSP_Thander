@@ -57,7 +57,7 @@ void ProcessDialogEvent()
 			}
 			if (pchar.questTemp.LSC == "NarvalDestroyed")
 			{
-				link.l4 = "Я все сделал"+ GetSexPhrase("","а") +", клан 'Нарвал' уничтожен. Вырезал"+ GetSexPhrase("","а") +" там всех под корень, никто не ушел!";
+				link.l4 = "Я все сделал"+ GetSexPhrase("","а") +", клан 'Нарвал' уничтожен. Вырезал"+ GetSexPhrase("","а") +" там всех под корень, никто не ушёл!";
 				link.l4.go = "DestrNarval_1";
 			}
 			if (pchar.questTemp.LSC == "toAdmiralBarmenDead")

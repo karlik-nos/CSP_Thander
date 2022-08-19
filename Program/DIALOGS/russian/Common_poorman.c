@@ -128,13 +128,13 @@ void ProcessDialogEvent()
 				// --------------- линейка ГПК ---------------
 				if (CheckCharacterItem(pchar, "letter_LSC") && (pchar.questTemp.LSC.qtyTalk.headPoormanId == npchar.id))
 				{
-					//нашел письмо в сундуке Виллемстада
+					//нашёл письмо в сундуке Виллемстада
 					if (pchar.questTemp.LSC == "CanFoundStuvesantKey")
 					{
-						link.l1 = "Послушай, мне кажется, что я "+ GetSexPhrase("нашел","нашла") +" в резиденции Стэвезанта нечто весьма интересное!";
+						link.l1 = "Послушай, мне кажется, что я "+ GetSexPhrase("нашёл","нашла") +" в резиденции Стэвезанта нечто весьма интересное!";
 						link.l1.go = "FoundLetter";
 					}
-					//базар о том, что нашел причину заказа на нищих
+					//базар о том, что нашёл причину заказа на нищих
 					if (pchar.questTemp.LSC == "toOliverTrast")
 					{
 						link.l1 = "Ты знаешь, мне удалось распутать этот клубок!";

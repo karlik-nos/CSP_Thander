@@ -195,7 +195,7 @@ void ProcessDialogEvent()
 			link.l1.go = "Villemstad_2";
 		break;
 		case "Villemstad_2":
-			dialog.text = "Мы с мужем одно время жили в Пуэрто-Принсипе, но потом он ушел за призом и пропал...";
+			dialog.text = "Мы с мужем одно время жили в Пуэрто-Принсипе, но потом он ушёл за призом и пропал...";
 			link.l1 = "Печально.";
 			link.l1.go = "Villemstad_3";
 		break;

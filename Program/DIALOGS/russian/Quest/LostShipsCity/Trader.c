@@ -20,7 +20,7 @@ void ProcessDialogEvent()
 				npchar.quest.meeting = "1";
 				if (CheckAttribute(loadedLocation, "storm"))
 				{
-					dialog.text = "Чертов шторм! Хотя уже пошел на убыль... Я так понимаю, что ты - "+ GetSexPhrase("новый гражданин","новая гражданка") +" Города.";
+					dialog.text = "Чертов шторм! Хотя уже пошёл на убыль... Я так понимаю, что ты - "+ GetSexPhrase("новый гражданин","новая гражданка") +" Города.";
 					link.l1 = "Капитан " + GetFullName(pchar) + " собственной персоной. А шторм - не беда!";
 					link.l1.go = "FS_1";
 				}

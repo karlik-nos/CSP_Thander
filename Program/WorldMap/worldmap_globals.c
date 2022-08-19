@@ -139,7 +139,7 @@ void Map_CreateWarrior(string beginLocator, string characterID, int TimeOut)
 }
 
 //воюющий. TimeOut в днях. При таймауте придёт эвент Map_BattleEnd
-//если же игрок вошел в этот энкаунтер до истечения таймаута удалиться энкоунтер из карты
+//если же игрок вошёл в этот энкаунтер до истечения таймаута удалиться энкоунтер из карты
 void Map_CreateBattle(string characterID, int iEnemyNation, int TimeOut)
 {
 	aref encField = wdmFindOrCreateQuestEncounter(characterID);

@@ -176,7 +176,7 @@ void ProcessDialogEvent()
 			else
 			{
 				dialog.text = LinkRandPhrase("Приветствую вас, " + GetAddress_Form(NPChar) + ". Вы ко мне по делу?",
-									"Здравствуйте, " + GetFullName(Pchar) + ". Я видел, как ваш корабль вошел в порт, и был уверен, что вы ко мне зайдете.",
+									"Здравствуйте, " + GetFullName(Pchar) + ". Я видел, как ваш корабль вошёл в порт, и был уверен, что вы ко мне зайдете.",
 									"А, капитан " + GetFullName(Pchar) + ". Что привело вас ко мне?");
 				Link.l1 = "Здравствуйте, " + GetFullName(NPChar) + ". Я хочу с вами поговорить.";
 			}
@@ -1441,8 +1441,8 @@ void ProcessDialogEvent()
 			arCapLocal = GetAttributeN(arCapBase,  0);
 			sCapitainId = GetAttributeName(arCapLocal);
 			sld = characterFromId(sCapitainId);
-			dialog.text = LinkRandPhrase("Та-а-ак, давайте посмотрим... Ага, есть! ", "Так-так... Ага, нашел! ", "Значит, так. ") +
-				"Капитан " + GetFullName(sld) + " " + arCapLocal.date + " года ушел из нашего порта в " + XI_ConvertString("Colony" + arCapLocal + "Acc") + ".";
+			dialog.text = LinkRandPhrase("Та-а-ак, давайте посмотрим... Ага, есть! ", "Так-так... Ага, нашёл! ", "Значит, так. ") +
+				"Капитан " + GetFullName(sld) + " " + arCapLocal.date + " года ушёл из нашего порта в " + XI_ConvertString("Colony" + arCapLocal + "Acc") + ".";
 			link.l1 = "Спасибо. Хотелось бы посмотреть список дальше...";
 			link.l1.go = "CapitainList";
 			link.l2 = "Все, капитаны меня более не интересуют.";
@@ -1467,8 +1467,8 @@ void ProcessDialogEvent()
 			arCapLocal = GetAttributeN(arCapBase,  1);
 			sCapitainId = GetAttributeName(arCapLocal);
 			sld = characterFromId(sCapitainId);
-			dialog.text = LinkRandPhrase("Та-а-ак, давайте посмотрим... Ага, есть! ", "Так-так... Ага, нашел! ", "Значит, так. ") +
-				"Капитан " + GetFullName(sld) + " " + arCapLocal.date + " года ушел из нашего порта в " + XI_ConvertString("Colony" + arCapLocal + "Acc") + ".";
+			dialog.text = LinkRandPhrase("Та-а-ак, давайте посмотрим... Ага, есть! ", "Так-так... Ага, нашёл! ", "Значит, так. ") +
+				"Капитан " + GetFullName(sld) + " " + arCapLocal.date + " года ушёл из нашего порта в " + XI_ConvertString("Colony" + arCapLocal + "Acc") + ".";
 			link.l1 = "Спасибо. Хотелось бы посмотреть список дальше...";
 			link.l1.go = "CapitainList";
 			link.l2 = "Все, капитаны меня более не интересуют.";
@@ -1493,8 +1493,8 @@ void ProcessDialogEvent()
 			arCapLocal = GetAttributeN(arCapBase,  2);
 			sCapitainId = GetAttributeName(arCapLocal);
 			sld = characterFromId(sCapitainId);
-			dialog.text = LinkRandPhrase("Та-а-ак, давайте посмотрим... Ага, есть! ", "Так-так... Ага, нашел! ", "Значит, так. ") +
-				"Капитан " + GetFullName(sld) + " " + arCapLocal.date + " года ушел из нашего порта в " + XI_ConvertString("Colony" + arCapLocal + "Acc") + ".";
+			dialog.text = LinkRandPhrase("Та-а-ак, давайте посмотрим... Ага, есть! ", "Так-так... Ага, нашёл! ", "Значит, так. ") +
+				"Капитан " + GetFullName(sld) + " " + arCapLocal.date + " года ушёл из нашего порта в " + XI_ConvertString("Colony" + arCapLocal + "Acc") + ".";
 			link.l1 = "Спасибо. Хотелось бы посмотреть список дальше...";
 			link.l1.go = "CapitainList";
 			link.l2 = "Все, капитаны меня более не интересуют.";
@@ -1519,8 +1519,8 @@ void ProcessDialogEvent()
 			arCapLocal = GetAttributeN(arCapBase,  3);
 			sCapitainId = GetAttributeName(arCapLocal);
 			sld = characterFromId(sCapitainId);
-			dialog.text = LinkRandPhrase("Та-а-ак, давайте посмотрим... Ага, есть! ", "Так-так... Ага, нашел! ", "Значит, так. ") +
-				"Капитан " + GetFullName(sld) + " " + arCapLocal.date + " года ушел из нашего порта в " + XI_ConvertString("Colony" + arCapLocal + "Acc") + ".";
+			dialog.text = LinkRandPhrase("Та-а-ак, давайте посмотрим... Ага, есть! ", "Так-так... Ага, нашёл! ", "Значит, так. ") +
+				"Капитан " + GetFullName(sld) + " " + arCapLocal.date + " года ушёл из нашего порта в " + XI_ConvertString("Colony" + arCapLocal + "Acc") + ".";
 			link.l1 = "Спасибо. Хотелось бы посмотреть список дальше...";
 			link.l1.go = "CapitainList";
 			link.l2 = "Все, капитаны меня более не интересуют.";
@@ -1545,8 +1545,8 @@ void ProcessDialogEvent()
 			arCapLocal = GetAttributeN(arCapBase,  4);
 			sCapitainId = GetAttributeName(arCapLocal);
 			sld = characterFromId(sCapitainId);
-			dialog.text = LinkRandPhrase("Та-а-ак, давайте посмотрим... Ага, есть! ", "Так-так... Ага, нашел! ", "Значит, так. ") +
-				"Капитан " + GetFullName(sld) + " " + arCapLocal.date + " года ушел из нашего порта в " + XI_ConvertString("Colony" + arCapLocal + "Acc") + ".";
+			dialog.text = LinkRandPhrase("Та-а-ак, давайте посмотрим... Ага, есть! ", "Так-так... Ага, нашёл! ", "Значит, так. ") +
+				"Капитан " + GetFullName(sld) + " " + arCapLocal.date + " года ушёл из нашего порта в " + XI_ConvertString("Colony" + arCapLocal + "Acc") + ".";
 			link.l1 = "Спасибо. Хотелось бы посмотреть список дальше...";
 			link.l1.go = "CapitainList";
 			link.l2 = "Все, капитаны меня более не интересуют.";
@@ -3971,7 +3971,7 @@ void SetJornalCapParam(ref npchar)
 	npchar.quest.PortmansJornal.capName = GetFullName(sld); //имя кэпа
 	npchar.quest.PortmansJornal.shipName = sld.Ship.name; //имя корабля
 	npchar.quest.PortmansJornal.shipTapeName = RealShips[sti(sld.Ship.Type)].BaseName; //название корабля
-	npchar.quest.PortmansJornal.city = SelectNotEnemyColony(npchar); //определим колонию, куда ушел кэп
+	npchar.quest.PortmansJornal.city = SelectNotEnemyColony(npchar); //определим колонию, куда ушёл кэп
 	sld.quest = "InMap"; //личный флаг рассеянного кэпа
 	sld.quest.targetCity = npchar.quest.PortmansJornal.city; //продублируем колонию-цель в структуру кэпа
 	sld.quest.firstCity = npchar.city; //капитану знать откуда вышел в самом начале

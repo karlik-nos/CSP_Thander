@@ -1108,7 +1108,7 @@ void ProcessDialogEvent()
 
 		case "PL_Q5_talking":
 			sld = characterFromId("Blaze");
-			dialog.text = "О-о-о, какие люди! Спасибо, что зашел. Скажи-ка, друг наш Гудли, какой это заказ ты поручил " + GetMainCharacterNameDat() + "?";
+			dialog.text = "О-о-о, какие люди! Спасибо, что зашёл. Скажи-ка, друг наш Гудли, какой это заказ ты поручил " + GetMainCharacterNameDat() + "?";
 			link.l1 = "Я?!! Ничего такого не было, адмирал. Я ничего "+ NPCharSexPhrase(sld, "ему","ей") +" не поручал.";
 			link.l1.go = "PL_Q5_talking_1";
 		break;

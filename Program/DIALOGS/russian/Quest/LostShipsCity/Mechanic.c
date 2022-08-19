@@ -100,7 +100,7 @@ void ProcessDialogEvent()
 			link.l1.go = "FT_6";
 		break;
 		case "FT_6":
-			dialog.text = "Жаль. Вы знаете, а ведь это я построил ему плот, на котором он ушел отсюда в океан.";
+			dialog.text = "Жаль. Вы знаете, а ведь это я построил ему плот, на котором он ушёл отсюда в океан.";
 			link.l1 = "Да?! А как же он до вас добрался через 'касперов'?";
 			link.l1.go = "FT_7";
 		break;
@@ -532,7 +532,7 @@ void ProcessDialogEvent()
 			link.l2 = "Нет, подводное царство меня более не интересует.";
 			link.l2.go = "endImmersion";
 			TakeItemFromCharacter(pchar, "Pinion");
-			pchar.questTemp.LSC.immersions.pinion = true; //нашел шестеренку
+			pchar.questTemp.LSC.immersions.pinion = true; //нашёл шестеренку
 			AddQuestRecord("ISS_MainLine", "44");
 		break;
 		case "FoundPinion_deep":

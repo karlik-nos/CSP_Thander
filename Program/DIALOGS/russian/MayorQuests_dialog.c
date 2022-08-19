@@ -56,7 +56,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "DestroyGang_ExitAfraid":
-			pchar.GenQuest.DestroyGang = "Found"; //флаг нашел, но струсил
+			pchar.GenQuest.DestroyGang = "Found"; //флаг нашёл, но струсил
 			npchar.money = AddMoneyToCharacter(npchar, sti(pchar.money));
 			pchar.money = 0;
 			LAi_SetWarriorType(npchar);
@@ -190,7 +190,7 @@ void ProcessDialogEvent()
 			link.l3.go = "colony";
             link.l4 = RandPhraseSimple("Есть важное дело!", "У меня к вам дело.");
 			link.l4.go = "exit";  //(перессылка в файл города)
-			link.l5 = PCharRepPhrase(RandPhraseSimple("Тебе послышалось, я пойду.", "Нет, ничего - просто "+ GetSexPhrase("шел","шла") +" в таверну."),
+			link.l5 = PCharRepPhrase(RandPhraseSimple("Тебе послышалось, я пойду.", "Нет, ничего - просто "+ GetSexPhrase("шёл","шла") +" в таверну."),
                                         RandPhraseSimple("Ладно, ничего. Удачи!", "Просто осматриваю город. До свидания."));
 			link.l5.go = "exit";
 		break;
@@ -253,9 +253,9 @@ void ProcessDialogEvent()
 			AddQuestUserData("MayorsQuestsList", "MayorName", sTemp);
 			// слухи
 			AddSimpleRumour(RandPhraseSimple("Вы знаете, губернатор " + sTemp + " поручил "+ GetSexPhrase("некоему капитану","некой девушке-капитану") +" " + GetMainCharacterNameGen() + " найти в городе вражеского лазутчика. И вы знаете, "+ GetSexPhrase("он его нашёл","она его нашла") +" прямо на улицах!",
-				"Наш губернатор зал задание капитану " + GetMainCharacterNameGen() + " разыскать в городе вражеского агента. И "+ GetSexPhrase("этот капитан нашел","эта девушка нашла") +" лазутчика среди горожан!"), sti(characters[sti(pchar.GenQuest.SeekSpy.MayorId)].nation), 5, 1);
+				"Наш губернатор зал задание капитану " + GetMainCharacterNameGen() + " разыскать в городе вражеского агента. И "+ GetSexPhrase("этот капитан нашёл","эта девушка нашла") +" лазутчика среди горожан!"), sti(characters[sti(pchar.GenQuest.SeekSpy.MayorId)].nation), 5, 1);
 			pchar.quest.AllMayorsQuests_Late.over = "yes"; //снимаем общий таймер
-			pchar.GenQuest.SeekSpy = "FoundSpy"; //флаг нашел шпиона
+			pchar.GenQuest.SeekSpy = "FoundSpy"; //флаг нашёл шпиона
 			DeleteAttribute(pchar, "GenQuest.SeekSpy.City"); //не опрашивать более в городе
 			LocatorReloadEnterDisable(pchar.location, "gate_back", true);
 			LocatorReloadEnterDisable(pchar.location, "reload1_back", true);

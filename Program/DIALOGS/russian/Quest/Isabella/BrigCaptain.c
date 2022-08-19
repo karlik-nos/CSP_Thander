@@ -399,7 +399,7 @@ void ProcessDialogEvent()
 		//если Изабелла погибла где-нить при похищении
 		case "IsabellaIsDead_Beliz":
 			dialog.text = "Капитан, вы нашли Изабеллу?";
-			link.l1 = "Да, Росита, нашел. Но по дороге в город на нас напали и Изабелла погибла...";
+			link.l1 = "Да, Росита, нашёл. Но по дороге в город на нас напали и Изабелла погибла...";
 			link.l1.go = "IsabellaIsDead_Beliz_1";
 			NextDiag.TempNode = "IsabellaIsDead_Beliz_after";
 		break;
@@ -431,7 +431,7 @@ void ProcessDialogEvent()
 		break;
 		case "SavedIsabella_3":
 			dialog.text = "Мерзавец! Нужно обо всем доложить губернатору, чтобы он немедленно арестовал Сальватора!";
-			link.l1 = "Сальватор тоже мертв. Меня нашел и вызволил из плена мой ангел-хранитель... Сальватор напал и на него, но был убит у меня на глазах.";
+			link.l1 = "Сальватор тоже мертв. Меня нашёл и вызволил из плена мой ангел-хранитель... Сальватор напал и на него, но был убит у меня на глазах.";
 			link.l1.go = "SavedIsabella_4";
 		break;
 		case "SavedIsabella_4":
@@ -532,7 +532,7 @@ void ProcessDialogEvent()
 		break;
 		case "IsabellaIsWife_1":
 			dialog.text = "Вы что-то хотели у меня узнать, капитан?";
-			link.l1 = "Да нет, Росита, просто зашел проведать.";
+			link.l1 = "Да нет, Росита, просто зашёл проведать.";
 			link.l1.go = "exit";
 			if (pchar.RomanticQuest == "over")
 			{

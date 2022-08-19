@@ -259,7 +259,7 @@ void ProcessDialogEvent()
 				link.l2.go = "Uicilopochtli_fan_1";
 			}
 
-			link.l3 = "Здравствуй, Уицилопочтли. Я так, просто поздороваться " + GetSexPhrase("зашел...", "зашла...");
+			link.l3 = "Здравствуй, Уицилопочтли. Я так, просто поздороваться " + GetSexPhrase("зашёл...", "зашла...");
 			link.l3.go = "Uicilopochtli_exit";
 		break;
 

@@ -167,7 +167,7 @@ void ProcessDialogEvent()
 
 		//освободить мужа Элис Тейлор
 		case "ELTHusb_begin":
-			dialog.text = NPCStringReactionRepeat("Вы не поверите! Этот кретин нализался в таверне и пошел в резиденцию к адмиралу права качать.",
+			dialog.text = NPCStringReactionRepeat("Вы не поверите! Этот кретин нализался в таверне и пошёл в резиденцию к адмиралу права качать.",
 				"Я уже ответил на ваш вопрос.",
 				"Мы уже говорили об этом!",
                 "Послушайте, прекратите немедленно!", "block", 0, npchar, Dialog.CurrentNode);
@@ -279,7 +279,7 @@ void ProcessDialogEvent()
 				dialog.text = "А когда он клялся, он, случайно, не вспоминал о том, как намедни заигрывал с Армо Дюлин, официанткой из таверны?";
 				link.l1 = "Понятия не имею.";
 				link.l1.go = "SecondLogro_3";
-				pchar.questTemp.LSC.LegroHelp.Armo = true; //флаг на то, что квест пошел с участием Армо
+				pchar.questTemp.LSC.LegroHelp.Armo = true; //флаг на то, что квест пошёл с участием Армо
 			}
 			else
 			{

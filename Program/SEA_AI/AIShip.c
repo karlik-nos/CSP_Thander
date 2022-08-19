@@ -1431,7 +1431,7 @@ void Ship_CheckSituation()
 									{	//eddy. здесь смотрим Runaway. проверяем атрибут анализа шипов и анализим, стоит ли атаковать
 										if (CheckAttribute(rCharacter, "AnalizeShips") && stf(rCharacter.ship.hp) > (stf(characters[sti(rCharacter.Ship.LastBallCharacter)].ship.hp) / 2))
 										{
-											//может только что ушел от форта?
+											//может только что ушёл от форта?
 											if (sti(rCharacter.Tmp.fWatchFort.Qty) == 200)
 											{
 												//тогда Runaway меняем за один такт до проверки форта

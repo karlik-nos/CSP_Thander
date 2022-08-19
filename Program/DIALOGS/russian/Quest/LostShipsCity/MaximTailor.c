@@ -235,7 +235,7 @@ void ProcessDialogEvent()
 			link.l1.go = "DontRemember_2";
 		break;
 		case "DontRemember_2":
-			dialog.text = "Вообще. Я ещё в таверне отрубился. Говорят, что я пошел в резиденцию и наехал на самого адмирала! Ужас...";
+			dialog.text = "Вообще. Я ещё в таверне отрубился. Говорят, что я пошёл в резиденцию и наехал на самого адмирала! Ужас...";
 			link.l1 = "М-да, надо меньше пить.";
 			link.l1.go = "DontRemember_3";
 		break;

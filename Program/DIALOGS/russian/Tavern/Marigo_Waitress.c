@@ -44,7 +44,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = "FindDesouzaHolWaitress_5";
 		break;
 		case "FindDesouzaHolWaitress_5":
-			dialog.text = "Один из постояльцев говорил, что Элихио ушел в пещеру, проверить слухи о каком-то кладе.";
+			dialog.text = "Один из постояльцев говорил, что Элихио ушёл в пещеру, проверить слухи о каком-то кладе.";
 			link.l1 = "Спасибо за информацию, я побежала.";
 			link.l1.go = "exit";
 			PChar.quest.WhisperHuntersCaveEntrance.win_condition.l1 = "location";

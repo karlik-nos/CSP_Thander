@@ -172,7 +172,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
                 break;
                 case "Intelligence_Curacao_BoardingNotFoundLetter":  // Миссия провалена, голландский флейт взят на абордаж, но письмо не найдено
                     dialog.text = "Докладывайте, что вы узнали.";
-                    link.l1 = "Я "+ GetSexPhrase("получил","получила") +" информацию о голландском бриге-курьере. Мне удалось взять этот бриг на абордаж, но никаких документов я там не "+ GetSexPhrase("нашел","нашла") +".";
+                    link.l1 = "Я "+ GetSexPhrase("получил","получила") +" информацию о голландском бриге-курьере. Мне удалось взять этот бриг на абордаж, но никаких документов я там не "+ GetSexPhrase("нашёл","нашла") +".";
                     link.l1.go = "Step_4_1";
                 break;
                 case "Intelligence_Curacao_OutPrison":  // Миссия провалена, ГГ побывал в тюрьме
@@ -180,7 +180,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
                     link.l1 = ""+ GetSexPhrase("К сожалению, я был схвачен и заключен в тюрьму. Мне удалось бежать, но я ничего не узнал","К сожалению, я была схвачена и заключена в тюрьму. Мне удалось бежать, но я ничего не узнала") +".";
                     link.l1.go = "Step_4_4";
                 break;
-                case "Intelligence_Curacao_FightGard": // Миссия провалена, ГГ дрался и ушел из города ни с чем
+                case "Intelligence_Curacao_FightGard": // Миссия провалена, ГГ дрался и ушёл из города ни с чем
                     dialog.text = "Докладывайте, что вы узнали.";
                     link.l1 = "К сожалению, в процессе выполнения задания меня разоблачили. Был бой, и я едва "+ GetSexPhrase("вырвался","вырвалась") +" из города. Теперь о моем появлении на Кюрасао не может быть и речи. Ничего интересного для вас мне узнать не удалось.";
                     link.l1.go = "Step_4_5";
@@ -207,7 +207,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
                 break;
                 case "MorrisWillams_ModifordGood5000":
                     dialog.text = "А-а-а, "+ GetSexPhrase("друг мой","" + pchar.name + "") +", вы что, уже успели потратить пять тысяч вознаграждения и вам требуется работа?";
-                    link.l1 = "Нет, я "+ GetSexPhrase("зашел","зашла") +" поговорить на отвлеченные темы.";
+                    link.l1 = "Нет, я "+ GetSexPhrase("зашёл","зашла") +" поговорить на отвлеченные темы.";
                     link.l1.go = "exit";
                 break;
                 case "MorrisWillams_ModifordPolitic":
@@ -269,7 +269,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
                 break;
                 case "ToMansfield_Boarding":
                     dialog.text = "Вы привезли золото от Мэнсфилда?";
-                    link.l1 = "Сэр, Ла Вега подверглась нападению испанцев. Мэнсфилд убит, золото похищено. Адмиралом испанской эскадры был Маноэль Риверо Пардаль. Мне удалось настигнуть один из трех нападавших галеонов и взять его на абордаж. Золота там не было, но в каюте капитана я "+ GetSexPhrase("нашел","нашла") +" письмо Пардаля губернатору Сантьяго Хименесу. Вот оно.";
+                    link.l1 = "Сэр, Ла Вега подверглась нападению испанцев. Мэнсфилд убит, золото похищено. Адмиралом испанской эскадры был Маноэль Риверо Пардаль. Мне удалось настигнуть один из трех нападавших галеонов и взять его на абордаж. Золота там не было, но в каюте капитана я "+ GetSexPhrase("нашёл","нашла") +" письмо Пардаля губернатору Сантьяго Хименесу. Вот оно.";
                     if (CheckAttribute(npchar , "TempQuest.KnowAboutModiford"))
                     {
                         dialog.text = "Вы смогли настигнуть испанцев?";
@@ -316,7 +316,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
                 break;
                 case "ToMansfield_DidNotFindBecaners":
                     dialog.text = "Вы привезли золото от Мэнсфилда?";
-                    link.l1 = "Сэр, когда я "+ GetSexPhrase("прибыл","прибыла") +" в Ла Вегу, то она оказалась пуста! Ни единой живой души. Я "+ GetSexPhrase("обыскал","обыскала") +" окрестности, но ничего не "+ GetSexPhrase("нашел","нашла") +".";
+                    link.l1 = "Сэр, когда я "+ GetSexPhrase("прибыл","прибыла") +" в Ла Вегу, то она оказалась пуста! Ни единой живой души. Я "+ GetSexPhrase("обыскал","обыскала") +" окрестности, но ничего не "+ GetSexPhrase("нашёл","нашла") +".";
                     link.l1.go = "Step_8_5";
                     npchar.TempQuest.KindResult = 2; // признак результата завершения квеста, 2 == вообще не в курсе, что произошло
         			AddCharacterExpToSkill(pchar, "Cannons", 10);
@@ -529,7 +529,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
             CloseQuestHeader("Eng_Line_2_Talking");
             SaveCurrentQuestDateParam("questTemp");
             pchar.questTemp.CurQuestNumber = "3";
-            pchar.questTemp.Waiting_time = "70";    // Чтобы Мэдифорд дал квест №4 через 70 дней, даже если ГГ не зашел к Моргану
+            pchar.questTemp.Waiting_time = "70";    // Чтобы Мэдифорд дал квест №4 через 70 дней, даже если ГГ не зашёл к Моргану
             // ==> Моргана - в резиденцию на Ямайке
             LAi_SetHuberType(characterFromID("Henry Morgan"));
             QuestSetCurrentNode("Henry Morgan", "hot_business");

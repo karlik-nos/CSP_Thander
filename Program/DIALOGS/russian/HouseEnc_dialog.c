@@ -295,7 +295,7 @@ void ProcessDialogEvent()
 			}
 			else
 			{
-				dialog.text = "Хо! Ну, ты даешь "+ GetSexPhrase("приятель. Пришел","подруга. Пришла") +" на склад верфи с такой просьбой!";
+				dialog.text = "Хо! Ну, ты даешь "+ GetSexPhrase("приятель. Пришёл","подруга. Пришла") +" на склад верфи с такой просьбой!";
 				link.l1 = "Мне не на склад надо, а на верфь. Сюда я ни ногой...";
 				link.l1.go = "ShipyardsMap_3";
 				AddCharacterExpToSkill(pchar, "Fortune", 10);
