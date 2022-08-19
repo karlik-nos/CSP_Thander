@@ -199,7 +199,7 @@ void ProcessDialogEvent()
 						}
 						else
 						{
-							link.l1 = LinkRandPhrase("Нет, еще не принес"+ GetSexPhrase("","ла") +"...", "Еще нет...", "Еще не принес"+ GetSexPhrase("","ла") +", но скоро принесу...");
+							link.l1 = LinkRandPhrase("Нет, ещё не принес"+ GetSexPhrase("","ла") +"...", "Ещё нет...", "Ещё не принес"+ GetSexPhrase("","ла") +", но скоро принесу...");
 							link.l1.go = "exit";
 						}
 					}
@@ -697,7 +697,7 @@ void ProcessDialogEvent()
 			{
 				dialog.text = LinkRandPhrase("Да, черт возьми! У меня есть для вас работа!",
 					"Ха! Вы как нельзя вовремя! У меня есть одна проблема, требующая разрешения.",
-					"Еще бы! Конечно, у меня есть работа! Проблемы, знаете ли, просто задавили...");
+					"Ещё бы! Конечно, у меня есть работа! Проблемы, знаете ли, просто задавили...");
 				link.l1 = "Излагайте суть дела, " + GetAddress_FormToNPC(NPChar) + ".";
 				link.l1.go = "PortmanQuest";
 				SaveCurrentNpcQuestDateParam(npchar, "quest.meeting");
@@ -718,7 +718,7 @@ void ProcessDialogEvent()
 			//<-- дача миниквестов начальника порта.
 
 			dialog.text = "Губернатор радеет за благополучие города - у него всегда есть работа. Потом, в таверне могут быть заинтересованные купцы, ну и магазин иногда фрахтует капитанов.";
-			Link.l1 = "Еще один вопрос.";
+			Link.l1 = "Ещё один вопрос.";
 			Link.l1.go = "node_2";
 			Link.l2 = "Благодарю. До свидания.";
 			Link.l2.go = "exit";
@@ -869,7 +869,7 @@ void ProcessDialogEvent()
 
 		case "PortmanQuest_NF":
 			dialog.text = "Хм, это плохо. В таком случае, ни о какой новой работе у меня не может быть и речи.";
-			link.l1 = "Понятно. Вот еще что хотел"+ GetSexPhrase("","а") +" сказать...";
+			link.l1 = "Понятно. Вот ещё что хотел"+ GetSexPhrase("","а") +" сказать...";
 			link.l1.go = "node_2";
 		break;
 
@@ -1297,7 +1297,7 @@ void ProcessDialogEvent()
 			sTemp = "SeekShip_checkAbordage" + npchar.index;
 			pchar.quest.(sTemp).over = "yes"; //снимаем прерывание на абордаж
 			cn = GetCharacterIndex("SeekCap_" + npchar.index);
-			//если кэп-вор еще жив - убираем его
+			//если кэп-вор ещё жив - убираем его
 			if (cn > 0)
 			{
 				characters[cn].LifeDay = 0; 
@@ -1333,7 +1333,7 @@ void ProcessDialogEvent()
 			sTemp = "SeekShip_checkAbordage" + npchar.index;
 			pchar.quest.(sTemp).over = "yes"; //снимаем прерывание на абордаж
 			cn = GetCharacterIndex("SeekCap_" + npchar.index);
-			//если кэп-вор еще жив - убираем его
+			//если кэп-вор ещё жив - убираем его
 			if (cn > 0)
 			{
 				characters[cn].LifeDay = 0;
@@ -1730,7 +1730,7 @@ void ProcessDialogEvent()
 				}
 				else
 				{
-					dialog.text = "Нет ли у вас места для еще одного корабля?";
+					dialog.text = "Нет ли у вас места для ещё одного корабля?";
 					Link.l1 = "Да, точно. Спасибо.";
 					Link.l1.go = "exit";
 				}
@@ -1750,7 +1750,7 @@ void ProcessDialogEvent()
 
 			if (sti(NPChar.MoneyForShip) > 0)
 			{
-				dialog.Text = "Забираете? С вас за хранение еще " + FindRussianMoneyString(sti(NPChar.MoneyForShip)) + ".";
+				dialog.Text = "Забираете? С вас за хранение ещё " + FindRussianMoneyString(sti(NPChar.MoneyForShip)) + ".";
 			}
 			else
 			{
@@ -4012,7 +4012,7 @@ int CheckCapitainsList(ref npchar)
 	{
 		arCapLocal = GetAttributeN(arCapBase, i);
 		sCapitainId = GetAttributeName(arCapLocal);
-		if (GetCharacterIndex(sCapitainId) > 0) //если еще жив
+		if (GetCharacterIndex(sCapitainId) > 0) //если ещё жив
 		{
 			bResult++;
 		}

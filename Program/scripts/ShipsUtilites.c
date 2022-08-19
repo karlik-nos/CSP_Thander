@@ -1711,7 +1711,7 @@ void SetShipyardStore(ref NPChar)
     int    iTest_ship, i;
 	string attrName;
 
-	if (CheckAttribute(NPChar, "shipyard")) return; // еще есть корабли с того раза
+	if (CheckAttribute(NPChar, "shipyard")) return; // ещё есть корабли с того раза
 
 	SaveCurrentNpcQuestDateParam(npchar, "shipyardDate"); // дата заполнения верфи
 
@@ -1915,7 +1915,7 @@ void RemoveCannonsFromBortShipyard(ref chr, string sBort)
 	for (i = 0; i < maxQty; i++)
 	{
 		attr = "c" + i;
-		// поломана на 100 процентов, не палит, те нет ее
+		// поломана на 100 процентов, не палит, те нет её
 		chr.Ship.Cannons.borts.(sBort).damages.(attr) = 1.0;
 		chr.Ship.Cannons.borts.(sBort_real).damages.(attr) = 1.0;
 	}

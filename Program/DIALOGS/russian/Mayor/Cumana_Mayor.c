@@ -20,7 +20,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 
 		case "Cupture_after":
-            dialog.text = RandPhraseSimple("Вы уже все забрали. Что вам еще нужно?", "Неужели осталось еще что-то, что вы не прихватили?");
+            dialog.text = RandPhraseSimple("Вы уже все забрали. Что вам ещё нужно?", "Неужели осталось ещё что-то, что вы не прихватили?");
             link.l1 = RandPhraseSimple("Осматриваюсь напоследок...", "Проверяю, может забыл"+ GetSexPhrase("","а") +" что забрать...");
             link.l1.go = "exit";
             NextDiag.TempNode = "Cupture_after";
@@ -81,7 +81,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			}
 			else
 			{
-				dialog.text = "Я слышал, что такое он уже проделывал и нисколько не сомневаюсь, что сможет проделать еще. Но денег нет, это правда. Пять дней тому назад за ними пришла эскадра. Деньги на пути в новый свет.";
+				dialog.text = "Я слышал, что такое он уже проделывал и нисколько не сомневаюсь, что сможет проделать ещё. Но денег нет, это правда. Пять дней тому назад за ними пришла эскадра. Деньги на пути в новый свет.";
 				link.l1 = "Тогда мы будем пытать население города...";
 				link.l1.go = "Step_F6_4";
 			}

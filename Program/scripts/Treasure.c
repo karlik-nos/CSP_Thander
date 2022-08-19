@@ -588,7 +588,7 @@ void FillBoxForTreasureSuper(ref item)
 	int     i;
 	string  itmName;
 
-    if (3*nLuck > rand(21))// еще поди найди 2 куска
+    if (3*nLuck > rand(21))// ещё поди найди 2 куска
     {
 		i = 0;
 		itmName = "";

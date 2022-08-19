@@ -627,7 +627,7 @@ void  wdmUpdateAllEncounterLivetime()
                 if (CheckAttribute(enc, "livetime") && CheckAttribute(enc, "quest"))
                 {
                     Log_TestInfo(enc.livetime+" - "+timeOutInSec+" : "+stf(stf(enc.livetime) - timeOutInSec));
-                    /* По идее можно и координату приращивтаь, чтоб не просто время шло, но еще и плыли.
+                    /* По идее можно и координату приращивтаь, чтоб не просто время шло, но ещё и плыли.
                     k = (enc.gotoz - enc.z)/(enc.gotox - enc.x);
                     b = enc.z - k*enc.x
                     ...

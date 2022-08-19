@@ -39,7 +39,7 @@ void ProcessDialogEvent()
 			{
 				dialog.text = NPCStringReactionRepeat("Рад вас видеть вновь у себя в доме. Вы по делу?",
 					"Опять вы? Мы уже все проговорили, капитан.",
-					"Капитан, вам еще что-нибудь нужно?",
+					"Капитан, вам ещё что-нибудь нужно?",
 					"Капитан, я прошу вас не отвлекать меня!", "block", 1, npchar, Dialog.CurrentNode);
 				link.l1 = HeroStringReactionRepeat("Нет, " + GetAddress_FormToNPC(NPChar) + ", просто так заскочил"+ GetSexPhrase("","а") +"...",
 					"Да, конечно.",
@@ -97,7 +97,7 @@ void ProcessDialogEvent()
 		break;
 		case "SharpSeekSpy_7":
 			dialog.text = "И прибавьте к этому крысиного бога, что я дам вам прямо сейчас, авансом\nНу, соглашайтесь!";
-			link.l1 = "Соглас"+ GetSexPhrase("ен","на") +", черт меня дери! Еще бы я не согласил"+ GetSexPhrase("ся","ась") +"!";
+			link.l1 = "Соглас"+ GetSexPhrase("ен","на") +", черт меня дери! Ещё бы я не согласил"+ GetSexPhrase("ся","ась") +"!";
 			link.l1.go = "SharpSeekSpy_8";
 			link.l2 = "Нет, пожалуй, я откажусь.";
 			link.l2.go = "SharpSeekSpy_8over";
@@ -194,7 +194,7 @@ void ProcessDialogEvent()
 		case "GuardMan":
 			NextDiag.TempNode = "GuardMan";
 			dialog.text = NPCStringReactionRepeat("Здравствуйте! Позвольте представиться, меня зовут " + GetFullName(npchar) + ". Моя задача - предупредить поселение ловцов жемчуга о возможном нападении. Пираты, знаете ли... А вы кто?",
-				"Приветствую еще раз!",
+				"Приветствую ещё раз!",
 				"Стою тут один целыми днями, скучно, поговорить не с кем...",
                 "Эх, черт возьми, приятная отдушина в наряде!", "block", 1, npchar, Dialog.CurrentNode);
 			link.l1 = HeroStringReactionRepeat("Меня зовут " + GetFullName(pchar) + ". Я капитан, осматриваю эти земли.",
@@ -231,7 +231,7 @@ void ProcessDialogEvent()
 		case "PearlMan":
 			NextDiag.TempNode = "PearlMan";
 			dialog.text = NPCStringReactionRepeat("Приветствую! Меня зовут " + GetFullName(npchar) + ". Чем я могу тебе помочь?",
-				"Приветствую еще раз!",
+				"Приветствую ещё раз!",
 				"В нашей глуши гости очень редки...",
                 "Эх, приятно поболтать с новым человеком! А то эти морды уже опротивели.", "block", 1, npchar, Dialog.CurrentNode);
 			link.l1 = HeroStringReactionRepeat("Да ничем особенным...",
@@ -318,7 +318,7 @@ void ProcessDialogEvent()
 			link.l1.go = "IndPearlMan_Sharp_4";
 		break;
 		case "IndPearlMan_Sharp_4":
-			dialog.text = "Вы называете ее залив Сан-Хуан дель Норте. Эмилио часто приходит туда ночью, там он говорит с белым, имя которого никто не знает, а взгляд как у гремучей змеи.";
+			dialog.text = "Вы называете её залив Сан-Хуан дель Норте. Эмилио часто приходит туда ночью, там он говорит с белым, имя которого никто не знает, а взгляд как у гремучей змеи.";
 			link.l1 = "Почему имя никто не знает?";
 			link.l1.go = "IndPearlMan_Sharp_5";
 		break;
@@ -408,7 +408,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "IndPearlMan_Sale":
-			dialog.text = "Ты "+ GetSexPhrase("пришел","пришла") +"...";
+			dialog.text = "Ты "+ GetSexPhrase("пришёл","пришла") +"...";
 			link.l1 = "Ну да, а цена какая?";
 			link.l1.go = "IndPearlMan_Sale_1";
 		break;

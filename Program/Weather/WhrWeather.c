@@ -137,7 +137,7 @@ void CreateWeatherEnvironment()
 	if (CheckAttribute(&WeatherParams,"Rain")) { bRain = sti(WeatherParams.Rain); }
 	if (!CheckAttribute(&WeatherParams, "Rain.ThisDay")) WeatherParams.Rain.ThisDay = false;
 
-    //Время проверяется, т.к. нет ночной погоды для дождя!!! Ее в ГПК дорисовали??
+    //Время проверяется, т.к. нет ночной погоды для дождя!!! Её в ГПК дорисовали??
 	if (iHour >= 5 && iHour <= 15 && !sti(WeatherParams.Rain.ThisDay))
 	{
 		//шанс.

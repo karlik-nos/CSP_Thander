@@ -28,7 +28,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			Link.l1.go = "Step_Az_2";
 		break;
 		case "Step_Az_2":
-			dialog.text = "Прошу вас, " + GetAddress_Form(NPChar) + ". Что-нибудь еще?";
+			dialog.text = "Прошу вас, " + GetAddress_Form(NPChar) + ". Что-нибудь ещё?";
 			Link.l1 = "Нет, ничего не нужно... Послушай, а что у тебя за дела с этим Аззи? Так, для интереса спрашиваю...";
 			Link.l1.go = "Step_Az_3";
             DeleteAttribute(pchar, "questTemp.Azzy.GiveMoney");

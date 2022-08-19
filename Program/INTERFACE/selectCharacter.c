@@ -748,11 +748,11 @@ void SetTextForLulz()
 		case 0: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\n..."); break;
 		case 1: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nОй, слишком много вопросов будет, 10 раз неправильно"); break;
 		case 2: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nБяда, читать так и не научились, уже в 20 раз"); break;
-		case 3: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nДавай еще раз прочитаем, 30 раз не пид...."); break;
+		case 3: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nДавай ещё раз прочитаем, 30 раз не пид...."); break;
 		case 4: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nНе, так не пойдёт, мы же не поняли, что тут написано уже в 40 раз"); break;
-		case 5: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nАга, прочитай еще раз, уже раз 50 неверно жмакнул"); break;
+		case 5: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nАга, прочитай ещё раз, уже раз 50 неверно жмакнул"); break;
 		case 6: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nНе, ваши вопросы сильно утомляют по 60 раз на дню писать"); break;
-		case 7: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nНу ладно... Так и быть, дам еще одну попытку - прочитать внимательно еще 70 раз"); break;
+		case 7: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nНу ладно... Так и быть, дам ещё одну попытку - прочитать внимательно ещё 70 раз"); break;
 		case 8: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nЧитать - значит быть умным, прочитать 80 раз"); break;
 		case 9: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nВсё херня, Миша, давай по новой 90 раз"); break;
 		case 10: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nВот если бы ты прочитал всё внимательно, уже бы начал играть в СОТЫЙ РАЗ, МАТЬ ТВОЮ!"); break;

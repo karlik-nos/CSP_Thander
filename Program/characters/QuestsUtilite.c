@@ -63,7 +63,7 @@ int GetQuestPastTimeParam(string _quest)
 	return 0;
 }
 //navy -->
-//Ввел еще одну функцию, т.к. нужны прошедшие минуты.
+//Ввел ещё одну функцию, т.к. нужны прошедшие минуты.
 int GetQuestPastMinutesParam(string _quest)
 {
     aref  arQ;
@@ -3548,7 +3548,7 @@ void QuestCheckTakeBoxes(ref itemsRef)
 	}
 	//<<-- Сундук с револьвером Колье в Тено.
 }
-//открытие дверей в локации города для коммонов. только на текущие сутки + еще одни, потом снимается само.
+//открытие дверей в локации города для коммонов. только на текущие сутки + ещё одни, потом снимается само.
 void SetOpenDoorCommonLoc(string City, string locationId)
 {
 	aref arRld, arDis, arRld2, arDis2;
@@ -3590,6 +3590,6 @@ void AddComplexSelfExpToScill(int l, int m, int h, int p)
 {
 	AddCharacterExpToSkill(pchar, "FencingLight", l);//легкое оружие
 	AddCharacterExpToSkill(pchar, "Fencing", m);//среднее оружие
-	AddCharacterExpToSkill(pchar, "FencingHeavy", h);//тяжелое оружие
+	AddCharacterExpToSkill(pchar, "FencingHeavy", h);//тяжёлое оружие
 	AddCharacterExpToSkill(pchar, "Pistol", p); //пистоли
 }

@@ -37,7 +37,7 @@ void ProcessDialogEvent()
             }
             if (pchar.questTemp.State == "Fr2Letter_PrisonTalk")// квест №2, базар с тюремщиком
             {
-    			dialog.text = "Сидишь, клопов кормишь? Завтра и тебя покормят по-королевски, как приговоренн"+ GetSexPhrase("ого","ую") +" к виселице, а ее уже строят, хе-хе!";
+    			dialog.text = "Сидишь, клопов кормишь? Завтра и тебя покормят по-королевски, как приговоренн"+ GetSexPhrase("ого","ую") +" к виселице, а её уже строят, хе-хе!";
     			link.l1 = "Ну, тебе от этого вряд ли что-то перепадет...";
     			link.l1.go = "Step_F2_2";
             }
@@ -62,7 +62,7 @@ void ProcessDialogEvent()
 			if (npchar.id == "InesDeLasCierras" && pchar.questTemp.State == "Fr5AnnaHant_toHavana")// квест №5, Инесс
             {
     			dialog.text = "Сеньор"+ GetSexPhrase("","ита") +", кто вы? И что вам нужно в моем доме?";
-    			link.l1 = "Сеньора, я прибыл"+ GetSexPhrase("","а") +" сюда по поручению донны Анны, вашей подруги. Насколько мне известно, вы известили ее о некой опасности...";
+    			link.l1 = "Сеньора, я прибыл"+ GetSexPhrase("","а") +" сюда по поручению донны Анны, вашей подруги. Насколько мне известно, вы известили её о некой опасности...";
     			link.l1.go = "Step_F5_1";
             }
 			if (npchar.id == "InesDeLasCierras" && pchar.questTemp.State == "Fr5AnnaHant_SeekHoseBrothers")
@@ -108,7 +108,7 @@ void ProcessDialogEvent()
             }
 			if (npchar.id == "RockBrasilian" && pchar.questTemp.State == "empty")//квест №7, базар с Бразильцем в резиденции дОжерона.
             {
-    			dialog.text = "Капитан, я еще не имел возможности поблагодарить тебя.";
+    			dialog.text = "Капитан, я ещё не имел возможности поблагодарить тебя.";
     			link.l1 = "Все в порядке, капитан Рок...";
     			link.l1.go = "Step_F7_5";
             }

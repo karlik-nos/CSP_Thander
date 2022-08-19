@@ -2515,7 +2515,7 @@ void WaitressFack_fack()
 // ----------------- Пожертвование хозяйки борделя ---------------------
 void HostessChurch_null(string qName) //нулим квест
 {
-	//если квест еще взят, то деньги считай прикарманены
+	//если квест ещё взят, то деньги считай прикарманены
 	if (characters[GetCharacterIndex(pchar.questTemp.different.HostessChurch.city + "_Hostess")].questChurch == "taken")
 	{
 		characters[GetCharacterIndex(pchar.questTemp.different.HostessChurch.city + "_Hostess")].questChurch = "baster";
@@ -2605,7 +2605,7 @@ void SexWithHostess_null(string qName) //нулим квест
 	}
 	LAi_SetOwnerTypeNoGroup(sld);
 	sld.dialog.currentnode = "First time";
-	sld.quest.NotGoneToSex = true; //не пришел. Секса больше не будет
+	sld.quest.NotGoneToSex = true; //не пришёл. Секса больше не будет
 	DeleteAttribute(pchar, "questTemp.different.HostessSex");
 	pchar.questTemp.different = "free";
 }
@@ -4484,7 +4484,7 @@ void LSC_stormTimer_1(string qName)
 			DeleteAttribute(&locations[i], "MaxWaveHeigh");
 		}
 	}
-	//адмирал ловит ГГ, если тот еще не явился к нему
+	//адмирал ловит ГГ, если тот ещё не явился к нему
 	if (pchar.questTemp.LSC == "AdmiralIsWaiting")
 	{
 		pchar.quest.LSC_admiralOwnFind.win_condition.l1 = "location";

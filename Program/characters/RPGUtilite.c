@@ -1157,7 +1157,7 @@ int GetCharacterSkillSimple(ref _refCharacter, string skillName)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_LEADERSHIP, "jewelry4", 10);			// {Изумруд}							(+10 авторитет)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_FORTUNE, "jewelry8", 10);				// {Бронзовое кольцо} 					(+10 к везению)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SNEAK, "indian5", 10);				// {Двойная маска}						(+10 скрытность)
-    	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_F_HEAVY, "indian12", 10);				// {Кубок-тотем Тепейоллотля}			(+10 тяжелое оружие)
+    	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_F_HEAVY, "indian12", 10);				// {Кубок-тотем Тепейоллотля}			(+10 тяжёлое оружие)
 		skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_FORTUNE, "Dozor_HorseShoe", 15);		// {Счастливая подкова}					(+15 к везению)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SNEAK, "jewelry15", 10);				// {Изумрудные подвески} 				(+10 к скрытности)
 
@@ -1208,7 +1208,7 @@ int GetCharacterSkillSimple(ref _refCharacter, string skillName)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_LEADERSHIP, "Totem_6", 5);			// {Тотем Чалчиуитликуэ}				(+5 авторитет)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_FENCING, "Totem_7", 5);				// {Тотем Уицилопочтли}					(+5 среднее оружие)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_F_LIGHT, "Totem_8", 5);				// {Тотем Тлалока}						(+5 легкое оружие)
-    	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_F_HEAVY, "Totem_9", 5); 				// {Тотем Майяуэль}						(+5 тяжелое оружие)
+    	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_F_HEAVY, "Totem_9", 5); 				// {Тотем Майяуэль}						(+5 тяжёлое оружие)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SNEAK, "Dozor_Mirror", 15);			// {Карманное зеркало}					(+15 к скрытности)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SAILING, "hatWhisper", 5);			// {Карманное зеркало}					(+15 к скрытности)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_LEADERSHIP, "hatWhisper", 5);			// {Карманное зеркало}					(+15 к скрытности)
@@ -2123,7 +2123,7 @@ void setWDMPointXZ(string _location)
 	}
 	// координаты на гловал карте <--
 }
-// нужно не перекрывать еще и признаки фантома
+// нужно не перекрывать ещё и признаки фантома
 void ChangeAttributesFromCharacter(ref CopyChref, ref PastChref, bool _dialogCopy)
 {
     aref arToChar;
@@ -2647,7 +2647,7 @@ void initNewMainCharacter()
 	}
 	else
 	{
-		ch.HeroParam.ToCityId = FindAlliedColonyForNationExceptColony("Pirates"); //Бермуды не берем, туда еще добираться надо
+		ch.HeroParam.ToCityId = FindAlliedColonyForNationExceptColony("Pirates"); //Бермуды не берем, туда ещё добираться надо
 	}
 	//ch.HeroParam.ToCityId = "Santiago";
 	// откуда плывем
@@ -2846,7 +2846,7 @@ void initNewMainCharacter()
 
 	// Warship Для разных квестов
 	// Важно: функция MaryCelesteInit() должна быть тут, а не в initStartState2Character()
-	// т.к. в ней идет выборка колоний, которые в функции initStartState2Character() еще не инитились
+	// т.к. в ней идет выборка колоний, которые в функции initStartState2Character() ещё не инитились
 	OtherQuestCharactersInit(); // Инициализация прочих квестов
 
 	MaryCelesteInit(); // Warship 07.07.09 Пасхалка "Мэри Селест"

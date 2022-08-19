@@ -34,7 +34,7 @@ void ProcessDialogEvent()
 
 		case "meeting":
 			dialog.text = XI_ConvertString(Nations[sti(NPChar.nation)].Name) + " заплатила за твою голову хорошую цену, неважно, "+ GetSexPhrase("живым мы тебя доставим или мертвым","живой мы тебя доставим или мертвой") +".";
-			Link.l1 = "Я готов"+ GetSexPhrase("","а") +" заплатить вам еще, лишь бы вы оставили меня в покое.";
+			Link.l1 = "Я готов"+ GetSexPhrase("","а") +" заплатить вам ещё, лишь бы вы оставили меня в покое.";
 			Link.l1.go = "Cost_Head";
             // boal 08.04.04 -->
             if (GetSummonSkillFromNameToOld(PChar, SKILL_SNEAK) > 2 || bBettaTestMode)
@@ -79,7 +79,7 @@ void ProcessDialogEvent()
             else
             {
                 dialog.text = "Похоже, ты врешь!";
-                Link.l1 = "Я готов"+ GetSexPhrase("","а") +" заплатить вам еще, лишь бы вы оставили меня в покое.";
+                Link.l1 = "Я готов"+ GetSexPhrase("","а") +" заплатить вам ещё, лишь бы вы оставили меня в покое.";
 			    Link.l1.go = "Cost_Head";
 			    Link.l2 = "Ну что же, испытайте свою удачу.";
 			    Link.l2.go = "battle";

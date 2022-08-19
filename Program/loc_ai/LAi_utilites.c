@@ -21,7 +21,7 @@ void CreateCitizens(aref loc)
 	int iColony = -1;
 	int iNation = -1;
 
-	if (isLocationHasCitizens(loc.id)) return; // boal  если есть еще с того раза, но не нужно
+	if (isLocationHasCitizens(loc.id)) return; // boal  если есть ещё с того раза, но не нужно
 
 	if(CheckAttribute(loc, "fastreload"))
 	{
@@ -528,7 +528,7 @@ void CreateHabitues(aref loc)
 
 	OfficersReactionResult(); // уход офов в местах, где есть пьянь и др офы - пока это таверна
 
-	if (!isLocationHasCitizens(loc.id))  // boal  если есть еще с того раза, но не нужно
+	if (!isLocationHasCitizens(loc.id))  // boal  если есть ещё с того раза, но не нужно
 	{
 		if (CheckAttribute(loc, "fastreload"))
 		{

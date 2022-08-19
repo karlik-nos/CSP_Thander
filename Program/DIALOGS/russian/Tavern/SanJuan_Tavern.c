@@ -48,7 +48,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = "Step_E6_5";
 		break;
         case "Step_E6_5":
-			dialog.text = "Еще бы! А тебе-то зачем этот пинас понадобился?";
+			dialog.text = "Ещё бы! А тебе-то зачем этот пинас понадобился?";
 			link.l1 = "Да я "+ GetSexPhrase("договаривался","договаривалась") +", что груз этот мне уступят, а они продали все здесь...";
 			link.l1.go = "Step_E6_6";
 		break;

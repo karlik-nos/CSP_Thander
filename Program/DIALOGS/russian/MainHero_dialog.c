@@ -144,7 +144,7 @@ void ProcessDialogEvent()
             // ==> Исп. линейка, квест №4: в спальне донны Анны
             if (pchar.questTemp.State == "Sp4Detection_toMirderPlace")
     		{
-    		    dialog.text = "Хм, странное письмо. Она получила известие о прибытии человека... А кто мог ее известить? Тот, кто своим визитом не привлечет внимания слуг! Это может быть только местный житель. Мне нужно найти и допросить местного жителя, который известил донну Анну.";
+    		    dialog.text = "Хм, странное письмо. Она получила известие о прибытии человека... А кто мог её известить? Тот, кто своим визитом не привлечет внимания слуг! Это может быть только местный житель. Мне нужно найти и допросить местного жителя, который известил донну Анну.";
     			link.l1 = "...";
     			link.l1.go = "exit";
                 pchar.questTemp.State = "Sp4Detection_FoundLetter";
@@ -257,7 +257,7 @@ void ProcessDialogEvent()
 			}
 			if (CheckAttribute(pchar, "questTemp.Whisper.Inside_Incquisition"))
 			{
-				dialog.Text = "Проклятье, как же громко! Еще и это 'оружие' разлетелось на куски после выстрела. Эх, я бы сейчас всё отдала за свой верный шотган...";
+				dialog.Text = "Проклятье, как же громко! Ещё и это 'оружие' разлетелось на куски после выстрела. Эх, я бы сейчас всё отдала за свой верный шотган...";
 				DeleteAttribute(pchar, "questTemp.Whisper.Inside_Incquisition");
 				Link.l1 = "Нужно забрать с трупа саблю, пока остальные стражники не прибежали. Похоже, придется прорываться с боем.";
 				Link.l1.go = "exit_WhisperIncq";
@@ -964,7 +964,7 @@ void ProcessDialogEvent()
 					}
 					if (pchar.location == "Panama_ExitTown")
 					{
-						Dialog.Text = "Не-е-ет, я не сумасшедш"+ GetSexPhrase("ий","ая")+". Это же Панама! Взять ее НЕВОЗМОЖНО!!! Надо валить отсюда, а то точно дождусь черной метки...";
+						Dialog.Text = "Не-е-ет, я не сумасшедш"+ GetSexPhrase("ий","ая")+". Это же Панама! Взять её НЕВОЗМОЖНО!!! Надо валить отсюда, а то точно дождусь чёрной метки...";
 	    				Link.l1 = "...";
 	    				Link.l1.go = "exit";
 					}
@@ -1485,7 +1485,7 @@ void ProcessDialogEvent()
 			Link.l1.go = "Exit";
 		break;
 		case "WhisperHatUnequip":
-			dialog.Text = "Оставлю ее в каюте, а то голова потеет.";
+			dialog.Text = "Оставлю её в каюте, а то голова потеет.";
 			ref hatRef = ItemsFromID("hatWhisper");
 			string itmGroup = hatRef.groupID;
 			RemoveCharacterEquip(pchar, itmGroup);

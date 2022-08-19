@@ -831,7 +831,7 @@ void FillItemsSelected()
 				if(CheckAttribute(xi_refCharacter, "IsMushketer"))
 				{
 					iLastGunItem = GetItemIndex(xi_refCharacter.IsMushketer.LastGunID);
-					// Покажем картинку старого пистоля, если он еще есть
+					// Покажем картинку старого пистоля, если он ещё есть
 					if(iLastGunItem != -1 && GetCharacterItem(xi_refCharacter, xi_refCharacter.IsMushketer.LastGunID) > 0)
 					{
 						rLastGunItem = &Items[iLastGunItem];
@@ -2419,7 +2419,7 @@ void SaveEquipSet()
 						if(CheckAttribute(xi_refCharacter, "IsMushketer"))
 						{
 							iLastGunItem = GetItemIndex(xi_refCharacter.IsMushketer.LastGunID);					//пистолет, который может быть под мушкетом
-							// Покажем картинку старого пистоля, если он еще есть
+							// Покажем картинку старого пистоля, если он ещё есть
 							if(iLastGunItem != -1 && GetCharacterItem(xi_refCharacter, xi_refCharacter.IsMushketer.LastGunID) > 0)
 							{
 								rLastGunItem = &Items[iLastGunItem];

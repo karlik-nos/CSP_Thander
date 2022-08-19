@@ -125,7 +125,7 @@ void ProcessDialogEvent()
 			link.l1.go = "SeekCrew_3";
 		break;
 		case "SeekCrew_3":
-			dialog.text = "Я знаю, но все равно останусь. Мне ничего не угрожает.";
+			dialog.text = "Я знаю, но всё равно останусь. Мне ничего не угрожает.";
 			link.l1 = "Странный ты... Ну как знаешь.";
 			link.l1.go = "exit";
 		break;
@@ -223,7 +223,7 @@ void ProcessDialogEvent()
 			link.l1.go = "exit";
 		break;
 		case "GiveMoney_disAgree":
-			dialog.text = "Ну, как знаешь. Поразмысли как следует, может, и надумаешь еще.";
+			dialog.text = "Ну, как знаешь. Поразмысли как следует, может, и надумаешь ещё.";
 			link.l1 = "Да, конечно...";
 			link.l1.go = "exit";
 		break;

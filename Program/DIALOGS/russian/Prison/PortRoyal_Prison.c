@@ -50,7 +50,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = "Step_S1_3";
 		break;
         case "Step_S1_3":
-            dialog.text = "Такой наглости свет еще не видел. Взять "+ GetSexPhrase("его","ее") +"!!";
+            dialog.text = "Такой наглости свет ещё не видел. Взять "+ GetSexPhrase("его","её") +"!!";
 			link.l1 = "Ну что же, вы сами напросились...";
 			link.l1.go = "fight";
 		break;

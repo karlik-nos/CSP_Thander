@@ -955,7 +955,7 @@ void QuestCheckExitLocItem(aref _location, string _locator) /// <<<провер�
     		DoQuestCheckDelay("TalkSelf_Quest", 0.1); //диалог сам-на-сам
         }
     }
-	//=======> Квест Аскольда, ГГ добрался до мумии, но бутылки еще не имеет. Вместо прерывания на локатор.
+	//=======> Квест Аскольда, ГГ добрался до мумии, но бутылки ещё не имеет. Вместо прерывания на локатор.
     if (_location.id == "Guadeloupe_Cave" && _locator == "button02")
     {
 		if (pchar.questTemp.Ascold == "Ascold_SeekRockLetter" || pchar.questTemp.Ascold == "Ascold_EnterGrave")

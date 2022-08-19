@@ -39,7 +39,7 @@ void ProcessDialogEvent()
 				//квест получения карты -->
 				if (!CheckAttribute(npchar, "quest.takeMap"))
 				{
-					link.l2 = "Дружище, я слышал"+ GetSexPhrase("","а") +", что у тебя есть карта Города. Ты знаешь, в данный момент мне бы она очень пригодилась. А то бегаю здесь, как слепой котенок, не освоил"+ GetSexPhrase("ся","ась") +" еще...";
+					link.l2 = "Дружище, я слышал"+ GetSexPhrase("","а") +", что у тебя есть карта Города. Ты знаешь, в данный момент мне бы она очень пригодилась. А то бегаю здесь, как слепой котенок, не освоил"+ GetSexPhrase("ся","ась") +" ещё...";
 					link.l2.go = "tekeMap_begin";
 				}
 				if (CheckAttribute(npchar, "quest.takeMap") && npchar.quest.takeMap == "mapIsToken" && !CheckCharacterItem(pchar, "map_LSC"))
@@ -49,7 +49,7 @@ void ProcessDialogEvent()
 				}
 				if (CheckAttribute(npchar, "quest.takeMap") && npchar.quest.takeMap == "discount")
 				{
-					link.l2 = "Послушай, дружище, " + npchar.quest.takeMap.name + " просила меня переговорить с тобой еще раз по поводу карты Города.";
+					link.l2 = "Послушай, дружище, " + npchar.quest.takeMap.name + " просила меня переговорить с тобой ещё раз по поводу карты Города.";
 					link.l2.go = "tekeMap_on";
 				}
 				//<-- квест получения карты
@@ -152,7 +152,7 @@ void ProcessDialogEvent()
 		//поиск товаров на корвет
 		case "SeekGoods":
 			dialog.text = "Всегда к твоим услугам, "+ GetSexPhrase("приятель","" + pchar.name + "") +". Заказывай!";
-			link.l1 = "Слушай, таких товаров в твоем ассортименте я еще не встречал"+ GetSexPhrase("","а") +". Это бомбы, книпеля, порох, провиант, парусина, доски, лекарства...";
+			link.l1 = "Слушай, таких товаров в твоем ассортименте я ещё не встречал"+ GetSexPhrase("","а") +". Это бомбы, книпеля, порох, провиант, парусина, доски, лекарства...";
 			link.l1.go = "SeekGoods_1";
 		break;
 		case "SeekGoods_1":
@@ -216,7 +216,7 @@ void ProcessDialogEvent()
 			}
 			else
 			{
-				link.l1 = "Нет еще...";
+				link.l1 = "Нет ещё...";
 				link.l1.go = "SeekGoods_notMoney";
 			}
 		break;
@@ -289,8 +289,8 @@ void ProcessDialogEvent()
 			}
 			else
 			{
-				dialog.text = "Я не в курсе. " + npchar.quest.takeMap.name + " мне еще ничего не говорила.";
-				link.l1 = "Наверное, еще не успела. Зайду позже, там и поговорим на эту тему.";
+				dialog.text = "Я не в курсе. " + npchar.quest.takeMap.name + " мне ещё ничего не говорила.";
+				link.l1 = "Наверное, ещё не успела. Зайду позже, там и поговорим на эту тему.";
 				link.l1.go = "exit";
 			}
 		break;

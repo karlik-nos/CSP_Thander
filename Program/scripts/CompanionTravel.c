@@ -16,7 +16,7 @@ void CompanionTravel_SetTraveller(ref _NPChar)
 	}
 
 	CompanionTravel_SetSpecialShipAttributes(sld);
-	sld.CompanionTravel.GroupID = "CompanionTravel_" + attr; // Это группа. Ее потом нужно будет потереть
+	sld.CompanionTravel.GroupID = "CompanionTravel_" + attr; // Это группа. Её потом нужно будет потереть
 
 	sTemp = _NPChar.ID;
 	PChar.CompanionTravel.(attr).ID = sld.ID ; // Запомним ID
@@ -139,7 +139,7 @@ void CompanionTravel_TimerToSetInColony(string sCompanion) // Таймер вы�
 	int iDays = sti(PChar.CompanionTravel.(sCompanion).Days);
 	ref sld = CharacterFromID(sID);
 
-	if(CheckAttribute(PChar, "CompanionTravel."+sCompanion+".Sink")) // Не дошел до места назначения
+	if(CheckAttribute(PChar, "CompanionTravel."+sCompanion+".Sink")) // Не дошёл до места назначения
 	{
 		CompanionTravel_DeleteCompanion(sID, sCompanion, false);
 		return;

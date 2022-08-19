@@ -481,7 +481,7 @@ void ProcessDialogEvent()
 			}
 			else
 			{
-				dialog.text = "До ближайшей колонии не так далеко - мы доплывём сами. Еще раз спасибо вам, капитан.";
+				dialog.text = "До ближайшей колонии не так далеко - мы доплывём сами. Ещё раз спасибо вам, капитан.";
 				link.l1 = "До свидания.";
 				link.l1.go = "exit";
 				AddDialogExitQuestFunction("ShipWreckBanditsNewCapNoAdd");

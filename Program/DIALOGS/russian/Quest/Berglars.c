@@ -64,12 +64,12 @@ void ProcessDialogEvent()
 		break;
  		case "Step1_4":
         	dialog.text = "Дело жизни и смерти, "+ GetSexPhrase("приятель","подруга") +".\nНу ладно, некогда мне с тобой рассусоливать здесь, жду тебя в подземелье до полуночи. Не придешь - как знаешь...";
-    		link.l1 = "Вот еще что хотел"+ GetSexPhrase("","а") +" спросить...";
+    		link.l1 = "Вот ещё что хотел"+ GetSexPhrase("","а") +" спросить...";
     		link.l1.go = "Step_overAll";
 		break;
 		//--------------
         case "Fight_1":
-            dialog.text = "А-а-а, приш"+ GetSexPhrase("ел","ла") +" все-таки...";
+            dialog.text = "А-а-а, приш"+ GetSexPhrase("ел","ла") +" всё-таки...";
             link.l1 = "Да, приш"+ GetSexPhrase("ел","ла") +". Говори скорей, что там у тебя за дело жизни и смерти?";
             link.l1.go = "FirstFight_1";
         break;
@@ -261,7 +261,7 @@ void ProcessDialogEvent()
             link.l1.go = "Fight4_2";
         break;
         case "Fight4_2":
-			dialog.text = "Да нет никакого товара, ты так еще и не понял"+ GetSexPhrase("","а") +"?";
+			dialog.text = "Да нет никакого товара, ты так ещё и не понял"+ GetSexPhrase("","а") +"?";
             link.l1 = "Чтобы это понять, особого ума не надо. Ты ведь третий по счету, кто пытается меня таким вот образом ограбить. Так что колись, кто вы такие и кто такой Остин?";
             link.l1.go = "Fight4_3";
         break;

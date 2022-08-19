@@ -376,7 +376,7 @@ void QuestComplete(string sQuestName, string qname)
 				sld = GetRealShip(sti(pchar.GenQuest.GhostShip.ShipType));
 				DeleteAttribute(sld, "EmblemedSails.normalTex");
 				AddSimpleRumourTip(LinkRandPhrase("О, сожри меня акула! Так вы и есть "+ GetSexPhrase("тот самый капитан","та морячка") +", что взял"+ GetSexPhrase("","а") +" 'Летучего Голландца'?! Разрази меня гром! Знатная, наверное, была баталия! Скажите, правду говорят, что его бывший капитан водил дружбу с самим Морским Дьяволом? А в команде у него были сплошь проклятые и отвергнутые Господом демоны, питающиеся кровью своих жертв?",
-					"Капитан, а вы здесь весьма известны! Ходят слухи, что это вы упокоили старого Дейви Джонса и команду его мертвецов. Кто бы мог подумать, что 'Летучий Голландец' перестанет быть призраком! Меняются времена, что ни говори... вот и еще одной легендой в этом мире стало меньше, хе-хе. Выпьем же за те тайны, которые океан хранит ещё в своих пучинах...",
+					"Капитан, а вы здесь весьма известны! Ходят слухи, что это вы упокоили старого Дейви Джонса и команду его мертвецов. Кто бы мог подумать, что 'Летучий Голландец' перестанет быть призраком! Меняются времена, что ни говори... вот и ещё одной легендой в этом мире стало меньше, хе-хе. Выпьем же за те тайны, которые океан хранит ещё в своих пучинах...",
 					"Слыхали, что 'Летучий Голландец' - этот неуловимый и непонятный человеку ужас морских стихий, нашел свой конец? И заметьте - от вполне смертных людей! Слышал я, один капитан смог разрушить проклятие и взял старого Дьявола призом, как простого купца... Вот так-то, в общем, бесславно и закончились бесчинства легендарного Корабля-Призрака."),
 					60, 5, "habitue", "");
             }
@@ -1912,14 +1912,14 @@ void QuestComplete(string sQuestName, string qname)
 				ChangeCharacterReputation(pchar, -3);
 				AddSimpleRumour(LinkRandPhrase("Вы слышали, кто-то убил в джунглях несчастную девушку по имени " + pchar.GenQuest.EncGirl.name + ". Отловить бы мерзавца и вздернуть!",
 					"Вы знаете, капитан " + GetFullName(pchar) + ", кто-то убил несчастную девушку по имени " + pchar.GenQuest.EncGirl.name  + ", когда та по делам отправилась за город. Как жаль, она была такой хорошей...",
-					"Ее звали " + pchar.GenQuest.EncGirl.name  + ", и она погибла в джунглях. И ничего удивительного, скажу я вам, за городом так неспокойно..."), sti(pchar.GenQuest.EncGirl.nation), 5, 1);
+					"Её звали " + pchar.GenQuest.EncGirl.name  + ", и она погибла в джунглях. И ничего удивительного, скажу я вам, за городом так неспокойно..."), sti(pchar.GenQuest.EncGirl.nation), 5, 1);
 			}
 			else
 			{
 				characters[GetCharacterIndex("CangGirl")].lifeDay = 0;
 				if (sGlobalTemp == "Saved_CangGirl") // спасли тетку
 				{
-					if(pchar.GenQuest.EncGirl == "close") // .. и послали ее куда подальше
+					if(pchar.GenQuest.EncGirl == "close") // .. и послали её куда подальше
 					{
 						characters[GetCharacterIndex("CangGirl")].lifeDay = 0;
 						DeleteAttribute(pchar, "GenQuest.EncGirl");
@@ -1929,7 +1929,7 @@ void QuestComplete(string sQuestName, string qname)
 						if(!CheckAttribute(pchar, "GenQuest.EncGirl.Ransom"))
 						{
 							ChangeCharacterReputation(pchar, 5);
-							AddSimpleRumour(LinkRandPhrase("Вы слышали, "+ GetSexPhrase("какой-то капитан","какая-то морячка") +" спас"+ GetSexPhrase("","ла") +" девушку по имени " + pchar.GenQuest.EncGirl.name + " от бандитов, буквально вытащил ее из их лап!"+ GetSexPhrase(" Какой прекрасный человек и настоящий мужчина.","") +"",
+							AddSimpleRumour(LinkRandPhrase("Вы слышали, "+ GetSexPhrase("какой-то капитан","какая-то морячка") +" спас"+ GetSexPhrase("","ла") +" девушку по имени " + pchar.GenQuest.EncGirl.name + " от бандитов, буквально вытащил её из их лап!"+ GetSexPhrase(" Какой прекрасный человек и настоящий мужчина.","") +"",
 								"Вы знаете, капитан " + GetFullName(pchar) + " спас"+ GetSexPhrase("","ла") +" девушку по имени " + pchar.GenQuest.EncGirl.name + " от насильников в джунглях... А-а, так это же вы!! Я вами восхищаюсь...",
 								"Девушке по имени " + pchar.GenQuest.EncGirl.name + " здорово повезло - недавно на нее напали бандиты в джунглях, хотели изнасиловать, видать. Но ничего у них не вышло, хе-хе, и благодарить она должна капитана " + GetMainCharacterNameGen() + "!"), sti(pchar.GenQuest.EncGirl.nation), 3, 1);
 						}
@@ -1958,7 +1958,7 @@ void QuestComplete(string sQuestName, string qname)
 						ChangeCharacterReputation(pchar, -5);
 					}
 					AddSimpleRumour(RandPhraseSimple("Да уж, капитан " + GetFullName(pchar) + ", никто не думал, что вы способны оставить беззащитную женщину на поругание бандитам. Бедная " + pchar.GenQuest.EncGirl.name + ", у меня нет слов...",
-						"Знаете, капитан, "+ GetSexPhrase("вы форменный мерзавец","не ожидал от вас такого") +". Как вы могли бросить беззащитную девушку в джунглях? Вы хоть представляете себе, что они с ней сделали? Бедная " + pchar.GenQuest.EncGirl.name + ", ее теперь никто не возьмет замуж..."), sti(pchar.GenQuest.EncGirl.nation), 5, 1);
+						"Знаете, капитан, "+ GetSexPhrase("вы форменный мерзавец","не ожидал от вас такого") +". Как вы могли бросить беззащитную девушку в джунглях? Вы хоть представляете себе, что они с ней сделали? Бедная " + pchar.GenQuest.EncGirl.name + ", её теперь никто не возьмет замуж..."), sti(pchar.GenQuest.EncGirl.nation), 5, 1);
 					DeleteAttribute(pchar, "GenQuest.EncGirl"); //трем нацию и имя
 				}
 			}
@@ -1971,7 +1971,7 @@ void QuestComplete(string sQuestName, string qname)
 			{
 				AddSimpleRumour(LinkRandPhrase("Вы слышали, какой-то капитан убил в джунглях несчастную девушку по имени " + pchar.GenQuest.EncGirl.name + ". Отловить бы мерзавца и вздернуть!",
 					"Вы знаете, капитан " + GetFullName(pchar) + ", кто-то убил несчастную девушку по имени " + pchar.GenQuest.EncGirl.name  + ", когда та по делам отправилась за город. Как жаль, она была такой хорошей...",
-					"Ее звали " + pchar.GenQuest.EncGirl.name  + ", и она погибла в джунглях. И ничего удивительного, скажу я вам, за городом так неспокойно..."), sti(pchar.GenQuest.EncGirl.nation), 5, 1);
+					"Её звали " + pchar.GenQuest.EncGirl.name  + ", и она погибла в джунглях. И ничего удивительного, скажу я вам, за городом так неспокойно..."), sti(pchar.GenQuest.EncGirl.nation), 5, 1);
 			}
 		break;
 		case "Enc_FriendGirl_afterGang":
@@ -2787,7 +2787,7 @@ void QuestComplete(string sQuestName, string qname)
 			// слухи
 			AddSimpleRumour(LinkRandPhrase("Вы знаете, губернатор " + GetFullName(npchar) + " поручил некоему капитану " + GetMainCharacterNameDat() + " найти и уничтожить пирата, что грабит торговцев у нас под носом. И что вы думаете, он ограбил и капитана " + GetMainCharacterNameGen() + " тоже!",
 				"Капитан, как вам путешествие на пиратском корабле? Нормально? Вас там не обижали? Ха-ха-ха!!",
-				"О-о-о, капитан, я слышал вам здорово досталось недавно, хи-хи... Как вам местные пираты? Не хотите еще их поискать? Ха-ха-ха!!"), sti(npchar.nation), 5, 1);
+				"О-о-о, капитан, я слышал вам здорово досталось недавно, хи-хи... Как вам местные пираты? Не хотите ещё их поискать? Ха-ха-ха!!"), sti(npchar.nation), 5, 1);
 			//снимаем кораблики пирата и торговцев
 			LAi_group_Delete("MayorPirateGroup");
 			Group_DeleteGroup("MQGroupPirate");
@@ -8130,7 +8130,7 @@ void QuestComplete(string sQuestName, string qname)
 				pchar.questTemp.LSC = "toKnowAboutMechanic";
 				AddSimpleRumourCityTip("Вы слышали, было совершено нападение на Сесил Галард!", "LostShipsCity", 10, 1, "LSC", "");
 				AddSimpleRumourCityTip("Говорят, что вы спасли Сесил Галард, когда на неё напали.", "LostShipsCity", 10, 1, "LSC", "");
-				AddSimpleRumourCityTip("На Сесил Галард напали в ее же доме, на налеоне 'Эва'!", "LostShipsCity", 10, 1, "LSC", "");
+				AddSimpleRumourCityTip("На Сесил Галард напали в её же доме, на налеоне 'Эва'!", "LostShipsCity", 10, 1, "LSC", "");
 				AddSimpleRumourCityTip("Хорошо, что вы спасли бедную Сесил! Куда смотрит адмирал, непонятно...", "LostShipsCity", 10, 1, "LSC", "");
 				AddSimpleRumourCityTip("М-да, если так пойдет дальше, то нам придется отбиваться от бандитов у себя в домах, как это сделала Сесил Галард.", "LostShipsCity", 10, 1, "LSC", "");
 			}
@@ -10663,7 +10663,7 @@ void QuestComplete(string sQuestName, string qname)
 			Group_SetTaskAttack("AT_Pir_Attack_2", PLAYER_GROUP);
 			Group_LockTask("AT_Pir_Attack_2");
 			Group_SetAddress("AT_Pir_Attack_2", "Hispaniola1", "Quest_Ships", "Quest_ship_12");
-			realships[sti(sld.ship.type)].SpeedRate = 8.5;
+			realships[sti(sld.ship.type)].SpeedRate = 7.0;
 			
 			Group_FindOrCreateGroup("AT_Pir_Attack_3");
 			Group_SetType("AT_Pir_Attack_3", "war");

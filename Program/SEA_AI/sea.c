@@ -322,7 +322,7 @@ void Sea_LandLoad()
 		if (sti(pchar.money) < sbormoney)
 		{
 			Log_Info("Недостаточно денег на оплату портового сбора. Вход невозможен.");
-			Log_Info("Вам необходимо еще "+ (sbormoney - sti(pchar.money)) +" пиастров.");
+			Log_Info("Вам необходимо ещё "+ (sbormoney - sti(pchar.money)) +" пиастров.");
 			return;
 		}
 	}
@@ -1460,7 +1460,7 @@ void Sea_LoadIsland(string sIslandID)
 	{
 		// boal -->
 		float  fMaxViewDist;
-        Sea.MaxSeaHeight = SetMaxSeaHeight(iIslandIndex); // тут нужно для загрузки игры из сайва, для нормального перехода не работает, тк ГГ еще не в море, нет коорд
+        Sea.MaxSeaHeight = SetMaxSeaHeight(iIslandIndex); // тут нужно для загрузки игры из сайва, для нормального перехода не работает, тк ГГ ещё не в море, нет коорд
         Log_TestInfo("Sea_LoadIsland Sea.MaxSeaHeight " + Sea.MaxSeaHeight);
 		// boal <--
 		CreateEntity(&Island, "Island");

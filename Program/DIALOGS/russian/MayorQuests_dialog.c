@@ -172,7 +172,7 @@ void ProcessDialogEvent()
 		case "new question":
             dialog.text = NPCharRepPhrase(npchar,
 		                PCharRepPhrase(LinkRandPhrase("О, да, я рад"+NPCharSexPhrase(NPChar, " ", "а ")+" тебе как выпивке, спрашивай, чего хочешь.", "Любишь поболтать, капитан? Что ж, я тоже... Особенно за кружечкой рома.", "Да, " + PChar.name + "?"),
-                                        LinkRandPhrase("Ну, чего тебе еще?", "Вижу, капитан "+PChar.name+", ты "+ GetSexPhrase("охотник","охотница") +" поболтать? ", "Замучил"+ GetSexPhrase("","а") +" вопросами, капитан, лучше бы угостил ромом.")),
+                                        LinkRandPhrase("Ну, чего тебе ещё?", "Вижу, капитан "+PChar.name+", ты "+ GetSexPhrase("охотник","охотница") +" поболтать? ", "Замучил"+ GetSexPhrase("","а") +" вопросами, капитан, лучше бы угостил ромом.")),
 		                PCharRepPhrase(LinkRandPhrase("Что вы хотели узнать "+ GetAddress_Form(NPChar) + "?", "Я вас слушаю капитан.", "Мне нужно идти, поэтому спрашивайте скорее, капитан."),
                                         LinkRandPhrase("Всегда рад"+NPCharSexPhrase(NPChar, " ", "а ")+" приятному собеседнику, " + GetAddress_Form(NPChar) + " " + PChar.lastname + ". Говорите.",
                                                         "Да, " + GetAddress_Form(NPChar) + "?",
@@ -242,7 +242,7 @@ void ProcessDialogEvent()
 		    link.l1.go = "SitySpy_4";
 		break;
 		case "SitySpy_4":
-            dialog.text = "Чёрт! Надо же было так глупо вляпаться!.. Всё ясно, буду следовать за тобой - мне моя жизнь еще дорога...";
+            dialog.text = "Чёрт! Надо же было так глупо вляпаться!.. Всё ясно, буду следовать за тобой - мне моя жизнь ещё дорога...";
 			link.l1 = "Ну, вот и славно. Мы идём губернатору, он хотел тебя видеть...";
 		    link.l1.go = "SitySpy_5";
 		break;
@@ -367,7 +367,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "DP_WithoutFight":
-			dialog.text = "Еще раз увижу тебя - будешь болтаться на рее, имей в виду...";
+			dialog.text = "Ещё раз увижу тебя - будешь болтаться на рее, имей в виду...";
 			Link.l1 = "Понятно...";
 			Link.l1.go = "exit";
 			Diag.TempNode = "DP_WithoutFight_again";

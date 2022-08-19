@@ -243,7 +243,7 @@ switch (rand(6))
 	{
 		case 0:
 			pchar.questTemp.jailCanMove.Deliver.Goods = GOOD_EBONY;
-			pchar.questTemp.jailCanMove.Deliver.add = "черного дерева";
+			pchar.questTemp.jailCanMove.Deliver.add = "чёрного дерева";
 			break;
 		case 1:
 			pchar.questTemp.jailCanMove.Deliver.Goods = GOOD_MAHOGANY;

@@ -25,13 +25,13 @@ void ProcessDialogEvent()
 				npchar.quest.meeting = "1";
 				if (CheckAttribute(loadedLocation, "storm"))
 				{
-					dialog.text = "Мои поздравления новоприбывше"+ GetSexPhrase("му","й") +", сейчас как раз время. Я " + GetFullName(npchar) + ", меня еще зовут здесь Счастливым.";
+					dialog.text = "Мои поздравления новоприбывше"+ GetSexPhrase("му","й") +", сейчас как раз время. Я " + GetFullName(npchar) + ", меня ещё зовут здесь Счастливым.";
 					link.l1 = "Ну, здравствуй, " + npchar.name + ". Мое имя " + GetFullName(pchar) + ", будем знакомы. А что значит 'вовремя'?";
 					link.l1.go = "FS_1";
 				}
 				else
 				{
-					dialog.text = "Мои поздравления новоприбывше"+ GetSexPhrase("му","й") +". Я " + GetFullName(npchar) + ", меня еще зовут здесь Счастливым.";
+					dialog.text = "Мои поздравления новоприбывше"+ GetSexPhrase("му","й") +". Я " + GetFullName(npchar) + ", меня ещё зовут здесь Счастливым.";
 					link.l1 = "Ну, здравствуй, " + npchar.name + ". Мое имя " + GetFullName(pchar) + ", будем знакомы.";
 					link.l1.go = "FT_1";
 				}
@@ -152,7 +152,7 @@ void ProcessDialogEvent()
 			DialogExit();
 		break;
 		case "Man_FackYou":
-			dialog.text = LinkRandPhrase("Да ты вор"+ GetSexPhrase("","овка") +"!!! Нарушение Закона Города!", "Вот это да! Чуть я загляделся, а ты сразу в сундук с головой! Он"+ GetSexPhrase("","а") +" нарушил"+ GetSexPhrase("","а") +" Закон!", "Милиция! Грабят!!! Держи е"+ GetSexPhrase("го","ее") +", он"+ GetSexPhrase("","а") +" нарушил"+ GetSexPhrase("","а") +" Закон!");
+			dialog.text = LinkRandPhrase("Да ты вор"+ GetSexPhrase("","овка") +"!!! Нарушение Закона Города!", "Вот это да! Чуть я загляделся, а ты сразу в сундук с головой! Он"+ GetSexPhrase("","а") +" нарушил"+ GetSexPhrase("","а") +" Закон!", "Милиция! Грабят!!! Держи е"+ GetSexPhrase("го","её") +", он"+ GetSexPhrase("","а") +" нарушил"+ GetSexPhrase("","а") +" Закон!");
 			link.l1 = "А-ать, дьявол!!!";
 			link.l1.go = "fight";
 		break;
@@ -196,7 +196,7 @@ void ProcessDialogEvent()
 			if (sld.id == "none")
 			{
 				dialog.text = "Я не понимаю, о ком вы говорите. Мне нужно знать имя и фамилию этого человека.";
-				Link.l1 = "Понятно. Давайте я еще попробую назвать.";
+				Link.l1 = "Понятно. Давайте я ещё попробую назвать.";
 				Link.l1.go = "SeekCitizen_Choice_2";
 				Link.l2 = "Спасибо, я лучше сам"+ GetSexPhrase("","а") +" поищу.";
 				Link.l2.go = "exit";
@@ -215,7 +215,7 @@ void ProcessDialogEvent()
 					dialog.text = GetFullName(sld) + ", вы о нем говорите?";
 					Link.l1 = "Да-да, точно, это он.";
 					Link.l1.go = "SeekCitizen_agree";
-					Link.l2 = "Нет, не о нем. Давайте еще раз назову.";
+					Link.l2 = "Нет, не о нем. Давайте ещё раз назову.";
 					Link.l2.go = "SeekCitizen_Choice_2";
 				}
 				else
@@ -223,7 +223,7 @@ void ProcessDialogEvent()
 					dialog.text = GetFullName(sld) + ", вы о ней говорите?";
 					Link.l1 = "Ага, именно о ней.";
 					Link.l1.go = "SeekCitizen_agree";
-					Link.l2 = "Нет, не о ней. Послушайте, давайте я еще раз попробую назвать.";
+					Link.l2 = "Нет, не о ней. Послушайте, давайте я ещё раз попробую назвать.";
 					Link.l2.go = "SeekCitizen_Choice_2";
 				}
 				Link.l3 = "Знаете, не хочу я больше ни о ком спрашивать. До свидания.";
@@ -232,7 +232,7 @@ void ProcessDialogEvent()
 			}
 		break;
         case "SeekCitizen_Choice_2":
-			dialog.text = "Тогда назовите еще раз имя и фамилию.";
+			dialog.text = "Тогда назовите ещё раз имя и фамилию.";
 			Link.l1.edit = 3;
 			Link.l1 = "";
 			Link.l1.go = "SeekCitizen_Choice_1";
@@ -251,7 +251,7 @@ void ProcessDialogEvent()
 				}
 				else
 				{
-					dialog.text = LinkRandPhrase("Не видел ее уже довольно давно, сожалею.", "Понятия не имею, где она сейчас.", "Хм, я не знаю, где она может сейчас быть.");
+					dialog.text = LinkRandPhrase("Не видел её уже довольно давно, сожалею.", "Понятия не имею, где она сейчас.", "Хм, я не знаю, где она может сейчас быть.");
 					link.l1 = RandPhraseSimple("Ясно.", "Жаль...");
 					link.l1.go = "exit";
 				}
@@ -266,7 +266,7 @@ void ProcessDialogEvent()
 						string Str2 = sld.location.locator;
 						if (npchar.location == sld.location && strcut(Str1, 0, 5) == strcut(Str2, 0, 5))
 						{
-							dialog.text = LinkRandPhrase("Он здесь, на этом корабле. Ищите внимательней.", "Ха, так он здесь, на этом корабле!", "Он на этом корабле, странно, что вы еще не увидели его.");
+							dialog.text = LinkRandPhrase("Он здесь, на этом корабле. Ищите внимательней.", "Ха, так он здесь, на этом корабле!", "Он на этом корабле, странно, что вы ещё не увидели его.");
 						}
 						else
 						{
@@ -295,11 +295,11 @@ void ProcessDialogEvent()
 						string Str4 = sld.location.locator;
 						if (npchar.location == sld.location && strcut(Str3, 0, 5) == strcut(Str4, 0, 5))
 						{
-							dialog.text = LinkRandPhrase("Она здесь, на этом корабле. Ищите внимательней.", "Ха, так она здесь, на этом корабле!", "Она на этом корабле, странно, что вы еще не увидели ее.");
+							dialog.text = LinkRandPhrase("Она здесь, на этом корабле. Ищите внимательней.", "Ха, так она здесь, на этом корабле!", "Она на этом корабле, странно, что вы ещё не увидели её.");
 						}
 						else
 						{
-							dialog.text = LinkRandPhrase("Я видел ее совсем недавно " + npchar.quest.seekIdx.where + ".", "Недавно встретил ее " + npchar.quest.seekIdx.where + ". Мы даже поговорили.", "Насколько я знаю, сейчас она находится " + npchar.quest.seekIdx.where + ".");
+							dialog.text = LinkRandPhrase("Я видел её совсем недавно " + npchar.quest.seekIdx.where + ".", "Недавно встретил её " + npchar.quest.seekIdx.where + ". Мы даже поговорили.", "Насколько я знаю, сейчас она находится " + npchar.quest.seekIdx.where + ".");
 						}
 					}
 					else
@@ -310,7 +310,7 @@ void ProcessDialogEvent()
 						}
 						else
 						{
-							dialog.text = LinkRandPhrase("Я видел ее совсем недавно " + npchar.quest.seekIdx.where + ".", "Недавно встретил ее " + npchar.quest.seekIdx.where + ". Мы даже поговорили с ней.", "Насколько я знаю, сейчас она находится " + npchar.quest.seekIdx.where + ".");
+							dialog.text = LinkRandPhrase("Я видел её совсем недавно " + npchar.quest.seekIdx.where + ".", "Недавно встретил её " + npchar.quest.seekIdx.where + ". Мы даже поговорили с ней.", "Насколько я знаю, сейчас она находится " + npchar.quest.seekIdx.where + ".");
 						}
 					}
 					link.l1 = RandPhraseSimple("Ага, понятно. Спасибо вам, "+GetAddress_FormToNPC(NPChar)+".", "Спасибо вам!");
@@ -481,7 +481,7 @@ void ProcessDialogEvent()
 			link.l1.go = "FackDominic_2";
 		break;
 		case "FackDominic_2":
-			dialog.text = "Вот это да!\nСлушай, сходи к нему еще раз, прошу тебя. Узнай, что случилось-то!";
+			dialog.text = "Вот это да!\nСлушай, сходи к нему ещё раз, прошу тебя. Узнай, что случилось-то!";
 			link.l1 = "Сам сходи и выясни.";
 			link.l1.go = "FackDominic_3";
 		break;
@@ -511,12 +511,12 @@ void ProcessDialogEvent()
 			link.l1.go = "ArmoDominic_2";
 		break;
 		case "ArmoDominic_2":
-			dialog.text = ""+ GetSexPhrase("Дружище","" + pchar.name + "") +", окажи мне еще одну услугу.";
+			dialog.text = ""+ GetSexPhrase("Дружище","" + pchar.name + "") +", окажи мне ещё одну услугу.";
 			link.l1 = "Опять?..";
 			link.l1.go = "ArmoDominic_3";
 		break;
 		case "ArmoDominic_3":
-			dialog.text = "Хм, ну да... Сходи еще раз к Томасу, убеди его, что меня оклеветали.";
+			dialog.text = "Хм, ну да... Сходи ещё раз к Томасу, убеди его, что меня оклеветали.";
 			link.l1 = "Кстати, а кто это мог сделать?";
 			link.l1.go = "ArmoDominic_4";
 		break;
@@ -549,7 +549,7 @@ void ProcessDialogEvent()
 			link.l1.go = "KeyDominic_3";
 		break;
 		case "KeyDominic_3":
-			dialog.text = "Ну, вот и отлично! Еще раз благодарю тебя.";
+			dialog.text = "Ну, вот и отлично! Ещё раз благодарю тебя.";
 			link.l1 = "Не за что, чего уж...";
 			link.l1.go = "exit";
 			GiveItem2Character(pchar, "key1");

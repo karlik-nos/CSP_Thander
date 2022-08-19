@@ -427,7 +427,7 @@ void Fantom_SetRandomSkills(ref rFantom, string sFantomType)
 	switch (sFantomType)
 	{
 		case "trade":
-		// комментируем лишеие - все равно ничего не меняют boal
+		// комментируем лишеие - всё равно ничего не меняют boal
             // умножение на 10 идет внутри метода
             aFSkills.Leadership = Fantom_CalcSkill(rFantom, SKILL_LEADERSHIP,iSClass, 0, 0, 0, 1, 1, 2, 2, 3, 4);
             aFSkills.Accuracy	= Fantom_CalcSkill(rFantom, SKILL_ACCURACY,	iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 5);
@@ -509,7 +509,7 @@ bool GetBoardingHP(ref mchr, ref echr, ref float_boarding_player_hp, ref float_b
 	exp = exp + moral;  // может быть минус
 	b_p_hp = b_p_hp*exp;
 
-	b_e_hp = 0;  // не будем рандом городить рандомом, опыт и еще скилы кэпа, все это не зависит от ГГ, а вот ГГ бонус от опыта даем
+	b_e_hp = 0;  // не будем рандом городить рандомом, опыт и ещё скилы кэпа, все это не зависит от ГГ, а вот ГГ бонус от опыта даем
 	/*
 	b_e_hp = LAi_GetCharacterMaxHP(echr) / 3.0;
 	exp = GetCrewExp(echr, "Soldiers") / GetCrewExpRate();

@@ -188,7 +188,7 @@ void ProcessDialogEvent()
 		break;
  		case "Step_S4_3":
 			dialog.text = "Вы, судар"+ GetSexPhrase("ь","ыня") +", суете свой нос не туда, куда нужно. Это может кончиться для вас весьма плачевно...";
-			link.l1 = "Я это знаю. Но тем не менее, я еще раз спрошу вас: не является ли донна Анна женой, а теперь уже вдовой, коменданта Гаваны дона Хуана Рамиреса де Лейва?";
+			link.l1 = "Я это знаю. Но тем не менее, я ещё раз спрошу вас: не является ли донна Анна женой, а теперь уже вдовой, коменданта Гаваны дона Хуана Рамиреса де Лейва?";
 			link.l1.go = "Step_S4_4";
 		break;
  		case "Step_S4_4":
@@ -300,7 +300,7 @@ void ProcessDialogEvent()
 		break;
  		case "Step_S6_8":
 			dialog.text = NPCStringReactionRepeat("Если вы хотите мне что-либо сказать, то говорите немедленно и здесь.",
-                          "Опять ты? Я же сказал тебе, что никуда не пойду!", "Ну все, ты меня утомил"+ GetSexPhrase("","а") +"... Стража, держи е"+ GetSexPhrase("го","ее") +", это шпион"+ GetSexPhrase("","ка") +"!", "none", "block", 0, npchar, Dialog.CurrentNode);
+                          "Опять ты? Я же сказал тебе, что никуда не пойду!", "Ну все, ты меня утомил"+ GetSexPhrase("","а") +"... Стража, держи е"+ GetSexPhrase("го","её") +", это шпион"+ GetSexPhrase("","ка") +"!", "none", "block", 0, npchar, Dialog.CurrentNode);
 			link.l1 = HeroStringReactionRepeat("Давайте пройдем в таверну...", "Послушайте...", "А, что?!", "none", npchar, Dialog.CurrentNode);
 			link.l1.go = DialogGoNodeRepeat("Step_S6_9", "Step_S6_12", "Step_S6_7", "none", npchar, Dialog.CurrentNode);
 		break;
@@ -350,7 +350,7 @@ void ProcessDialogEvent()
 			link.l1.go = "Step_S7_2";
 		break;
  		case "Step_S7_2":
-			dialog.text = "Я, пожалуй, еще задержусь в этих водах. Возможно, мне повезет...";
+			dialog.text = "Я, пожалуй, ещё задержусь в этих водах. Возможно, мне повезет...";
 			link.l1 = "Желаю тебе удачи, Маноэль. Прощай.";
 			link.l1.go = "exit";
 			pchar.questTemp.State = "Sp7SavePardal_2GoodWork";

@@ -374,7 +374,7 @@ void SetOfficerParam(ref Npchar, int _type)
 
 		case 3:
 		    SetRandSPECIAL_K(Npchar);
-			Npchar.quest.officertype_2 = RandPhraseSimple("Еще поверхностно медицину знаю. ", "Врачём, конечно, не считаюсь, но подскажу и в этом. ");
+			Npchar.quest.officertype_2 = RandPhraseSimple("Ещё поверхностно медицину знаю. ", "Врачём, конечно, не считаюсь, но подскажу и в этом. ");
 			Npchar.quest.officertype = "navigator";
 			Npchar.quest.SailingModify        = frandSmall(2.0) + 2;
 			Npchar.quest.DefenseModify        = frandSmall(2.0) + 1.3;

@@ -53,7 +53,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 						switch(pchar.questTemp.CurQuestNumber)   // Взятие квестов начиная со второго
                         {
                             case "2":
-                                dialog.text = "У меня есть для вас новое поручение. Необходимо закупить в форте Оранж приготовленную для Кюрасао партию кофе, черного, красного и сандалового дерева. Отправляйтесь немедленно, вот необходимые для этого бумаги, вручите их коменданту форта Оранж.";
+                                dialog.text = "У меня есть для вас новое поручение. Необходимо закупить в форте Оранж приготовленную для Кюрасао партию кофе, чёрного, красного и сандалового дерева. Отправляйтесь немедленно, вот необходимые для этого бумаги, вручите их коменданту форта Оранж.";
                                 link.l1 = "Вы сказали - закупить?";
                                 link.l1.go = "Step_2_1";
                             break;
@@ -236,7 +236,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
                     }
                     else
                     {
-                        dialog.text = "Я еще не получил известия от д'Ожерона. Зайдите позже.";
+                        dialog.text = "Я ещё не получил известия от д'Ожерона. Зайдите позже.";
                         link.l1 = "Хорошо, минхер.";
                         link.l1.go = "exit";
                     }
@@ -425,7 +425,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
             tempStr = "Минхер, я привез"+ GetSexPhrase("","ла") +" следующие товары.";
             if (CheckAttribute(pchar, "questTemp.EbonyQty"))
             {
-                if (sti(pchar.questTemp.EbonyQty > 0)) tempStr = tempStr + " Черного дерева - " + pchar.questTemp.EbonyQty + " штук.";
+                if (sti(pchar.questTemp.EbonyQty > 0)) tempStr = tempStr + " Чёрного дерева - " + pchar.questTemp.EbonyQty + " штук.";
             }
             if (CheckAttribute(pchar, "questTemp.CoffeeQty"))
             {
@@ -459,7 +459,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
                 HolLine2_NullGoods();
                 if (sti(pchar.questTemp.EbonyQty) >= sti(pchar.questTemp.EbonyQtyElseNeed))
                 {
-                    tempStr = tempStr + " Вы полностью осуществили поставку черного дерева.";
+                    tempStr = tempStr + " Вы полностью осуществили поставку чёрного дерева.";
                     HolLine2_NullGoods();
                     AddCharacterGoods(pchar, GOOD_EBONY, sti(pchar.questTemp.EbonyQty)-sti(pchar.questTemp.EbonyQtyElseNeed));
                     DeleteAttribute(pchar, "questTemp.EbonyQtyElseNeed");
@@ -468,7 +468,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
                 {
                     if (sti(pchar.questTemp.EbonyQty > 0))
                     {
-                        tempStr = tempStr + " Я принимаю у вас " + pchar.questTemp.EbonyQty + " единиц черного дерева.";
+                        tempStr = tempStr + " Я принимаю у вас " + pchar.questTemp.EbonyQty + " единиц чёрного дерева.";
                         pchar.questTemp.EbonyQtyElseNeed = sti(pchar.questTemp.EbonyQtyElseNeed) - sti(pchar.questTemp.EbonyQty);
                         HolLine2_NullGoods();
                     }
@@ -551,7 +551,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
                 }
                 else
                 {
-                    dialog.text = "Вы полностью осуществили поставку. Более того, вы осуществили ее в срок! Хочу довести до вашего сведения, что получение данного груза в срок имело для Кюрасао важность чрезвычайную.";
+                    dialog.text = "Вы полностью осуществили поставку. Более того, вы осуществили её в срок! Хочу довести до вашего сведения, что получение данного груза в срок имело для Кюрасао важность чрезвычайную.";
                     link.l1 = "Я рад"+ GetSexPhrase("","а") +", что сумел"+ GetSexPhrase("","а") +" выполнить задачу в лучшем виде.";
                     link.l1.go = "Step_2_11";
                 }
@@ -580,7 +580,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
             link.l1.go = "Step_2_9";
         break;
         case "Step_2_9":
-            dialog.text = "Всегда к вашим услугам, капитан. Заходите ко мне время от времени, возможно у меня найдется для вас еще работа.";
+            dialog.text = "Всегда к вашим услугам, капитан. Заходите ко мне время от времени, возможно у меня найдется для вас ещё работа.";
             link.l1 = "Хорошо, минхер.";
             link.l1.go = "Step_2_10";
             AddMoneyToCharacter(pchar, 15000);
@@ -625,7 +625,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			ChangeCharacterReputation(pchar, 2);
 			ChangeCharacterNationReputation(pchar, sti(NPChar.nation), 2);
 			//слухи
-			AddSimpleRumour("Вы слышали, капитан " + GetFullName(pchar) + " взял"+ GetSexPhrase("ся","ась") +" за торговую операцию - доставку продовольствия из форта Оранж. Задачу "+ GetSexPhrase("он выполнил","она выполнила") +", да еще и сделал"+ GetSexPhrase("","а") +" это быстро!", HOLLAND, 5, 1);
+			AddSimpleRumour("Вы слышали, капитан " + GetFullName(pchar) + " взял"+ GetSexPhrase("ся","ась") +" за торговую операцию - доставку продовольствия из форта Оранж. Задачу "+ GetSexPhrase("он выполнил","она выполнила") +", да ещё и сделал"+ GetSexPhrase("","а") +" это быстро!", HOLLAND, 5, 1);
         break;
         //********************** Квест №3, Узнать о планах англичан в связи с торговой войной ************************
         case "Step_3_1":
@@ -812,7 +812,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 
 		//********************** Квест №5, Сопроводить три флейта к Мэнсфилду ************************
         case "Step_5_1":
-            dialog.text = "Это еще не все. Вы назначаетесь командиром эскадры. В вашу компетенцию входит продажа груза в магазине у флибустьеров и закупка у них же продовольствия. Туши, что они забивают сотнями, очень неплохого качества. Естественно, для того, чтобы сделка была выгодна, вы должны позаботиться о том, чтобы все флейты достигли берегов Эспаньолы в целости и сохранности.";
+            dialog.text = "Это ещё не все. Вы назначаетесь командиром эскадры. В вашу компетенцию входит продажа груза в магазине у флибустьеров и закупка у них же продовольствия. Туши, что они забивают сотнями, очень неплохого качества. Естественно, для того, чтобы сделка была выгодна, вы должны позаботиться о том, чтобы все флейты достигли берегов Эспаньолы в целости и сохранности.";
             link.l1 = "Мне все понятно.";
             link.l1.go = "Step_5_2";
         break;
@@ -965,7 +965,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
             }
         break;
         case "Step_5_10":
-            dialog.text = "Вероятно, вы сделали все, что смогли. Может быть я и смогу подобрать еще какую-нибудь работу для вас, но не сейчас...";
+            dialog.text = "Вероятно, вы сделали все, что смогли. Может быть я и смогу подобрать ещё какую-нибудь работу для вас, но не сейчас...";
             link.l1 = "Я понял"+ GetSexPhrase("","а") +", минхер. Прежде чем я уйду, я долж"+ GetSexPhrase("ен","на") +" сообщить очень плохую новость - Эдвард Мэнсфилд убит при нападении испанцев на поселение буканьеров.";
             link.l1.go = "Step_5_11";
         break;
@@ -1044,7 +1044,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
             link.l1.go = "Step_7_3";
         break;
         case "Step_7_3":
-            dialog.text = "А почему неудачно? Все в порядке, давайте ее сюда.";
+            dialog.text = "А почему неудачно? Все в порядке, давайте её сюда.";
             tempStr = "Кхе-кхе... Дело в том, что она была похищена у меня прямо на Тортуге.";
             switch (pchar.questTemp.State.KingResult)
             {
@@ -1076,7 +1076,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
         break;
         case "Step_7_6":
             dialog.text = "В общем, так. Я не желаю вам видеть у себя до тех пор, пока не выясню у д'Ожерона содержание депеши. И молитесь, чтобы там ничего 'такого' не было!";
-            link.l1 = "Я понял"+ GetSexPhrase("","а") +", минхер. Я еще раз прошу прощения...";
+            link.l1 = "Я понял"+ GetSexPhrase("","а") +", минхер. Я ещё раз прошу прощения...";
             link.l1.go = "Step_7_7";
         break;
         case "Step_7_7":
@@ -1140,7 +1140,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
             link.l1.go = "Step_7_13";
         break;
         case "Step_7_13":
-            dialog.text = "Жду вас у себя через некоторое время. Полагаю, что у меня будут еще задания для ТАКОГО офицера!";
+            dialog.text = "Жду вас у себя через некоторое время. Полагаю, что у меня будут ещё задания для ТАКОГО офицера!";
             link.l1 = "Непременно буду появляться у вас периодически.";
             link.l1.go = "exit";
             CloseQuestHeader("Hol_Line_7_DelivLettTortuga");
@@ -1236,11 +1236,11 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
         case "Step_9_5":
             if (sti(pchar.questTemp.QtyShips)>1)
             {
-                dialog.text = "Превосходно, но задача еще не выполнена полностью, вам нужно обеспечить наш флот еще " + pchar.questTemp.QtyShips + " кораблями. Не теряйте время, я жду от вас хороших вестей.";
+                dialog.text = "Превосходно, но задача ещё не выполнена полностью, вам нужно обеспечить наш флот ещё " + pchar.questTemp.QtyShips + " кораблями. Не теряйте время, я жду от вас хороших вестей.";
             }
             else
             {
-                dialog.text = "Превосходно, но задача еще не выполнена полностью, вам обеспечить наш флот еще одним кораблем. Не теряйте время, я жду от вас хороших вестей.";
+                dialog.text = "Превосходно, но задача ещё не выполнена полностью, вам обеспечить наш флот ещё одним кораблем. Не теряйте время, я жду от вас хороших вестей.";
             }
             link.l1 = "Хорошо, минхер, я сделаю все, что нужно.";
             link.l1.go = "exit";
@@ -1292,7 +1292,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
         break;
         //********************** Квест №10, Оборона Кюрасао. ************************
         case "Step_10_1":
-            dialog.text = "Мне доложили, что к Кюрасао подходит крупная испанская эскадра. Не знаю, сможем ли мы выдержать нападение... Я ума не приложу, каким образом Испания сумела собрать такие силы в карибских водах, да еще в такой короткий срок.\n"+
+            dialog.text = "Мне доложили, что к Кюрасао подходит крупная испанская эскадра. Не знаю, сможем ли мы выдержать нападение... Я ума не приложу, каким образом Испания сумела собрать такие силы в карибских водах, да ещё в такой короткий срок.\n"+
                           "Однако, подумаем потом, если нам удастся выжить. Сейчас я прошу приложить все ваши знания и умения к тому, чтобы помочь форту и эскадре охранения отразить нападение. Без вашей помощи, я совершенно уверен, нас сомнут.";
             link.l1 = "Я постараюсь сделать все, что в моих силах. Полагаю, отобьемся.";
             link.l1.go = "Step_10_2";
@@ -1315,7 +1315,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
             link.l1.go = "Step_10_4";
         break;
         case "Step_10_4":
-            dialog.text = "Ничего не хочу слушать, таких людей Нидерланды должны всячески поощрять в свершениях. И все на этом! А теперь мне нужно собрать максимальные сведения о том, зачем испанцы напали на Кюрасао. Прошу вас зайти ко мне на днях, по всей видимости, это еще не все...";
+            dialog.text = "Ничего не хочу слушать, таких людей Нидерланды должны всячески поощрять в свершениях. И все на этом! А теперь мне нужно собрать максимальные сведения о том, зачем испанцы напали на Кюрасао. Прошу вас зайти ко мне на днях, по всей видимости, это ещё не все...";
             link.l1 = "Хорошо, минхер, буду у вас в это время.";
             link.l1.go = "exit";
 			AddTitleNextRate(sti(NPChar.nation), 1);
@@ -1477,7 +1477,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
             BackItemDescribe("letter_1");
         break;
         case "Step_F2_2":
-            dialog.text = "Но вы не офицер. Разве у д`Ожерона больше нет солдат? А вот мне кажется, что вы состоите на службе Берегового братства и перехватили это письмо, а сюда пришли шпионить! Стража, арестовать "+ GetSexPhrase("его","ее") +"!!!";
+            dialog.text = "Но вы не офицер. Разве у д`Ожерона больше нет солдат? А вот мне кажется, что вы состоите на службе Берегового братства и перехватили это письмо, а сюда пришли шпионить! Стража, арестовать "+ GetSexPhrase("его","её") +"!!!";
             link.l1 = "Послушайте же, месье...";
             link.l1.go = "Step_F2_3";
         break;
@@ -1556,7 +1556,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 		case "TizerFind_5":
 			dialog.text = "Хм, я поощряю сочинительство. Это новые земли, новые герои, новые горизонты бескрайнего мирового океана... М-да, очень интересно. Но от вас, капитан, я никак не ожидал таких наклонностей!";
-			link.l1 = "Минхер, вы еще многого обо мне не знаете.";
+			link.l1 = "Минхер, вы ещё многого обо мне не знаете.";
 			link.l1.go = "TizerFind_6";
 		break;
 		case "TizerFind_6":

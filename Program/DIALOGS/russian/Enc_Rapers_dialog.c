@@ -152,7 +152,7 @@ void ProcessDialogEvent()
 			link.l2.go = "Node_Fight";
 		break;
 
-		case "Node_4": // бандюки уходят, девица остается - ГГ ее выкупил у бандюков
+		case "Node_4": // бандюки уходят, девица остается - ГГ её выкупил у бандюков
 			LAi_LocationFightDisable(&Locations[FindLocation(pchar.location)], false);
 			AddMoneyToCharacter(pchar, -makeint(sti(pchar.GenQuest.EncGirl.price)));
 			ChangeCharacterReputation(pchar, 7);

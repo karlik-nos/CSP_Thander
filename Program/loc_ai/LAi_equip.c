@@ -56,8 +56,8 @@ void LAi_NPC_Equip(ref chr, int rank, bool isWeapons, bool isGun)
 		DeleteAttribute(chr, "items"); // это можно не делать, но так наверняка (идет проверка на колво предметов, и сабель может стать вагон)
 		//DeleteAttribute(chr, "cirassId"); // трем броню
 
-		// Warship Нет, не генерим все-таки, с отображением жопа - ищет models/ammo/blade4_xxx :(
-		// Ugeen -- > и все-таки генерим !! :)
+		// Warship Нет, не генерим всё-таки, с отображением жопа - ищет models/ammo/blade4_xxx :(
+		// Ugeen -- > и всё-таки генерим !! :)
 		blade = GetGeneratedItem(blade); // Генерим оружие
 
 		GiveItem2Character(chr, blade);

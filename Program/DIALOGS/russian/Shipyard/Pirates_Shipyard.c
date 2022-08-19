@@ -532,7 +532,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			    NPChar.Tuning.Money  = amount;
 				NPChar.Tuning.Cannon = true;
 
-				NPChar.Tuning.Matherial1 = AllMatherial1; // черное дерево
+				NPChar.Tuning.Matherial1 = AllMatherial1; // чёрное дерево
 				NPChar.Tuning.Matherial2 = AllMatherial2; // кожа
 				NPChar.Tuning.Matherial3 = AllMatherial3;
 				NPChar.Tuning.ShipType       = Pchar.Ship.Type;
@@ -567,7 +567,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 				Link.l1.go = "ship_tunning_cannon_all_again_2";
 				Link.l2 = "Я хочу воспользоваться услугами верфи.";
 				Link.l2.go = "PayToRapair1";
-				link.l3 = "Нет. Еще добываю.";
+				link.l3 = "Нет. Ещё добываю.";
 				link.l3.go = "exit";
 			}
 			else
@@ -722,7 +722,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			    NPChar.Tuning.Money  = amount;
 				NPChar.Tuning.Cannon = true;
 
-				NPChar.Tuning.Matherial1 = quantityMatherial1; // черное дерево
+				NPChar.Tuning.Matherial1 = quantityMatherial1; // чёрное дерево
 				NPChar.Tuning.Matherial2 = quantityMatherial2; // кожа
 			        NPChar.Tuning.Matherial3 = quantityMatherial3;
 				NPChar.Tuning.ShipType       = Pchar.Ship.Type;
@@ -852,7 +852,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 				AddMoneyToCharacter(Pchar, -amount);
 			    NPChar.Tuning.Money  = amount;
 				NPChar.Tuning.Cannon = true;
-			    NPChar.Tuning.Matherial1 = cannonMatherial1; // черное дерево
+			    NPChar.Tuning.Matherial1 = cannonMatherial1; // чёрное дерево
 			    NPChar.Tuning.Matherial2 = cannonMatherial2; // кожа
 			    NPChar.Tuning.Matherial3 = cannonMatherial3;
 			    NPChar.Tuning.ShipType       = Pchar.Ship.Type;
@@ -1059,7 +1059,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			    Link.l1.go = "ship_tunning_Capacity_again_2";
 				Link.l2 = "Я хочу воспользоваться услугами верфи.";
 				Link.l2.go = "PayToRapair1";
-				link.l3 = "Нет. Еще добываю.";
+				link.l3 = "Нет. Ещё добываю.";
 				link.l3.go = "exit";
 			}
 			else
@@ -1188,7 +1188,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			    Link.l1.go = "ship_tunning_SpeedRate_again_2";
 				Link.l2 = "Я хочу воспользоваться услугами верфи.";
 				Link.l2.go = "PayToRapair1";
-				link.l3 = "Нет. Еще добываю.";
+				link.l3 = "Нет. Ещё добываю.";
 				link.l3.go = "exit";
 			}
 			else
@@ -1316,7 +1316,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			    Link.l1.go = "ship_tunning_MastMultiplier_again_2";
 				Link.l2 = "Я хочу воспользоваться услугами верфи.";
 				Link.l2.go = "PayToRapair1";
-				link.l3 = "Нет. Еще добываю.";
+				link.l3 = "Нет. Ещё добываю.";
 				link.l3.go = "exit";
 			}
 			else
@@ -1436,7 +1436,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			    Link.l1.go = "ship_tunning_MaxCrew_again_2";
 				Link.l2 = "Я хочу воспользоваться услугами верфи.";
 				Link.l2.go = "PayToRapair1";
-				link.l3 = "Нет. Еще добываю.";
+				link.l3 = "Нет. Ещё добываю.";
 				link.l3.go = "exit";
 			}
 			else
@@ -1557,7 +1557,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			    Link.l1.go = "ship_tunning_TurnRate_again_2";
 				Link.l2 = "Я хочу воспользоваться услугами верфи.";
 				Link.l2.go = "PayToRapair1";
-				link.l3 = "Нет. Еще добываю.";
+				link.l3 = "Нет. Ещё добываю.";
 				link.l3.go = "exit";
 			}
 			else
@@ -1684,7 +1684,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			    Link.l1.go = "ship_tunning_HP_again_2";
 				Link.l2 = "Я хочу воспользоваться услугами верфи.";
 				Link.l2.go = "PayToRapair1";
-				link.l3 = "Нет. Еще добываю.";
+				link.l3 = "Нет. Ещё добываю.";
 				link.l3.go = "exit";
 			}
 			else
@@ -1741,7 +1741,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
             NextDiag.TempNode = "ship_tunning_again";
 			if(shTo.BaseName == "Flyingdutchman") // ЛГ
 			{
-				dialog.text = "Да уж... сколько кораблей я повидал на своём веку, но такой грязи и затхлости в капитанской каюте не видывал еще никогда. Ты бы почаще там убирал"+ GetSexPhrase("ся","ась") +" что ли! Впрочем, мы перестроили каюту и укрепили корпус - пару прямых попаданий выдержит точно.";
+				dialog.text = "Да уж... сколько кораблей я повидал на своём веку, но такой грязи и затхлости в капитанской каюте не видывал ещё никогда. Ты бы почаще там убирал"+ GetSexPhrase("ся","ась") +" что ли! Впрочем, мы перестроили каюту и укрепили корпус - пару прямых попаданий выдержит точно.";
 				Link.l1 = "Спасибо! Проверю обязательно.";
 				Link.l1.go = "Exit";
 				shTo.CabinType = "Cabin_Quest";
@@ -1819,7 +1819,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			    Link.l1.go = "ship_tunning_WindAgainst_again_2";
 				Link.l2 = "Я хочу воспользоваться услугами верфи.";
 				Link.l2.go = "PayToRapair1";
-				link.l3 = "Нет. Еще добываю.";
+				link.l3 = "Нет. Ещё добываю.";
 				link.l3.go = "exit";
 			}
 			else
@@ -1898,7 +1898,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
                 else
                 {
                     dialog.text = "О-о-о, рад видеть тебя. Значит, не зря я тебя туда впустил - сам"+ GetSexPhrase("","а") +" выжил"+ GetSexPhrase("","а") +" и меня от это дряни избавил"+ GetSexPhrase("","а") +"... Ну скажи, кто там был?";
-        			link.l2 = "Лучше тебе этого не знать, спать будешь спокойней. Ну, прощай, еще раз спасибо, что открыл дверь.";
+        			link.l2 = "Лучше тебе этого не знать, спать будешь спокойней. Ну, прощай, ещё раз спасибо, что открыл дверь.";
         			link.l2.go = "exit";
                 }
             }
@@ -2020,7 +2020,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = "PL_Q3_5";
 		break;
 		case "PL_Q3_5":
-			dialog.text = "Простите? А, да. Эдвард Лоу. Бриг-то я Джекмену делал, достроил почти, а тут он, Лоу, с письмом. В общем, отдал я бриг, а когда пошел за деньгами к Джекмену, оказалось, что письмо поддельное. Джекмен расстроился... Сильно... Очень сильно.\nКогда меня оттуда вы... Э-э-э...  Когда я оттуда уходил, Джекмен сказал: 'Я вас уважаю Мастер, но бриг надо вернуть'. Вот я тут и подумал, раз уж вы все равно этого Лоу ищете, может и мой бриг заодно найдете?";
+			dialog.text = "Простите? А, да. Эдвард Лоу. Бриг-то я Джекмену делал, достроил почти, а тут он, Лоу, с письмом. В общем, отдал я бриг, а когда пошел за деньгами к Джекмену, оказалось, что письмо поддельное. Джекмен расстроился... Сильно... Очень сильно.\nКогда меня оттуда вы... Э-э-э...  Когда я оттуда уходил, Джекмен сказал: 'Я вас уважаю Мастер, но бриг надо вернуть'. Вот я тут и подумал, раз уж вы всё равно этого Лоу ищете, может и мой бриг заодно найдете?";
 			link.l1 = "Мастер, я вам, конечно, помогу, но только, если вы прекратите причитать и внятно мне скажете: ГДЕ ЛОУ?!";
 			link.l1.go = "PL_Q3_6";
 		break;
@@ -2103,7 +2103,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
     			link.l1 = "Нет у меня таких денег.";
     			link.l1.go = "Step_Door_3";
             }
-            link.l2 = "Вот еще! Платить за какую-то дверь.";
+            link.l2 = "Вот ещё! Платить за какую-то дверь.";
     		link.l2.go = "exit";
 		break;
  		case "Step_Door_2":
@@ -2123,7 +2123,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 //*************************** Квест №2, диалоги с Франциско на выходе из Инквизиии ***************************
  		case "Step_S2_1":
-			dialog.text = NPCStringReactionRepeat("У-у-у, хороший вопрос... А зачем он вам нужен?", "Я уже все сказал - дверь открыта.", "Еще раз повоторяю - дверь открыта.", "Послушай, ну сколько можно, а?", "block", 0, npchar, Dialog.CurrentNode);
+			dialog.text = NPCStringReactionRepeat("У-у-у, хороший вопрос... А зачем он вам нужен?", "Я уже все сказал - дверь открыта.", "Ещё раз повоторяю - дверь открыта.", "Послушай, ну сколько можно, а?", "block", 0, npchar, Dialog.CurrentNode);
 			link.l1 = HeroStringReactionRepeat("У него есть книга, которая ему не принадлежит. Он вор.", "Я понял"+ GetSexPhrase("","а") +"...", "Понятно...", "Вот так"+ GetSexPhrase("ой","ая") +" я непонятно настойчив"+ GetSexPhrase("ый","ая") +"...", npchar, Dialog.CurrentNode);
 			link.l1.go = DialogGoNodeRepeat("Step_S2_2", "none", "none", "none", npchar, Dialog.CurrentNode);
 		break;
@@ -2149,7 +2149,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = "Step_S2_6";
 		break;
  		case "Step_S2_6":
-			dialog.text = "Проходи, открыто... Надесь, что увижу тебя еще на этом свете.";
+			dialog.text = "Проходи, открыто... Надесь, что увижу тебя ещё на этом свете.";
 			link.l1 = "Увидишь, не сомневайся.";
 			link.l1.go = "exit";
             LocatorReloadEnterDisable("Pirates_Shipyard", "reload2", false);
@@ -2224,7 +2224,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 
 		case "WarDogUpgrade_2":
 			dialog.text = "Ой, не смешите меня. Я же знаю, что это развалюха. Когда я его делал, был молодым, зеленым, глупым. Если бы я начал проектировать его сейчас, не допустил бы старых ошибок.";
-			link.l1 = "Неужели все настолько плохо? По мне так кораблик все еще отличный. Получше многих посудин, что я повстречала на Карибах.";
+			link.l1 = "Неужели все настолько плохо? По мне так кораблик все ещё отличный. Получше многих посудин, что я повстречала на Карибах.";
 			link.l1.go = "WarDogUpgrade_3";
 		break;
 
@@ -2247,7 +2247,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 
 		case "WarDogUpgrade_5_1":
-			dialog.text = "Он продал его какому-то английскому каперу, а тот использует судно для набегов на испанские порты на материке. Говорят, этот капитан стал настолько самоуверен, что ему все равно на проплывающие мимо корабли, если они не сулят прибыли, хоть Весёлым Роджером перед ним размахивай. Но если нападёшь - будь уверена, сдачи он даст в десятикратном размере.\nЯ хочу, чтобы ты стерла самодовольную ухмылку с лица моего ученика и сломала его игрушку. Потопи 'непотопляемого', а я поработаю над чертежом 'Пса'.";
+			dialog.text = "Он продал его какому-то английскому каперу, а тот использует судно для набегов на испанские порты на материке. Говорят, этот капитан стал настолько самоуверен, что ему всё равно на проплывающие мимо корабли, если они не сулят прибыли, хоть Весёлым Роджером перед ним размахивай. Но если нападёшь - будь уверена, сдачи он даст в десятикратном размере.\nЯ хочу, чтобы ты стерла самодовольную ухмылку с лица моего ученика и сломала его игрушку. Потопи 'непотопляемого', а я поработаю над чертежом 'Пса'.";
 			link.l1 = "Я вот думаю, может лучше попробовать взять его на абордаж? Вдруг он и правда непотопляемый?";
 			link.l1.go = "WarDogUpgrade_6";
 
@@ -2339,7 +2339,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			SetQuestHeader("WhisperTitanic");
 			AddQuestRecord("WhisperTitanic", 1);
 			AddQuestUserData("WhisperTitanic", "sCity", XI_ConvertString("Colony" + pchar.TitanicCity + "Gen"));
-			dialog.text = "Говорят, он сейчас взял в осаду . Испанцы то и дело присылают подкрепления, но 'Титаник' топит эскадру за эскадрой. Скорее всего он там еще надолго задержится, пока не разорит город дочиста. Я все сказал, можешь приступать\nИ пока ты не ушла, можешь заказать для 'Пса' какое-то из менее серьёзных улучшений. Они пойдут в дополнение к капитальному ремонту.";
+			dialog.text = "Говорят, он сейчас взял в осаду . Испанцы то и дело присылают подкрепления, но 'Титаник' топит эскадру за эскадрой. Скорее всего он там ещё надолго задержится, пока не разорит город дочиста. Я все сказал, можешь приступать\nИ пока ты не ушла, можешь заказать для 'Пса' какое-то из менее серьёзных улучшений. Они пойдут в дополнение к капитальному ремонту.";
 			link.l1 = "Ну, посмотрим, что можно улучшить.";
 			link.l1.go = "ship_tunning_start";
 		break;

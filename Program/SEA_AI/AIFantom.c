@@ -585,7 +585,7 @@ void Fantom_SetGoods(ref rFantom, string sFantomType)
 		break;
 	}
     // boal 20.01.2004 <--
-    // есть еще осталось место, то дать запасных орудий в трюм -->
+    // есть ещё осталось место, то дать запасных орудий в трюм -->
     iMultiply = GetCannonGoodsIdxByType(sti(rFantom.Ship.Cannons.Type));
     if (iMultiply != -1)
     {
@@ -595,7 +595,7 @@ void Fantom_SetGoods(ref rFantom, string sFantomType)
     		Fantom_SetCharacterGoods(rFantom, iMultiply, iRandMultiply, 0);
     	}
     }
-    // есть еще осталось место, то дать запасных орудий в трюм <--
+    // есть ещё осталось место, то дать запасных орудий в трюм <--
 	RecalculateCargoLoad(rFantom);
 }
 
@@ -666,7 +666,7 @@ void Fantom_SetGoodsOld(ref rFantom, string sFantomType)
 		break;
 	}
     // boal 20.01.2004 <--
-    // есть еще осталось место, то дать запасных орудий в трюм -->
+    // есть ещё осталось место, то дать запасных орудий в трюм -->
     iMultiply = GetCannonGoodsIdxByType(sti(rFantom.Ship.Cannons.Type));
     if (iMultiply != -1)
     {
@@ -676,7 +676,7 @@ void Fantom_SetGoodsOld(ref rFantom, string sFantomType)
     		Fantom_SetCharacterGoods(rFantom, iMultiply, iRandMultiply, 0);
     	}
     }
-    // есть еще осталось место, то дать запасных орудий в трюм <--
+    // есть ещё осталось место, то дать запасных орудий в трюм <--
 	RecalculateCargoLoad(rFantom);
 }
 // доработал метод, теперь возвращает сколько взял

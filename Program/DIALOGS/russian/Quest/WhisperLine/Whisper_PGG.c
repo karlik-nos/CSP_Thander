@@ -470,7 +470,7 @@ void ProcessDialogEvent()
 				}
 				else
 				{
-					Dialog.Text = RandPhraseSimple("Похоже у тебя уже достаточно компаньонов.", "У тебя и так много кораблей. Зачем тебе еще один?");
+					Dialog.Text = RandPhraseSimple("Похоже у тебя уже достаточно компаньонов.", "У тебя и так много кораблей. Зачем тебе ещё один?");
 					link.l1 = "Да... Кажется ты права.";
 					link.l1.go = "Quest_Whisper_Finish_NoHire";
 				}

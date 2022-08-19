@@ -1647,7 +1647,7 @@ void CalculateInfoDataF22()
 					}
 					else
 					{
-						totalInfo = totalInfo + NewStr()+ "Слухи по флейтам торговцев еще не активированы.";
+						totalInfo = totalInfo + NewStr()+ "Слухи по флейтам торговцев ещё не активированы.";
 					}
     }
     // <--

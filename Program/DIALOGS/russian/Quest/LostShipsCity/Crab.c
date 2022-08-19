@@ -90,7 +90,7 @@ void ProcessDialogEvent()
 			RemoveItems(PChar, "food4", 100);
 			RemoveItems(PChar, "food5", 100);
 			npchar.quest.answer_1 = "true";
-			link.l1 = "Полегче, дружище! Не все сразу! Ладно, мне пора. Может еще к тебе как-нибудь загляну.";
+			link.l1 = "Полегче, дружище! Не все сразу! Ладно, мне пора. Может ещё к тебе как-нибудь загляну.";
 			link.l1.go = "exit";
 		break;
 

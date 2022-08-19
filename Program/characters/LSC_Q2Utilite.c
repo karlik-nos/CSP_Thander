@@ -550,7 +550,7 @@ void initStartState2Character(ref ch)
 	ch.CameraShipNPC = 0;// номер компаньона для камеры 0 - ГГ
 	ch.GenQuestFort.FarLocator = true; // для методов пихания фантомов в город
 
-	// Черная жемчужина
+	// Чёрная жемчужина
 	ch.GenQuest.GhostShip.DeadByMe       = 0;
 	ch.GenQuest.GhostShip.KillMe         = 0;
 	ch.GenQuest.GhostShip.AskAbout       = 0; // в таверне три раза спросить до появления
@@ -566,7 +566,7 @@ void initStartState2Character(ref ch)
 	ch.questTemp.Waiting_time = "2";
 	// ==> номер текущего квеста, присваиваем сразу второй, т.к. первый берется на момент первого обращения к губеру.
 	ch.questTemp.CurQuestNumber = "2";
-	//параметры островов и бухт для корсарского метро, ПГГ, и много еще чего :)
+	//параметры островов и бухт для корсарского метро, ПГГ, и много ещё чего :)
 	InitTravelMap();
 	// ==> проверка не посещение борделей после свадьбы
 	pchar.RomanticQuest.HorseCheck = -1;
@@ -825,14 +825,14 @@ void QuestActions()
 	//************** генератор "Продажный патруль" *********************************
 	if(CheckAttribute(pchar, "questTemp.ReasonToFast"))
 	{
-		if(pchar.questTemp.ReasonToFast == "SpeakHorse") // не пришел в бухту
+		if(pchar.questTemp.ReasonToFast == "SpeakHorse") // не пришёл в бухту
 		{
 			AddQuestRecord("ReasonToFast", "2");
 			AddQuestUserData("ReasonToFast", "sSex", GetSexPhrase("","а"));
 			CloseQuestHeader("ReasonToFast");
 			pchar.questTemp.ReasonToFast.end = true;
 		}
-		if(pchar.questTemp.ReasonToFast == "MeetPatrolFail") // в бухту пришел не один или удачи не хватило
+		if(pchar.questTemp.ReasonToFast == "MeetPatrolFail") // в бухту пришёл не один или удачи не хватило
 		{
 			AddQuestRecord("ReasonToFast", "3");
 			AddQuestUserData("ReasonToFast", "sSex", GetSexPhrase("ся","ась"));
@@ -874,7 +874,7 @@ void QuestActions()
     			//---------- мертв ------------
     			if (capIndex == -1)
     			{
-					//страховка. если квест еще открыт - закрываем его
+					//страховка. если квест ещё открыт - закрываем его
 					/*if (CheckActiveQuest(arCapBase.Tilte1))
 					{
 						CitizCapIsDead_CloseQuest(arCapBase, sName);
@@ -1788,11 +1788,11 @@ string Sharp_choiceAction()
 {
 	string sBack;
 	ref sld;
-	//удалим Шарпа с карты, если он плывет еще где-то
+	//удалим Шарпа с карты, если он плывет ещё где-то
 	Map_ReleaseQuestEncounter("Sharp");
 	group_DeleteGroup("Sharp_Group");
 	if (rand(3) != 2 && sti(pchar.questTemp.Sharp.count) < 5)
-	{	//еще динамим, отправляем ГГ в другой город
+	{	//ещё динамим, отправляем ГГ в другой город
 		string sCity = pchar.questTemp.Sharp.City; //предыдущая цель, запомним для СЖ
 		pchar.questTemp.Sharp.City.rumour = true; //флаг дать слух в городе
 		pchar.questTemp.Sharp.City = GetSharpCity(); //новый город
@@ -1920,7 +1920,7 @@ string GetSharpRumour_inIsland()
 	switch (rand(2))
     {
         case 0: sRumour = "Вы знаете, капитан Шарп только что вышел из города на своем бриге. Если бы вы прибыли с пол часа назад, то увидели бы его прямо в порту."; break;
-        case 1: sRumour = "Капитан Шарп... Да уже, тот еще капитан. Знаете, он только что покинул наш город. Если вы поторопитесь, то сможете его застать в окрестных водах."; break;
+        case 1: sRumour = "Капитан Шарп... Да уже, тот ещё капитан. Знаете, он только что покинул наш город. Если вы поторопитесь, то сможете его застать в окрестных водах."; break;
         case 2:	sRumour = "Бартоломью Шарп буквально с час назад вышел из нашего порта в море."; break;
     }
 	return sRumour;

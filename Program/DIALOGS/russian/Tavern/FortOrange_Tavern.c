@@ -18,7 +18,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			if(CheckAttribute(pchar, "Whisper.FindDesouzaHol") && !CheckAttribute(npchar, "Whisper.FindDesouzaHol"))
 			{
 				npchar.Whisper.FindDesouzaHol = true;
-				link.l1 = "Послушай, к тебе тут случаем не подходили ребята подозрительной наружности? У них еще должно быть клеймо в форме распятия на руке.";
+				link.l1 = "Послушай, к тебе тут случаем не подходили ребята подозрительной наружности? У них ещё должно быть клеймо в форме распятия на руке.";
 				link.l1.go = "FindDesouzaHol";
 				break;
 			}
@@ -65,7 +65,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 
 		case "Jamaica_ratF_3":
 			dialog.text = "Не знаю, "+ GetSexPhrase("дружище","мэм") +". Знал - подсказал бы.";
-			link.l1 = "Ладно, все понятно. Пойду, у кого еще поспрашиваю...";
+			link.l1 = "Ладно, все понятно. Пойду, у кого ещё поспрашиваю...";
 			link.l1.go = "exit";
 			AddQuestRecord("Slavetrader", "21_4");
 			pchar.questTemp.Slavetrader = "FindRatJamaica_H";

@@ -66,7 +66,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = DialogGoNodeRepeat("Step_H3_2", "none", "none", "none", npchar, Dialog.CurrentNode);
         break;
  	 	case "Step_H3_2":
-			dialog.text = "Еще бы! Недавно Морган приглашал его участвовать в нападении на испанские серебряные рудники. По всему видать, вовремя они там появились.";
+			dialog.text = "Ещё бы! Недавно Морган приглашал его участвовать в нападении на испанские серебряные рудники. По всему видать, вовремя они там появились.";
 			link.l1 = "Повезло, что тут скажешь...";
 			link.l1.go = "Step_H3_3";
         break;
@@ -84,7 +84,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = DialogGoNodeRepeat("exit", "none", "none", "none", npchar, Dialog.CurrentNode);
         break;
  	 	case "Step_H7_2":
-			dialog.text = NPCStringReactionRepeat("С час назад ушел, сказал, что ты еще задержишься...", "Ты уже "+ GetSexPhrase("задавал","задавала") +" мне этот вопрос сегодня.", "Опять?", "Может ты не будешь меня отвлекать от работы?", "block", 1, npchar, Dialog.CurrentNode);
+			dialog.text = NPCStringReactionRepeat("С час назад ушел, сказал, что ты ещё задержишься...", "Ты уже "+ GetSexPhrase("задавал","задавала") +" мне этот вопрос сегодня.", "Опять?", "Может ты не будешь меня отвлекать от работы?", "block", 1, npchar, Dialog.CurrentNode);
 			link.l1 = HeroStringReactionRepeat("Черт возьми! Кто он и куда он ушел, ты знаешь?", "Верно, "+ GetSexPhrase("задавал","задавала") +"...", "Хм, извини...", "Хорошо, не буду. Извини...", npchar, Dialog.CurrentNode);
 			link.l1.go = DialogGoNodeRepeat("Step_H7_3", "none", "none", "none", npchar, Dialog.CurrentNode);
         break;
@@ -157,12 +157,12 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = "Step_S4_3";
         break;
   	 	case "Step_S4_3":
-			dialog.text = "Донна Анна - так ее зовут все. Слышал я, что она из Гаваны.";
-			link.l1 = "До Гаваны флибустьеры еще не добирались. Как она попала к д'Ожерону, захватили на испанском галеоне?";
+			dialog.text = "Донна Анна - так её зовут все. Слышал я, что она из Гаваны.";
+			link.l1 = "До Гаваны флибустьеры ещё не добирались. Как она попала к д'Ожерону, захватили на испанском галеоне?";
 			link.l1.go = "Step_S4_4";
         break;
   	 	case "Step_S4_4":
-			dialog.text = "Не-е-ет, здесь обоюдное чувство. Донна Анна так же любит нашего генерал-губернатора, как и он ее. Слышал я, что они познакомились еще в Старом Свете. Привез ее на Тортугу один из доверенных офицеров генерал-губернатора - Анри д'Эстре, а где он ее нашел - никто не знает.";
+			dialog.text = "Не-е-ет, здесь обоюдное чувство. Донна Анна так же любит нашего генерал-губернатора, как и он её. Слышал я, что они познакомились ещё в Старом Свете. Привез её на Тортугу один из доверенных офицеров генерал-губернатора - Анри д'Эстре, а где он её нашел - никто не знает.";
 			link.l1 = "Понятно... А где сейчас этот Анри д'Эстре?";
 			link.l1.go = "Step_S4_5";
         break;

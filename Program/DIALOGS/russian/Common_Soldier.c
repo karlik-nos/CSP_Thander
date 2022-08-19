@@ -221,7 +221,7 @@ void ProcessDialogEvent()
 					{ //если негодяй, имеющий НЗГ к дружественной или нейтральной нации
 						if (ChangeCharacterNationReputation(pchar, sti(NPChar.nation), 0) <= -15)
 						{
-							dialog.text = RandPhraseSimple("Вы посмотрите, "+ GetSexPhrase("каков мерзавец! Посмел","какова мерзавка! Посмела") +" явится в " + XI_ConvertString("Colony" + npchar.city)+ ". Держи "+ GetSexPhrase("его","ее") +"!!", "Ха, я узнал тебя, "+ GetSexPhrase("негодяй","негодяйка") +"! Хватай "+ GetSexPhrase("его","её") +"!!");
+							dialog.text = RandPhraseSimple("Вы посмотрите, "+ GetSexPhrase("каков мерзавец! Посмел","какова мерзавка! Посмела") +" явится в " + XI_ConvertString("Colony" + npchar.city)+ ". Держи "+ GetSexPhrase("его","её") +"!!", "Ха, я узнал тебя, "+ GetSexPhrase("негодяй","негодяйка") +"! Хватай "+ GetSexPhrase("его","её") +"!!");
 							link.l1 = RandPhraseSimple("Аргх!..", "Ну, вы сами напросились...");
 							link.l1.go = "fight";
 							break;
@@ -469,7 +469,7 @@ void ProcessDialogEvent()
 			}
 			if (iTemp > 0 && iTemp <= 10)
 			{
-				dialog.text = "Хм, всё верно. Однако позволю себе заметить, что срок действия вашей лицензии вскоре истекает - она действительна еще только " + FindRussianDaysString(iTemp) + ". Так что имейте в виду, " + GetAddress_Form(npchar) + ".";
+				dialog.text = "Хм, всё верно. Однако позволю себе заметить, что срок действия вашей лицензии вскоре истекает - она действительна ещё только " + FindRussianDaysString(iTemp) + ". Так что имейте в виду, " + GetAddress_Form(npchar) + ".";
 				link.l1 = "Спасибо, я обзаведусь новой при первой же возможности.";
 				link.l1.go = "exit";
 			}

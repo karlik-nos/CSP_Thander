@@ -521,7 +521,7 @@ void ProcessDialogEvent()
                 if(rand(21) > (GetSummonSkillFromNameToOld(PChar, SKILL_GRAPPLING) + GetSummonSkillFromNameToOld(PChar, SKILL_LEADERSHIP)) )
                 {
                     Dialog.text = "Напрасно вы затеяли свое грязное дело, капитан, на борту моего корабля. Я проявлю милосердие и позволю вам вернуться на свой корабль и утонуть вместе с ним.";
-                    link.l1 = "Мы еще посмотрим, кто сегодня пойдет на корм акулам!";
+                    link.l1 = "Мы ещё посмотрим, кто сегодня пойдет на корм акулам!";
                     link.l1.go = "Boarding";
                 }
                 else
@@ -544,7 +544,7 @@ void ProcessDialogEvent()
         case "rumours":
 			Dialog.Text = SelectRumour(); // to_do
 			Link.l1 = RandPhraseSimple(RandSwear() + "Это очень интересно. Другой вопрос?",
-                                     "Еще одно дело.");
+                                     "Ещё одно дело.");
 			Link.l1.go = "quests";
 			Link.l2 = RandPhraseSimple("Спасибо, должен откланяться.",
                                      "Всего хорошего.");
@@ -600,7 +600,7 @@ void ProcessDialogEvent()
         break;
 
         case "QuestAboardCabinDialog_1":
-			Dialog.Text = "Ну, это мы еще посмотрим!";
+			Dialog.Text = "Ну, это мы ещё посмотрим!";
 			Link.l1 = "А что тут смотреть?";
 			Link.l1.go = "exit";
 			// тут можно восстановить НР противника (NPChar) или добавить парочку гардов против ГГ
@@ -631,7 +631,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "QuestAboardCabinDialog_3_1":
-			Dialog.Text = ""+ GetSexPhrase("Пришел","Пришла") +", наследил"+ GetSexPhrase("","а") +", все отнял"+ GetSexPhrase("","а") +" и еще меня в рабы? Фиг!";
+			Dialog.Text = ""+ GetSexPhrase("Пришел","Пришла") +", наследил"+ GetSexPhrase("","а") +", все отнял"+ GetSexPhrase("","а") +" и ещё меня в рабы? Фиг!";
 			Link.l1 = "Тогда тапки белые готовь.";
 			Link.l1.go = "QuestAboardCabinDialog_1";
 		break;
@@ -802,7 +802,7 @@ void ProcessDialogEvent()
             EndOfTheSiege("End");
             NPChar.location = "";
             int ilt = makeint(sti(aData.loot)/sti(aData.PartAttaksFort));
-            dialog.text = "Здравствуйте, капитан! Хоть битва и была жаркой, но все-таки нам удалось сломить яростное сопротивление защитников города. Добыча составляет " + sti(aData.loot)+
+            dialog.text = "Здравствуйте, капитан! Хоть битва и была жаркой, но всё-таки нам удалось сломить яростное сопротивление защитников города. Добыча составляет " + sti(aData.loot)+
                           " золотых. И по нашему договору вы получаете "+ilt+
                           ". Вот ваши деньги, вы их, несомненно, заслужили. А теперь прошу меня извинить, но меня ждут дела.";
             link.l1 = "В таком случае позвольте откланяться, " + GetAddress_FormToNPC(NPChar) + ". Прощайте!";
@@ -1175,17 +1175,17 @@ void ProcessDialogEvent()
 				Dialog.text = "Неверно, попробуй ещё.";
 				if (npchar.questionsstate == 1)
 				{
-					Link.l1 = "Еще раз.";
+					Link.l1 = "Ещё раз.";
 					Link.l1.go = "Titch_questions";
 				}
 				if (npchar.questionsstate == 2)
 				{
-					Link.l1 = "Еще раз.";
+					Link.l1 = "Ещё раз.";
 					Link.l1.go = "Titch_q2";
 				}
 				if (npchar.questionsstate == 3)
 				{
-					Link.l1 = "Еще раз.";
+					Link.l1 = "Ещё раз.";
 					Link.l1.go = "Titch_q3";
 				}
 				link.l2 = "Попозже.";
@@ -1210,7 +1210,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Titch_ships_sur":
-			Dialog.text = "Это хорошо! Архипелаг еще сможет содрогнуться. (Напугай свою жертву, создай жуткий образ из лихорадочного бреда, и все рухнут на колени, моля своего Бога о пощаде.)";
+			Dialog.text = "Это хорошо! Архипелаг ещё сможет содрогнуться. (Напугай свою жертву, создай жуткий образ из лихорадочного бреда, и все рухнут на колени, моля своего Бога о пощаде.)";
 			Link.l1 = "Благодарю!";
 			Link.l1.go = "Titch_7";
 			npchar.ships_sur = true;

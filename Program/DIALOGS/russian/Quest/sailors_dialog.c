@@ -55,7 +55,7 @@ void ProcessDialogEvent()
 			if (CheckAttribute(pchar, "GenQuest.DestroyPirate") && pchar.GenQuest.CaptainId == "MQPirate")
 			{
 	    		dialog.text = RandPhraseSimple("Надо же, сам"+ GetSexPhrase("","а") +" к нам приш"+ GetSexPhrase("ел","ла") +"... Ну, раз приш"+ GetSexPhrase("ел","ла") +", то иди к кэпу. Поговоришь о делах своих скорбных...",
-	                                           "Хех, ну ты даешь, "+ GetSexPhrase("приятель","подруга") +"! Такого я еще не видал... Подойди к капитану, он с тобой будет говорить.");
+	                                           "Хех, ну ты даешь, "+ GetSexPhrase("приятель","подруга") +"! Такого я ещё не видал... Подойди к капитану, он с тобой будет говорить.");
 				Link.l1 = "Жаль...";
 				Link.l1.go = "exit";
 			}

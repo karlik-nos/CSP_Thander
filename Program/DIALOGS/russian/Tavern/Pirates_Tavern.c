@@ -59,7 +59,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 
 		case "BlueBird_2":
 			dialog.text = "Многие пытались, да обломались, ха-ха!!";
-			link.l1 = "А что-нибудь путное тебе известно? Где ее видят часто, к примеру.";
+			link.l1 = "А что-нибудь путное тебе известно? Где её видят часто, к примеру.";
 			link.l1.go = "BlueBird_3";
 		break;
 		case "BlueBird_3":
@@ -93,7 +93,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		//голл. линейка, квест №8
  		case "Step_H8_1":
     		dialog.text = "Нет, не слышал.";
-    		link.l1 = "Вроде история известная, мне на Кюрасао ее рассказали.";
+    		link.l1 = "Вроде история известная, мне на Кюрасао её рассказали.";
     		link.l1.go = "Step_H8_2";
  		break;
  		case "Step_H8_2":

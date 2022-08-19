@@ -84,7 +84,7 @@ void ProcessDialogEvent()
 			if(NPChar.id == "ContraDeliverQuest_Soldier_0") // Солдер в комнате
 			{
 				dialog.text = "Так-так-так... Что тут у нас?! Пираты?! Вам придется пройти с нами в комендатуру для разбирательства...";
-					link.l1 = "Мы вовсе не пираты! Я этого человека даже не знаю! Он только что въехал в эту комнату, а я просто не успел"+ GetSexPhrase("","а") +" ее освободить!";
+					link.l1 = "Мы вовсе не пираты! Я этого человека даже не знаю! Он только что въехал в эту комнату, а я просто не успел"+ GetSexPhrase("","а") +" её освободить!";
 					link.l1.go = "ContraDeliverQuest_Sold1";
 					break;
 			}
@@ -266,7 +266,7 @@ void ProcessDialogEvent()
 
 		case "Hold_GenQuest61":
 			dialog.text = "Вы меня неправильно поняли: перед вами - член городского совета по надзору за соблюдением хартии.\n" +
-				"Стража!!! Стража! Арестовать "+ GetSexPhrase("этого человека","ее") +" по подозрению в работорговле и разбойном нападении на суда " + NationNameGenitive(sti(pchar.GenQuest.Hold_GenQuest.Nation)) + "!";
+				"Стража!!! Стража! Арестовать "+ GetSexPhrase("этого человека","её") +" по подозрению в работорговле и разбойном нападении на суда " + NationNameGenitive(sti(pchar.GenQuest.Hold_GenQuest.Nation)) + "!";
 			link.l1 = "Ну, 'товарищ', доберусь я до тебя...";
 			link.l1.go = "Hold_GenQuest62";
 		break;
@@ -1922,7 +1922,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Man_FackYou":
-			dialog.text = LinkRandPhrase("Да ты "+ GetSexPhrase("вор, милейший! Стража, держи его","воровка! Стража, держи ее") +"!!!", "Вот это да! Чуть я загляделся, а ты сразу в сундук с головой! Держи "+ GetSexPhrase("вора","воровку") +"!!!", "Стража! Грабят!!! Держи "+ GetSexPhrase("вора","воровку") +"!!!");
+			dialog.text = LinkRandPhrase("Да ты "+ GetSexPhrase("вор, милейший! Стража, держи его","воровка! Стража, держи её") +"!!!", "Вот это да! Чуть я загляделся, а ты сразу в сундук с головой! Держи "+ GetSexPhrase("вора","воровку") +"!!!", "Стража! Грабят!!! Держи "+ GetSexPhrase("вора","воровку") +"!!!");
 			link.l1 = "А-ать, дьявол!!!";
 			link.l1.go = "ReasonToFast_Lakey_exit";
 			pchar.questTemp.ReasonToFast = "LakeyExitFail";
@@ -3414,7 +3414,7 @@ void ProcessDialogEvent()
 		case "CaptainComission_327":
 			sld = characterFromId("Blaze");
 			dialog.text = "А "+ NPCharSexPhrase(sld, "что он за тип? Он","кто она такая? Она") +" в курсе наших дел?";
-			link.l1 = "В общих чертах, да. Но есть нюанс - "+ NPCharSexPhrase(sld, "он уверен","она уверена") +", что половина груза принадлежит "+ NPCharSexPhrase(sld, "ему","ей") +". Нужно убедить "+ NPCharSexPhrase(sld, "его","ее") +", что это не совсем так.";
+			link.l1 = "В общих чертах, да. Но есть нюанс - "+ NPCharSexPhrase(sld, "он уверен","она уверена") +", что половина груза принадлежит "+ NPCharSexPhrase(sld, "ему","ей") +". Нужно убедить "+ NPCharSexPhrase(sld, "его","её") +", что это не совсем так.";
 			link.l1.go = "exit";
 			AddDialogExitQuestFunction("CaptainComission_GangDialog");
 		break;
@@ -4380,7 +4380,7 @@ void ProcessDialogEvent()
 			break;
 
 		case "ContraMeetManQuest_7":
-			dialog.text = "Спасибо вам еще раз, " + PChar.name + ". Прощайте...";
+			dialog.text = "Спасибо вам ещё раз, " + PChar.name + ". Прощайте...";
 				link.l1 = "...";
 				link.l1.go = "ContraMeetManQuest_9";
 			break;
@@ -4497,7 +4497,7 @@ void ProcessDialogEvent()
 
 		case "ContraDeliverQuest_NoMon":
 			dialog.text = "Слушай сюда - мы с тобой ни о чем не договаривались. Вот тот, кто с тобой договаривался - тот тебе деньги и должен дать.";
-				link.l1 = "Неудачный у меня сегодня день, что тут еще можно сказать?! Ладно, прощай...";
+				link.l1 = "Неудачный у меня сегодня день, что тут ещё можно сказать?! Ладно, прощай...";
 				link.l1.go = "ContraDeliverQuest_GoWithoutMoney";
 				link.l2 = RandSwear() + "Ты за это ответишь! Приготовься к смерти!";
 				link.l2.go = "ContraDeliverQuest_PrepareToFight";
@@ -4600,7 +4600,7 @@ void ProcessDialogEvent()
 			break;
 
 		case "ChurchGenQuest1_DialogInTavernWithCap_5":
-			dialog.text = "Но-но! Старина кэп может и пьян, но пока еще в своём уме. Книжки и рулики дал отец " + PChar.GenQuest.ChurchQuest_1.ToName + ", я вёз их в " + XI_ConvertString("Colony" + PChar.GenQuest.ChurchQuest_1.QuestTown) + ". А тут с утреца зашёл я в местную церковь, ну и помянул про эти бумажки. Здешнему падре очень захотелось на них взглянуть хоть одним глазом. Сами знаете, эту братию хлебом не корми - дай почитать про ихних святых и праведников. Ну, я отправил юнгу на корабль, чтоб притащил мой рундучок с этим богатством. Пока ждал, успел в пух и прах проиграться, ободрали дочиста, да еще за выпивку неуплачено. Кабатчик мигом сообразил, взял книжки в залог, а потом я и рулики ему отдал...";
+			dialog.text = "Но-но! Старина кэп может и пьян, но пока ещё в своём уме. Книжки и рулики дал отец " + PChar.GenQuest.ChurchQuest_1.ToName + ", я вёз их в " + XI_ConvertString("Colony" + PChar.GenQuest.ChurchQuest_1.QuestTown) + ". А тут с утреца зашёл я в местную церковь, ну и помянул про эти бумажки. Здешнему падре очень захотелось на них взглянуть хоть одним глазом. Сами знаете, эту братию хлебом не корми - дай почитать про ихних святых и праведников. Ну, я отправил юнгу на корабль, чтоб притащил мой рундучок с этим богатством. Пока ждал, успел в пух и прах проиграться, ободрали дочиста, да ещё за выпивку неуплачено. Кабатчик мигом сообразил, взял книжки в залог, а потом я и рулики ему отдал...";
 				link.l1 = "То есть, вы пропили доверенные вам священником " + XI_ConvertString("Colony" + PChar.GenQuest.ChurchQuest_1.ToColony + "Gen") + " рукописи и свитки?..";
 				link.l1.go = "ChurchGenQuest1_DialogInTavernWithCap_6";
 			break;
@@ -4655,7 +4655,7 @@ void ProcessDialogEvent()
 		}
 		else // Свитки не отдает
 		{
-			dialog.text = "Лучше избавьте от излишнего беспокойства себя сам"+ GetSexPhrase("ого","у") +", судар"+ GetSexPhrase("ь","ыня") +", и отправляйтесь в " +  XI_ConvertString("Colony" + PChar.GenQuest.ChurchQuest_1.QuestTown) + " налегке, потому как я взялся доставить эти бумаги и я их доставлю, чего бы мне это ни стоило, ибо не родился еще тот прощелыга, который посмеет заявить, что капитан " + NPChar.name + " не держит слово!";
+			dialog.text = "Лучше избавьте от излишнего беспокойства себя сам"+ GetSexPhrase("ого","у") +", судар"+ GetSexPhrase("ь","ыня") +", и отправляйтесь в " +  XI_ConvertString("Colony" + PChar.GenQuest.ChurchQuest_1.QuestTown) + " налегке, потому как я взялся доставить эти бумаги и я их доставлю, чего бы мне это ни стоило, ибо не родился ещё тот прощелыга, который посмеет заявить, что капитан " + NPChar.name + " не держит слово!";
 				link.l1 = "Но, господин капитан, дело не в том...";
 				link.l1.go = "ChurchGenQuest1_DialogShip_5_2";
 		}

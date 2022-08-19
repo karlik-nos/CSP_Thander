@@ -403,7 +403,7 @@ void ProcessDialogEvent()
 			link.l1.go = "exit";
 			if (GetQuestPastDayParam("pchar.questTemp.craftingAmmo") >= sti(pchar.ammoCraftDays))
 			{
-				dialog.text = "Еще бы. Пожалуйста, забирайте. Я сделал 50 экземпляров. Смотрите, не израсходуйте все сразу.";
+				dialog.text = "Ещё бы. Пожалуйста, забирайте. Я сделал 50 экземпляров. Смотрите, не израсходуйте все сразу.";
 				link.l1 = "Благодарю. Ты гений!";
 				link.l1.go = "exit";
 				DeleteAttribute(pchar,"craftingAmmo");
