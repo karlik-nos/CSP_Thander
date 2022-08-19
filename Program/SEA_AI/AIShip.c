@@ -470,7 +470,8 @@ float Ship_MastDamage()
            	ref rCannon = GetCannonByType(sti(AIBalls.CurrentBallCannonType));
 			int	iBallType = sti(AIBalls.CurrentBallType);
 			int nCaliber = sti(rCannon.caliber);
-			/*//<---- Lipsar резист урона мачтам от калибра и класса
+			/*
+			//<---- Lipsar резист урона мачтам от калибра и класса
 			int iXmark = 0;
 			switch(nCaliber)
 			{
@@ -511,21 +512,22 @@ float Ship_MastDamage()
 			{
 				iResist = 1.0/(iClass-iXmark);
 			}
-		//<---- Lipsar резист урона мачтам от калибра и класса*/
+		//<---- Lipsar резист урона мачтам от калибра и класса
+		*/
             float nDirect = 0.45; //Glancing
             int nKni = nCaliber;
             if(iBallType == GOOD_KNIPPELS)
-                nKni = (nKni + 7) * 1.2;
-            if(rand(130 - nClass*15) < nKni)//20% ok 30% good 50+% penetrate
-                nDirect = 1.4; //Direct
+                nKni = (nKni + 8) * 1.6;
+            if(rand(200 - nClass*25) < nKni)//20% ok 30% good 50+% penetrate
+                nDirect = 1.3; //Direct
             float fCbrMDamage = retMin(makefloat(nCaliber) / MAX_CAL_MAST_DMG, 1.0);
-            float fClsMDamage = 0.02 * (nClass / 6);
+            float fClsMDamage = 0.03 * (nClass / 6);
             float tempDamage = 0.0;
             float baseDamage = 0.0;
 			switch (iBallType)
 			{
 				case GOOD_BALLS:
-					baseDamage = pow((nClass+1), 2.4) * 0.005; //pow(nClass, 2.0) * 0.005; //0.025; - больше зависимость класса, меньше изначальный урон.
+					baseDamage = pow((nClass+1), 1.8) * 0.015; //* 0.005; //0.025;
 				break;
 				case GOOD_GRAPES:
 					baseDamage = 0.0;
@@ -533,10 +535,10 @@ float Ship_MastDamage()
 					fClsMDamage = 0.0;
 				break;
 				case GOOD_KNIPPELS:
-					baseDamage = pow((nClass+1), 2.4) * 0.0043; //0.015;
+					baseDamage = pow((nClass+1), 1.8) * 0.015; //0.015;
 				break;
 				case GOOD_BOMBS:
-					baseDamage = pow((nClass+1), 2.4) * 0.001; //0.005;
+					baseDamage = pow((nClass+1), 1.8) * 0.003; //0.005;
 				break;
 			}
 			tempDamage = baseDamage * fCbrMDamage + fClsMDamage;
@@ -550,22 +552,24 @@ float Ship_MastDamage()
 			switch (iMastNum)
 			{
 				case 1:
-					tempDamage *= 1.35
+					tempDamage *= 1.5
 				break;
 				case 2:
-					tempDamage *= 1
+					tempDamage *= 1.0
 				break;
 				case 3:
-					tempDamage *= 1.2
+					tempDamage *= 0.8
 				break;
 				case 4:
 					tempDamage *= 2
 				break;
 			}
-			fDamage = fDamage + tempDamage;
-        //#20190113-06
         int iBallCharacterIndex = GetEventData();
         ref rBallCharacter = GetCharacter(iBallCharacterIndex);
+		float fDistance = Ship_GetDistance2D(rCharacter, rBallCharacter);
+		tempDamage = tempDamage * Bring2Range(1.1, 0.2, 0.0, makefloat(GetShootDistance(rBallCharacter, iBallType)), fDistance);
+		fDamage = fDamage + tempDamage;
+        //#20190113-06
         if(GetNationRelation(sti(rBallCharacter.Nation), sti(rCharacter.nation)) != RELATION_FRIEND)
 			{
 				if(CheckAttribute(rCharacter, "SeaAI.fortSanctuary"))
@@ -587,7 +591,7 @@ float Ship_MastDamage()
 		rCharacter.Tmp.SpeedRecall = 0; // чтоб пересчитался маневр
 		RefreshBattleInterface();
 	}
-	Log_TestInfo("Damage "+fDamage+" Mast "+iMastNum);
+	//Log_TestInfo("Damage "+fDamage+" Mast "+iMastNum);
 	return fDamage;
 	//procMastFall
 }
