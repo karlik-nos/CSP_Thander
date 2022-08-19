@@ -272,7 +272,7 @@ void CalculateSkillsForRank (ref npchar, int rank)
 	{
 		for (i = 1; i < 15; i++) 
 		{	
-			if (Correction == 0) {return; }
+			if (Correction == 0) {Log_TestInfo("Finalized after correction"); return;}
 			TempStr = GetSkillNameByIdx(i);
 			if (npchar.skill.(TempStr) != SKILL_MAX)
 			{
@@ -281,7 +281,6 @@ void CalculateSkillsForRank (ref npchar, int rank)
 			}
 		}
 	}
-	Log_TestInfo("Finalized after correction");
 	return;
 }
 
