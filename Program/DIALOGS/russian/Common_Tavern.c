@@ -678,7 +678,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "pirateStartQuest_Tavern":
-			dialog.text = "Ну, ты наш"+ GetSexPhrase("ел","ла") +" у кого спросить! В соседнем поселении у пиратов такие дела решаются очень просто.";
+			dialog.text = "Ну, ты наш"+ GetSexPhrase("ёл","ла") +" у кого спросить! В соседнем поселении у пиратов такие дела решаются очень просто.";
 			link.l1 = "Был"+ GetSexPhrase("","а") +"  я там. Сейчас у них ничего нет, а ждать я не могу - очень выгодная сделка срывается. У меня времени всего пару дней, потом уж и не нужно будет.";
 			link.l1.go = "pirateStartQuest_Tavern_1";
 		break;
@@ -1767,7 +1767,7 @@ void ProcessDialogEvent()
 			link.l1.go = "w_find_desouza_4";
 		break;
 		case "w_find_desouza_4":
-			dialog.text = "Конкретней не знаю, но у голландцев не так уж много портов на Карибах, наверняка найдешь.";
+			dialog.text = "Конкретней не знаю, но у голландцев не так уж много портов на Карибах, наверняка найдёшь.";
 			AddQuestRecord("WhisperQuestline", "4");
 			pchar.Whisper.FindDesouzaHol = true;
 			link.l1 = "Ладно, прощай.";

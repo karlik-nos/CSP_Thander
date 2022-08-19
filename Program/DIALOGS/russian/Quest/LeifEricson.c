@@ -340,7 +340,7 @@ void ProcessDialogEvent()
 		break;
 
         case "Step_30":
-        	dialog.text = "Пока не найдешь, своего тела обратно не получишь.";
+        	dialog.text = "Пока не найдёшь, своего тела обратно не получишь.";
     		link.l1 = "Я буду искать...";
     		link.l1.go = "exit";
 		break;

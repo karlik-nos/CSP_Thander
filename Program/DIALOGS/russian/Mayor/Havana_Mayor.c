@@ -22,7 +22,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 
 		case "Slavetrader_HavanaAttack":
 			dialog.text = "Чертовы ладроны! Посметь напасть на Гавану - это неслыханная дерзость! Что вам нужно?!";
-			link.l1 = "Подумай хорошенько - поймешь.";
+			link.l1 = "Подумай хорошенько - поймёшь.";
 			link.l1.go = "Slavetrader_HavanaAttack_1";
 			pchar.quest.Slavetrader_HavanaOver.over = "yes";
 			AfterTownBattle();

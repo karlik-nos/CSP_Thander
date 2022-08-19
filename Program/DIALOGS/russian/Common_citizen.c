@@ -193,7 +193,7 @@ void ProcessDialogEvent()
 				if(CheckAttribute(PChar, "GenQuest.CitizenFindItem.CitizenID") && PChar.GenQuest.CitizenFindItem.CitizenID == NPChar.ID && CheckCharacterItem(PChar, "DOjeronRing"))
 				{
 					dialog.Text = "Да капитан, я вас слушаю.";
-					link.l1 = NPChar.name + ", я наш"+ GetSexPhrase("ел","ла") +" ваше обручальное кольцо.";
+					link.l1 = NPChar.name + ", я наш"+ GetSexPhrase("ёл","ла") +" ваше обручальное кольцо.";
 					link.l1.go = "CitizenFindItem_Complete_1";
 					break;
 				}
@@ -266,7 +266,7 @@ void ProcessDialogEvent()
                                         "О, да это же сам"+ GetSexPhrase("","а") +" капитан " + GetFullName(Pchar) + "! Что вы хотите узнать на этот раз?",
                                         "Здравствуйте, " + GetAddress_Form(NPChar) + " " + Pchar.lastname + ". Вы что-то хотели?"))
                                         );
-	   			link.l6 = PCharRepPhrase(RandPhraseSimple("Тебе послышалось, я пойду.", "Нет, ничего - просто ш"+ GetSexPhrase("ел","ла") +" в таверну."),
+	   			link.l6 = PCharRepPhrase(RandPhraseSimple("Тебе послышалось, я пойду.", "Нет, ничего - просто ш"+ GetSexPhrase("ёл","ла") +" в таверну."),
                                         RandPhraseSimple("Ладно, ничего. Удачи!", "Просто осматриваю город. До свидания."));
 				link.l6.go = "exit";
 			}
@@ -342,7 +342,7 @@ void ProcessDialogEvent()
 			}
 			// <-- Квестовый генератор священника. Квест №2.
 
-			Link.l6 = PCharRepPhrase(RandPhraseSimple("Тебе послышалось, я пойду.", "Нет, ничего - просто ш"+ GetSexPhrase("ел","ла") +" в таверну."),
+			Link.l6 = PCharRepPhrase(RandPhraseSimple("Тебе послышалось, я пойду.", "Нет, ничего - просто ш"+ GetSexPhrase("ёл","ла") +" в таверну."),
                                         RandPhraseSimple("Ладно, ничего. Удачи!", "Просто осматриваю город. До свидания."));
 			Link.l6.go = "exit";
 		break;

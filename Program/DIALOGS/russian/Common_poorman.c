@@ -335,7 +335,7 @@ void ProcessDialogEvent()
 		break;
 		case "GoodTalk_4_1":
 			sld = characterFromId(pchar.questTemp.LSC.qtyTalk.headPoormanId);
-			dialog.text = "Я знаю тебя, но ответить на твой вопрос не могу. Тебе нужно идти в " + XI_ConvertString("Colony" + sld.city + "Acc") + ", там найдешь одного из наших по имени " + GetFullName(sld) + ". Он хотел с тобой переговорить по этому поводу.";
+			dialog.text = "Я знаю тебя, но ответить на твой вопрос не могу. Тебе нужно идти в " + XI_ConvertString("Colony" + sld.city + "Acc") + ", там найдёшь одного из наших по имени " + GetFullName(sld) + ". Он хотел с тобой переговорить по этому поводу.";
 			link.l1 = "Понятно. Я так и поступлю.";
 			link.l1.go = "exit";
 		break;
@@ -389,7 +389,7 @@ void ProcessDialogEvent()
 			link.l1.go = "PoorHeadMan_9";
 		break;
 		case "PoorHeadMan_9":
-			dialog.text = "Ну, я сказал все, что хотел. Спасибо за то, что "+ GetSexPhrase("выслушал","выслушала") +". Если найдешь что-нибудь стоящее внимания - сразу обращайся ко мне, будем думать... И спасибо за то, что не "+ GetSexPhrase("причинил","причинила") +" нам вреда.";
+			dialog.text = "Ну, я сказал все, что хотел. Спасибо за то, что "+ GetSexPhrase("выслушал","выслушала") +". Если найдёшь что-нибудь стоящее внимания - сразу обращайся ко мне, будем думать... И спасибо за то, что не "+ GetSexPhrase("причинил","причинила") +" нам вреда.";
 			link.l1 = "Да не за что. Тебе спасибо за информацию.";
 			link.l1.go = "exit";
 			pchar.questTemp.LSC = "toVillemstadResidence";

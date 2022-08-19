@@ -1599,7 +1599,7 @@ void ProcessDialogEvent()
 			dialog.text = "И кто же эта добрая душа, что жертвует?";
 			link.l1 = "Хм... Это хозяйка местного борделя.";
 			link.l1.go = "HostessChurch_call";
-			link.l2 = "Я бы предпоч"+ GetSexPhrase("ел","ла") +" не называть имен. Ведь может же быть анонимное пожертвование!";
+			link.l2 = "Я бы предпоч"+ GetSexPhrase("ёл","ла") +" не называть имен. Ведь может же быть анонимное пожертвование!";
 			link.l2.go = "HostessChurch_notCall";
 			pchar.questTemp.different = "HostessChurch_return"; //флаг на возвращение
 		break;
@@ -1644,7 +1644,7 @@ void ProcessDialogEvent()
 			}
 			else
 			{
-				dialog.text = "Взять эти деньги, даже не зная, от кого они? Ты с ума сош"+ GetSexPhrase("ел","ла") +"?! А вдруг, на этих деньгах - кровь!!";
+				dialog.text = "Взять эти деньги, даже не зная, от кого они? Ты с ума сош"+ GetSexPhrase("ёл","ла") +"?! А вдруг, на этих деньгах - кровь!!";
 				link.l1 = "Святой отец, на всех деньгах - кровь...";
 				link.l1.go = "HostessChurch_bad_2";
 			}

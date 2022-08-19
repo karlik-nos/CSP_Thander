@@ -48,13 +48,13 @@ void ProcessDialogEvent()
 		break;
 		case "Casper_1_2":
 			dialog.text = "Чего?!";
-			link.l1 = "Так и не понял? Ну ладно, сейчас поймешь...";
+			link.l1 = "Так и не понял? Ну ладно, сейчас поймёшь...";
 			link.l1.go = "fightQuest";
 		break;
 
 		case "Casper_12":
 			dialog.text = "Слушай, я, кажется, ясно выразился. Убирайся отсюда, "+ GetSexPhrase("приятель","подруга") +"...";
-			link.l1 = "А ты не Армо ждешь, дружище? Так её не будет, я за нее.";
+			link.l1 = "А ты не Армо ждёшь, дружище? Так её не будет, я за нее.";
 			link.l1.go = "Casper_12_1";
 			link.l2 = "Ладно, ладно...";
 			link.l2.go = "exit";
@@ -62,7 +62,7 @@ void ProcessDialogEvent()
 		break;
 		case "Casper_12_1":
 			dialog.text = "Чего?!";
-			link.l1 = "Так и не понял? Ну ладно, сейчас поймешь...";
+			link.l1 = "Так и не понял? Ну ладно, сейчас поймёшь...";
 			link.l1.go = "fightQuest";
 		break;
 
@@ -81,7 +81,7 @@ void ProcessDialogEvent()
 		break;
 		case "Casper_3_1":
 			dialog.text = "Ну, понимаешь, у меня тут свидание. Так что твое присутствие здесь нежелательно, мягко говоря.";
-			link.l1 = "Не Армо, случайно, ждешь?";
+			link.l1 = "Не Армо, случайно, ждёшь?";
 			link.l1.go = "Casper_3_2";
 			link.l2 = "Хорошо, дружище.";
 			link.l2.go = "exit";

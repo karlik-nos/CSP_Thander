@@ -105,7 +105,7 @@ void ProcessDialogEvent()
 		      SetCharacterTask_FollowCharacter(Npchar, PChar); // it works here!!!
 			  Diag.TempNode = "Fired";
 		      dialog.text = "(Краб злобно клацает вам вслед.)";
-		      Link.l1 = "Со временем ты поймешь, почему я так поступил"+ GetSexPhrase("","а")+ ".";
+		      Link.l1 = "Со временем ты поймёшь, почему я так поступил"+ GetSexPhrase("","а")+ ".";
 		      Link.l1.go = "Exit";
 	      break;
         // boal 05.09.03 offecer need to go to abordage <--

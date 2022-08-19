@@ -149,7 +149,7 @@ void ProcessDialogEvent()
 				if(Pchar.Location == Pchar.location.from_sea)
 				{
 					dialog.text = "Хм... я тебя раньше не видел. Ты кто таков"+ GetSexPhrase("","а") +"?";
-					link.l1 = "Я т"+ GetSexPhrase("от","а") +", кого ты ждешь...";
+					link.l1 = "Я т"+ GetSexPhrase("от","а") +", кого ты ждёшь...";
 					link.l1.go = "Reason_To_Fast_11";
 					link.l2 = "Я капитан " + GetFullName(pchar) + ". Хочу поинтересоваться, зачем ты сюда так торопился, чуть портки в борделе не оставил...";
 					link.l2.go = "Reason_To_Fast_21";
