@@ -10603,6 +10603,7 @@ void QuestComplete(string sQuestName, string qname)
 			sld = CharacterFromID("Gasten_Kotes")
 			LAi_LoginInCaptureTown(sld, true);
 			LAi_SetStayType(sld);
+			LAi_CharacterEnableDialog(sld);
 			sld.dialog.filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
 			sld.dialog.currentnode = "Stoim_na_pirse";
 			sld.talker = 5;
@@ -10636,6 +10637,7 @@ void QuestComplete(string sQuestName, string qname)
 			ChangeCharacterAddressGroup(sld, "none", "", "");
 		
 			chrDisableReloadToLocation = false;
+			bDisableFastReload = true;
 			LocatorReloadEnterDisable("LaVega_town", "reload1_back", false);
 			AddQuestRecord("AT_Mechty_Sbivautsya", "3");
 			
@@ -10713,6 +10715,7 @@ void QuestComplete(string sQuestName, string qname)
 			sld.lifeday = 0;
 			sld = CharacterFromID("AT_pr_1_CaptainAttack_3")
 			sld.lifeday = 0;
+			bDisableFastReload = false;
 		break;
 		
 		case "AT_pr_Santo_Domin":			//Важный кейс
@@ -10735,7 +10738,7 @@ void QuestComplete(string sQuestName, string qname)
 			StartQuestMovie(true, true, true);
 			LAi_SetActorType(pchar);
 			DoQuestFunctionDelay("ATpr_OboronaSD_2", 0.1);
-			ChangeCharacterAddressGroup(pchar, "none", "", "");
+			ChangeCharacterAddressGroup(pchar, "SantoDomingo_ExitTown", "rld", "aloc15");
 			chrDisableReloadToLocation = true;
 		break;
 		
@@ -10749,6 +10752,7 @@ void QuestComplete(string sQuestName, string qname)
 		
 		case "ATpr_3Volna_3":
 			sld = CharacterFromID("Gasten_Kotes")
+			LAi_SetCurHPMax(sld);
 			LAi_SetStayType(sld);
 			ChangeCharacterAddressGroup(sld, "SantoDomingo_ExitTown", "reload", "reload1_back");
 			sld.dialog.filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";

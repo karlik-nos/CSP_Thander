@@ -68,7 +68,7 @@ void ProcessDialogEvent()
 		
 		case "Strajniki":
 			dialog.text = RandPhraseSimple("Я слежу за вами.", ""+ GetSexPhrase("Сеньор","Сеньорита") +", это государственное учреждение, держитесь здесь в соответствии его статусу.");
-			Link.l1 = RandPhraseSimple("Буду иметь ввиду.", "Я понял"+ NPCharSexPhrase(NPChar,"","а") +".");
+			Link.l1 = RandPhraseSimple("Буду иметь ввиду.", "Я понял"+ GetSexPhrase("","а") +".");
 			link.l1.go = "exit";
 			NextDiag.TempNode = "Strajniki";
 		break;

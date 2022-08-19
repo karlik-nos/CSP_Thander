@@ -337,7 +337,9 @@ void ProcessDialogEvent()
 			sld = characterFromId("Gasten_Kotes");
 			LAi_SetActorType(sld);
 			LAi_ActorTurnToCharacter(sld, pchar);
-			LAi_ActorAnimation(sld, "kneeling_2", "", 2.4);
+			//LAi_ActorAnimation(sld, "kneeling_2", "", 2.4);
+			LAi_SetGroundSitType(sld);
+			LAi_CharacterDisableDialog(sld);
 		break;
 		
 		case "Rebekka_posle_draki_2":
@@ -771,7 +773,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ATpr_SD_Koten_6":
-			dialog.text = "Также, я провёл небольшую ревизию на корабле. Нашёл для тебя подходящую одежду. Где это видано, чтоб капитан по палубе разгуливал в юбке. Вот, примерь.";
+			dialog.text = "Также, я провёл небольшую ревизию на корабле. Нашёл для тебя подходящий наряд. Где это видано, чтоб капитан по палубе разгуливал в юбке. Вот, примерь.";
 			link.l1 = "Вау, а он неплохо смотрится на мне. Спасибо тебе, Гастен.";
 			link.l1.go = "ATpr_SD_Koten_7";
 			PlaySound("Interface\important_item.wav");

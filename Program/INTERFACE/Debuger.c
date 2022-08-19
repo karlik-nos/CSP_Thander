@@ -1667,9 +1667,9 @@ void CalculateInfoDataF23()
 	totalInfo += "\n\nCamera.pos.x == " + Camera.pos.x +
 		"\nCamera.pos.y = " + Camera.pos.y +
 		"\nCamera.pos.z == " + Camera.pos.z +
-		"\n\nCamera.ang.z == " + Camera.ang.y +
-		"\nCamera.ang.y == " + Camera.ang.z +
-		"\nCamera.ang.x == " + Camera.ang.y + "\n\n";
+		"\n\nCamera.ang.x == " + Camera.ang.x +
+		"\nCamera.ang.y == " + Camera.ang.y +
+		"\nCamera.ang.z == " + Camera.ang.z + "\n\n";
     // <--
     totalInfo = totalInfo + NewStr() + NewStr() +
                 "Команда отработала успешно!";

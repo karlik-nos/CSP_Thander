@@ -581,7 +581,7 @@ void AT_pr_tragedia(string qName)
 	ChangeCharacterAddressGroup(sld,"LaVega_town","goto","goto11");
 	LAi_KillCharacter(sld);
 	
-	sld = GetCharacter(NPC_GenerateCharacter("AT_pr_J11", "horse02", "woman", "woman", 1, SPAIN, -1, false));
+	sld = GetCharacter(NPC_GenerateCharacter("AT_pr_J11", "shipowner_18", "man", "man", 1, SPAIN, -1, false));
 	LAi_LoginInCaptureTown(sld, true);
 	ChangeCharacterAddressGroup(sld,"LaVega_town","reload","houseSp4");
 	LAi_KillCharacter(sld);
@@ -632,7 +632,8 @@ void AT_pr_Bejim_ot_piratov_3(string qName)
 }
 void ATpr_OboronaSD_2(string qName)
 {	
-	locCameraToPos(-15.00, 7.00, 0.00, false);
+	//locCameraToPos(-14.50, 7.00, 0.00, false);
+	locCameraFromToPos(-14.50, 7.00, 0.00, false, 0.22, 2.60, 0.00);
 	DoQuestFunctionDelay("ATpr_OboronaSD_3", 1.5);
 }
 void ATpr_OboronaSD_3(string qName)
@@ -717,7 +718,6 @@ void ATpr_OboronaSD_6(string qName)
 }
 void ATpr_OboronaSD_7(string qName)
 {
-	ChangeCharacterAddressGroup(pchar, "SantoDomingo_ExitTown", "rld", "loc10");
 	DoQuestFunctionDelay("ATpr_OboronaSD_8", 5.0);
 	
 	sld = GetCharacter(NPC_GenerateCharacter("AT_SpaMush_9", "spa_mush_"+(rand(2)+1), "man", "mushketer", 3, SPAIN, -1, false));
@@ -739,10 +739,10 @@ void ATpr_OboronaSD_7(string qName)
 void ATpr_OboronaSD_8(string qName)
 {
 	DoQuestFunctionDelay("ATpr_OboronaSD_8_1", 0.8);
-	locCameraTarget(PChar)
-	locCameraFollow();
-	locCameraToPos(0.00, 11.00, -28.00, false);
-	ChangeCharacterAddressGroup(pchar, "none", "", "");
+	//locCameraTarget(PChar)
+	//locCameraFollow();
+	//locCameraToPos(1.00, 11.00, -28.00, false);
+	locCameraFromToPos(-3.00, 11.30, -26.00, false, 0.27, -0.36, 0.00);
 	
 	//Пираты 1 волна (#1)
 	for (i=1; i<=7; i++)
@@ -770,8 +770,11 @@ void ATpr_OboronaSD_8_2(string qName)
 }
 void ATpr_OboronaSD_9(string qName)
 {
-	ChangeCharacterAddressGroup(pchar, "SantoDomingo_ExitTown", "rld", "aloc15");
+	//ChangeCharacterAddressGroup(pchar, "SantoDomingo_ExitTown", "rld", "aloc15");
 	CreateLocationParticles("shipfire", "rld", "loc6", -3.0, 0, 0, "");
+	CreateLocationParticles("ShipExplode", "rld", "loc6", 0, 0, 0, "boom");
+	CreateLocationParticles("Ship_cannon_fire", "rld", "loc21", 0, -90, 0, "cannon_fire_2");
+	//CreateLocationParticles("Bombard", "rld", "loc21", 0, -90, 0, "cannon_fire_2");
 	PlayVoice("Sea Battles\sdavl_kriki_002.wav");
 	PlayVoice("Sea Battles\vistrel_orudiya_004.wav");
 	
@@ -785,7 +788,7 @@ void ATpr_OboronaSD_9(string qName)
 }
 void ATpr_OboronaSD_10(string qName)
 {
-	DoQuestFunctionDelay("ATpr_OboronaSD_11", 2.5);
+	DoQuestFunctionDelay("ATpr_OboronaSD_11", 2.9);
 	//Пираты 1 волна (#2)
 	for (i=1; i<=7; i++)
     {
@@ -793,12 +796,15 @@ void ATpr_OboronaSD_10(string qName)
  		sld = GetCharacter(NPC_GenerateCharacter("TA_Pirate_1_2"+i, sTemp, "man", "man", 1, PIRATE, -1, true));
 		LAi_SetActorType(sld);
         ChangeCharacterAddressGroup(sld, "SantoDomingo_ExitTown", "rld",  "loc0");
-		LAi_ActorRunToLocation(sld, "rld", "loc13", "", "", "", "", -1);
+		LAi_ActorRunToLocation(sld, "item", "item1", "", "", "", "", -1);
     }
 }
 void ATpr_OboronaSD_11(string qName)
 {
 	CreateLocationParticles("shipfire", "rld", "loc9", -3.0, 0, 0, "");
+	CreateLocationParticles("ShipExplode", "rld", "loc9", 0, 0, 0, "boom");
+	CreateLocationParticles("Ship_cannon_fire", "rld", "loc22", 0, -90, 0, "cannon_fire_2");
+	CreateLocationParticles("Bombard", "rld", "loc22", 0, -90, 0, "cannon_fire_2");
 	PlayVoice("Sea Battles\sdavl_kriki_004.wav");
 	PlayVoice("Sea Battles\vistrel_orudiya_005.wav");
 	
@@ -880,8 +886,9 @@ void ATpr_OboronaSD_16(string qName)
 	LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);
 	LAi_group_SetCheck("EnemyFight", "ATpr_3Volna_2");
 	
-	DoQuestFunctionDelay("ATpr_OboronaSD_17", 1.5);
+	DoQuestFunctionDelay("ATpr_OboronaSD_17", 1.0);
 	DoQuestFunctionDelay("ATpr_OboronaSD_18", 20.0);
+	DoQuestFunctionDelay("ATpr_OboronaSD_20", 26.0);
 }
 void ATpr_OboronaSD_17(string qName)
 {	
@@ -914,6 +921,7 @@ void ATpr_OboronaSD_18(string qName)
 }
 void ATpr_OboronaSD_19(string qName)
 {	
+	DoQuestFunctionDelay("ATpr_OboronaSD_22", 5.0);
 	PlayVoice("Interface\_musketshot_0.wav");
 	//ПИРАТ БОСС
 	sld = GetCharacter(NPC_GenerateCharacter("TA_Pirate_4", "BS_Vein", "man", "man", 1, PIRATE, -1, false));
@@ -941,6 +949,33 @@ void ATpr_OboronaSD_19(string qName)
 	LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
 	LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);
 	LAi_group_SetCheck("EnemyFight", "ATpr_3Volna_3");
+}
+void ATpr_OboronaSD_20(string qName)
+{
+	CreateLocationParticles("ShipExplode", "rld", "loc10", 0, 0, 0, "boom");
+	CreateLocationParticles("Ship_cannon_fire", "rld", "loc22", 0, -90, 0, "cannon_fire_2");
+	CreateLocationParticles("Bombard", "rld", "loc22", 0, -90, 0, "cannon_fire_2");
+	//PlayVoice("Sea Battles\sdavl_kriki_004.wav");
+	PlayVoice("Sea Battles\vistrel_orudiya_004.wav");	
+	
+	DoQuestFunctionDelay("ATpr_OboronaSD_21", 8.0);
+}
+void ATpr_OboronaSD_21(string qName)
+{
+	CreateLocationParticles("ShipExplode", "rld", "loc13", 0, 0, 0, "boom");
+	CreateLocationParticles("Ship_cannon_fire", "rld", "loc23", 0, -90, 0, "cannon_fire_2");
+	CreateLocationParticles("Bombard", "rld", "loc23", 0, -90, 0, "cannon_fire_2");
+	//PlayVoice("Sea Battles\sdavl_kriki_004.wav");
+	PlayVoice("Sea Battles\vistrel_orudiya_005.wav");
+}
+void ATpr_OboronaSD_22(string qName)
+{
+	//CreateLocationParticles("shipfire", "rld", "loc15", -3.0, 0, 0, "");
+	CreateLocationParticles("ShipExplode", "rld", "loc15", 0, 0, 0, "boom");
+	CreateLocationParticles("Bombard", "rld", "loc22", 0, -90, 0, "cannon_fire_2");
+	CreateLocationParticles("Ship_cannon_fire", "rld", "loc22", 0, -90, 0, "cannon_fire_2");
+	//PlayVoice("Sea Battles\sdavl_kriki_004.wav");
+	PlayVoice("Sea Battles\vistrel_orudiya_004.wav");
 }
 void ATpr_SvobodaIgry(string qName)
 {
