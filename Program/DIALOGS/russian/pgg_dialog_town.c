@@ -331,7 +331,7 @@ void ProcessDialogEvent()
 					"Чтож... Я тоже думаю, что вместе мы сможем больше!", "Пожалуй, это будет весело. Договорились."));
 			link.l1 = RandPhraseSimple("Отлично, жду тебя в море!", "Вот и правильно! Мы будем отличной командой.");
 			link.l1.go = "exit";
-			PGG_Restore(npchar);
+			Restore_PGG(npchar);
 			if (CheckAttribute(NPChar, "PGGAi.Task.SetSail"))
 			{
 				PGG_Disband_Fleet(npchar);
