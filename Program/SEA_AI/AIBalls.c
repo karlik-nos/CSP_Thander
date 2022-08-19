@@ -89,11 +89,11 @@ void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0,
 	AIBalls.MaxFireDistance   = fMaxFireDistance;
 
 	float fTempDispersionY = Degree2Radian(5.0); // LEO: Важные параметры разброса снарядов - (15.0)
-	float fTempDispersionX = Degree2Radian(5.0); // (5.0)
+	float fTempDispersionX = Degree2Radian(6.0); // (5.0)
 
 	//float fDamage2Cannons = 100.0;
 
-    float fAccuracy = 1.2 - stf(aCharacter.TmpSkill.Accuracy);
+    float fAccuracy = (1.5 - stf(aCharacter.TmpSkill.Accuracy))/2;
 
 	float fCannons = stf(aCharacter.TmpSkill.Cannons)*10;
 
@@ -108,11 +108,11 @@ void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0,
 		}
 	}
 
-	float fK = Bring2Range(0.5, 1.2, 0.2, 1.2, fAccuracy);
-
-	AIBalls.Dir = fDirAng + fK * fTempDispersionY * (frnd() - 0.5);
-	AIBalls.SpdV0 = fSpeedV0 + fAccuracy * (10.0 * fTempDispersionY) * (frnd() - 0.5);
-	AIBalls.Ang = fHeightAng + fAccuracy * (fTempDispersionX) * (frnd() - 0.5);
+	float fK = Bring2Range(0.35, 0.9, 0.25, 0.75, fAccuracy);
+	
+	AIBalls.Dir = fDirAng + fK * fTempDispersionY * (frnd() +frnd() - 1);//горизонтальная_наводка + разброс
+	AIBalls.SpdV0 = fSpeedV0 + fAccuracy * (10.0 * fTempDispersionY) * (frnd() - 0.5);//скорость_снаряда + разброс_скорости
+	AIBalls.Ang = fHeightAng + fAccuracy * (fTempDispersionX) * (frnd() + frnd() - 1);//вертикальная_наводка + разброс 
 
 	AIBalls.Event = "";
 
