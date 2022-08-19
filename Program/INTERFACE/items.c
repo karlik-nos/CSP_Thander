@@ -1598,7 +1598,7 @@ void EquipPress()
 				{
 					pchar.chr_ai.bonushptube = 0;
 					pchar.PerkValue.HPBONUS = 50+rand(50)+sti(pchar.rank);
-					float nphpp = LAi_GetCharacterMaxHP(pchar) + GetCharacterAddHPValue(pchar)+sti(pchar.PerkValue.HPBONUS);
+					float nphpp = LAi_GetCharacterMaxHP(pchar) + sti(pchar.PerkValue.HPBONUS);
 					LAi_SetHP(pchar,nphpp,nphpp);
 					SetTimerFunction("ClearHPTubeEffect",0,0,1);
 				}

@@ -796,7 +796,7 @@ void ApplayNewSkill(ref _chref, string _skill, int _addValue)
 
 void ClearHPTubeEffect(string qName)
 {
-	float nphp = LAi_GetCharacterMaxHP(pchar) + GetCharacterAddHPValue(pchar);
+	float nphp = LAi_GetCharacterMaxHP(pchar);
 	LAi_SetHP(pchar,nphp-sti(pchar.PerkValue.HPBONUS),nphp-sti(pchar.PerkValue.HPBONUS));
 	DeleteAttribute(pchar,"chr_ai.bonushptube");
 	DeleteAttribute(pchar,"PerkValue.HPBONUS");
