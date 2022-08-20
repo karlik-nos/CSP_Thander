@@ -1366,6 +1366,13 @@ void ProcessControls()
 		{
 			if (InterfaceStates.Buttons.Save.enable == false)
 			{
+				if (CheckAttribute(pchar,"SkipBattle") && pchar.SkipBattle == true)
+				{
+					if (rand(1) == 0) LAi_KillCharacter(CharacterFromID(pchar.ArenaAttack));
+					else LAi_KillCharacter(CharacterFromID(pchar.ArenaEnemy));
+					pchar.SkipBattle = false;
+					return;
+				}
 				Log_SetStringToLog("В данный момент запрещены манипуляции временным потоком.");
 				return;
 			}

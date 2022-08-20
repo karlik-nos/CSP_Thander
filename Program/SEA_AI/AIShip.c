@@ -236,7 +236,7 @@ void CreateShipEnvironment()
 	SetEventHandler("Ship_BortReloadEvent", "Ship_BortReloadEvent", 0);
 }
 
-float Ship_GetBortFireDelta()
+float Ship_GetBortFireDelta()//смещение от центра цели при попытке попасть - ошибка расчета главного канонира
 {
 	aref aCharacter = GetEventData();
 	float x = GetEventData();
@@ -244,17 +244,9 @@ float Ship_GetBortFireDelta()
 	float z = GetEventData();
 	float fDistance = GetDistance2D(x, z, stf(aCharacter.Ship.Pos.x), stf(aCharacter.Ship.Pos.z));
 
-	float fAccuracy = 1.3 - stf(aCharacter.TmpSkill.Accuracy);
-
-	// to_do
-	if (iArcadeSails == 1)// && aCharacter.id == characters[nMainCharacterIndex].id)
-	{
-		fAccuracy  = fAccuracy - 0.2;
-		if (fAccuracy < 0.1)
-		{
-			fAccuracy = 0.1;
-		}
-	}
+	float fAccuracy = frand(0.1) + (1 - stf(aCharacter.TmpSkill.Accuracy))/3;
+	
+	if (iArcadeSails == 0){fAccuracy += 0.2;}
 
 	float fRadius = fAccuracy * Bring2Range(0.0, 120.0, 0.0, 1000.0, fDistance);
 	return fRadius;
@@ -456,12 +448,12 @@ float Ship_MastDamage()
 	switch (iDamageType)
 	{
 		case SHIP_MAST_TOUCH_ISLAND:
-			fDamage = fDamage + 0.1;
+			fDamage = fDamage + 0.02;
 		break;
 		case SHIP_MAST_TOUCH_SHIP:
 			//aref rCollideCharacter = GetEventData();
 
-			fDamage = fDamage + 0.1;
+			fDamage = fDamage + 0.02;
 		break;
 		case SHIP_MAST_TOUCH_BALL:
 		    //#20171230-01 Mast damage mod
@@ -470,62 +462,20 @@ float Ship_MastDamage()
            	ref rCannon = GetCannonByType(sti(AIBalls.CurrentBallCannonType));
 			int	iBallType = sti(AIBalls.CurrentBallType);
 			int nCaliber = sti(rCannon.caliber);
-			//<---- Lipsar резист урона мачтам от калибра и класса
-			int iXmark = 0;
-			switch(nCaliber)
-			{
-				case 8:
-					iXmark = 8;
-				break;
-				case 12:
-					iXmark = 5;
-				break;
-				case 16:
-					iXmark = 5;
-				break;
-				case 20:
-					iXmark = 5;
-				break;
-				case 24:
-					iXmark = 2;
-				break;
-				case 32:
-					iXmark = 1;
-				break;
-				case 36:
-					iXmark = 1;
-				break;
-				case 42:
-					iXmark = 0;
-				break;
-				case 48:
-					iXmark = 0;
-				break;
-			}
-			float iResist = 1;
-			if(iXmark > iClass)
-			{
-				iResist = 1 + 1.0 / (iXmark - iClass);
-			}
-			else
-			{
-				iResist = 1.0/(iClass-iXmark);
-			}
-		//<---- Lipsar резист урона мачтам от калибра и класса
-            float nDirect = 0.35; //Glancing
+			float nDirect = 0.45; //Glancing
             int nKni = nCaliber;
             if(iBallType == GOOD_KNIPPELS)
-                nKni += 5;
-            if(rand(65) < nKni)
-                nDirect = 1.1; //Direct
-            float fCbrMDamage = 0.5 * retMin(makefloat(nCaliber) / MAX_CAL_MAST_DMG, 1.0);
-            float fClsMDamage = 0.005 * (nClass / 6);
+                nKni = (nKni + 8) * 1.6;
+            if(rand(200 - nClass*25) < nKni)//20% ok 30% good 50+% penetrate
+                nDirect = 1.3; 
+            float fCbrMDamage = retMin(makefloat(nCaliber) / MAX_CAL_MAST_DMG, 1.0);
+            float fClsMDamage = 0.03 * (nClass / 6);
             float tempDamage = 0.0;
             float baseDamage = 0.0;
 			switch (iBallType)
 			{
 				case GOOD_BALLS:
-					baseDamage = pow(nClass, 2.0) * 0.005; //0.025;
+					baseDamage = pow((nClass+1), 1.8) * 0.015; //* 0.005;Leo //0.025;
 				break;
 				case GOOD_GRAPES:
 					baseDamage = 0.0;
@@ -533,18 +483,39 @@ float Ship_MastDamage()
 					fClsMDamage = 0.0;
 				break;
 				case GOOD_KNIPPELS:
-					baseDamage = pow(nClass, 2.0) * 0.0035; //0.015;
+					baseDamage = pow((nClass+1), 1.8) * 0.015; //0.015;
 				break;
 				case GOOD_BOMBS:
-					baseDamage = pow(nClass, 2.0) * 0.0015; //0.005;
+					baseDamage = pow((nClass+1), 1.8) * 0.003; //0.005;
 				break;
 			}
 			tempDamage = baseDamage * fCbrMDamage + fClsMDamage;
 			tempDamage = tempDamage * nDirect;
-			fDamage = fDamage + tempDamage;
-        //#20190113-06
+			string sShip = rBaseShip.BaseName;
+			if (sShip == "PRINCE" || sShip == "OXFORD" || sShip == "RESOLUTION" || sShip == "MORDAUNT") 
+				tempDamage = tempDamage * MastMulti * 0.8; //для хрупких кораблей сделать жирнее мачты
+			tempDamage = tempDamage * MastMulti;
+			switch (iMastNum)
+			{
+				case 1:
+					tempDamage *= 1.5
+				break;
+				case 2:
+					tempDamage *= 1.0
+				break;
+				case 3:
+					tempDamage *= 0.8
+				break;
+				case 4:
+					tempDamage *= 2
+				break;
+			}
         int iBallCharacterIndex = GetEventData();
         ref rBallCharacter = GetCharacter(iBallCharacterIndex);
+		float fDistance = Ship_GetDistance2D(rCharacter, rBallCharacter);
+		tempDamage = tempDamage * Bring2Range(1.1, 0.2, 0.0, makefloat(GetShootDistance(rBallCharacter, iBallType)), fDistance);
+		fDamage = fDamage + tempDamage;
+        //#20190113-06
         if(GetNationRelation(sti(rBallCharacter.Nation), sti(rCharacter.nation)) != RELATION_FRIEND)
 			{
 				if(CheckAttribute(rCharacter, "SeaAI.fortSanctuary"))
@@ -566,12 +537,7 @@ float Ship_MastDamage()
 		rCharacter.Tmp.SpeedRecall = 0; // чтоб пересчитался маневр
 		RefreshBattleInterface();
 	}
-
-	// LEO: Общий дамаг по мачтам разделен на классы
-	string sShip = rBaseShip.BaseName;
-	if (sShip == "PRINCE" || sShip == "OXFORD" || sShip == "RESOLUTION" || sShip == "MORDAUNT") return fDamage*MastMulti*0.8; //для хрупких кораблей сделать жирнее мачты
-	fDamage = fDamage * MastMulti;
-	return fDamage*iResist;
+	return fDamage;
 	//procMastFall
 }
 
@@ -1126,6 +1092,12 @@ void Ship_CheckSituation()
 
 	if (sti(rCharacter.index) == nMainCharacterIndex)  return;
 	if (LAi_IsDead(rCharacter) || sti(rCharacter.ship.type) == SHIP_NOTUSED) { return; }  // super fix boal
+	if (HasSubStr(rCharacter.id, "_DriftCap_"))
+	{
+		Ship_SetTaskDrift(PRIMARY_TASK, sti(rCharacter.index));
+		Ship_SetTaskDrift(SECONDARY_TASK, sti(rCharacter.index));
+		return;
+	}
 
 	// Log_Testinfo("Ship_CheckSituation " + rCharacter.id);
 
@@ -2568,7 +2540,6 @@ void ShipTaken(int iDeadCharacterIndex, int iKillStatus, int iKillerCharacterInd
 	ref rDead, rKillerCharacter, rMainCharacter, rBaseShip, rKillerBaseShip;
 
 	rDead = GetCharacter(iDeadCharacterIndex);
-	rDead.Killer.Index = iKillerCharacterIndex;
 	rBaseShip = GetRealShip(sti(rDead.Ship.Type));
 	rMainCharacter = GetMainCharacter();
     //#20180925-01
@@ -2623,7 +2594,6 @@ void ShipTakenFree(int iDeadCharacterIndex, int iKillStatus, int iKillerCharacte
 	ref rDead, rKillerCharacter, rMainCharacter, rBaseShip, rKillerBaseShip;
 
 	rDead = GetCharacter(iDeadCharacterIndex);
-	rDead.Killer.Index = iKillerCharacterIndex;
 	rBaseShip = GetRealShip(sti(rDead.Ship.Type));
 	rMainCharacter = GetMainCharacter();
     //#20180925-01
@@ -2826,7 +2796,7 @@ void Ship_HullHitEvent()
 
 	if (bSeriousBoom == true)
 	{
-		if (rOurCharacter.id == pchar.id || rand(2) == 1)
+		if (rOurCharacter.id == pchar.id || rand(2) == 1 || iBallType == GOOD_BOMBS)
 		{
 			Ship_Serious_Boom(x, y, z);
 		}
