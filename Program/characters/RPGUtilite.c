@@ -2181,7 +2181,17 @@ void ChangeAttributesFromCharacter(ref CopyChref, ref PastChref, bool _dialogCop
     CopyChref.rank             = PastChref.rank;
     CopyChref.reputation       = makeint(PastChref.reputation);
 	CopyChref.baseCapIdx       = PastChref.index; //Id оригинального в структуру клона
-
+	
+	if(CheckAttribute(PastChref, "ImmortalOfficer"))
+	{
+		CopyChref.ImmortalOfficer = PastChref.ImmortalOfficer;
+		CopyChref.OfficerWantToGo.DontGo = PastChref.OfficerWantToGo.DontGo;
+		CopyChref.HalfImmortal = PastChref.HalfImmortal;
+	}
+	else 
+	{
+		DeleteAttribute(CopyChref, "ImmortalOfficer");
+	}
     if (CheckAttribute(PastChref, "loyality"))
     {
     	CopyChref.loyality         = PastChref.loyality;
