@@ -201,7 +201,7 @@ void ProcessDialogEvent()
 			{
 				if (sld.sex == "man")
 				{
-					dialog.text = LinkRandPhrase("Не знаю, давно его не видел.", "Черт его знает, где он...", "Не видел его уже прилично, так что не ведаю.");
+					dialog.text = LinkRandPhrase("Не знаю, давно его не видел.", "Чёрт его знает, где он...", "Не видел его уже прилично, так что не ведаю.");
 					link.l1 = RandPhraseSimple("Понятно.", "Жаль...");
 					link.l1.go = "exit";
 				}
@@ -323,7 +323,7 @@ void ProcessDialogEvent()
 			NextDiag.(NodePrevName).l1 = true;
 		break;
 		case "ansewer_2":
-			dialog.text = "Да черт его знает! Я обычный плотник, мне сложно рассуждать о вопросах естествознания.";
+			dialog.text = "Да чёрт его знает! Я обычный плотник, мне сложно рассуждать о вопросах естествознания.";
 			link.l1 = "Ну, хоть какое-то мнение у тебя есть?";
 			link.l1.go = "ansewer_2_1";
 			NextDiag.(NodePrevName).l2 = true;
@@ -362,7 +362,7 @@ void ProcessDialogEvent()
 		break;
 		//квестовые диалоги
 		case "Tizer_1":
-			dialog.text = "Да все в порядке.";
+			dialog.text = "Да всё в порядке.";
 			link.l1 = "Слушай, а ты не можешь построить какое-нибудь плавательное средство? Плот или кораблик какой...";
 			link.l1.go = "Tizer_2";
 		break;

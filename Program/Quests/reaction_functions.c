@@ -2679,7 +2679,7 @@ void SetCapitainFromCityToSea(string qName) //помещаем в море кэ�
 		//даем общий слух, что кэп ушёл в другой город
 		AddSimpleRumourEx(LinkRandPhrase("Капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "', которого зовут " + GetFullName(sld) + ", опять ушёл в море. По слухам, он двинулся в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ".",
 			"Вы знаете, капитана " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "'? Так вот, он направился в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ".",
-			"Если вам нужен капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "', то вам придется отправится в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ". " + GetFullName(sld) + " ушёл именно туда."),
+			"Если вам нужен капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "', то вам придётся отправится в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ". " + GetFullName(sld) + " ушёл именно туда."),
 			sld.city, iTemp, 1, "PortmansBook_DeliveryToCap", sld.id);
 		//--> запись инфы по кэпу в базу местного портмана
 		sTemp = sld.id; //Id кэпа, который оставил отметку
@@ -2727,7 +2727,7 @@ void SetRobberFromSeaToMap(string qName) //помещаем в море кэпа
 		//даем общий слух, что кэп ушёл в другой город
 		AddSimpleRumourEx(LinkRandPhrase("Капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "', которого зовут " + GetFullName(sld) + ", опять ушёл в море. По слухам, он двинулся в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ".",
 			"Вы знаете, капитана " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "'? Так вот, он направился в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ".",
-			"Если вам нужен капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "', то вам придется отправится в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ". " + GetFullName(sld) + " ушёл именно туда."),
+			"Если вам нужен капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "', то вам придётся отправится в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ". " + GetFullName(sld) + " ушёл именно туда."),
 			sld.city, iTemp, 1, "Portmans_SeekShip_rum", sld.id);
 		//--> запись инфы по кэпу в базу местного портмана
 		sTemp = sld.id; //Id кэпа, который оставил отметку
@@ -2985,7 +2985,7 @@ void CitizCapFromSeaToMap(string qName) //помещаем на карту кэ�
 		//даем общий слух, что кэп ушёл в другой город
 		AddSimpleRumourEx(LinkRandPhrase("Капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "', которого зовут " + GetFullName(sld) + ", опять ушёл в море. По слухам, он двинулся в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ".",
 			"Вы знаете, капитана " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "'? Так вот, он направился в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ".",
-			"Если вам нужен капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "', то вам придется отправится в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ". " + GetFullName(sld) + " ушёл именно туда."),
+			"Если вам нужен капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "', то вам придётся отправится в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ". " + GetFullName(sld) + " ушёл именно туда."),
 			sld.city, iTemp, 1, "Citiz_SeekCap_rum", sld.id);
 		//--> запись инфы по кэпу в базу местного портмана
 		sTemp = sld.id; //Id кэпа, который оставил отметку
@@ -3316,7 +3316,7 @@ void FirstLoginLostShipsCity(string qName) //первоначальная ген
     PChar.quest.LSC_stormTimer_1.win_condition.l1.date.year  = GetAddingDataYear(0, 0, 0);
     PChar.quest.LSC_stormTimer_1.function = "LSC_stormTimer_1";
 	//Начальные слухи
-	AddSimpleRumourCityTip("Будте очень острожны с Августо Брамсом. Чертов чернокнижник...", "LostShipsCity", 10, 1, "LSC", "");
+	AddSimpleRumourCityTip("Будте очень острожны с Августо Брамсом. Чёртов чернокнижник...", "LostShipsCity", 10, 1, "LSC", "");
 	AddSimpleRumourCityTip("Я вам рекомендую держаться подальше от Августо Брамса. Это - страшный человек...", "LostShipsCity", 10, 1, "LSC", "");
 
 	//мэр-адмирал
@@ -5004,7 +5004,7 @@ void LSC_SmallStormIsBegin()
 	{
 		if (CheckAttribute(&locations[i], "fastreload") && locations[i].fastreload == "LostShipsCity")
 		{
-			locations[i].alwaysStorm = true; //живем в штормах
+			locations[i].alwaysStorm = true; //живём в штормах
 			if (locations[i].id == "LostShipsCity_town")
 			{
 				locations[i].alwaysStorm.WaveHeigh = true; //поднять уровень воды до 2.5 для низкого волнения
@@ -5249,7 +5249,7 @@ void LSC_BigStormIsBegin()
 			DeleteAttribute(&locations[i], "alwaysStorm");
 			DeleteAttribute(&locations[i], "QuestlockWeather");
 			DeleteAttribute(&locations[i], "MaxWaveHeigh");
-			locations[i].alwaysStorm_2 = true; //живем в штормах
+			locations[i].alwaysStorm_2 = true; //живём в штормах
 			locations[i].alwaysStorm_2.WaveHeigh = true; //поднять уровень воды до 2.5 для низкого волнения
 			locations[i].storm = true;
 			locations[i].tornado = true;
@@ -5265,7 +5265,7 @@ void LSC_BigStormIsBegin()
 	Islands[i].reload_enable = false;
 	Islands[i].visible = true;
 	Islands[i].reload_enable = false;
-	Islands[i].alwaysStorm = true; //живем в штормах
+	Islands[i].alwaysStorm = true; //живём в штормах
 	Islands[i].storm = true;
 	Islands[i].tornado = true;
 	//прерывание на удаление острова ГПК и снятие шторма с ареала

@@ -206,7 +206,7 @@ void ProcessDialogEvent()
 			{
 				if (sld.sex == "man")
 				{
-					dialog.text = LinkRandPhrase("Не знаю, давно его не видел.", "Черт его знает, где он...", "Не видел его уже прилично, так что не ведаю.");
+					dialog.text = LinkRandPhrase("Не знаю, давно его не видел.", "Чёрт его знает, где он...", "Не видел его уже прилично, так что не ведаю.");
 					link.l1 = RandPhraseSimple("Понятно.", "Жаль...");
 					link.l1.go = "exit";
 				}

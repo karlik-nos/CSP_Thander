@@ -58,7 +58,7 @@ void ProcessDialogEvent()
 			else
 			{
 				dialog.text = "Приветствую вас, незнакомец! Могу я узнать, кто вы и чему обязан чести видеть вас у себя дома?";
-				link.l1 = "Мое имя - " + PChar.Name + " " + PChar.LastName +
+				link.l1 = "Моё имя - " + PChar.Name + " " + PChar.LastName +
 						", я капитан.";
 				link.l1.go = "Next_1";
 				link.l2 = "Прошу меня простить. Я ошибся адресом.";

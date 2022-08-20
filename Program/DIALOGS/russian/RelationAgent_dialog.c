@@ -520,7 +520,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Contraband_Agreed":
-			dialog.Text = "Замечательно, я все улажу. Они будут иметь с вами дело.";
+			dialog.Text = "Замечательно, я всё улажу. Они будут иметь с вами дело.";
 			Link.l99 = "Спасибо.";
 			Link.l99.go = "exit";
 			ChangeContrabandRelation(pchar, 25);
@@ -648,7 +648,7 @@ void ProcessDialogEvent()
 			else
 			{
 				dialog.text = "Никого вы не знаете, так что убирайтесь!";
-				link.l1 = "Черт, вылетело из головы...";
+				link.l1 = "Чёрт, вылетело из головы...";
 				link.l1.go = "exit";
 				pchar.questTemp.LSC = "toLicencer_2";
 			}

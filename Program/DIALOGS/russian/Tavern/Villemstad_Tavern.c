@@ -142,7 +142,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
     		link.l1.go = "Step_E4_4";
  		break;
  		case "Step_E4_4":
-    		dialog.text = "Совсем не опасно. Прикупит он у тебя твое барахло, конечно, не по ценам магазина, но и сдавать не будет. Так что иди смело, тебя не перв"+ GetSexPhrase("ого","ую") +" отправляю к нему.";
+    		dialog.text = "Совсем не опасно. Прикупит он у тебя твоё барахло, конечно, не по ценам магазина, но и сдавать не будет. Так что иди смело, тебя не перв"+ GetSexPhrase("ого","ую") +" отправляю к нему.";
     		link.l1 = "Что ж, спасибо.";
     		link.l1.go = "exit";
     		pchar.questTemp.State = "Intelligence_Curacao_toYozef";
@@ -246,12 +246,12 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 		case "TizerFind_7":
 			dialog.text = "Т-с-с!! Тихо, "+ GetSexPhrase("приятель","подруга") +". Об этих связях нашего Петера говорить не принято. И спрашивать тоже не рекомендую - отгребешь неприятностей по самое небалуйся!";
-			link.l1 = "А в чем дело-то?";
+			link.l1 = "А в чём дело-то?";
 			link.l1.go = "TizerFind_8";
 		break;
 		case "TizerFind_8":
 			dialog.text = "Эта компания шутить не любит, "+ GetSexPhrase("приятель","подруга") +". И ты не смотри, что конторы их в основном расположены в Европе и Индийском океане. Здесь они тоже присутствуют, но не так явно...";
-			link.l1 = "Черт!.. А где же их можно найти?";
+			link.l1 = "Чёрт!.. А где же их можно найти?";
 			link.l1.go = "TizerFind_9";
 		break;
 		case "TizerFind_9":

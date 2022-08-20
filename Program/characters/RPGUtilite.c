@@ -2846,7 +2846,7 @@ void initNewMainCharacter()
 
 	// Warship Для разных квестов
 	// Важно: функция MaryCelesteInit() должна быть тут, а не в initStartState2Character()
-	// т.к. в ней идет выборка колоний, которые в функции initStartState2Character() ещё не инитились
+	// т.к. в ней идёт выборка колоний, которые в функции initStartState2Character() ещё не инитились
 	OtherQuestCharactersInit(); // Инициализация прочих квестов
 
 	MaryCelesteInit(); // Warship 07.07.09 Пасхалка "Мэри Селест"

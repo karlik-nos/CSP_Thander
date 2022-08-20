@@ -26,13 +26,13 @@ void ProcessDialogEvent()
 				if (CheckAttribute(loadedLocation, "storm"))
 				{
 					dialog.text = "Здравствуйте, "+ GetSexPhrase("уважаемый новый гражданин","уважаемая новая гражданка") +" Города. Несмотря на шторм, я не думаю, что нам стоит затягивать знакомство. Так вот, меня зовут " + GetFullName(npchar) + ".";
-					link.l1 = "Очень приятно. А мое имя " + GetFullName(pchar) + ". Дьявольский шторм!..";
+					link.l1 = "Очень приятно. А моё имя " + GetFullName(pchar) + ". Дьявольский шторм!..";
 					link.l1.go = "FS_1";
 				}
 				else
 				{
 					dialog.text = "Здравствуйте, "+ GetSexPhrase("уважаемый новый гражданин","уважаемая новая гражданка") +" Города. Мы не имели ещё удовольствия общаться с вами. Так вот, меня зовут " + GetFullName(npchar) + ".";
-					link.l1 = "Очень приятно. А мое имя " + GetFullName(pchar) + ".";
+					link.l1 = "Очень приятно. А моё имя " + GetFullName(pchar) + ".";
 					link.l1.go = "FT_1";
 				}
 			}
@@ -190,7 +190,7 @@ void ProcessDialogEvent()
 			{
 				if (sld.sex == "man")
 				{
-					dialog.text = LinkRandPhrase("Не знаю, давно его не видел.", "Черт его знает, где он...", "Не видел его уже прилично, так что не ведаю.");
+					dialog.text = LinkRandPhrase("Не знаю, давно его не видел.", "Чёрт его знает, где он...", "Не видел его уже прилично, так что не ведаю.");
 					link.l1 = RandPhraseSimple("Понятно.", "Жаль...");
 					link.l1.go = "exit";
 				}

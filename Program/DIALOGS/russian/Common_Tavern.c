@@ -1030,7 +1030,7 @@ void ProcessDialogEvent()
 			if (sti(NPChar.nation) != PIRATE && GetNationRelation2MainCharacter(sti(NPChar.nation)) == RELATION_ENEMY)
 			{
 				dialog.text = RandPhraseSimple("Мне без разницы кого обслуживать - деньги не имеют национальности. Но вот помогать тебе я не стану, так как ты приш"+ GetSexPhrase("ел","ла") +" под флагом " + NationNameGenitive(sti(pchar.nation)) + ".", "Я всего лишь простой хозяин таверны, но сотрудничать с " + NationNameAblative(sti(pchar.nation)) + " никакого желания не имею.");
-				link.l1 = RandPhraseSimple("Хм, твое право...", "Ну, как знаешь...");
+				link.l1 = RandPhraseSimple("Хм, твоё право...", "Ну, как знаешь...");
 				link.l1.go = "exit";
 				break;
 			}
@@ -1044,7 +1044,7 @@ void ProcessDialogEvent()
 			dialog.text = "Работа найдется, если не боишься ходить в пиратские поселения или в порты вражеских наций. Ко мне обычно только за этим и обращаются - то купцы сопровождение ищут, то пассажиры, которые в портовое управление идти не решаются. Что-то конкретное интересует?";
 			link.l1 = "Ну, это не страшно. Я бы взял"+ GetSexPhrase("ся","ась") +" за эскорт.";
 			link.l1.go = "work_1";
-			link.l2 = "Пассажиры есть? Отвезу, хоть к черту в зубы, лишь бы деньги платили.";
+			link.l2 = "Пассажиры есть? Отвезу, хоть к чёрту в зубы, лишь бы деньги платили.";
 			link.l2.go = "work_2";
 			link.l3 = "Нет, такая работа не по мне. Спасибо.";
 			link.l3.go = "exit";

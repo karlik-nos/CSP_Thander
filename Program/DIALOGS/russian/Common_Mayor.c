@@ -1468,7 +1468,7 @@ void ProcessDialogEvent()
                     dRand(2) == 1)
                 {
                     dialog.text = "Да, " + GetAddress_Form(NPChar) + RandPhraseSimple(", скорее, скорее спасите наш город!! Живые мертвецы в порту бьются с защитниками. Я не знаю, что делать!",
-                                                       ", вы вовремя! Мне сообщили, что в порту идет бой. Город штурмуют пираты. Помогите нам уничтожить их.");
+                                                       ", вы вовремя! Мне сообщили, что в порту идёт бой. Город штурмуют пираты. Помогите нам уничтожить их.");
     				link.l1 = RandPhraseSimple("Сложно, но можно!",
                                                "О! Это дело как раз то, что мне нужно!");
     				link.l1.go = "GhostShipHelp_1";
@@ -1667,7 +1667,7 @@ void ProcessDialogEvent()
 							link.l1.go = "All_Late";
 						break;
 						case "Execute":
-							dialog.text = RandPhraseSimple("Скажите мне только одно - этот проклятый пират жив или мертв?", "Скажите, этот чертов пират жив или нет?");
+							dialog.text = RandPhraseSimple("Скажите мне только одно - этот проклятый пират жив или мертв?", "Скажите, этот чёртов пират жив или нет?");
 							link.l1 = "Он и его команда - покойники, а его корабль на дне, " + GetAddress_FormToNPC(NPChar) + ".";
 							link.l1.go = "All_Execute";
 							AddCharacterExpToSkill(PChar, "Leadership", 50);
@@ -1723,7 +1723,7 @@ void ProcessDialogEvent()
 			{
 				dialog.text = "Увы, на сегодня у меня заданий больше нет. Последнее выполнил " + GetFullName(&Characters[i])
 					+ ". Зайдите завтра, может что-то появится.";
-				link.l1 = "Ах, черт!!! Не везет...";
+				link.l1 = "Ах, чёрт!!! Не везет...";
 				link.l1.go = "exit";
 				break;
 			}
@@ -2403,7 +2403,7 @@ void ProcessDialogEvent()
 				}
 				pchar.GenQuest.Intelligence.SpyId = sTemp; //Id нашего шпиона в городе
 				dialog.text = "Прекрасно! Теперь по делу. В " + XI_ConvertString("Colony"+pchar.GenQuest.Intelligence.City+"Dat") + " вам необходимо разыскать местного " + GetWorkTypeOfMan(&characters[GetCharacterIndex(sTemp)], "Gen") +
-					", его зовут " + GetFullName(&characters[GetCharacterIndex(sTemp)]) + ". Ему вы назовете мое имя, и получите пакет документов. На доставку этого пакета лично мне в руки я даю вам " + FindRussianDaysString(sti(pchar.GenQuest.Intelligence.Terms)) + ". И имейте в виду, что всё нужно сделать тихо. В случае вашего обнаружения в городе, агент не будет подвергать себя риску и не пойдет на контакт. Вам всё ясно?";
+					", его зовут " + GetFullName(&characters[GetCharacterIndex(sTemp)]) + ". Ему вы назовете моё имя, и получите пакет документов. На доставку этого пакета лично мне в руки я даю вам " + FindRussianDaysString(sti(pchar.GenQuest.Intelligence.Terms)) + ". И имейте в виду, что всё нужно сделать тихо. В случае вашего обнаружения в городе, агент не будет подвергать себя риску и не пойдет на контакт. Вам всё ясно?";
 				link.l1 = "Да, я всё понял"+ GetSexPhrase("","а") +", " + GetAddress_FormToNPC(NPChar) + ". Немедленно приступаю к выполнению задания.";
 				link.l1.go = "exit";
 				pchar.GenQuest.Intelligence.MayorId  = npchar.id; //Id мэра, чтобы знать, кто дал квест

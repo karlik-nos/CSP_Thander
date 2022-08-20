@@ -120,14 +120,14 @@ void ProcessDialogEvent()
 					if (GetCompanionQuantity(PChar) > 1 || sti(PChar.ship.type) != SHIP_NOTUSED)
 					{
 						dialog.Text = RandPhraseSimple("Ты кто? Мы договаривались доставить пассажира, а не капитана.", "Проваливай! Пока не избавишься от своего корабля, не приходи.");
-						Link.l1 = "Ах, черт...";
+						Link.l1 = "Ах, чёрт...";
 						Link.l1.go = "Exit";
 						break;
 					}
 					//типа помог отбиться, свой парень...
 					if (CheckAttribute(PChar, "GenQuest.contraTravel.PatrolFight") && sti(PChar.GenQuest.contraTravel.PatrolFight) == true)
 					{
-						if (chrDisableReloadToLocation) // ещё бой идет
+						if (chrDisableReloadToLocation) // ещё бой идёт
 						{
 						    dialog.Text = "Патруль! Мы тебя не знаем, ты нас не знаешь.";
 							Link.l1 = "Да уж...";
@@ -220,7 +220,7 @@ void ProcessDialogEvent()
 
 		case "No_ship_1":
 			Dialog.snd = "voice\SMSH\SMSH004";
-			dialog.Text = "Мы люди честные, и обманом не живем. Приводите свой корабль, только аккуратнее - чтобы за вами не увязался береговой патруль.";
+			dialog.Text = "Мы люди честные, и обманом не живём. Приводите свой корабль, только аккуратнее - чтобы за вами не увязался береговой патруль.";
 			Link.l1 = "Хорошо. Ждите меня здесь.";
 			Link.l1.go = "Exit";
 		break;

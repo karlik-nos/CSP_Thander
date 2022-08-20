@@ -500,7 +500,7 @@ void TWN_Capture_Forts()
                 Builder = Group_GetGroupCommander(sGroup);
                 LAi_LoginInCaptureTown(Builder, false); // убрать с того раза
             }
-            return;	 // по утверждению Хомо идет почему-то дальше код
+            return;	 // по утверждению Хомо идёт почему-то дальше код
 		}
 		else
 		{   // to_do

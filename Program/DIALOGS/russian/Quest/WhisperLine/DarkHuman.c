@@ -66,7 +66,7 @@ void ProcessDialogEvent()
 		break;
 		case "DH_Villemstad_shipyarder_2":
 			dialog.Text = "Джонка, императрица. Такие иногда встречаются в наших водах. Удивительно, но именно мои соотечественники умудрились перегнать целую группу таких кораблей в карибское море с дальнего востока.";
-			Link.l1 = "Бывают в жизни чудеса, но в чем подвох?";
+			Link.l1 = "Бывают в жизни чудеса, но в чём подвох?";
 			Link.l1.go = "DH_Villemstad_shipyarder_3";
 		break;
 		case "DH_Villemstad_shipyarder_3":
@@ -80,7 +80,7 @@ void ProcessDialogEvent()
 			Link.l1.go = "DH_Villemstad_shipyarder_5";
 		break;
 		case "DH_Villemstad_shipyarder_5":
-			dialog.Text = "Сразу скажу - не лучшее, но ниже ватерлинии я все дыры залатал. Так что не утонет - не бойтесь. ";
+			dialog.Text = "Сразу скажу - не лучшее, но ниже ватерлинии я всё дыры залатал. Так что не утонет - не бойтесь. ";
 			Link.l1 = "Цена вопроса?";
 			Link.l1.go = "DH_Villemstad_shipyarder_6";
 		break;
@@ -321,7 +321,7 @@ void ProcessDialogEvent()
 
 		case "DH_mercenary_SK_gate":
 			dialog.Text = "Добрались.";
-			Link.l1 = "Черт, целых тридцать дней! Не думал, что это займет столько времени!";
+			Link.l1 = "Чёрт, целых тридцать дней! Не думал, что это займет столько времени!";
 			Link.l1.go = "DH_mercenary_SK_gate_1";
 			PChar.quest.DHLockSK.win_condition.l1 = "location";
 			PChar.quest.DHLockSK.win_condition.l1.location = "SantaCatalina_town";
@@ -535,7 +535,7 @@ void ProcessDialogEvent()
 		break;
 		case "DH_Ambush_1":
 			dialog.Text = "Я сказал, бросай оружие!";
-			Link.l1 = "Я вижу, диалог у нас не идет... Что же поступим по-другому.";
+			Link.l1 = "Я вижу, диалог у нас не идёт... Что же поступим по-другому.";
 			Link.l1.go = "DH_Ambush_fight";
 		break;
 		case "DH_Ambush_fight":

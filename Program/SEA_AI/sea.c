@@ -1010,7 +1010,7 @@ void SeaLogin(ref Login)
 			{
 				iFantomIndex = FANTOM_CHARACTERS + iNumFantoms - iNumFantomShips + j;
 				rFantom = &Characters[iFantomIndex];
-                DeleteAttribute(rFantom, "items"); // boal 28.07.04 фикс кучи сабель, когда идет в плен
+                DeleteAttribute(rFantom, "items"); // boal 28.07.04 фикс кучи сабель, когда идёт в плен
 				rFantom.id = "fenc_" + iFantomIndex;
                 // boal 26.02.2004 -->
 				rFantom.location = sIslandID;
@@ -1630,7 +1630,7 @@ void Sea_Load()
 	for (i = 0; i < MAX_SHIPS_ON_SEA; i++) iTemp[i] = ShipModelrList[i];
 
 	//принципиальный момент !!!  двигаем  массив номеров моделек шипов вправо !! - иначе для флагмана ГГ приписывается неправильный номер модельки
-	// два дня понять не мог в чем дело - почему неправильно выставляются флаги при загрузке игры в режиме "море"
+	// два дня понять не мог в чём дело - почему неправильно выставляются флаги при загрузке игры в режиме "море"
 	for (i = 0; i < MAX_SHIPS_ON_SEA - 1; i++) { ShipModelrList[i + 1] = iTemp[i]; }
 	ShipModelrList[0] = ShipOnLoadModelrList;
 

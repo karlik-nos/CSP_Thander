@@ -90,7 +90,7 @@ void ProcessDialogEvent()
             }
             else
             {
-                Dialog.text = "Вы заметили, " + GetAddress_Form(NPChar) + ", идет битва? Нам сейчас не до разговоров!";
+                Dialog.text = "Вы заметили, " + GetAddress_Form(NPChar) + ", идёт битва? Нам сейчас не до разговоров!";
     			link.l1 = "Вы правы! Вернусь на свой корабль.";
     			link.l1.go = "exit";
             }
@@ -113,7 +113,7 @@ void ProcessDialogEvent()
                 }
                 if (CheckAttribute(NPChar, "Ship.Mode") && NPChar.Ship.Mode == "Trade")
                 {
-	           		link.l3 = "Откуда вы идете?";
+	           		link.l3 = "Откуда вы идёте?";
 	    			link.l3.go = "price_1";
 	    			link.l4 = "Поторгуем?";
 	    			link.l4.go = "Trade_1";
@@ -476,7 +476,7 @@ void ProcessDialogEvent()
 				iMoney = findPriceStoreMan(NPChar);
 	            if (iMoney == -1)
 	            {
-	                Dialog.Text = "Зачем вам это знать? Это мое личное дело.";
+	                Dialog.Text = "Зачем вам это знать? Это моё личное дело.";
 					Link.l1 = "Как вам будет угодно.";
 					Link.l1.go = "exit";
 	            }
@@ -658,7 +658,7 @@ void ProcessDialogEvent()
             if (NPChar.id == rchar.id)
             {
 
-    			dialog.text = "Я вас слушаю, но давайте поскорее выкладывайте цель вашего визита, у нас идет бой с " + fort +
+    			dialog.text = "Я вас слушаю, но давайте поскорее выкладывайте цель вашего визита, у нас идёт бой с " + fort +
                           " и мне нужно руководить ходом сражения.";
                 link.l1 = "Именно поэтому я здесь, " + GetAddress_FormToNPC(NPChar) + ".";
                 link.l1.go = "attack_fort";
@@ -680,10 +680,10 @@ void ProcessDialogEvent()
 		break;
 
 		case "attack_fort":
-                dialog.text = "И о чем же идет речь?";
+                dialog.text = "И о чём же идёт речь?";
                 link.l1 = "Я могу помочь вам разгромить форт колонии " +GetConvertStr(aData.Colony+" Town", "LocLables.txt")+ " и захватить город, а добычу, полученную в случае нашего успеха, мы поделим между собой.";
                 link.l1.go = "Siegehelp_1";
-                link.l2 = "Собственно, мое дело вряд ли заслуживает вашего внимания. Прощайте, "+ GetAddress_FormToNPC(NPChar) + ".";
+                link.l2 = "Собственно, моё дело вряд ли заслуживает вашего внимания. Прощайте, "+ GetAddress_FormToNPC(NPChar) + ".";
                 link.l2.go = "exit";
                 Diag.TempNode = "Siegehelp_0";
 		break;

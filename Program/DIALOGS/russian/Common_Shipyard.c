@@ -180,7 +180,7 @@ void ProcessDialogEvent()
 			}
 			else
 			{
-				//--->> квест украсть чертеж на верфи
+				//--->> квест украсть чертёж на верфи
 				//дача квеста
 				if (rand(1) && pchar.questTemp.different == "free" && GetNpcQuestPastDayWOInit(npchar, "questShipyardsMap") > 7 && !CheckAttribute(pchar, "questTemp.different.ShipyardsMap") && GetSummonSkillFromName(pchar, SKILL_SNEAK) > 25)
 				{
@@ -190,7 +190,7 @@ void ProcessDialogEvent()
 					SaveCurrentNpcQuestDateParam(npchar, "questShipyardsMap");
 					break;
 				}
-				//<<--- квест украсть чертеж на верфи
+				//<<--- квест украсть чертёж на верфи
 				/* автор - Jason (BlackMark Studio); перенос в CSP - Nathaniel ---------- */
 				/* 12.03.21 ------------------------------------------------------------- */
 				if (drand(4) == 2 && !CheckAttribute(pchar, "GenQuest.Findship.Shipyarder"))
@@ -298,10 +298,10 @@ void ProcessDialogEvent()
 					}
 				}
 				//<-- на квест Аззи.
-				//проверка выполнения квеста украсть чертеж на верфи
+				//проверка выполнения квеста украсть чертёж на верфи
 				if (CheckCharacterItem(pchar, "ShipyardsMap") && CheckAttribute(pchar, "questTemp.different.ShipyardsMap.Id") && pchar.questTemp.different.ShipyardsMap.Id == npchar.id)
 				{
-					link.l6 = "Я выполнил"+ GetSexPhrase("","а") +" ваше поручение. Чертеж из верфи " + XI_ConvertString("Colony" + pchar.questTemp.different.ShipyardsMap.city + "Gen") + " у меня.";
+					link.l6 = "Я выполнил"+ GetSexPhrase("","а") +" ваше поручение. Чертёж из верфи " + XI_ConvertString("Colony" + pchar.questTemp.different.ShipyardsMap.city + "Gen") + " у меня.";
 					link.l6.go = "ShipyardsMapOk_1";
 				}
 
@@ -1000,10 +1000,10 @@ void ProcessDialogEvent()
 				Link.l9.go = "exit";
 			}
 		break;*/
-		// квест украсть чертеж на верфи
+		// квест украсть чертёж на верфи
 		case "ShipyardsMap_1":
-			dialog.text = "Мне нужно раздобыть один важный чертеж. Очень важный чертеж...";
-			link.l1 = "Хм. Что за чертеж и где его взять?";
+			dialog.text = "Мне нужно раздобыть один важный чертёж. Очень важный чертёж...";
+			link.l1 = "Хм. Что за чертёж и где его взять?";
 			link.l1.go = "ShipyardsMap_2";
 		break;
 		case "ShipyardsMap_2":
@@ -1023,17 +1023,17 @@ void ProcessDialogEvent()
 			}
 			pchar.questTemp.different.ShipyardsMap.sklad = rand(3)+1; //сколько денег попросят на складе за открытие двери
 			pchar.questTemp.different.ShipyardsMap.fightQty = 2 + rand(3); //количество бойцов на верфи
-			dialog.text = "Мне стало известно, что на верфи " + XI_ConvertString("Colony" + pchar.questTemp.different.ShipyardsMap.city + "Gen") + " ведется постройка новейшего " + pchar.questTemp.different.ShipyardsMap.what + ". Мне нужен чертеж, по которым ведутся работы.";
+			dialog.text = "Мне стало известно, что на верфи " + XI_ConvertString("Colony" + pchar.questTemp.different.ShipyardsMap.city + "Gen") + " ведется постройка новейшего " + pchar.questTemp.different.ShipyardsMap.what + ". Мне нужен чертёж, по которым ведутся работы.";
 			link.l1 = "И что я долж"+ GetSexPhrase("ен","на") +" сделать?";
 			link.l1.go = "ShipyardsMap_3";
 		break;
 		case "ShipyardsMap_3":
-			dialog.text = "Привезти его мне. Проблема заключается в том, что чертеж, ввиду его ценности, постоянно находится на виду у хозяина верфи. А если быть точным - на его столе.";
+			dialog.text = "Привезти его мне. Проблема заключается в том, что чертёж, ввиду его ценности, постоянно находится на виду у хозяина верфи. А если быть точным - на его столе.";
 			link.l1 = "И что вы предлагаете?";
 			link.l1.go = "ShipyardsMap_4";
 		break;
 		case "ShipyardsMap_4":
-			dialog.text = "Хм, я предлагаю доставить чертеж мне. Как вы это сделаете - ваши проблемы. За эту работу я готов щедро заплатить, хотя многое будет зависеть от действительной ценности заложенной в чертеже информации.";
+			dialog.text = "Хм, я предлагаю доставить чертёж мне. Как вы это сделаете - ваши проблемы. За эту работу я готов щедро заплатить, хотя многое будет зависеть от действительной ценности заложенной в чертеже информации.";
 			link.l1 = "Как это понять?";
 			link.l1.go = "ShipyardsMap_5";
 		break;
@@ -1133,37 +1133,37 @@ void ProcessDialogEvent()
 					link.l1.go = "ShipyardsMapOk_3";
 					break;
 					case 1:
-						dialog.text = "Да, этот чертеж имеет определенную ценность. Я готов заплатить вам за него " + FindRussianMoneyString(1500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ". Оплату произведу серебряными слитками. Не возражаете?";
+						dialog.text = "Да, этот чертёж имеет определенную ценность. Я готов заплатить вам за него " + FindRussianMoneyString(1500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ". Оплату произведу серебряными слитками. Не возражаете?";
 						link.l1 = "Нет, конечно! Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
 						TakeNItems(pchar, "jewelry17", makeint(1500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)/100));
 					break;
 					case 2:
-						dialog.text = "Да, этот чертеж имеет определенную ценность. Я готов заплатить вам за него " + FindRussianMoneyString(3000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ". Оплату произведу золотыми слитками. Не возражаете?";
+						dialog.text = "Да, этот чертёж имеет определенную ценность. Я готов заплатить вам за него " + FindRussianMoneyString(3000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ". Оплату произведу золотыми слитками. Не возражаете?";
 						link.l1 = "Нет, конечно! Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
 						TakeNItems(pchar, "jewelry5", makeint(3000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)/200));
 					break;
 					case 3:
-						dialog.text = "Да, этот чертеж имеет определенную ценность. Я готов заплатить вам за него " + FindRussianMoneyString(4500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ".";
+						dialog.text = "Да, этот чертёж имеет определенную ценность. Я готов заплатить вам за него " + FindRussianMoneyString(4500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ".";
 						link.l1 = "Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
 						AddMoneyToCharacter(pchar, 4500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L));
 					break;
 					case 4:
-						dialog.text = "Да, этот чертеж имеет значительную ценность. Я готов заплатить вам за него " + FindRussianMoneyString(6000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ".";
+						dialog.text = "Да, этот чертёж имеет значительную ценность. Я готов заплатить вам за него " + FindRussianMoneyString(6000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ".";
 						link.l1 = "Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
 						AddMoneyToCharacter(pchar, 6000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L));
 					break;
 					case 5:
-						dialog.text = "О! Это очень, очень ценный чертеж! Я готов заплатить вам за него 60 000 золотом. Оплату произведу кредитными сундуками. Не возражаете?";
+						dialog.text = "О! Это очень, очень ценный чертёж! Я готов заплатить вам за него 60 000 золотом. Оплату произведу кредитными сундуками. Не возражаете?";
 						link.l1 = "Нет, конечно! Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
 						TakeNItems(pchar, "chest", 4);
 					break;
 					case 6:
-						dialog.text = "Да, этот чертеж имеет определенную ценность. Правда, денег в наличии у меня сейчас нет, поэтому я могу отдать вам один из сундуков с ремесленными материалами.";
+						dialog.text = "Да, этот чертёж имеет определенную ценность. Правда, денег в наличии у меня сейчас нет, поэтому я могу отдать вам один из сундуков с ремесленными материалами.";
 						link.l1 = "Ну, раз нет ничего другого, то давайте.";
 						link.l1.go = "ShipyardsMapOk_5";
 						TakeNItems(pchar, "Chest_Craftsmans", 1);
@@ -1181,7 +1181,7 @@ void ProcessDialogEvent()
 			link.l2.go = "Allarm_1";
 		break;
 		case "ShipyardsMapOk_4":
-			dialog.text = "Поймите меня правильно, вы могли спокойно взять это где-нибудь на свалке. Этот чертеж ничего не стоит.";
+			dialog.text = "Поймите меня правильно, вы могли спокойно взять это где-нибудь на свалке. Этот чертёж ничего не стоит.";
 			link.l1 = "Я вас понял"+ GetSexPhrase("","а") +"...";
 			link.l1.go = "exit";
 			DeleteAttribute(pchar, "questTemp.different.ShipyardsMap");
@@ -1291,7 +1291,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Blood_Shipyard11":
-			dialog.text = "Вряд ли вам подойдет этот способ, но, если желаете - он просидел в тюрьме Порт Рояла три дня и три ночи, а потом кто-то из подельников умудрился передать ему женское платье. И некая леди Тэйлор преспокойно покинула форт, отчитавшись перед комендантом о том, что её возлюбленного Пицарро содержат вполне достойно.\nДалее эта леди села на корабль в порту... и лис сбежал из клетки. Сбежал, а потом объявился вновь. Да только вот цену ему в Братстве уже поняли, и даже Адмирал его больше не ищет... не хочет, видимо, руки марать.";
+			dialog.text = "Вряд ли вам подойдёт этот способ, но, если желаете - он просидел в тюрьме Порт Рояла три дня и три ночи, а потом кто-то из подельников умудрился передать ему женское платье. И некая леди Тэйлор преспокойно покинула форт, отчитавшись перед комендантом о том, что её возлюбленного Пицарро содержат вполне достойно.\nДалее эта леди села на корабль в порту... и лис сбежал из клетки. Сбежал, а потом объявился вновь. Да только вот цену ему в Братстве уже поняли, и даже Адмирал его больше не ищет... не хочет, видимо, руки марать.";
 			link.l1 = "Итак, сдавать его властям, как я понимаю, смысла нет, поскольку его никто не ищет. Весьма поучительно. Но как мне спровадить его в Порто Белло?";
 			link.l1.go = "Blood_Shipyard12";
 		break;

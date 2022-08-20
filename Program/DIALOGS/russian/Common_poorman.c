@@ -53,9 +53,9 @@ void ProcessDialogEvent()
 					break;
 				}
 				//<-- зачарованный город
-				dialog.text = LinkRandPhrase("Здравствуйте. Меня зовут " + GetFullName(npchar) + ". Не думаю, что вам было бы приятно со мной познакомиться, но, возможно, вы запомните мое имя...",
+				dialog.text = LinkRandPhrase("Здравствуйте. Меня зовут " + GetFullName(npchar) + ". Не думаю, что вам было бы приятно со мной познакомиться, но, возможно, вы запомните моё имя...",
 					"Приветствую вас, " + GetAddress_Form(NPChar) +  ". Меня зовут " + GetFullName(npchar) + ".",
-					"Мое имя - " + GetFullName(npchar) + ", " + GetAddress_Form(NPChar) + ". Рад с вами познакомиться.");
+					"Моё имя - " + GetFullName(npchar) + ", " + GetAddress_Form(NPChar) + ". Рад с вами познакомиться.");
 				link.l1 = RandPhraseSimple("Приветствую.", "Здравствуйте.");
 				link.l1.go = "First time";
 				npchar.quest.meeting = "1";
@@ -409,7 +409,7 @@ void ProcessDialogEvent()
 		break;
 		case "FoundLetter_1":
 			dialog.text = "Угу, вижу...";
-			link.l1 = "Там какой-то остров упоминается. И предметы роскоши. И все это почему-то на бродягах зациклено. Расскажи-ка мне, приятель, в чем тут дело.";
+			link.l1 = "Там какой-то остров упоминается. И предметы роскоши. И все это почему-то на бродягах зациклено. Расскажи-ка мне, приятель, в чём тут дело.";
 			link.l1.go = "FoundLetter_2";
 			TakeItemFromCharacter(pchar, "letter_LSC");
 		break;
@@ -485,12 +485,12 @@ void ProcessDialogEvent()
             int n = FindIsland("LostShipsCity");
             Islands[n].visible = true;
             Islands[n].reload_enable = true;
-            Islands[n].alwaysStorm = true; //живем в штормах
+            Islands[n].alwaysStorm = true; //живём в штормах
             Islands[n].MaxSeaHeight = 2.0;
             Islands[n].storm = true;
             Islands[n].tornado = true;
 
-            dialog.text = "Отлично! Ну, расскажи, в чем все дело?";
+            dialog.text = "Отлично! Ну, расскажи, в чём все дело?";
             link.l1 = "Знаешь, ты оказался прав в предположении, которое "+ GetSexPhrase("высказал","высказала") +" в самом начале нашего общения. Все дело действительно в Тизере Дэне и его Острове.";
             link.l1.go = "GoLSC_1";
 		break;
@@ -505,7 +505,7 @@ void ProcessDialogEvent()
 			link.l1.go = "GoLSC_3";
 		break;
 		case "GoLSC_3":
-			dialog.text = "А-а, черт! Жаль...";
+			dialog.text = "А-а, чёрт! Жаль...";
 			link.l1 = "Я хоть никогда и не видел"+ GetSexPhrase("","а") +" Тизера раньше, но мне стало понятно, что это был за человек. Действительно жаль.";
 			link.l1.go = "GoLSC_4";
 		break;

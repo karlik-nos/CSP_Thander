@@ -191,7 +191,7 @@ void ProcessDialogEvent()
 			}
 		break;
         case "SeekCitizen_Choice_2":
-			dialog.text = "Тогда вам придется ещё раз назвать имя и фамилию.";
+			dialog.text = "Тогда вам придётся ещё раз назвать имя и фамилию.";
 			Link.l1.edit = 3;
 			Link.l1 = "";
 			Link.l1.go = "SeekCitizen_Choice_1";
@@ -380,7 +380,7 @@ void ProcessDialogEvent()
 			link.l1.go = "TakeGrapes_2";
 		break;
 		case "TakeGrapes_2":
-			dialog.text = "Да ну что вы, не стоит. Все в порядке.";
+			dialog.text = "Да ну что вы, не стоит. Всё в порядке.";
 			link.l1 = "Всего хорошего.";
 			link.l1.go = "exit";
 			AddCharacterGoods(pchar, GOOD_GRAPES, 100);

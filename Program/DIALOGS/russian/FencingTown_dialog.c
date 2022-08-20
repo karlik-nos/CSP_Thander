@@ -18,13 +18,13 @@ void ProcessDialogEvent()
 			{
 				NPChar.quest.meeting = "1";
 				dialog.Text = NPCharRepPhrase(npchar,
-                                LinkRandPhrase("Меня зовут ", "Мое имя ", "Можешь называть меня ")
+                                LinkRandPhrase("Меня зовут ", "Моё имя ", "Можешь называть меня ")
                                 +GetFullName(npchar)
                                 +LinkRandPhrase(". Чего тебе нужно?", ". Я тебя раньше здесь не "
                                 +NPCharSexPhrase(NPChar, "видел", "видела")
                                 +", кто ты такой?", ". Кто ты и что тебе от меня надо?"),
 
-        		                LinkRandPhrase("Приветствую вас, " + GetAddress_Form(NPChar) + ". Мое имя " + GetFullName(npchar) + ". А как зовут вас?",
+        		                LinkRandPhrase("Приветствую вас, " + GetAddress_Form(NPChar) + ". Моё имя " + GetFullName(npchar) + ". А как зовут вас?",
                                  "Здравствуйте, " + GetAddress_Form(NPChar) + "! Я " + GetFullName(npchar) + ". Могу я узнать ваше имя?",
                                  "Да, " + GetAddress_Form(NPChar) + ". Что вы хотели? Кстати, меня зовут " + GetFullName(npchar) + ". А вас?"));
 
@@ -41,7 +41,7 @@ void ProcessDialogEvent()
                                                                      + " А теперь говори, чего тебе надо?",
                                                     LinkRandPhrase("Приятно познакомиться, капитан " + PChar.name,
                                                                     "Рад"+NPCharSexPhrase(NPChar, " ", "а ")+" нашему знакомству, " + GetAddress_Form(NPChar) + " " + PChar.lastname,
-                                                                     "Очень приятно, капитан " + PChar.name) + ". Но вряд ли вы просто хотели узнать мое имя, не так ли?");
+                                                                     "Очень приятно, капитан " + PChar.name) + ". Но вряд ли вы просто хотели узнать моё имя, не так ли?");
 				link.l1 = PCharRepPhrase("Хот"+ GetSexPhrase("ел","ела") +" кое-что узнать об этом городишке!", "Хот"+ GetSexPhrase("ел","ела") +" узнать кое-что о городе.");
 				link.l1.go = "new question";
  				link.l2 = RandPhraseSimple("У меня есть вопрос к тебе.", "Мне нужна информация.");
@@ -59,7 +59,7 @@ void ProcessDialogEvent()
                                                                      + " А теперь говори, чего тебе надо?",
                                                     LinkRandPhrase("Приятно познакомиться, капитан " + PChar.name,
                                                                     "Рад"+NPCharSexPhrase(NPChar, " ", "а ")+" нашему знакомству, " + GetAddress_Form(NPChar) + " " + PChar.lastname,
-                                                                     "Очень приятно, капитан " + PChar.name) + ". Но вряд ли вы просто хотели узнать мое имя, не так ли?");
+                                                                     "Очень приятно, капитан " + PChar.name) + ". Но вряд ли вы просто хотели узнать моё имя, не так ли?");
 
             	link.l1 = PCharRepPhrase("Хот"+ GetSexPhrase("ел","ела") +" кое-что узнать об этом городишке!", "Хот"+ GetSexPhrase("ел","ела") +" узнать кое-что о городе.");
 			link.l1.go = "new question";

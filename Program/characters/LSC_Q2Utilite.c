@@ -666,7 +666,7 @@ void QuestActions()
 			TakeNationLicence(i);
 		}
 	}
-	//Если идет линейка ГПК, то шмаляем открытые сундуки. Все, кроме Диффиндура.
+	//Если идёт линейка ГПК, то шмаляем открытые сундуки. Все, кроме Диффиндура.
 	if (sti(pchar.questTemp.LSC.checkBoxes))
 	{
 		LSC_checkBoxes();

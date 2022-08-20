@@ -1004,7 +1004,7 @@ void IDoExit(int exitCode, bool bClear)
     {
 	    TakeNItems(pchar, "Lockpick", -1);
 	    PlaySound("interface\lockpicking\lockpick_breaks.wav"); // Звук поломки
-	    Log_info("А-а-ать, Черт! Отмычка сломалась!");
+	    Log_info("А-а-ать, Чёрт! Отмычка сломалась!");
 	}
 	else
 	{
@@ -1012,7 +1012,7 @@ void IDoExit(int exitCode, bool bClear)
 		{
 			TakeNItems(pchar, "Lockpick", -1);
 			PlaySound("interface\lockpicking\lockpick_breaks.wav"); // Звук поломки
-			Log_info("А-а-ать, Черт! Отмычка сломалась во время взлома!");
+			Log_info("А-а-ать, Чёрт! Отмычка сломалась во время взлома!");
 		}
 	}
 

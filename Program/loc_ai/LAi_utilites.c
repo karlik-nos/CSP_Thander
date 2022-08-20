@@ -1168,7 +1168,7 @@ void CreatePearlVillage(aref loc)
 		pchar.GenQuestBox.(sTemp) = true;
         pchar.GenQuestBox.(sTemp).box1.items.jewelry11 = rand(150) + rand(150);
         pchar.GenQuestBox.(sTemp).box2.items.jewelry12 = rand(250) + rand(250);
-		// ==> защитники, повоевать таки придется
+		// ==> защитники, повоевать таки придётся
 		model[0] = "pirate_1";
 		model[1] = "pirate_2";
 		model[2] = "pirate_3";

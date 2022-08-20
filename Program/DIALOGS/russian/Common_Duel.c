@@ -373,7 +373,7 @@ void ProcessDuelDialog(ref NPChar, aref Link, aref NextDiag)
 		else
 		{
 			dialog.text = LinkRandPhrase ("Может и хочу, но не с тобой", "Отвали, не до тебя сейчас!", "Знаешь что? " + LinkRandPhrase("Я уже всё проиграл"+ NPCharSexPhrase(NPChar,"","а") +".", "Ты уже всех обчистил"+GetSexPhrase("","а")+".", "Я сейчас не в том настроении, отвали."));
-			link.l10 = "Как знаешь, дело твое.";
+			link.l10 = "Как знаешь, дело твоё.";
 			link.l10.go = "exit";
 		}
 	break;

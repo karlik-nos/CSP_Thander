@@ -67,7 +67,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Casper_13":
-			dialog.text = "Ну все, ты меня достал"+ GetSexPhrase("","а") +". По-хорошему не получается...";
+			dialog.text = "Ну всё, ты меня достал"+ GetSexPhrase("","а") +". По-хорошему не получается...";
 			link.l1 = "Ну да, я настойчив"+ GetSexPhrase("","а") +"!";
 			link.l1.go = "fightQuest";
 		break;
@@ -80,7 +80,7 @@ void ProcessDialogEvent()
 			DeleteAttribute(npchar, "checkChrDistance.node");
 		break;
 		case "Casper_3_1":
-			dialog.text = "Ну, понимаешь, у меня тут свидание. Так что твое присутствие здесь нежелательно, мягко говоря.";
+			dialog.text = "Ну, понимаешь, у меня тут свидание. Так что твоё присутствие здесь нежелательно, мягко говоря.";
 			link.l1 = "Не Армо, случайно, ждёшь?";
 			link.l1.go = "Casper_3_2";
 			link.l2 = "Хорошо, дружище.";
@@ -147,7 +147,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Casper_53":
-			dialog.text = "Ну все, хватит с меня уговоров...";
+			dialog.text = "Ну всё, хватит с меня уговоров...";
 			link.l1 = "Да, думаю, хватит.";
 			link.l1.go = "fightQuest";
 		break;
@@ -169,7 +169,7 @@ void ProcessDialogEvent()
 		break;
 		case "FackYou_3":
 			dialog.text = "Да-да, "+ GetSexPhrase("приятель","подруга") +". Армо я отправил вслед за её шефом, Хиллом Брюннером. И это справедливо - им так было хорошо вдвоем...";
-			link.l1 = ""+ GetSexPhrase("Ты за это заплатишь!","Ах ты... Ну все, тебе конец, сволочь.") +"";
+			link.l1 = ""+ GetSexPhrase("Ты за это заплатишь!","Ах ты... Ну всё, тебе конец, сволочь.") +"";
 			link.l1.go = "FackYou_4";
 		break;
 		case "FackYou_4":

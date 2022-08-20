@@ -24,7 +24,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 
 			if (dialogEditStrings[7] == KEY_ENG_LINE)
 			{
-				dialog.text = "Ты знаешь, о чем речь, твой ключ принят. Я замолвлю за тебя словечко Мэдифорду...";
+				dialog.text = "Ты знаешь, о чём речь, твой ключ принят. Я замолвлю за тебя словечко Мэдифорду...";
 				Link.l1 = "Хорошо, дружище. Спасибо тебе...";
 				Link.l1.go = "exit";
 				sld = characterFromId("eng_guber");
@@ -32,7 +32,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			}
 			else
 			{
-				dialog.text = "Ты не знаешь, о чем речь. Уходи, не мешай мне нести службу.";
+				dialog.text = "Ты не знаешь, о чём речь. Уходи, не мешай мне нести службу.";
 				Link.l1 = "Хм, ну ладно...";
 				Link.l1.go = "exit";
 			}

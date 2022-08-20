@@ -294,7 +294,7 @@ void ProcessDialogEvent()
                                                                      + " А теперь говори, чего тебе надо?",
                                                     LinkRandPhrase("Приятно познакомиться, капитан " + PChar.name,
                                                                     "Рад"+NPCharSexPhrase(NPChar, " ", "а ")+" нашему знакомству, " + GetAddress_Form(NPChar) + " " + PChar.lastname,
-                                                                     "Очень приятно, капитан " + PChar.name) + ". Но вряд ли вы просто хотели узнать мое имя, не так ли?");
+                                                                     "Очень приятно, капитан " + PChar.name) + ". Но вряд ли вы просто хотели узнать моё имя, не так ли?");
 
             link.l1 = PCharRepPhrase("Хотел"+ GetSexPhrase("","а") +" кое-что узнать об этом городишке!", "Хотел"+ GetSexPhrase("","а") +" узнать кое-что о городе.");
 			link.l1.go = "new question";

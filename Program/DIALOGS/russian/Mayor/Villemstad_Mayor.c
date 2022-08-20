@@ -20,7 +20,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 
         //==> Одиннадцатый квест исп.линейки: разорение Виллемстада и Мариго.
         case "SpaLine11Quest_DestrHol":
-			dialog.text = "Черт возьми, проклятые испанцы!! Вы разорили город!";
+			dialog.text = "Чёрт возьми, проклятые испанцы!! Вы разорили город!";
 			link.l1 = "Это наказание.";
 			link.l1.go = "Step_S11_1";
 			AfterTownBattle();

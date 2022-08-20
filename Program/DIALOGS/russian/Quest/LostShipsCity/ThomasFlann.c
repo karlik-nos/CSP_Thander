@@ -185,7 +185,7 @@ void ProcessDialogEvent()
 			{
 				if (sld.sex == "man")
 				{
-					dialog.text = LinkRandPhrase("Не знаю, давно его не видел.", "Черт его знает, где он...", "Не видел его уже прилично, так что не ведаю.");
+					dialog.text = LinkRandPhrase("Не знаю, давно его не видел.", "Чёрт его знает, где он...", "Не видел его уже прилично, так что не ведаю.");
 					link.l1 = RandPhraseSimple("Понятно.", "Жаль...");
 					link.l1.go = "exit";
 				}
@@ -308,7 +308,7 @@ void ProcessDialogEvent()
 		break;
 		case "ansewer_2_2":
 			dialog.text = "Нет, даже края их одежды никто не видел больше.";
-			link.l1 = "Черт, жутковато...";
+			link.l1 = "Чёрт, жутковато...";
 			link.l1.go = "ansewer_2_3";
 		break;
 		case "ansewer_2_3":
@@ -317,7 +317,7 @@ void ProcessDialogEvent()
 			link.l1.go = "ansewer_2_4";
 		break;
 		case "ansewer_2_4":
-			dialog.text = "Понимаю, но придется. А не сумеешь обтесаться здесь - с ума сойдешь. И тогда тебе конец по Закону!";
+			dialog.text = "Понимаю, но придётся. А не сумеешь обтесаться здесь - с ума сойдешь. И тогда тебе конец по Закону!";
 			link.l1 = "Чего?!";
 			link.l1.go = "ansewer_2_5";
 		break;

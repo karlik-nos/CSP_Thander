@@ -1910,7 +1910,7 @@ void QuestComplete(string sQuestName, string qname)
 			if (GetCharacterIndex("CangGirl") == -1) // если ГГ собственноручно прибил тетку
 			{
 				ChangeCharacterReputation(pchar, -3);
-				AddSimpleRumour(LinkRandPhrase("Вы слышали, кто-то убил в джунглях несчастную девушку по имени " + pchar.GenQuest.EncGirl.name + ". Отловить бы мерзавца и вздернуть!",
+				AddSimpleRumour(LinkRandPhrase("Вы слышали, кто-то убил в джунглях несчастную девушку по имени " + pchar.GenQuest.EncGirl.name + ". Отловить бы мерзавца и вздёрнуть!",
 					"Вы знаете, капитан " + GetFullName(pchar) + ", кто-то убил несчастную девушку по имени " + pchar.GenQuest.EncGirl.name  + ", когда та по делам отправилась за город. Как жаль, она была такой хорошей...",
 					"Её звали " + pchar.GenQuest.EncGirl.name  + ", и она погибла в джунглях. И ничего удивительного, скажу я вам, за городом так неспокойно..."), sti(pchar.GenQuest.EncGirl.nation), 5, 1);
 			}
@@ -1969,7 +1969,7 @@ void QuestComplete(string sQuestName, string qname)
 			ChangeCharacterReputation(pchar, -(rand(4)+1));
 			if (rand(1))
 			{
-				AddSimpleRumour(LinkRandPhrase("Вы слышали, какой-то капитан убил в джунглях несчастную девушку по имени " + pchar.GenQuest.EncGirl.name + ". Отловить бы мерзавца и вздернуть!",
+				AddSimpleRumour(LinkRandPhrase("Вы слышали, какой-то капитан убил в джунглях несчастную девушку по имени " + pchar.GenQuest.EncGirl.name + ". Отловить бы мерзавца и вздёрнуть!",
 					"Вы знаете, капитан " + GetFullName(pchar) + ", кто-то убил несчастную девушку по имени " + pchar.GenQuest.EncGirl.name  + ", когда та по делам отправилась за город. Как жаль, она была такой хорошей...",
 					"Её звали " + pchar.GenQuest.EncGirl.name  + ", и она погибла в джунглях. И ничего удивительного, скажу я вам, за городом так неспокойно..."), sti(pchar.GenQuest.EncGirl.nation), 5, 1);
 			}
@@ -2022,7 +2022,7 @@ void QuestComplete(string sQuestName, string qname)
 			//слухи
 			AddSimpleRumour(LinkRandPhrase("Недавно за городом нашли мертвым нашего офицера и приданных ему солдат. Кто мог их убить? Зачем?..",
 				"Наш комендат постоянно отправляет за город патрули, но теперь даже не знаю, как будет дальше. Недавно солдат нашли метрвыми в джунглях...",
-				"Черт возьми, кто-то за городом перебил наши солдат, что патрулировали территорию..."), sti(pchar.GenQuest.(attrName).nation), 5, 1);
+				"Чёрт возьми, кто-то за городом перебил наши солдат, что патрулировали территорию..."), sti(pchar.GenQuest.(attrName).nation), 5, 1);
 			AddSimpleRumour("Говорят, что капитан " + GetFullName(pchar) + " нарвался в джунглях на солдат " + NationNameGenitive(sti(pchar.GenQuest.(attrName).nation)) + " и всех их перебил. Хех, " + NationNamePeople(sti(pchar.GenQuest.(attrName).nation)) + " - никуда негодные вояки...", sti(pchar.GenQuest.(attrName).nation)+10, 5, 1);
 			DeleteAttribute(pchar, "GenQuest." + attrName); //трем нацию патруля, если есть
 		break;
@@ -2136,7 +2136,7 @@ void QuestComplete(string sQuestName, string qname)
 			//слухи
 /* 			AddSimpleRumour(LinkRandPhrase("Недавно за городом нашли мертвым нашего местного жителя. Кто мог их убить? Зачем?..",
 				"Наш комендат постоянно отправляет за город патрули, но теперь даже не знаю, как будет дальше. Недавно солдат нашли метрвыми в джунглях...",
-				"Черт возьми, кто-то за городом перебил наши солдат, что патрулировали территорию..."), sti(pchar.GenQuest.(attrName).nation), 5, 1);
+				"Чёрт возьми, кто-то за городом перебил наши солдат, что патрулировали территорию..."), sti(pchar.GenQuest.(attrName).nation), 5, 1);
 			AddSimpleRumour("Говорят, что капитан " + GetFullName(pchar) + " нарвался в джунглях на солдат " + NationNameGenitive(sti(pchar.GenQuest.(attrName).nation)) + " и всех их перебил. Хех, " + NationNamePeople(sti(pchar.GenQuest.(attrName).nation)) + " - никуда негодные вояки...", sti(pchar.GenQuest.(attrName).nation)+10, 5, 1); */
 		break;
 
@@ -2145,7 +2145,7 @@ void QuestComplete(string sQuestName, string qname)
 			//слухи
 /* 			AddSimpleRumour(LinkRandPhrase("Недавно за городом нашли мертвой нашу местную. Кто мог их убить? Зачем?..",
 				"Наш комендат постоянно отправляет за город патрули, но теперь даже не знаю, как будет дальше. Недавно солдат нашли метрвыми в джунглях...",
-				"Черт возьми, кто-то за городом перебил наши солдат, что патрулировали территорию..."), sti(pchar.GenQuest.(attrName).nation), 5, 1);
+				"Чёрт возьми, кто-то за городом перебил наши солдат, что патрулировали территорию..."), sti(pchar.GenQuest.(attrName).nation), 5, 1);
 			AddSimpleRumour("Говорят, что капитан " + GetFullName(pchar) + " нарвался в джунглях на солдат " + NationNameGenitive(sti(pchar.GenQuest.(attrName).nation)) + " и всех их перебил. Хех, " + NationNamePeople(sti(pchar.GenQuest.(attrName).nation)) + " - никуда негодные вояки...", sti(pchar.GenQuest.(attrName).nation)+10, 5, 1); */
 		break;
  		////////////////////////////////////////////////////////////////////////
@@ -4008,7 +4008,7 @@ void QuestComplete(string sQuestName, string qname)
         break;
 
         case "ToMansfield_FightNearSantiago":
-            Log_QuestInfo("Галеон находится в бухте возле Сантьяго. Галеон идет вглубь бухты в город.");
+            Log_QuestInfo("Галеон находится в бухте возле Сантьяго. Галеон идёт вглубь бухты в город.");
             Pchar.quest.ToMansfield_NotFoundGaleon.over = "yes"; // снимаем таймер на появление галеона
 
             sld = GetCharacter(NPC_GenerateCharacter("CaptainAttack_1", "off_spa_2", "man", "man", 31, SPAIN, 0, true));
@@ -8132,7 +8132,7 @@ void QuestComplete(string sQuestName, string qname)
 				AddSimpleRumourCityTip("Говорят, что вы спасли Сесил Галард, когда на неё напали.", "LostShipsCity", 10, 1, "LSC", "");
 				AddSimpleRumourCityTip("На Сесил Галард напали в её же доме, на налеоне 'Эва'!", "LostShipsCity", 10, 1, "LSC", "");
 				AddSimpleRumourCityTip("Хорошо, что вы спасли бедную Сесил! Куда смотрит адмирал, непонятно...", "LostShipsCity", 10, 1, "LSC", "");
-				AddSimpleRumourCityTip("М-да, если так пойдет дальше, то нам придется отбиваться от бандитов у себя в домах, как это сделала Сесил Галард.", "LostShipsCity", 10, 1, "LSC", "");
+				AddSimpleRumourCityTip("М-да, если так пойдет дальше, то нам придётся отбиваться от бандитов у себя в домах, как это сделала Сесил Галард.", "LostShipsCity", 10, 1, "LSC", "");
 			}
 			else
 			{

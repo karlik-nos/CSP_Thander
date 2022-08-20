@@ -2488,7 +2488,7 @@ void ShipDead(int iDeadCharacterIndex, int iKillStatus, int iKillerCharacterInde
 			break;
 			/*case KILL_BY_SPY:
 				bDetonate = true;
-			break;  */ // идет вылет, если второй раз рекурсию Ship_Detonate делать
+			break;  */ // идёт вылет, если второй раз рекурсию Ship_Detonate делать
 		}
 		if (bDetonate)
 		{
@@ -3044,14 +3044,14 @@ void Ship_CheckMainCharacter()
 
 	if (!CheckAttribute(arUpdate, "Ships")) { return; }
 	if (!CheckAttribute(arUpdate, "Forts")) { return; }
-    // boal время в море идет!!! -->
+    // boal время в море идёт!!! -->
     locTmpTime = locTmpTime + 0.5;  // можно засунуть проверку locDisableUpdateTime, если нужно выключить
     if (locTmpTime > 9)
 	{
 		    CalcLocalTime(2);
       		BattleInterface.textinfo.Date.text = XI_convertString("Date:")+GetQuestBookData();
 	}
-	// boal время в море идет!!! <--
+	// boal время в море идёт!!! <--
 
 	x = stf(rCharacter.Ship.Pos.x);
 	z = stf(rCharacter.Ship.Pos.z);

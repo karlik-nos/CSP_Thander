@@ -537,7 +537,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "ShipLetters_Portman2":
-			dialog.text = "Вы согласны принять мое предложение?";
+			dialog.text = "Вы согласны принять моё предложение?";
 			link.l1 = "Разумеется, нет!";
 			link.l1.go = "exit";
 			link.l2 = "Пожалуй. Хотя уверен"+ GetSexPhrase("","а") +", что эти бумаги стоят дороже.";
@@ -695,7 +695,7 @@ void ProcessDialogEvent()
 			//--> дача миниквестов начальника порта.
 			if (rand(2) < 2 && pchar.questTemp.different == "free" && GetNpcQuestPastDayWOInit(npchar, "quest.meeting") > 7)
 			{
-				dialog.text = LinkRandPhrase("Да, черт возьми! У меня есть для вас работа!",
+				dialog.text = LinkRandPhrase("Да, чёрт возьми! У меня есть для вас работа!",
 					"Ха! Вы как нельзя вовремя! У меня есть одна проблема, требующая разрешения.",
 					"Ещё бы! Конечно, у меня есть работа! Проблемы, знаете ли, просто задавили...");
 				link.l1 = "Излагайте суть дела, " + GetAddress_FormToNPC(NPChar) + ".";

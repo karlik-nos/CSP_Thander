@@ -5,7 +5,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 	{
 		case "quests":
 			dialog.text = NPCStringReactionRepeat(RandPhraseSimple("Какие вопросы?", "Что вам угодно?"), "Совсем недавно вы пытались задать мне вопрос...", "У себя на верфи, а и вообще в городе, я таких однообразно любознательных не видал.",
-                          "Ну что за вопросы? Мое дело - корабли строить, давайте этим и займемся.", "block", 1, npchar, Dialog.CurrentNode);
+                          "Ну что за вопросы? Моё дело - корабли строить, давайте этим и займемся.", "block", 1, npchar, Dialog.CurrentNode);
 			link.l1 = HeroStringReactionRepeat(RandPhraseSimple("Я "+ GetSexPhrase("передумал","передумала") +"...", "Сейчас мне не о чем говорить"), "Хм, что-то с памятью моей стало...",
                       "Хм, однако...", "Давайте...", npchar, Dialog.CurrentNode);
 			link.l1.go = "exit";
@@ -32,7 +32,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = "PL_Q7_4";
 		break;
 		case "PL_Q7_4":
-			dialog.text = "Черт! Я так и знал, что эта покупка может выйти мне боком. Но уж очень хорошая цена была предложена... Я сразу заподозрил, что здесь что-то нечисто, но понадеялся, что ошибаюсь.";
+			dialog.text = "Чёрт! Я так и знал, что эта покупка может выйти мне боком. Но уж очень хорошая цена была предложена... Я сразу заподозрил, что здесь что-то нечисто, но понадеялся, что ошибаюсь.";
 			link.l1 = "Скорей всего, не ошибаешься. Где мне найти продавца?";
 			link.l1.go = "PL_Q7_5";
 		break;

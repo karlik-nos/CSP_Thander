@@ -40,7 +40,7 @@ void ProcessDialogEvent()
 			if (npchar.quest.meeting == "0")
 			{
 				dialog.text = "Меня зовут " + GetFullName(npchar) + ". Я секретать Генри Моргана.";
-				link.l1 = "Мое имя " + GetFullName(pchar) + ".";
+				link.l1 = "Моё имя " + GetFullName(pchar) + ".";
 				link.l1.go = "First time";
 				npchar.quest.meeting = "1";
 			}
@@ -70,7 +70,7 @@ void ProcessDialogEvent()
             {
                 if (!CheckAttribute(pchar, "questTemp.Azzy.Oliver"))
                 {
-        			link.l2 = "Оливер, послушай, хочу у тебя попросить помощи. Мне позарез нужны индейские побрякушки. Речь идет о трех хрустальных черепах тольтеков и странной вещи, похожей на погремушку.";
+        			link.l2 = "Оливер, послушай, хочу у тебя попросить помощи. Мне позарез нужны индейские побрякушки. Речь идёт о трех хрустальных черепах тольтеков и странной вещи, похожей на погремушку.";
         			link.l2.go = "Step_As_9";
         		}
             }
@@ -152,7 +152,7 @@ void ProcessDialogEvent()
 		break;
    		case "Step_As_6":
 			dialog.text = "Нисколько. Ты что думаешь, за какие-то две цены, размером в три тысячи, я буду из приза Моргана изымать что-то? Это ты рехнул"+ GetSexPhrase("ся","ась") +", "+ GetSexPhrase("друг мой","подруга") +", если не знаешь, чем это может для меня кончиться. Не нравится - иди в магазины, попробуй там купить.";
-			link.l1 = "Черт возьми, Оливер!";
+			link.l1 = "Чёрт возьми, Оливер!";
 			link.l1.go = "Step_As_7";
 			pchar.questTemp.Ascold.Oliver = 1;
 		break;

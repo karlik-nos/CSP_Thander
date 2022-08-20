@@ -97,7 +97,7 @@ void ProcessDialogEvent()
 			{
 				if (sld.sex == "man")
 				{
-					dialog.text = LinkRandPhrase("Не знаю, давно его не видел.", "Черт его знает, где он...", "Не видел его уже прилично, так что не ведаю.");
+					dialog.text = LinkRandPhrase("Не знаю, давно его не видел.", "Чёрт его знает, где он...", "Не видел его уже прилично, так что не ведаю.");
 					link.l1 = RandPhraseSimple("Понятно.", "Жаль...");
 					link.l1.go = "exit";
 				}
@@ -226,7 +226,7 @@ void ProcessDialogEvent()
 			link.l1 = HeroStringReactionRepeat("Твоя жена хочет вытащить тебя отсюда. Можешь мне объяснить, что ты наделал такого, чтобы сюда попасть?",
 				"Нет.",
                 "Да уж...",
-				"Придется потерпеть.", npchar, Dialog.CurrentNode);
+				"Придётся потерпеть.", npchar, Dialog.CurrentNode);
 			link.l1.go = DialogGoNodeRepeat("DontRemember_1", "", "", "", npchar, Dialog.CurrentNode);
 		break;
 		case "DontRemember_1":

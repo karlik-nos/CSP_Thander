@@ -82,7 +82,7 @@ void ProcessDialogEvent()
 			{
 				dialog.text = LinkRandPhrase("Имею честь представиться! Я начальник патруля из " + XI_ConvertString("Colony" + npchar.city + "Gen") + ", мы разыскиваем беглого каторжника.",
 					"Здравствуйте, я начальник этого патруля. Мы разыскиваем сбежавшего из " + XI_ConvertString("Colony" + npchar.city + "Gen") + " раба.",
-					"Приветствую вас, " + GetAddress_Form(NPChar) + ". Мое подразделение осуществляет патрулирование территории близ " + XI_ConvertString("Colony" + npchar.city + "Gen") + ".");
+					"Приветствую вас, " + GetAddress_Form(NPChar) + ". Моё подразделение осуществляет патрулирование территории близ " + XI_ConvertString("Colony" + npchar.city + "Gen") + ".");
 				Link.l1 = LinkRandPhrase("Прекрасно. Чем я могу вам помочь?",
 				"Очень хорошо. Могу ли я быть вам чем-нибудь полез"+ GetSexPhrase("ен","на") +", " + GetAddress_FormToNPC(NPChar) + "?",
 				"Великолепно. Что лично я могу для вас сделать?");
@@ -94,7 +94,7 @@ void ProcessDialogEvent()
 		switch (rand(1))
 		{
 			case 0:
-				dialog.text = RandPhraseSimple("А-а-а, вижу... Все в порядке, вы можете идти, " + GetAddress_Form(pchar) + ".", "Что-то я немного подустал в патруле... Все в порядке, " + GetAddress_Form(pchar) + ", прошу прощения.");
+				dialog.text = RandPhraseSimple("А-а-а, вижу... Всё в порядке, вы можете идти, " + GetAddress_Form(pchar) + ".", "Что-то я немного подустал в патруле... Всё в порядке, " + GetAddress_Form(pchar) + ", прошу прощения.");
 				link.l1 = "Так-то!";
 				link.l1.go = "exit_noFight";
 				if (sti(pchar.questTemp.stels.landSolder) != GetDataDay())
@@ -363,7 +363,7 @@ void ProcessDialogEvent()
 			else
 			{
 				dialog.text = "Ты пропил"+ GetSexPhrase("","а") +"! Мои! Деньги!... Аргх.";
-				link.l1 = "Вот черт!";
+				link.l1 = "Вот чёрт!";
 				link.l1.go = "Reason_To_Fast_ExitFight";
 				pchar.questTemp.ReasonToFast = "PatrolAfter";
 			}

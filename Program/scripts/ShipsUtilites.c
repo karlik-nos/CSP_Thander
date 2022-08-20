@@ -1118,7 +1118,7 @@ int CreateBaseShip(int iBaseType)
 		case 1: rRealShip.HullArmor = 42+(rand(2)*hullarmor); break;
 	}
 
-    rRealShip.BaseName = rRealShip.name; // запоминалка для нужд, тк далее идет "странное"
+    rRealShip.BaseName = rRealShip.name; // запоминалка для нужд, тк далее идёт "странное"
 	if (rRealShip.name != "Fort" && rRealShip.name != "Boat") // не знаю зачем :(
 	{
 		rRealShip.name = rRealShip.name + "1"; // без этого вылет, но почему!!!!!!!!!!!!!!

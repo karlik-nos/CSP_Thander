@@ -161,7 +161,7 @@ void ProcessDialogEvent()
 		break;
 		case "SeekCrew_3":
 			dialog.text = "Хех, каков"+ GetSexPhrase("","а") +" "+ GetSexPhrase("провидец","предсказательница") +", просто оторопь берет! Я порекомендую вам умерить прыть.";
-			link.l1 = "Ну, мое дело предложить...";
+			link.l1 = "Ну, моё дело предложить...";
 			link.l1.go = "exit";
 		break;
 

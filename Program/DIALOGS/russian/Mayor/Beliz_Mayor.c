@@ -20,7 +20,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		//************************** Квестовые штрумы ************************
        //==> Третий квест англ.линейки: нападение на Белиз.
         case "EngLine3Quest_BelizAttack":
-			dialog.text = "Проклятье!!! Что тебе нужно"+ GetSexPhrase(", чертов ладрон","") +"?!!";
+			dialog.text = "Проклятье!!! Что тебе нужно"+ GetSexPhrase(", чёртов ладрон","") +"?!!";
 			link.l1 = "Догадайся с трех раз.";
 			link.l1.go = "Step_E3_1";
 			AfterTownBattle();

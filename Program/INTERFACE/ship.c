@@ -1259,7 +1259,7 @@ void ShowCannonsMenu()
     bool bOk  = !bSeaActive && LAi_grp_alarmactive;
     bool bOk2 = bAbordageStarted && !bCabinStarted; // в абордаже не жать пушки
 	if (bDisableMapEnter || bOk || bOk2)
-    { // идет бой, запрет смены орудий
+    { // идёт бой, запрет смены орудий
     	SetSelectable("CANNONS_OK", false);
 	}
 	else

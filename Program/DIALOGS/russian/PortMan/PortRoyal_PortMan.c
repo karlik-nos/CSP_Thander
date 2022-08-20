@@ -31,7 +31,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 
 		case "Step_E6_2":
-            dialog.text = "Да черт его знает, не иначе, приказ генерал-губернатора.";
+            dialog.text = "Да чёрт его знает, не иначе, приказ генерал-губернатора.";
 			link.l1 = "А где сейчас этот испанец? И что за корабль?";
 			link.l1.go = "Step_E6_3";
 		break;

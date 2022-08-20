@@ -205,7 +205,7 @@ void ProcessDialogEvent()
 
 		case "pirateStartQuest_final":
 			dialog.text = "Знаем-знаем. Мои люди наблюдали бой и уже доложили мне, как ты здорово управил"+ GetSexPhrase("ся","ась") +". Ну что ж, дело свое ты исправно сделал"+ GetSexPhrase("","а") +", вот обещанная награда в 15 000 пиастров. И спасибо тебе, здорово ты мне помог"+ GetSexPhrase("","ла") +".";
-			link.l1 = "Все в порядке, рад"+ GetSexPhrase(" был","а была") +" помочь! А теперь меня ждут дела, я и так здесь задержал"+ GetSexPhrase("ся","ась") +". До встречи!";
+			link.l1 = "Всё в порядке, рад"+ GetSexPhrase(" был","а была") +" помочь! А теперь меня ждут дела, я и так здесь задержал"+ GetSexPhrase("ся","ась") +". До встречи!";
 			link.l1.go = "exit";
 			AddMoneyToCharacter(pchar, 15000);
 			pchar.questTemp.pirateStartQuest = "0";

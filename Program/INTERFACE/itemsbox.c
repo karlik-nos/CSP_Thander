@@ -763,7 +763,7 @@ void SetControlsTabMode(int _mode)
 	GameInterface.TABLE_LIST.select = 1;
 	GameInterface.TABLE_LIST.top = 0;
 
-	// Тут идет рефрешь предметов
+	// Тут идёт рефрешь предметов
 	AddToTable(refToChar);
 
 	// Сбросим позицию стрелок

@@ -19,7 +19,7 @@ void ProcessDialogEvent()
 		//------------------------ Мешитли ------------------------
 		case "AztecFT":
 			dialog.text = "О-о, белый человек снова к нам пришёл? "+ GetSexPhrase("","Да ещё и женщина? ") +"Я видел, как ты ш"+ GetSexPhrase("ел","ла") +" по дамбе.";
-			link.l1 = "Приветствую аборигена! Меня зовут капитан " + GetFullName(pchar) + ". А как твое имя?";
+			link.l1 = "Приветствую аборигена! Меня зовут капитан " + GetFullName(pchar) + ". А как твоё имя?";
 			link.l1.go = "AztecFT_1";
 		break;
 		case "AztecFT_1":
@@ -127,7 +127,7 @@ void ProcessDialogEvent()
 			link.l1.go = "AztecFT2_3";
 		break;
 		case "AztecFT2_3":
-			dialog.text = "Ты в своем уме, "+ GetSexPhrase("белый капитан","прекрасная скво") +"? Миктлантекутли пожрет твое тело и душу!";
+			dialog.text = "Ты в своем уме, "+ GetSexPhrase("белый капитан","прекрасная скво") +"? Миктлантекутли пожрет твоё тело и душу!";
 			link.l1 = "Я не боюсь. Если что-то знаешь, скажи.";
 			link.l1.go = "AztecFT2_4";
 		break;

@@ -182,7 +182,7 @@ void ProcessDialogEvent()
             else
             {
                 dialog.text = "Похоже, ты врешь!";
-			    Link.l1 = "Тогда послушайте, как поет моя сабля.";
+			    Link.l1 = "Тогда послушайте, как поёт моя сабля.";
 			    Link.l1.go = "battle";
 			    AddCharacterExpToSkill(pchar, SKILL_SNEAK, 50);
             }

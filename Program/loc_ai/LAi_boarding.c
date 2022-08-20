@@ -986,7 +986,7 @@ void LAi_SetBoardingActors(string locID)
 			model = LAi_GetBoardingModel(mchr, &ani);
 			// boal star with new loc always  -->
 			if (mchr.location.locator == (sLocType + i))
-			{ // искодим из того, что наша локация всегда < 4 офицеры пусть накладываются а матросик идет к противнику.
+			{ // искодим из того, что наша локация всегда < 4 офицеры пусть накладываются а матросик идёт к противнику.
 	           locMChar = rand(3);
 	           while (mchr.location.locator == (sLocType + locMChar))
 	           {

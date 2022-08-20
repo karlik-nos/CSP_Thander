@@ -808,7 +808,7 @@ void SetTreasureHunter(string temp)
 	ref    sld;
 	bool   ok;
 
-	if (chrDisableReloadToLocation) return; // идет некий другой квест с запретом выхода
+	if (chrDisableReloadToLocation) return; // идёт некий другой квест с запретом выхода
 
     Pchar.GenQuest.Hunter2Pause            = true;
 
@@ -877,7 +877,7 @@ void SetPGGTreasureHunter(string temp)
 	ref    sld;
 	bool   ok;
 
-	if (chrDisableReloadToLocation) return; // идет некий другой квест с запретом выхода
+	if (chrDisableReloadToLocation) return; // идёт некий другой квест с запретом выхода
 
     Pchar.GenQuest.Hunter2Pause            = true;
 

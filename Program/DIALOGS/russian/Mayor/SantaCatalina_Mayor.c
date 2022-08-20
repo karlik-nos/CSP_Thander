@@ -31,7 +31,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
         break;
 		case "Step_F11_2":
             dialog.text = "Ну, поиронизируйте, сеньор"+ GetSexPhrase("","ита") +", по праву победителя вы можете себе это позволить. Но все меняется здесь, в Карибском море...";
-			link.l1 = "Приложу все усилия, чтобы эти перемены были на пользу Франции, сеньор. Ну все, дело сделано...";
+			link.l1 = "Приложу все усилия, чтобы эти перемены были на пользу Франции, сеньор. Ну всё, дело сделано...";
 			link.l1.go = "exit";
 			pchar.questTemp.State = "Fr11OccupySC_toWeWon";
             AddQuestRecord("Fra_Line_11_OccupySantaCatalina", "2");

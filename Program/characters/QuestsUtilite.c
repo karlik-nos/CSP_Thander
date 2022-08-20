@@ -1340,7 +1340,7 @@ string HeroStringReactionRepeat(string _strNormal, string _strBad1, string _strB
     return strBack;
 }
 
-// возможны только две переходные ноды: _GoNode1 и _GoNode2, третья не нужна, т.к. идет сразу в ангри-файл.
+// возможны только две переходные ноды: _GoNode1 и _GoNode2, третья не нужна, т.к. идёт сразу в ангри-файл.
 // неверно, оставил третью ноду для циклов и прочего.
 string DialogGoNodeRepeat(string _NormalNode, string _GoNode1, string _GoNode2, string _GoNode3, ref _character, string _Node)
 {

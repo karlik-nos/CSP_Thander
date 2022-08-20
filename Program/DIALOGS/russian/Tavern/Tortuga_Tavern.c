@@ -62,7 +62,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
  	 	case "Step_H3_1":
 			dialog.text = NPCStringReactionRepeat("Знаю, как не знать. Он снял у меня комнату и заплатил за год вперед!", "Хей, не ты ли уже "+ GetSexPhrase("спрашивал","спрашивала") +" меня об этом?",
 				          "Хм, мы говорили уже о Пьере...", "Может ты не будешь меня отвлекать? Я могу послать за Пьером, если ты так желаешь его видеть.", "block", 0, npchar, Dialog.CurrentNode);
-			link.l1 = HeroStringReactionRepeat("Вот это да! Видимо, с деньгами у него все в порядке...", ""+ GetSexPhrase("Спрашивал","Спрашивала") +"? Ну да, наверное...", "Да, точно, говорили, извини...", "Да нет, не стоит. "+ GetSexPhrase("Сам","Сама") +" его найду...", npchar, Dialog.CurrentNode);
+			link.l1 = HeroStringReactionRepeat("Вот это да! Видимо, с деньгами у него всё в порядке...", ""+ GetSexPhrase("Спрашивал","Спрашивала") +"? Ну да, наверное...", "Да, точно, говорили, извини...", "Да нет, не стоит. "+ GetSexPhrase("Сам","Сама") +" его найду...", npchar, Dialog.CurrentNode);
 			link.l1.go = DialogGoNodeRepeat("Step_H3_2", "none", "none", "none", npchar, Dialog.CurrentNode);
         break;
  	 	case "Step_H3_2":
@@ -85,7 +85,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
         break;
  	 	case "Step_H7_2":
 			dialog.text = NPCStringReactionRepeat("С час назад ушёл, сказал, что ты ещё задержишься...", "Ты уже "+ GetSexPhrase("задавал","задавала") +" мне этот вопрос сегодня.", "Опять?", "Может ты не будешь меня отвлекать от работы?", "block", 1, npchar, Dialog.CurrentNode);
-			link.l1 = HeroStringReactionRepeat("Черт возьми! Кто он и куда он ушёл, ты знаешь?", "Верно, "+ GetSexPhrase("задавал","задавала") +"...", "Хм, извини...", "Хорошо, не буду. Извини...", npchar, Dialog.CurrentNode);
+			link.l1 = HeroStringReactionRepeat("Чёрт возьми! Кто он и куда он ушёл, ты знаешь?", "Верно, "+ GetSexPhrase("задавал","задавала") +"...", "Хм, извини...", "Хорошо, не буду. Извини...", npchar, Dialog.CurrentNode);
 			link.l1.go = DialogGoNodeRepeat("Step_H7_3", "none", "none", "none", npchar, Dialog.CurrentNode);
         break;
   	 	case "Step_H7_3":
@@ -178,7 +178,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			dialog.text = NPCStringReactionRepeat("Бывают, а что тебе до них?",
                           "Голландцы то? Бывают, бывают...", "Говорили же мы о голландцах сегодня...",
                           "Я больше не хочу говорить о голландцах...", "block", 0, npchar, Dialog.CurrentNode);
-			link.l1 = HeroStringReactionRepeat("Я тут жду одного человека из Виллемстада. Так что придется у тебя снять комнату на недельку.",
+			link.l1 = HeroStringReactionRepeat("Я тут жду одного человека из Виллемстада. Так что придётся у тебя снять комнату на недельку.",
                       "Здорово!", "Говорили, верно...", "Хорошо, как скажешь...", npchar, Dialog.CurrentNode);
 			link.l1.go =  DialogGoNodeRepeat("Step_S6_2", "none", "none", "none", npchar, Dialog.CurrentNode);
         break;
@@ -218,7 +218,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
         break;
 
 		case "Tortuga_ratT_3":
-			dialog.text = "Ну, спросил"+ GetSexPhrase("","а") +"! Это же портовый город, а не деревня. Тут чужаки каждый день появляются... Хотя, слыхал я про каких-то странных типов, недавно объявившихся у нас\nХодят всегда вместе, впятером, и за эфесы сабель держатся, словно во вражеской колонии. Их уже и патруль проверял - нет, все в порядке. Но прибыли они точно не на корвете - ни в порту, ни на рейде - ни одного корвета, смекаешь?";
+			dialog.text = "Ну, спросил"+ GetSexPhrase("","а") +"! Это же портовый город, а не деревня. Тут чужаки каждый день появляются... Хотя, слыхал я про каких-то странных типов, недавно объявившихся у нас\nХодят всегда вместе, впятером, и за эфесы сабель держатся, словно во вражеской колонии. Их уже и патруль проверял - нет, всё в порядке. Но прибыли они точно не на корвете - ни в порту, ни на рейде - ни одного корвета, смекаешь?";
 			link.l1 = "Гм... Ну что же, понятно. Спасибо, " + npchar.name + ".";
 			link.l1.go = "exit";
 			AddQuestRecord("Slavetrader", "21_8");

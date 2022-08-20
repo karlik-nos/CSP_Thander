@@ -112,7 +112,7 @@ void ProcessDialogEvent()
 			{
 				NextDiag.TempNode = "OnceAgain";
                 dialog.text = "Эй, похоже, у вас проблемы с наличностью! Извините, капитан, но я не работаю в кредит.";
-				link.l1 = "Ах ты, черт!";
+				link.l1 = "Ах ты, чёрт!";
 				link.l1.go = "Exit";
 			}
 		break;
@@ -339,7 +339,7 @@ void ProcessDialogEvent()
 
         case "Love_Sex_3":
             NextDiag.TempNode = "Hired";
-		    dialog.text = RandPhraseSimple("Ну все! Ты ответишь за это! И прямо сейчас!", "Покувыркаться с тобой? Чтож сейчас поглядим, кто на что способен..");
+		    dialog.text = RandPhraseSimple("Ну всё! Ты ответишь за это! И прямо сейчас!", "Покувыркаться с тобой? Чтож сейчас поглядим, кто на что способен..");
             link.l1 = "Э.. ты о чем?";
 			link.l1.go = "Love_Sex_4";
         break;

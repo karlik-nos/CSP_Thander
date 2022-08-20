@@ -97,7 +97,7 @@ void ProcessDialogEvent()
 		break;
 		case "SharpSeekSpy_7":
 			dialog.text = "И прибавьте к этому крысиного бога, что я дам вам прямо сейчас, авансом\nНу, соглашайтесь!";
-			link.l1 = "Соглас"+ GetSexPhrase("ен","на") +", черт меня дери! Ещё бы я не согласил"+ GetSexPhrase("ся","ась") +"!";
+			link.l1 = "Соглас"+ GetSexPhrase("ен","на") +", чёрт меня дери! Ещё бы я не согласил"+ GetSexPhrase("ся","ась") +"!";
 			link.l1.go = "SharpSeekSpy_8";
 			link.l2 = "Нет, пожалуй, я откажусь.";
 			link.l2.go = "SharpSeekSpy_8over";
@@ -196,7 +196,7 @@ void ProcessDialogEvent()
 			dialog.text = NPCStringReactionRepeat("Здравствуйте! Позвольте представиться, меня зовут " + GetFullName(npchar) + ". Моя задача - предупредить поселение ловцов жемчуга о возможном нападении. Пираты, знаете ли... А вы кто?",
 				"Приветствую ещё раз!",
 				"Стою тут один целыми днями, скучно, поговорить не с кем...",
-                "Эх, черт возьми, приятная отдушина в наряде!", "block", 1, npchar, Dialog.CurrentNode);
+                "Эх, чёрт возьми, приятная отдушина в наряде!", "block", 1, npchar, Dialog.CurrentNode);
 			link.l1 = HeroStringReactionRepeat("Меня зовут " + GetFullName(pchar) + ". Я капитан, осматриваю эти земли.",
 				"И я тебя тоже...",
                 "Понимаю.",

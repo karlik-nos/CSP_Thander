@@ -20,7 +20,7 @@ void ProcessDialogEvent()
 				npchar.quest.meeting = "1";
 				if (CheckAttribute(loadedLocation, "storm"))
 				{
-					dialog.text = "Чертов шторм! Хотя уже пошёл на убыль... Я так понимаю, что ты - "+ GetSexPhrase("новый гражданин","новая гражданка") +" Города.";
+					dialog.text = "Чёртов шторм! Хотя уже пошёл на убыль... Я так понимаю, что ты - "+ GetSexPhrase("новый гражданин","новая гражданка") +" Города.";
 					link.l1 = "Капитан " + GetFullName(pchar) + " собственной персоной. А шторм - не беда!";
 					link.l1.go = "FS_1";
 				}
@@ -118,7 +118,7 @@ void ProcessDialogEvent()
 		break;
 		case "Man_FackYou":
 			dialog.text = LinkRandPhrase("Какого черта ты лезешь ко мне в сундук! Закона Города не знаешь? Ну ладно, теперь узнаешь...", "Эй, граждан"+ GetSexPhrase("ин","ка") +", ты что это вытворяешь? Закон запрещает тебе так поступать! Я тебя накажу...", "Постой, ты куда это полез"+ GetSexPhrase("","ла") +"? У нас в Городе завелся вор!! Ну, теперь держись...");
-			link.l1 = LinkRandPhrase("Дьявол!!", "Каррамба!!", "А-ать, черт!");
+			link.l1 = LinkRandPhrase("Дьявол!!", "Каррамба!!", "А-ать, чёрт!");
 			link.l1.go = "fight";
 		break;
 		case "Woman_FackYou":
@@ -276,7 +276,7 @@ void ProcessDialogEvent()
 		break;
 		case "tekeMap_off_2":
 			dialog.text = ""+ GetSexPhrase("Приятель","Подруга") +", благотворительностью занимаются в церкви, а у меня бизнес. Так что даже не проси - бесполезно.";
-			link.l1 = "А-ать, черт!..";
+			link.l1 = "А-ать, чёрт!..";
 			link.l1.go = "exit";
 			npchar.quest.takeMap = "notTrade"; //поговорили о том, что не торгуется
 		break;

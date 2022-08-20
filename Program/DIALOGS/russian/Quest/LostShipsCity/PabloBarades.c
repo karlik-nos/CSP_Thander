@@ -64,7 +64,7 @@ void ProcessDialogEvent()
 		break;
 		case "FS_1":
 			dialog.text = "Как настроение?";
-			link.l1 = "Нормально. Шторм меня уже не пугает. Так что все в порядке, осваиваюсь потихоньку.";
+			link.l1 = "Нормально. Шторм меня уже не пугает. Так что всё в порядке, осваиваюсь потихоньку.";
 			link.l1.go = "FT_3";
 		break;
 		case "FT_1":
@@ -201,7 +201,7 @@ void ProcessDialogEvent()
 			{
 				if (sld.sex == "man")
 				{
-					dialog.text = LinkRandPhrase("Не знаю, давно его не видел.", "Черт его знает, где он...", "Не видел его уже прилично, так что не ведаю.");
+					dialog.text = LinkRandPhrase("Не знаю, давно его не видел.", "Чёрт его знает, где он...", "Не видел его уже прилично, так что не ведаю.");
 					link.l1 = RandPhraseSimple("Понятно.", "Жаль...");
 					link.l1.go = "exit";
 				}
@@ -325,7 +325,7 @@ void ProcessDialogEvent()
 			link.l1.go = "SeekGoods_2";
 		break;
 		case "SeekGoods_2":
-			dialog.text = "Хорошо, я все сделаю.";
+			dialog.text = "Хорошо, я всё сделаю.";
 			link.l1 = "Ну, спасибо тебе, дружище!";
 			link.l1.go = "exit";
 			AddCharacterGoods(pchar, GOOD_KNIPPELS, 100);

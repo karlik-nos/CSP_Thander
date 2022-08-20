@@ -18,7 +18,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 
         case "Romantic_1":
-			dialog.text = "Сальвотора Олеварес? Да, сын мой, часто, это достойная прихожанка... А в чем дело?";
+			dialog.text = "Сальвотора Олеварес? Да, сын мой, часто, это достойная прихожанка... А в чём дело?";
 			link.l1 = "Да просто так спросил, падре. До свидания...";
 			link.l1.go = "exit";
 			DeleteAttribute(Pchar, "RomanticQuest.PriestAsk");

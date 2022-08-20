@@ -32,7 +32,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			}
 		break;
 		case "PL_Q7_2":
-			dialog.text = "Очень жаль, но это мое категорическое условие.";
+			dialog.text = "Очень жаль, но это моё категорическое условие.";
 			link.l1 = "Понятно...";
 			link.l1.go = "exit";
 		break;

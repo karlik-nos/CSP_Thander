@@ -26,13 +26,13 @@ void ProcessDialogEvent()
 				if (CheckAttribute(loadedLocation, "storm"))
 				{
 					dialog.text = "Ага, так это ты из шторма выш"+ GetSexPhrase("ел","ла") +"? Ну что же, отлично! Давай знакомиться. Меня зовут " + GetFullName(npchar) + ", а тебя?";
-					link.l1 = "Мое имя - " + GetFullName(pchar) + ".";
+					link.l1 = "Моё имя - " + GetFullName(pchar) + ".";
 					link.l1.go = "FS_1";
 				}
 				else
 				{
 					dialog.text = "Ага, так это ты из последнего пополнения? Понятно... Ну что же, давай знакомиться. Меня зовут " + GetFullName(npchar) + ", а тебя?";
-					link.l1 = "Мое имя - " + GetFullName(pchar) + ".";
+					link.l1 = "Моё имя - " + GetFullName(pchar) + ".";
 					link.l1.go = "FT_1";
 				}
 			}
@@ -199,7 +199,7 @@ void ProcessDialogEvent()
 			{
 				if (sld.sex == "man")
 				{
-					dialog.text = LinkRandPhrase("Не знаю, давно его не видел.", "Черт его знает, где он...", "Не видел его уже прилично, так что не ведаю.");
+					dialog.text = LinkRandPhrase("Не знаю, давно его не видел.", "Чёрт его знает, где он...", "Не видел его уже прилично, так что не ведаю.");
 					link.l1 = RandPhraseSimple("Понятно.", "Жаль...");
 					link.l1.go = "exit";
 				}
@@ -277,7 +277,7 @@ void ProcessDialogEvent()
 			dialog.text = "Слушаю тебя. Спрашивай все, что душе угодно.";
 			if (!CheckAttribute(NextDiag, NodeName+".l5"))
 			{
-				link.l5 = "Чертов шторм! И часто у вас такое бывает?";
+				link.l5 = "Чёртов шторм! И часто у вас такое бывает?";
 				link.l5.go = "ansewer_5";
 			}
 			if (!CheckAttribute(NextDiag, NodeName+".l1"))
@@ -426,7 +426,7 @@ void ProcessDialogEvent()
 		break;
 		case "StResult":
 			dialog.text = "Ну что, "+ GetSexPhrase("приятель","подруга") +", дело сделано, как я погляжу?";
-			link.l1 = "Да, все в порядке, 'причесал"+ GetSexPhrase("'","a'") +" там троих охранников.";
+			link.l1 = "Да, всё в порядке, 'причесал"+ GetSexPhrase("'","a'") +" там троих охранников.";
 			link.l1.go = "StResult_1";
 		break;
 		case "StResult_1":
@@ -502,7 +502,7 @@ void ProcessDialogEvent()
 		break;
 		case "SeekCrew_2":
 			dialog.text = "Тогда и думать нечего! Я согласен.";
-			link.l1 = "Отлично! Прямо сейчас отправляйся на 'Сан Габриэль', там Механик переправит тебя на мое судно.";
+			link.l1 = "Отлично! Прямо сейчас отправляйся на 'Сан Габриэль', там Механик переправит тебя на моё судно.";
 			link.l1.go = "SeekCrew_3";
 		break;
 		case "SeekCrew_3":

@@ -27,7 +27,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Quest_Whisper_2":
-			dialog.text = "Погоди, кажется, сюда кто-то идет. Я запру дверь.";
+			dialog.text = "Погоди, кажется, сюда кто-то идёт. Я запру дверь.";
 			link.l1 = "...";
 			link.l1.go = "Quest_Whisper_2_exit";
 			pchar.WhisperPGG = npchar.id;
@@ -193,7 +193,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Quest_Whisper_18":
-			dialog.text = "Вряд ли. Боюсь, что сначала тебе придется выполнить несколько его поручений, чтобы втереться в доверие, а уже потом рассказывать эту байку.";
+			dialog.text = "Вряд ли. Боюсь, что сначала тебе придётся выполнить несколько его поручений, чтобы втереться в доверие, а уже потом рассказывать эту байку.";
 			link.l1 = "Несколько?";
 			link.l1.go = "Quest_Whisper_19";
 		break;

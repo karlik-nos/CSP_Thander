@@ -232,7 +232,7 @@ void ProcessDialogEvent()
 			{
 				if (sld.sex == "man")
 				{
-					dialog.text = LinkRandPhrase("Не знаю, давно его не видел.", "Черт его знает, где он...", "Не видел его уже прилично, так что не ведаю.");
+					dialog.text = LinkRandPhrase("Не знаю, давно его не видел.", "Чёрт его знает, где он...", "Не видел его уже прилично, так что не ведаю.");
 					link.l1 = RandPhraseSimple("Понятно.", "Жаль...");
 					link.l1.go = "exit";
 				}
@@ -403,7 +403,7 @@ void ProcessDialogEvent()
 		break;
 		//поиск товаров на корвет
 		case "SeekGoods":
-			dialog.text = NPCStringReactionRepeat("Простите, я не пойму, о чем речь.",
+			dialog.text = NPCStringReactionRepeat("Простите, я не пойму, о чём речь.",
 				"Вы уже спрашивали об этом.",
 				"Уже спрашивали...",
                 "Вы уже спрашивали меня об этих товарах. Ничего я не знаю!", "block", 0, npchar, Dialog.CurrentNode);

@@ -703,7 +703,7 @@ void Whr_TimeUpdate()
 	{
 		AddDataToCurrent(0,0,1);
 		Weather.Time.time = GetTime();
-	} // to_do время идет в CalcLocalTime
+	} // to_do время идёт в CalcLocalTime
 	if( iBlendWeatherNum < 0 ) {return;}
 	//navy --> Rain
 	string sTmp;

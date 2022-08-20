@@ -185,7 +185,7 @@ void ProcessDialogEvent()
 			}
 		break;
         case "SeekCitizen_Choice_2":
-			dialog.text = "Тогда вам придется ещё раз назвать имя и фамилию.";
+			dialog.text = "Тогда вам придётся ещё раз назвать имя и фамилию.";
 			Link.l1.edit = 3;
 			Link.l1 = "";
 			Link.l1.go = "SeekCitizen_Choice_1";

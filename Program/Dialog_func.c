@@ -116,7 +116,7 @@ string RandSwear()
 		break;
 
 		case 3:
-			return "Черт! ";
+			return "Чёрт! ";
 		break;
 
 		case 4:

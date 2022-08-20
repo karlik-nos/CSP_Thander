@@ -84,7 +84,7 @@ void ProcessDialogEvent()
 				//ждем втогого
 				if (pchar.questTemp.LSC == "toSeekMechanik" && CheckAttribute(pchar, "questTemp.LSC.Armo") && sti(pchar.questTemp.LSC.Armo) == 2 && CheckAttribute(pchar, "questTemp.LSC.Armo.waiting"))
 				{
-					link.l4 = "Армо, хочу доложить тебе, что мое первое свидание прошло успешно...";
+					link.l4 = "Армо, хочу доложить тебе, что моё первое свидание прошло успешно...";
 					link.l4.go = "WaitCasper1";
 				}
 				//наводка на второго
@@ -144,7 +144,7 @@ void ProcessDialogEvent()
 		break;
 		case "FT_1":
 			dialog.text = "Ну что же, давайте знакомиться. Меня зовут " + GetFullName(npchar) + ". А вас?";
-			link.l1 = "Мое имя - " + GetFullName(pchar) + ". Я капитан... К-хе, бывш"+ GetSexPhrase("ий","ая") +" капитан...";
+			link.l1 = "Моё имя - " + GetFullName(pchar) + ". Я капитан... К-хе, бывш"+ GetSexPhrase("ий","ая") +" капитан...";
 			link.l1.go = "FT_2";
 		break;
 		case "FT_2":
@@ -233,7 +233,7 @@ void ProcessDialogEvent()
 		break;
 		case "ansewer_4":
 			dialog.text = "Хм... Я вам скажу одну очень простую вещь, и, надеюсь, вы её запомните как следует. Не лезьте к ним!!";
-			link.l1 = "А в чем дело?";
+			link.l1 = "А в чём дело?";
 			link.l1.go = "ansewer_4_1";
 			NextDiag.(NodePrevName).l4 = true;
 		break;
@@ -557,7 +557,7 @@ void ProcessDialogEvent()
 		break;
 		//поиск товаров на корвет
 		case "SeekGoods":
-			dialog.text = NPCStringReactionRepeat("О каких товарах идет речь, "+ GetSexPhrase("месье капитан","мадемуазель") +"?",
+			dialog.text = NPCStringReactionRepeat("О каких товарах идёт речь, "+ GetSexPhrase("месье капитан","мадемуазель") +"?",
 				"Вы уже спрашивали об этом.",
 				"Уже спрашивали...",
                 "Вы уже спрашивали меня об этих товарах. Может хватит?", "block", 0, npchar, Dialog.CurrentNode);

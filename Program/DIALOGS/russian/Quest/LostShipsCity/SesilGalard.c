@@ -209,7 +209,7 @@ void ProcessDialogEvent()
 			}
 		break;
         case "SeekCitizen_Choice_2":
-			dialog.text = "Тогда вам придется ещё раз назвать имя и фамилию.";
+			dialog.text = "Тогда вам придётся ещё раз назвать имя и фамилию.";
 			Link.l1.edit = 3;
 			Link.l1 = "";
 			Link.l1.go = "SeekCitizen_Choice_1";
@@ -375,7 +375,7 @@ void ProcessDialogEvent()
 		break;
 		case "AfterFight_5":
 			dialog.text = "Хм, ну надо же... Вы знаете, с тех пор, как его изолировали, вы второй человек, которому я рассказываю о нем. Первым был Тизер Дэн.";
-			link.l1 = "Тизер Дэн?! Черт возьми, вы знаете что с ним произошло?";
+			link.l1 = "Тизер Дэн?! Чёрт возьми, вы знаете что с ним произошло?";
 			link.l1.go = "AfterFight_6";
 		break;
 		case "AfterFight_6":
