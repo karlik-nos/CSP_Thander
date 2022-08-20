@@ -78,7 +78,7 @@ void ProcessDialogEvent()
             }
             else
             {
-                dialog.text = "Похоже, ты врешь!";
+                dialog.text = "Похоже, ты врёшь!";
                 Link.l1 = "Я готов"+ GetSexPhrase("","а") +" заплатить вам ещё, лишь бы вы оставили меня в покое.";
 			    Link.l1.go = "Cost_Head";
 			    Link.l2 = "Ну что же, испытайте свою удачу.";
@@ -181,7 +181,7 @@ void ProcessDialogEvent()
             }
             else
             {
-                dialog.text = "Похоже, ты врешь!";
+                dialog.text = "Похоже, ты врёшь!";
 			    Link.l1 = "Тогда послушайте, как поёт моя сабля.";
 			    Link.l1.go = "battle";
 			    AddCharacterExpToSkill(pchar, SKILL_SNEAK, 50);

@@ -120,7 +120,14 @@ void ProcessDialogEvent()
                 //LinkRandPhrase("Я " + GetFullName(Pchar) + ", капитан.", "Меня зовут " + GetFullName(Pchar) + ".", "Можешь называть меня капитан " + GetFullName(Pchar));				
 				Link.l1.go = "Meeting";
 				
-				if (pchar.questTemp.AnjelikaTichPrologue == "ATP" && pchar.questTemp.AnjelikaTichPrologue2 == "ATP2")
+				if (pchar.questTemp.AnjelikaTichPrologue6 == "ATP6")	//Sinistra Пролог Анжелики Шарп
+				{					
+					dialog.text = LinkRandPhrase("Весь город сегодня обсуждает только одну новость – неудавшуюся попытку захвата нашей колонии.", "Нет, но вы подумайте каковы храбрецы, решили атаковать укрепления нашего города! И на что они только рассчитывали? Я думаю, эта авантюра была обречена на провал, когда только родилась в голове того, кто её придумал.", "Признаюсь, когда началась стрельба, меня охватила паника.");
+					link.l1 = "";
+					link.l1.go = "exit";
+					LAi_CharacterDisableDialog(npchar);
+				}
+				if (pchar.questTemp.AnjelikaTichPrologue == "ATP" && pchar.questTemp.AnjelikaTichPrologue2 == "ATP2")	//Sinistra Пролог Анжелики Шарп
 				{
 					pchar.ATP_MirJitId = npchar.id;
 					
@@ -288,7 +295,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Meeting":
-		    dialog.Text  = NPCharRepPhrase(npchar, LinkRandPhrase("А ты не врешь, капитан " + GetFullName(Pchar)+"?",
+		    dialog.Text  = NPCharRepPhrase(npchar, LinkRandPhrase("А ты не врёшь, капитан " + GetFullName(Pchar)+"?",
                                                                     "И что с того " + PChar.name+"?",
                                                                     "Я запомню тебя, " + GetFullName(Pchar)+".")
                                                                      + " А теперь говори, чего тебе надо?",
@@ -360,7 +367,7 @@ void ProcessDialogEvent()
             // homo 25/06/06
 			link.l1 = LinkRandPhrase ("Какие байки в ходу в здешней таверне?",
                                     "Что новенького в этих краях?",
-                                    "Как течет жизнь на суше?");
+                                    "Как течёт жизнь на суше?");
 			link.l1.go = "rumours_citizen";
 			link.l2 = LinkRandPhrase("Не объясните мне дорогу?", "Что-то я никак не найду дороги кое-куда...", "Подскажите дорогу...");
 			link.l2.go = "town";  //(перессылка в файл города)

@@ -497,7 +497,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
                                                                         "Я занятой человек и мне некогда обсуждать всякие сплетни!"),
                                                                          "block", 1, npchar, Dialog.CurrentNode);
 			link.l1 = HeroStringReactionRepeat(pcharrepphrase(RandSwear() + "Это очень интересно! Но давай к делу","Благодарю, тогда вот ещё какое дело."),
-                                                pcharrepphrase(""+ GetSexPhrase("Чтоб я сдох","Разрази меня гром") +"! Складно врешь. Но у меня есть ещё вопрос.",
+                                                pcharrepphrase(""+ GetSexPhrase("Чтоб я сдох","Разрази меня гром") +"! Складно врёшь. Но у меня есть ещё вопрос.",
                                                                 "Так не будем больше терять драгоценное время и перейдем к делам."),
                                                 pcharrepphrase(RandSwear() +" Ещё одно дельце, и я уйду.","Вы правы, время - деньги."),
                                                 pcharrepphrase("Только и думаешь, что о своей выгоде. Ладно, не кипятись.",

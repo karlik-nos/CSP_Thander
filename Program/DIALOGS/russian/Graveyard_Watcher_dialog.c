@@ -114,7 +114,7 @@ void ProcessDialogEvent()
 			NextDiag.TempNode = "First time";
 		break;
 		case "Meeting":
-		    dialog.Text  = NPCharRepPhrase(npchar, LinkRandPhrase("А ты не врешь, капитан " + GetFullName(Pchar)+"?",
+		    dialog.Text  = NPCharRepPhrase(npchar, LinkRandPhrase("А ты не врёшь, капитан " + GetFullName(Pchar)+"?",
                                                                     "И что с того " + PChar.name+"?",
                                                                     "Я запомню тебя, " + GetFullName(Pchar)+".")
                                                                      + " А теперь говори, чего тебе надо?",
@@ -149,7 +149,7 @@ void ProcessDialogEvent()
             // homo 25/06/06
 			link.l1 = LinkRandPhrase ("Какие байки в ходу в здешней таверне?",
                                     "Что новенького в этих краях?",
-                                    "Как течет жизнь на суше?");
+                                    "Как течёт жизнь на суше?");
 			link.l1.go = "rumours_citizen";
 			link.l2 = "Ничего, я передумал" + GetSexPhrase(".","а.");
 			link.l2.go = "exit";

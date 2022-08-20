@@ -573,7 +573,7 @@ void ProcessDialogEvent()
             npchar.GhostShip_Speak_Yet = true;
             pchar.GenQuest.GhostShip.lastspeak_date = LastSpeakDate();
    			dialog.text = "Ну... И-ик! Видел я страшное - корабль-призрак, а на нем сплошные мертвецы... Говорят, он тут со времен Колумба плавает...";
-			link.l1 = "Да врешь, небось!";
+			link.l1 = "Да врёшь, небось!";
 			link.l1.go = "GhostShip_Speak_1_2";
 		break;
 

@@ -315,6 +315,7 @@ void AnjelikaTich_StartGame(string qName)
 	SetCaptureTownByNation("LaVega", SPAIN);
 	pchar.questTemp.AnjelikaTichPrologue = "ATP";
 	pchar.questTemp.AnjelikaTichPrologue5 = "ATP5";
+	pchar.questTemp.AnjelikaTichPrologue7_Jackman = "ATP7";
 	LocatorReloadEnterDisable("SantoDomingo_ExitTown", "reload3", true);
 	LocatorReloadEnterDisable("PortPax_ExitTown", "reload3", true);
 	

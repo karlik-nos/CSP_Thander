@@ -485,7 +485,7 @@ void ProcessDialogEvent()
 			link.l1.go = "work";
 			//homo 15/06/06 слухи
 			link.l2 = LinkRandPhrase("Расскажи мне последние новости?","Что новенького в этих краях?",
-                                    "Как течет жизнь на суше?");
+                                    "Как течёт жизнь на суше?");
 			link.l2.go = "rumours_tavern";
 			//homo
 			link.l3 = "Я по другому делу.";

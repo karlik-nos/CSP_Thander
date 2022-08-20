@@ -10759,6 +10759,10 @@ void QuestComplete(string sQuestName, string qname)
 			sld.dialog.currentnode = "ATpr_SD_Koten_1";
 		break;
 		
+		case "ATpr_Jiteli_Uspokoilis":
+			DeleteAttribute(pchar, "questTemp.AnjelikaTichPrologue6");
+		break;
+		
 		case "ATpr_VosstanovimGorod":	
 			LocatorReloadEnterDisable("SantoDomingo_town", "Reload1_back", false);
 			bDisableFastReload = false;

@@ -96,6 +96,13 @@ void ProcessDialogEvent()
 				link.l1 = "Послушай, ходят слухи о промысле ловцов жемчуга в Карибском море. Ты ничего не слышал об этом?";
 				link.l1.go = "SharpPearl_1";
 			}
+			//Sinistra Пролог Анжелика тич
+			if (pchar.questTemp.AnjelikaTichPrologue7_Jackman == "ATP7")
+			{
+				dialog.text = "Так, так... Ходит молва, на архипелаге появилась некая самозванка, которая прикрываясь чужим именем, взялась проворачивать свои делишки.";
+				link.l1 = "Анжелика Тич – моё настоящее имя.";
+				link.l1.go = "ATpr_F1";
+			}
 			//поиски супер-мушкета
 			if (CheckAttribute(pchar, "questTemp.mushket2x2") && !CheckCharacterItem(pchar, "mushket2x2"))
 			{
@@ -141,6 +148,31 @@ void ProcessDialogEvent()
  		case "Exit":
 			DialogExit();
 			NextDiag.CurrentNode = NextDiag.TempNode;
+		break;
+		
+		//Sinistra. Пролог Анжелика Тич		
+		case "ATpr_F1":
+			dialog.text = "Теперь у меня в этом нет сомнений, ты прямо копия своей матери.";
+			link.l1 = "Ты знал мою мать?";
+			link.l1.go = "ATpr_F2";
+			DeleteAttribute(pchar, "questTemp.AnjelikaTichPrologue7_Jackman");
+		break;
+		case "ATpr_F2":
+			dialog.text = "Да все её знали. Ходила тут, важная гусыня – избранница Чёрной Бороды, ни много не мало. Шипела на каждого, пыталась устанавливать собственные порядки, а её и пальцем никто не смел тронуть.";
+			link.l1 = "Похоже, это и правда была она.";
+			link.l1.go = "ATpr_F3";
+		break;
+		case "ATpr_F3":
+			dialog.text = "Потом старина Эдвард забрал её отсюда, а когда она ему надоела, высадил вместе с малолетней дочерью, где-то на необитаемом острове. Поэтому я меньше всего ожидал увидеть тебя здесь.";
+			link.l1 = "Он высадил нас на Эспаньоле, меньше чем через сутки мы добрались до ближайшего поселения.";
+			link.l1.go = "ATpr_F4";
+		break;
+		case "ATpr_F4":
+			dialog.text = "Откровенно говоря, те давние события меня мало заботят, говори, зачем пришла сейчас?";
+			link.l1 = "Послушай, ходят слухи о промысле ловцов жемчуга в Карибском море. Ты ничего не слышал об этом?";
+			link.l1.go = "SharpPearl_1";
+			link.l2 = "Из любопытства. Уже ухожу.";
+			link.l2.go = "exit";
 		break;
 
 		//Blackthorn. Квест викинга
