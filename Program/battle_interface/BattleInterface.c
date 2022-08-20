@@ -925,7 +925,7 @@ void BI_UpdateShip()
 void BI_CreateShip()
 {
 	int charIndex = GetEventData();
-	if(charIndex>=0) ClearActiveChrPerks(GetCharacter(charIndex));
+	//if(charIndex>=0) ClearActiveChrPerks(GetCharacter(charIndex)); //ломало таймеры для морских активных перков
 	if( IsEntity(&BattleInterface) ) {
 		AddShipToInterface(charIndex);
 	}
