@@ -625,8 +625,6 @@ void AT_pr_tragedia_2(string qName)
 }
 void AT_pr_Bejim_ot_piratov_2(string qName)
 {
-	CreateLocationParticles("shipfire", "rld", "loc1", 0.0, 0, 0, "");
-	CreateLocationParticles("shipfire", "rld", "loc2", 0.0, 0, 0, "");
 	Log_SetStringToLog("Мне нужно оторваться от пиратов!");
 	Log_SetStringToLog("Держу курс на Санто-Доминго!");
 }
