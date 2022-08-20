@@ -15,6 +15,19 @@ void ProcessDialogEvent()
 	string NodeName = Dialog.CurrentNode;
 	string NodePrevName = "";
 	if (CheckAttribute(NextDiag, "PrevNode")) NodePrevName = NextDiag.PrevNode;
+	if (CheckAttribute(pchar, "ReturnToLSC") && !CheckAttribute(NPChar,"MetAgain"))
+	{
+		NPChar.MetAgain = true;
+		dialog.text = "Капитан, вы выжили? Я не могу поверить своим глазам!";
+		link.l1 = "Как видишь..."
+		link.l1.go = "MetAgain1";
+		return;
+	}
+	if (HasSubStr(NodeName,"TradeGoods_"))
+	{
+		npchar.GoodType = strcut(NodeName, findsubstr(NodeName, "_" , 0)+1, strlen(NodeName)-1);
+		Dialog.CurrentNode = "TradeCheck";
+	}
 
 	switch(Dialog.CurrentNode)
 	{
@@ -95,8 +108,13 @@ void ProcessDialogEvent()
 				link.l3 = LinkRandPhrase("Что-нибудь интересное мне расскажешь?",
 					"Что нового в Городе?", "Эх, с удовольствием послушал"+ GetSexPhrase("","а") +" бы последние сплетни...");
 				link.l3.go = "rumours_LSC";
-				Link.l4 = "Увы, я уже ухожу, " + NPChar.name + ". До встречи.";
-				Link.l4.go = "exit";
+				if (CheckAttribute(pchar, "ReturnToLSC"))
+				{
+					link.l4 = "Я прив"+ GetSexPhrase("ёз","езла") +" товаров. Не желаешь взглянуть?"
+					link.l4.go = "TradeGoods";
+				}
+				Link.l99 = "Увы, я уже ухожу, " + NPChar.name + ". До встречи.";
+				Link.l99.go = "exit";
 				//==>> квесты
 				if (pchar.questTemp.LSC == "AfterAdmiral" && GetQuestPastDayParam("questTemp.LSC") > 3)
 				{
@@ -951,7 +969,142 @@ void ProcessDialogEvent()
 			link.l1 = "Хм... Ну, как знаешь.";
 			link.l1.go = "exit";
 		break;
-
+		case "MetAgain1":
+			dialog.text = "Шторм так разошёлся, впервые за годы! Мы думали, что весь город сорвёт со скал и утопит в пучине.";
+			link.l1 = "Мне вообще повезло, я уплыл"+ GetSexPhrase("","а") +" в самый разгар бури. Едва-едва дотянул"+ GetSexPhrase("","а") +" до корабля.";
+			link.l1.go = "MetAgain2";
+		break;
+		case "MetAgain2":
+			dialog.text = "Не знаю, сколько прошло времени, но шторм вдруг стих... И полный штиль, без единого порыва ветра.";
+			link.l1 = "И как вы тут теперь, без власти, без адмирала?";
+			link.l1.go = "MetAgain3";
+		break;
+		case "MetAgain3":
+			dialog.text = "Да знаешь, ничего особо не изменилось, разве что почти всех старых клиентов здесь нет.";
+			link.l1 = "Может вам чем помочь? Всё-таки, моими стараниями так получилось.";
+			link.l1.go = "MetAgain4";
+		break;
+		case "MetAgain4":
+			dialog.text = "Вообще, товаров конечно хватает, но не помешало бы притока и извне. Я был бы не против закупить неподмокшего провианта, вина, эля или рома. Да и вообще, сюда бы нормальной еды тоже бы не помешало, а то постоянно одна рыба... Деньгами не обидим, сам понимаешь. Их и в резиденции хватало, да и заначки касперов тоже понемногу находятся.";
+			link.l1 = "Чем смогу - помогу. Если буду где поблизости Острова - непременно заплыву продать что-нибудь.";
+			link.l1.go = "MetAgain5";
+		break;
+		case "MetAgain5":
+			dialog.text = "Благодарю вас, капитан.";
+			link.l1 = "Всегда пожалуйста.";
+			link.l1.go = "exit";
+		break;
+		case "TradeGoods":
+			dialog.text = "Так, ну и что вы привезли, капитан? На складах полно места.";
+			if (CheckAttribute(pchar,"Ship.Cargo.Goods.Food") && sti(pchar.Ship.Cargo.Goods.Food) > 0)
+			{
+				link.l1 = "Провиант в количестве "+pchar.Ship.Cargo.Goods.Food+" ед.";
+				link.l1.go = "TradeGoods_1";
+			}
+			if (CheckAttribute(pchar,"Ship.Cargo.Goods.Wine") && sti(pchar.Ship.Cargo.Goods.Wine) > 0)
+			{
+				link.l2 = "Вино в количестве "+pchar.Ship.Cargo.Goods.Wine+" ед.";
+				link.l2.go = "TradeGoods_2";
+			}
+			if (CheckAttribute(pchar,"Ship.Cargo.Goods.Ale") && sti(pchar.Ship.Cargo.Goods.Ale) > 0)
+			{
+				link.l3 = "Эль в количестве "+pchar.Ship.Cargo.Goods.Ale+" ед.";
+				link.l3.go = "TradeGoods_3";
+			}
+			if (CheckAttribute(pchar,"Ship.Cargo.Goods.Rum") && sti(pchar.Ship.Cargo.Goods.Rum) > 0)
+			{
+				link.l4 = "Ром в количестве "+pchar.Ship.Cargo.Goods.Rum+" ед.";
+				link.l4.go = "TradeGoods_4";
+			}
+			if (CheckAttribute(pchar,"Ship.Cargo.Goods.Fruits") && sti(pchar.Ship.Cargo.Goods.Fruits) > 0)
+			{
+				link.l5 = "Фрукты в количестве "+pchar.Ship.Cargo.Goods.Fruits+" ед.";
+				link.l5.go = "TradeGoods_5";
+			}
+			link.l99 = "Мне надо подумать.";
+			link.l99.go = "exit";
+		break;
+		case "TradeCheck":
+			switch (sti(npchar.GoodType))
+			{
+				case 1: dialog.text = "Провиант? И сколько же из этого на продажу?"; break;
+				case 2: dialog.text = "Вино? И сколько же из этого на продажу?"; break;
+				case 3: dialog.text = "Эль? И сколько же из этого на продажу?"; break;
+				case 4: dialog.text = "Ром? И сколько же из этого на продажу?"; break;
+				case 5: dialog.text = "Фрукты? И сколько же из этого на продажу?"; break;
+			}
+			Link.l1.edit = 1;
+			link.l1 = "";
+			link.l1.go = "TradeCheck2";
+			link.l2 = "Мне надо подумать.";
+			link.l2.go = "exit";
+		break;
+		case "TradeCheck2":
+			npchar.amount = GetStrSmallRegister(dialogEditStrings[1]);
+			switch (sti(npchar.GoodType))
+			{
+				case 1:
+					NPChar.sumtotal = sti(npchar.amount)*10;
+					dialog.text = "Значит, что тут у нас получается? Ага, вот. Я беру провиант по 10 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. Предложение устраивает?"; 
+				break;
+				case 2: 
+					NPChar.sumtotal = sti(npchar.amount)*150;
+					dialog.text = "Значит, что тут у нас получается? Ага, вот. Я беру вино по 150 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. Предложение устраивает?"; 
+				break;
+				case 3: 
+					NPChar.sumtotal = sti(npchar.amount)*40;
+					dialog.text = "Значит, что тут у нас получается? Ага, вот. Я беру эль по 40 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. Предложение устраивает?";
+				break;
+				case 4: 
+					NPChar.sumtotal = sti(npchar.amount)*20;
+					dialog.text = "Значит, что тут у нас получается? Ага, вот. Я беру ром по 20 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. Предложение устраивает?";
+				break;
+				case 4: 
+					NPChar.sumtotal = sti(npchar.amount)*20;
+					dialog.text = "Значит, что тут у нас получается? Ага, вот. Я беру ром по 20 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. Предложение устраивает?";
+				break;
+				case 5: 
+					NPChar.sumtotal = sti(npchar.amount)*50;
+					dialog.text = "Значит, что тут у нас получается? Ага, вот. Я беру фрукты по 50 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. Предложение устраивает?";
+				break;
+			}
+			link.l1 = "Да. По рукам!";
+			link.l1.go = "TradeCheck3";
+			link.l2 = "Мне надо подумать.";
+			link.l2.go = "exit";
+		break;
+		case "TradeCheck3":
+			switch (sti(npchar.GoodType))
+			{
+				case 1:
+					pchar.Ship.Cargo.Goods.Food = sti(pchar.Ship.Cargo.Goods.Food)-sti(npchar.amount);
+				break;
+				case 2: 
+					pchar.Ship.Cargo.Goods.Wine = sti(pchar.Ship.Cargo.Goods.Wine)-sti(npchar.amount);
+				break;
+				case 3: 
+					pchar.Ship.Cargo.Goods.Ale = sti(pchar.Ship.Cargo.Goods.Ale)-sti(npchar.amount);
+				break;
+				case 4: 
+					pchar.Ship.Cargo.Goods.Rum = sti(pchar.Ship.Cargo.Goods.Rum)-sti(npchar.amount);
+				break;
+				case 5: 
+					pchar.Ship.Cargo.Goods.Fruits = sti(pchar.Ship.Cargo.Goods.Fruits)-sti(npchar.amount);
+				break;
+			}
+			dialog.text = "С вами приятно иметь дело. Получите и распишитесь!";
+			AddCharacterExpToSkill(pchar, "Commerce", sti(NPChar.sumtotal) / 2500.0);
+			/*if (sti(NPChar.sumtotal) >= 15000)
+			{
+				int chestsamount = makeint(sti(NPChar.sumtotal)/15000);
+				TakenItems(pchar,"Chest",chestsamount);
+				NPChar.sumtotal = sti(NPChar.sumtotal)-(15000*chestsamount);
+				log_info("Получены кредитные сундуке в количестве "+chestsamount+" шт.");
+			}*/
+			AddMoneyToCharacter(pchar, sti(NPChar.sumtotal));
+			link.l1 = "С тобой тоже. До встречи!";
+			link.l1.go = "exit";
+		break;
 	}
 	NextDiag.PrevNode = NodeName;
 }

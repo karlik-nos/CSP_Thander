@@ -14,7 +14,7 @@ int LocationInitLostShipsCity(int n)
  	locations[n].islandId = "LostShipsCity";
 
 	locations[n].filespath.models = "locations\LostShipsCity\";
-	locations[n].image = "loading\jonny_load\quest\LostShipsCity_"+rand(2)+".tga";
+	locations[n].image = "loading\jonny_load\quest\LostShipsCity_"+(1+rand(1))+".tga";
 	//Sound
 	locations[n].type = "LostShipsCity";
 	//locations[n].houseEnc = true; //для энкаунтеров в домах
