@@ -162,7 +162,7 @@ ISS_takeCandles {Свечи для прихода}
 
 ISS_takeStoreMoney {Пробраться в жилые помещения магазина на 'Эсмеральде'}
 
-ISS_ElisHusband {Непутёвый муж Элис Тейло.}
+ISS_ElisHusband {Непутёвый муж Элис Тейлор}
 
 LSC_findDekster {Пропавший пират Лейтон Декстер}
 

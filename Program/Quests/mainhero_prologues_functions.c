@@ -316,6 +316,8 @@ void AnjelikaTich_StartGame(string qName)
 	pchar.questTemp.AnjelikaTichPrologue = "ATP";
 	pchar.questTemp.AnjelikaTichPrologue5 = "ATP5";
 	pchar.questTemp.AnjelikaTichPrologue7_Jackman = "ATP7";
+	pchar.questTemp.AnjelikaTichPrologue8_Gudli = "ATP8";
+	pchar.questTemp.AnjelikaTichPrologue9 = "ATP9";		//На всякий случай (нигде не задействовано)
 	LocatorReloadEnterDisable("SantoDomingo_ExitTown", "reload3", true);
 	LocatorReloadEnterDisable("PortPax_ExitTown", "reload3", true);
 	
@@ -623,6 +625,8 @@ void AT_pr_tragedia_2(string qName)
 }
 void AT_pr_Bejim_ot_piratov_2(string qName)
 {
+	CreateLocationParticles("shipfire", "rld", "loc1", 0.0, 0, 0, "");
+	CreateLocationParticles("shipfire", "rld", "loc2", 0.0, 0, 0, "");
 	Log_SetStringToLog("Мне нужно оторваться от пиратов!");
 	Log_SetStringToLog("Держу курс на Санто-Доминго!");
 }

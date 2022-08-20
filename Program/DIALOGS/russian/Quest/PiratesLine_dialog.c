@@ -46,6 +46,13 @@ void ProcessDialogEvent()
 					link.l1.go = "exit_hl";
 					link.l2 = "Может и захочу, а что нужно?";
 					link.l2.go = "PiratesMan1_1";
+					if (pchar.questTemp.AnjelikaTichPrologue8_Gudli == "ATP8")	//Sinistra Пролог Анжелика тич
+					{
+						dialog.text = "Здорова деваха... Ты владелица корабля, того что бросил якорь в нашей уютной бухте?";
+						link.l1 = "Я его капитан.";
+						link.l1.go = "ATpr_F1";
+						DeleteAttribute(link, "l2");
+					}
 				}
 			}
 			else
@@ -57,6 +64,37 @@ void ProcessDialogEvent()
 				NextDiag.TempNode = "PiratesManNew1";
 			}
 		break;
+		//Sinistra Пролог Анжелика тич ==>
+		case "ATpr_F1":
+			dialog.text = "Врёшь же?.. Нет... Дай угадаю, за тобой стоят очень серьёзные покровители, если свора на твоём корабле готова выполнять твои приказы.";
+			link.l1 = "Анжелика Тич, к твоим услугам, говори, чего тебе от меня нужно?";
+			link.l1.go = "ATpr_F2";
+		break;
+		case "ATpr_F2":
+			dialog.text = "Быть не может! Та самая малышка Ангелика? Ты верно меня не помнишь, а я служил у Эдварда Тича, не долго правда, был молод и амбициозен, довольно быстро обзавёлся собственной лоханкой.";
+			link.l1 = "Как видишь, в этом мы с тобой похожи.";
+			link.l1.go = "ATpr_F3";
+		break;
+		case "ATpr_F3":
+			dialog.text = "Слушай, раз у нас с тобой столько общего, может мы и поработаем вместе? Нужно оказать одну услугу Генри Моргану. Заглядывай в таверну, если надумаешь.";
+			link.l1 = "Моргану, говоришь? Хм, ну хорошо.";
+			link.l1.go = "PiratesMan1_2";
+			link.l2 = "Извини, нет времени пока, давай позже.";
+			link.l2.go = "ATpr_F4_exit";
+		break;
+		case "ATpr_F4_exit":
+			NextDiag.TempNode = "ATpr_F5";
+			NextDiag.CurrentNode = NextDiag.TempNode;
+			DialogExit();
+		break;
+		case "ATpr_F5":
+			dialog.text = "Привет, Анжелика! Ну что, не передумала? Нужно оказать одну услугу Генри Моргану.";
+			link.l1 = "Да, давай обсудим это в таверне.";
+			link.l1.go = "PiratesMan1_2";
+			link.l2 = "Извини, нет времени пока, давай позже.";
+			link.l2.go = "ATpr_F4_exit";
+		break;
+		//<== Sinistra Пролог Анжелика тич
 		case "PiratesMan1_1":
 			dialog.text = "Нужно оказать одну услугу Генри Моргану. Если надумаешь, приходи в таверну, там поговорим.";
 			link.l1 = "Хм, ну хорошо.";
@@ -132,6 +170,11 @@ void ProcessDialogEvent()
 		break;
 		case "Tavern_5":
 			dialog.text = "Вот и отлично! Ну, счастливо тебе, "+ GetSexPhrase("приятель","подруга") +". Будь здоров"+ GetSexPhrase("","а") +"!";
+			if (pchar.questTemp.AnjelikaTichPrologue8_Gudli == "ATP8")	//Sinistra Пролог Анжелика тич
+				{
+					dialog.text = "Вот и отлично! Ну, счастливо тебе, дочурка Чёрной Бороды. Будь здорова!";
+					DeleteAttribute(pchar, "questTemp.AnjelikaTichPrologue8_Gudli");
+				}
 			link.l1 = "И тебе того же...";
 			link.l1.go = "exit";
 			npchar.lifeDay = 0;
