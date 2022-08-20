@@ -47,17 +47,15 @@ void Ship_Walk_Create()
 	if (!CheckAttribute(ch,"nation")) SendMessage(&Sailors, "lis", AI_MESSAGE_ADD_SHIP, ship, /*ShipsTypes[ri].name*/RealShips[Index].name); //если вдруг без нации, то ваниль
 	else
 	{
-		string sDefaultPath;
-		if (sti(ch.index) == nMainCharacterIndex)
-		{
-			if (isMainCharacterPatented()) sDefaultPath = sDefaultPathes[sti(ch.nation)];
-			else sDefaultPath = sDefaultPathes[4];
-		}
-		else
-		{
-			if (RealShips[Index].Type.War == true) sDefaultPath = sDefaultPathes[sti(ch.nation)];
-			else sDefaultPath = sDefaultPathes[4];
-		}
+		string sDefaultPath = sDefaultPathes[4];
+        if (sti(ch.index) == nMainCharacterIndex)
+        {
+            if (isMainCharacterPatented()) sDefaultPath = sDefaultPathes[sti(ch.nation)];
+        }
+        else
+        {
+            if (RealShips[Index].Type.War == true) sDefaultPath = sDefaultPathes[sti(ch.nation)];
+        }
 		//sDefaultPath = sDefaultPathes[sti(ch.nation)]; //нация капитана отражает путь из глобального массива
 		string sPathes[6];
 		for (int i = 0; i < 6; i++) sPathes[i] = sDefaultPath + (i+1); //пропись всех 6 моделек
