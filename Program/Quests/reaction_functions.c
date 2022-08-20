@@ -11386,3 +11386,30 @@ void Pedro_Horse(string qName)
 	LAi_SetActorType(CharacterFromID(pchar.PedroID));
 	LAi_ActorDialog(CharacterFromID(pchar.PedroID), pchar, "", -1, 0);
 }
+
+void ActiveShowAfterReload(string qName)
+{
+	aref arPerksRoot,arPerk;
+	makearef(arPerksRoot,pchar.perks.list);
+	int perksQ = GetAttributesNum(arPerksRoot);
+
+	string stmp;
+	int idx = 0;
+	for(int j=0; j<perksQ; j++)
+	{
+		arPerk = GetAttributeN(arPerksRoot,j);
+		if( CheckAttribute(arPerk,"delay") )
+		{
+			if( CheckAttribute(arPerk,"active") )
+			{
+				AddPerkToActiveList(GetAttributeName(arPerk));
+			}
+		}
+	}
+
+	if(bSeaActive && !bAbordageStarted)
+	{	// морская часть
+		LayerAddObject(SEA_EXECUTE,&objActivePerkShower,-1);
+		LayerAddObject(SEA_REALIZE,&objActivePerkShower,-1);
+	}
+}

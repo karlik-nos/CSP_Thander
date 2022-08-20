@@ -300,6 +300,7 @@ void StartBattleInterface()
 	CreateEntity(&objShipPointer,"shippointer");
 	LayerAddObject(SEA_EXECUTE,&objShipPointer,222222);
 	LayerAddObject(SEA_REALIZE,&objShipPointer,-1);
+	DoQuestFunctionDelay("ActiveShowAfterReload", 0.2);
 }
 
 void RefreshBattleInterface()
