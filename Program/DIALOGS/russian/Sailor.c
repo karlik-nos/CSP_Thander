@@ -56,6 +56,14 @@ void ProcessDialogEvent()
 				link.l3 = "Просто решил"+ GetSexPhrase("","а")+" поздороваться. Бывай!";
 				link.l3.go = "exit";
 				npchar.quest.meeting = "1";
+				if (pchar.questTemp.AnjelikaTichPrologue == "ATP")	//Sinistra Пролог Анжелика Тич
+				{
+					dialog.text = "Приветствую, сударыня! Что вам угодно от простого матроса?";
+					link.l1 = "Да так, жениха моей сестре ищу.";
+					link.l1.go = "exit";
+					DeleteAttribute(link, "l2");
+					DeleteAttribute(link, "l3");
+				}
 			}
 			else
 			{
@@ -227,7 +235,7 @@ void ProcessDialogEvent()
 			npchar.lifeday = 0;
 		break;
 
-		//замечание по обнаженному оружию от персонажей типа citizen
+		//замечание по обнажённому оружию от персонажей типа citizen
 		case "CitizenNotBlade":
 			dialog.text = NPCharSexPhrase(NPChar, "Послушайте, я, как гражданин этого города, прошу вас не ходить у нас с обнажённым клинком.", "Знаете, я, как гражданка этого города, прошу вас не ходить у нас с обнажённым клинком.");
 			link.l1 = LinkRandPhrase("Хорошо.", "Ладно.", "Как скажете...");

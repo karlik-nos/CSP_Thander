@@ -283,7 +283,7 @@ void Ship_NationAgressivePatent(ref rCharacter)
     }
     else
     {// без патента
-    	if (sti(rCharacter.nation) != PIRATE && !CheckAttribute(rCharacter, "CheckNationBounty"))   // еще не наказывал
+    	if (sti(rCharacter.nation) != PIRATE && !CheckAttribute(rCharacter, "CheckNationBounty"))   // ещё не наказывал
     	{
     		if (GetNationRelation(GetBaseHeroNation(), sti(rCharacter.nation)) != RELATION_ENEMY)
     		{
@@ -1246,8 +1246,6 @@ void Ship_CheckSituation()
 		//Lipsar --->ИИ сторожей
 		if (bIsDefender)
 		{
-			ref rFortChref = GetFortCommander(rCharacter.IslandShips);
-
 			int attackChar = sti(rCharacter.Ship.LastBallCharacter);
 			if (attackChar == -1)
 			{
@@ -1255,8 +1253,11 @@ void Ship_CheckSituation()
 					attackChar = GetMainCharacterIndex();
 				else
 				{
-					if (GetNationRelation2Character(sti(rCharacter.nation), PChar.Ship.LastBallCharacter) == RELATION_ENEMY)
-						attackChar = PChar.Ship.LastBallCharacter;
+					if (CheckAttribute(PChar, "Ship.LastBallCharacter") && (PChar.Ship.LastBallCharacter != -1))
+					{
+						if (GetNationRelation2Character(sti(rCharacter.nation), PChar.Ship.LastBallCharacter) == RELATION_ENEMY)
+							attackChar = PChar.Ship.LastBallCharacter;
+					}
 				}
 			}
 
@@ -1367,7 +1368,7 @@ void Ship_CheckSituation()
 										}
 									}
 									else
-									{	//если есть шанс победить, то проверяем еще и количественное соотношение групп. не лезть на крупные эскадры
+									{	//если есть шанс победить, то проверяем ещё и количественное соотношение групп. не лезть на крупные эскадры
 										if((iCharactersNum2 / iCharactersNum1) >= 3.0 && sti(RealShips[sti(rCharacter.ship.type)].Class) > sti(RealShips[sti(characters[sti(rCharacter.Ship.LastBallCharacter)].ship.type)].Class))
 										{
 											Ship_SetTaskRunaway(SECONDARY_TASK, sti(rCharacter.index), sti(rCharacter.Ship.LastBallCharacter));
@@ -1403,7 +1404,7 @@ void Ship_CheckSituation()
 									{	//eddy. здесь смотрим Runaway. проверяем атрибут анализа шипов и анализим, стоит ли атаковать
 										if (CheckAttribute(rCharacter, "AnalizeShips") && stf(rCharacter.ship.hp) > (stf(characters[sti(rCharacter.Ship.LastBallCharacter)].ship.hp) / 2))
 										{
-											//может только что ушел от форта?
+											//может только что ушёл от форта?
 											if (sti(rCharacter.Tmp.fWatchFort.Qty) == 200)
 											{
 												//тогда Runaway меняем за один такт до проверки форта
@@ -1620,7 +1621,7 @@ void Ship_CheckSituation()
 								Log_QuestInfo("Оценка состояния корабля (нет-да/0-1): " + shipHealth);
 								Log_QuestInfo("В зоне попадания форта (нет-да/0-1): " + bFort);
 							}
-							//попытка абордажа, если ГГ подошел на близкое расстояние. это для хитрых геймеров :)
+							//попытка абордажа, если ГГ подошёл на близкое расстояние. это для хитрых геймеров :)
 							if (Ship_GetDistance2D(GetMainCharacter(), rCharacter) < 30 && CheckAttribute(pchar, "GenQuest.DestroyPirate.WasFirstDeside") && !CheckAttribute(pchar, "GenQuest.DestroyPirate.FastAbordage"))
 							{
 								pchar.GenQuest.DestroyPirate.FastAbordage = true; //проверили абордаж
@@ -1648,12 +1649,12 @@ void Ship_CheckSituation()
 			        }
 		        }
 	        }
-	        // fix на нападение при условии, что нация дружеская, а с НПС мы все равно враждуем <--
+	        // fix на нападение при условии, что нация дружеская, а с НПС мы всё равно враждуем <--
 
 	        if (GetRelation(GetMainCharacterIndex(), sti(rCharacter.index)) == RELATION_ENEMY)
 	        {
 	            Group_SetTaskAttack(sGroupID, PLAYER_GROUP);
-	            UpdateRelations(); // перенес от ниже, тк исходим из того, что изначально все друзья все равно
+	            UpdateRelations(); // перенес от ниже, тк исходим из того, что изначально все друзья всё равно
 	        }
 	        //UpdateRelations();  // to_do это тонкое место, это тормоз, но рефрешить нужно
 	    }
@@ -2460,7 +2461,7 @@ void ShipDead(int iDeadCharacterIndex, int iKillStatus, int iKillerCharacterInde
 			break;
 			/*case KILL_BY_SPY:
 				bDetonate = true;
-			break;  */ // идет вылет, если второй раз рекурсию Ship_Detonate делать
+			break;  */ // идёт вылет, если второй раз рекурсию Ship_Detonate делать
 		}
 		if (bDetonate)
 		{
@@ -3014,14 +3015,14 @@ void Ship_CheckMainCharacter()
 
 	if (!CheckAttribute(arUpdate, "Ships")) { return; }
 	if (!CheckAttribute(arUpdate, "Forts")) { return; }
-    // boal время в море идет!!! -->
+    // boal время в море идёт!!! -->
     locTmpTime = locTmpTime + 0.5;  // можно засунуть проверку locDisableUpdateTime, если нужно выключить
     if (locTmpTime > 9)
 	{
 		    CalcLocalTime(2);
       		BattleInterface.textinfo.Date.text = XI_convertString("Date:")+GetQuestBookData();
 	}
-	// boal время в море идет!!! <--
+	// boal время в море идёт!!! <--
 
 	x = stf(rCharacter.Ship.Pos.x);
 	z = stf(rCharacter.Ship.Pos.z);
@@ -3863,7 +3864,7 @@ void Ship_UpdateParameters()
 					}
 
 					float speedDiff = FindShipSpeed(rCharacter) - FindShipSpeed(rTargetCharacter);
-					if ((speedDiff > -1) && (speedDiff > 3) && (rand(100) > 80))  // не выкидывать, если все равно не убежать, или убежать и так можно
+					if ((speedDiff > -1) && (speedDiff > 3) && (rand(100) > 80))  // не выкидывать, если всё равно не убежать, или убежать и так можно
 					{
 						PostEvent(SHIP_DROP_GOOD, 1000, "a", rCharacter);
 					}
@@ -4017,11 +4018,11 @@ void Ship_UpdateTmpSkills(ref rCharacter)
         	    DoQuestCheckDelay("NationUpdate", 1.0);
         	}
     	}
-    	rCharacter.TmpSkillRecall = 25 + rand(49); // разное время - размазанный пересчет, а то все скопом все равно //"60"; // считаем раз в минуту
+    	rCharacter.TmpSkillRecall = 25 + rand(49); // разное время - размазанный пересчет, а то все скопом всё равно //"60"; // считаем раз в минуту
     	// анализ погони
 		if (GetNpcQuestPastTimeParam(rCharacter, "Add2SeaTime") > 55) // 2 дня Только у фантомов есть признак, остальные 0
 		{
-		    if (CheckAttribute(rCharacter, "SeaAI.Task") && rCharacter.SeaAI.Task != AITASK_RUNAWAY) // че б не было, все равно может гнать за ГГ
+		    if (CheckAttribute(rCharacter, "SeaAI.Task") && rCharacter.SeaAI.Task != AITASK_RUNAWAY) // че б не было, всё равно может гнать за ГГ
 	        {
 	        	Ship_SetTaskRunaway(SECONDARY_TASK, sti(rCharacter.index), sti(pchar.index));
 	        }

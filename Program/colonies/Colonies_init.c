@@ -364,7 +364,7 @@ void InitColonies()
 		colonies[n].map.x = 535;
 		colonies[n].map.y = 265;
 		colonies[n].StoreNum   = LaVega_STORE;
-		colonies[n].from_sea   = "LaVega_port";
+		colonies[n].from_sea   = "LaVega_town";
 		colonies[n].HasNoFort = true;
         //colonies[n].Default.BoardLocation = "LaVega_ExitTown";
 

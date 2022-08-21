@@ -37,7 +37,7 @@
 
 
 #define TOTAL_ITEMS				1000 // Warship 08.05.09 - Новая система предметов
-#define ITEMS_QUANTITY			  417  // не забываем менять номер
+#define ITEMS_QUANTITY			  418  // не забываем менять номер
 
 #define MAX_BUTTONS               64
 #define RANDITEMS_QUANTITY    	  61

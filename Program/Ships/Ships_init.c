@@ -10023,7 +10023,7 @@ void InitShips()
 	refship.Track2.Speed	= "0.15, 0.25";
 
 	///////////////////////////////////////////////////////////////////////////
-	/// Corvette_quest			Черная Жемчужина
+	/// Corvette_quest			Чёрная Жемчужина
 	///////////////////////////////////////////////////////////////////////////
 	makeref(refShip,ShipsTypes[SHIP_CORVETTE_QUEST]);
 	refShip.Name            			= "Corvette_quest";

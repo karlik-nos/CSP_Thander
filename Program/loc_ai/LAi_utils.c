@@ -510,7 +510,7 @@ void LAi_CheckKillCharacter(aref chr)
 
 		chr.chr_ai.hp = 0.0;
 		// boal dead can be searched 14.12.2003 -->
-		Dead_AddLoginedCharacter(chr); // записали еще живого в список трупов
+		Dead_AddLoginedCharacter(chr); // записали ещё живого в список трупов
 		// boal dead can be searched 14.12.2003 <--
 		SetCharacterTask_Dead(chr);
 		Postevent(EVENT_CHARACTER_DEAD, 1, "a", chr);
@@ -1100,7 +1100,7 @@ void Dead_AddLoginedCharacter(aref chr)
                 //TakeNItems(chref, "Coins", Rand(9) + 3);
                 // обыск скелетов давал вылет, даем сразу в ГГ
                 TakeNItems(pchar, "Coins", Rand(9) + 3);
-                Log_Info("Собраны черные жемчужины");
+                Log_Info("Собраны чёрные жемчужины");
 		    }
 		    else
 		    // матрос с ЧЖ <--

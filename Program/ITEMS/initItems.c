@@ -9074,13 +9074,13 @@ int InitItems()
 	//Джокер "Проигравшийся игрок"
 	makeref(itm,Items[n]);
 	itm.id = "Joker";
-	itm.groupID = IDOLS_LEFT_ITEM_TYPE;
+	itm.groupID = TALISMAN_ITEM_TYPE;
 	itm.name = "itmname_Joker";
 	itm.describe = "itmdescr_Joker";
 	itm.picIndex = 7;
 	itm.picTexture = "ITEMS_20";
-	itm.price = 5000;
-	itm.weight = 0.1;
+	itm.price = 20000;
+	itm.weight = 0.5;
 	itm.ItemType = "QUESTITEMS";
 	n++;
 
@@ -9113,6 +9113,17 @@ int InitItems()
 	itm.describe = "itmdescr_PDM_Trava_Tzes_Umrat";
 	itm.picIndex = 8;
 	itm.picTexture = "ITEMS_18";
+	itm.price = 0;
+	itm.weight = 0.1;
+	itm.ItemType = "QUESTITEMS";
+	n++;
+	
+	makeref(itm,Items[n]);	//Пролог "Анжелика Тич"
+	itm.id = "ATpr_pismo";	//Письмо
+	itm.name = "itmname_ATpr_pismo";
+	itm.describe = "itmdescr_ATpr_pismo";
+	itm.picIndex = 7;
+	itm.picTexture = "ITEMS_12";
 	itm.price = 0;
 	itm.weight = 0.1;
 	itm.ItemType = "QUESTITEMS";
