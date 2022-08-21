@@ -1050,7 +1050,7 @@ int LocationInitSentMartin(int n)
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "GVIK";
 	locations[n].id.label = "GWIKshort";
-	locations[n].image = "loading\jonny_load\inside\GVIK.tga";
+	locations[n].image = "loading\jonny_load\inside\GWIC.tga";
 	locations[n].HWIC = true;
 	//Town sack
 	locations[n].townsack = "Marigo";
@@ -1480,7 +1480,7 @@ int LocationInitSentMartin(int n)
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     locations[n].id = "Marigo_ExitTown";
 	locations[n].id.label = "ExitTown";
-	locations[n].image = "loading\jonny_load\jungle\TownExitT.tga";
+	locations[n].image = "loading\jonny_load\jungle\ExitJungle.tga";
 	//Town sack
 	locations[n].townsack = "PortPax";
 	//Sound
