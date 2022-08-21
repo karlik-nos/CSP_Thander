@@ -1246,8 +1246,6 @@ void Ship_CheckSituation()
 		//Lipsar --->ИИ сторожей
 		if (bIsDefender)
 		{
-			ref rFortChref = GetFortCommander(rCharacter.IslandShips);
-
 			int attackChar = sti(rCharacter.Ship.LastBallCharacter);
 			if (attackChar == -1)
 			{
@@ -1255,8 +1253,11 @@ void Ship_CheckSituation()
 					attackChar = GetMainCharacterIndex();
 				else
 				{
-					if (GetNationRelation2Character(sti(rCharacter.nation), PChar.Ship.LastBallCharacter) == RELATION_ENEMY)
-						attackChar = PChar.Ship.LastBallCharacter;
+					if (CheckAttribute(PChar, "Ship.LastBallCharacter") && (PChar.Ship.LastBallCharacter != -1))
+					{
+						if (GetNationRelation2Character(sti(rCharacter.nation), PChar.Ship.LastBallCharacter) == RELATION_ENEMY)
+							attackChar = PChar.Ship.LastBallCharacter;
+					}
 				}
 			}
 
