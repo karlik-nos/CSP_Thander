@@ -16,7 +16,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
             }
 			if (pchar.questTemp.State == "MorrisWillams_AfterFightGoRedmond")
             {
-                link.l1 = "Ваших партнеров вы больше не увидите.";
+                link.l1 = "Ваших партнёров вы больше не увидите.";
                 link.l1.go = "Step_E6_5";
             }
 		break;

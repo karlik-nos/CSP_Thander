@@ -33,7 +33,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "meeting":
-			dialog.text = XI_ConvertString(Nations[sti(NPChar.nation)].Name) + " заплатила за твою голову хорошую цену, неважно, "+ GetSexPhrase("живым мы тебя доставим или мертвым","живой мы тебя доставим или мертвой") +".";
+			dialog.text = XI_ConvertString(Nations[sti(NPChar.nation)].Name) + " заплатила за твою голову хорошую цену, неважно, "+ GetSexPhrase("живым мы тебя доставим или мёртвым","живой мы тебя доставим или мёртвой") +".";
 			Link.l1 = "Я готов"+ GetSexPhrase("","а") +" заплатить вам ещё, лишь бы вы оставили меня в покое.";
 			Link.l1.go = "Cost_Head";
             // boal 08.04.04 -->
@@ -104,7 +104,7 @@ void ProcessDialogEvent()
         // boal <--
 
         case "battle":
-            AddDialogExitQuest("Battle_Hunters_Land");    // BOAL Весь код я перенес сюда по всем нациям, просто не переименовал
+            AddDialogExitQuest("Battle_Hunters_Land");    // BOAL Весь код я перенёс сюда по всем нациям, просто не переименовал
             if (CheckAttribute(PChar, "GenQuest.HunterStart")) // только ОЗГи, а не кладоисатели
             {   // запись в СЖ
 	            AddQuestRecord("HeadHunter", "HeadHunter_battle");
@@ -156,7 +156,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "TreasureHunter":
-			dialog.text = "Постой-ка, "+ GetSexPhrase("приятель","подруга") +"... Сдается, у тебя есть кое-что интересное. Нужно делиться с близкими найдеными сокровищами.";
+			dialog.text = "Постой-ка, "+ GetSexPhrase("приятель","подруга") +"... Сдаётся, у тебя есть кое-что интересное. Нужно делиться с близкими найдеными сокровищами.";
             Link.l1 = "Хорошо, я готов"+ GetSexPhrase("","а") +" заплатить вам, лишь бы вы оставили меня в покое.";
 			Link.l1.go = "Cost_Head";
             // boal 08.04.04 -->

@@ -77,7 +77,7 @@ void ProcessDialogEvent()
 
 		case "Next_2":
 		    NextDiag.TempNode = "Usual_1";
-			dialog.text = "А что в этом удивительного? Это очень быстрый и надежный способ разбогатеть. Но после удачной женитьбы я решил остепениться, чего и вам желаю.";
+			dialog.text = "А что в этом удивительного? Это очень быстрый и надёжный способ разбогатеть. Но после удачной женитьбы я решил остепениться, чего и вам желаю.";
 			link.l1 = "Понятно. Спасибо за совет. Непременно последую ему при случае...";
 			link.l1.go = "Good_exit";
 			NPChar.quest.NiceMeet = true;
@@ -157,7 +157,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Romantic_Battle_in_Bedroom_1":
-			dialog.text = "Защищайся, глупец, сейчас ты умрешь!";
+			dialog.text = "Защищайся, глупец, сейчас ты умрёшь!";
 			link.l1 = "Что??? Ну, это мы ещё поглядим!";
 			link.l1.go = "Romantic_Battle_in_Bedroom_2";
 		break;
@@ -218,7 +218,7 @@ void ProcessDialogEvent()
 		break;
 		case "TalkInCave_1":
 			dialog.text = "Неужели?";
-			link.l1 = "Да-да, не сомневайся даже. По всем Карибам тебя ищу... Жаровню-то принес?";
+			link.l1 = "Да-да, не сомневайся даже. По всем Карибам тебя ищу... Жаровню-то принёс?";
 			link.l1.go = "TalkInCave_2";
 		break;
 		case "TalkInCave_2":

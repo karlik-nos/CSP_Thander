@@ -16,7 +16,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
                 link.l1 = "Послушай, а что за человек местный ростовщик?";
                 link.l1.go = "Step_E6_1";
 			}
-            // ==> Восьмой квест фр.линейки, отговорить трех корсаров
+            // ==> Восьмой квест фр.линейки, отговорить трёх корсаров
             if (pchar.questTemp.State == "Fr8ThreeCorsairs_toSeek")
 			{
                 link.l1 = "Где я могу найти капитана Гея? У меня к нему важное дело.";

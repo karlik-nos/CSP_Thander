@@ -56,20 +56,20 @@ void ProcessDialogEvent()
 				//поиски команды на корвет
 				if (pchar.questTemp.LSC == "toSeekPeopleInCrew")
 				{
-					link.l8 = "Послушайте, есть серьезный разговор. Я набираю команду.";
+					link.l8 = "Послушайте, есть серьёзный разговор. Я набираю команду.";
 					link.l8.go = "SeekCrew";
 				}
 			}
 			NextDiag.TempNode = "prisonerHead";
 		break;
 		case "FTH_1":
-			dialog.text = "Ну что же, примите мои поздравления. Я - начальник тюрьмы Города, подчиняюсь непосредственно адмиралу. Я не против дружеских отношений с кем бы то ни было, но учтите, что если окажетесь за решеткой - дружбе конец.";
+			dialog.text = "Ну что же, примите мои поздравления. Я - начальник тюрьмы Города, подчиняюсь непосредственно адмиралу. Я не против дружеских отношений с кем бы то ни было, но учтите, что если окажетесь за решёткой - дружбе конец.";
 			link.l1 = "Да-да, я понимаю. И много через вас народу проходит?";
 			link.l1.go = "FTH_2";
 		break;
 		case "FTH_2":
 			dialog.text = "Нет, к сожалению, давно уже никого не было. Кланы живут своей жизнью, не высовываются. А граждане предпочитают не дебоширить.";
-			link.l1 = "Ясно. Ну что же, удачи вам в нелегком труде ничегонеделания.";
+			link.l1 = "Ясно. Ну что же, удачи вам в нелёгком труде ничегонеделания.";
 			link.l1.go = "FTH_3";
 		break;
 		case "FTH_3":
@@ -106,7 +106,7 @@ void ProcessDialogEvent()
 				//квест с вином от Доминика Легро
 				if (CheckAttribute(pchar, "questTemp.LSC.LegroHelp") && pchar.questTemp.LSC.LegroHelp == "toTomasBoil" && CheckCharacterItem(pchar, "potionwine"))
 				{
-					link.l2 = "Приятель, я принес"+ GetSexPhrase("","ла") +" тебе бутылочку вина от твоего друга Доминика Легро. Выпей, расслабься, а то сидишь тут безвылазно...";
+					link.l2 = "Приятель, я принёс"+ GetSexPhrase("","ла") +" тебе бутылочку вина от твоего друга Доминика Легро. Выпей, расслабься, а то сидишь тут безвылазно...";
 					link.l2.go = "WineLogro";
 				}
 				if (CheckAttribute(pchar, "questTemp.LSC.LegroHelp") && pchar.questTemp.LSC.LegroHelp == "toSecondToPrison")
@@ -264,7 +264,7 @@ void ProcessDialogEvent()
 
 		case "SecondLogro":
 			dialog.text = "Что скажешь?";
-			link.l1 = "Передал"+ GetSexPhrase("","а") +" я ему твои слова. Он очень удивился и клянется, что совершенно не в курсе того, что происходит.";
+			link.l1 = "Передал"+ GetSexPhrase("","а") +" я ему твои слова. Он очень удивился и клянётся, что совершенно не в курсе того, что происходит.";
 			link.l1.go = "SecondLogro_1";
 		break;
 		case "SecondLogro_1":
@@ -357,7 +357,7 @@ void ProcessDialogEvent()
 		break;
 		case "ArmoIsDead_6":
 			dialog.text = "Я готов.";
-			link.l1 = "Тогда вперед, не будет откладывать это дело.";
+			link.l1 = "Тогда вперёд, не будет откладывать это дело.";
 			link.l1.go = "ArmoIsDead_7";
 		break;
 		case "ArmoIsDead_7":

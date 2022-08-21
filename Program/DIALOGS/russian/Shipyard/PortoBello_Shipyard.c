@@ -17,7 +17,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 
 		case "Portobello_ratS_1":
-			dialog.text = "Обращался. Он приобрел у меня корвет и вскоре вышел в море.";
+			dialog.text = "Обращался. Он приобрёл у меня корвет и вскоре вышел в море.";
 			link.l1 = "Спасибо! А куда он отправился, ты часом не в курсе?";
 			link.l1.go = "Portobello_ratS_2";
 		break;

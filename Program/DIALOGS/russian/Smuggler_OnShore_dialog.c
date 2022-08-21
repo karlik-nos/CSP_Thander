@@ -30,7 +30,7 @@ void ProcessDialogEvent()
 				{
 					if (GetCompanionQuantity(pchar) > 1 && GetBaseHeroNation() != PIRATE)
 					{
-						dialog.text = NPCStringReactionRepeat("Слушай, тебе же в таверне ясно сказали, чтобы ты приходил"+ GetSexPhrase("","а") +" с одним кораблем. Проваливай и избавляйся от своей эскадры.",
+						dialog.text = NPCStringReactionRepeat("Слушай, тебе же в таверне ясно сказали, чтобы ты приходил"+ GetSexPhrase("","а") +" с одним кораблём. Проваливай и избавляйся от своей эскадры.",
 							"Ш"+ GetSexPhrase("ел","ла") +" бы ты отсюда. А то сами тебя патрулю сдадим.",
 							"Давай-давай, садись в шлюпку и уматывай.",
 							"Как же ты меня утомил"+ GetSexPhrase("","а") +"...", "block", 1, npchar, Dialog.CurrentNode);
@@ -44,7 +44,7 @@ void ProcessDialogEvent()
 					//редкостная хрень, но по-другому не работает-класс корабля ГГ считается отдельно от компаньонов, и всё тут
 					int iClass, ipClass;
 					ipClass = 4-sti(RealShips[sti(pchar.ship.type)].Class);
-					iClass = 3;//т.к. не пройдет по числу кораблей в любом случае
+					iClass = 3;//т.к. не пройдёт по числу кораблей в любом случае
 					if (GetBaseHeroNation() == PIRATE)
 					{
 						ipClass = sti(ipClass)-1;
@@ -77,7 +77,7 @@ void ProcessDialogEvent()
 				Dialog.snd = "voice\SMSH\SMSH001";
 				dialog.Text = RandPhraseSimple("Эй, что ты тут забыл"+ GetSexPhrase("","а") +", "+ GetSexPhrase("приятель","подруга") +"?",
                                           RandSwear() + "Что тебе тут нужно?!");
-				Link.l1 = RandPhraseSimple("Расслабься, парень, я привез"+ GetSexPhrase("","ла") +" товар!", "Ты чем смотришь? Я доставил"+ GetSexPhrase("","а") +" товар!");
+				Link.l1 = RandPhraseSimple("Расслабься, парень, я привёз"+ GetSexPhrase("","ла") +" товар!", "Ты чем смотришь? Я доставил"+ GetSexPhrase("","а") +" товар!");
 				Pchar.quest.Contraband.Counter = 0; // не торговали
 				if ((Pchar.Location == Pchar.location.from_sea) && (sti(pchar.Ship.Type) != SHIP_NOTUSED))
 				{
@@ -100,7 +100,7 @@ void ProcessDialogEvent()
 				//если заплатил, то разговаривают, иначе посылают
 				if (CheckAttribute(PChar, "GenQuest.contraTravel.payed") && sti(PChar.GenQuest.contraTravel.payed) == true)
 				{
-                    dialog.Text = RandPhraseSimple("Ага, наконец-то!!! Вот и ты, а то мы уж заждались совсем. Идем, мы отчаливаем.", "Пошевеливайся, тут повсюду патрули. Нужно быстрее убраться отсюда!");
+                    dialog.Text = RandPhraseSimple("Ага, наконец-то!!! Вот и ты, а то мы уж заждались совсем. Идём, мы отчаливаем.", "Пошевеливайся, тут повсюду патрули. Нужно быстрее убраться отсюда!");
 					//по заданию губернатора, истребление контры, только эта ветка.
 					if (CheckAttribute(pchar, "GenQuest.KillSmugglers") && pchar.GenQuest.KillSmugglers == "" && pchar.GenQuest.KillSmugglers.Areal == GiveArealByLocation(&locations[FindLocation(pchar.location)]))
 					{
@@ -197,7 +197,7 @@ void ProcessDialogEvent()
 					}
 					else
 					{
-						dialog.Text = "Слушай, проваливай отсюда! Сорвешь сделку - мы выпустим тебе кишки!";
+						dialog.Text = "Слушай, проваливай отсюда! Сорвёшь сделку - мы выпустим тебе кишки!";
 						Link.l1 = "Я думаю, мне ещё есть, что продать.";
 						Link.l1.go = "Exchange1";
 						Link.l2 = RandPhraseSimple("Ты смеешь мне угрожать, собака?", "Ты подавишься своими словами, каналья!");
@@ -211,8 +211,8 @@ void ProcessDialogEvent()
 
 		case "No_Ship":
 			Dialog.snd = "voice\SMSH\SMSH003";
-			dialog.Text = "На своем горбу, что ли? Где твой корабль?";
-			Link.l1 = RandPhraseSimple("Сначала я хотел"+ GetSexPhrase("","а") +" убедиться, что здесь нет никакого подвоха.", "Не хотел"+ GetSexPhrase("","а") +" рисковать кораблем. Предпочитаю сначала поглядеть на все своими глазами.");
+			dialog.Text = "На своём горбу, что ли? Где твой корабль?";
+			Link.l1 = RandPhraseSimple("Сначала я хотел"+ GetSexPhrase("","а") +" убедиться, что здесь нет никакого подвоха.", "Не хотел"+ GetSexPhrase("","а") +" рисковать кораблём. Предпочитаю сначала поглядеть на все своими глазами.");
 			Link.l1.go = "No_ship_1";
 			Link.l2 = "Сделка отменяется!";
 			Link.l2.go = "Cancellation";
@@ -277,7 +277,7 @@ void ProcessDialogEvent()
 		case "Cancellation":
             if (sti(Pchar.quest.Contraband.Counter) == 0)
             {
-    			dialog.Text = "Отменяется? Ты что, смеешься?";
+    			dialog.Text = "Отменяется? Ты что, смеёшься?";
     			Link.l1 = "Совершенно серьезно.";
     			Link.l1.go = "Cancellation_1";
 			}
@@ -304,7 +304,7 @@ void ProcessDialogEvent()
 				{
 					ChangeContrabandRelation(pchar, -10);
 					Dialog.snd = "voice\SMSH\SMSH007";
-					dialog.Text = "Это не сойдет тебе с рук!";
+					dialog.Text = "Это не сойдёт тебе с рук!";
 					Link.l1 = "Отправляйтесь гавкать куда-нибудь ещё, псы!";
 					Link.l1.go = "Exit_cancel";
 				}
@@ -320,14 +320,14 @@ void ProcessDialogEvent()
 		break;
 
         case "GenQuestKillContraband_1":
-			//счетчик подстав по "метро"...
+			//счётчик подстав по "метро"...
 			if(CheckAttribute(PChar, "GenQuest.contraTravel.active") && sti(PChar.GenQuest.contraTravel.active) == true)
 			{
 				Statistic_AddValue(PChar, "contr_TravelKill", 1);
 				ChangeContrabandRelation(pchar, -20); //репу контры вниз
 			}
 			dialog.Text = "Ты нам сейчас ответишь за такую подставу!";
-			Link.l1 = "Тогда вы все умрете. У меня четкий приказ - в случае сопротивления живых не брать!";
+			Link.l1 = "Тогда вы все умрёте. У меня чёткий приказ - в случае сопротивления живых не брать!";
 			Link.l1.go = "Exit_fight";
 		break;
 
@@ -346,7 +346,7 @@ void ProcessDialogEvent()
                 {
                     if(drand(11) == 3)
                     {
-        				dialog.Text = "Так-так... пожалуй, мы заберем твой товар бесплатно. Врядли ты побежишь жаловаться властям.";
+        				dialog.Text = "Так-так... пожалуй, мы заберём твой товар бесплатно. Врядли ты побежишь жаловаться властям.";
         				Link.l1 = "Что ж, попробуйте!";
         				Link.l1.go = "Exit_fight";
                         break;
@@ -356,7 +356,7 @@ void ProcessDialogEvent()
         			{
                         SetCoastalGuardPursuit();
         			}
-        			// при убегании от патруля на карту - корабли трем
+        			// при убегании от патруля на карту - корабли трём
         			SetTimerCondition("Rand_ContrabandInterruptionAtSeaEnded", 0, 0, 2, false);// если в порту сидим, спим, то 2 день
 
                     Pchar.quest.Rand_ContrabandAtSeaEnded.win_condition.l1 = "MapEnter";
@@ -364,7 +364,7 @@ void ProcessDialogEvent()
     			}
     			// установим окружение <--
                 dialog.Text = RandPhraseSimple("Итак, какой груз ты хотел"+ GetSexPhrase("","а") +" продать?",
-                                          "Что продаешь?");
+                                          "Что продаёшь?");
                Link.l1 = "Ну давай посмотрим.";
 				Link.l1.go = "Exchange1";
 				if (sti(Pchar.quest.Contraband.Counter) == 0)

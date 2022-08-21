@@ -6,7 +6,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 	{
 		case "quests":
 			dialog.text = NPCStringReactionRepeat(RandPhraseSimple("Какие вопросы, "+ GetSexPhrase("молодой человек","юная леди") +"?", "Чего ты хочешь, "+ GetSexPhrase("красавчик","красотка") +"? Ну хоть задай его."), "Опять вопросы?", "Хи-хи, третий раз на дню одно и то же - вопросы...",
-                          ""+ GetSexPhrase("Хм, может ты выберешь какую-нибудь красотку себе? А то у меня уже складывается в отношении тебя вполне определенное мнение...","Хм, может ты выберешь какую-нибудь красотку себе? Мальчиков не держим, хи-хи...") +"", "block", 1, npchar, Dialog.CurrentNode);
+                          ""+ GetSexPhrase("Хм, может ты выберешь какую-нибудь красотку себе? А то у меня уже складывается в отношении тебя вполне определённое мнение...","Хм, может ты выберешь какую-нибудь красотку себе? Мальчиков не держим, хи-хи...") +"", "block", 1, npchar, Dialog.CurrentNode);
 			link.l1 = HeroStringReactionRepeat(RandPhraseSimple("Я передумал...", "Хм, да ничего..."), "Не могу... Нет вопросов...",
                       "Да уж, действительно в третий раз... Извини.", "Не сейчас... В другой раз...", npchar, Dialog.CurrentNode);
 			link.l1.go = "exit";
@@ -65,7 +65,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
         break;
 		//==> Квест Аззи
         case "Step_1":
-			dialog.text = "Простите, что перебиваю... Назовите свое имя.";
+			dialog.text = "Простите, что перебиваю... Назовите своё имя.";
 			Link.l1 = "Меня зовут " + GetFullName(pchar) + ".";
 			Link.l1.go = "Step_2";
 		break;
@@ -85,8 +85,8 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			Link.l1.go = "Step_5";
 		break;
         case "Step_5":
-			dialog.text = "А-а-а, понятно... Я то думала, что ты серьезный человек в нашей иерархии. А ты так, мимоходом "+ GetSexPhrase("прикоснулся","прикоснулась") +".\n"+
-                     "Давай приступим к делу, "+ GetSexPhrase("красавчик","красотка") +". Аззи сказал, что я должна исправить твоё тело под определенные нужды. Чего ты хочешь?";
+			dialog.text = "А-а-а, понятно... Я то думала, что ты серьёзный человек в нашей иерархии. А ты так, мимоходом "+ GetSexPhrase("прикоснулся","прикоснулась") +".\n"+
+                     "Давай приступим к делу, "+ GetSexPhrase("красавчик","красотка") +". Аззи сказал, что я должна исправить твоё тело под определённые нужды. Чего ты хочешь?";
 			Link.l1 = ""+ GetSexPhrase("Хм, знаешь, для начала я бы тебя в таверну пригласил на коктейль... Ты сегодня вечером свободна?","Хм, я хочу многого... Всего, и как можно больше!") +"";
 			Link.l1.go = "Step_6";
 		break;
@@ -266,7 +266,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			Link.l1.go = "Step_19";
 		break;
         case "Step_19":
-			dialog.text =  "Я могу провести его, если у тебя есть эти предметы. Но только предметы эти я потом оставлю себе в качестве платы за работу.  И ещё, демоны не любят, когда их дергают не по делу. Так можно и исчезнуть навсегда...";
+			dialog.text =  "Я могу провести его, если у тебя есть эти предметы. Но только предметы эти я потом оставлю себе в качестве платы за работу.  И ещё, демоны не любят, когда их дёргают не по делу. Так можно и исчезнуть навсегда...";
 			Link.l1 = "По поводу Аззи не беспокойся, у меня есть его обещание не трогать меня в случае его вызова. И предметы я оставляю тебе.";
 			Link.l1.go = "Step_20";
 		break;
@@ -306,7 +306,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
             NextDiag.CurrentNode = NextDiag.TempNode;
             DialogExit();
 		break;
-		// капитан Шарп, грабеж жемчужных промыслов
+		// капитан Шарп, грабёж жемчужных промыслов
 		case "SharpPearl_1":
 			if (drand(1) || bBettaTestMode)
 			{
@@ -338,8 +338,8 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 					sld.mapEnc.type = "trade";
 					sld.mapEnc.worldMapShip = "quest_ship";
 					sld.mapEnc.Name = "бриг 'Шарпоносец'";
-					string sColony= SelectAnyColony(npchar.city); //колония, откуда плывет Шарп
-					int daysQty = GetMaxDaysFromIsland2Island(GetArealByCityName(sColony), GetArealByCityName(pchar.questTemp.Sharp.City))+3; //дней доехать даем с запасом
+					string sColony= SelectAnyColony(npchar.city); //колония, откуда плывёт Шарп
+					int daysQty = GetMaxDaysFromIsland2Island(GetArealByCityName(sColony), GetArealByCityName(pchar.questTemp.Sharp.City))+3; //дней доехать даём с запасом
 					Map_CreateTrader(sColony, pchar.questTemp.Sharp.City, sld.id, daysQty);
 					Log_TestInfo("Шарпоносец установлен из " + sColony + "  в " + pchar.questTemp.Sharp.City);
 				}
@@ -364,7 +364,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 		case "SharpPearl_3":
 			chrDisableReloadToLocation = true;
-			pchar.questTemp.Sharp.count = 0; //счетчик нулим для след. раза
+			pchar.questTemp.Sharp.count = 0; //счётчик нулим для след. раза
 			pchar.questTemp.Sharp.price = 5000+rand(20)*1000; //цена за наводку
 			pchar.questTemp.Sharp.price.evil = rand(1); //добрый или злой, для скидки
 			sld = &characters[GetCharacterIndex("Sharp")];

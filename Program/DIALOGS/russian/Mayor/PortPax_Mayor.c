@@ -26,7 +26,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 
         //==> Двенадцатый квест исп.линейки: захват Порт-о-Принса.
         case "SpaLine12Quest_PortPax":
-			dialog.text = "Мы сдаемся, "+ GetSexPhrase("чёртов кастилец","чёртова испанка") +"...";
+			dialog.text = "Мы сдаёмся, "+ GetSexPhrase("чёртов кастилец","чёртова испанка") +"...";
 			link.l1 = "Это хорошо - вы сохранили свои жизни.";
 			link.l1.go = "Step_S12_1";
 			AfterTownBattle();

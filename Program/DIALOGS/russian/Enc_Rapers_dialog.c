@@ -152,7 +152,7 @@ void ProcessDialogEvent()
 			link.l2.go = "Node_Fight";
 		break;
 
-		case "Node_4": // бандюки уходят, девица остается - ГГ её выкупил у бандюков
+		case "Node_4": // бандюки уходят, девица остаётся - ГГ её выкупил у бандюков
 			LAi_LocationFightDisable(&Locations[FindLocation(pchar.location)], false);
 			AddMoneyToCharacter(pchar, -makeint(sti(pchar.GenQuest.EncGirl.price)));
 			ChangeCharacterReputation(pchar, 7);
@@ -292,7 +292,7 @@ void ProcessDialogEvent()
 
 		case "Node_11":
 			pchar.GenQuest.EncGirl = "RapersTreasure";
-			dialog.text = "Ах ты "+ GetSexPhrase("пес","дрянь") +"! Прочь с дороги!...";
+			dialog.text = "Ах ты "+ GetSexPhrase("пёс","дрянь") +"! Прочь с дороги!...";
 			link.l1 = "Аргх...";
 			link.l1.go = "exit_fight";
 		break;
@@ -342,7 +342,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "EncGirl_Berglar3_1":
-			dialog.text = "Конечно, не сойдет, кто же спорит? Ну, прощай, "+ GetSexPhrase("дружище","подруга") +"."+ GetSexPhrase(" И помни - не такой ты красавец, чтобы на тебя девушки с ходу вешались. Впредь будешь умней!","") +"";
+			dialog.text = "Конечно, не сойдёт, кто же спорит? Ну, прощай, "+ GetSexPhrase("дружище","подруга") +"."+ GetSexPhrase(" И помни - не такой ты красавец, чтобы на тебя девушки с ходу вешались. Впредь будешь умней!","") +"";
 			link.l1 = ""+ GetSexPhrase("Это точно!..","Давай уже, проваливай!") +"";
 			link.l1.go = "exit";
 			AddDialogExitQuestFunction("EncGirlFack_outRoomRaped");

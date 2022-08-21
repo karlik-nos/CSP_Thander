@@ -221,7 +221,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Popitka_Vtoraya_2":
-			dialog.text = "Ты принес"+ GetSexPhrase("","ла") +" мне двадцать тысяч миллионов за волшебное кольцо?";
+			dialog.text = "Ты принёс"+ GetSexPhrase("","ла") +" мне двадцать тысяч миллионов за волшебное кольцо?";
 			link.l1 = "Вот - (дать ей двадцать).";
 			link.l1.go = "Kupit_20";
 			link.l2 = "Вот - (дать ей двадцать тысяч).";

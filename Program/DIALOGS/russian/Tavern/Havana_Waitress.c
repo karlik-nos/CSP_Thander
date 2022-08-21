@@ -6,7 +6,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 	switch (Dialog.CurrentNode)
 	{
 		case "quests":
-			dialog.text = NPCStringReactionRepeat(RandPhraseSimple("Вопросы, " + GetAddress_Form(NPChar) + "?", "Что вам угодно, " + GetAddress_Form(NPChar) + "?"), ""+ GetSexPhrase("Хм, уж не пристаете ли вы ко мне, " + GetAddress_Form(NPChar) + "? ","Опять со странными вопросами? Девушка, выпили бы вы рому, что ли...") +"", "В течение этого дня вы уже третий раз говорите о каком-то вопросе..."+ GetSexPhrase(" Это знаки внимания?","") +"",
+			dialog.text = NPCStringReactionRepeat(RandPhraseSimple("Вопросы, " + GetAddress_Form(NPChar) + "?", "Что вам угодно, " + GetAddress_Form(NPChar) + "?"), ""+ GetSexPhrase("Хм, уж не пристаёте ли вы ко мне, " + GetAddress_Form(NPChar) + "? ","Опять со странными вопросами? Девушка, выпили бы вы рому, что ли...") +"", "В течение этого дня вы уже третий раз говорите о каком-то вопросе..."+ GetSexPhrase(" Это знаки внимания?","") +"",
                           "Опять вопросы будете задавать, " + GetAddress_Form(NPChar) + "?", "block", 1, npchar, Dialog.CurrentNode);
 			link.l1 = HeroStringReactionRepeat(RandPhraseSimple("Я передумал"+ GetSexPhrase("","а") +"...", "Сейчас мне не о чем говорить"), "Да нет, что ты, красавица...",
                       "Никак нет, дорогуша, склероз...", "Да нет, какие вопросы...", npchar, Dialog.CurrentNode);
@@ -78,7 +78,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = "Step_S4_7";
         break;
  	 	case "Step_S4_7":
-			dialog.text = "Сеньор"+ GetSexPhrase("","ита") +", я кажется знаю человека, который убил дона Хосе и увез донну Анну...";
+			dialog.text = "Сеньор"+ GetSexPhrase("","ита") +", я кажется знаю человека, который убил дона Хосе и увёз донну Анну...";
 			link.l1 = "Кто он?";
 			link.l1.go = "Step_S4_8";
         break;
@@ -89,7 +89,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = "Step_S4_9";
         break;
  	 	case "Step_S4_9":
-			dialog.text = "Больше ничего, сеньор"+ GetSexPhrase("","ита") +". Этот человек забрал записку и ушёл. А утром по городу разнеслась весть о том, что дон Хуан мертв. Вот тут-то я и догадалась, что к чему. Только никому не сказала, боялась, что меня причислят к соучастникам преступления. Сеньор"+ GetSexPhrase("","ита") +", вы обещали не делать мне ничего плохого. Прошу вас, сдержите свое слово!";
+			dialog.text = "Больше ничего, сеньор"+ GetSexPhrase("","ита") +". Этот человек забрал записку и ушёл. А утром по городу разнеслась весть о том, что дон Хуан мёртв. Вот тут-то я и догадалась, что к чему. Только никому не сказала, боялась, что меня причислят к соучастникам преступления. Сеньор"+ GetSexPhrase("","ита") +", вы обещали не делать мне ничего плохого. Прошу вас, сдержите своё слово!";
 			link.l1 = "Хорошо, я оставлю тебя на свободе. Хотя понятно, что это ты привела убийцу в дом дона Хосе. Однако полагаю, что если не через тебя, то как-нибудь иначе он всё равно проник бы к донне Анне. Так что живи пока...";
 			link.l1.go = "Step_S4_10";
         break;
@@ -108,7 +108,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
         break;
  	 	case "Step_F3_2":
 			dialog.text = "Ах, у донны Анны и так много красивых колец, зачем ей ещё одно? А у бедной девушки нет ничего...";
-			link.l1 = "Плутовка, я понял"+ GetSexPhrase("","а") +", на что ты намекаешь! Ну, держи 500 монет, и ещё столько же получишь, когда принесешь ответ от донны Анны. На эти деньги ты купишь себе сколько угодно украшений.";
+			link.l1 = "Плутовка, я понял"+ GetSexPhrase("","а") +", на что ты намекаешь! Ну, держи 500 монет, и ещё столько же получишь, когда принесёшь ответ от донны Анны. На эти деньги ты купишь себе сколько угодно украшений.";
 			link.l1.go = "Step_F3_3";
 			AddMoneyToCharacter(pchar, -500);
         break;

@@ -164,7 +164,7 @@ void ProcessDialogEvent()
 			Link.l1.go = "Underground1_3";
 		break;
 		case "Underground1_3":
-            dialog.text = "Вот ведь дуреха! Сама от страха обделаться готова, и думает, что я такая же.";
+            dialog.text = "Вот ведь дурёха! Сама от страха обделаться готова, и думает, что я такая же.";
 			Link.l1 = "Да уж, ты явно не такая же. Чёрт в юбке!";
 			Link.l1.go = "Underground1_4";
 		break;

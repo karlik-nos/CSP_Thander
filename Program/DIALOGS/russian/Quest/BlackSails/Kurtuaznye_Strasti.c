@@ -518,7 +518,7 @@ void ProcessDialogEvent()
 
 		case "BS_KS_36_1":
 			npchar.LifeDay = 0;
-            dialog.text = "Теперь вы отвезете меня в Порт Рояль?";
+            dialog.text = "Теперь вы отвезёте меня в Порт Рояль?";
             link.l1 = "Я же обещал"+ GetSexPhrase("","а") +". Прошу на борт!";
 			link.l1.go = "BS_KS_36_exit";
 			PChar.quest.BSCourtlyPassions_finalRoyal.win_condition.l1 = "location";

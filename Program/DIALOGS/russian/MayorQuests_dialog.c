@@ -102,7 +102,7 @@ void ProcessDialogEvent()
 		break;
 		case "SeekSpy_2":
 			dialog.text = "Ну а я здесь при чём?";
-			Link.l1 = "Может, и ни при чём, но давай-ка, для начала, пройдем в комендатуру. Там разберемся...";
+			Link.l1 = "Может, и ни при чём, но давай-ка, для начала, пройдём в комендатуру. Там разберемся...";
 			Link.l1.go = "SeekSpy_3";
 		break;
 		case "SeekSpy_3":
@@ -345,14 +345,14 @@ void ProcessDialogEvent()
 				sld = characterFromId(pchar.GenQuest.DestroyPirate.MayorId);
 				lngFileID = LanguageOpenFile("LocLables.txt");
 				sTemp = LanguageConvertString(lngFileID, pchar.GenQuest.DestroyPirate.outShoreId);
-				dialog.text = "А дальше ты скажешь своим, что пойдешь на моём корабле до места, под названием " + sTemp + ", а они пусть ждут тебя в " + XI_ConvertString("Colony"+sld.city+"Dat") +
+				dialog.text = "А дальше ты скажешь своим, что пойдёшь на моём корабле до места, под названием " + sTemp + ", а они пусть ждут тебя в " + XI_ConvertString("Colony"+sld.city+"Dat") +
 					". В этом случае я оставлю тебе жизнь. Иначе тебе вспорят брюхо прямо здесь, на палубе.\nКак перспективы на будущее?";
 				Link.l1 = "Не скажу, что заманчивые. Откуда мне знать, что ты сдержишь слово, когда я буду совсем "+ GetSexPhrase("один","одна") +"?";
 				Link.l1.go = "DestroyPirate_5";
 			}
 		break;
 		case "DestroyPirate_5":
-			dialog.text = "Хех, знать ты не можешь, но у тебя будет моё слово. А так тебя ждет смерть прямо сейчас. Мне кажется, выбор очевиден...";
+			dialog.text = "Хех, знать ты не можешь, но у тебя будет моё слово. А так тебя ждёт смерть прямо сейчас. Мне кажется, выбор очевиден...";
 			Link.l1 = "Хм, ну что же, я "+ GetSexPhrase("согласен","согласна") +". Надеюсь, ты сдержись слово...";
 			Link.l1.go = "DP_toShore";
 			Link.l2 = "По мне, так оно и есть. И выбор этот - дать бой, здесь и прямо сейчас. К оружию, мерзавцы!";
@@ -374,7 +374,7 @@ void ProcessDialogEvent()
 			AddDialogExitQuest("DestroyPirate_WithoutFight");
 		break;
 		case "DP_WithoutFight_again":
-			dialog.text = "Ты ещё здесь? Я бы на твоем месте не стал здесь задерживаться...";
+			dialog.text = "Ты ещё здесь? Я бы на твоём месте не стал здесь задерживаться...";
 			Link.l1 = "Ухожу.";
 			Link.l1.go = "exit";
 			Diag.TempNode = "DP_WithoutFight_again";

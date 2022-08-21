@@ -84,7 +84,7 @@ void ProcessDialogEvent()
 			if (isBadReputation(pchar, 40))
 			{
 				dialog.text = LinkRandPhrase(""+ GetSexPhrase("Шёл бы отсюда, приятель","Шла бы отсюда, подруга") +"...", "Проваливай отсюда!", "Ты, часом, дверью не "+ GetSexPhrase("ошибся","ошиблась") +"? Это дом губернатора " + XI_ConvertString("Colony" + npchar.city + "Gen") + ". Тебе лучше уйти!");
-				link.l1 = RandPhraseSimple("Уйду, когда захочу!", "Не лезь не в свое дело...");
+				link.l1 = RandPhraseSimple("Уйду, когда захочу!", "Не лезь не в своё дело...");
 				link.l1.go = "exit";
 			}
 			else

@@ -84,7 +84,7 @@ void ProcessDialogEvent()
 				Link.l2 = LinkRandPhrase (LinkRandPhrase("Мэри,", "Милая,", "Дорогая,") + " у меня для тебя есть распоряжение. ", LinkRandPhrase("Мэри,", "Милая,", "Дорогая,") + " мне нужно с тобой посоветоваться. ", LinkRandPhrase("Мэри,", "Милая,", "Дорогая,") + " нам нужно кое-что сделать."));
 	            Link.l2.go = "stay_follow";
 			}	
-           		// boal отчет о корабле
+           		// boal отчёт о корабле
 			if(CheckAttribute(NPChar, "treasurer") && NPChar.treasurer == 1)
 			{
 			    Link.l8 = "Мэри, дай мне полный отчёт о корабле.";
@@ -137,7 +137,7 @@ void ProcessDialogEvent()
 				Link.l4.go = "FUNY_SHIP_1";
             }
 
-            // по тек локации определим можно ли тут приказать  -->
+            // по тёк локации определим можно ли тут приказать  -->
             if (IsEntity(loadedLocation))
             {
                 if (CheckAttribute(loadedLocation, "fastreload"))
@@ -984,7 +984,7 @@ void ProcessDialogEvent()
 					Link.l1.go = "exit";
 					Diag.TempNode = "hired";
 					CompanionTravel_DeleteSpecialShipAttributes(NPChar);
-					Group_DeleteAtEnd(NPChar.CompanionTravel.GroupID); // Потрем группу
+					Group_DeleteAtEnd(NPChar.CompanionTravel.GroupID); // Потрём группу
 					SetCompanionIndex(PChar, -1, sti(NPChar.index));
 					PChar.CompanionTravel = sti(PChar.CompanionTravel) - 1; // Этого компаньона взяли обратно в эскадру
 					if(GetAttrValue(PChar, "CompanionTravel") == 0) CloseQuestHeader("CompanionTravel");
@@ -1004,7 +1004,7 @@ void ProcessDialogEvent()
 			}
 			else
 			{
-				dialog.text = "Кэп, у вас же и так эскадра из пяти коралей, куда-же шестой ещё? В общем, я буду ждать вас тут, на своем корабле - все эти ваши новые компаньоны не надежны - их судна очень скоро пойдут ко дну и вы за мной вернетесь.";
+				dialog.text = "Кэп, у вас же и так эскадра из пяти коралей, куда-же шестой ещё? В общем, я буду ждать вас тут, на своём корабле - все эти ваши новые компаньоны не надёжны - их судна очень скоро пойдут ко дну и вы за мной вернетесь.";
 					Link.l1 = "Эх, умная ты голова. Тебе не капитаном, а адмиралом нужно быть!";
 					Link.l1.go = "exit";
 					Diag.TempNode = "CompanionTravel_ToSquadron_2";

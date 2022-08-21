@@ -4,7 +4,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
     switch (Dialog.CurrentNode)
 	{
 		case "quests":
-			dialog.text = NPCStringReactionRepeat(RandPhraseSimple("Вопросы, " + GetAddress_Form(NPChar) + "?", "Что вам угодно, " + GetAddress_Form(NPChar) + "?"), "Хм, уж не пристаете ли вы ко мне, " + GetAddress_Form(NPChar) + "? Опять со странными вопросами...", "В течение этого дня вы уже третий раз говорите о каком-то вопросе... Это знаки внимания?",
+			dialog.text = NPCStringReactionRepeat(RandPhraseSimple("Вопросы, " + GetAddress_Form(NPChar) + "?", "Что вам угодно, " + GetAddress_Form(NPChar) + "?"), "Хм, уж не пристаёте ли вы ко мне, " + GetAddress_Form(NPChar) + "? Опять со странными вопросами...", "В течение этого дня вы уже третий раз говорите о каком-то вопросе... Это знаки внимания?",
                           "Опять вопросы будете задавать, " + GetAddress_Form(NPChar) + "?", "block", 1, npchar, Dialog.CurrentNode);
 			link.l1 = HeroStringReactionRepeat(RandPhraseSimple("Я передумал...", "Сейчас мне не о чем говорить"), "Да нет, что ты, красавица...",
                       "Никак нет, дорогуша, склероз...", "Да нет, какие вопросы...", npchar, Dialog.CurrentNode);
@@ -16,7 +16,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			}
 			if (pchar.questTemp.piratesLine == "Soukins_seekRings" && CheckCharacterItem(pchar, "jewelry18") && CheckCharacterItem(pchar, "jewelry7"))
 			{
-				link.l1 = "Я "+ GetSexPhrase("принес","принесла") +" то, что ты хотела. Вот твои кольца.";
+				link.l1 = "Я "+ GetSexPhrase("принёс","принесла") +" то, что ты хотела. Вот твои кольца.";
 				link.l1.go = "PL_Q7_3";
 			}
 		break;
@@ -54,7 +54,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = "PL_Q7_6";
 		break;
 		case "PL_Q7_6":
-			dialog.text = "Подскажу. Забери журнал из его резиденции. Днем он все время там торчит, так что живым ты оттуда не уйдешь, если посмеешь забрать журнал. Но вот ночью...";
+			dialog.text = "Подскажу. Забери журнал из его резиденции. Днём он все время там торчит, так что живым ты оттуда не уйдёшь, если посмеешь забрать журнал. Но вот ночью...";
 			link.l1 = "Так ночью все закрыто!";
 			link.l1.go = "PL_Q7_7";
 		break;

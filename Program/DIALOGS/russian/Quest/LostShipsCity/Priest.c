@@ -33,14 +33,14 @@ void ProcessDialogEvent()
 				npchar.quest.meeting = "1";
 				if (CheckAttribute(loadedLocation, "storm"))
 				{
-					dialog.text = "Вознеси хвалу Господу нашему, Иисусу Христу, за спасение свое! Пока шторм не прошёл...";
-					link.l1 = "Возношу, падре, и благодарю за оказанную мне честь продлить ещё свое жалкое существование на этой бренной земле... Меня зовут " + GetFullName(pchar) + ".";
+					dialog.text = "Вознеси хвалу Господу нашему, Иисусу Христу, за спасение своё! Пока шторм не прошёл...";
+					link.l1 = "Возношу, падре, и благодарю за оказанную мне честь продлить ещё своё жалкое существование на этой бренной земле... Меня зовут " + GetFullName(pchar) + ".";
 					link.l1.go = "FT_1";
 				}
 				else
 				{
-					dialog.text = "Вознесем хвалу Господу нашему!";
-					link.l1 = "Возношу, падре, и благодарю за оказанную мне честь продлить ещё свое жалкое существование на этой бренной земле... Меня зовут " + GetFullName(pchar) + ".";
+					dialog.text = "Вознесём хвалу Господу нашему!";
+					link.l1 = "Возношу, падре, и благодарю за оказанную мне честь продлить ещё своё жалкое существование на этой бренной земле... Меня зовут " + GetFullName(pchar) + ".";
 					link.l1.go = "FT_1";
 				}
 			}
@@ -83,7 +83,7 @@ void ProcessDialogEvent()
 				//поиски команды на корвет
 				if (pchar.questTemp.LSC == "toSeekPeopleInCrew")
 				{
-					link.l8 = "Святой отец, я имею к вам серьезное предложение.";
+					link.l8 = "Святой отец, я имею к вам серьёзное предложение.";
 					link.l8.go = "SeekCrew";
 				}
 				if (CheckAttribute(pchar, "ReturnToLSC"))
@@ -115,7 +115,7 @@ void ProcessDialogEvent()
 			link.l1.go = "FT_3";
 		break;
 		case "FT_3":
-			dialog.text = "Верно. Пастырь наш водит стадо свое посреди сетей многих. Скажи, ты соблюдаешь заповеди его?";
+			dialog.text = "Верно. Пастырь наш водит стадо своё посреди сетей многих. Скажи, ты соблюдаешь заповеди его?";
 			link.l1 = "Гм, не сказал"+ GetSexPhrase("","а") +" бы...";
 			link.l1.go = "FT_4";
 		break;
@@ -160,9 +160,9 @@ void ProcessDialogEvent()
 			link.l1.go = "exit_setOwner";
 			LAi_group_Attack(NPChar, Pchar);
 		break;
-		//замечение по обнаженному оружию
+		//замечение по обнажённому оружию
 		case "LSCNotBlade":
-			dialog.text = LinkRandPhrase("Убери оружие, "+ GetSexPhrase("сын мой","дочь моя") +". А то нервируешь немного...", "Знаешь, у нас тут не принято сабелькой размахивать. Убери оружие.", "Убери оружие, не к лицу это "+ GetSexPhrase("серьезному мужчине","девушке") +"...");
+			dialog.text = LinkRandPhrase("Убери оружие, "+ GetSexPhrase("сын мой","дочь моя") +". А то нервируешь немного...", "Знаешь, у нас тут не принято сабелькой размахивать. Убери оружие.", "Убери оружие, не к лицу это "+ GetSexPhrase("серьёзному мужчине","девушке") +"...");
 			link.l1 = LinkRandPhrase("Хорошо.", "Ладно.", "Как скажешь...");
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First Time";
@@ -368,7 +368,7 @@ void ProcessDialogEvent()
 			}
 			if(makeint(PChar.money)>=5000)
 			{
-				Link.l4 = "Мне везет с деньгами, поэтому я пожертвую 5000 пиастров.";
+				Link.l4 = "Мне везёт с деньгами, поэтому я пожертвую 5000 пиастров.";
 				Link.l4.go = "donation paid_5000";
 			}
 		break;
@@ -432,7 +432,7 @@ void ProcessDialogEvent()
 			DeleteAttribute(pchar, "items.mineral3");
 			if (sti(npchar.quest.takeCandles.Qty) < 400)
 			{
-				dialog.text = "Ну, давай посмотрим. Сейчас ты принес"+ GetSexPhrase("","ла") +" " + FindRussianQtyString(iTemp) + " свечей. Всего ты принес"+ GetSexPhrase("","ла") +" " + FindRussianQtyString(sti(npchar.quest.takeCandles.Qty)) + " свечей. Тебе осталось принести ещё " + FindRussianQtyString(400 - sti(npchar.quest.takeCandles.Qty)) + ".";
+				dialog.text = "Ну, давай посмотрим. Сейчас ты принёс"+ GetSexPhrase("","ла") +" " + FindRussianQtyString(iTemp) + " свечей. Всего ты принёс"+ GetSexPhrase("","ла") +" " + FindRussianQtyString(sti(npchar.quest.takeCandles.Qty)) + " свечей. Тебе осталось принести ещё " + FindRussianQtyString(400 - sti(npchar.quest.takeCandles.Qty)) + ".";
 				link.l1 = "Понятно. Ну что ж, продолжу поиски, святой отец.";
 				link.l1.go = "exit";
 				AddQuestRecord("ISS_takeCandles", "2");
@@ -440,8 +440,8 @@ void ProcessDialogEvent()
 			}
 			else
 			{
-				dialog.text = "Отлично, ты выполнил"+ GetSexPhrase("","а") +" поставленную задачу в полном объеме, "+ GetSexPhrase("сын мой","дочь моя") +". Теперь нам хватит свечей для церковных служб на долгое время.";
-				link.l1 = "Я рад"+ GetSexPhrase("","а") +", что смог"+ GetSexPhrase("","ла") +" помочь приходу. Святой отец, а что там насчет награды за труды?";
+				dialog.text = "Отлично, ты выполнил"+ GetSexPhrase("","а") +" поставленную задачу в полном объёме, "+ GetSexPhrase("сын мой","дочь моя") +". Теперь нам хватит свечей для церковных служб на долгое время.";
+				link.l1 = "Я рад"+ GetSexPhrase("","а") +", что смог"+ GetSexPhrase("","ла") +" помочь приходу. Святой отец, а что там насчёт награды за труды?";
 				link.l1.go = "takeCandles_ok";
 			}
 		break;

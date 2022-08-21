@@ -31,7 +31,7 @@ void ProcessDialogEvent()
             //Квест №2, доставка письма в Кюрасао.
             if (pchar.questTemp.State == "Fr2Letter_Arrest")// квест №2, базар с охраной при аресте
             {
-    			dialog.text = "Сдайте свое оружие! И не вздумайте сопротивляться!";
+    			dialog.text = "Сдайте своё оружие! И не вздумайте сопротивляться!";
     			link.l1 = "Ну хорошо, будь по-вашему. И только потому, что Кюрасао в дружбе с Тортугой...";
     			link.l1.go = "Step_F2_1";
             }
@@ -50,13 +50,13 @@ void ProcessDialogEvent()
             if (pchar.questTemp.State == "Fr2Letter_SeekProblems")// квест №2, базар с кэпом галеона, абордаж
             {
     			dialog.text = ""+ GetSexPhrase("Чёртов ладрон","Чёртова девка") +"!";
-    			link.l1 = "Потише, испанский пес! Я задам тебе пару вопросов. Ответишь правду - будешь жить.";
+    			link.l1 = "Потише, испанский пёс! Я задам тебе пару вопросов. Ответишь правду - будешь жить.";
     			link.l1.go = "Step_F2_12";
             }
 			if (npchar.id == "AnnaDeLeiva")// квест №3, донна Анна в спальне
             {
     			dialog.text = "Боже! Что случилось? Вы прибыли от Бертрана? Что это был за шум?";
-    			link.l1 = "Сударыня, не знаю, печальные это для вас новости или нет, но я был"+ GetSexPhrase("","а") +" вынужден"+ GetSexPhrase("","а") +" убить вашего супруга. У нас нет времени на переживания и обмороки, нужно немедленно бежать! Генерал-губернатор Тортуги Бертран д'Ожерон ждет вас.";
+    			link.l1 = "Сударыня, не знаю, печальные это для вас новости или нет, но я был"+ GetSexPhrase("","а") +" вынужден"+ GetSexPhrase("","а") +" убить вашего супруга. У нас нет времени на переживания и обмороки, нужно немедленно бежать! Генерал-губернатор Тортуги Бертран д'Ожерон ждёт вас.";
     			link.l1.go = "Step_F3_1";
             }
 			if (npchar.id == "InesDeLasCierras" && pchar.questTemp.State == "Fr5AnnaHant_toHavana")// квест №5, Инесс
@@ -125,10 +125,10 @@ void ProcessDialogEvent()
             DialogExit();
         break;
 
-//********************************* Спасение трех горожан. Квест №1 **********************************
+//********************************* Спасение трёх горожан. Квест №1 **********************************
  		case "Step_F1_1":
 			dialog.text = "Ты сам"+ GetSexPhrase("","а") +" напросил"+ GetSexPhrase("ся","ась") +"! Прощайся с жизнью...";
-			link.l1 = "Эх, не бережете вы свои уши...";
+			link.l1 = "Эх, не бережёте вы свои уши...";
 			link.l1.go = "Step_F1_2";
 		break;
  		case "Step_F1_2":
@@ -171,7 +171,7 @@ void ProcessDialogEvent()
 		break;
  		case "Step_F2_3":
 			dialog.text = "А это тебе зачем?";
-			link.l1 = "Затем, чтобы он ознакомился с моими бумагами, судовым журналом и прочее. Тогда поймет, что я действительно вестов"+ GetSexPhrase("ой","ая") +" генерал-губернатора Тортуги.";
+			link.l1 = "Затем, чтобы он ознакомился с моими бумагами, судовым журналом и прочее. Тогда поймёт, что я действительно вестов"+ GetSexPhrase("ой","ая") +" генерал-губернатора Тортуги.";
 			link.l1.go = "Step_F2_4";
 		break;
  		case "Step_F2_4":
@@ -186,7 +186,7 @@ void ProcessDialogEvent()
 		break;
  		case "Step_F2_6":
 			dialog.text = "Хорошо. То, что твои судовые бумаги попадут к Стэвезанту - это я тебе обещаю. Ну а там молись, чтобы бумаги эти были убедительными.\n"+
-				          "Ну а несколько кругляшков мой тесть сам возьмет из твоей утвари. Не возражаешь?";
+				          "Ну а несколько кругляшков мой тесть сам возьмёт из твоей утвари. Не возражаешь?";
 			link.l1 = "Конечно, нет! Ну, не теряй времени, друг мой.";
 			link.l1.go = "Step_F2_7";
 		break;
@@ -265,7 +265,7 @@ void ProcessDialogEvent()
 			AddQuestUserData("Fra_Line_5_KillAnnaHanters", "sSex", GetSexPhrase("","а"));
 			AddQuestUserData("Fra_Line_5_KillAnnaHanters", "sSex1", GetSexPhrase("ен","на"));
 
-			npchar.LifeDay = 1; // уберем нпс
+			npchar.LifeDay = 1; // уберём нпс
 			SaveCurrentNpcQuestDateParam(npchar, "LifeTimeCreate");
 			locations[FindLocation("Mayak10")].DisableEncounters = true; //энкаутеры закроем
 			LAi_LocationDisableOfficersGen("Mayak10", true); //офицеров не пускать
@@ -309,7 +309,7 @@ void ProcessDialogEvent()
 		break;
  		case "Step_F7_3":
 			dialog.text = "Хорошо, как скажешь. У меня выбор невелик...";
-			link.l1 = "Тогда вперед, корсар! И не отставай.";
+			link.l1 = "Тогда вперёд, корсар! И не отставай.";
     		link.l1.go = "Step_F7_4";
 		break;
  		case "Step_F7_4":
@@ -333,14 +333,14 @@ void ProcessDialogEvent()
 		case "Step_F7_6":
             dialog.text = "В общем, слушай меня внимательно... Под городом Форт де Франс, что на Мартинике, есть подземелье. В этом подземелье у меня припрятана одна очень ценная и нужная нашему брату вещичка...\n"+
 				          "Что это - говорить не буду, сам"+ GetSexPhrase("","а") +" увидишь... В общем, я дарю тебе то, что ты там найдёшь.";
-			link.l1 = "Однако, необычный подарок, прямо скажем... Ну да ладно, дареному коню в зубы не глядят. Прощай, Рок, выздоравливай...";
+			link.l1 = "Однако, необычный подарок, прямо скажем... Ну да ладно, дарёному коню в зубы не глядят. Прощай, Рок, выздоравливай...";
             link.l1.go = "Step_F7_7";
         break;
 		case "Step_F7_7":
 			LAi_SetActorType(npchar);
 			LAi_ActorGoToLocation(npchar, "reload", "reload3", "none", "", "", "", 6.0);
 			DeleteAttribute(npchar, "RebirthPhantom");
-         	npchar.LifeDay = 0; // уберем нпс
+         	npchar.LifeDay = 0; // уберём нпс
 			pchar.GenQuestRandItem.FortFrance_Dungeon = true;
 			pchar.GenQuestRandItem.FortFrance_Dungeon.randitem3 = "cirass5";
 			DialogExit();
@@ -354,7 +354,7 @@ void ProcessDialogEvent()
 			bDisableFastReload = true;
 			LAi_KillCharacter(npchar);
 			DeleteAttribute(npchar, "RebirthPhantom");
-         	npchar.LifeDay = 0; // уберем нпс
+         	npchar.LifeDay = 0; // уберём нпс
 			pchar.questTemp.State = "Fr7RockBras_RockIsAgony";
 			DialogExit();
 		break;
@@ -363,10 +363,10 @@ void ProcessDialogEvent()
 			LAi_ActorWaitDialog(npchar, pchar);
 			DialogExit();
 		break;
-//********************************* Объехать трех корсаров. Квест №8 **********************************
+//********************************* Объехать трёх корсаров. Квест №8 **********************************
         case "Step_F8_1":
-            dialog.text = "Ага, этот мерзавец сам не может прийти за мной и посылает своих прихвостней! Надеюсь, твоя душа, прежде чем попасть в ад, успеет шепнуть ему, что ждет каждого, кто посмеет...";
-            link.l1 = "Утомил. Займемся делом, капитан...";
+            dialog.text = "Ага, этот мерзавец сам не может прийти за мной и посылает своих прихвостней! Надеюсь, твоя душа, прежде чем попасть в ад, успеет шепнуть ему, что ждёт каждого, кто посмеет...";
+            link.l1 = "Утомил. Займёмся делом, капитан...";
             link.l1.go = "Step_F8_2";
         break;
  		case "Step_F8_2":
