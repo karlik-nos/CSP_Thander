@@ -231,10 +231,10 @@ void wdmInitWorldMap()
 	worldMap.labels.Reefs.locator = "Reefs";
 	worldMap.labels.Reefs.text = CheckingTranslate(idLngFile,"Reefs");
 	
-	worldMap.labels.Reefs.type = "Island";
-	worldMap.labels.Reefs.id = "KhaelRoa";
-	worldMap.labels.Reefs.locator = "KhaelRoa";
-	worldMap.labels.Reefs.text = CheckingTranslate(idLngFile,"KhaelRoa");
+	worldMap.labels.KhaelRoa.type = "Island";
+	worldMap.labels.KhaelRoa.id = "KhaelRoa";
+	worldMap.labels.KhaelRoa.locator = "KhaelRoa";
+	worldMap.labels.KhaelRoa.text = CheckingTranslate(idLngFile,"KhaelRoa");
 
 	//-------  TOWN ----------------------------------------------------
 
