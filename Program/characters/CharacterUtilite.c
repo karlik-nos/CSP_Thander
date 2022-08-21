@@ -1733,6 +1733,28 @@ bool CheckCharacterItem(ref _refCharacter,string itemName)
 	return CheckAttribute(_refCharacter, "Items." + itemName) && (sti(_refCharacter.Items.(itemName)) > 0);
 }
 
+string CheckCharacterGeneratedItem(ref _refCharacter, string sItemBaseName)
+{
+	if (!CheckAttribute(_refCharacter, "Items")) { return ""; }
+
+	aref arInventory, arItem;
+	string sItem;
+	makearef(arInventory, _refCharacter.Items);
+
+	int n = GetAttributesNum(arInventory);
+	for (int i = 0; i < n; i++)
+	{
+		arItem = GetAttributeN(arInventory, i);
+		sItem = GetAttributeName(arItem);
+		if (HasSubStr(sItem, sItemBaseName))
+		{
+			return sItem;
+		}
+	}
+
+	return sItem;
+}
+
 int GetCharacterItem(ref _refCharacter,string itemName)
 {
 	if(CheckAttribute(_refCharacter,"Items."+itemName))
@@ -3692,6 +3714,7 @@ bool IsPCharHaveMushketerModel()
 
 	if(HasSubStr(sModel, "Blad") ||
 	HasSubStr(sModel, "Whisper") ||
+	HasSubStr(sModel, "PGG_Barhard") ||
 	HasSubStr(sModel, "PGG_Anamaria") ||
 	HasSubStr(sModel, "PGG_Victori") ||
 	HasSubStr(sModel, "PGG_Angellica") ||

@@ -300,6 +300,7 @@ void StartBattleInterface()
 	CreateEntity(&objShipPointer,"shippointer");
 	LayerAddObject(SEA_EXECUTE,&objShipPointer,222222);
 	LayerAddObject(SEA_REALIZE,&objShipPointer,-1);
+	DoQuestFunctionDelay("ActiveShowAfterReload", 0.2);
 }
 
 void RefreshBattleInterface()
@@ -925,7 +926,7 @@ void BI_UpdateShip()
 void BI_CreateShip()
 {
 	int charIndex = GetEventData();
-	if(charIndex>=0) ClearActiveChrPerks(GetCharacter(charIndex));
+	//if(charIndex>=0) ClearActiveChrPerks(GetCharacter(charIndex)); //ломало таймеры для морских активных перков
 	if( IsEntity(&BattleInterface) ) {
 		AddShipToInterface(charIndex);
 	}
@@ -1459,6 +1460,10 @@ ref GetCurrentCharge()
 	BattleInterface.textinfo.CannonsNumR.text = GetBortIntactCannonsNum(pchar, "rcannon", sti(refBaseShip.rcannon)) + "/" + GetBortCannonsMaxQty(pchar, "rcannon");
 	BattleInterface.textinfo.CannonsNumB.text = GetBortIntactCannonsNum(pchar, "bcannon", sti(refBaseShip.bcannon)) + "/" + GetBortCannonsMaxQty(pchar, "bcannon");
 	BattleInterface.textinfo.CannonsNumF.text = GetBortIntactCannonsNum(pchar, "fcannon", sti(refBaseShip.fcannon)) + "/" + GetBortCannonsMaxQty(pchar, "fcannon");
+	/*if (CheckAttribute(pchar,"perks.list.Turn180.delay")) BattleInterface.textinfo.Turn180CD.text = "Откат Манёвр. разворота: "+sti(pchar.perks.list.Turn180.delay)+" c.";
+	else BattleInterface.textinfo.Turn180CD.text = "";
+	if (CheckAttribute(pchar,"perks.list.ImmediateReload.delay")) BattleInterface.textinfo.ImmediateReloadCD.text = "Откат Предв. перезарядки: "+sti(pchar.perks.list.ImmediateReload.delay)+" c.";
+	else BattleInterface.textinfo.ImmediateReloadCD.text = "";*/ //инфа по перезарядке перков
 	//<---
 	return &BI_intNRetValue;
 }
@@ -2012,6 +2017,20 @@ void SetParameterData()
 	BattleInterface.textinfo.Planks.pos.y = RecalculateVIcon(makeint(388* fHtRatio));//RecalculateVIcon(402);
 	BattleInterface.textinfo.Planks.text = XI_convertString("Planks");
 	BattleInterface.textinfo.Planks.refreshable = true;
+	
+	/*BattleInterface.textinfo.Turn180CD.font = "interface_button";
+	BattleInterface.textinfo.Turn180CD.scale = 1.0 * fHtRatio;
+	BattleInterface.textinfo.Turn180CD.color = argb(255,255,255,255);
+	BattleInterface.textinfo.Turn180CD.pos.x = sti(showWindow.right) - RecalculateHIcon(makeint(144* fHtRatio));//sti(showWindow.right) - RecalculateHIcon(104);
+	BattleInterface.textinfo.Turn180CD.pos.y = RecalculateVIcon(makeint(598* fHtRatio));//RecalculateVIcon(402);
+	BattleInterface.textinfo.Turn180CD.refreshable = true;
+	
+	BattleInterface.textinfo.ImmediateReloadCD.font = "interface_button";
+	BattleInterface.textinfo.ImmediateReloadCD.scale = 1.0 * fHtRatio;
+	BattleInterface.textinfo.ImmediateReloadCD.color = argb(255,255,255,255);
+	BattleInterface.textinfo.ImmediateReloadCD.pos.x = sti(showWindow.right) - RecalculateHIcon(makeint(144* fHtRatio));//sti(showWindow.right) - RecalculateHIcon(104);
+	BattleInterface.textinfo.ImmediateReloadCD.pos.y = RecalculateVIcon(makeint(628* fHtRatio));//RecalculateVIcon(402);
+	BattleInterface.textinfo.ImmediateReloadCD.refreshable = true;*/ //инфа по перкам
 
 	// Парусина
 	BattleInterface.textinfo.Sailcloth.font = "bold_numbers";

@@ -1582,7 +1582,7 @@ float FindShipTurnRateBonus(aref refCharacter)
 }
 
 // calculate recharge time for cannon
-float Cannon_GetRechargeTimeValue(aref aCharacter)
+float Cannon_GetRechargeTimeValue(ref aCharacter)
 {
 	if(!CheckAttribute(aCharacter, "Ship.type"))
 	{
@@ -1603,9 +1603,8 @@ float Cannon_GetRechargeTimeValue(aref aCharacter)
 
 	float fMultiply = 1.0;
 	if (CheckCharacterPerk(aCharacter, "FastReload")) fMultiply = 0.9;
-	else fMultiply = 1.0
-	if (IsCharacterPerkOn(aCharacter, "ImmediateReload")) fMultiply *= 0.5;
-	else fMultiply = fMultiply - 0.0;
+	float ImmRel = AIShip_isPerksUse(CheckOfficersPerk(aCharacter, "ImmediateReload"), 1.0, 0.5);
+	fMultiply *= ImmRel;
 	if (CheckAttribute(&RealShips[sti(aCharacter.Ship.Type)], "Tuning.CannonsSpecial")) fMultiply *= 1.2;
 	fMultiply *= (1+CheckOfficersPerk(aCharacter,"InstantRepair"));//x2 времени при активной быстрой починке
 	// boal 060804 для компа поблажки
