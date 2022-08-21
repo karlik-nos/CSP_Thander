@@ -37,7 +37,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
  		break;
         //============ Голландская линейка, квест №1. поиски Чумакейро.
  		case "Step_H1_1":
-    		dialog.text = "Знаю. Я ему подыскал подходящий дом для съема. Хороший человек, заплатил прилично...";
+    		dialog.text = "Знаю. Я ему подыскал подходящий дом для съёма. Хороший человек, заплатил прилично...";
     		link.l1 = "Понятно... А где этот дом, который снял Аарон?";
     		link.l1.go = "Step_H1_2";
  		break;
@@ -62,7 +62,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
     		link.l1.go = "exit";
  		break;
 		case "FindDesouzaHol":
-    		dialog.text = "Ко мне нет, но к моей официантке приставали типы, подходящие под описание. Можешь у нее узнать подробности.";
+    		dialog.text = "Ко мне нет, но к моей официантке приставали типы, подходящие под описание. Можешь у неё узнать подробности.";
     		link.l1 = "Хорошо, спасибо.";
 			pchar.Whisper.FindDesouzaHolWaitress = true;
     		link.l1.go = "exit";

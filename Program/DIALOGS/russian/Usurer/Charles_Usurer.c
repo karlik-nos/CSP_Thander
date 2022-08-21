@@ -21,7 +21,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
                 link.l5.go = "Step_Az_4";
             }
 		break;
-        // ==> Квест Аззи. Дача трех лимонов ГГ по поручению Аззи.
+        // ==> Квест Аззи. Дача трёх лимонов ГГ по поручению Аззи.
 		case "Step_Az_1":
 			dialog.text = "Все верно. Три миллиона наличными оджидают вас, " + GetAddress_Form(NPChar) + ". Изволите получить прямо сейчас?";
 			Link.l1 = "Да, и всю сумму целиком.";

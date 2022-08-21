@@ -17,7 +17,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 		//пиратка, квест №3, поиски Лоу
 		case "PL_Q3_1":
-			dialog.text = NPCStringReactionRepeat("Приходил, правда, не приобрел ничего.",
+			dialog.text = NPCStringReactionRepeat("Приходил, правда, не приобрёл ничего.",
 				"Я уже все сказал по этому поводу...",
 				"Обращался, обращался. Только к сказанному ранее мне добавить нечего.",
                 "Послушай, "+ GetSexPhrase("утомил","утомила") +"!", "block", 0, npchar, Dialog.CurrentNode);

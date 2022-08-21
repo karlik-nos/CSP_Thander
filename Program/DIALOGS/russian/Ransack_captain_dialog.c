@@ -231,7 +231,7 @@ void ProcessDialogEvent()
             ReleasePrisoner(NPChar); // освободили пленника
             DeleteAttribute(NPChar, "LifeDay") // постоянный
 			Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(Npchar.id);
-			// тут трем накопивщиеся сабли и корабли 290704 BOAL -->
+			// тут трём накопивщиеся сабли и корабли 290704 BOAL -->
 			DeleteAttribute(Npchar, "Ship");
 			Npchar.Ship.Type = SHIP_NOTUSED;
             DeleteAttribute(Npchar, "Fellows"); // его офицеры

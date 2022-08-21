@@ -203,7 +203,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "ring_13a":
-			dialog.text = "Нам туда. Плывем прямо, никуда не сворачивая, в направлении этого галеона. Как достигнем кольца - дальше я покажу дорогу, нужно будет пробраться на обратную сторону. Вход в трюм моего корабля - через пролом в носовой части. Скажу сразу: я туда не полезу, пока ты не почикаешь всех крабов.";
+			dialog.text = "Нам туда. Плывём прямо, никуда не сворачивая, в направлении этого галеона. Как достигнем кольца - дальше я покажу дорогу, нужно будет пробраться на обратную сторону. Вход в трюм моего корабля - через пролом в носовой части. Скажу сразу: я туда не полезу, пока ты не почикаешь всех крабов.";
 			link.l1 = "Мы с тобой уже об этом договорились вчера, я помню. Ты - показываешь корабль, я - уничтожаю крабов. Поплыли?";
 			link.l1.go = "ring_14";
 		break;
@@ -355,7 +355,7 @@ void ProcessDialogEvent()
 			pchar.quest.LSC_Ring_cabin.win_condition.l1 = "location";
 			pchar.quest.LSC_Ring_cabin.win_condition.l1.location = "ExternalRingCabin1";
 			pchar.quest.LSC_Ring_cabin.win_condition = "LSC_RingEnterCabin";
-			sld = ItemsFromID("RingCapBook"); // кладем журнал 'Санта-Люсии'
+			sld = ItemsFromID("RingCapBook"); // кладём журнал 'Санта-Люсии'
 			sld.shown = true;
 			sld.startLocation = "ExternalRingCabin1";
 			sld.startLocator = "item1";
@@ -404,7 +404,7 @@ void ProcessDialogEvent()
 
 		case "ring_36":
 			dialog.text = "Забери это себе. В конце-концов, ты выполнил"+ GetSexPhrase("","а") +" самую опасную работу.";
-			if (CheckAttribute(pchar, "questTemp.LSC.Ring.ReadCapBook")) // прочел журнал
+			if (CheckAttribute(pchar, "questTemp.LSC.Ring.ReadCapBook")) // прочёл журнал
 			{
 				link.l1 = "Хорошо. Но я "+ GetSexPhrase("нашёл","нашла") +" кое-что ещё, по твоей части, искатель тайников. Вот, на столе лежал судовой журнал. История, содержащаяся в нём, очень печальная... но кое-чем она теперь касается и нас: где-то в трюме спрятан целый ящик золота! Прочти сам!";
 				link.l1.go = "ring_41";
@@ -452,7 +452,7 @@ void ProcessDialogEvent()
 
 		case "book_wait":
 			dialog.text = ""+ GetSexPhrase("Прочёл","Прочла") +"? Что там написано?";
-			if (CheckAttribute(pchar, "questTemp.LSC.Ring.ReadCapBook")) // прочел журнал
+			if (CheckAttribute(pchar, "questTemp.LSC.Ring.ReadCapBook")) // прочёл журнал
 			{
 				link.l1 = "Тут написано такое... История очень печальная... но кое-чем она теперь касается и нас. В общем, это по твоей части, искатель тайников: где-то в трюме спрятан целый ящик золота! Прочти сам!";
 				link.l1.go = "ring_41";
@@ -652,7 +652,7 @@ void ProcessDialogEvent()
 			DialogExit();
 		break;
 
-		//замечание по обнаженному оружию
+		//замечание по обнажённому оружию
 		case "LSCNotBlade":
 			dialog.text = LinkRandPhrase("Слушай, ты бы убрал"+ GetSexPhrase("","а") +" оружие. А то нервируешь немного...", "Знаешь, у нас тут не принято сабелькой размахивать. Убери оружие.", "Слушай, что ты, как "+ GetSexPhrase("д'Артаньян","ненормальная") +", бегаешь тут, шпагой машешь? Убери оружие, не к лицу это "+ GetSexPhrase("серьёзному мужчине","красивой девушке") +"...");
 			link.l1 = LinkRandPhrase("Хорошо.", "Ладно.", "Как скажешь...");

@@ -100,7 +100,7 @@ void ProcessDialogEvent()
 		break;
  		case "Step_S2_3":
 			dialog.text = "Янсений извратил догмы Церкви, мы имеем разногласия в вопросе примирения существования свободной человеческой воли и необходимости божественной благодати, без участия которой невозможно спасение человека.";
-			link.l1 = "А прийти к согласию, то есть разрешить разногласия путём переговоров, никак не удается?";
+			link.l1 = "А прийти к согласию, то есть разрешить разногласия путём переговоров, никак не удаётся?";
 			link.l1.go = "Step_S2_4";
 		break;
  		case "Step_S2_4":
@@ -263,7 +263,7 @@ void ProcessDialogEvent()
             }
             else
             {
-                dialog.text = "Э-э-э, задание выполнено, а где же 150 тысяч? Ступай, "+ GetSexPhrase("сын мой","дочь моя") +", и приходи с деньгами для отчета по заданию.";
+                dialog.text = "Э-э-э, задание выполнено, а где же 150 тысяч? Ступай, "+ GetSexPhrase("сын мой","дочь моя") +", и приходи с деньгами для отчёта по заданию.";
     			link.l1 = "Прошу прощения, монесеньор, забыл"+ GetSexPhrase("","а") +" на корабле. Я мигом...";
     			link.l1.go = "exit";
                 NextDiag.TempNode = "Step_S2_All";
@@ -346,7 +346,7 @@ void ProcessDialogEvent()
 			pchar.questTemp.State = "TakeRockBras_RockGiven";
 			sld = characterFromId("RockBrasilian");
 			ReleasePrisoner(sld);
-     	    sld.LifeDay = 0; // уберем нпс
+     	    sld.LifeDay = 0; // уберём нпс
 		break;
 
     }

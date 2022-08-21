@@ -11,7 +11,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = "exit";
 			if (pchar.RomanticQuest == "SeekInPortoBello")
 			{
-				link.l1 = "Послушай, ты не в курсе, никто не ждет здесь прибытия брига 'Восторженный'?";
+				link.l1 = "Послушай, ты не в курсе, никто не ждёт здесь прибытия брига 'Восторженный'?";
 				link.l1.go = "Romantic_1";
 			}
 
@@ -61,7 +61,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			break;
 
 		case "Mushket_stid_1":
-			dialog.text = "Да неужели?! Последнего, у кого было к нему 'дело', давно уже крабы доели. Он ни с кем дел не имеет - псих-одиночка, жлоб несчастный. Только контрабандисты его терпят, потому что товар регулярно поставляет. В порты он не заходит - в каждом его одноногая ждет. Даже пираты на него охотятся... А тебя, случайно не Джекмен по его душу послал?";
+			dialog.text = "Да неужели?! Последнего, у кого было к нему 'дело', давно уже крабы доели. Он ни с кем дел не имеет - псих-одиночка, жлоб несчастный. Только контрабандисты его терпят, потому что товар регулярно поставляет. В порты он не заходит - в каждом его одноногая ждёт. Даже пираты на него охотятся... А тебя, случайно не Джекмен по его душу послал?";
 			link.l1 = "Да нет... Есть у него вещица, которая ему не принадлежит, выкупить хочу...";
 			link.l1.go = "Mushket_stid_2";
 		break;
@@ -117,7 +117,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		case "Mushket_stid_paymoney":
 			AddMoneyToCharacter(Pchar, -100000);
 			SetMushketCapitainInWorld();
-			dialog.text = "О-о, у меня появил"+ GetSexPhrase("ся щедрый приятель","ась щедрая приятельница") +"! Я даже стал подумывать - не продешевил ли я! Ну, да ладно - чего не сделаешь ради бескорыстной дружбы... Теперь слушай: он на днях отправился в бухту под названием " + XI_ConvertString(pchar.questTemp.Mushket.Shore) + ".\nДолго он там не будет - разгрузится и уйдет, так что поторопись. Догнать его ты не сможешь, но застать там долж"+ GetSexPhrase("ен","на") +" ещё успеть. Правда, если будешь лететь быстрее ветра, хе-хе... Если нет, то придётся потом искать само"+ GetSexPhrase("му","й") +". Я и рад буду тебе помочь, в знак нашей дружбы, но он мне свои маршруты не докладывает.";
+			dialog.text = "О-о, у меня появил"+ GetSexPhrase("ся щедрый приятель","ась щедрая приятельница") +"! Я даже стал подумывать - не продешевил ли я! Ну, да ладно - чего не сделаешь ради бескорыстной дружбы... Теперь слушай: он на днях отправился в бухту под названием " + XI_ConvertString(pchar.questTemp.Mushket.Shore) + ".\nДолго он там не будет - разгрузится и уйдёт, так что поторопись. Догнать его ты не сможешь, но застать там долж"+ GetSexPhrase("ен","на") +" ещё успеть. Правда, если будешь лететь быстрее ветра, хе-хе... Если нет, то придётся потом искать само"+ GetSexPhrase("му","й") +". Я и рад буду тебе помочь, в знак нашей дружбы, но он мне свои маршруты не докладывает.";
 			link.l1 = "Спасибо, Лис! Немедленно выдвигаюсь.";
 			link.l1.go = "exit";
 			AddQuestRecord("SeekDoubleMushket", "4");
@@ -156,7 +156,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 
 void SetMushketCapitainInWorld()
 {
-	//создаем кэпов
+	//создаём кэпов
 	int Rank = sti(pchar.rank) + 15;
 	if (Rank > 30) Rank = 30;
 	ref sld = GetCharacter(NPC_GenerateCharacter("MushketCap", "officer_17", "man", "man", Rank, PIRATE, -1, true));
@@ -206,7 +206,7 @@ void SetMushketCapitainInWorld()
 	sld.quest = "InMap"; //личный флаг искомого кэпа
 	sld.city = "Shore47"; //определим колонию, из бухты которой с мушкетом выйдет
 	sld.cityShore = GetIslandRandomShoreId(GetArealByCityName(sld.city));
-	sld.quest.targetCity = SelectAnyColony(sld.city); //определим колонию, в бухту которой он придет
+	sld.quest.targetCity = SelectAnyColony(sld.city); //определим колонию, в бухту которой он придёт
 	sld.quest.targetShore = "Shore58";
 	pchar.questTemp.Mushket.Shore = sld.city;
 	Log_TestInfo("Кэп с мушкетом вышел из: " + sld.city + " и направился в: " + sld.quest.targetShore);
@@ -215,7 +215,7 @@ void SetMushketCapitainInWorld()
 	//выбор типа кораблика на карте
 	sld.mapEnc.worldMapShip = "quest_ship";
 	sld.mapEnc.Name = "Бриг 'Стрела'";
-	int daysQty = GetMaxDaysFromIsland2Island(GetArealByCityName(sld.quest.targetCity), GetArealByCityName(sld.city))+5; //дней доехать даем с запасом
+	int daysQty = GetMaxDaysFromIsland2Island(GetArealByCityName(sld.quest.targetCity), GetArealByCityName(sld.city))+5; //дней доехать даём с запасом
 	Map_CreateTrader(sld.city, sld.quest.targetShore, sld.id, daysQty);
 	//заносим Id кэпа в базу нпс-кэпов
 	sTemp = sld.id;

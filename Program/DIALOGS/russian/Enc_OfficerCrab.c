@@ -72,7 +72,7 @@ void ProcessDialogEvent()
 
         // boal 05.09.03 offecer need to go to abordage -->
         case "stay_follow":
-            dialog.text = "(Краб издает щелкающий звук, чтобы показать, что он внимательно вас слушает.)";
+            dialog.text = "(Краб издаёт щёлкающий звук, чтобы показать, что он внимательно вас слушает.)";
             Link.l1 = "Стой здесь!";
             Link.l1.go = "Boal_Stay";
             Link.l2 = "Следуй за мной и не отставай!";

@@ -9,7 +9,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = "Exit";
             if (pchar.questTemp.State == "MorrisWillams_ArrestedToPrison")   // разговор по шестому квесту англ.линейки
             {
-    			link.l2 = "Лейтенант, не буду ходить вокруг да около. Я хочу, чтобы заключенный Моррис Уильямс был свободен.";
+    			link.l2 = "Лейтенант, не буду ходить вокруг да около. Я хочу, чтобы заключённый Моррис Уильямс был свободен.";
     			link.l2.go = "Step_E6_1";
             }
             if (pchar.questTemp.State == "SaveFromMorgan_toPrison")   // испанка, квест №1

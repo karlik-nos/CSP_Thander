@@ -25,7 +25,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 
         case "Romantic_2":
-			dialog.text = GetFullName(pchar) + ", берешь ли ты в жены Изабеллу де Вальдес и клянешься жить с ней в мире и согласии, пока смерть не разлучит вас?";
+			dialog.text = GetFullName(pchar) + ", берёшь ли ты в жены Изабеллу де Вальдес и клянёшься жить с ней в мире и согласии, пока смерть не разлучит вас?";
 			link.l1 = "Да, падре.";
 			link.l1.go = "Romantic_3";
 		break;
@@ -33,7 +33,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			locCameraToPos(3.64, 3.25, -7.84, false);
 			LAi_SetActorType(npchar);
 			LAi_ActorTurnToLocator(npchar, "goto", "goto5");
-			dialog.text = "А ты, Изабелла де Вальдес, берешь ли ты в мужья " + GetMainCharacterNameGen() + " и клянешься жить с ним в мире и согласии, пока смерть не разлучит вас?";
+			dialog.text = "А ты, Изабелла де Вальдес, берёшь ли ты в мужья " + GetMainCharacterNameGen() + " и клянёшься жить с ним в мире и согласии, пока смерть не разлучит вас?";
 			link.l1 = "Да, падре.";
 			link.l1.go = "Romantic_4";
 		break;

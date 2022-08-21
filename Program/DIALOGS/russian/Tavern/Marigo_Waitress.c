@@ -4,7 +4,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
     switch (Dialog.CurrentNode)
 	{
 		case "quests":
-			dialog.text = NPCStringReactionRepeat(RandPhraseSimple("Вопросы, " + GetAddress_Form(NPChar) + "?", "Что вам угодно, " + GetAddress_Form(NPChar) + "?"), ""+ GetSexPhrase("Хм, уж не пристаете ли вы ко мне, " + GetAddress_Form(NPChar) + "? ","Опять со странными вопросами? Девушка, выпили бы вы рому, что ли...") +"", "В течение этого дня вы уже третий раз говорите о каком-то вопросе..."+ GetSexPhrase(" Это знаки внимания?","") +"",
+			dialog.text = NPCStringReactionRepeat(RandPhraseSimple("Вопросы, " + GetAddress_Form(NPChar) + "?", "Что вам угодно, " + GetAddress_Form(NPChar) + "?"), ""+ GetSexPhrase("Хм, уж не пристаёте ли вы ко мне, " + GetAddress_Form(NPChar) + "? ","Опять со странными вопросами? Девушка, выпили бы вы рому, что ли...") +"", "В течение этого дня вы уже третий раз говорите о каком-то вопросе..."+ GetSexPhrase(" Это знаки внимания?","") +"",
                           "Опять вопросы будете задавать, " + GetAddress_Form(NPChar) + "?", "block", 1, npchar, Dialog.CurrentNode);
 			link.l1 = HeroStringReactionRepeat(RandPhraseSimple("Я передумал"+ GetSexPhrase("","а") +"...", "Сейчас мне не о чем говорить"), "Да нет, что ты, красавица...",
                       "Никак нет, дорогуша, склероз...", "Да нет, какие вопросы...", npchar, Dialog.CurrentNode);
@@ -24,13 +24,13 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = "FindDesouzaHolWaitress_1";
 		break;
 		case "FindDesouzaHolWaitress_1":
-			dialog.text = "Этого они, увы, не сказали. Но они не только вас искали, у них был список из нескольких десятков человек с нетипичной внешностью, большая часть из которых - испанцы. Они сказали, что все эти люди - преступники и их разыскивают. Одного, как оказалось, недавно видели в городе, так что эти клейменные отправились за ним. Это было буквально пару часов назад.";
+			dialog.text = "Этого они, увы, не сказали. Но они не только вас искали, у них был список из нескольких десятков человек с нетипичной внешностью, большая часть из которых - испанцы. Они сказали, что все эти люди - преступники и их разыскивают. Одного, как оказалось, недавно видели в городе, так что эти клеймённые отправились за ним. Это было буквально пару часов назад.";
 			link.l1 = "И в каком направлении они ушли искать этого типа?";
 			link.l1.go = "FindDesouzaHolWaitress_2";
 		break;
 		case "FindDesouzaHolWaitress_2":
 			dialog.text = "Капитан, мне немного не по себе от всей этой истории. Скажите, для чего они вас разыскивают?";
-			link.l1 = "У меня с ними старые счеты. Их лидер - садист и безумец. Он пытает людей ради забавы. Эти люди опасны и их нужно остановить.";
+			link.l1 = "У меня с ними старые счёты. Их лидер - садист и безумец. Он пытает людей ради забавы. Эти люди опасны и их нужно остановить.";
 			link.l1.go = "FindDesouzaHolWaitress_3";
 		break;
 		case "FindDesouzaHolWaitress_3":

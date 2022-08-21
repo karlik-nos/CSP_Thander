@@ -110,10 +110,10 @@ void ProcessDialogEvent()
                 //homo 25/06/06
                 link.l1.go = "rumours_capitan";
                 //
-                if (CheckAttribute(NPChar, "EncGroupName")) // только для фантомов грабеж
+                if (CheckAttribute(NPChar, "EncGroupName")) // только для фантомов грабёж
                 {
                     link.l2 = RandPhraseSimple("Вы в курсе, кто я? Думаю, ясно, что мои корабельные орудия могут сделать решето из вашего корыта. Давайте решим все мирно. Выкуп вполне меня устроит.",
-                                               "Море... и мы одни... Как насчет того, чтобы в целях вашей безопасности немного задобрить моих ребят?.");
+                                               "Море... и мы одни... Как насчёт того, чтобы в целях вашей безопасности немного задобрить моих ребят?.");
                     link.l2.go = "Talk_board";
                 }
                 if (CheckAttribute(NPChar, "Ship.Mode") && NPChar.Ship.Mode == "Trade")
@@ -237,7 +237,7 @@ void ProcessDialogEvent()
 		//<-- Квест ***Клан Ламбрини*** Sinistra
         case "Trade_1":
 			dialog.text = "Почему бы и нет?";
-			link.l1 = "Пойдемте смотреть товары.";
+			link.l1 = "Пойдёмте смотреть товары.";
 			link.l1.go = "Trade_2";
 			link.l2 = "Я передумал"+ GetSexPhrase("","а") +".";
 			link.l2.go = "exit";
@@ -282,7 +282,7 @@ void ProcessDialogEvent()
 
 		case "Cards_Rule":
    			dialog.text = CARDS_RULE;
-			link.l1 = "Что ж, давайте начнем!";
+			link.l1 = "Что ж, давайте начнём!";
 			link.l1.go = "Cards_begin";
 			link.l3 = "Нет, это не для меня...";
 			link.l3.go = "exit";
@@ -380,7 +380,7 @@ void ProcessDialogEvent()
 
 		case "Dice_Rule":
    			dialog.text = DICE_RULE;
-			link.l1 = "Что ж, давайте начнем!";
+			link.l1 = "Что ж, давайте начнём!";
 			link.l1.go = "Dice_begin";
 			link.l3 = "Нет, это не для меня...";
 			link.l3.go = "exit";
@@ -525,8 +525,8 @@ void ProcessDialogEvent()
             {
                 if(rand(21) > (GetSummonSkillFromNameToOld(PChar, SKILL_GRAPPLING) + GetSummonSkillFromNameToOld(PChar, SKILL_LEADERSHIP)) )
                 {
-                    Dialog.text = "Напрасно вы затеяли свое грязное дело, капитан, на борту моего корабля. Я проявлю милосердие и позволю вам вернуться на свой корабль и утонуть вместе с ним.";
-                    link.l1 = "Мы ещё посмотрим, кто сегодня пойдет на корм акулам!";
+                    Dialog.text = "Напрасно вы затеяли своё грязное дело, капитан, на борту моего корабля. Я проявлю милосердие и позволю вам вернуться на свой корабль и утонуть вместе с ним.";
+                    link.l1 = "Мы ещё посмотрим, кто сегодня пойдёт на корм акулам!";
                     link.l1.go = "Boarding";
                 }
                 else
@@ -540,7 +540,7 @@ void ProcessDialogEvent()
                     link.l2.go = "exit";
                 }
             }
-            // тут нужен учет запрета повторного наезда
+            // тут нужен учёт запрета повторного наезда
             Diag.TempNode = "Go_away";
 			sld = characterFromId(pchar.GenQuest.CaptainId);
             sld.talk_date_Go_away =  lastspeakdate(); // boal злопамятность :)
@@ -711,7 +711,7 @@ void ProcessDialogEvent()
                 link.l1.go = "Big_part";
                 link.l2 = "Одну треть.";
                 link.l2.go = "Middle_part";
-                link.l3 = "Четвертую часть.";
+                link.l3 = "Четвёртую часть.";
                 link.l3.go = "Small_part";
             }
             else
@@ -731,11 +731,11 @@ void ProcessDialogEvent()
 
             if((sti(aData.iSquadronPower)*SquadronDamage - (ifortPower)*fortDamage) < 4000)
             {
-                dialog.text = "С другой стороны, мои корабли уже изрядно потрепаны в этом сражении, и подкрепление нам бы не помешало. Если вы согласны на " + GetPart(4) + ", то, я думаю, мы сможем договориться.";
-                link.l1 = "Меня это устраивает, " + GetAddress_FormToNPC(NPChar) + ". Я попытаюсь взять форт штурмом, а вы со своей стороны поддержите нас огнем корабельных орудий.";
+                dialog.text = "С другой стороны, мои корабли уже изрядно потрёпаны в этом сражении, и подкрепление нам бы не помешало. Если вы согласны на " + GetPart(4) + ", то, я думаю, мы сможем договориться.";
+                link.l1 = "Меня это устраивает, " + GetAddress_FormToNPC(NPChar) + ". Я попытаюсь взять форт штурмом, а вы со своей стороны поддержите нас огнём корабельных орудий.";
                 link.l1.go = "attack_fort_04";
                 aData.PartAttaksFort = 4;
-                link.l2 = "Я стою не так дешево, " + GetAddress_FormToNPC(NPChar) + ". Прошу прощения, что оторвал"+ GetSexPhrase("","а") +" вас от насущных дел. Прощайте.";
+                link.l2 = "Я стою не так дёшево, " + GetAddress_FormToNPC(NPChar) + ". Прошу прощения, что оторвал"+ GetSexPhrase("","а") +" вас от насущных дел. Прощайте.";
                 link.l2.go = "exit";
             }else{
                 dialog.text = "В моей эскадре достаточно кораблей, чтобы разнести этот форт в пух и прах, это только вопрос времени. А теперь соизвольте покинуть мой корабль, впереди меня ожидает победа!";
@@ -748,7 +748,7 @@ void ProcessDialogEvent()
             if( (sti(aData.iSquadronPower)*SquadronDamage - (ifortPower)*fortDamage) <= -1500)
             {
                 dialog.text = "Орудия форта сильно повредили корабли моей эскадры, и исход этого сражения может обернуться не в нашу пользу. Я согласен на ваши условия и принимаю вашу помощь.";
-                link.l1 = "Отлично, " + GetAddress_FormToNPC(NPChar) + ", в таком случае мы возьмем форт штурмом, а вы уж поддержите нас огнем корабельных пушек.";
+                link.l1 = "Отлично, " + GetAddress_FormToNPC(NPChar) + ", в таком случае мы возьмём форт штурмом, а вы уж поддержите нас огнём корабельных пушек.";
                 link.l1.go = "attack_fort_04";
                 aData.PartAttaksFort = 2;
             }
@@ -758,7 +758,7 @@ void ProcessDialogEvent()
                               ", в моей эскадре " + GetNumShips(Group_GetCharactersNum(sGroup)) + ". Я могу вам предложить " + GetPart(4) +
                               ". И я думаю, это правильно.";
                 aData.PartAttaksFort = 4;
-                link.l1 = "Я соглас"+ GetSexPhrase("ен","на") +", " + GetAddress_FormToNPC(NPChar) + ", в таком случае, я беру на себя захват форта, а вы уж поддержите нас огнем корабельных орудий.";
+                link.l1 = "Я соглас"+ GetSexPhrase("ен","на") +", " + GetAddress_FormToNPC(NPChar) + ", в таком случае, я беру на себя захват форта, а вы уж поддержите нас огнём корабельных орудий.";
                 link.l1.go = "attack_fort_04";
                 link.l2 = "К сожалению, я так не думаю, " + GetAddress_FormToNPC(NPChar) + ". Нам больше не о чем разговаривать. Прощайте.";
                 link.l2.go = "exit";
@@ -783,7 +783,7 @@ void ProcessDialogEvent()
                 aData.PartAttaksFort = 3;
             }else{
                 dialog.text = "Не многовато ли, капитан? У вас " + GetNumShips(GetCompanionQuantity(PChar)) + ", в моей эскадре " + GetNumShips(Group_GetCharactersNum(sGroup)) + ". Я могу вам предложить " + GetPart(4) + ". И я думаю, это правильно.";
-                link.l1 = "Я "+ GetSexPhrase("согласен","согласна") +", " + GetAddress_FormToNPC(NPChar) + ", в таком случае я беру на себя штурм форта, а вы поддержите нас огнем корабельных орудий.";
+                link.l1 = "Я "+ GetSexPhrase("согласен","согласна") +", " + GetAddress_FormToNPC(NPChar) + ", в таком случае я беру на себя штурм форта, а вы поддержите нас огнём корабельных орудий.";
                 link.l1.go = "attack_fort_04";
                 aData.PartAttaksFort = 4;
                 link.l2 = "К сожалению, я так не думаю, " + GetAddress_FormToNPC(NPChar) + ". Нам больше не о чем разговаривать. Прощайте.";

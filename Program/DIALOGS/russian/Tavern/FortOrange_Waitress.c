@@ -4,7 +4,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
     switch (Dialog.CurrentNode)
 	{
 		case "quests":
-			dialog.text = NPCStringReactionRepeat(RandPhraseSimple("Вопросы, " + GetAddress_Form(NPChar) + "?", "Что вам угодно, " + GetAddress_Form(NPChar) + "?"), ""+ GetSexPhrase("Хм, уж не пристаете ли вы ко мне, " + GetAddress_Form(NPChar) + "? ","Опять со странными вопросами? Девушка, выпили бы вы рому, что ли...") +"", "В течение этого дня вы уже третий раз говорите о каком-то вопросе..."+ GetSexPhrase(" Это знаки внимания?","") +"",
+			dialog.text = NPCStringReactionRepeat(RandPhraseSimple("Вопросы, " + GetAddress_Form(NPChar) + "?", "Что вам угодно, " + GetAddress_Form(NPChar) + "?"), ""+ GetSexPhrase("Хм, уж не пристаёте ли вы ко мне, " + GetAddress_Form(NPChar) + "? ","Опять со странными вопросами? Девушка, выпили бы вы рому, что ли...") +"", "В течение этого дня вы уже третий раз говорите о каком-то вопросе..."+ GetSexPhrase(" Это знаки внимания?","") +"",
                           "Опять вопросы будете задавать, " + GetAddress_Form(NPChar) + "?", "block", 1, npchar, Dialog.CurrentNode);
 			link.l1 = HeroStringReactionRepeat(RandPhraseSimple("Я передумал"+ GetSexPhrase("","а") +"...", "Сейчас мне не о чем говорить"), "Да нет, что ты, красавица...",
                       "Никак нет, дорогуша, склероз...", "Да нет, какие вопросы...", npchar, Dialog.CurrentNode);
@@ -52,12 +52,12 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 
 		case "Jamaica_ratW_2":
             dialog.text = "Хи-хи... Вы его "+ GetSexPhrase("приятель","приятельница, хи-хи") +", и не знаете, куда он отправился. Вот забавно!";
-            link.l1 = "Ничего смешного, малышка. Мы договорились с ним встретиться на Ямайке, а дальше нас ждет совместный рейс... Если ты понимаешь, о чем я. Мне в одиночку не справиться, а он взял и свалил неизвестно куда!";
+            link.l1 = "Ничего смешного, малышка. Мы договорились с ним встретиться на Ямайке, а дальше нас ждёт совместный рейс... Если ты понимаешь, о чем я. Мне в одиночку не справиться, а он взял и свалил неизвестно куда!";
             link.l1.go = "Jamaica_ratW_3";
         break;
 
 		case "Jamaica_ratW_3":
-            dialog.text = "Понятно. Ну, раз вас ждет такой прибыльный рейс, и вы с Франсуа друзья... Я скажу вам, куда он направился, но не просто так.";
+            dialog.text = "Понятно. Ну, раз вас ждёт такой прибыльный рейс, и вы с Франсуа друзья... Я скажу вам, куда он направился, но не просто так.";
             link.l1 = "Хм... Сколько ты хочешь?";
             link.l1.go = "Jamaica_ratW_4";
         break;

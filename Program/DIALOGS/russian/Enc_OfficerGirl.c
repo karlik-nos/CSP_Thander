@@ -93,7 +93,7 @@ void ProcessDialogEvent()
     			link.l1.go = "exit";
     			break;
             }
-			dialog.text = "Думаю, мы с вами сойдемся на 50000 пиастров.";
+			dialog.text = "Думаю, мы с вами сойдёмся на 50000 пиастров.";
 			link.l1 = "Я "+ GetSexPhrase("согласен","согласна") +", красотка. Считай себя зачисленной в команду.";//"+ GetSexPhrase("","а") +"
 			link.l1.go = "hire";
             link.l2 = "Ты не стоишь этих денег. Прощай.";
@@ -104,7 +104,7 @@ void ProcessDialogEvent()
 			if(makeint(Pchar.money) >= 50000)
 			{
 				AddMoneyToCharacter(Pchar, -50000);
-                dialog.text = "Не стану благодарить вас, капитан. Вы сами прекрасно знаете, что удачно вложили свое золото.";
+                dialog.text = "Не стану благодарить вас, капитан. Вы сами прекрасно знаете, что удачно вложили своё золото.";
 			    link.l1 = "Хочется в это верить.";
 			    link.l1.go = "Exit_hire";
 			}
@@ -163,14 +163,14 @@ void ProcessDialogEvent()
                 if (PChar.sex != "woman")
                 {
 					Link.l3 = RandPhraseSimple("Девушка-телохранитель - это, конечно, хорошо, но может мы попытаемся сталь ближе?",
-	                                           "Как насчет неуставных услуг?");
+	                                           "Как насчёт неуставных услуг?");
 	                Link.l3.go = "Love_Sex";
                 }
             }
             Link.l5 = "Слушай мой приказ!";
             Link.l5.go = "stay_follow";
 
-			// по тек локации определим можно ли тут приказать  -->
+			// по тёк локации определим можно ли тут приказать  -->
 			if (IsEntity(loadedLocation))
             {
                 if (CheckAttribute(loadedLocation, "fastreload"))
@@ -287,7 +287,7 @@ void ProcessDialogEvent()
 				//pchar.quest.(immortal_officer).win_condition.l1.character = npchar.id;
 				//pchar.quest.(immortal_officer).function = "Remove_Contract_Officer";
 			}
-			// DeleteAttribute(NPChar, "contractMoney");//Mett: это можно заблокировать по желанию, мб потом понадобиться для перерасчета суммы контракта
+			// DeleteAttribute(NPChar, "contractMoney");//Mett: это можно заблокировать по желанию, мб потом понадобиться для перерасчёта суммы контракта
 			Link.l1 = "Вот и отлично! Договорились";
 			Link.l1.go = "Exit";
 		break;
@@ -314,7 +314,7 @@ void ProcessDialogEvent()
         case "After_sex":
             NextDiag.TempNode = "Hired";
 		    dialog.text = RandPhraseSimple("Хм.. странно, я думала ты способен на большее...",
-                                           "Капитан, теперь вы снова можете соображать головой, а не... ? Вернемся к нашим делам.");
+                                           "Капитан, теперь вы снова можете соображать головой, а не... ? Вернёмся к нашим делам.");
             link.l1 = RandPhraseSimple("Но-но! Как ты разговариваешь со старшим по званию!", "Я могу многое, если соберусь с мыслями.");
 			link.l1.go = "exit";
         break;

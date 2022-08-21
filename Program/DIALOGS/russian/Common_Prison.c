@@ -58,7 +58,7 @@ void ProcessDialogEvent()
 				}
 
 			dialog.text = RandPhraseSimple("Я начальник тюрьмы. Что вам нужно здесь?", "Что вам нужно? Зачем вы явились в тюрьму?");
-			link.l1 = "Да ничего особенного, осматриваю город, знаете ли. Вот и забрел"+ GetSexPhrase("","а") +" сюда по случаю.";
+			link.l1 = "Да ничего особенного, осматриваю город, знаете ли. Вот и забр"+ GetSexPhrase("ёл","ела") +" сюда по случаю.";
 			link.l1.go = "exit";
 			link.l2 = "Хочу поговорить по делу.";
 			if (CheckCharacterItem(pchar, "CaptainBook") && !CheckAttribute(pchar, "questTemp.different.GiveShipLetters.speakFort"))
@@ -91,7 +91,7 @@ void ProcessDialogEvent()
 			}
 			if (CheckAttribute(pchar, "questTemp.jailCanMove.City") && npchar.city == pchar.questTemp.jailCanMove.City)
 			{
-				link.l5 = "Послушайте, не подскажете мне, за какое преступление сидит здесь заключенный по имени " + GetFullName(characterFromId(pchar.questTemp.jailCanMove.prisonerId)) + "?";
+				link.l5 = "Послушайте, не подскажете мне, за какое преступление сидит здесь заключённый по имени " + GetFullName(characterFromId(pchar.questTemp.jailCanMove.prisonerId)) + "?";
 				link.l5.go = "KnowAboutPrisoner";
 			}
 
@@ -281,14 +281,14 @@ void ProcessDialogEvent()
 			if (GetQuestPastDayParam("pchar.questTemp.PrisonGun") < 30)
 			{
 				dialog.Text = "Я же говорил вам явиться не раньше, чем через месяц!";
-				Link.l1 = "Вот чёрт! Так закрутил"+ GetSexPhrase("ся","ась") +", что потерял"+ GetSexPhrase("","а") +" счет времени... Извините, приду позже, как и договаривались.";
+				Link.l1 = "Вот чёрт! Так закрутил"+ GetSexPhrase("ся","ась") +", что потерял"+ GetSexPhrase("","а") +" счёт времени... Извините, приду позже, как и договаривались.";
 				Link.l1.go = "exit";
 				NextDiag.TempNode = "First_officer";
 				break;
 			}
 			if (GetQuestPastDayParam("pchar.questTemp.PrisonGun") > 180)
 			{
-				dialog.Text = "Гм... Знаете, с момента заключения нашего 'договора' прошло больше, чем полгода. Я уже приобрел орудия. Или вы думали, что я буду ждать вас вечно?";
+				dialog.Text = "Гм... Знаете, с момента заключения нашего 'договора' прошло больше, чем полгода. Я уже приобрёл орудия. Или вы думали, что я буду ждать вас вечно?";
 				Link.l1 = "Вот чёрт! Что же прикажете теперь с ними делать?";
 				Link.l1.go = "TakeGun_late";
 				break;
@@ -393,7 +393,7 @@ void ProcessDialogEvent()
 
 		case "EncGirl_1":
 			dialog.text = "Слушаю вас внимательно.";
-			link.l1 = "Я привел"+ GetSexPhrase("","а") +" вашу беглянку.";
+			link.l1 = "Я прив"+ GetSexPhrase("ёл","ела") +" вашу беглянку.";
 			link.l1.go = "EncGirl_2";
 		break;
 
@@ -688,7 +688,7 @@ void ProcessDialogEvent()
 				dialog.text = "Ну что же, не вижу причины вам отказывать. " + FindRussianMoneyString(sti(pchar.questTemp.jailCanMove.money)) + " - и пока вы не покинете тюрьму, вы можете беспрепятственно ходить по коридорам и даже разговаривать с заключенными.";
 				link.l1 = "Я соглас"+ GetSexPhrase("ен","на") +", вот ваши монеты!";
 				link.l1.go = "ForGoodMove_agree";
-				link.l2 = "Не пойдет, слишком дорого для бесцельного хождения по коридорам.";
+				link.l2 = "Не пойдёт, слишком дорого для бесцельного хождения по коридорам.";
 				link.l2.go = "exit";
 			}
 			else
@@ -709,7 +709,7 @@ void ProcessDialogEvent()
 			switch (pchar.questTemp.jailCanMove.ownerPrison)
 			{
 				case "0": sTemp = "За убийство."; break;
-				case "1": sTemp = "За бандитизм и вооруженный грабеж."; break;
+				case "1": sTemp = "За бандитизм и вооружённый грабеж."; break;
 				case "2": sTemp = "Его поймали на воровстве."; break;
 				case "3": sTemp = "За мелкую кражу."; break;
 				case "4": sTemp = "За шулерство."; break;
@@ -812,7 +812,7 @@ void ProcessDialogEvent()
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First_soldier";
 		break;
-		//---------------- Заключенные ------------------
+		//---------------- Заключённые ------------------
         case "First_prisoner":
 			if (GetNationRelation2MainCharacter(sti(npchar.nation)) == RELATION_ENEMY)
 			{
@@ -823,12 +823,12 @@ void ProcessDialogEvent()
 				{
 					dialog.text = RandPhraseSimple("Постой, "+ GetSexPhrase("дружище","подруга") +"!! Выпусти меня!", "Послушай, "+ GetSexPhrase("приятель","подруга") +", будь так добр"+ GetSexPhrase("","а") +", открой камеру.");
 					link.l1 = "С какой это стати?";
-					link.l1.go = "Prisoner_1"; // на квест освобождения заключенного
+					link.l1.go = "Prisoner_1"; // на квест освобождения заключённого
 				}
 			}
 			else
 			{
-				dialog.text = LinkRandPhrase("Меня взяли за грабеж, дело шьют...", "Агрх, холен"+ GetSexPhrase("ый","ая") +" ты... Тебя бы ко мне в камеру на недельку! Кхе-хе-хе...", "Я ни в чём не виноват!");
+				dialog.text = LinkRandPhrase("Меня взяли за грабёж, дело шьют...", "Агрх, холен"+ GetSexPhrase("ый","ая") +" ты... Тебя бы ко мне в камеру на недельку! Кхе-хе-хе...", "Я ни в чём не виноват!");
 				link.l1 = RandPhraseSimple("Заткнись!", "Мне нет до тебя дела...");
 				link.l1.go = "NoMoreTalkExit";
 				if (rand(10) > 6 && !CheckAttribute(pchar, "quest.GivePrisonFree_Over") && !CheckAttribute(pchar, "quest.GivePrisonFree") && !CheckAttribute(pchar, "quest.DeliverToBander") && !sti(colonies[FindColony(npchar.city)].HeroOwn))
@@ -837,7 +837,7 @@ void ProcessDialogEvent()
 					link.l1 = "С какой это стати?";
 					if (rand(1))
 					{
-						link.l1.go = "Prisoner_1"; // на квест освобождения заключенного
+						link.l1.go = "Prisoner_1"; // на квест освобождения заключённого
 					}
 					else
 					{
@@ -846,7 +846,7 @@ void ProcessDialogEvent()
 				}
 			}
 		break;
-		// -------------------- освобождение заключенного --------------------
+		// -------------------- освобождение заключённого --------------------
         case "Prisoner_1":
             dialog.text = "Чтобы послушать меня. Ты не смотри, что сейчас я в таком виде. Мне бы выбраться отсюда...";
 			link.l1 = "Чего?!";
@@ -865,7 +865,7 @@ void ProcessDialogEvent()
 			link.l1.go = "Prisoner_3";
 		break;
         case "Prisoner_3":
-            dialog.text = "Меня зовут " + GetFullName(npchar) + ". Кое-что у меня припрятано в надежном месте. Вытащи меня отсюда и отвези на " + XI_ConvertString(pchar.questTemp.jailCanMove.islandId + "Acc") + ". Там в гроте у меня спрятан клад. Достанем его и поделим поровну!";
+            dialog.text = "Меня зовут " + GetFullName(npchar) + ". Кое-что у меня припрятано в надёжном месте. Вытащи меня отсюда и отвези на " + XI_ConvertString(pchar.questTemp.jailCanMove.islandId + "Acc") + ". Там в гроте у меня спрятан клад. Достанем его и поделим поровну!";
 			link.l1 = "И что там у тебя в кладе? И откуда мне знать, что твои слова - правда?";
 			link.l1.go = "Prisoner_4";
 		break;
@@ -875,14 +875,14 @@ void ProcessDialogEvent()
 			link.l1.go = "Prisoner_5";
 			if (GetNationRelation2MainCharacter(sti(npchar.nation)) != RELATION_ENEMY)
 			{
-				link.l2 = "Пожалуй, стоит рискнуть... Предлагаю следующее: я могу перебить стражу в тюрьме и забрать тебя на свой корабль. Если все получится, я хочу, чтобы ты не отходил от меня до тех пор, пока мы не доберемся до грота на " + XI_ConvertString(pchar.questTemp.jailCanMove.islandId + "Dat") + ". Идет?";
+				link.l2 = "Пожалуй, стоит рискнуть... Предлагаю следующее: я могу перебить стражу в тюрьме и забрать тебя на свой корабль. Если все получится, я хочу, чтобы ты не отходил от меня до тех пор, пока мы не доберёмся до грота на " + XI_ConvertString(pchar.questTemp.jailCanMove.islandId + "Dat") + ". Идёт?";
 				link.l2.go = "Prisoner_agree"; //силовой способ вызволения
 				link.l3 = "Ну, хорошо, я постараюсь помочь тебе - поговорю с начальником тюрьмы. Возможно, удастся внести залог за твоё освобождение.";
 				link.l3.go = "ToPrisonHead_agree"; //мирный способ вызволения
 			}
 			else
 			{
-				link.l2 = "Ну, хорошо, поверю тебе и открою камеру. Я хочу, чтобы ты не отходил от меня до тех пор, пока мы не доберемся до грота на " + XI_ConvertString(pchar.questTemp.jailCanMove.islandId + "Dat") + ". Идет?";
+				link.l2 = "Ну, хорошо, поверю тебе и открою камеру. Я хочу, чтобы ты не отходил от меня до тех пор, пока мы не доберёмся до грота на " + XI_ConvertString(pchar.questTemp.jailCanMove.islandId + "Dat") + ". Идёт?";
 				link.l2.go = "Prisoner_agree_3"; //силовой способ вызволения, когда тюремщики убиты
 			}
 		break;
@@ -892,7 +892,7 @@ void ProcessDialogEvent()
 			link.l1.go = "NoMoreTalkExit";
 		break;
         case "Prisoner_agree":
-            dialog.text = "Идет, мне выбирать не приходится.";
+            dialog.text = "Идёт, мне выбирать не приходится.";
 			link.l1 = "Хорошо. Я сейчас сломаю твой замок, выходи оттуда, и будем прорываться. Ты готов?";
 			link.l1.go = "Prisoner_agree_1";
 		break;
@@ -932,7 +932,7 @@ void ProcessDialogEvent()
 		break;
 
         case "Prisoner_agree_3":
-            dialog.text = "Идет, мне выбирать не приходится.";
+            dialog.text = "Идёт, мне выбирать не приходится.";
 			link.l1 = "Хорошо. Следуй за мной как можно быстрей, нам нужно ещё добраться до моего корабля. Не отставай!";
 			link.l1.go = "Prisoner_agree_4";
 		break;
@@ -982,8 +982,8 @@ void ProcessDialogEvent()
 			link.l1.go = "ToPrisonHead_canMove_1";
 		break;
         case "ToPrisonHead_canMove_1":
-            dialog.text = "Ну, так пойдем отсюда быстрее! Чёрт возьми, как я рад!";
-			link.l1 = "Подведем итоги. Я хочу, чтобы все время, пока мы не доберемся до грота на " + XI_ConvertString(pchar.questTemp.jailCanMove.islandId + "Dat") + ", ты не отходил от меня ни на шаг. На всякий случай, так сказать. Ты согласен?";
+            dialog.text = "Ну, так пойдём отсюда быстрее! Чёрт возьми, как я рад!";
+			link.l1 = "Подведём итоги. Я хочу, чтобы все время, пока мы не доберёмся до грота на " + XI_ConvertString(pchar.questTemp.jailCanMove.islandId + "Dat") + ", ты не отходил от меня ни на шаг. На всякий случай, так сказать. Ты согласен?";
 			link.l1.go = "ToPrisonHead_canMove_2";
 		break;
         case "ToPrisonHead_canMove_2":
@@ -1022,11 +1022,11 @@ void ProcessDialogEvent()
 			switch (pchar.questTemp.jailCanMove.ownerPrison)
 			{
 				case "0": sTemp = "убийстве"; break;
-				case "1": sTemp = "вооруженном грабеже"; break;
+				case "1": sTemp = "вооружённом грабеже"; break;
 				case "2": sTemp = "воровстве"; break;
 			}
             dialog.text = "Ну, что скажешь, "+ GetSexPhrase("приятель","подруга") +"?";
-			link.l1 = "Мне не удалось договориться о твоем освобождении. Тебя обвиняют в " + sTemp + ", так что ни о каких залогах речи быть не может.";
+			link.l1 = "Мне не удалось договориться о твоём освобождении. Тебя обвиняют в " + sTemp + ", так что ни о каких залогах речи быть не может.";
 			link.l1.go = "ToPrisonHead_notFree_1";
 			DeleteAttribute(pchar, "questTemp.jailCanMove.ownerPrison");
 		break;
@@ -1034,7 +1034,7 @@ void ProcessDialogEvent()
             dialog.text = "Меня оболгали!.. Вот дьявол!! И что теперь мне делать? Я же сгнию здесь заживо!";
 			link.l1 = "Очень жаль, приятель, но я ничем не могу тебе помочь.";
 			link.l1.go = "ToPrisonHead_notFree_2";
-			link.l2 = "Остается шанс освободить тебя силой. Я сейчас сломаю твой замок, выходи оттуда, и будем прорываться. Ты готов?";
+			link.l2 = "Остаётся шанс освободить тебя силой. Я сейчас сломаю твой замок, выходи оттуда, и будем прорываться. Ты готов?";
 			link.l2.go = "Prisoner_agree_1";
 			pchar.quest.GivePrisonFree_Over.over = "yes";
 		break;
@@ -1079,7 +1079,7 @@ void ProcessDialogEvent()
 				break;
 				case 3:
 					dialog.text = "Капитан, извините, тут так вышло... короче, нет клада.";
-					link.l1 = "Что? Ты меня обманул, негодяй! Я тебя вытащил"+ GetSexPhrase("","а") +" из-за решетки, тащил"+ GetSexPhrase("ся","ась") +" на этот остров, и все ради чего?! Это тебе с рук не сойдет!";
+					link.l1 = "Что? Ты меня обманул, негодяй! Я тебя вытащил"+ GetSexPhrase("","а") +" из-за решётки, тащил"+ GetSexPhrase("ся","ась") +" на этот остров, и все ради чего?! Это тебе с рук не сойдёт!";
 					link.l1.go = "Node_3";
 				break;
 				case 4:
@@ -1151,7 +1151,7 @@ void ProcessDialogEvent()
 
 		case "Node_4":
 			dialog.text = "Нет!!! Его действительно нет! Проклятый обрывок... Капитан, поверьте, я действительно думал, что он здесь! Но, видимо, я ошибся! На этом клочке бумаги все так непонятно...";
-			link.l1 = "Та-ак, похоже, сейчас у тебя будут серьезные проблемы, приятель. Но всё-таки я хочу послушать твои объяснения.";
+			link.l1 = "Та-ак, похоже, сейчас у тебя будут серьёзные проблемы, приятель. Но всё-таки я хочу послушать твои объяснения.";
 			link.l1.go = "Node_4_1";
 		break;
 
@@ -1170,7 +1170,7 @@ void ProcessDialogEvent()
 			{
 				GiveItem2Character(pchar, "map_part1");
 			}
-			dialog.text = "Вот, берите, конечно. Капитан, отпустите меня, пожалуйста... Я и в самом деле думал, что клад тут. Может, вы разберетесь по этому клочку, где он, и заберете все себе. Прошу вас.";
+			dialog.text = "Вот, берите, конечно. Капитан, отпустите меня, пожалуйста... Я и в самом деле думал, что клад тут. Может, вы разберётесь по этому клочку, где он, и заберёте все себе. Прошу вас.";
 			link.l1 = "Да уж... Разобрать что-либо тут очень сложно. Нужна вторая половина карты. Ладно, проваливай, вижу, ты действительно хотел, как лучше.";
 			link.l1.go = "PrisonerInPlace_4";
 		break;
@@ -1232,7 +1232,7 @@ void ProcessDialogEvent()
 			DeleteAttribute(pchar, "questTemp.jailCanMove.Item1");
 			DeleteAttribute(pchar, "questTemp.jailCanMove.Item2");
  		break;
-		// -------------------- освобождение заключенного --------------------
+		// -------------------- освобождение заключённого --------------------
 		// ------------------------ передать маляву --------------------------
         case "Deliver_1":
 			dialog.text = "Меня кличут " + GetFullName(npchar) + ". Есть у меня к тебе просьба одна, хе-хе...";
@@ -1245,7 +1245,7 @@ void ProcessDialogEvent()
 			link.l1.go = "Deliver_3";
 		break;
         case "Deliver_3":
-			dialog.text = "Не обидят тебя кореши, чего уж... Ну так что, возьмешься?";
+			dialog.text = "Не обидят тебя кореши, чего уж... Ну так что, возьмёшься?";
 			link.l1 = "Нет, меня это не интересует.";
 			link.l1.go = "Prisoner_5";
 			link.l2 = "Хм, если далеко ходить не надо, то возьмусь.";

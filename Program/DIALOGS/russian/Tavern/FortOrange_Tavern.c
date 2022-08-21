@@ -39,7 +39,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
         break;
 
         case "DefenceOrange": //Голландская линейка, квест №4, защита форта Оранж.
-            dialog.text = "Да, скажу я вам, такой лихой бойни я не видел на своем веку...";
+            dialog.text = "Да, скажу я вам, такой лихой бойни я не видел на своём веку...";
             link.l2 = "Ловко почикали английских псов, а?";
             link.l2.go = "Step_H4_1";
         break;
@@ -58,7 +58,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 
 		case "Jamaica_ratF_2":
-			dialog.text = "Ушёл в море на своем корабле. А куда - не знаю. Он мне не докладывал.";
+			dialog.text = "Ушёл в море на своём корабле. А куда - не знаю. Он мне не докладывал.";
 			link.l1 = "Эх, жаль! Где ж я теперь его искать буду?";
 			link.l1.go = "Jamaica_ratF_3";
 		break;

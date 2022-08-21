@@ -41,7 +41,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			AfterTownBattle();
         break;
         case "Step_E9_1":
-            dialog.text = "Обойдешься, английская свинья.";
+            dialog.text = "Обойдёшься, английская свинья.";
 			link.l1 = "Боюсь, что нет, сеньор. Дело в том, что мы уходим не одни. Вы составите нам компанию в путешествии к берегам Ямайки. Сэр Томас Мэдифорд жаждет встречи с вами.";
 			link.l1.go = "Step_E9_2";
         break;

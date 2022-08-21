@@ -81,7 +81,7 @@ void ProcessDialogEvent()
 					link.l4 = "Армо, есть какие-нибудь новости по первому свиданию?";
 					link.l4.go = "Casper1";
 				}
-				//ждем втогого
+				//ждём втогого
 				if (pchar.questTemp.LSC == "toSeekMechanik" && CheckAttribute(pchar, "questTemp.LSC.Armo") && sti(pchar.questTemp.LSC.Armo) == 2 && CheckAttribute(pchar, "questTemp.LSC.Armo.waiting"))
 				{
 					link.l4 = "Армо, хочу доложить тебе, что моё первое свидание прошло успешно...";
@@ -93,7 +93,7 @@ void ProcessDialogEvent()
 					link.l4 = "Армо, есть какие-нибудь новости по второму свиданию?";
 					link.l4.go = "Casper2";
 				}
-				//ждем третьего
+				//ждём третьего
 				if (pchar.questTemp.LSC == "toSeekMechanik" && CheckAttribute(pchar, "questTemp.LSC.Armo") && sti(pchar.questTemp.LSC.Armo) == 4 && CheckAttribute(pchar, "questTemp.LSC.Armo.waiting"))
 				{
 					link.l4 = "Армо, второй готов.";
@@ -137,7 +137,7 @@ void ProcessDialogEvent()
 				//поиски команды на корвет
 				if (pchar.questTemp.LSC == "toSeekPeopleInCrew")
 				{
-					link.l8 = "Слушай, есть серьезный разговор. Я набираю команду, чтобы уйти отсюда на корабле.";
+					link.l8 = "Слушай, есть серьёзный разговор. Я набираю команду, чтобы уйти отсюда на корабле.";
 					link.l8.go = "SeekCrew";
 				}
 			}
@@ -195,7 +195,7 @@ void ProcessDialogEvent()
 				link.l7 = "Я слышал"+ GetSexPhrase("","а") +", ты встречаешься в Томасом Бойлом.";
 				link.l7.go = "ansewer_7";
 			}
-			link.l10 = "Ты знаешь, что-то я забыл"+ GetSexPhrase("","а") +", о чем хотел"+ GetSexPhrase("","а") +" спросить. Извини, что отвлек"+ GetSexPhrase("","ла") +"...";
+			link.l10 = "Ты знаешь, что-то я забыл"+ GetSexPhrase("","а") +", о чем хотел"+ GetSexPhrase("","а") +" спросить. Извини, что отвлёк"+ GetSexPhrase("","ла") +"...";
 			link.l10.go = "exit";
 		break;
 		case "ansewer_3":
@@ -288,7 +288,7 @@ void ProcessDialogEvent()
 		break;
 		case "NB_4":
 			dialog.text = "Сейчас... К полуночи Хилл собрался в погреб. Когда он пробыл там больше двух часов, я пошла туда же поторопить его, так как клиентов нужно был обслуживать. И нашла его там...";
-			link.l1 = "Он точно был мертв?";
+			link.l1 = "Он точно был мёртв?";
 			link.l1.go = "NB_5";
 		break;
 		case "NB_5":
@@ -403,14 +403,14 @@ void ProcessDialogEvent()
 			link.l1.go = "exit";
 			AddQuestRecord("ISS_MainLine", "33");
 			AddQuestUserData("ISS_MainLine", "sSex", GetSexPhrase("","ла"));
-			pchar.questTemp.LSC.Armo = 0; //флаг на мочилово касперов. четные - готовность Армо, нечетные - флаг questAction
+			pchar.questTemp.LSC.Armo = 0; //флаг на мочилово касперов. чётные - готовность Армо, нечётные - флаг questAction
 			SaveCurrentQuestDateParam("questTemp.LSC"); //запомним дату базара
 		break;
 		//первый каспер
 		case "Casper1":
 			if (GetQuestPastDayParam("questTemp.LSC") > 0 && GetHour() < 20)
 			{
-				dialog.text = "Сегодня, в полночь 'каспер' по имени Денис Хопфер будет добиваться моего расположения на квартердеке флейта 'Церес Смити'. Будте острожны, "+ GetSexPhrase("месье капитан","мадемуазель") +", если вы нападете на Хопфера слишком близко к 'Сан Габриэлю', то звуки драки могут услышать остальные бандиты, и тогда вам конец.";
+				dialog.text = "Сегодня, в полночь 'каспер' по имени Денис Хопфер будет добиваться моего расположения на квартердеке флейта 'Церес Смити'. Будте острожны, "+ GetSexPhrase("месье капитан","мадемуазель") +", если вы нападёте на Хопфера слишком близко к 'Сан Габриэлю', то звуки драки могут услышать остальные бандиты, и тогда вам конец.";
 				link.l1 = "Я понял"+ GetSexPhrase("","а") +", Армо.";
 				link.l1.go = "Casper1_1";
 			}
@@ -483,7 +483,7 @@ void ProcessDialogEvent()
 			if (GetQuestPastDayParam("questTemp.LSC") > 0 && GetHour() < 20)
 			{
 				dialog.text = "Да, конечно. Там же, где и ранее, в то же время, меня будет поджидать Фелипе Армас. Мерзавец, каких свет не видывал.";
-				link.l1 = "Ну, займемся и им...";
+				link.l1 = "Ну, займёмся и им...";
 				link.l1.go = "Casper3_1";
 			}
 			else
@@ -532,7 +532,7 @@ void ProcessDialogEvent()
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First time";
 		break;
-		//Если Армо жива, то дает денег
+		//Если Армо жива, то даёт денег
 		case "askMoney":
 			dialog.text = "Вам нужны деньги, "+ GetSexPhrase("месье капитан","мадемуазель") +"? А зачем?";
 			link.l1 = "На одно очень нужное для всего Города дело. Вопрос жизни и смерти!";
@@ -589,7 +589,7 @@ void ProcessDialogEvent()
 		case "SeekCrew_1":
 			if (npchar.name == "Армо")
 			{
-				dialog.text = "Нет, "+ GetSexPhrase("месье капитан","мадемуазель") +". Мы с Томасом остаемся в Городе.";
+				dialog.text = "Нет, "+ GetSexPhrase("месье капитан","мадемуазель") +". Мы с Томасом остаёмся в Городе.";
 				link.l1 = "Да при чем тут твой Томас?! Оставаясь здесь, ты рискуешь жизнью.";
 				link.l1.go = "SeekCrew_2";
 			}
@@ -606,7 +606,7 @@ void ProcessDialogEvent()
 			link.l1.go = "SeekCrew_3";
 		break;
 		case "SeekCrew_3":
-			dialog.text = "Сколько уже этих штормов было, переживем и ещё один.";
+			dialog.text = "Сколько уже этих штормов было, переживём и ещё один.";
 			link.l1 = "Зря... Ну, ладно, как знаешь.";
 			link.l1.go = "exit";
 		break;

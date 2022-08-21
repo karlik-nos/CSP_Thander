@@ -8,7 +8,7 @@ void ProcessDialogEvent()
 	aref Link, NextDiag;
 	string sTemp;
 
-	int iShipClass = GetCharacterShipClass(PChar); // Если корабля нет, вернет 7 (лодка)
+	int iShipClass = GetCharacterShipClass(PChar); // Если корабля нет, вернёт 7 (лодка)
 	int iRank = sti(PChar.rank);
 	int iSumm;
 	int comp;
@@ -127,7 +127,7 @@ void ProcessDialogEvent()
 			DialogExit();
 		break;
 
-		case "ship_tunning_not_now":  // аналог выхода, со старых времен, много переделывать.
+		case "ship_tunning_not_now":  // аналог выхода, со старых времён, много переделывать.
 			LockControl("DlgDown3", false);
 			LockControl("DlgUp3", false);
 			DialogExit();
@@ -145,7 +145,7 @@ void ProcessDialogEvent()
 			if (LAi_grp_playeralarm > 0)
 			{
 	   			dialog.text = NPCharRepPhrase(pchar,
-					LinkRandPhrase("В городе поднята тревога, тебя всюду ищут! На твоем месте я бы не стал здесь задерживаться.", "Вся городская стража рыщет по городу в поисках тебя. Я не идиот и разговаривать с тобой не буду!", "Беги, "+ GetSexPhrase("приятель","подруга") +", пока солдаты не сделали из тебя решето..."),
+					LinkRandPhrase("В городе поднята тревога, тебя всюду ищут! На твоём месте я бы не стал здесь задерживаться.", "Вся городская стража рыщет по городу в поисках тебя. Я не идиот и разговаривать с тобой не буду!", "Беги, "+ GetSexPhrase("приятель","подруга") +", пока солдаты не сделали из тебя решето..."),
 					LinkRandPhrase("Что тебе нужно, "+ GetSexPhrase("негодяй","мерзавка") +"?! Городская стража уже взяла твой след, далеко тебе не уйти"+ GetSexPhrase(", грязный пират","") +"!", "Грязн"+ GetSexPhrase("ый","ая") +" убийца, вон из моего дома! Стража!!", "Я не боюсь тебя, мерзав"+ GetSexPhrase("ец","ка") +"! Скоро тебя повесят в нашем форте, далеко тебе не уйти..."));
 				link.l1 = NPCharRepPhrase(pchar,
 					RandPhraseSimple("Хех, тревога для меня не проблема...", "Им меня ни за что не поймать."),
@@ -435,7 +435,7 @@ void ProcessDialogEvent()
 
 		case "EncGirl_1":
 			dialog.text = "Слушаю вас внимательно.";
-			link.l1 = "Я привел"+ GetSexPhrase("","а") +" вашу беглянку.";
+			link.l1 = "Я прив"+ GetSexPhrase("ёл","ела") +" вашу беглянку.";
 			link.l1.go = "EncGirl_2";
 		break;
 
@@ -455,7 +455,7 @@ void ProcessDialogEvent()
 		case "EncGirl_4":
 			if(sti(pchar.GenQuest.EncGirl.LoverFatherAngry) == 0)
 			{
-				dialog.text = "А, так вы и есть "+ GetSexPhrase("тот капитан, который привез","та девушка, которая привезла") +", моего блудного сына с молодой невестой?";
+				dialog.text = "А, так вы и есть "+ GetSexPhrase("тот капитан, который привёз","та девушка, которая привезла") +", моего блудного сына с молодой невестой?";
 				link.l1 = "Да, это я помог"+ GetSexPhrase("","ла") +" им сбежать.";
 				link.l1.go = "EncGirl_5";
 			}
@@ -843,7 +843,7 @@ void ProcessDialogEvent()
 		case "FlyingDutchmanSails_Clear":
 			iSumm = (10 / iShipClass) * iRank * MOD_SKILL_ENEMY_RATE * 10; // Цена за установку парусов
 
-			dialog.text = "Ну, убрать так убрать. Это обойдется тебе в " + FindRussianMoneyString(iSumm) + ".";
+			dialog.text = "Ну, убрать так убрать. Это обойдётся тебе в " + FindRussianMoneyString(iSumm) + ".";
 
 			if(sti(PChar.money) >= iSumm)
 			{
@@ -1023,7 +1023,7 @@ void ProcessDialogEvent()
 			}
 			pchar.questTemp.different.ShipyardsMap.sklad = rand(3)+1; //сколько денег попросят на складе за открытие двери
 			pchar.questTemp.different.ShipyardsMap.fightQty = 2 + rand(3); //количество бойцов на верфи
-			dialog.text = "Мне стало известно, что на верфи " + XI_ConvertString("Colony" + pchar.questTemp.different.ShipyardsMap.city + "Gen") + " ведется постройка новейшего " + pchar.questTemp.different.ShipyardsMap.what + ". Мне нужен чертёж, по которым ведутся работы.";
+			dialog.text = "Мне стало известно, что на верфи " + XI_ConvertString("Colony" + pchar.questTemp.different.ShipyardsMap.city + "Gen") + " ведётся постройка новейшего " + pchar.questTemp.different.ShipyardsMap.what + ". Мне нужен чертёж, по которым ведутся работы.";
 			link.l1 = "И что я долж"+ GetSexPhrase("ен","на") +" сделать?";
 			link.l1.go = "ShipyardsMap_3";
 		break;
@@ -1108,7 +1108,7 @@ void ProcessDialogEvent()
 
 		case "ShipyardsMapOk_1":
 			sTemp = pchar.questTemp.different.ShipyardsMap.what;
-			dialog.text = "Отлично! Ну, давайте посмотрим, что же это за хваленый " + strcut(sTemp, 0, strlen(sTemp)-2) + "...";
+			dialog.text = "Отлично! Ну, давайте посмотрим, что же это за хвалёный " + strcut(sTemp, 0, strlen(sTemp)-2) + "...";
 			link.l1 = "Смотрите.";
 			link.l1.go = "ShipyardsMapOk_2";
 		break;
@@ -1129,23 +1129,23 @@ void ProcessDialogEvent()
 				{
 					case 0:
 					dialog.text = "Так-так... Хм, вынужден вас огорчить. Ничего полезного я для себя не вижу. Вы, кажется, вообще не то прихватили.";
-					link.l1 = "Вы заказывали то, что лежало на столе. Именно это я вам и принес"+ GetSexPhrase("","ла") +". Я же не разбираюсь в этих чертежах!";
+					link.l1 = "Вы заказывали то, что лежало на столе. Именно это я вам и прин"+ GetSexPhrase("ёс","есла") +". Я же не разбираюсь в этих чертежах!";
 					link.l1.go = "ShipyardsMapOk_3";
 					break;
 					case 1:
-						dialog.text = "Да, этот чертёж имеет определенную ценность. Я готов заплатить вам за него " + FindRussianMoneyString(1500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ". Оплату произведу серебряными слитками. Не возражаете?";
+						dialog.text = "Да, этот чертёж имеет определённую ценность. Я готов заплатить вам за него " + FindRussianMoneyString(1500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ". Оплату произведу серебряными слитками. Не возражаете?";
 						link.l1 = "Нет, конечно! Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
 						TakeNItems(pchar, "jewelry17", makeint(1500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)/100));
 					break;
 					case 2:
-						dialog.text = "Да, этот чертёж имеет определенную ценность. Я готов заплатить вам за него " + FindRussianMoneyString(3000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ". Оплату произведу золотыми слитками. Не возражаете?";
+						dialog.text = "Да, этот чертёж имеет определённую ценность. Я готов заплатить вам за него " + FindRussianMoneyString(3000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ". Оплату произведу золотыми слитками. Не возражаете?";
 						link.l1 = "Нет, конечно! Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
 						TakeNItems(pchar, "jewelry5", makeint(3000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)/200));
 					break;
 					case 3:
-						dialog.text = "Да, этот чертёж имеет определенную ценность. Я готов заплатить вам за него " + FindRussianMoneyString(4500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ".";
+						dialog.text = "Да, этот чертёж имеет определённую ценность. Я готов заплатить вам за него " + FindRussianMoneyString(4500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ".";
 						link.l1 = "Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
 						AddMoneyToCharacter(pchar, 4500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L));
@@ -1163,7 +1163,7 @@ void ProcessDialogEvent()
 						TakeNItems(pchar, "chest", 4);
 					break;
 					case 6:
-						dialog.text = "Да, этот чертёж имеет определенную ценность. Правда, денег в наличии у меня сейчас нет, поэтому я могу отдать вам один из сундуков с ремесленными материалами.";
+						dialog.text = "Да, этот чертёж имеет определённую ценность. Правда, денег в наличии у меня сейчас нет, поэтому я могу отдать вам один из сундуков с ремесленными материалами.";
 						link.l1 = "Ну, раз нет ничего другого, то давайте.";
 						link.l1.go = "ShipyardsMapOk_5";
 						TakeNItems(pchar, "Chest_Craftsmans", 1);
@@ -1222,7 +1222,7 @@ void ProcessDialogEvent()
 			dialog.text = "Кхм, ну, это зависит от того, кто ваш друг и зачем ему нужно в Порто Белло, доктор.";
 			link.l1 = "Этот... мой друг, он... то есть, она - красивая барышня... хм, позабыл её имя - оно такое незапоминающееся..";
 			link.l1.go = "Blood_Shipyard2";
-			link.l2 = "Мой дорогой друг - флибустьер, давеча потерявший свое судно при атаке на военный фрегат.";
+			link.l2 = "Мой дорогой друг - флибустьер, давеча потерявший своё судно при атаке на военный фрегат.";
 			link.l2.go = "Blood_Shipyard3";
 			link.l3 = "Вы о нем слышали. Он капер... называет себя Роландо Пицарро - гроза Семи Морей и прочая, прочая...";
 			link.l3.go = "Blood_Shipyard4";
@@ -1269,8 +1269,8 @@ void ProcessDialogEvent()
 		break;
 
 		case "Blood_Shipyard8":
-			dialog.text = "Нет - всё случилось гораздо банальнее... Прямо как в жизни. Никакой Либертании Пицарро создавать не собирался - просто хотел сесть в красивое кресло в собственном особняке в Порт Рояле и смотреть, как трясутся и лебезят перед ним молодые каперы. Ну, знаете - это вечное желание карать и миловать на свое усмотрение, раздавать чины или свинцовый талер в сердце... Ну и, конечно - признание... этого мы все хотим, не так ли?\nТолько вот суть его была раскрыта. Морган вообще хотел повесить его тут же - слышали, наверное - он бунтовщиков на дух не переносит. Вот и Пицарро схватили тепленьким прямо в каюте, как только Морган получил все доказательства.";
-			link.l1 = "Очень познавательная история. Надо будет предложить её какому-нибудь романисту. Но, что насчет корабля для этого, гм... правдолюбца?";
+			dialog.text = "Нет - всё случилось гораздо банальнее... Прямо как в жизни. Никакой Либертании Пицарро создавать не собирался - просто хотел сесть в красивое кресло в собственном особняке в Порт Рояле и смотреть, как трясутся и лебезят перед ним молодые каперы. Ну, знаете - это вечное желание карать и миловать на своё усмотрение, раздавать чины или свинцовый талер в сердце... Ну и, конечно - признание... этого мы все хотим, не так ли?\nТолько вот суть его была раскрыта. Морган вообще хотел повесить его тут же - слышали, наверное - он бунтовщиков на дух не переносит. Вот и Пицарро схватили тёпленьким прямо в каюте, как только Морган получил все доказательства.";
+			link.l1 = "Очень познавательная история. Надо будет предложить её какому-нибудь романисту. Но, что насчёт корабля для этого, гм... правдолюбца?";
 			link.l1.go = "Blood_Shipyard9";
 			link.l2 = "А как Роландо удалось спастись?";
 			link.l2.go = "Blood_Shipyard10";
@@ -1286,7 +1286,7 @@ void ProcessDialogEvent()
 
 		case "Blood_Shipyard10":
 			dialog.text = "Обычно у Моргана суд короткий - не дольше, чем горит порох на полке его пистолета. Но, что-то с этим 'народным любимцем' он протянул... вот и сбежал Пицарро к испанцам. Прямо из-под носа у адмирала ускользнул, подтвердив, что Лис существо не только хитрое, но и вёрткое.";
-			link.l1 = "Хм-м, а как же он провел адмирала Берегового Братства? Ну, вдруг пригодится на будущее.";
+			link.l1 = "Хм-м, а как же он провёл адмирала Берегового Братства? Ну, вдруг пригодится на будущее.";
 			link.l1.go = "Blood_Shipyard11";
 		break;
 

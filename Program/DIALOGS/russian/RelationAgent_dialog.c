@@ -123,7 +123,7 @@ void ProcessDialogEvent()
 
 		//*************************** Линейка Виспер **************
 		case "WhisperDocuments":
-			dialog.text = "Все верно. Эта услуга обойдется вам в 1000 монет. Чье гражданство вы бы хотели получить?";
+			dialog.text = "Все верно. Эта услуга обойдётся вам в 1000 монет. Чьё гражданство вы бы хотели получить?";
 			DeleteAttribute(Pchar, "perks.list.FlagSpa");
 			DeleteAttribute(Pchar, "Whisper.BuyDocuments");
 			if(makeint(Pchar.money) >= 1000)
@@ -464,19 +464,19 @@ void ProcessDialogEvent()
                     link.l1 = "Неплохая перспектива. Я "+ GetSexPhrase("согласен","согласна") +" на ваши условия!";
                     break;
                 case HOLLAND :
-                    dialog.text = "Голландия почти мирная страна, у вас станет много друзей и мало врагов. А сам патент обойдется вам всего лишь в "+pchar.PatentPrice+" золотых.";
+                    dialog.text = "Голландия почти мирная страна, у вас станет много друзей и мало врагов. А сам патент обойдётся вам всего лишь в "+pchar.PatentPrice+" золотых.";
                     link.l1 = "Неплохая перспектива. Я "+ GetSexPhrase("согласен","согласна") +" на ваши условия!";
                     break;
                 case FRANCE :
-                    dialog.text = "Друзья и враги Франции станут вашими. Вы сможете топить корабли врагов. А сам патент обойдется вам всего лишь в "+pchar.PatentPrice+" золотых.";
+                    dialog.text = "Друзья и враги Франции станут вашими. Вы сможете топить корабли врагов. А сам патент обойдётся вам всего лишь в "+pchar.PatentPrice+" золотых.";
                     link.l1 = "Отличная перспектива! Мне плевать, кому служить! Послужу и французам!";
                     break;
                 case SPAIN :
-                    dialog.text = "У Испании много врагов и они тут же станут вашими! Испанцы - нация морских воинов. Патент обойдется вам всего лишь в "+pchar.PatentPrice+" золотых.";
+                    dialog.text = "У Испании много врагов и они тут же станут вашими! Испанцы - нация морских воинов. Патент обойдётся вам всего лишь в "+pchar.PatentPrice+" золотых.";
                     link.l1 = "Вы один предлагаете мне что-то стоящее! Получите эти жалкие гроши за романтику кровавого боя и новые задания высокопоставленных особ!";
                     break;
                 case ENGLAND :
-                    dialog.text = "Если честно, таким образом генерал-губернатор Англии набивает свой карман. А сам патент обойдется вам всего лишь в "+pchar.PatentPrice+" золотых. ";
+                    dialog.text = "Если честно, таким образом генерал-губернатор Англии набивает свой карман. А сам патент обойдётся вам всего лишь в "+pchar.PatentPrice+" золотых. ";
                     link.l1 = "Я "+ GetSexPhrase("согласен","согласна") +" отдать ему свои кровные деньги, которые добыл"+ GetSexPhrase("","а") +" контрабандой и абордажами!!";
                     break;
 			}
@@ -505,7 +505,7 @@ void ProcessDialogEvent()
 		case "Contraband":
 			if (IsCharacterPerkOn(pchar, "Agent")) Pchar.questTemp.Relations.sum = makeint(0.3 * stf(Pchar.rank)/stf(Pchar.reputation)*DIPLOMAT_SUM);
 			else Pchar.questTemp.Relations.sum = makeint(0.1 * stf(Pchar.rank)/stf(Pchar.reputation)*DIPLOMAT_SUM);
-			dialog.Text = "Хорошо. Это обойдется в " + Pchar.questTemp.Relations.sum + " золотых.";
+			dialog.Text = "Хорошо. Это обойдётся в " + Pchar.questTemp.Relations.sum + " золотых.";
 			Link.l1 = "Я соглас"+ GetSexPhrase("ен","на") +".";
 			if(makeint(Pchar.money) < makeint(Pchar.questTemp.Relations.sum))
 			{

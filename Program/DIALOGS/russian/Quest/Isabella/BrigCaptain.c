@@ -71,7 +71,7 @@ void ProcessDialogEvent()
             Pchar.quest.Romantic_Brother_port.win_condition.l1           = "location";
         	Pchar.quest.Romantic_Brother_port.win_condition.l1.location  = "SanJuan_town";
         	Pchar.quest.Romantic_Brother_port.win_condition              = "Romantic_Brother_port";
-            // немного веселой жизни
+            // немного весёлой жизни
             TraderHunterOnMap();
             LAi_SetActorType(npchar);
             LAi_ActorRunToLocation(npchar, "reload", "reload1_back", "none", "", "", "", -1);
@@ -90,7 +90,7 @@ void ProcessDialogEvent()
 
 		case "Romantic_Brother_port_1":
             NextDiag.TempNode = "Romantic_Brother_2";
-            dialog.text = "Спасибо. А теперь пойдем навестим мою сестру.";
+            dialog.text = "Спасибо. А теперь пойдём навестим мою сестру.";
 			link.l1 = "Пожалуйста. Конечно.";
 			link.l1.go = "Step_2";
 		break;
@@ -124,7 +124,7 @@ void ProcessDialogEvent()
 			link.l1.go = "TalkNearHouse_2";
 		break;
 		case "TalkNearHouse_2":
-            dialog.text = "Если тебя до этого не вздернут, негодяй! С такими, как ты, здесь церемониться не будут! Ты завтра же будешь за решеткой!";
+            dialog.text = "Если тебя до этого не вздёрнут, негодяй! С такими, как ты, здесь церемониться не будут! Ты завтра же будешь за решёткой!";
 			link.l1 = "Ты сам выбрал свою судьбу, щенок!";
 			link.l1.go = "TalkNearHouse_3";
 		break;
@@ -162,8 +162,8 @@ void ProcessDialogEvent()
 			}
 		break;
 		case "ArrestInHome_Have":
-			dialog.text = "Хорошо, разберемся. Полагаю, они будут приняты к рассмотрению. А пока сдайте свое оружие и следуйте за мной!";
-			link.l1 = "Сдаваться на милость?! Нет уж, есть у меня серьезные сомнения в том, что все будет рассмотрено верно.";
+			dialog.text = "Хорошо, разберёмся. Полагаю, они будут приняты к рассмотрению. А пока сдайте своё оружие и следуйте за мной!";
+			link.l1 = "Сдаваться на милость?! Нет уж, есть у меня серьёзные сомнения в том, что все будет рассмотрено верно.";
 			link.l1.go = "ArrestInHome_4";
 		break;
 		case "ArrestInHome_4":
@@ -197,7 +197,7 @@ void ProcessDialogEvent()
 			link.l1.go = "exit";
 			AddQuestRecord("Romantic_Line", "31");
 		break;
-		//засада в доме Сальватора, диалог с наемным убийцей
+		//засада в доме Сальватора, диалог с наёмным убийцей
 		case "AmbushBandit":
 			dialog.text = "Так-так... Кажется, мы дождались...";
 			link.l1 = "Меня вы дождались? А с кем имею честь разговаривать?";
@@ -227,7 +227,7 @@ void ProcessDialogEvent()
 		break;
 		case "BrigAbordage_1":
 			dialog.text = "Выражайся ясней...";
-			link.l1 = "Я забираю Изабеллу Олеварес и ты рассказываешь мне, где Сальватор. В этом случае ты остаешься жив.";
+			link.l1 = "Я забираю Изабеллу Олеварес и ты рассказываешь мне, где Сальватор. В этом случае ты остаёшься жив.";
 			link.l1.go = "BrigAbordage_2";
 		break;
 		case "BrigAbordage_2":
@@ -261,7 +261,7 @@ void ProcessDialogEvent()
 			link.l1.go = "AmbushPotroBello_2";
 		break;
 		case "AmbushPotroBello_2":
-			dialog.text = "Так веди её сюда... Или подожди, не надо - лучше сами пойдем к тебе на корабль и по-тихому её придушим. Нечего ей по городу разгуливать.";
+			dialog.text = "Так веди её сюда... Или подожди, не надо - лучше сами пойдём к тебе на корабль и по-тихому её придушим. Нечего ей по городу разгуливать.";
 			link.l1 = "Зачем было её сюда тащить из Сан-Хуана?";
 			link.l1.go = "AmbushPotroBello_3";
 		break;
@@ -271,7 +271,7 @@ void ProcessDialogEvent()
 			link.l1.go = "AmbushPotroBello_4";
 		break;
 		case "AmbushPotroBello_4":
-			dialog.text = "Нет его здесь, по делам уехал. Так что мы свое дело делаем - и свободны.";
+			dialog.text = "Нет его здесь, по делам уехал. Так что мы своё дело делаем - и свободны.";
 			link.l1 = "Понятно... А где дела у Сальватора? Как найти мне его?";
 			link.l1.go = "AmbushPotroBello_5";
 		break;
@@ -431,7 +431,7 @@ void ProcessDialogEvent()
 		break;
 		case "SavedIsabella_3":
 			dialog.text = "Мерзавец! Нужно обо всем доложить губернатору, чтобы он немедленно арестовал Сальватора!";
-			link.l1 = "Сальватор тоже мертв. Меня нашёл и вызволил из плена мой ангел-хранитель... Сальватор напал и на него, но был убит у меня на глазах.";
+			link.l1 = "Сальватор тоже мёртв. Меня нашёл и вызволил из плена мой ангел-хранитель... Сальватор напал и на него, но был убит у меня на глазах.";
 			link.l1.go = "SavedIsabella_4";
 		break;
 		case "SavedIsabella_4":
@@ -455,12 +455,12 @@ void ProcessDialogEvent()
 		//Нападения на ГГ и Изабеллу в церкви
 		case "AmbushInChurch":
 			dialog.text = "Капитан, тебе привет от Сальватора!";
-			link.l1 = "Сальватор мертв, угомонитесь...";
+			link.l1 = "Сальватор мёртв, угомонитесь...";
 			link.l1.go = "AmbushInChurch_1";
 		break;
 		case "AmbushInChurch_1":
 			dialog.text = "К сожалению, веселье оплачено, кэп, и отменить все может только заказчик...";
-			link.l1 = "Ещё раз повторяю: Сальватор мертв! Для вас что, нет ничего святого? Это же венчание в храме Божьем!";
+			link.l1 = "Ещё раз повторяю: Сальватор мёртв! Для вас что, нет ничего святого? Это же венчание в храме Божьем!";
 			link.l1.go = "AmbushInChurch_2";
 		break;
 		case "AmbushInChurch_2":
@@ -566,7 +566,7 @@ void ProcessDialogEvent()
 			}
 		break;
 		case "TheDoosIsClosed":
-			dialog.text = "Понятно... Вы, видимо, серьезно провинились, капитан. Вы что, долго не были дома?";
+			dialog.text = "Понятно... Вы, видимо, серьёзно провинились, капитан. Вы что, долго не были дома?";
 			link.l1 = "Хм, ну как сказать... В общем-то, да. Но я же моряк, Росита, и моя работа - это постоянные выходы в море.";
 			link.l1.go = "TheDoosIsClosed_1";
 		break;
@@ -597,7 +597,7 @@ void ProcessDialogEvent()
 
 		case "KnowPirates":
 			dialog.text = "Хм, кузен, вы меня простите за вопрос, но 'не совсем' - это как?";
-			link.l1 = "Ну, понимаешь, нападают на меня сами, а мне что остается делать? Атаковать, конечно!";
+			link.l1 = "Ну, понимаешь, нападают на меня сами, а мне что остаётся делать? Атаковать, конечно!";
 			link.l1.go = "KnowPirates_1";
 		break;
 		case "KnowPirates_1":
