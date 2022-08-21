@@ -467,8 +467,7 @@ float LAi_GunCalcProbability(aref attack, float kDist)
 	pmin = pmin + 0.3*aSkill;
 
 	//Вероятность попадания в текущей позиции
-	//float p = pmin + (1.0 - pmin)*(kDist/0.9)+(GetCharacterSPECIALSimple(attack, SPECIAL_P)*0.01);
-	float p = pmin + (1.0 - pmin)*(kDist/0.9)+(GetCharacterSPECIALSimple(attack, SPECIAL_P)*0.01)-0.25; //добавил базовый штраф в 25%, убирается перками
+	float p = pmin + (1.0 - pmin)*(kDist/0.9)+(GetCharacterSPECIALSimple(attack, SPECIAL_P)*0.01);
  	//Учесть абилити
 	if(IsCharacterPerkOn(attack, "GunProfessional"))
 	{
@@ -1516,8 +1515,6 @@ void LAi_ApplyCharacterFireDamage(aref attack, aref enemy, float kDist)
 	}
 	if(damage > 0.0)
 	{
-		//Влияние точности на урон
-		damage *= p;
 		//Начисляем опыт
 		float exp = LAi_GunCalcExperience(attack, enemy, damage);
 		if(IsEquipCharacterByArtefact(attack, "talisman1"))

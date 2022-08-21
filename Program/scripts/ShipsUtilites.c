@@ -3112,7 +3112,7 @@ int GetShootDistance(ref chref, string ball)
 		case "ball":
 			if (CheckAttribute(chref, "perks.list.LongRangeShoot"))
 			{
-				distance = distance * (1.15+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
+				distance = distance * 1.15*(1.0+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
 			}
 			else
 			{
@@ -3122,7 +3122,7 @@ int GetShootDistance(ref chref, string ball)
 		case "grape":
 			if (CheckAttribute(chref, "perks.list.LongRangeShoot"))
 			{
-				distance = distance * 0.6 * (1.15+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
+				distance = distance * 0.6 * 1.15*(1.0+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
 			}
 			else
 			{
@@ -3132,7 +3132,7 @@ int GetShootDistance(ref chref, string ball)
 		case "knippel":
 			if (CheckAttribute(chref, "perks.list.LongRangeShoot"))
 			{
-				distance = distance * 0.9  * (1.15+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
+				distance = distance * 0.9  * 1.15*(1.0+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
 			}
 			else
 			{
@@ -3142,7 +3142,7 @@ int GetShootDistance(ref chref, string ball)
 		case "bomb":
 			if (CheckAttribute(chref, "perks.list.LongRangeShoot"))
 			{
-				distance = distance * 0.8  * (1.15+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
+				distance = distance * 0.8  * 1.15*(1.0+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
 			}
 			else
 			{

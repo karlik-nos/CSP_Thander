@@ -2486,7 +2486,6 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			int HullArm = shTo.HullArmor;
 			int CannonsCal = sti(pchar.Ship.Cannons.Type);
 			float MM = stf(shTo.MastMultiplier);
-			string ShipName = pchar.ship.name;
 
 			if (CheckAttribute(shTo,"Tuning.HullSpecial")) HullSpecial = true;
 			if (CheckAttribute(shTo,"Tuning.SailsSpecial")) SailsSpecial = true;
@@ -2503,10 +2502,8 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			if (CheckAttribute(shTo,"Tuning.Capacity")) TuneCap = true;
 			if (CheckAttribute(shTo,"Tuning.MaxCrew")) TuneMaxCrew = true;
 
-			pchar.DontRefresh = true;
 			pchar.Ship.Type = GenerateShipExt(SHIP_FLYINGDUTCHMAN_N, true, pchar);
 			SetBaseShipData(pchar);
-			pchar.ship.name = ShipName;
 			shTo = &RealShips[sti(Pchar.Ship.Type)];
 			shTo.HullArmor = HullArm;
 			shTo.MastMultiplier = MM;

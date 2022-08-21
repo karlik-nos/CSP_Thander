@@ -1009,7 +1009,6 @@ void  GhostShipOnMap()
 
 		sld.Ship.Type = GenerateShipExt(SHIP_FLYINGDUTCHMAN, true, sld);
 		SetBaseShipData(sld);
-		sld.Ship.Name = "Летучий голландец";
 
         DeleteAttribute(rRealShip, "ShipSails.SailsColor");  // белый парус
 

@@ -73,6 +73,13 @@ void InitInterface(string iniName)
 	aref ar; makearef(ar,objControlsState.key_codes);
 	SendMessage(&GameInterface,"lsla",MSG_INTERFACE_MSG_TO_NODE,"KEY_CHOOSER", 0,ar);
 
+	if( sti(Render.full_screen)==0 )
+	{
+		SetSelectable("GAMMA_SLIDE",false);
+		SetSelectable("BRIGHT_SLIDE",false);
+		SetSelectable("CONTRAST_SLIDE",false);
+	}
+
 	float ftmp1 = -1.0;
 	float ftmp2 = -1.0;
 	float ftmp3 = -1.0;
@@ -983,9 +990,11 @@ float ConvertGamma(float fGamma, bool Real2Slider)
 { // гамма от 0.5 до 2.0
 	if(Real2Slider)
 	{
-		return fGamma*2.0/3.0-1.0/3.0;
+		if(fGamma<=1.0) {return fGamma-0.5;}
+		return fGamma*0.5;
 	}
-	return fGamma*1.5+0.5;
+	if(fGamma<=0.5) {return fGamma+0.5;}
+	return fGamma*2.0;
 }
 
 float ConvertBright(float fBright, bool Real2Slider)
@@ -993,7 +1002,7 @@ float ConvertBright(float fBright, bool Real2Slider)
 	if(Real2Slider) {
 		return (fBright+50.0)/100.0;
 	}
-	return fBright*100.0-50.0;
+	return fBright*100-50;
 }
 
 float ConvertSeaDetails(float fDetails, bool Real2Slider)
@@ -1277,14 +1286,17 @@ void ShowInfo()
 		case "GAMMA_SLIDE":
 			sHeader = XI_ConvertString("gamma");
 			sText1 = XI_ConvertString("gamma_descr");
+			sText3 = XI_ConvertString("FullScreenOnly");
 		break;
 		case "BRIGHT_SLIDE":
 			sHeader = XI_ConvertString("Brightness");
 			sText1 = XI_ConvertString("brightness_descr");
+			sText3 = XI_ConvertString("FullScreenOnly");
 		break;
 		case "CONTRAST_SLIDE":
 			sHeader = XI_ConvertString("Contrast");
 			sText1 = XI_ConvertString("Contrast_descr");
+			sText3 = XI_ConvertString("FullScreenOnly");
 		break;
 		case "SEA_DETAILS_SLIDE":
 			sHeader = XI_ConvertString("Sea Detail");

@@ -1300,7 +1300,7 @@ void ShipWreckBattleWithSailorWinner(string qName)
 
 	SetQuestFunction("ShipWreckBattleWithSailorOut", "ShipWreckBattleWithSailorOut", "efl", PChar.location);
 
-	PChar.quest.ShipWreckCapture.win_condition.l1 = "NPC_Death";
+	PChar.quest.ShipWreckCapture.win_condition.l1 = "Character_Capture";
 	PChar.quest.ShipWreckCapture.win_condition.l1.character = chr.id;
 	PChar.quest.ShipWreckCapture.function = "ShipWreckCapture";
 
@@ -1311,6 +1311,8 @@ void ShipWreckBattleWithSailorWinner(string qName)
 void ShipWreckNoCapture(string qName)
 {
 	PChar.GenerateShipWreck.State = "none";
+	if(CheckAttribute(PChar, "quest.ShipWreckCapture")) { DeleteAttribute(PChar, "quest.ShipWreckCapture"); }
+	if(CheckAttribute(PChar, "quest.ShipWreckNoCapture")) { DeleteAttribute(PChar, "quest.ShipWreckNoCapture"); }
 	CloseQuestHeader("ShipWreck");
 }
 
@@ -1921,7 +1923,5 @@ void ClearShipWreckQuest()
 	PChar.GenerateShipWreck.ValodyaToMoney = false;
 	DeleteAttribute(PChar,"VolodyaDebil.Convoy");
 	DeleteAttribute(PChar,"IdVolodiDebila");
-	if(CheckAttribute(PChar, "quest.ShipWreckCapture")) { DeleteAttribute(PChar, "quest.ShipWreckCapture"); }
-	if(CheckAttribute(PChar, "quest.ShipWreckNoCapture")) { DeleteAttribute(PChar, "quest.ShipWreckNoCapture"); }
 }
 

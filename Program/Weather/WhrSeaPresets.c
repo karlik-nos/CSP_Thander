@@ -19,7 +19,6 @@ string WhrGetSeaPresetFromWind(float fWind)
 void WhrSetSeaPreset(int iCurWeatherNum, string sPreset)
 {
 	ref Whr = &Weathers[iCurWeatherNum];
-	Sea.MaxSeaDistance = 2000.0;
 	/* Whr.Sea2.Reflection = 0.8;
     Whr.Sea2.Transparency = 0.3;
     Whr.Sea2.Frenel = 0.3;
