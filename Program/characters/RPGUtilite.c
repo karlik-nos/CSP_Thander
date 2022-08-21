@@ -3125,6 +3125,11 @@ void initMainCharacterItem()
 			TakenItems(Pchar, "Totem_2", 1);
 			TakenItems(Pchar, "indian5", 1);
 			TakenItems(Pchar, "indian17", 1);
+			TakenItems(Pchar, "suit_1", 1);
+			SetCharacterPerk(pchar, "FlagEng");
+			SetCharacterPerk(pchar, "FlagFra");
+			SetCharacterPerk(pchar, "FlagSpa");
+			SetCharacterPerk(pchar, "FlagHol");
 			switch (sti(ch.nation))
 			{
 				case ENGLAND:
@@ -3137,10 +3142,7 @@ void initMainCharacterItem()
 					GiveItem2Character(Pchar, "patent_hol");
 				break;
 				case PIRATE:
-					SetCharacterPerk(pchar, "FlagEng");
-					SetCharacterPerk(pchar, "FlagFra");
-					SetCharacterPerk(pchar, "FlagSpa");
-					SetCharacterPerk(pchar, "FlagHol");
+
 				break;
 				case SPAIN:
 					GiveItem2Character(Pchar, "patent_spa");

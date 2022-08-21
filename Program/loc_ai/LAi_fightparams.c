@@ -1520,12 +1520,22 @@ void LAi_ApplyCharacterFireDamage(aref attack, aref enemy, float kDist)
 		damage *= p;
 		//Начисляем опыт
 		float exp = LAi_GunCalcExperience(attack, enemy, damage);
+		float critd = 1.0;
+		int critchance = 0;
+		int pured = 0;
+		if (CheckCharacterPerk(attack,"Buccaneer")) 
+		{
+			critd = 1.3;
+			critchance = 10;
+		}
 		if(IsEquipCharacterByArtefact(attack, "talisman1"))
 		{
-			if (rand(4)==0)	{LAi_ApplyCharacterDamage(enemy, MakeInt(damage + 0.5)*2); Log_Info("Критический выстрел");}
-			else LAi_ApplyCharacterDamage(enemy, MakeInt(damage + 0.5)+25);
+			critd = 2.0;
+			critchance += 20;
+			pured = 25;
 		}
-		else LAi_ApplyCharacterDamage(enemy, MakeInt(damage + 0.5));
+		if (critchance > 0 && rand(99)<critchance)	{LAi_ApplyCharacterDamage(enemy, MakeInt(damage + 0.5)*critd); Log_Info("Критический выстрел");}
+		else LAi_ApplyCharacterDamage(enemy, MakeInt(damage + 0.5)+pured);
 
 		//Проверим на смерть
 		LAi_CheckKillCharacter(enemy);

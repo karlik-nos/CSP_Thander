@@ -926,22 +926,7 @@ void ProcessDialogEvent()
 
 				case 3:
 					if(Pchar.chr_ai.type != LAI_TYPE_SIT) LAi_SetSitType(pchar);
-					if (!IsCharacterPerkOn(pchar, "Adventurer"))
-					{
-						if (GetSummonSkillFromName(pchar, SKILL_SNEAK) > rand(110))
-						{
-						dialog.text = "...И тогда я схв-схватил его шпагу за л-лезвие и...";
-							link.l1 = "... а она мне и говорит...";
-							link.l1.go = "sit_2";
-						}
-						else
-						{
-							dialog.text = "...И тогда я схв-схватил его шпагу за л-лезвие и...";
-							link.l1 = "... и-ик! А она мне и г-говорит...";
-						link.l1.go = "sit_case_4_exit";
-						}
-					}
-					else
+					if (IsCharacterPerkOn(pchar, "Adventurer") || IsCharacterPerkOn(pchar, "Agent"))
 					{
 						if (GetSummonSkillFromName(pchar, SKILL_SNEAK) > rand(110))
 						{
@@ -954,6 +939,21 @@ void ProcessDialogEvent()
 							dialog.text = "...И тогда я схв-схватил его шпагу за л-лезвие и...";
 							link.l1 = "... и-ик! А она мне и г-говорит...";
 						link.l1.go = "sit_2";
+						}
+					}
+					else
+					{
+						if (GetSummonSkillFromName(pchar, SKILL_SNEAK) > rand(110))
+						{
+						dialog.text = "...И тогда я схв-схватил его шпагу за л-лезвие и...";
+							link.l1 = "... а она мне и говорит...";
+							link.l1.go = "sit_2";
+						}
+						else
+						{
+							dialog.text = "...И тогда я схв-схватил его шпагу за л-лезвие и...";
+							link.l1 = "... и-ик! А она мне и г-говорит...";
+						link.l1.go = "sit_case_4_exit";
 						}
 					}
 				break;

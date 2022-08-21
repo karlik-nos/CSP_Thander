@@ -849,6 +849,11 @@ void ProcessDialogEvent()
 				}
 				// <-- ugeen
 				// <-- homo
+				if (CheckOfficersPerk(pchar,"Trader"))
+				{
+					link.l8 = "Коллега, не поделитесь ли информацией об известных вам ценах?";
+					link.l8.go = "GetTradeInfo";
+				}
 				link.l99 = "Впрочем, сейчас не до разговоров.";
     			link.l99.go = "no_quests";
 			}
@@ -1390,6 +1395,68 @@ void ProcessDialogEvent()
 		case "storage_rent3":
 			dialog.text = "Ну, как знаете. Если надумаете - обращайтесь. Только учтите, что такое сокровище долго пустовать не будет. Как бы не опоздали.";
 			link.l1 = "Не волнуйтесь. Если понадобится - спрошу.";
+			link.l1.go = "exit";
+		break;
+		
+		case "GetTradeInfo":
+			dialog.text = "За небольшое материальное вознаграждение - вполне возможно. Я бы хотел за эту информацию 15000 пиастров. Что скажете?";
+			if (sti(pchar.money) >= 15000)
+			{
+				Link.l1 = "Хорошо, вот ваши деньги.";
+				link.l1.go = "GetTradeInfo2";
+			}
+			Link.l2 = "Пожалуй я передумал"+ GetSexPhrase("","а")+". Всего хорошего.";
+			link.l2.go = "exit";
+		break;
+		
+		case "GetTradeInfo2":
+			ref getcolony;
+			int t;
+			switch (sti(NPChar.nation))
+			{
+				case ENGLAND:
+					for (t = 0; t< MAX_COLONIES; t++)
+					{
+						getcolony = &Colonies[t];
+						if (getcolony.id != "Caiman" && getcolony.id != "Panama" && getcolony.nation != "none" && sti(getcolony.nation) != SPAIN && sti(getcolony.nation) != HOLLAND && sti(getcolony.nation) != PIRATE) SetPriceListByStoreMan(getcolony);
+					}
+				break;
+				case FRANCE:
+					for (t = 0; t< MAX_COLONIES; t++)
+					{
+						getcolony = &Colonies[t];
+						if (getcolony.id != "Caiman" && getcolony.id != "Panama" && getcolony.nation != "none" && sti(getcolony.nation) != SPAIN && sti(getcolony.nation) != PIRATE) SetPriceListByStoreMan(getcolony);
+					}
+				break;
+				case SPAIN:
+					for (t = 0; t< MAX_COLONIES; t++)
+					{
+						getcolony = &Colonies[t];
+						if (getcolony.id != "Caiman" && getcolony.id != "Panama" && getcolony.nation != "none" && sti(getcolony.nation) != ENGLAND && sti(getcolony.nation) != FRANCE && sti(getcolony.nation) != PIRATE) SetPriceListByStoreMan(getcolony);
+					}
+				break;
+				case HOLLAND:
+					for (t = 0; t< MAX_COLONIES; t++)
+					{
+						getcolony = &Colonies[t];
+						if (getcolony.id != "Caiman" && getcolony.id != "Panama" && getcolony.nation != "none" && sti(getcolony.nation) != ENGLAND && sti(getcolony.nation) != PIRATE) SetPriceListByStoreMan(getcolony);
+					}
+				break;
+				case PIRATE:
+					for (t = 0; t< MAX_COLONIES; t++)
+					{
+						getcolony = &Colonies[t];
+						if (getcolony.id != "Caiman" && getcolony.id != "Panama" && getcolony.nation != "none" && sti(getcolony.nation) != ENGLAND && sti(getcolony.nation) != FRANCE && sti(getcolony.nation) != SPAIN && sti(getcolony.nation) != HOLLAND) SetPriceListByStoreMan(getcolony);
+					}
+				break;
+				
+			}
+			log_info("Получен список цен дружественных колоний Карибского архипелага.");
+			PlayStereoSound("notebook");
+			AddMoneyToCharacter(pchar,-15000);
+
+			dialog.text = "...Держите, здесь вся нужная вам информация. Желаю успехов!";
+			Link.l1 = "Благодарю вас. До свидания!";
 			link.l1.go = "exit";
 		break;
 
