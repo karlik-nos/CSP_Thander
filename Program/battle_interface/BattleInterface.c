@@ -318,13 +318,13 @@ ref BI_GetCmdListOrderPriority()
   if(curItem >= 0 && curItem < 14) {
     int i = 0;
     int cmdList[14];
+    cmdList[i] = BI_COMMODE_FRIEND_FORT_SELECT; i++;
+    cmdList[i] = BI_COMMODE_NEUTRAL_FORT_SELECT; i++;
+    cmdList[i] = BI_COMMODE_ENEMY_FORT_SELECT; i++;
     cmdList[i] = BI_COMMODE_NOTDISEASED_TOWN; i++;
     cmdList[i] = BI_COMMODE_DISEASED_TOWN; i++;
     cmdList[i] = BI_COMMODE_ENEMY_TOWN; i++;
     cmdList[i] = BI_COMMODE_LAND_SELECT; i++;
-    cmdList[i] = BI_COMMODE_FRIEND_FORT_SELECT; i++;
-    cmdList[i] = BI_COMMODE_NEUTRAL_FORT_SELECT; i++;
-    cmdList[i] = BI_COMMODE_ENEMY_FORT_SELECT; i++;
     cmdList[i] = BI_COMMODE_MY_SHIP_SELECT; i++;
     cmdList[i] = BI_COMMODE_NEUTRAL_SHIP_SELECT; i++;
     cmdList[i] = BI_COMMODE_FRIEND_SHIP_SELECT; i++;
