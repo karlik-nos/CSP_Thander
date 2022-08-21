@@ -18,13 +18,13 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			}
 			if (pchar.questTemp.State == "Sp10Maracaibo_toGovernor")
 			{
-				dialog.text = "Ну что же, вы как нельзя вовремя. Еще не успели устроиться и разместить команду в городе - и пожалуйте в сражение!";
+				dialog.text = "Ну что же, вы как нельзя вовремя. Ещё не успели устроиться и разместить команду в городе - и пожалуйте в сражение!";
 				link.l1 = "Верно подмечено!";
 				link.l1.go = "Step_S10_4";
 			}
 			if (pchar.questTemp.State == "Sp10Maracaibo_toBattle")
 			{
-				dialog.text = "Вы еще здесь? Я полагаю, вам пора в сражение.";
+				dialog.text = "Вы ещё здесь? Я полагаю, вам пора в сражение.";
 				link.l1 = "Верно, сеньор. Я не заставлю ладронов ждать...";
 				link.l1.go = "exit";
 			}
@@ -38,7 +38,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 		//************************** Квестовые штрумы ************************
 		case "Cupture_after":
-            dialog.text = RandPhraseSimple("Вы уже все забрали. Что вам еще нужно?", "Неужели осталось еще что-то, что вы не прихватили?");
+            dialog.text = RandPhraseSimple("Вы уже все забрали. Что вам ещё нужно?", "Неужели осталось ещё что-то, что вы не прихватили?");
             link.l1 = RandPhraseSimple("Осматриваюсь напоследок...", "Проверяю, может забыл"+ GetSexPhrase("","а") +" что забрать...");
             link.l1.go = "exit";
             NextDiag.TempNode = "Cupture_after";

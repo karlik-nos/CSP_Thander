@@ -63,7 +63,7 @@ int GetQuestPastTimeParam(string _quest)
 	return 0;
 }
 //navy -->
-//Ввел еще одну функцию, т.к. нужны прошедшие минуты.
+//Ввел ещё одну функцию, т.к. нужны прошедшие минуты.
 int GetQuestPastMinutesParam(string _quest)
 {
     aref  arQ;
@@ -1243,7 +1243,7 @@ string NPCStringReactionRepeat(string _strNormal, string _strBad1, string _strBa
         case "2":
             if (_strBad2 == "none" || _strBad2 == "")
             {
-                strBack = LinkRandPhrase("Еще раз повторяю, что я не хочу говорить об одном и том же по десять раз!",
+                strBack = LinkRandPhrase("Ещё раз повторяю, что я не хочу говорить об одном и том же по десять раз!",
                           "Повторяю, мы уже говорили об этом!",
                           "Я же говорю, мы это уже обсуждали. Проблемы с памятью?");
             }
@@ -1340,7 +1340,7 @@ string HeroStringReactionRepeat(string _strNormal, string _strBad1, string _strB
     return strBack;
 }
 
-// возможны только две переходные ноды: _GoNode1 и _GoNode2, третья не нужна, т.к. идет сразу в ангри-файл.
+// возможны только две переходные ноды: _GoNode1 и _GoNode2, третья не нужна, т.к. идёт сразу в ангри-файл.
 // неверно, оставил третью ноду для циклов и прочего.
 string DialogGoNodeRepeat(string _NormalNode, string _GoNode1, string _GoNode2, string _GoNode3, ref _character, string _Node)
 {
@@ -2622,6 +2622,52 @@ void PDMQuestsInit()
 	LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
 	ChangeCharacterAddressGroup(sld,"SentJons_tavern","goto","goto1");
 }
+//Сундук Мертвеца
+void KSMQuestsInit()
+{
+	ref sld;
+	//******Спасение на рифах******
+	//Джеймс Аллока
+	sld = GetCharacter(NPC_GenerateCharacter("KSM_Alloka", "trader_1", "man", "man", 10, ENGLAND, -1, false));
+	sld.name	= "Джеймс";
+	sld.lastname	= "Аллока";
+	sld.Dialog.Filename = "Quest/KSM/Spasenie_na_rifah.c";
+	LAi_SetCitizenType(sld);
+	LAi_SetLoginTime(sld, 6.0, 21.99);
+	sld.talker = 7;
+	LAi_SetImmortal(sld, true);
+	LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
+	ChangeCharacterAddressGroup(sld,"PortRoyal_town","goto","goto12");
+}
+//Все остальные НПС
+void VSEnpcInit()
+{
+	ref sld;
+	//Стражники в адмиралтействе
+	sld = GetCharacter(NPC_GenerateCharacter("VSE_Admir_1", "sold_spa_2", "man", "man", 10, SPAIN, -1, true));
+	sld.Dialog.Filename = "Admiralty.c";
+	sld.dialog.currentnode = "Strajniki";
+	LAi_SetGuardianType(sld);
+	LAi_SetImmortal(sld, true);
+	LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
+	ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","soldiers","soldier1");
+	
+	sld = GetCharacter(NPC_GenerateCharacter("VSE_Admir_2", "sold_spa_1", "man", "man", 10, SPAIN, -1, true));
+	sld.Dialog.Filename = "Admiralty.c";
+	sld.dialog.currentnode = "Strajniki";
+	LAi_SetGuardianType(sld);
+	LAi_SetImmortal(sld, true);
+	LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
+	ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","soldiers","soldier2");
+	
+	sld = GetCharacter(NPC_GenerateCharacter("VSE_Admir_3", "sold_spa_3", "man", "man", 10, SPAIN, -1, true));
+	sld.Dialog.Filename = "Admiralty.c";
+	sld.dialog.currentnode = "Strajniki";
+	LAi_SetPatrolType(sld);
+	LAi_SetImmortal(sld, true);
+	LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
+	ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","goto","goto2");
+}
 void OfficerGirlInit()
 {
     ref sld;
@@ -3265,7 +3311,7 @@ void SetReefSkeletonsToLocation(aref _location, string loc)
 			}
 			if (loc != "MountainPath")
 			{
-				if (startHeroType != 2 && startHeroType != 7 && !CheckAttribute(pchar, "PGGWhisperQuest"))
+				if (pchar.name != "Виспер" && pchar.name != "Тёмный" && !CheckAttribute(pchar, "PGGWhisperQuest"))
 				{
 					Log_info("Вы пробудили проклятых!");
 					chrDisableReloadToLocation = true; //пока Злой Скелет Гигант жив - хер, а не выход
@@ -3502,7 +3548,7 @@ void QuestCheckTakeBoxes(ref itemsRef)
 	}
 	//<<-- Сундук с револьвером Колье в Тено.
 }
-//открытие дверей в локации города для коммонов. только на текущие сутки + еще одни, потом снимается само.
+//открытие дверей в локации города для коммонов. только на текущие сутки + ещё одни, потом снимается само.
 void SetOpenDoorCommonLoc(string City, string locationId)
 {
 	aref arRld, arDis, arRld2, arDis2;
@@ -3544,6 +3590,6 @@ void AddComplexSelfExpToScill(int l, int m, int h, int p)
 {
 	AddCharacterExpToSkill(pchar, "FencingLight", l);//легкое оружие
 	AddCharacterExpToSkill(pchar, "Fencing", m);//среднее оружие
-	AddCharacterExpToSkill(pchar, "FencingHeavy", h);//тяжелое оружие
+	AddCharacterExpToSkill(pchar, "FencingHeavy", h);//тяжёлое оружие
 	AddCharacterExpToSkill(pchar, "Pistol", p); //пистоли
 }

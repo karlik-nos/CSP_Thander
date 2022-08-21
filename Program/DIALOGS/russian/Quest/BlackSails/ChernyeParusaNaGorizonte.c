@@ -487,7 +487,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "BS_CPNG_Final":
-			dialog.text = "Мы еще опрокинем пару кружек перед отплытием.";
+			dialog.text = "Мы ещё опрокинем пару кружек перед отплытием.";
 			NextDiag.TempNode = "BS_CPNG_Final";
             link.l1 = "Смотрите не опоздайте.";
 			link.l1.go = "exit";

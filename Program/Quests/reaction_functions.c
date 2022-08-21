@@ -499,7 +499,7 @@ void Sharp_Over(string qName)
 	pchar.quest.Sharp_landOver1.over = "yes";
 	pchar.quest.Sharp_landOver2.over = "yes";
 	pchar.quest.Sharp_mapOver.over = "yes";
-	//даем запись в СЖ, если не нашел Шарпа
+	//даем запись в СЖ, если не нашёл Шарпа
 	if (pchar.questTemp.Sharp == "toSharp_going")
 	{
 		AddQuestRecord("SharpPearl", "4");
@@ -1683,7 +1683,7 @@ void PQ8_controlShore48(string qName)
 		pchar.Quest.PQ8_jungle_05.function = "PQ8_jungle_05";
 	}
 	else
-	{	//ГГ не успел или не туда зашел -->
+	{	//ГГ не успел или не туда зашёл -->
 		iTemp = GetCharacterIndex("Richard_Soukins");
 		if (iTemp != -1)
 		{
@@ -2515,7 +2515,7 @@ void WaitressFack_fack()
 // ----------------- Пожертвование хозяйки борделя ---------------------
 void HostessChurch_null(string qName) //нулим квест
 {
-	//если квест еще взят, то деньги считай прикарманены
+	//если квест ещё взят, то деньги считай прикарманены
 	if (characters[GetCharacterIndex(pchar.questTemp.different.HostessChurch.city + "_Hostess")].questChurch == "taken")
 	{
 		characters[GetCharacterIndex(pchar.questTemp.different.HostessChurch.city + "_Hostess")].questChurch = "baster";
@@ -2605,7 +2605,7 @@ void SexWithHostess_null(string qName) //нулим квест
 	}
 	LAi_SetOwnerTypeNoGroup(sld);
 	sld.dialog.currentnode = "First time";
-	sld.quest.NotGoneToSex = true; //не пришел. Секса больше не будет
+	sld.quest.NotGoneToSex = true; //не пришёл. Секса больше не будет
 	DeleteAttribute(pchar, "questTemp.different.HostessSex");
 	pchar.questTemp.different = "free";
 }
@@ -2676,10 +2676,10 @@ void SetCapitainFromCityToSea(string qName) //помещаем в море кэ�
 		//на карту
 		iTemp = GetMaxDaysFromIsland2Island(sTemp, GetArealByCityName(sld.quest.targetCity))+5; //дней доехать даем с запасом
 		Map_CreateTrader(sld.quest.baseShore, sld.quest.targetCity, sld.id, iTemp);
-		//даем общий слух, что кэп ушел в другой город
-		AddSimpleRumourEx(LinkRandPhrase("Капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "', которого зовут " + GetFullName(sld) + ", опять ушел в море. По слухам, он двинулся в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ".",
+		//даем общий слух, что кэп ушёл в другой город
+		AddSimpleRumourEx(LinkRandPhrase("Капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "', которого зовут " + GetFullName(sld) + ", опять ушёл в море. По слухам, он двинулся в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ".",
 			"Вы знаете, капитана " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "'? Так вот, он направился в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ".",
-			"Если вам нужен капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "', то вам придется отправится в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ". " + GetFullName(sld) + " ушел именно туда."),
+			"Если вам нужен капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "', то вам придётся отправится в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ". " + GetFullName(sld) + " ушёл именно туда."),
 			sld.city, iTemp, 1, "PortmansBook_DeliveryToCap", sld.id);
 		//--> запись инфы по кэпу в базу местного портмана
 		sTemp = sld.id; //Id кэпа, который оставил отметку
@@ -2724,10 +2724,10 @@ void SetRobberFromSeaToMap(string qName) //помещаем в море кэпа
 		//на карту
 		iTemp = GetMaxDaysFromIsland2Island(GetArealByCityName(sld.quest.targetCity), GetArealByCityName(sld.city))+5; //дней доехать даем с запасом
 		Map_CreateTrader(sld.city, sld.quest.targetCity, sld.id, iTemp);
-		//даем общий слух, что кэп ушел в другой город
-		AddSimpleRumourEx(LinkRandPhrase("Капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "', которого зовут " + GetFullName(sld) + ", опять ушел в море. По слухам, он двинулся в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ".",
+		//даем общий слух, что кэп ушёл в другой город
+		AddSimpleRumourEx(LinkRandPhrase("Капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "', которого зовут " + GetFullName(sld) + ", опять ушёл в море. По слухам, он двинулся в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ".",
 			"Вы знаете, капитана " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "'? Так вот, он направился в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ".",
-			"Если вам нужен капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "', то вам придется отправится в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ". " + GetFullName(sld) + " ушел именно туда."),
+			"Если вам нужен капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "', то вам придётся отправится в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ". " + GetFullName(sld) + " ушёл именно туда."),
 			sld.city, iTemp, 1, "Portmans_SeekShip_rum", sld.id);
 		//--> запись инфы по кэпу в базу местного портмана
 		sTemp = sld.id; //Id кэпа, который оставил отметку
@@ -2982,10 +2982,10 @@ void CitizCapFromSeaToMap(string qName) //помещаем на карту кэ�
 		//на карту
 		iTemp = GetMaxDaysFromIsland2Island(GetArealByCityName(sld.quest.targetCity), GetArealByCityName(sld.city))+5; //дней доехать даем с запасом
 		Map_CreateTrader(sld.city, sld.quest.targetCity, sld.id, iTemp);
-		//даем общий слух, что кэп ушел в другой город
-		AddSimpleRumourEx(LinkRandPhrase("Капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "', которого зовут " + GetFullName(sld) + ", опять ушел в море. По слухам, он двинулся в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ".",
+		//даем общий слух, что кэп ушёл в другой город
+		AddSimpleRumourEx(LinkRandPhrase("Капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "', которого зовут " + GetFullName(sld) + ", опять ушёл в море. По слухам, он двинулся в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ".",
 			"Вы знаете, капитана " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "'? Так вот, он направился в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ".",
-			"Если вам нужен капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "', то вам придется отправится в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ". " + GetFullName(sld) + " ушел именно туда."),
+			"Если вам нужен капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "', то вам придётся отправится в " + XI_ConvertString("Colony"+sld.quest.targetCity+"Acc") + ". " + GetFullName(sld) + " ушёл именно туда."),
 			sld.city, iTemp, 1, "Citiz_SeekCap_rum", sld.id);
 		//--> запись инфы по кэпу в базу местного портмана
 		sTemp = sld.id; //Id кэпа, который оставил отметку
@@ -3316,7 +3316,7 @@ void FirstLoginLostShipsCity(string qName) //первоначальная ген
     PChar.quest.LSC_stormTimer_1.win_condition.l1.date.year  = GetAddingDataYear(0, 0, 0);
     PChar.quest.LSC_stormTimer_1.function = "LSC_stormTimer_1";
 	//Начальные слухи
-	AddSimpleRumourCityTip("Будте очень острожны с Августо Брамсом. Чертов чернокнижник...", "LostShipsCity", 10, 1, "LSC", "");
+	AddSimpleRumourCityTip("Будте очень острожны с Августо Брамсом. Чёртов чернокнижник...", "LostShipsCity", 10, 1, "LSC", "");
 	AddSimpleRumourCityTip("Я вам рекомендую держаться подальше от Августо Брамса. Это - страшный человек...", "LostShipsCity", 10, 1, "LSC", "");
 
 	//мэр-адмирал
@@ -4484,7 +4484,7 @@ void LSC_stormTimer_1(string qName)
 			DeleteAttribute(&locations[i], "MaxWaveHeigh");
 		}
 	}
-	//адмирал ловит ГГ, если тот еще не явился к нему
+	//адмирал ловит ГГ, если тот ещё не явился к нему
 	if (pchar.questTemp.LSC == "AdmiralIsWaiting")
 	{
 		pchar.quest.LSC_admiralOwnFind.win_condition.l1 = "location";
@@ -4774,7 +4774,7 @@ void LCS_EndScriptInterception_2(string qName)
 {
 	sld = characterFromId("LSCMayor");
 	sld.Dialog.CurrentNode = "First time";
-	sld.location.going = "toTavern"; //посадим в таверну, ведь он туда пошел
+	sld.location.going = "toTavern"; //посадим в таверну, ведь он туда пошёл
 	SaveCurrentNpcQuestDateParam(sld, "location");
 	LAi_SetHuberType(sld);
 	LAi_group_MoveCharacter(sld, "TmpEnemy");
@@ -5004,7 +5004,7 @@ void LSC_SmallStormIsBegin()
 	{
 		if (CheckAttribute(&locations[i], "fastreload") && locations[i].fastreload == "LostShipsCity")
 		{
-			locations[i].alwaysStorm = true; //живем в штормах
+			locations[i].alwaysStorm = true; //живём в штормах
 			if (locations[i].id == "LostShipsCity_town")
 			{
 				locations[i].alwaysStorm.WaveHeigh = true; //поднять уровень воды до 2.5 для низкого волнения
@@ -5249,7 +5249,7 @@ void LSC_BigStormIsBegin()
 			DeleteAttribute(&locations[i], "alwaysStorm");
 			DeleteAttribute(&locations[i], "QuestlockWeather");
 			DeleteAttribute(&locations[i], "MaxWaveHeigh");
-			locations[i].alwaysStorm_2 = true; //живем в штормах
+			locations[i].alwaysStorm_2 = true; //живём в штормах
 			locations[i].alwaysStorm_2.WaveHeigh = true; //поднять уровень воды до 2.5 для низкого волнения
 			locations[i].storm = true;
 			locations[i].tornado = true;
@@ -5265,7 +5265,7 @@ void LSC_BigStormIsBegin()
 	Islands[i].reload_enable = false;
 	Islands[i].visible = true;
 	Islands[i].reload_enable = false;
-	Islands[i].alwaysStorm = true; //живем в штормах
+	Islands[i].alwaysStorm = true; //живём в штормах
 	Islands[i].storm = true;
 	Islands[i].tornado = true;
 	//прерывание на удаление острова ГПК и снятие шторма с ареала
@@ -10073,7 +10073,7 @@ void LSC_RingStart(string qName) // готовы
 void LSC_RingEnter(string qName) // входим
 {
 	pchar.quest.LSC_Ring_Over.over = "yes"; //снять прерывание
-	SetLaunchFrameFormParam("Прошел час..."+ NewStr() +"Вы добрались до разбитого корабля", "", 0, 6);//табличка
+	SetLaunchFrameFormParam("Прошёл час..."+ NewStr() +"Вы добрались до разбитого корабля", "", 0, 6);//табличка
 	LaunchFrameForm();
 	WaitDate("", 0, 0, 0, 1, 10); //крутим время
 	RecalculateJumpTable();
@@ -10394,21 +10394,37 @@ void PDM_Callow_RodjerProdolg(string qName)
     int Rank = sti(pchar.rank) - 5 + MOD_SKILL_ENEMY_RATE;
 	if (Rank < 1) Rank = 1;
 	sld = GetCharacter(NPC_GenerateCharacter("PDM_Pinki_Skelet", "skel3", "skeleton", "skeleton", Rank, PIRATE, -1, true));
-	sld.name = "Пинки";
+	sld.name = "Пинкамина";
 	sld.lastname = "Пай";
-    FantomMakeCoolFighter(sld, sti(pchar.rank), 15 + MOD_SKILL_ENEMY_RATE * 4, 15 + MOD_SKILL_ENEMY_RATE * 4, "blade18", "", 25 + MOD_SKILL_ENEMY_RATE * 4);
+    FantomMakeCoolFighter(sld, sti(pchar.rank), 15 + MOD_SKILL_ENEMY_RATE * 4, 15 + MOD_SKILL_ENEMY_RATE * 4, "blade36", "", 25 + MOD_SKILL_ENEMY_RATE * 4);
+	sld.SaveItemsForDead = true;
+	sld.DontChangeBlade = true;
+	TakeItemFromCharacter(sld, "spyglass3");
+	TakeNItems(sld, "food1", -10);
+	AddMoneyToCharacter(sld, 5000);
+	AddItems(sld, "jewelry2", 10);
+	AddItems(sld, "jewelry5", 10);
+	AddItems(sld, "jewelry17", 10);
+	AddItems(sld, "mineral5", 10);
 	ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto2");
 	LAi_SetActorType(sld);
 	sld.dialog.filename   = "Quest/PDM/Cursed_Idol.c";
 	sld.dialog.currentnode   = "FraOff_1";
 	LAi_ActorDialog(sld, pchar, "", -1, 0);
 	int j;
-	j = (GetOfficersQuantity(Pchar) + 1) * 2 + 1;
+	if (pchar.rank <= 10)
+	{
+		j = (GetOfficersQuantity(Pchar) + 3);
+	}
+	else
+	{
+		j = (GetOfficersQuantity(Pchar) + 5);
+	}
 	for (i=1; i<=j; i++)
     {
-        sTemp = "skel_"+(rand(5)+1);
+        sTemp = "skel_"+(rand(3)+1);
  		sld = GetCharacter(NPC_GenerateCharacter("PDM_PI_skel_"+i, sTemp, "skeleton", "skeleton", Rank, PIRATE, -1, true));
-        FantomMakeCoolFighter(sld, sti(pchar.rank), 10 + MOD_SKILL_ENEMY_RATE * 2, 10 + MOD_SKILL_ENEMY_RATE * 2, "blade2", "", 10 + MOD_SKILL_ENEMY_RATE * 2);
+        //FantomMakeCoolFighter(sld, sti(pchar.rank), 10 + MOD_SKILL_ENEMY_RATE * 2, 10 + MOD_SKILL_ENEMY_RATE * 2, BLADE_LONG, "", 10 + MOD_SKILL_ENEMY_RATE * 2);
         ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto2");
 		LAi_SetActorType(sld);
 		LAi_ActorFollow(sld, pchar, "", -1);
@@ -10424,7 +10440,7 @@ void PDM_PI_Skelety_v_more(string qName)
 	}
 	if(!IsEntity(worldMap) && CheckAttribute(pchar, "questTemp.PDM_PI_Skelety_v_more"))
 	{
-		SetTimerFunction("PDM_PI_Skelety_v_more_2", 0, 0, 5);
+		SetTimerFunction("PDM_PI_Skelety_v_more_2", 0, 0, 1);
 	}
 }
 void PDM_PI_Skelety_v_more_2(string qName)
@@ -10437,7 +10453,7 @@ void PDM_PI_Skelety_v_more_2(string qName)
 	}
 	if(!IsEntity(worldMap) && CheckAttribute(pchar, "questTemp.PDM_PI_Skelety_v_more"))
 	{
-		SetTimerFunction("PDM_PI_Skelety_v_more", 0, 0, 5);
+		SetTimerFunction("PDM_PI_Skelety_v_more", 0, 0, 3);
 	}
 }
 void PDM_PI_Skelety_v_more_paluba(string qName)
@@ -10723,6 +10739,66 @@ void LambriniPGG_Tavern(string qName)
 	DoQuestFunctionDelay("InstantDialog", 0);
 }
 //Sinistra Клан Ламбрини <--
+
+//Sinistra Мэри и Шарль -->
+bool SharleMaryIsHere()	//Проверка на Мэри абордажника
+{
+	if (CheckAttribute(pchar, "SharleMaryId"))
+	{
+		sld = CharacterFromID(pchar.SharleMaryId);
+		if (sld.location == pchar.location && !LAi_IsDead(sld))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	else
+	{
+		return false;
+	}
+}
+
+void Mary_SexReady(string qName) // Мэри снова готова к сексу
+{
+	sld = characterFromId("SharleMary");	
+	DeleteAttribute(sld, "quest.daily_sex");
+	pchar.quest.Mary_giveme_sex.win_condition.l1 = "Timer";
+	pchar.quest.Mary_giveme_sex.win_condition.l1.date.hour  = sti(GetTime());
+	pchar.quest.Mary_giveme_sex.win_condition.l1.date.day   = GetAddingDataDay(0, 0, 14);
+	pchar.quest.Mary_giveme_sex.win_condition.l1.date.month = GetAddingDataMonth(0, 0, 14);
+	pchar.quest.Mary_giveme_sex.win_condition.l1.date.year  = GetAddingDataYear(0, 0, 14);
+	pchar.quest.Mary_giveme_sex.function = "Mary_GiveMeSex";
+}
+
+void Mary_GiveMeSex(string qName)	// требует секса, если давно не давал. Пока только в таверне
+{
+	pchar.quest.Mary_giveme_sex1.win_condition.l1 = "Location_Type";
+	pchar.quest.Mary_giveme_sex1.win_condition.l1.location_type = "tavern";
+	pchar.quest.Mary_giveme_sex1.function = "Mary_GetTalk";
+	sld = characterFromId("SharleMary");
+	sld.quest.iwantsex = true;
+	//sld.greeting = "mary_love";
+}
+
+void Mary_GetTalk(string qName) // говорилка Мэри
+{
+	chrDisableReloadToLocation = true;//закрыть локацию
+	sld = characterFromId("SharleMary");
+	if (CheckAttribute(sld, "quest.iwantsex")) sld.dialog.currentnode = "Mary_givemesex";
+	GetCharacterPos(pchar, &locx, &locy, &locz);
+	ChangeCharacterAddressGroup(sld, pchar.location, "goto", LAi_FindNearestFreeLocator("goto", locx, locy, locz));
+	LAi_SetActorType(sld);
+	LAi_ActorDialog(sld, pchar, "", -1, 0);
+}
+void Mary_Pomogaet_v_Kautah(string q)
+{
+	sld = CharacterFromID(pchar.SharleMaryId);
+	ChangeCharacterAddressGroup(sld, pchar.location, "reload", "reload1");
+}
+//Sinistra Мери и Шарль <--
 
 void StartInstantDialogNoType(string id, string node, string fileName)
 {
@@ -11090,7 +11166,7 @@ void scareOfficers(int minSkill)
 	}
 }
 
-//Генераторный квест. Проигравшийся игрок. -->
+//Квест. Проигравшийся игрок. -->
 void LooserGenerator_sart_Magazin(string s)		//Украл владелец магазина
 {
 	ChangeCharacterReputation(pchar, -5);
@@ -11358,7 +11434,46 @@ void LooserGenerator_DopProverka(string s)
 		pchar.KIP_PI_ZapisVSJ = "KIP_PI_ZapisVSJ";
 	}
 }
-//<-- Генераторный квест. Проигравшийся игрок.
+//<-- Квест. Проигравшийся игрок.
+
+//Квест. Чудесное спасение на рифах. -->
+void KSM_Nashli_Ship(string qName)
+{
+	bDisableFastReload = true;
+	chrDisableReloadToLocation = true;
+	DoQuestFunctionDelay("KSM_Nashli_Ship_2", 1.0);
+}
+void KSM_Nashli_Ship_2(string qName)
+{
+	SetLaunchFrameFormParam("Вы на лодке отправились на разбитое судно. Через 15 минут вы уже спускаетесь в трюм, пытаясь найти выживший экипаж и ценный груз.", "", 0, 6.5);
+	LaunchFrameForm();
+	DoQuestFunctionDelay("KSM_V_trume", 6.5);
+}
+void KSM_V_trume(string qName)
+{
+	DoQuestReloadToLocation("My_Deck", "rld", "loc1", "KSM_Lovushka");
+}
+void KSM_V_trume_2(string qName)
+{
+	LAi_SetPlayerType(pchar);
+	sld = CharacterFromID("KSM_Alloka")
+	FantomMakeCoolFighter(sld, sti(pchar.rank), 15 + MOD_SKILL_ENEMY_RATE * 4, 15 + MOD_SKILL_ENEMY_RATE * 4, "blade46", "pistol9", 50 + MOD_SKILL_ENEMY_RATE * 4);
+	sld.SaveItemsForDead = true;
+	sld.DontChangeGun = true;
+	TakeItemFromCharacter(sld, "spyglass3");
+	TakeNItems(sld, "food1", -10);
+	AddMoneyToCharacter(sld, 10000);
+	AddItems(sld, "chest", 2);
+	AddItems(sld, "jewelry2", 30);
+	AddItems(sld, "jewelry3", 35);
+	AddItems(sld, "jewelry4", 20);
+	AddItems(sld, "jewelry5", 75);
+	PlaceCharacter(sld, "rld", PChar.location);
+	LAi_ActorDialog(sld, pchar, "", 1.5, 0);
+	sld.Dialog.Filename = "Quest/KSM/Spasenie_na_rifah.c";
+	sld.dialog.currentnode   = "REEFS";
+}
+//<-- Квест. Чудесное спасение на рифах.
 
 
 void FishHDS(string s)

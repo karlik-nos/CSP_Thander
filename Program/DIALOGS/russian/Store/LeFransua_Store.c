@@ -29,7 +29,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = DialogGoNodeRepeat("PL_Q3_2", "", "", "", npchar, Dialog.CurrentNode);
 		break;
 		case "PL_Q3_2":
-			dialog.text = "Ничем помочь не могу, по моему желанию верфь у нас не появится. Спросите у кого-нибудь еще...";
+			dialog.text = "Ничем помочь не могу, по моему желанию верфь у нас не появится. Спросите у кого-нибудь ещё...";
 			link.l1 = "Ясно... Ну что же, спасибо и на этом.";
 			link.l1.go = "exit";
 			AddQuestRecord("Pir_Line_3_KillLoy", "3");

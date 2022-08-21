@@ -34,17 +34,17 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = "FindDesouzaHolWaitress_3";
 		break;
 		case "FindDesouzaHolWaitress_3":
-			dialog.text = "Мне все еще ничего не ясно, но почему-то хочется вам верить. Элихио тоже не был похож на опасного преступника, которым его описывали эти люди.";
+			dialog.text = "Мне все ещё ничего не ясно, но почему-то хочется вам верить. Элихио тоже не был похож на опасного преступника, которым его описывали эти люди.";
 			link.l1 = "Элихио? Это его ищут инквизиторы?";
 			link.l1.go = "FindDesouzaHolWaitress_4";
 		break;
 		case "FindDesouzaHolWaitress_4":
 			dialog.text = "Так это были инквизиторы? Что же вы сразу не сказали, капитан? Этих католических подонков нужно гнать поганой метлой из нашей протестантской колонии! Инквизиторы! Бедный Элихио...";
-			link.l1 = "Скажи, куда они ушли. Быть может, я еще сумею его спасти.";
+			link.l1 = "Скажи, куда они ушли. Быть может, я ещё сумею его спасти.";
 			link.l1.go = "FindDesouzaHolWaitress_5";
 		break;
 		case "FindDesouzaHolWaitress_5":
-			dialog.text = "Один из постояльцев говорил, что Элихио ушел в пещеру, проверить слухи о каком-то кладе.";
+			dialog.text = "Один из постояльцев говорил, что Элихио ушёл в пещеру, проверить слухи о каком-то кладе.";
 			link.l1 = "Спасибо за информацию, я побежала.";
 			link.l1.go = "exit";
 			PChar.quest.WhisperHuntersCaveEntrance.win_condition.l1 = "location";

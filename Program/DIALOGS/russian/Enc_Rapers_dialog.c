@@ -152,7 +152,7 @@ void ProcessDialogEvent()
 			link.l2.go = "Node_Fight";
 		break;
 
-		case "Node_4": // бандюки уходят, девица остается - ГГ ее выкупил у бандюков
+		case "Node_4": // бандюки уходят, девица остается - ГГ её выкупил у бандюков
 			LAi_LocationFightDisable(&Locations[FindLocation(pchar.location)], false);
 			AddMoneyToCharacter(pchar, -makeint(sti(pchar.GenQuest.EncGirl.price)));
 			ChangeCharacterReputation(pchar, 7);
@@ -285,7 +285,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Node_10":
-			dialog.text = "Ты лжешь!!! Я уже чувствую запах пиастров, который струится из этой пещеры! Показывай место, если не хочешь подохнуть!";
+			dialog.text = "Ты лжёшь!!! Я уже чувствую запах пиастров, который струится из этой пещеры! Показывай место, если не хочешь подохнуть!";
 			link.l1 = "Вижу, мои слова тебя не убедили. Может, убедит клинок?";
 			link.l1.go = "Node_11";
 		break;
@@ -325,7 +325,7 @@ void ProcessDialogEvent()
 			}
 			else
 			{
-				dialog.text = "Нет. Но тебе придется вывернуть карманы, не то зарежу ведь!";
+				dialog.text = "Нет. Но тебе придётся вывернуть карманы, не то зарежу ведь!";
 				link.l1 = "Забирай, паршивец! Но это тебе так просто с рук не сойдет...";
 				link.l1.go = "EncGirl_Berglar3_1";
 				link.l2 = "Проще будет сделать в твоём брюхе дыру, чтоб не заслонял мне дорогу к выходу.";
@@ -363,7 +363,7 @@ void ProcessDialogEvent()
 
 		case "OnceAgain":
 			Diag.TempNode = "OnceAgain";
-			dialog.text = "Что, захотелось присоединиться? "+ GetSexPhrase("Иди к черту - нам самим мало","Иди отсюда, нам одной девки хватит") +"!";
+			dialog.text = "Что, захотелось присоединиться? "+ GetSexPhrase("Иди к чёрту - нам самим мало","Иди отсюда, нам одной девки хватит") +"!";
 			Link.l1 = "Раз так, не буду вам мешать.";
 			Link.l1.go = "Exit_NoFight";
 			Link.l2 = "Я не позволю насилию случиться на моих глазах!";

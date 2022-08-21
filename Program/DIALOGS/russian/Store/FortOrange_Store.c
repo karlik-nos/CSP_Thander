@@ -32,7 +32,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 
          case "DefenceOrange": //Голландская линейка, квест №4, защита форта Оранж.
-            dialog.text = "Кхе-кхе, рад вас видеть в добром здравии, капитан. Да еще после такой бойни!";
+            dialog.text = "Кхе-кхе, рад вас видеть в добром здравии, капитан. Да ещё после такой бойни!";
             link.l2 = "Хм, да уж, заварушка была что надо...";
             link.l2.go = "Step_H4_1";
         break;

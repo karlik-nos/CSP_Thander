@@ -346,7 +346,7 @@ void ProcessExitCancel()
 			}
 		}
 		else
-		{//пленный кэп, живой еще
+		{//пленный кэп, живой ещё
 			SetFormatedText("REMOVE_WINDOW_CAPTION", XI_ConvertString("Surrendered_caption_2"));
 			SetFormatedText("REMOVE_WINDOW_TEXT", XI_ConvertString("Surrendered_exit_2")); // Закончить грабеж и отпустить сдавшегося капитана и его экипаж?
 			SetSelectable("REMOVE_ACCEPT_OFFICER", true);
@@ -1605,7 +1605,7 @@ void GoToShipChange() // нажатие ОК на табличке ок-отме
 	{
 		case "SurrenderedCaptanRemove":  // убрать сдавшегося капитана
 			ExitShipChangeMenu();
-			// первый проход - кэп еще жив
+			// первый проход - кэп ещё жив
 			SetFormatedText("CAPTURE_TEXT", XI_ConvertString("Surrendered_captain_capture"));
 			SetNewPicture("CAPTURE_PICTURE", "interfaces\portraits\128\face_" + xi_refCharacter.FaceId + ".tga");
 			ShowCaptureWindow();
@@ -1688,7 +1688,7 @@ void GoToShipChange() // нажатие ОК на табличке ок-отме
 			{
 				if (!bTransferMode)
 				{
-					ShipTakenFree(sti(refEnemyCharacter.index), KILL_BY_ABORDAGE, sti(refCharacter.index)); // тут умер реальный кэп, апдайтим еще
+					ShipTakenFree(sti(refEnemyCharacter.index), KILL_BY_ABORDAGE, sti(refCharacter.index)); // тут умер реальный кэп, апдайтим ещё
 				}
 
 				PostEvent("evntQuestsCheck", 400);
@@ -2002,8 +2002,8 @@ void SetCannonsToBort(ref chr, string sBort, int iQty)//тут нужен тол
 	for (i = 0; i < maxQty; i++)
 	{
 		attr = "c" + i;
-		chr.Ship.Cannons.borts.(sBort).damages.(attr) = 1.0; // поломана на 100 процентов, не палит, те нет ее
-		chr.Ship.Cannons.borts.(sBort_real).damages.(attr) = 1.0; // поломана на 100 процентов, не палит, те нет ее
+		chr.Ship.Cannons.borts.(sBort).damages.(attr) = 1.0; // поломана на 100 процентов, не палит, те нет её
+		chr.Ship.Cannons.borts.(sBort_real).damages.(attr) = 1.0; // поломана на 100 процентов, не палит, те нет её
 	}
 
 	RecalculateCargoLoad(chr);  // пересчет, тк пушки снялись

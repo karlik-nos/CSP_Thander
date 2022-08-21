@@ -73,6 +73,11 @@ void ProcessDialogEvent()
 					link.l1.go = "Titch_1";
 					link.l2 = "Эй-эй! Я уже ухожу, спокойно!";
 					link.l2.go = "exit";
+					if (pchar.questTemp.AnjelikaTichPrologue9_BlackBeard == "ATP9")	//Sinistra Анжелика Тич и Эдвард Тич (в будущем поменяем)
+					{
+						link.l1 = "Спокойно, старик! Меня зовут Анжелика. Я слыхала, что вы ищете удачливого капитана.";
+						link.l1.go = "AnjelikaTitch_1";
+					}
 					break;
 				}
                 if (CheckAttribute(NPChar, "EncType")  && NPChar.EncType == "war")
@@ -85,12 +90,12 @@ void ProcessDialogEvent()
     			}
     			link.l1 = "Меня зовут " + GetFullName(Pchar) + ". У меня есть  к вам дело!";
     			link.l1.go = "quests";
-                link.l2 = "Ничего особенного, просто "+ GetSexPhrase("зашел","зашла") +" поприветствовать вас!";
+                link.l2 = "Ничего особенного, просто "+ GetSexPhrase("зашёл","зашла") +" поприветствовать вас!";
     			link.l2.go = "exit";
             }
             else
             {
-                Dialog.text = "Вы заметили, " + GetAddress_Form(NPChar) + ", идет битва? Нам сейчас не до разговоров!";
+                Dialog.text = "Вы заметили, " + GetAddress_Form(NPChar) + ", идёт битва? Нам сейчас не до разговоров!";
     			link.l1 = "Вы правы! Вернусь на свой корабль.";
     			link.l1.go = "exit";
             }
@@ -113,7 +118,7 @@ void ProcessDialogEvent()
                 }
                 if (CheckAttribute(NPChar, "Ship.Mode") && NPChar.Ship.Mode == "Trade")
                 {
-	           		link.l3 = "Откуда вы идете?";
+	           		link.l3 = "Откуда вы идёте?";
 	    			link.l3.go = "price_1";
 	    			link.l4 = "Поторгуем?";
 	    			link.l4.go = "Trade_1";
@@ -476,7 +481,7 @@ void ProcessDialogEvent()
 				iMoney = findPriceStoreMan(NPChar);
 	            if (iMoney == -1)
 	            {
-	                Dialog.Text = "Зачем вам это знать? Это мое личное дело.";
+	                Dialog.Text = "Зачем вам это знать? Это моё личное дело.";
 					Link.l1 = "Как вам будет угодно.";
 					Link.l1.go = "exit";
 	            }
@@ -521,7 +526,7 @@ void ProcessDialogEvent()
                 if(rand(21) > (GetSummonSkillFromNameToOld(PChar, SKILL_GRAPPLING) + GetSummonSkillFromNameToOld(PChar, SKILL_LEADERSHIP)) )
                 {
                     Dialog.text = "Напрасно вы затеяли свое грязное дело, капитан, на борту моего корабля. Я проявлю милосердие и позволю вам вернуться на свой корабль и утонуть вместе с ним.";
-                    link.l1 = "Мы еще посмотрим, кто сегодня пойдет на корм акулам!";
+                    link.l1 = "Мы ещё посмотрим, кто сегодня пойдет на корм акулам!";
                     link.l1.go = "Boarding";
                 }
                 else
@@ -544,7 +549,7 @@ void ProcessDialogEvent()
         case "rumours":
 			Dialog.Text = SelectRumour(); // to_do
 			Link.l1 = RandPhraseSimple(RandSwear() + "Это очень интересно. Другой вопрос?",
-                                     "Еще одно дело.");
+                                     "Ещё одно дело.");
 			Link.l1.go = "quests";
 			Link.l2 = RandPhraseSimple("Спасибо, должен откланяться.",
                                      "Всего хорошего.");
@@ -600,7 +605,7 @@ void ProcessDialogEvent()
         break;
 
         case "QuestAboardCabinDialog_1":
-			Dialog.Text = "Ну, это мы еще посмотрим!";
+			Dialog.Text = "Ну, это мы ещё посмотрим!";
 			Link.l1 = "А что тут смотреть?";
 			Link.l1.go = "exit";
 			// тут можно восстановить НР противника (NPChar) или добавить парочку гардов против ГГ
@@ -631,7 +636,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "QuestAboardCabinDialog_3_1":
-			Dialog.Text = ""+ GetSexPhrase("Пришел","Пришла") +", наследил"+ GetSexPhrase("","а") +", все отнял"+ GetSexPhrase("","а") +" и еще меня в рабы? Фиг!";
+			Dialog.Text = ""+ GetSexPhrase("Пришёл","Пришла") +", наследил"+ GetSexPhrase("","а") +", все отнял"+ GetSexPhrase("","а") +" и ещё меня в рабы? Фиг!";
 			Link.l1 = "Тогда тапки белые готовь.";
 			Link.l1.go = "QuestAboardCabinDialog_1";
 		break;
@@ -658,7 +663,7 @@ void ProcessDialogEvent()
             if (NPChar.id == rchar.id)
             {
 
-    			dialog.text = "Я вас слушаю, но давайте поскорее выкладывайте цель вашего визита, у нас идет бой с " + fort +
+    			dialog.text = "Я вас слушаю, но давайте поскорее выкладывайте цель вашего визита, у нас идёт бой с " + fort +
                           " и мне нужно руководить ходом сражения.";
                 link.l1 = "Именно поэтому я здесь, " + GetAddress_FormToNPC(NPChar) + ".";
                 link.l1.go = "attack_fort";
@@ -680,10 +685,10 @@ void ProcessDialogEvent()
 		break;
 
 		case "attack_fort":
-                dialog.text = "И о чем же идет речь?";
+                dialog.text = "И о чём же идёт речь?";
                 link.l1 = "Я могу помочь вам разгромить форт колонии " +GetConvertStr(aData.Colony+" Town", "LocLables.txt")+ " и захватить город, а добычу, полученную в случае нашего успеха, мы поделим между собой.";
                 link.l1.go = "Siegehelp_1";
-                link.l2 = "Собственно, мое дело вряд ли заслуживает вашего внимания. Прощайте, "+ GetAddress_FormToNPC(NPChar) + ".";
+                link.l2 = "Собственно, моё дело вряд ли заслуживает вашего внимания. Прощайте, "+ GetAddress_FormToNPC(NPChar) + ".";
                 link.l2.go = "exit";
                 Diag.TempNode = "Siegehelp_0";
 		break;
@@ -802,7 +807,7 @@ void ProcessDialogEvent()
             EndOfTheSiege("End");
             NPChar.location = "";
             int ilt = makeint(sti(aData.loot)/sti(aData.PartAttaksFort));
-            dialog.text = "Здравствуйте, капитан! Хоть битва и была жаркой, но все-таки нам удалось сломить яростное сопротивление защитников города. Добыча составляет " + sti(aData.loot)+
+            dialog.text = "Здравствуйте, капитан! Хоть битва и была жаркой, но всё-таки нам удалось сломить яростное сопротивление защитников города. Добыча составляет " + sti(aData.loot)+
                           " золотых. И по нашему договору вы получаете "+ilt+
                           ". Вот ваши деньги, вы их, несомненно, заслужили. А теперь прошу меня извинить, но меня ждут дела.";
             link.l1 = "В таком случае позвольте откланяться, " + GetAddress_FormToNPC(NPChar) + ". Прощайте!";
@@ -822,7 +827,7 @@ void ProcessDialogEvent()
             aData.loot = sti(aData.loot) - ilt;
             if (CheckAttribute(PChar, "quest.LeaveTown")) Pchar.quest.LeaveTown.over = "yes";
             //--> слухи
-            SiegeRumour("Прошел слух, что вы помогли нашей эскадре при штурме "+NationNameSK(sti(aData.conation))+"ой колонии - "+GetConvertStr(aData.Colony+" Town", "LocLables.txt")+"! Мы так благодарны вам, "+ GetAddress_Form(NPChar)+".", "", sti(aData.nation), -1, 30, 3);
+            SiegeRumour("Прошёл слух, что вы помогли нашей эскадре при штурме "+NationNameSK(sti(aData.conation))+"ой колонии - "+GetConvertStr(aData.Colony+" Town", "LocLables.txt")+"! Мы так благодарны вам, "+ GetAddress_Form(NPChar)+".", "", sti(aData.nation), -1, 30, 3);
             //<-- слухи
 		break;
 
@@ -853,9 +858,22 @@ void ProcessDialogEvent()
             }
             Diag.TempNode = "GoldSquadron";
 		break;
+		
+		case "AnjelikaTitch_1":		//Sinistra Анжелика Тич и Эдвард Тич
+			Dialog.text = "Анжелика? У меня была дочь Анжелика. Её блудливая мать умыкнула мою малышку прямо из-под носа. Сбежала с каким-то недоноском... А, дьявол, если бы мне удалось их тогда найти, пропустил бы обоих под килем.";
+			link.l1 = "Я слышала совсем другую историю.";
+			link.l1.go = "AnjelikaTitch_2";
+		break;
+		
+		case "AnjelikaTitch_2":
+			Dialog.text = "Плевать, что там обо мне говорят, ты здесь по делу? Так вот слушай: мне уже пора достойно уйти на покой и передать мои знания и навыки преемнику. Но я должен убедиться, что он этого заслуживает.";
+			link.l1 = "Твой преемник? И что же попадает под критерии достоинства?";
+			link.l1.go = "Titch_2";
+			DeleteAttribute(pchar, "questTemp.AnjelikaTichPrologue9_BlackBeard");
+		break;
 
 		case "Titch_1":
-			Dialog.text = "Есть такое. Мне уже пора достойно уйти на покой и передать мои знания, и навыки преемнику. Но я должен убедиться, что он этого заслуживает.";
+			Dialog.text = "Есть такое. Мне уже пора достойно уйти на покой и передать мои знания и навыки преемнику. Но я должен убедиться, что он этого заслуживает.";
 			link.l1 = "Твой преемник? И что же попадает под критерии достоинства?";
 			link.l1.go = "Titch_2";
 		break;
@@ -875,13 +893,13 @@ void ProcessDialogEvent()
 
 		case "Titch_4":
 			Dialog.text = "Мне необходимо проверить твой уровень фехтования, ведь это основа любого уважающего себя пирата или корсара. Если удача укусила тебя за задницу, то я хочу лично проверить - так ли это. Попробуем сыграть в двадцать одно. Если ты проиграешь, то уже мой пистолет укусит тебя за...";
-			link.l1 = "Понял, понял... Меня и правда кто то укусил за задницу. Будешь проверять? А фехтование моё... Да я разнесу любого! Но только в честной дуэли. Надеюсь, она будет честной.";
+			link.l1 = "Понял"+ GetSexPhrase("","а") +", понял"+ GetSexPhrase("","а") +"... Меня и правда кто-то укусил за задницу. Будешь проверять? А фехтование моё... Да я разнесу любого! Но только в честной дуэли. Надеюсь, она будет честной.";
 			link.l1.go = "Titch_5";
 		break;
 
 		case "Titch_5":
 			Dialog.text = "Чтобы о тебе слагали легенды, ты должен сам уметь слагать их. Я желаю слышать, что ты обо мне знаешь. У настоящего корсара должен быть по настоящему острый ум и трезвая голова.";
-			link.l1 = "Ну... я много слышал о тебе. Так это, или нет, что я расскажу, ты уже сам подтвердишь.";
+			link.l1 = "Ну... я много слышал о тебе. Так это, или нет, что я расскажу, ты уже сам"+ GetSexPhrase("","а") +" подтвердишь.";
 			link.l1.go = "Titch_6";
 		break;
 
@@ -930,7 +948,7 @@ void ProcessDialogEvent()
 
 		case "Titch_seabattle":
 			Dialog.text = "Ха, я думал ты так и не доберёшься до этого пункта. Начинаем по твоему сигналу!";
-			link.l1 = "Не дождешься, старый пердун. Как доберусь до своего корабля - начнём!";
+			link.l1 = "Не дождёшься, старый пердун. Как доберусь до своего корабля - начнём!";
 			link.l1.go = "Titch_seabattle_exit";
 		break;
 
@@ -1042,7 +1060,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Titch_Seabattle_won_4":
-			Dialog.text = "Для тебя - жизнь продолжнается. А вот мне пора. Теперь - прощай навсегда! (Всё дело в том, как себя поставишь! Дурачься на потеху - убедишь лишь дураков. А будешь дьяволом - тебе покорятся все.)";
+			Dialog.text = "Для тебя - жизнь продолжается. А вот мне пора. Теперь - прощай навсегда! (Всё дело в том, как себя поставишь! Дурачься на потеху - убедишь лишь дураков. А будешь дьяволом - тебе покорятся все.)";
 			link.l1 = "Я ничего не понял"+ GetSexPhrase("","а") +", но прощай, Эдвард Тич!";
 			link.l1.go = "Titch_Seabattle_won_exit";
 		break;
@@ -1060,7 +1078,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Titch_duel":
-			Dialog.text = "Хо-хо! Да ты прям "+ GetSexPhrase("морской волчара","морская львица") +"! Здесь и сейчас! Не люблю всякие расшаркивания и поклноны.";
+			Dialog.text = "Хо-хо! Да ты прям "+ GetSexPhrase("морской волчара","морская львица") +"! Здесь и сейчас! Не люблю всякие расшаркивания и поклоны.";
 			link.l1 = "Ну держись, старик..!";
 			link.l1.go = "Titch_duel_start";
 		break;
@@ -1175,17 +1193,17 @@ void ProcessDialogEvent()
 				Dialog.text = "Неверно, попробуй ещё.";
 				if (npchar.questionsstate == 1)
 				{
-					Link.l1 = "Еще раз.";
+					Link.l1 = "Ещё раз.";
 					Link.l1.go = "Titch_questions";
 				}
 				if (npchar.questionsstate == 2)
 				{
-					Link.l1 = "Еще раз.";
+					Link.l1 = "Ещё раз.";
 					Link.l1.go = "Titch_q2";
 				}
 				if (npchar.questionsstate == 3)
 				{
-					Link.l1 = "Еще раз.";
+					Link.l1 = "Ещё раз.";
 					Link.l1.go = "Titch_q3";
 				}
 				link.l2 = "Попозже.";
@@ -1210,7 +1228,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Titch_ships_sur":
-			Dialog.text = "Это хорошо! Архипелаг еще сможет содрогнуться. (Напугай свою жертву, создай жуткий образ из лихорадочного бреда, и все рухнут на колени, моля своего Бога о пощаде.)";
+			Dialog.text = "Это хорошо! Архипелаг ещё сможет содрогнуться. (Напугай свою жертву, создай жуткий образ из лихорадочного бреда, и все рухнут на колени, моля своего Бога о пощаде.)";
 			Link.l1 = "Благодарю!";
 			Link.l1.go = "Titch_7";
 			npchar.ships_sur = true;

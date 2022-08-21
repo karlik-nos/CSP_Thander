@@ -250,7 +250,7 @@ void SelectRColony()
 			Y = -makefloat(worldMap.islands.(sColonyIslandID).(sColonyTown).position.z)+1000;
 		}
 
-		// Оранж и Ла-Вегу придется выставлять ручками
+		// Оранж и Ла-Вегу придётся выставлять ручками
 		if(sColony == "FortOrange")
 		{
 			X = 600;

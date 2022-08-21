@@ -204,7 +204,7 @@ void ProcessDialogEvent()
 		case "GettingLostFromHere":
 			dialog.snd = "Voice\COGU\COGU008";
 			dialog.text = "Но... Дьявол... Я же должен вас арестовать!";
-			Link.l1 = "Арргх! Ты еще здесь? Жить надоело?";
+			Link.l1 = "Арргх! Ты ещё здесь? Жить надоело?";
 			Link.l1.go = "GettingLostFromHere_1";
 		break;
 

@@ -654,7 +654,7 @@ void ProcCommand()
 					Dead_DelLoginedCharacter(refToChar);
 					CharacterExitFromLocation(&Characters[sti(refToChar.index)]);
 				}*/
-				//все равно падает.. не понятно :(
+				//всё равно падает.. не понятно :(
 				//PostEvent("LAi_event_Character_Dead", 10, "i", &Characters[sti(refToChar.index)]);
 				Dead_DelLoginedCharacter(refToChar);
 				ProcessCancelExit();
@@ -771,7 +771,7 @@ void SetControlsTabMode(int _mode)
 	GameInterface.TABLE_LIST.select = 1;
 	GameInterface.TABLE_LIST.top = 0;
 
-	// Тут идет рефрешь предметов
+	// Тут идёт рефрешь предметов
 	AddToTable(refToChar);
 
 	// Сбросим позицию стрелок
@@ -912,7 +912,7 @@ void AddToTable(ref rChar)
 	int iRightQtyTotal=0;
 
 	// Warship fix 31.05.09 - слетала текущая полоска + кнопочки забрать/отдать все
-	// Садо-мазо получилось еще то
+	// Садо-мазо получилось ещё то
 	ok = iCurrentTabMode == 2 || iCurrentTabMode == 3; // Долбаный шторм не понимает И и ИЛИ в одном выражении, даж со скобками
 	if(ok && iLinesCount > 2)
 	{
@@ -1749,7 +1749,7 @@ void ADD_BUTTON()  // купить
 	ChangeQTY_EDIT();
 }
 
-// Сколько еще могет утащить указанного предмета, в штуках
+// Сколько ещё могет утащить указанного предмета, в штуках
 int GetMaxItemsToTake(ref _char, String _item)
 {
 	float curWeight;

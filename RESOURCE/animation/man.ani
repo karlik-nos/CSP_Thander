@@ -1760,7 +1760,30 @@ data = "Turn speed", "6.3"
 	data = "Blend time", "1.3"		; sec
 	data = "Angle", "340.0"
 	event = "LStep", 389, normal		
-	event = "SndAlliace_citizen_death2", 402, normal	
+	event = "SndAlliace_citizen_death2", 402, normal
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\ПОРАЖЕНИЕ
+
+; опускается на колени
+[kneeling_1]
+	speed = 1.0
+	loop = false
+	type = normal
+	start_time = 7210
+	end_time = 7244
+	data = "Blend time", "1.0"		; sec
+	data = "Probability", "0.1"
+	
+; на коленях
+[kneeling_2]
+	speed = 1.0
+	loop = false
+	type = normal
+	start_time = 7220
+	end_time = 7220
+	data = "Blend time", "0.4"		; sec
+	data = "Probability", "0.1"	
 	
 ;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	

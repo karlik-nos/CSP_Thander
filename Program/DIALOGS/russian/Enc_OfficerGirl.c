@@ -78,7 +78,7 @@ void ProcessDialogEvent()
     			link.l1.go = "exit";
     			break;
             }
-			dialog.text = "Неужели вы передумали, капитан? Решили, что новый телохранитель, да еще девушка, вам не помешает?";
+			dialog.text = "Неужели вы передумали, капитан? Решили, что новый телохранитель, да ещё девушка, вам не помешает?";
 			link.l1 = "Пожалуй, так. Сколько ты хочешь?";
 			link.l1.go = "price";
             link.l2 = "Ошибаешься. Счастливо оставаться.";
@@ -112,7 +112,7 @@ void ProcessDialogEvent()
 			{
 				NextDiag.TempNode = "OnceAgain";
                 dialog.text = "Эй, похоже, у вас проблемы с наличностью! Извините, капитан, но я не работаю в кредит.";
-				link.l1 = "Ах ты, черт!";
+				link.l1 = "Ах ты, чёрт!";
 				link.l1.go = "Exit";
 			}
 		break;
@@ -142,7 +142,7 @@ void ProcessDialogEvent()
     			if (PChar.sex != "woman")
     			{
 					Link.l3 = RandPhraseSimple("Раз уж мы в каюте давай может...а? Посмотри тут и кровать есть... такая мягенькая...",
-	                                           "Посмотри какая в моей каюте большая кровать. Не хочешь разделить ее со мной?");
+	                                           "Посмотри какая в моей каюте большая кровать. Не хочешь разделить её со мной?");
 	                if (sti(pchar.GenQuest.BrothelCount) > 4+rand(3))
 	                {
 	                    Link.l3.go = "Love_Sex_Yes";
@@ -322,7 +322,7 @@ void ProcessDialogEvent()
         case "Love_Sex":
             NextDiag.TempNode = "Hired";
 		    dialog.text = RandPhraseSimple("Что!!!?? Капитан, ты давно не сходил на берег и не был в борделе?", "Не понимаю, о чем это ты?");
-            link.l1 = RandPhraseSimple("Ну сама подумай.. ты такая красавица, да еще и в моем подчинении", "Ну не идти же мне в бордель, когда под боком есть ты!");
+            link.l1 = RandPhraseSimple("Ну сама подумай.. ты такая красавица, да ещё и в моем подчинении", "Ну не идти же мне в бордель, когда под боком есть ты!");
 			link.l1.go = "Love_Sex_2";
 			link.l2 = RandPhraseSimple("Извини меня, крошка, очень трудно было удержаться, чтоб не предложить..", "Эх.. ладно, проехали...");
 			link.l2.go = "exit";
@@ -330,7 +330,7 @@ void ProcessDialogEvent()
 
         case "Love_Sex_2":
             NextDiag.TempNode = "Hired";
-		    dialog.text = RandPhraseSimple("Капитан! Держите себя в руках, если не можете в своих, позовите матросов", "То, что я офицер и номинально подчиняюсь Вам, капитан, еще ничего не значит!");
+		    dialog.text = RandPhraseSimple("Капитан! Держите себя в руках, если не можете в своих, позовите матросов", "То, что я офицер и номинально подчиняюсь Вам, капитан, ещё ничего не значит!");
             link.l1 = RandPhraseSimple("Детка, не протився. Я уже не могу себя сдерживать. Пойдем..", "Я - твой капитан! И я приказываю тебе!");
 			link.l1.go = "Love_Sex_3";
 			link.l2 = RandPhraseSimple("Извини меня, крошка, очень трудно было удержаться, чтоб не предложить..", "Эх.. ладно, проехали...");
@@ -339,7 +339,7 @@ void ProcessDialogEvent()
 
         case "Love_Sex_3":
             NextDiag.TempNode = "Hired";
-		    dialog.text = RandPhraseSimple("Ну все! Ты ответишь за это! И прямо сейчас!", "Покувыркаться с тобой? Чтож сейчас поглядим, кто на что способен..");
+		    dialog.text = RandPhraseSimple("Ну всё! Ты ответишь за это! И прямо сейчас!", "Покувыркаться с тобой? Чтож сейчас поглядим, кто на что способен..");
             link.l1 = "Э.. ты о чем?";
 			link.l1.go = "Love_Sex_4";
         break;
@@ -367,7 +367,7 @@ void ProcessDialogEvent()
 
         case "AsYouWish":
 			dialog.text = "Как скажете, капитан, решать вам.";
-			link.l1 = "Пожалуй, я передумал"+ GetSexPhrase("","а") +". Ты мне еще нужна.";
+			link.l1 = "Пожалуй, я передумал"+ GetSexPhrase("","а") +". Ты мне ещё нужна.";
 			link.l1.go = "exit";
 			link.l2 = "Отлично. Можешь проваливать, куда подальше.";
 			link.l2.go = "Exit_Fire";
@@ -685,13 +685,14 @@ void ProcessDialogEvent()
 		break;
 		//Элен
 		case "Helen_meet":
-			if (startherotype == 5 || startherotype == 6)
+			if (pchar.name == "Шарль" || pchar.name == "Мэри")
 			{
 				if(npchar.id == "Beatrice")
 				{
 					dialog.text = "У тебя хватает наглости заявляться сюда, после того, что было? Прочь с глаз моих, пока я тебя не зарубила!";
 					link.l1 = "Прости, Элен...";
 					link.l1.go = "exit";
+					NextDiag.TempNode = "Helen_meet";
 					break;
 				}
 			}

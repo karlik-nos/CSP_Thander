@@ -5,7 +5,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 	{
 		case "quests":
 			dialog.text = NPCStringReactionRepeat(RandPhraseSimple("Какие вопросы, "+ GetSexPhrase("сын мой","дочь моя") +"?", "Спрашивай, я слушаю тебя..."), "Я слушаю тебя, говори, "+ GetSexPhrase("сын мой","дочь моя") +"...", "И в третий раз говорю тебе, "+ GetSexPhrase("сын мой","дочь моя") +": задавай свой вопрос.",
-                          "Столько обязанностей у церковнослужителя, а тут еще и ты донимаешь, "+ GetSexPhrase("сын мой","дочь моя") +"...", "block", 1, npchar, Dialog.CurrentNode);
+                          "Столько обязанностей у церковнослужителя, а тут ещё и ты донимаешь, "+ GetSexPhrase("сын мой","дочь моя") +"...", "block", 1, npchar, Dialog.CurrentNode);
 			link.l1 = HeroStringReactionRepeat(RandPhraseSimple("Я передумал...", "Не сейчас, падре..."), "Да, пока особо и нечего сказать...",
                       "Задам, задам... Только позже...", "Простите, святой отец...", npchar, Dialog.CurrentNode);
 			link.l1.go = "exit";
@@ -18,7 +18,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 
         case "Romantic_1":
-			dialog.text = "Сальвотора Олеварес? Да, сын мой, часто, это достойная прихожанка... А в чем дело?";
+			dialog.text = "Сальвотора Олеварес? Да, сын мой, часто, это достойная прихожанка... А в чём дело?";
 			link.l1 = "Да просто так спросил, падре. До свидания...";
 			link.l1.go = "exit";
 			DeleteAttribute(Pchar, "RomanticQuest.PriestAsk");

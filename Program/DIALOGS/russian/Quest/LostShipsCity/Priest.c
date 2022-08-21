@@ -33,14 +33,14 @@ void ProcessDialogEvent()
 				npchar.quest.meeting = "1";
 				if (CheckAttribute(loadedLocation, "storm"))
 				{
-					dialog.text = "Вознеси хвалу Господу нашему, Иисусу Христу, за спасение свое! Пока шторм не прошел...";
-					link.l1 = "Возношу, падре, и благодарю за оказанную мне честь продлить еще свое жалкое существование на этой бренной земле... Меня зовут " + GetFullName(pchar) + ".";
+					dialog.text = "Вознеси хвалу Господу нашему, Иисусу Христу, за спасение свое! Пока шторм не прошёл...";
+					link.l1 = "Возношу, падре, и благодарю за оказанную мне честь продлить ещё свое жалкое существование на этой бренной земле... Меня зовут " + GetFullName(pchar) + ".";
 					link.l1.go = "FT_1";
 				}
 				else
 				{
 					dialog.text = "Вознесем хвалу Господу нашему!";
-					link.l1 = "Возношу, падре, и благодарю за оказанную мне честь продлить еще свое жалкое существование на этой бренной земле... Меня зовут " + GetFullName(pchar) + ".";
+					link.l1 = "Возношу, падре, и благодарю за оказанную мне честь продлить ещё свое жалкое существование на этой бренной земле... Меня зовут " + GetFullName(pchar) + ".";
 					link.l1.go = "FT_1";
 				}
 			}
@@ -122,7 +122,7 @@ void ProcessDialogEvent()
 		case "FT_4":
 			dialog.text = "Так почему же ты обижен"+ GetSexPhrase("","а") +" на Господа, если говорит Он тебе: 'Делай так!', а ты не делаешь? Если просит: 'Не делай эдак!', а ты делаешь?\n"+
 				"Паства Его подобна сынам малолетним, непокорным отцу: всякий мнит, что сам знает все и обо всем. Вознеси хвалу Господу за те благодеяния, что оказаны тебе!";
-			link.l1 = "Вы правы, святой отец. Я благодарю Господа нашего за спасение мое.";
+			link.l1 = "Вы правы, святой отец. Я благодарю Господа нашего за спасение моё.";
 			link.l1.go = "FT_5";
 		break;
 		case "FT_5":
@@ -180,7 +180,7 @@ void ProcessDialogEvent()
 			if (sld.id == "none")
 			{
 				dialog.text = "Я не понимаю, о ком ты говоришь. Мне нужно знать имя и фамилию этого человека.";
-				Link.l1 = "Понятно. Давайте я еще попробую назвать.";
+				Link.l1 = "Понятно. Давайте я ещё попробую назвать.";
 				Link.l1.go = "SeekCitizen_Choice_2";
 				Link.l2 = "Спасибо, я лучше сам поищу.";
 				Link.l2.go = "exit";
@@ -199,7 +199,7 @@ void ProcessDialogEvent()
 					dialog.text = GetFullName(sld) + ", ты о нем говоришь?";
 					Link.l1 = "Да-да, точно, это он.";
 					Link.l1.go = "SeekCitizen_agree";
-					Link.l2 = "Нет, не о нем. Давайте еще раз назову.";
+					Link.l2 = "Нет, не о нем. Давайте ещё раз назову.";
 					Link.l2.go = "SeekCitizen_Choice_2";
 				}
 				else
@@ -207,7 +207,7 @@ void ProcessDialogEvent()
 					dialog.text = GetFullName(sld) + ", ты о ней говоришь?";
 					Link.l1 = "Ага, именно о ней.";
 					Link.l1.go = "SeekCitizen_agree";
-					Link.l2 = "Нет, не о ней. Давайте я еще раз попробую назвать.";
+					Link.l2 = "Нет, не о ней. Давайте я ещё раз попробую назвать.";
 					Link.l2.go = "SeekCitizen_Choice_2";
 				}
 				Link.l3 = "Не хочу я больше ни о ком спрашивать. До свидания.";
@@ -216,7 +216,7 @@ void ProcessDialogEvent()
 			}
 		break;
         case "SeekCitizen_Choice_2":
-			dialog.text = "Тогда назови еще раз имя и фамилию.";
+			dialog.text = "Тогда назови ещё раз имя и фамилию.";
 			Link.l1.edit = 3;
 			Link.l1 = "";
 			Link.l1.go = "SeekCitizen_Choice_1";
@@ -229,13 +229,13 @@ void ProcessDialogEvent()
 			{
 				if (sld.sex == "man")
 				{
-					dialog.text = LinkRandPhrase("Не знаю, давно его не видел.", "Черт его знает, где он...", "Не видел его уже прилично, так что не ведаю.");
+					dialog.text = LinkRandPhrase("Не знаю, давно его не видел.", "Чёрт его знает, где он...", "Не видел его уже прилично, так что не ведаю.");
 					link.l1 = RandPhraseSimple("Понятно.", "Жаль...");
 					link.l1.go = "exit";
 				}
 				else
 				{
-					dialog.text = LinkRandPhrase("Не видел ее уже довольно давно, сожалею.", "Понятия не имею, где она сейчас.", "Хм, я не знаю, где она может сейчас быть.");
+					dialog.text = LinkRandPhrase("Не видел её уже довольно давно, сожалею.", "Понятия не имею, где она сейчас.", "Хм, я не знаю, где она может сейчас быть.");
 					link.l1 = RandPhraseSimple("Ясно.", "Жаль...");
 					link.l1.go = "exit";
 				}
@@ -250,7 +250,7 @@ void ProcessDialogEvent()
 						string Str2 = sld.location.locator;
 						if (npchar.location == sld.location && strcut(Str1, 0, 5) == strcut(Str2, 0, 5))
 						{
-							dialog.text = LinkRandPhrase("Он здесь, на этом корабле. Ищи внимательней.", "Ха, так он здесь, на этом корабле!", "Он на этом корабле, странно, что ты еще не увидел"+ GetSexPhrase("","а") +" его.");
+							dialog.text = LinkRandPhrase("Он здесь, на этом корабле. Ищи внимательней.", "Ха, так он здесь, на этом корабле!", "Он на этом корабле, странно, что ты ещё не увидел"+ GetSexPhrase("","а") +" его.");
 						}
 						else
 						{
@@ -279,11 +279,11 @@ void ProcessDialogEvent()
 						string Str4 = sld.location.locator;
 						if (npchar.location == sld.location && strcut(Str3, 0, 5) == strcut(Str4, 0, 5))
 						{
-							dialog.text = LinkRandPhrase("Она здесь, на этом корабле. Ищи внимательней.", "Ха, так она здесь, на этом корабле!", "Она на этом корабле, странно, что ты еще не увидел"+ GetSexPhrase("","а") +" ее.");
+							dialog.text = LinkRandPhrase("Она здесь, на этом корабле. Ищи внимательней.", "Ха, так она здесь, на этом корабле!", "Она на этом корабле, странно, что ты ещё не увидел"+ GetSexPhrase("","а") +" её.");
 						}
 						else
 						{
-							dialog.text = LinkRandPhrase("Я видел ее совсем недавно " + npchar.quest.seekIdx.where + ".", "Недавно встретил ее " + npchar.quest.seekIdx.where + ". Мы даже поговорили.", "Насколько я знаю, сейчас она находится " + npchar.quest.seekIdx.where + ".");
+							dialog.text = LinkRandPhrase("Я видел её совсем недавно " + npchar.quest.seekIdx.where + ".", "Недавно встретил её " + npchar.quest.seekIdx.where + ". Мы даже поговорили.", "Насколько я знаю, сейчас она находится " + npchar.quest.seekIdx.where + ".");
 						}
 					}
 					else
@@ -294,7 +294,7 @@ void ProcessDialogEvent()
 						}
 						else
 						{
-							dialog.text = LinkRandPhrase("Я видел ее совсем недавно " + npchar.quest.seekIdx.where + ".", "Недавно встретил ее " + npchar.quest.seekIdx.where + ". Мы даже поговорили с ней.", "Насколько я знаю, сейчас она находится " + npchar.quest.seekIdx.where + ".");
+							dialog.text = LinkRandPhrase("Я видел её совсем недавно " + npchar.quest.seekIdx.where + ".", "Недавно встретил её " + npchar.quest.seekIdx.where + ". Мы даже поговорили с ней.", "Насколько я знаю, сейчас она находится " + npchar.quest.seekIdx.where + ".");
 						}
 					}
 					link.l1 = RandPhraseSimple("Ага, понятно. Спасибо вам, святой отец.", "Спасибо, падре!");
@@ -347,7 +347,7 @@ void ProcessDialogEvent()
 			NextDiag.(NodePrevName).l3 = true;
 		break;
 		case "ansewer_3_1":
-			dialog.text = "Мне все равно, когда сюда попадает прихожанин. Главное, что сейчас все граждане именно здесь, в моей пастве.";
+			dialog.text = "Мне всё равно, когда сюда попадает прихожанин. Главное, что сейчас все граждане именно здесь, в моей пастве.";
 			link.l1 = "Понятно...";
 			link.l1.go = "int_quests";
 		break;
@@ -432,7 +432,7 @@ void ProcessDialogEvent()
 			DeleteAttribute(pchar, "items.mineral3");
 			if (sti(npchar.quest.takeCandles.Qty) < 400)
 			{
-				dialog.text = "Ну, давай посмотрим. Сейчас ты принес"+ GetSexPhrase("","ла") +" " + FindRussianQtyString(iTemp) + " свечей. Всего ты принес"+ GetSexPhrase("","ла") +" " + FindRussianQtyString(sti(npchar.quest.takeCandles.Qty)) + " свечей. Тебе осталось принести еще " + FindRussianQtyString(400 - sti(npchar.quest.takeCandles.Qty)) + ".";
+				dialog.text = "Ну, давай посмотрим. Сейчас ты принес"+ GetSexPhrase("","ла") +" " + FindRussianQtyString(iTemp) + " свечей. Всего ты принес"+ GetSexPhrase("","ла") +" " + FindRussianQtyString(sti(npchar.quest.takeCandles.Qty)) + " свечей. Тебе осталось принести ещё " + FindRussianQtyString(400 - sti(npchar.quest.takeCandles.Qty)) + ".";
 				link.l1 = "Понятно. Ну что ж, продолжу поиски, святой отец.";
 				link.l1.go = "exit";
 				AddQuestRecord("ISS_takeCandles", "2");

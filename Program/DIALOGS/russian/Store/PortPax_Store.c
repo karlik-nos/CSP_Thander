@@ -61,14 +61,14 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
         	dialog.text = NPCStringReactionRepeat("Я не знаю, где Аззи. Понятия не имею просто.",
                                     "Говорил уже, не знаю, где он.",
                                     "Повторяю, не знаю я, где Аззи.",
-                                    "Еще раз говорю, что не знаю, где Аззи. Да и знать не желаю.", "block", 0, npchar, Dialog.CurrentNode);
+                                    "Ещё раз говорю, что не знаю, где Аззи. Да и знать не желаю.", "block", 0, npchar, Dialog.CurrentNode);
     		link.l1 = HeroStringReactionRepeat("Но ты же получаешь от него ром, который я у тебя беру.", "Да, помню, говорил", "Повторять не надо, помню я.", "Жаль, очень жаль...", npchar, Dialog.CurrentNode);
     		link.l1.go = DialogGoNodeRepeat("Step_Az11", "none", "none", "none", npchar, Dialog.CurrentNode);
 		break;
 
  		case "Step_Az11":
         	dialog.text = "Ваш ром я вообще не знаю, как мне привозят. Я просто на ночь оставляю сарай на заднем дворе открытым, а утром ром уже там. Третью часть я оставляю себе, две трети уходит тебе. Такова суть данной коммерческой сделки.";
-    		link.l1 = "Вот черт... Значит надо подкараулить ночью тех, кто завозит тебе ром!";
+    		link.l1 = "Вот чёрт... Значит надо подкараулить ночью тех, кто завозит тебе ром!";
     		link.l1.go = "Step_Az12";
 		break;
 

@@ -15,7 +15,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			if(CheckAttribute(pchar, "Whisper.FindDesouzaHol"))
 			{
 				DeleteAttribute(pchar, "Whisper.FindDesouzaHol")
-				link.l1 = "Послушай, к тебе тут случаем не подходили ребята подозрительной наружности? У них еще должно быть клеймо в форме распятия на руке.";
+				link.l1 = "Послушай, к тебе тут случаем не подходили ребята подозрительной наружности? У них ещё должно быть клеймо в форме распятия на руке.";
 				link.l1.go = "FindDesouzaHol";
 				break;
 			}
@@ -42,7 +42,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
     		link.l1.go = "Step_H1_2";
  		break;
  		case "Step_H1_2":
-    		dialog.text = "Справа от резиденции нашего губернатора. Немного пройти надо и там небольшой дом увидишь, слегка обветшавший снаружи. Но внутри там все в порядке, " + npchar.name + " худого людям не делает.";
+    		dialog.text = "Справа от резиденции нашего губернатора. Немного пройти надо и там небольшой дом увидишь, слегка обветшавший снаружи. Но внутри там всё в порядке, " + npchar.name + " худого людям не делает.";
     		link.l1 = "Спасибо тебе, пойду навещу этого Аарона.";
     		link.l1.go = "Step_H1_3";
  		break;
@@ -58,7 +58,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
  		break;
  		case "Step_H1_5":
     		dialog.text = "Какой-то незнакомец, первый раз его видел у нас в городе. У Аарона сегодня день открытых дверей, хе-хе.";
-    		link.l1 = "М-да, похоже на то... Ну да ладно, спасибо тебе еще раз. Прощай.";
+    		link.l1 = "М-да, похоже на то... Ну да ладно, спасибо тебе ещё раз. Прощай.";
     		link.l1.go = "exit";
  		break;
 		case "FindDesouzaHol":

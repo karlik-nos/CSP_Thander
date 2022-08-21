@@ -2685,7 +2685,7 @@ void AddToTable(string _tabName, string type)
 
 		if (leftQty > 0)
 		{
-			if (type == "blade" && FState_BLADE && Items[i].FencingType != BladeType[FState_BLADE-1]) continue;//фильтрация типа легкое тяжелое
+			if (type == "blade" && FState_BLADE && Items[i].FencingType != BladeType[FState_BLADE-1]) continue;//фильтрация типа легкое тяжёлое
 
 			if (type == "blade" && !checkattribute(&Items[i],"quality")) continue;//отфильтровываю "безоружный" и всякие посторонние предметы, у которых нет "качества"
 			if (type == "blade" && FState_BLADEQ && Items[i].quality != BladeTypeQ[FState_BLADEQ-1]) continue;//фильтрация клинков по качеству

@@ -16,7 +16,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 		{
 			pchar.questTemp.Sharp.City.rumour = false; //слух дан
 			Dialog.Text = Sharp_choiceAction();
-			link.l1 = "Гм, понятно... Еще что нового?";
+			link.l1 = "Гм, понятно... Ещё что нового?";
 			link.l1.go = "new question";
 			link.l2 = RandPhraseSimple("Спасибо, долж"+ GetSexPhrase("ен","на") +" откланяться.",
 									"Всего хорошего.");
@@ -28,7 +28,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 		if(CheckAttribute(NPChar, "city") && pchar.questTemp.BlueBird.City == npchar.city && pchar.questTemp.BlueBird == "returnMoney")
 		{
 			Dialog.Text = BlueBurd_setTradeShip();
-			link.l1 = "Ага, понятно... Что еще нового в городе?";
+			link.l1 = "Ага, понятно... Что ещё нового в городе?";
 			link.l1.go = "new question";
 			link.l2 = RandPhraseSimple("Спасибо, долж"+ GetSexPhrase("ен","на") +" откланяться.",
 									"Всего хорошего.");
@@ -42,7 +42,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 		{
 			sld = characterFromId(pchar.questTemp.Slavetrader.UsurerId);
 			Dialog.Text = "Говорят, что ростовщик из колонии "+ XI_ConvertString("Colony" + sld.city) +" для какой-то прибыльной работы ищет капитана, не брезгующего замарать руки...";
-			link.l1 = "Ага, понятно... Что еще нового в городе?";
+			link.l1 = "Ага, понятно... Что ещё нового в городе?";
 			link.l1.go = "new question";
 			link.l2 = RandPhraseSimple("Спасибо, долж"+ GetSexPhrase("ен","на") +" откланяться.",
 									"Всего хорошего.");
@@ -54,7 +54,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 		{
 			sld = characterFromId(pchar.questTemp.Ascold.TraderId);
 			Dialog.Text = "Говорят, что хозяин магазина из колонии "+ XI_ConvertString("Colony" + sld.city) +" ищет какой-то порошок, большие деньги за него предлагает...";
-			link.l1 = "Ага, понятно... Что еще нового в городе?";
+			link.l1 = "Ага, понятно... Что ещё нового в городе?";
 			link.l1.go = "new question";
 			link.l2 = RandPhraseSimple("Спасибо, долж"+ GetSexPhrase("ен","на") +" откланяться.",
 									"Всего хорошего.");
@@ -72,9 +72,9 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
             posrep1 = RandPhraseSimple(" Такие вот дела...", " Возможно, вас это позабавит.");
             posrep2 = " А у вас, капитан, есть какие-нибудь известия для нашей колонии?";
             answ1 = RandPhraseSimple(RandSwear() + "Интересные вещи ты рассказываешь, "+GetFullName(NPChar)+".",
-                                 "Тогда расскажи мне еще...");
-            answ2 = RandPhraseSimple(RandSwear() + "Это очень интересно! Вот что еще хотел"+ GetSexPhrase("","а") +" спросить...",
-                                 "Еще вопрос.");
+                                 "Тогда расскажи мне ещё...");
+            answ2 = RandPhraseSimple(RandSwear() + "Это очень интересно! Вот что ещё хотел"+ GetSexPhrase("","а") +" спросить...",
+                                 "ещё вопрос.");
             answ3 = RandPhraseSimple("Чего только не случается на свете. Мне жаль, но никаких новостей у меня нет. ",
                                  "Я немного спешу, так что как-нибудь в другой раз.");
             answ4 = "";
@@ -85,9 +85,9 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
             posrep1 = " У нас вообще редко что-либо происходит. Но если же произойдет что-то необычное, то все об этом только и говорят.";
             posrep2 = " Так что новостей никаких. Но может " + GetAddress_Form(NPChar) + " капитан что-то знает?";
             answ1 = RandPhraseSimple("Тогда расскажи-ка мне лучше...",
-                                 RandSwear() + "Ты ничего не знаешь! Ладно, вот что еще хотел"+ GetSexPhrase("","а") +" спросить...");
+                                 RandSwear() + "Ты ничего не знаешь! Ладно, вот что ещё хотел"+ GetSexPhrase("","а") +" спросить...");
             answ2 = RandPhraseSimple("Говоришь, не знаешь, ладно, скажи мне тогда...",
-                                 "Да, не сильно ты мне помог"+NPCharSexPhrase(NPChar, "","ла")+", но, может, ты знаешь что-то еще?");
+                                 "Да, не сильно ты мне помог"+NPCharSexPhrase(NPChar, "","ла")+", но, может, ты знаешь что-то ещё?");
             answ3 = RandPhraseSimple("Не думаю, что знаю что-то что, могло бы вас заинтересовать.",
                                  "Я с удовольствием что-нибудь расскажу, но как-нибудь в другой раз.");
             answ4 = "";
@@ -100,8 +100,8 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
                                                                     "Вы утомили меня своими расспросами, прошу меня простить, но меня ждут дела."),
                                                 "block", 1, npchar, Dialog.CurrentNode);
 
-		//link.l1 = RandPhraseSimple(RandSwear() + "Это очень интересно! Вот что еще хотел"+ GetSexPhrase("","а") +" спросить...",
-        //                         "Еще вопрос.");
+		//link.l1 = RandPhraseSimple(RandSwear() + "Это очень интересно! Вот что ещё хотел"+ GetSexPhrase("","а") +" спросить...",
+        //                         "ещё вопрос.");
         link.l1 = HeroStringReactionRepeat(answ1,
                                             answ2,
                                             answ3,
@@ -124,8 +124,8 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
             posrep1 = RandPhraseSimple(" Такие вот дела...", " Возможно, вас это позабавит.");
             posrep2 = " А у вас, капитан, есть какие-нибудь известия для нашей колонии?";
             answ1 = RandPhraseSimple(RandSwear() + "Интересные вещи ты рассказываешь, "+GetFullName(NPChar)+".",
-"Тогда расскажи мне еще...");
-            answ2 = RandPhraseSimple(RandSwear() + "Это очень интересно! Вот что еще хотел"+ GetSexPhrase("","а") +" спросить...","Еще вопрос.");
+"Тогда расскажи мне ещё...");
+            answ2 = RandPhraseSimple(RandSwear() + "Это очень интересно! Вот что ещё хотел"+ GetSexPhrase("","а") +" спросить...","ещё вопрос.");
             answ3 = RandPhraseSimple("Чего только не случается на свете. Мне жаль, но никаких новостей у меня нет. ","Я немного спешу, так что как-нибудь в другой раз.");
             answ4 = "";
         }
@@ -133,8 +133,8 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
         {
             posrep1 = " У нас вообще редко что-либо происходит. Но если же произойдет что-то необычное, то все об этом только и говорят.";
             posrep2 = " Так что новостей никаких. Но может " + GetAddress_Form(NPChar) + " капитан что-то знает?";
-            answ1 = RandPhraseSimple("Тогда расскажи-ка мне лучше...",RandSwear() + "Ты ничего не знаешь! Ладно, вот что еще хотел"+ GetSexPhrase("","а") +" спросить...");
-            answ2 = RandPhraseSimple("Говоришь, не знаешь, ладно, скажи мне тогда...","Да, не сильно ты мне помог"+NPCharSexPhrase(NPChar, "","ла")+", но, может, ты знаешь что-то еще?");
+            answ1 = RandPhraseSimple("Тогда расскажи-ка мне лучше...",RandSwear() + "Ты ничего не знаешь! Ладно, вот что ещё хотел"+ GetSexPhrase("","а") +" спросить...");
+            answ2 = RandPhraseSimple("Говоришь, не знаешь, ладно, скажи мне тогда...","Да, не сильно ты мне помог"+NPCharSexPhrase(NPChar, "","ла")+", но, может, ты знаешь что-то ещё?");
             answ3 = RandPhraseSimple("Не думаю, что знаю что-то что, могло бы вас заинтересовать.","Я с удовольствием что-нибудь расскажу, но как-нибудь в другой раз.");
             answ4 = "";
         }
@@ -163,8 +163,8 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 			link.l1.go = "BS_NU_11";
 			break;
 		}
-		link.l1 = RandPhraseSimple(RandSwear() + "За это надо выпить еще кружечку...",
-                                 "Хорошо. Давай еще по одной.");
+		link.l1 = RandPhraseSimple(RandSwear() + "За это надо выпить ещё кружечку...",
+                                 "Хорошо. Давай ещё по одной.");
 		link.l1.go = "sit_3";
 		link.l2 = RandPhraseSimple("Спасибо, долж"+ GetSexPhrase("ен","на") +" откланяться.",
                                  "Эх, забористый ром. Ладно, мне уже пора, удачно посидеть.");
@@ -202,14 +202,14 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 		//-->работорговец
 		if (pchar.questTemp.Slavetrader == "FindRatJamaica_H" && npchar.location == "FortOrange_tavern")
         {
-			dialog.text = "(поет) Однажды мне встре-етился гамбургский шип. На мачтах - мокрицы и пле-есенный гриб, обшивка гнила-ая, в ракушках корма. Клопов полон ку-убрик, а камбуз - дерьма... Как жизнь, моря"+ GetSexPhrase("к","чка") +", рассказывай. Как оно там, в море?";
-            link.l1 = "Да в море все так же, как и всегда - сыро и солоно. Ты вот скажи лучше, не знаешь ли, куда ушел мой приятель, который тут комнату снимал недавно? Франсуа Гонтьер его зовут.";
+			dialog.text = "(поёт) Однажды мне встре-етился гамбургский шип. На мачтах - мокрицы и пле-есенный гриб, обшивка гнила-ая, в ракушках корма. Клопов полон ку-убрик, а камбуз - дерьма... Как жизнь, моря"+ GetSexPhrase("к","чка") +", рассказывай. Как оно там, в море?";
+            link.l1 = "Да в море всё так же, как и всегда - сыро и солоно. Ты вот скажи лучше, не знаешь ли, куда ушёл мой приятель, который тут комнату снимал недавно? Франсуа Гонтьер его зовут.";
             link.l1.go = "Jamaica_ratH_1";
 			break;
         }
 		if (pchar.questTemp.Slavetrader == "EscapeSlaveVillemstad_H" && npchar.location == "Villemstad_tavern")
         {
-			dialog.text = "(поет) Я бла-агода-арен виски за свой багро-овый нос, и по-о его-о совету пальто в закла-ад отнес... Эх, наливай, моря"+ GetSexPhrase("к","чка") +"! Я только вчера из рейса, поэтому еще немного не в себе.";
+			dialog.text = "(поёт) Я бла-агода-арен виски за свой багро-овый нос, и по-о его-о совету пальто в закла-ад отнес... Эх, наливай, моря"+ GetSexPhrase("к","чка") +"! Я только вчера из рейса, поэтому ещё немного не в себе.";
             link.l1 = "Угощайся, приятель! Ну, и как там в море, что интересного видел?";
             link.l1.go = "EscapeSlave_Villemstad_H1";
 			break;
@@ -221,7 +221,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 		{
     		if (pchar.questTemp.Headhunter == "Rat_Tavern" && npchar.location == pchar.questTemp.Headhunter.Ratrumcity + "_tavern")
             {
-    			dialog.text = "(поет) Летучий Голландец, Летучий Голландец, мчит по неведомым морям... Эх, моря"+ GetSexPhrase("к","чка") +", выпьем!";
+    			dialog.text = "(поёт) Летучий Голландец, Летучий Голландец, мчит по неведомым морям... Эх, моря"+ GetSexPhrase("к","чка") +", выпьем!";
                 link.l1 = "Послушай, мне говорили, что тут матросы с одного судна, 'Аделаида' называется, устроили погром по пьяни...";
                 link.l1.go = "Rat_Tavern_1";
 				break;
@@ -239,8 +239,8 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 
 		if(CheckAttribute(PChar, "HellSpawn.SeekRebirth"))
 	    {
-			//получим пещеру для чистки
-			pchar.quest.HellSpawn.locationId = "DeckWithReefs"; //Id целевой пещеры
+			//получим пещёру для чистки
+			pchar.quest.HellSpawn.locationId = "DeckWithReefs"; //Id целевой пещёры
 			sld = &locations[FindLocation(pchar.quest.HellSpawn.locationId)];
 			npchar.quest.HellSpawn.label = GetConvertStr(sld.id.label, "LocLables.txt"); //тип подземелья для диалогов
 
@@ -267,7 +267,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 		}
 		if(CheckAttribute(pchar,"GiantEvilSkeleton") && rand(20)==0 && !CheckAttribute(pchar,"MalteseInfo"))
 		{
-			 if (startHeroType != 2 && startHeroType != 7 && pchar.sex != "skeleton" && !CheckAttribute(pchar, "OrderHunter"))
+			 if (pchar.name != "Виспер" && pchar.name != "Тёмный" && pchar.sex != "skeleton" && !CheckAttribute(pchar, "OrderHunter"))
 			 {
 				dialog.text = "Ходят слухи, что Испанская инквизиция собирает информацию о рифе Скелета. С какой целью - неизвестно, но любому, кто знает хоть что-то, обещано вознаграждение...";
 				Log_Info("Это стоит запомнить. Испанская инквизиция и риф Скелета.");
@@ -387,7 +387,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 							link.l1 = "Ха! Напугал ежа иголкой. Да если мне эта щебека попадется, то считай она уже на дне. Ладно, бывай.";
 							link.l1.go = "exit_sit";
 							AddQuestRecord("pirateVikingQuest", "6");
-							//Можно будет вызвать повторно, если еще не убили
+							//Можно будет вызвать повторно, если ещё не убили
 							//pchar.questTemp.pirateVikingQuest = "5";
 							pchar.LastHearedViking = npchar.city;
 
@@ -455,7 +455,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 				}
 				if (pchar.questTemp.pirateVikingQuest == "2")
 				{
-					dialog.text = "Не советую вам выходить в море, капитан. Обычно там только пираты покою не давали, а сейчас завелись ещё и самые настоящие викинги! Один купец до последнего не хотел расставаться с серебром в своем трюме, наивно надеясь, что сможет дать им отпор. Он заплатил жизнями своей команды. С обломками его корабля, в местную бухту недавно прибило бедолагу, матроса, который чудом выжил. Он и рассказал мне эту историю. Говорит, лично видел этих зверей. Здоровенные, злющие и на языке непонятном говорят!";
+					dialog.text = "Не советую вам выходить в море, капитан. Обычно там только пираты покою не давали, а сейчас завелись ещё и самые настоящие викинги! Один купец до последнего не хотел расставаться с серебром в своём трюме, наивно надеясь, что сможет дать им отпор. Он заплатил жизнями своей команды. С обломками его корабля, в местную бухту недавно прибило бедолагу, матроса, который чудом выжил. Он и рассказал мне эту историю. Говорит, лично видел этих зверей. Здоровенные, злющие и на языке непонятном говорят!";
 					AddQuestRecord("pirateVikingQuest", "3");
 					pchar.questTemp.pirateVikingQuest = "3";
 					pchar.LastHearedViking = npchar.city;
@@ -463,7 +463,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 				}
 				if (pchar.questTemp.pirateVikingQuest == "1")
 				{
-					dialog.text = "Слыхали, капитан? В наш порт недавно вернулся купец, что обычно приторговывает чёрным деревом. Вот только в этот раз он пришел с пустым трюмом. Говорят, в море его перехватила щебека под названием 'Драккар'. Капитан благоразумно поднял белый флаг и его пощадили, однако обобрали до нитки. Он теперь полностью разорён и больше не может продолжать бизнес. В Европу собирается вернуться, к родственникам.";
+					dialog.text = "Слыхали, капитан? В наш порт недавно вернулся купец, что обычно приторговывает чёрным деревом. Вот только в этот раз он пришёл с пустым трюмом. Говорят, в море его перехватила щебека под названием 'Драккар'. Капитан благоразумно поднял белый флаг и его пощадили, однако обобрали до нитки. Он теперь полностью разорён и больше не может продолжать бизнес. В Европу собирается вернуться, к родственникам.";
 					AddQuestRecord("pirateVikingQuest", "2");
 					pchar.questTemp.pirateVikingQuest = "2";
 					pchar.LastHearedViking = npchar.city;
@@ -475,7 +475,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 	break;
 //Black Sails
 		case "BS_NU_11":
-            dialog.text = "Ух. Хорошо пошло, благодарствуйте. Так вот. Пират, на уцелевшем корвете, смекнул, что дело плохо, стал по ветру и на всех парусах за горизонт удрал! А на бриге, цепь якорную отрубили и бортом на фрегат навалились. На абордаж, стало быть, пошли. И одолели - таки испанцев! Фрегат черный флаг поднял, дал залп по бригу потрёпанному и ушел, куда - то на север. Такая баталия была, хоть на картину! Обломками всё побережье усыпано.";
+            dialog.text = "Ух. Хорошо пошло, благодарствуйте. Так вот. Пират, на уцелевшем корвете, смекнул, что дело плохо, стал по ветру и на всех парусах за горизонт удрал! А на бриге, цепь якорную отрубили и бортом на фрегат навалились. На абордаж, стало быть, пошли. И одолели - таки испанцев! Фрегат чёрный флаг поднял, дал залп по бригу потрёпанному и ушёл, куда - то на север. Такая баталия была, хоть на картину! Обломками всё побережье усыпано.";
             link.l1 = "Спасибо за рассказ. Тебе бы книги писать с таким талантом!";
 			link.l1.go = "exit_sit";
 
@@ -496,10 +496,10 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
                                                     RandPhraseSimple("Я ведь уже сказал, что у меня нет времени на пустую болтовню!",
                                                                         "Я занятой человек и мне некогда обсуждать всякие сплетни!"),
                                                                          "block", 1, npchar, Dialog.CurrentNode);
-			link.l1 = HeroStringReactionRepeat(pcharrepphrase(RandSwear() + "Это очень интересно! Но давай к делу","Благодарю, тогда вот еще какое дело."),
-                                                pcharrepphrase(""+ GetSexPhrase("Чтоб я сдох","Разрази меня гром") +"! Складно врешь. Но у меня есть еще вопрос.",
+			link.l1 = HeroStringReactionRepeat(pcharrepphrase(RandSwear() + "Это очень интересно! Но давай к делу","Благодарю, тогда вот ещё какое дело."),
+                                                pcharrepphrase(""+ GetSexPhrase("Чтоб я сдох","Разрази меня гром") +"! Складно врёшь. Но у меня есть ещё вопрос.",
                                                                 "Так не будем больше терять драгоценное время и перейдем к делам."),
-                                                pcharrepphrase(RandSwear() +" Еще одно дельце, и я уйду.","Вы правы, время - деньги."),
+                                                pcharrepphrase(RandSwear() +" Ещё одно дельце, и я уйду.","Вы правы, время - деньги."),
                                                 pcharrepphrase("Только и думаешь, что о своей выгоде. Ладно, не кипятись.",
                                                                 "Прошу простить меня. Перейдем к делу."),
                                                 npchar, Dialog.CurrentNode);
@@ -508,7 +508,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 			link.l2 = HeroStringReactionRepeat(NPCharRepPhrase(npchar,
 			                                        pcharrepphrase("Пока, старый пропойца.",
 													               "Всего доброго, "+GetAddress_FormToNPC(NPChar)+" " +GetFullName(npchar)+"."),
-													pcharrepphrase("Каррамба! Никуда не уходи. Я еще зайду.",
+													pcharrepphrase("Каррамба! Никуда не уходи. Я ещё зайду.",
 													               "Приятно было вас видеть, "+GetAddress_FormToNPC(NPChar)+" " +GetFullName(npchar)+"! До свидания!")),
 											   NPCharRepPhrase(npchar,
 											        pcharrepphrase("Отдать швартовы!",
@@ -516,14 +516,14 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 													pcharrepphrase("Эй! Ты что там прячешь? Ром? Нет!?! Ну ладно, пойду горло промочу.",
 													               "Прошу меня извинить, у меня срочные дела в городе.")),
 											   NPCharRepPhrase(npchar,
-											        pcharrepphrase("Хех! Еще увидимся!",
+											        pcharrepphrase("Хех! Ещё увидимся!",
 													               "Мне надо идти. Прощайте, "+GetAddress_FormToNPC(NPChar)+" " +GetFullName(npchar)+"!"),
 													pcharrepphrase("И не смей мне перечить! Недосуг мне тут с тобой спорить!",
 													               "Пожалуй, стоит проверить, как дела на корабле. Прощайте, "+GetAddress_FormToNPC(NPChar)+" " +GetFullName(npchar)+"!")),
 											   NPCharRepPhrase(npchar,
 											        pcharrepphrase("Что с тобой, старина? Это же я - " +GetFullName(pchar)+ "! Проспись, я потом зайду.",
-													               "Боюсь, ваша печень прикончит вас раньше, чем я еще раз зайду сюда."),
-													pcharrepphrase("Считай свои пиастры, пройдоха! Я еще зайду.",
+													               "Боюсь, ваша печень прикончит вас раньше, чем я ещё раз зайду сюда."),
+													pcharrepphrase("Считай свои пиастры, пройдоха! Я ещё зайду.",
 													               "Рад"+ GetSexPhrase("","а") +" был"+ GetSexPhrase("","а") +" вас видеть, " + GetAddress_FormToNPC(NPChar)+" " +GetFullName(npchar)+"!")),
 											  npchar, Dialog.CurrentNode);
 			link.l2.go = "Exit";
@@ -531,8 +531,8 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         case "rumours_capitan":
 			Dialog.Text = SelectRumourEx("capitan", NPChar);
-			Link.l1 = RandPhraseSimple(RandSwear() + "Это очень интересно! Вот что еще хотел"+ GetSexPhrase("","а") +" спросить...",
-                                     "Еще вопрос.");
+			Link.l1 = RandPhraseSimple(RandSwear() + "Это очень интересно! Вот что ещё хотел"+ GetSexPhrase("","а") +" спросить...",
+                                     "Ещё вопрос.");
 			Link.l1.go = "quests";
 			Link.l2 = RandPhraseSimple("Спасибо, долж"+ GetSexPhrase("ен","на") +" откланяться.",
                                      "Всего хорошего");
@@ -621,9 +621,9 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 
                 Dialog.Text = RumText;
 
-    			link.l1 = RandPhraseSimple("Благодарю, вот твое золото. А больше ничего не припомнишь?", "Хорошо, ты заслужил свои деньги - держи. Есть что-нибудь еще?");
-                //RandPhraseSimple(RandSwear() + "Это очень интересно! Вот что еще хотел"+ GetSexPhrase("","а") +" спросить...",
-                //                         "Еще вопрос.");
+    			link.l1 = RandPhraseSimple("Благодарю, вот твоё золото. А больше ничего не припомнишь?", "Хорошо, ты заслужил свои деньги - держи. Есть что-нибудь ещё?");
+                //RandPhraseSimple(RandSwear() + "Это очень интересно! Вот что ещё хотел"+ GetSexPhrase("","а") +" спросить...",
+                //                         "ещё вопрос.");
 
     			link.l1.go = "rumours_tavern";
     			NextDiag.CurrentNode = NextDiag.TempNode;
@@ -648,8 +648,8 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 			if (!CheckAttribute(NPChar, "quest.repeat.rumours_poor") || NPChar.quest.repeat.rumours_poor <= 1)
 			{
 				Dialog.Text = SelectRumourEx("poor", NPChar);
-				Link.l1 = RandPhraseSimple(RandSwear() + "Да, это интересно. Имеется еще вопрос...",
-										"Хм, вот что еще хотел"+ GetSexPhrase("","а") +" спросить...");
+				Link.l1 = RandPhraseSimple(RandSwear() + "Да, это интересно. Имеется ещё вопрос...",
+										"Хм, вот что ещё хотел"+ GetSexPhrase("","а") +" спросить...");
 				Link.l1.go = "rumours_poor_2";
 				Link.l2 = RandPhraseSimple("Ну, прощай, барыга.",
 										"Всего хорошего, приятель.");
@@ -670,8 +670,8 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 			if (NPChar.quest.repeat.rumours_poor <= 1)
 			{
 				Dialog.Text = SelectRumourEx("poor", NPChar);
-				Link.l1 = RandPhraseSimple(RandSwear() + "Да, это интересно. Имеется еще вопрос...",
-										"Хм, вот что еще хотел"+ GetSexPhrase("","а") +" спросить...");
+				Link.l1 = RandPhraseSimple(RandSwear() + "Да, это интересно. Имеется ещё вопрос...",
+										"Хм, вот что ещё хотел"+ GetSexPhrase("","а") +" спросить...");
 				Link.l1.go = "rumours_poor";
 				Link.l2 = RandPhraseSimple("Ну, прощай, барыга.",
 										"Всего хорошего, приятель.");
@@ -717,7 +717,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
             {
                 if (Characters[sti(pchar.GenQuest.Loan.FindCitizenIdx)].id == Npchar.id)
                 {
-                    dialog.text = LinkRandPhrase("А вы уверены, что обратились по адресу, " + GetAddress_Form(NPChar) + "? Мое имя " + GetFullName(npchar) + ". Чем могу служить?",
+                    dialog.text = LinkRandPhrase("А вы уверены, что обратились по адресу, " + GetAddress_Form(NPChar) + "? Моё имя " + GetFullName(npchar) + ". Чем могу служить?",
                              "По финансам ко мне, " + GetAddress_Form(NPChar) + "?! Я " + GetFullName(npchar) + ". А что за дело у вас?",
                              "Я вас слушаю, " + GetAddress_Form(NPChar) + ". Что вы хотели? Кстати, меня зовут " + GetFullName(npchar) + ".");
                     link.l1 = NPCharRepPhrase(pchar, "Я от ростовщика, должник! Деньги на бочку!", "У меня к вам щекотливый вопрос по вашему долгу, " + GetAddress_FormToNPC(NPChar) + ".");
@@ -750,7 +750,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
                     dialog.text = "Нет! Ничего я не отдам! А будете приставать, стражу позову.";
                     Link.l1 = "Ничего не знаю, с тебя " + FindRussianMoneyString(makeint(sti(pchar.GenQuest.Loan.FindCitizenMoney) + sti(pchar.GenQuest.Loan.FindCitizenPercent))) + ". А то можно поговорить и по-другому.";
         			Link.l1.go = "LoanFindCitizenType_1";
-        			Link.l2 = "Ах ты, негодяй! Ну ничего, Земля круглая, свидимся еще...";
+        			Link.l2 = "Ах ты, негодяй! Ну ничего, Земля круглая, свидимся ещё...";
         			Link.l2.go = "LoanFindCitizenType_1_1";
                 break;
 
@@ -780,7 +780,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
                     dialog.text = "Нет! Ничего я не отдам! А будете приставать, стражу позову.";
                     Link.l1 = "Ничего не знаю, с тебя " + FindRussianMoneyString(makeint(sti(pchar.GenQuest.Loan.FindCitizenMoney) + sti(pchar.GenQuest.Loan.FindCitizenPercent))) + ". А то можно поговорить и по-другому.";
         			Link.l1.go = "LoanFindCitizenType_1";
-        			Link.l2 = "Ах ты, негодяй! Ну ничего, Земля круглая, свидимся еще...";
+        			Link.l2 = "Ах ты, негодяй! Ну ничего, Земля круглая, свидимся ещё...";
         			Link.l2.go = "LoanFindCitizenType_1_1";
                 break;
 			}
@@ -801,7 +801,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
                     dialog.text = "Нет! Ничего я не отдам! А будете приставать, стражу позову.";
                     Link.l1 = "Ничего не знаю, с тебя " + FindRussianMoneyString(makeint(sti(pchar.GenQuest.Loan.FindCitizenMoney) + sti(pchar.GenQuest.Loan.FindCitizenPercent))) + ". А то можно поговорить и по-другому.";
         			Link.l1.go = "LoanFindCitizenType_1";
-        			Link.l2 = "Ах ты, негодяй! Ну ничего, Земля круглая, свидимся еще...";
+        			Link.l2 = "Ах ты, негодяй! Ну ничего, Земля круглая, свидимся ещё...";
         			Link.l2.go = "LoanFindCitizenType_1_1";
                 break;
 			}
@@ -823,7 +823,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 
 		case "LoanFindCitizenType_1_1":
             dialog.text = "Рад, что мы с вами договорились.";
-			Link.l1 = "Ты меня еще попомнишь!";
+			Link.l1 = "Ты меня ещё попомнишь!";
 			Link.l1.go = "exit";
 			pchar.GenQuest.Loan.FindCitizenFalied = true;
         	SetTimerCondition("LoanFindCitizenTimer", 0, 0, 30, false);
@@ -972,7 +972,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 /////////		Квест Асокольда, рендомные базары
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		case "AscoldTrader": //рендомный хозяин магаза
-            dialog.Text = "Послушай, не встречал"+ GetSexPhrase("","а") +" еще порошка мумии, который я просил тебя разыскать?";
+            dialog.Text = "Послушай, не встречал"+ GetSexPhrase("","а") +" ещё порошка мумии, который я просил тебя разыскать?";
             if (GetQuestPastDayParam("questTemp.Ascold") > 3)
 			{
 				Link.l1 = "Нет, пока не встречал"+ GetSexPhrase("","а") +"... Послушай, у торговцев на улицах он, кажется, есть, но что-то они темнят...";
@@ -985,7 +985,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 			}
 		break;
         case "AscoldTrader_WasSeek":
-            dialog.Text = "Послушай, не встречал"+ GetSexPhrase("","а") +" еще порошка мумии, который я просил тебя разыскать?";
+            dialog.Text = "Послушай, не встречал"+ GetSexPhrase("","а") +" ещё порошка мумии, который я просил тебя разыскать?";
             Link.l2 = "Да, наш"+ GetSexPhrase("ел","ла") +". И сколько ты мне за него заплатишь?";
             Link.l2.go = "AscoldTrader_1";
         break;
@@ -1066,7 +1066,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         case "Man_FackYou":
 			dialog.text = LinkRandPhrase("Грабеж среди бела дня!!! Это что же такое делается?! Ну, погоди, "+ GetSexPhrase("приятель","подруга") +"...", "Эй, ты чего это там копаешься?! Никак, вздумал"+ GetSexPhrase("","а") +" ограбить меня? Ну, тогда тебе конец...", "Постой, ты куда это полез"+ GetSexPhrase("","ла") +"? Да ты вор"+ GetSexPhrase("","овка") +", оказывается! Ну, считай, что ты приплыл"+ GetSexPhrase("","а") +", родн"+ GetSexPhrase("ой","ая") +"...");
-			link.l1 = LinkRandPhrase("Дьявол!!", "Каррамба!!", "А-ать, черт!");
+			link.l1 = LinkRandPhrase("Дьявол!!", "Каррамба!!", "А-ать, чёрт!");
 			link.l1.go = "fight_owner";
 		break;
 		case "fight_owner":
@@ -1280,8 +1280,8 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 			link.l1.go = "RBlueBird_retMoney_9";
 		break;
 		case "RBlueBird_retMoney_9":
-			dialog.text = "И что это за новая сумма? Назовите ее.";
-			link.l1 = "Увеличьте ее в четыре раза. 200 тысяч, и я оставлю вас в покое. Иначе - разорю. А потом убью. Сначала вашу семью, а потом вас...";
+			dialog.text = "И что это за новая сумма? Назовите её.";
+			link.l1 = "Увеличьте её в четыре раза. 200 тысяч, и я оставлю вас в покое. Иначе - разорю. А потом убью. Сначала вашу семью, а потом вас...";
 			link.l1.go = "RBlueBird_retMoney_10";
 		break;
 		case "RBlueBird_retMoney_10":
@@ -1336,7 +1336,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 		//механика арестовали, диалоги мужика
 		case "MechanicIsPrison_man":
 			dialog.text = "А-а, ну вот и вы, наконец...";
-			link.l1 = "В чем дело? Почему вы еще не на фрегате?... А где Механик?";
+			link.l1 = "В чем дело? Почему вы ещё не на фрегате?... А где Механик?";
 			link.l1.go = "MechanicIsPrison_man_1";
 		break;
 		case "MechanicIsPrison_man_1":
@@ -1371,7 +1371,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 		//механика арестовали, диалоги бабы
 		case "MechanicIsPrison_woman":
 			dialog.text = "А-а, ну вот и вы, наконец...";
-			link.l1 = "В чем дело? Почему вы еще не на фрегате?... А где Механик?";
+			link.l1 = "В чем дело? Почему вы ещё не на фрегате?... А где Механик?";
 			link.l1.go = "MechanicIsPrison_man_1";
 		break;
 		case "MechanicIsPrison_woman_1":
@@ -1422,7 +1422,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 					ChangeCharacterAddressGroup(npchar, npchar.location, "goto", LAi_FindNearestLocator("goto", locx, locy, locz));
 				}
 				npchar.cityTape = "quest";  //чтобы не передвигался
-				DeleteAttribute(npchar, "location.going"); //снять метку на перемещение
+				DeleteAttribute(npchar, "location.going"); //снять метку на перемещёние
 				LAi_SetActorType(npchar);
 				LAi_ActorRunToLocation(NPChar, "reload", LAi_FindNearestLocator("reload", locx, locy, locz), "none", "", "", "OpenTheDoors", 10.0);
 				pchar.quest.LSC_afterArestMachanic.win_condition.l1 = "ExitFromLocation";
@@ -1449,7 +1449,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 	}
 }
 
-string sRumourAboutOwners_CityRumour(string sCity, string sOwnerType) // Здесь идет распределение по городам
+string sRumourAboutOwners_CityRumour(string sCity, string sOwnerType) // Здесь идёт распределение по городам
 {
 	string sRetRumour = "Явный баг. Сообщите о нем АТ, для Warship'а.";
 	// флаг - PChar.QuestTemp.RumoursAboutOwners.(sOwner) - для проверок, какой вопрос выпал. Ножно будет юзать для квестов
@@ -1578,18 +1578,18 @@ string sRumourAboutOwners_Init(string sOwnerType, int iRumourNum) // База с
 {
 
 	string STR_MAYOR[MAX_RUMOURS_ABOUT_OWNERS]; // Губернаторы
-	STR_MAYOR[0] = "О, господин губернатор - замечательный человек. Он умело управляет нашей колонией - с момента ее основания у нас не было ни единого крупного конфликта\nЕдинственный его недостаток - он... ммм... весьма бережлив. Хотя, возможно, это наоборот достоинство.";
-	STR_MAYOR[1] = "О, господин губернатор - замечательный человек. Он умело управляет нашей колонией - с момента ее основания у нас не было ни единого крупного конфликта\nЕдинственный его недостаток - он... ммм... весьма бережлив. Хотя, возможно, это наоборот достоинство.";
+	STR_MAYOR[0] = "О, господин губернатор - замечательный человек. Он умело управляет нашей колонией - с момента её основания у нас не было ни единого крупного конфликта\nЕдинственный его недостаток - он... ммм... весьма бережлив. Хотя, возможно, это наоборот достоинство.";
+	STR_MAYOR[1] = "О, господин губернатор - замечательный человек. Он умело управляет нашей колонией - с момента её основания у нас не было ни единого крупного конфликта\nЕдинственный его недостаток - он... ммм... весьма бережлив. Хотя, возможно, это наоборот достоинство.";
 	STR_MAYOR[2] = "Увы, господин губернатор у нас хороший... Но слабохарактерный. Ему бы чуточку твердости в душе - и у наших торговцев появились бы небольшие налоговые льготы... И субсидии на ремонт форта давно пора бы выделить.";
 	STR_MAYOR[3] = "Хм... Он недавно стал у нас губернатором. Он довольно молод и поэтому очень инициативен - при нем наша колония процветает.";
-	STR_MAYOR[4] = "Наш губернатор еще относительно молод. Говорят, он - непутевый младший сын испанского графа, отправленный от двора куда подальше, чтобы прекратил позорить свой род. Назначен он был сюда совсем недавно, и ничего запоминающегося сотворить не успел.";
+	STR_MAYOR[4] = "Наш губернатор ещё относительно молод. Говорят, он - непутевый младший сын испанского графа, отправленный от двора куда подальше, чтобы прекратил позорить свой род. Назначен он был сюда совсем недавно, и ничего запоминающегося сотворить не успел.";
 	STR_MAYOR[5] = "Хм... Он недавно стал у нас губернатором. Он довольно молод и поэтому очень инициативен - при нем наша колония процветает.";
 	STR_MAYOR[6] = "Э-э... Ничего... ничего плохого сказать про него не могу.";
 
 	string STR_TAVERNKEEPER[MAX_RUMOURS_ABOUT_OWNERS]; // Тавернщики
-	STR_TAVERNKEEPER[0] = "Хм, я бы не доверил свое имущество этому пройдохе. Не поймите меня неправильно, но мне кажется, что это самый ненадежный человек в нашем городке\nГоворят, что он путается с контрабандистами и пиратами - и в таверне у него все время всякий сброд ошивается!";
+	STR_TAVERNKEEPER[0] = "Хм, я бы не доверил своё имущество этому пройдохе. Не поймите меня неправильно, но мне кажется, что это самый ненадежный человек в нашем городке\nГоворят, что он путается с контрабандистами и пиратами - и в таверне у него все время всякий сброд ошивается!";
 	STR_TAVERNKEEPER[1] = "Да что о нем можно сказать! Трусоват, да и умом не отличается. К тому же жаден до денег, отчего постоянно попадает в различные неприятности! Зато, правда, он всегда в курсе всех новостей.";
-	STR_TAVERNKEEPER[2] = "Довольно приятный тип. У него в таверне всегда приятно посидеть, да и чувством юмора у хозяина все в порядке. А самое главное - он следит за порядком в таверне и не позволяет всякой пьяной швали задирать добропорядочных граждан.";
+	STR_TAVERNKEEPER[2] = "Довольно приятный тип. У него в таверне всегда приятно посидеть, да и чувством юмора у хозяина всё в порядке. А самое главное - он следит за порядком в таверне и не позволяет всякой пьяной швали задирать добропорядочных граждан.";
 	STR_TAVERNKEEPER[3] = "Удивительный человек. Ему надо не таверну содержать, а осведомителем быть при тайной канцелярии. Иногда кажется, что ему известно буквально все, что происходит в нашем городе. Даже жуть пробирает.";
 	STR_TAVERNKEEPER[4] = "Не знаю, чего уж вам о нем сказать. Человек как человек. Содержит таверну, соответственно, в курсе всех новостей нашего острова.";
 	STR_TAVERNKEEPER[5] = "Говорят, на него можно положиться. С другой стороны, я слышал, что он не любит ненужного риска и всегда расчетливо ведет свои дела. Да и темными делишками вроде не занимается.";
@@ -1599,19 +1599,19 @@ string sRumourAboutOwners_Init(string sOwnerType, int iRumourNum) // База с
 	STR_SHIPYARDER[0] = "Корабли он строит неплохие... А как о человеке, о нем трудно что-либо сказать - он живет тихо и спокойно. Наверное, неплохой человек.";
 	STR_SHIPYARDER[1] = "Корабли он строит неплохие... А как о человеке, о нем трудно что-либо сказать - он живет тихо и спокойно. Наверное, неплохой человек.";
 	STR_SHIPYARDER[2] = "Неплохой человек, но говорят, что он излишне суров. Постоянно отчитывает всех работников. Поэтому они часто у него меняются. Правда, не смотря на это, корабел он превосходный.";
-	STR_SHIPYARDER[3] = "Он очень образованный человек. Говорят, что он учился кораблестроению в Англии, потом в Голландии. А в конце концов оказался здесь - вдали от метрополии, в захолустном архипелаге\nГоворят, что он не поладил в свое время со Святой Инквизицией, и ему пришлось бежать в колонии.";
+	STR_SHIPYARDER[3] = "Он очень образованный человек. Говорят, что он учился кораблестроению в Англии, потом в Голландии. А в конце концов оказался здесь - вдали от метрополии, в захолустном архипелаге\nГоворят, что он не поладил в своё время со Святой Инквизицией, и ему пришлось бежать в колонии.";
 	STR_SHIPYARDER[4] = "Да, этот старик уже никуда не годится. Он постоянно грезит о прошедших временах, и ворчит, когда ему заказывают что-нибудь, кроме каравеллы или галеона.";
 	STR_SHIPYARDER[5] = "Отличный парень. Всегда готов помочь, выручить из беды. Надо сказать, что и корабли для подобного захолустья он строит очень даже неплохие.";
 	STR_SHIPYARDER[6] = "Он был ссыльным в нашей колонии, пока не оказалось, что у него талант к кораблестроению. После того, как под его руководством на верфях нашей колонии были построены два великолепных брига, ему простили его прегрешения, и теперь он - полноправный член нашего общества.";
 
 	string STR_TRADER[MAX_RUMOURS_ABOUT_OWNERS]; // Магазинщики
 	STR_TRADER[0] = "Ничего особенно плохого о нем сказать не могу. Добропорядочный житель, усердный прихожанин нашей церкви. Никогда не слышал, чтобы кто-нибудь хулил его или был на него обижен.";
-	STR_TRADER[1] = "Он главный поставщик нашего губернатора, и это дает ему неплохой доход. Но дела он свои ведет честно. Ну, или пока ни в чем позорящем его замечен не был.";
+	STR_TRADER[1] = "Он главный поставщик нашего губернатора, и это дает ему неплохой доход. Но дела он свои ведет честно. Ну, или пока ни в чём позорящем его замечен не был.";
 	STR_TRADER[2] = "Этот толстяк пользуется заслуженным уважением в нашем городе. Товар у него всегда отменный, и я не припомню случая, чтобы он кого-нибудь обсчитал.";
 	STR_TRADER[3] = "Непутевый он малый. Торгует-торгует, а толку никакого. То одних товаров нет, то других. И сам из долгов никак не вылезет.";
 	STR_TRADER[4] = "Нехороший он человек, мсье. Говорят, он был помощником Болдуина Коффье, но разорил его и потом перекупил магазин. Не знаю, как насчет качества товаров, которые он продает, но как человек он мне весьма неприятен.";
 	STR_TRADER[5] = "О! Это мерзкий человек, я бы не советовал вам иметь с ним никаких дел\nОн держит половину жителей нашего города в должниках! А товары, которые продаются у него в магазине всегда низкого качества.";
-	STR_TRADER[6] = "Да никто о нем ничего толком и не знает. Он недавно сюда переселился, и сразу открыл свое дело. Торгует вроде честно, контрабанды не возит.";
+	STR_TRADER[6] = "Да никто о нем ничего толком и не знает. Он недавно сюда переселился, и сразу открыл своё дело. Торгует вроде честно, контрабанды не возит.";
 
 	string sTempMayor = STR_MAYOR[iRumourNum];
 	string sTempTavernkeper = STR_TAVERNKEEPER[iRumourNum];

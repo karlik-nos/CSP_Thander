@@ -47,15 +47,15 @@ void ProcessDialogEvent()
 				}
 				if (pchar.questTemp.MC == "toCaracasPadre" || pchar.questTemp.MC == "toCaracasTavern")
 				{
-					dialog.text = "Вы хотите разобраться с этим делом? Ну, как знаете... А мне все равно.";
+					dialog.text = "Вы хотите разобраться с этим делом? Ну, как знаете... А мне всё равно.";
 					link.l1 = "Очень хорошо.";
 					link.l1.go = "exit";
 					break;
 				}
 				//<-- зачарованный город
-				dialog.text = LinkRandPhrase("Здравствуйте. Меня зовут " + GetFullName(npchar) + ". Не думаю, что вам было бы приятно со мной познакомиться, но, возможно, вы запомните мое имя...",
+				dialog.text = LinkRandPhrase("Здравствуйте. Меня зовут " + GetFullName(npchar) + ". Не думаю, что вам было бы приятно со мной познакомиться, но, возможно, вы запомните моё имя...",
 					"Приветствую вас, " + GetAddress_Form(NPChar) +  ". Меня зовут " + GetFullName(npchar) + ".",
-					"Мое имя - " + GetFullName(npchar) + ", " + GetAddress_Form(NPChar) + ". Рад с вами познакомиться.");
+					"Моё имя - " + GetFullName(npchar) + ", " + GetAddress_Form(NPChar) + ". Рад с вами познакомиться.");
 				link.l1 = RandPhraseSimple("Приветствую.", "Здравствуйте.");
 				link.l1.go = "First time";
 				npchar.quest.meeting = "1";
@@ -128,13 +128,13 @@ void ProcessDialogEvent()
 				// --------------- линейка ГПК ---------------
 				if (CheckCharacterItem(pchar, "letter_LSC") && (pchar.questTemp.LSC.qtyTalk.headPoormanId == npchar.id))
 				{
-					//нашел письмо в сундуке Виллемстада
+					//нашёл письмо в сундуке Виллемстада
 					if (pchar.questTemp.LSC == "CanFoundStuvesantKey")
 					{
-						link.l1 = "Послушай, мне кажется, что я "+ GetSexPhrase("нашел","нашла") +" в резиденции Стэвезанта нечто весьма интересное!";
+						link.l1 = "Послушай, мне кажется, что я "+ GetSexPhrase("нашёл","нашла") +" в резиденции Стэвезанта нечто весьма интересное!";
 						link.l1.go = "FoundLetter";
 					}
-					//базар о том, что нашел причину заказа на нищих
+					//базар о том, что нашёл причину заказа на нищих
 					if (pchar.questTemp.LSC == "toOliverTrast")
 					{
 						link.l1 = "Ты знаешь, мне удалось распутать этот клубок!";
@@ -335,7 +335,7 @@ void ProcessDialogEvent()
 		break;
 		case "GoodTalk_4_1":
 			sld = characterFromId(pchar.questTemp.LSC.qtyTalk.headPoormanId);
-			dialog.text = "Я знаю тебя, но ответить на твой вопрос не могу. Тебе нужно идти в " + XI_ConvertString("Colony" + sld.city + "Acc") + ", там найдешь одного из наших по имени " + GetFullName(sld) + ". Он хотел с тобой переговорить по этому поводу.";
+			dialog.text = "Я знаю тебя, но ответить на твой вопрос не могу. Тебе нужно идти в " + XI_ConvertString("Colony" + sld.city + "Acc") + ", там найдёшь одного из наших по имени " + GetFullName(sld) + ". Он хотел с тобой переговорить по этому поводу.";
 			link.l1 = "Понятно. Я так и поступлю.";
 			link.l1.go = "exit";
 		break;
@@ -389,7 +389,7 @@ void ProcessDialogEvent()
 			link.l1.go = "PoorHeadMan_9";
 		break;
 		case "PoorHeadMan_9":
-			dialog.text = "Ну, я сказал все, что хотел. Спасибо за то, что "+ GetSexPhrase("выслушал","выслушала") +". Если найдешь что-нибудь стоящее внимания - сразу обращайся ко мне, будем думать... И спасибо за то, что не "+ GetSexPhrase("причинил","причинила") +" нам вреда.";
+			dialog.text = "Ну, я сказал все, что хотел. Спасибо за то, что "+ GetSexPhrase("выслушал","выслушала") +". Если найдёшь что-нибудь стоящее внимания - сразу обращайся ко мне, будем думать... И спасибо за то, что не "+ GetSexPhrase("причинил","причинила") +" нам вреда.";
 			link.l1 = "Да не за что. Тебе спасибо за информацию.";
 			link.l1.go = "exit";
 			pchar.questTemp.LSC = "toVillemstadResidence";
@@ -409,7 +409,7 @@ void ProcessDialogEvent()
 		break;
 		case "FoundLetter_1":
 			dialog.text = "Угу, вижу...";
-			link.l1 = "Там какой-то остров упоминается. И предметы роскоши. И все это почему-то на бродягах зациклено. Расскажи-ка мне, приятель, в чем тут дело.";
+			link.l1 = "Там какой-то остров упоминается. И предметы роскоши. И все это почему-то на бродягах зациклено. Расскажи-ка мне, приятель, в чём тут дело.";
 			link.l1.go = "FoundLetter_2";
 			TakeItemFromCharacter(pchar, "letter_LSC");
 		break;
@@ -485,12 +485,12 @@ void ProcessDialogEvent()
             int n = FindIsland("LostShipsCity");
             Islands[n].visible = true;
             Islands[n].reload_enable = true;
-            Islands[n].alwaysStorm = true; //живем в штормах
+            Islands[n].alwaysStorm = true; //живём в штормах
             Islands[n].MaxSeaHeight = 2.0;
             Islands[n].storm = true;
             Islands[n].tornado = true;
 
-            dialog.text = "Отлично! Ну, расскажи, в чем все дело?";
+            dialog.text = "Отлично! Ну, расскажи, в чём все дело?";
             link.l1 = "Знаешь, ты оказался прав в предположении, которое "+ GetSexPhrase("высказал","высказала") +" в самом начале нашего общения. Все дело действительно в Тизере Дэне и его Острове.";
             link.l1.go = "GoLSC_1";
 		break;
@@ -505,7 +505,7 @@ void ProcessDialogEvent()
 			link.l1.go = "GoLSC_3";
 		break;
 		case "GoLSC_3":
-			dialog.text = "А-а, черт! Жаль...";
+			dialog.text = "А-а, чёрт! Жаль...";
 			link.l1 = "Я хоть никогда и не видел"+ GetSexPhrase("","а") +" Тизера раньше, но мне стало понятно, что это был за человек. Действительно жаль.";
 			link.l1.go = "GoLSC_4";
 		break;
@@ -520,7 +520,7 @@ void ProcessDialogEvent()
 			link.l1.go = "GoLSC_6";
 		break;
 		case "GoLSC_6":
-			dialog.text = "По его наказу я должен отдать этот ключ тому, кто захочет найти Остров. Еще Тизер говорил, что этот ключ должен решить проблемы нового гражданина Острова. Что это означает - понятия не имею, но с удовольствием выполняю просьбу.";
+			dialog.text = "По его наказу я должен отдать этот ключ тому, кто захочет найти Остров. Ещё Тизер говорил, что этот ключ должен решить проблемы нового гражданина Острова. Что это означает - понятия не имею, но с удовольствием выполняю просьбу.";
 			link.l1 = "Спасибо, дружище. И прощай.";
 			link.l1.go = "exit";
 			ChangeItemName("keyQuestLSC", "itmname_keyQuestLSC_Tizer");

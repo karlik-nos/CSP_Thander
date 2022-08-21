@@ -62,7 +62,7 @@ void ProcessDialogEvent()
 					}
 					if (sti(ipClass) > 0 || 3 - sti(iClass) > 0)
 					{
-						dialog.text = NPCStringReactionRepeat("Тебе что, не говорили, чтобы ты не являл"+ GetSexPhrase("ся","ась") +" на таком приметном корыте? Ты бы еще парочку мановаров с собой прихватил"+ GetSexPhrase("","а") +". Проваливай и приходи на меньшем корабле.",
+						dialog.text = NPCStringReactionRepeat("Тебе что, не говорили, чтобы ты не являл"+ GetSexPhrase("ся","ась") +" на таком приметном корыте? Ты бы ещё парочку мановаров с собой прихватил"+ GetSexPhrase("","а") +". Проваливай и приходи на меньшем корабле.",
 							"Ш"+ GetSexPhrase("ел","ла") +" бы ты отсюда. А то сами тебя патрулю сдадим.",
 							"Давай-давай, садись в шлюпку и уматывай.",
 							"Как же ты меня утомил"+ GetSexPhrase("","a") +"...", "block", 1, npchar, Dialog.CurrentNode);
@@ -120,14 +120,14 @@ void ProcessDialogEvent()
 					if (GetCompanionQuantity(PChar) > 1 || sti(PChar.ship.type) != SHIP_NOTUSED)
 					{
 						dialog.Text = RandPhraseSimple("Ты кто? Мы договаривались доставить пассажира, а не капитана.", "Проваливай! Пока не избавишься от своего корабля, не приходи.");
-						Link.l1 = "Ах, черт...";
+						Link.l1 = "Ах, чёрт...";
 						Link.l1.go = "Exit";
 						break;
 					}
 					//типа помог отбиться, свой парень...
 					if (CheckAttribute(PChar, "GenQuest.contraTravel.PatrolFight") && sti(PChar.GenQuest.contraTravel.PatrolFight) == true)
 					{
-						if (chrDisableReloadToLocation) // еще бой идет
+						if (chrDisableReloadToLocation) // ещё бой идёт
 						{
 						    dialog.Text = "Патруль! Мы тебя не знаем, ты нас не знаешь.";
 							Link.l1 = "Да уж...";
@@ -220,7 +220,7 @@ void ProcessDialogEvent()
 
 		case "No_ship_1":
 			Dialog.snd = "voice\SMSH\SMSH004";
-			dialog.Text = "Мы люди честные, и обманом не живем. Приводите свой корабль, только аккуратнее - чтобы за вами не увязался береговой патруль.";
+			dialog.Text = "Мы люди честные, и обманом не живём. Приводите свой корабль, только аккуратнее - чтобы за вами не увязался береговой патруль.";
 			Link.l1 = "Хорошо. Ждите меня здесь.";
 			Link.l1.go = "Exit";
 		break;
@@ -305,7 +305,7 @@ void ProcessDialogEvent()
 					ChangeContrabandRelation(pchar, -10);
 					Dialog.snd = "voice\SMSH\SMSH007";
 					dialog.Text = "Это не сойдет тебе с рук!";
-					Link.l1 = "Отправляйтесь гавкать куда-нибудь еще, псы!";
+					Link.l1 = "Отправляйтесь гавкать куда-нибудь ещё, псы!";
 					Link.l1.go = "Exit_cancel";
 				}
 			}
@@ -313,7 +313,7 @@ void ProcessDialogEvent()
 			{
 				ChangeContrabandRelation(pchar, -10);
 				Dialog.snd = "voice\SMSH\SMSH008";
-				dialog.Text = "Ты об этом еще пожалеешь!";
+				dialog.Text = "Ты об этом ещё пожалеешь!";
 				Link.l1 = "Ну-ну!";
 				Link.l1.go = "Exit_cancel";
 			}
@@ -342,7 +342,7 @@ void ProcessDialogEvent()
 			else
 			{
                 // установим окружение -->
-                if (sti(Pchar.quest.Contraband.Counter) == 0) // не торговали еще
+                if (sti(Pchar.quest.Contraband.Counter) == 0) // не торговали ещё
                 {
                     if(drand(11) == 3)
                     {

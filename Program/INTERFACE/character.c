@@ -67,7 +67,7 @@ void IDoExit(int exitCode)
 	{
 		xi_refCharacter.skill.FreeSPECIAL = 0; // если не все распределил, сам дурак
 		DeleteAttribute(xi_refCharacter,"bchangepirates");
-		if (startherotype > 11)//Для уникальных стартов даем другое начало
+		if (startherotype > 12)//Для уникальных стартов даем другое начало
 		{
     		ref sld = characterFromID("Sailor_1");
     		LAi_SetActorTypeNoGroup(pchar);

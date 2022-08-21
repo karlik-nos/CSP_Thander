@@ -376,8 +376,8 @@ void QuestComplete(string sQuestName, string qname)
 				sld = GetRealShip(sti(pchar.GenQuest.GhostShip.ShipType));
 				DeleteAttribute(sld, "EmblemedSails.normalTex");
 				AddSimpleRumourTip(LinkRandPhrase("О, сожри меня акула! Так вы и есть "+ GetSexPhrase("тот самый капитан","та морячка") +", что взял"+ GetSexPhrase("","а") +" 'Летучего Голландца'?! Разрази меня гром! Знатная, наверное, была баталия! Скажите, правду говорят, что его бывший капитан водил дружбу с самим Морским Дьяволом? А в команде у него были сплошь проклятые и отвергнутые Господом демоны, питающиеся кровью своих жертв?",
-					"Капитан, а вы здесь весьма известны! Ходят слухи, что это вы упокоили старого Дейви Джонса и команду его мертвецов. Кто бы мог подумать, что 'Летучий Голландец' перестанет быть призраком! Меняются времена, что ни говори... вот и еще одной легендой в этом мире стало меньше, хе-хе. Выпьем же за те тайны, которые океан хранит ещё в своих пучинах...",
-					"Слыхали, что 'Летучий Голландец' - этот неуловимый и непонятный человеку ужас морских стихий, нашел свой конец? И заметьте - от вполне смертных людей! Слышал я, один капитан смог разрушить проклятие и взял старого Дьявола призом, как простого купца... Вот так-то, в общем, бесславно и закончились бесчинства легендарного Корабля-Призрака."),
+					"Капитан, а вы здесь весьма известны! Ходят слухи, что это вы упокоили старого Дейви Джонса и команду его мертвецов. Кто бы мог подумать, что 'Летучий Голландец' перестанет быть призраком! Меняются времена, что ни говори... вот и ещё одной легендой в этом мире стало меньше, хе-хе. Выпьем же за те тайны, которые океан хранит ещё в своих пучинах...",
+					"Слыхали, что 'Летучий Голландец' - этот неуловимый и непонятный человеку ужас морских стихий, нашёл свой конец? И заметьте - от вполне смертных людей! Слышал я, один капитан смог разрушить проклятие и взял старого Дьявола призом, как простого купца... Вот так-то, в общем, бесславно и закончились бесчинства легендарного Корабля-Призрака."),
 					60, 5, "habitue", "");
             }
             else
@@ -1910,16 +1910,16 @@ void QuestComplete(string sQuestName, string qname)
 			if (GetCharacterIndex("CangGirl") == -1) // если ГГ собственноручно прибил тетку
 			{
 				ChangeCharacterReputation(pchar, -3);
-				AddSimpleRumour(LinkRandPhrase("Вы слышали, кто-то убил в джунглях несчастную девушку по имени " + pchar.GenQuest.EncGirl.name + ". Отловить бы мерзавца и вздернуть!",
+				AddSimpleRumour(LinkRandPhrase("Вы слышали, кто-то убил в джунглях несчастную девушку по имени " + pchar.GenQuest.EncGirl.name + ". Отловить бы мерзавца и вздёрнуть!",
 					"Вы знаете, капитан " + GetFullName(pchar) + ", кто-то убил несчастную девушку по имени " + pchar.GenQuest.EncGirl.name  + ", когда та по делам отправилась за город. Как жаль, она была такой хорошей...",
-					"Ее звали " + pchar.GenQuest.EncGirl.name  + ", и она погибла в джунглях. И ничего удивительного, скажу я вам, за городом так неспокойно..."), sti(pchar.GenQuest.EncGirl.nation), 5, 1);
+					"Её звали " + pchar.GenQuest.EncGirl.name  + ", и она погибла в джунглях. И ничего удивительного, скажу я вам, за городом так неспокойно..."), sti(pchar.GenQuest.EncGirl.nation), 5, 1);
 			}
 			else
 			{
 				characters[GetCharacterIndex("CangGirl")].lifeDay = 0;
 				if (sGlobalTemp == "Saved_CangGirl") // спасли тетку
 				{
-					if(pchar.GenQuest.EncGirl == "close") // .. и послали ее куда подальше
+					if(pchar.GenQuest.EncGirl == "close") // .. и послали её куда подальше
 					{
 						characters[GetCharacterIndex("CangGirl")].lifeDay = 0;
 						DeleteAttribute(pchar, "GenQuest.EncGirl");
@@ -1929,7 +1929,7 @@ void QuestComplete(string sQuestName, string qname)
 						if(!CheckAttribute(pchar, "GenQuest.EncGirl.Ransom"))
 						{
 							ChangeCharacterReputation(pchar, 5);
-							AddSimpleRumour(LinkRandPhrase("Вы слышали, "+ GetSexPhrase("какой-то капитан","какая-то морячка") +" спас"+ GetSexPhrase("","ла") +" девушку по имени " + pchar.GenQuest.EncGirl.name + " от бандитов, буквально вытащил ее из их лап!"+ GetSexPhrase(" Какой прекрасный человек и настоящий мужчина.","") +"",
+							AddSimpleRumour(LinkRandPhrase("Вы слышали, "+ GetSexPhrase("какой-то капитан","какая-то морячка") +" спас"+ GetSexPhrase("","ла") +" девушку по имени " + pchar.GenQuest.EncGirl.name + " от бандитов, буквально вытащил её из их лап!"+ GetSexPhrase(" Какой прекрасный человек и настоящий мужчина.","") +"",
 								"Вы знаете, капитан " + GetFullName(pchar) + " спас"+ GetSexPhrase("","ла") +" девушку по имени " + pchar.GenQuest.EncGirl.name + " от насильников в джунглях... А-а, так это же вы!! Я вами восхищаюсь...",
 								"Девушке по имени " + pchar.GenQuest.EncGirl.name + " здорово повезло - недавно на нее напали бандиты в джунглях, хотели изнасиловать, видать. Но ничего у них не вышло, хе-хе, и благодарить она должна капитана " + GetMainCharacterNameGen() + "!"), sti(pchar.GenQuest.EncGirl.nation), 3, 1);
 						}
@@ -1958,7 +1958,7 @@ void QuestComplete(string sQuestName, string qname)
 						ChangeCharacterReputation(pchar, -5);
 					}
 					AddSimpleRumour(RandPhraseSimple("Да уж, капитан " + GetFullName(pchar) + ", никто не думал, что вы способны оставить беззащитную женщину на поругание бандитам. Бедная " + pchar.GenQuest.EncGirl.name + ", у меня нет слов...",
-						"Знаете, капитан, "+ GetSexPhrase("вы форменный мерзавец","не ожидал от вас такого") +". Как вы могли бросить беззащитную девушку в джунглях? Вы хоть представляете себе, что они с ней сделали? Бедная " + pchar.GenQuest.EncGirl.name + ", ее теперь никто не возьмет замуж..."), sti(pchar.GenQuest.EncGirl.nation), 5, 1);
+						"Знаете, капитан, "+ GetSexPhrase("вы форменный мерзавец","не ожидал от вас такого") +". Как вы могли бросить беззащитную девушку в джунглях? Вы хоть представляете себе, что они с ней сделали? Бедная " + pchar.GenQuest.EncGirl.name + ", её теперь никто не возьмет замуж..."), sti(pchar.GenQuest.EncGirl.nation), 5, 1);
 					DeleteAttribute(pchar, "GenQuest.EncGirl"); //трем нацию и имя
 				}
 			}
@@ -1969,9 +1969,9 @@ void QuestComplete(string sQuestName, string qname)
 			ChangeCharacterReputation(pchar, -(rand(4)+1));
 			if (rand(1))
 			{
-				AddSimpleRumour(LinkRandPhrase("Вы слышали, какой-то капитан убил в джунглях несчастную девушку по имени " + pchar.GenQuest.EncGirl.name + ". Отловить бы мерзавца и вздернуть!",
+				AddSimpleRumour(LinkRandPhrase("Вы слышали, какой-то капитан убил в джунглях несчастную девушку по имени " + pchar.GenQuest.EncGirl.name + ". Отловить бы мерзавца и вздёрнуть!",
 					"Вы знаете, капитан " + GetFullName(pchar) + ", кто-то убил несчастную девушку по имени " + pchar.GenQuest.EncGirl.name  + ", когда та по делам отправилась за город. Как жаль, она была такой хорошей...",
-					"Ее звали " + pchar.GenQuest.EncGirl.name  + ", и она погибла в джунглях. И ничего удивительного, скажу я вам, за городом так неспокойно..."), sti(pchar.GenQuest.EncGirl.nation), 5, 1);
+					"Её звали " + pchar.GenQuest.EncGirl.name  + ", и она погибла в джунглях. И ничего удивительного, скажу я вам, за городом так неспокойно..."), sti(pchar.GenQuest.EncGirl.nation), 5, 1);
 			}
 		break;
 		case "Enc_FriendGirl_afterGang":
@@ -2022,7 +2022,7 @@ void QuestComplete(string sQuestName, string qname)
 			//слухи
 			AddSimpleRumour(LinkRandPhrase("Недавно за городом нашли мертвым нашего офицера и приданных ему солдат. Кто мог их убить? Зачем?..",
 				"Наш комендат постоянно отправляет за город патрули, но теперь даже не знаю, как будет дальше. Недавно солдат нашли метрвыми в джунглях...",
-				"Черт возьми, кто-то за городом перебил наши солдат, что патрулировали территорию..."), sti(pchar.GenQuest.(attrName).nation), 5, 1);
+				"Чёрт возьми, кто-то за городом перебил наши солдат, что патрулировали территорию..."), sti(pchar.GenQuest.(attrName).nation), 5, 1);
 			AddSimpleRumour("Говорят, что капитан " + GetFullName(pchar) + " нарвался в джунглях на солдат " + NationNameGenitive(sti(pchar.GenQuest.(attrName).nation)) + " и всех их перебил. Хех, " + NationNamePeople(sti(pchar.GenQuest.(attrName).nation)) + " - никуда негодные вояки...", sti(pchar.GenQuest.(attrName).nation)+10, 5, 1);
 			DeleteAttribute(pchar, "GenQuest." + attrName); //трем нацию патруля, если есть
 		break;
@@ -2136,7 +2136,7 @@ void QuestComplete(string sQuestName, string qname)
 			//слухи
 /* 			AddSimpleRumour(LinkRandPhrase("Недавно за городом нашли мертвым нашего местного жителя. Кто мог их убить? Зачем?..",
 				"Наш комендат постоянно отправляет за город патрули, но теперь даже не знаю, как будет дальше. Недавно солдат нашли метрвыми в джунглях...",
-				"Черт возьми, кто-то за городом перебил наши солдат, что патрулировали территорию..."), sti(pchar.GenQuest.(attrName).nation), 5, 1);
+				"Чёрт возьми, кто-то за городом перебил наши солдат, что патрулировали территорию..."), sti(pchar.GenQuest.(attrName).nation), 5, 1);
 			AddSimpleRumour("Говорят, что капитан " + GetFullName(pchar) + " нарвался в джунглях на солдат " + NationNameGenitive(sti(pchar.GenQuest.(attrName).nation)) + " и всех их перебил. Хех, " + NationNamePeople(sti(pchar.GenQuest.(attrName).nation)) + " - никуда негодные вояки...", sti(pchar.GenQuest.(attrName).nation)+10, 5, 1); */
 		break;
 
@@ -2145,7 +2145,7 @@ void QuestComplete(string sQuestName, string qname)
 			//слухи
 /* 			AddSimpleRumour(LinkRandPhrase("Недавно за городом нашли мертвой нашу местную. Кто мог их убить? Зачем?..",
 				"Наш комендат постоянно отправляет за город патрули, но теперь даже не знаю, как будет дальше. Недавно солдат нашли метрвыми в джунглях...",
-				"Черт возьми, кто-то за городом перебил наши солдат, что патрулировали территорию..."), sti(pchar.GenQuest.(attrName).nation), 5, 1);
+				"Чёрт возьми, кто-то за городом перебил наши солдат, что патрулировали территорию..."), sti(pchar.GenQuest.(attrName).nation), 5, 1);
 			AddSimpleRumour("Говорят, что капитан " + GetFullName(pchar) + " нарвался в джунглях на солдат " + NationNameGenitive(sti(pchar.GenQuest.(attrName).nation)) + " и всех их перебил. Хех, " + NationNamePeople(sti(pchar.GenQuest.(attrName).nation)) + " - никуда негодные вояки...", sti(pchar.GenQuest.(attrName).nation)+10, 5, 1); */
 		break;
  		////////////////////////////////////////////////////////////////////////
@@ -2421,7 +2421,7 @@ void QuestComplete(string sQuestName, string qname)
 			AddQuestUserData("MayorsQuestsList", "MayorName", sTemp);
 			// слухи
 			AddSimpleRumour(RandPhraseSimple("Вы знаете, губернатор " + sTemp + " поручил неко"+ GetSexPhrase("ему капитану","й морячке") +" " + GetMainCharacterNameDat() + " найти в городе вражеского лазутчика. И вы знаете, он"+ GetSexPhrase("","а") +" его наш"+ GetSexPhrase("ел","ла") +" и убил"+ GetSexPhrase("","а") +"!",
-				"Наш губернатор дал задание капитану " + GetMainCharacterNameDat() + " разыскать в городе вражеского агента. И "+ GetSexPhrase("этот капитан нашел и прикончил","она нашла и прикончила") +" лазутчика! Прекрасная работа, скажу я вам..."), sti(characters[sti(pchar.GenQuest.SeekSpy.MayorId)].nation), 5, 1);
+				"Наш губернатор дал задание капитану " + GetMainCharacterNameDat() + " разыскать в городе вражеского агента. И "+ GetSexPhrase("этот капитан нашёл и прикончил","она нашла и прикончила") +" лазутчика! Прекрасная работа, скажу я вам..."), sti(characters[sti(pchar.GenQuest.SeekSpy.MayorId)].nation), 5, 1);
 		break;
  		////////////////////////////////////////////////////////////////////////
 		//  Конец    Поиск лазутчика в городе
@@ -2743,7 +2743,7 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 
 		case "DestroyPirate_after":
-			pchar.quest.DestroyPirate_PirateIsOut.over = "yes"; //снимаем прерывание на ушел с поля боя
+			pchar.quest.DestroyPirate_PirateIsOut.over = "yes"; //снимаем прерывание на ушёл с поля боя
 			pchar.quest.DestroyPirate_Late.over = "yes"; //снимаем таймер
 			LAi_group_Delete("MayorPirateGroup");
 			Group_DeleteGroup("MQGroupPirate");
@@ -2787,7 +2787,7 @@ void QuestComplete(string sQuestName, string qname)
 			// слухи
 			AddSimpleRumour(LinkRandPhrase("Вы знаете, губернатор " + GetFullName(npchar) + " поручил некоему капитану " + GetMainCharacterNameDat() + " найти и уничтожить пирата, что грабит торговцев у нас под носом. И что вы думаете, он ограбил и капитана " + GetMainCharacterNameGen() + " тоже!",
 				"Капитан, как вам путешествие на пиратском корабле? Нормально? Вас там не обижали? Ха-ха-ха!!",
-				"О-о-о, капитан, я слышал вам здорово досталось недавно, хи-хи... Как вам местные пираты? Не хотите еще их поискать? Ха-ха-ха!!"), sti(npchar.nation), 5, 1);
+				"О-о-о, капитан, я слышал вам здорово досталось недавно, хи-хи... Как вам местные пираты? Не хотите ещё их поискать? Ха-ха-ха!!"), sti(npchar.nation), 5, 1);
 			//снимаем кораблики пирата и торговцев
 			LAi_group_Delete("MayorPirateGroup");
 			Group_DeleteGroup("MQGroupPirate");
@@ -3354,7 +3354,7 @@ void QuestComplete(string sQuestName, string qname)
 			pchar.Dovahkiin = 1;
         break;
 		case "PGGLeft":
-			Log_TestInfo("ПГГ ушел");
+			Log_TestInfo("ПГГ ушёл");
 			sld = CharacterFromID(pchar.chosenHero);
 			DeleteAttribute(pchar, "chosenHero");
 			string futureLoc = "none";
@@ -4008,7 +4008,7 @@ void QuestComplete(string sQuestName, string qname)
         break;
 
         case "ToMansfield_FightNearSantiago":
-            Log_QuestInfo("Галеон находится в бухте возле Сантьяго. Галеон идет вглубь бухты в город.");
+            Log_QuestInfo("Галеон находится в бухте возле Сантьяго. Галеон идёт вглубь бухты в город.");
             Pchar.quest.ToMansfield_NotFoundGaleon.over = "yes"; // снимаем таймер на появление галеона
 
             sld = GetCharacter(NPC_GenerateCharacter("CaptainAttack_1", "off_spa_2", "man", "man", 31, SPAIN, 0, true));
@@ -4744,7 +4744,7 @@ void QuestComplete(string sQuestName, string qname)
         case "DelivLettTortuga_BrigTimeOver":
             pchar.quest.DelivLettTortuga_AttackBrig.over = "yes";
             AddQuestRecord("Hol_Line_7_DelivLettTortuga", "7");
-            pchar.questTemp.State.KingResult = "BrigNotFound"; //флаг на вообще не нашел
+            pchar.questTemp.State.KingResult = "BrigNotFound"; //флаг на вообще не нашёл
         break;
 
         case "DelivLettTortuga_AttackBrig":
@@ -4779,7 +4779,7 @@ void QuestComplete(string sQuestName, string qname)
             group_DeleteGroup("Pirate_Attack");
             Island_SetReloadEnableGlobal("PuertoRico", true);
             AddQuestRecord("Hol_Line_7_DelivLettTortuga", "7");
-            pchar.questTemp.State.KingResult = "BrigNotFound"; //флаг на вообще не нашел
+            pchar.questTemp.State.KingResult = "BrigNotFound"; //флаг на вообще не нашёл
         break;
 
         case "DelivLettTortuga_AfterBrigSunk":
@@ -6283,7 +6283,7 @@ void QuestComplete(string sQuestName, string qname)
             WaitDate("", 0, 0, 1, 0, 0); //крутим день
 			SetCurrentTime(9, 20);
         	RecalculateJumpTable();
-            SetLaunchFrameFormParam("Прошел один день...", "", 0, 6);
+            SetLaunchFrameFormParam("Прошёл один день...", "", 0, 6);
             LaunchFrameForm();
 			npchar = characterFromId("hol_guber");
 			sld = GetCharacter(NPC_GenerateCharacter("GoverFantom", npchar.model, "man", npchar.model.animation, 15, HOLLAND, 0, false));
@@ -7264,7 +7264,7 @@ void QuestComplete(string sQuestName, string qname)
             group_DeleteGroup("Pirate_Attack");
             Island_SetReloadEnableGlobal("PortoBello", true);
             AddQuestRecord("Romantic_Line", "16");
-            QuestSetCurrentNode("Atilla", "Brig_DieHard"); //нода Атилле на бриг ушел от погони
+            QuestSetCurrentNode("Atilla", "Brig_DieHard"); //нода Атилле на бриг ушёл от погони
         break;
 
         case "Romantic_AfterBrigSunk":
@@ -8130,9 +8130,9 @@ void QuestComplete(string sQuestName, string qname)
 				pchar.questTemp.LSC = "toKnowAboutMechanic";
 				AddSimpleRumourCityTip("Вы слышали, было совершено нападение на Сесил Галард!", "LostShipsCity", 10, 1, "LSC", "");
 				AddSimpleRumourCityTip("Говорят, что вы спасли Сесил Галард, когда на неё напали.", "LostShipsCity", 10, 1, "LSC", "");
-				AddSimpleRumourCityTip("На Сесил Галард напали в ее же доме, на налеоне 'Эва'!", "LostShipsCity", 10, 1, "LSC", "");
+				AddSimpleRumourCityTip("На Сесил Галард напали в её же доме, на налеоне 'Эва'!", "LostShipsCity", 10, 1, "LSC", "");
 				AddSimpleRumourCityTip("Хорошо, что вы спасли бедную Сесил! Куда смотрит адмирал, непонятно...", "LostShipsCity", 10, 1, "LSC", "");
-				AddSimpleRumourCityTip("М-да, если так пойдет дальше, то нам придется отбиваться от бандитов у себя в домах, как это сделала Сесил Галард.", "LostShipsCity", 10, 1, "LSC", "");
+				AddSimpleRumourCityTip("М-да, если так пойдет дальше, то нам придётся отбиваться от бандитов у себя в домах, как это сделала Сесил Галард.", "LostShipsCity", 10, 1, "LSC", "");
 			}
 			else
 			{
@@ -9341,7 +9341,7 @@ void QuestComplete(string sQuestName, string qname)
 		//ОЗГ, наймиты Крысы
 		case "RatHunters_Dead":
 			chrDisableReloadToLocation = false;
-			if (startHeroType == 2)
+			if (pchar.name == "Виспер")
 			{
 				if(CheckAttribute(pchar,"Whisper.EsFriendTown") && pchar.Whisper.EsFriendTown == "Villemstad")
 				{
@@ -9751,58 +9751,73 @@ void QuestComplete(string sQuestName, string qname)
 
 //========================  Квест "Альбрехт".  =======================
 		case "PDM_Albreht_Saditsya_na_korabl":
-			sld = CharacterFromID("Albreht_Zalpfer")   //ссылается на персонажа
-			SetCharacterRemovable(sld, true);   // можно ставить на должность
+			sld = CharacterFromID("Albreht_Zalpfer")
+			SetCharacterRemovable(sld, true);
 			LAi_SetImmortal(sld, false);
 			sld.HalfImmortal = true;
 			GiveItem2Character(sld, "topor_05");
 			EquipCharacterByItem(sld, "topor_05");
 
-			bDisableFastReload = false;          //быстрое перемещение
-			chrDisableReloadToLocation = false;      //блокировка всех выходов
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
         break;
 
 		case "PDM_Albreht_Vhod":
-			chrDisableReloadToLocation = false;   //блокировка всех выходов
-            sld = CharacterFromID("Albreht_Zalpfer");  //ссылается на персонажа
-	        sld.dialog.currentnode = "Ja_1";         //название диалога
-			sld.greeting = "Albrecht_Zalpfer";    //приветствие
-			LAi_SetActorType(sld);            //актёр или житель
-			LAi_ActorDialog(sld, pchar, "", 0.5, 0);  //начинает говорить
-			PlaceCharacter(sld, "goto", PChar.location);   //где стоит
+			chrDisableReloadToLocation = false;
+            sld = CharacterFromID("Albreht_Zalpfer");
+	        sld.dialog.currentnode = "Ja_1";
+			sld.greeting = "Albrecht_Zalpfer";
+			LAi_SetActorType(sld);
+			LAi_ActorDialog(sld, pchar, "", 0.5, 0);
+			PlaceCharacter(sld, "goto", PChar.location);
 			Locations[FindLocation("PortRoyal_town")].reload.l23.disable = false;   //открывает архитектора
         break;
 
 		case "PDM_Albreht_Vihod":
-			sld = CharacterFromID("Albreht_Zalpfer")   //ссылается на персонажа
-			ChangeCharacterAddressGroup(sld, "PortRoyal_town", "none", "");   //переместить
+			sld = CharacterFromID("Albreht_Zalpfer")
+			ChangeCharacterAddressGroup(sld, "PortRoyal_town", "none", "");
         break;
 
 //========================  Квест "Проклятый идол".  =======================
 
-		case "PDM_Callow_RodjerVozvrat":
-			sld = CharacterFromID("PDM_LeFransua_Mayor_Klon")   //убираем клона
-			ChangeCharacterAddressGroup(sld, "LeFransua_town", "none", "");   //переместить
+		case "PDM_Callow_sadis_na_stul":
+			ChangeCharacterAddressGroup(pchar, "LaVega_tavern", "sit", "sit_front3");
+			LAi_SetSitType(pchar);
+			LAi_SetSitType(npchar);
+			sld = CharacterFromID("James_Callow")
+			LAi_SetActorType(sld);
+			LAi_ActorSetSitMode(sld);
+			LAi_ActorDialogDelay(sld, pchar, "", 1.2);
+		break;
+		
+		case "PDM_Callow_vstaem":
+			ChangeCharacterAddressGroup(pchar, "LaVega_tavern", "tables", "stay1");
+			LAi_SetPlayerType(pchar);
+		break;
 
-			sld = CharacterFromID("LeFransua_Mayor")   //возвращаем губернатора
-			ChangeCharacterAddressGroup(sld, "LeFransua_townhall", "sit", "sit1");   //переместить
+		case "PDM_Callow_RodjerVozvrat":
+			sld = CharacterFromID("PDM_LeFransua_Mayor_Klon")
+			ChangeCharacterAddressGroup(sld, "LeFransua_town", "none", "");
+
+			sld = CharacterFromID("LeFransua_Mayor")
+			ChangeCharacterAddressGroup(sld, "LeFransua_townhall", "sit", "sit1");
 		break;
 
 		case "PDM_Callow_RodjerFin":
-			sld = CharacterFromID("James_Callow")   //ссылается на персонажа
+			sld = CharacterFromID("James_Callow")
 			sld.dialog.filename = "Quest/PDM/Cursed_Idol.c";
 			sld.dialog.currentnode = "CollowRad_1";
 		break;
 
 		case "PDM_Callow_RadPoka":
-			sld = CharacterFromID("James_Callow")   //ссылается на персонажа
-			ChangeCharacterAddressGroup(sld, "LaVega_town", "none", "");   //переместить
+			sld = CharacterFromID("James_Callow")
+			ChangeCharacterAddressGroup(sld, "LaVega_town", "none", "");
 		break;
 
 		case "PDM_FraOff_Bitva_1_Posle":
-			chrDisableReloadToLocation = false;   //Теперь можно уйти
-			bDisableFastReload = false;	         	//Открываем быстрые перемещения
-			sld = CharacterFromID("James_Callow")   //ссылается на персонажа
+			chrDisableReloadToLocation = false;
+			bDisableFastReload = false;
+			sld = CharacterFromID("James_Callow")
 			sld.dialog.filename = "Quest/PDM/Cursed_Idol.c";
 			sld.dialog.currentnode = "CollowNeRad_1";
 		break;
@@ -9814,7 +9829,7 @@ void QuestComplete(string sQuestName, string qname)
 			AddQuestRecord("PDM_Cursed_Idol", "9");
 			chrDisableReloadToLocation = false;
 			bDisableFastReload = false;
-			LAi_LocationFightDisable(loadedLocation, true); //запрещаем оружие
+			LAi_LocationFightDisable(loadedLocation, true);
 
 			sld = CharacterFromID("Tortuga_usurer")
 			sld.dialog.filename = "Usurer_dialog.c";
@@ -9835,22 +9850,31 @@ void QuestComplete(string sQuestName, string qname)
             LAi_SetFightMode(Pchar, true);
 			Log_SetStringToLog("Скелеты атакуют!!!");
 			//Скелеты
-            for (i=1; i<=8; i++)
+            for (i=1; i<=6; i++)
 			{
-				sTemp = "skel_"+(rand(5)+1);
+				sTemp = "skel_"+(rand(3)+1);
 				sld = GetCharacter(NPC_GenerateCharacter("PDM_PI_skel_"+i, sTemp, "skeleton", "skeleton", 10, PIRATE, -1, true));
-				FantomMakeCoolFighter(sld, sti(pchar.rank), 10 + MOD_SKILL_ENEMY_RATE * 2, 10 + MOD_SKILL_ENEMY_RATE * 2, "blade2", "", 10 + MOD_SKILL_ENEMY_RATE * 2);
+				FantomMakeCoolFighter(sld, sti(pchar.rank), 10 + MOD_SKILL_ENEMY_RATE * 2, 10 + MOD_SKILL_ENEMY_RATE * 2, BLADE_LONG, "", 10 + MOD_SKILL_ENEMY_RATE * 2);
 				//ChangeCharacterAddressGroup(sld, pchar.location, "goto", "goto2");
 				PlaceCharacter(sld, "goto", "random_free");
 				LAi_SetWarriorType(sld);
 				LAi_group_MoveCharacter(sld, "EnemyFight");
+				sld.SaveItemsForDead = true;
+				sld.DontChangeBlade = true;
+				TakeItemFromCharacter(sld, "spyglass3");
+				TakeNItems(sld, "food1", -10);
+				TakeNItems(sld, "potion2", -10);
+				AddMoneyToCharacter(sld, 250);
+				AddItems(sld, "mineral6", rand(100));
+				AddItems(sld, "mineral10", rand(15));
+				AddItems(sld, "compcraft_flint", rand(3));
 			}
 			//Матросы 1
-			for (i=9; i<=12; i++)
+			for (i=7; i<=10; i++)
 			{
 				sTemp = "shipowner_"+(rand(28)+1);
 				sld = GetCharacter(NPC_GenerateCharacter("PDM_PI_Matrosiki_"+i, sTemp, "man", "man", 10, PIRATE, -1, true));
-				FantomMakeCoolFighter(sld, sti(pchar.rank), 15, 15, "blade7", "", 10);
+				FantomMakeCoolFighter(sld, sti(pchar.rank), 15, 15, BLADE_LONG, "", 25);
 				//ChangeCharacterAddressGroup(sld, pchar.location, "goto", "goto2");
 				PlaceCharacter(sld, "goto", "random");
 				LAi_SetWarriorType(sld);
@@ -9874,7 +9898,7 @@ void QuestComplete(string sQuestName, string qname)
             pchar.quest.Munity = "Deads";
             //LAi_group_SetAlarm(LAI_GROUP_PLAYER, "EnemyFight", 0.0);
             LAi_SetFightMode(Pchar, false);
-			SetTimerFunction("PDM_PI_Skelety_v_more", 0, 0, 5);
+			SetTimerFunction("PDM_PI_Skelety_v_more", 0, 0, 14);
         break;
 //========================  Квест "Новая Родина".  =======================
 
@@ -10453,6 +10477,325 @@ void QuestComplete(string sQuestName, string qname)
 ////   	КВЕСТЫ "Проклятие Дальних Морей" КОНЕЦ
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//========================  Квест "Спасение на рифах".  =======================
+		case "KSM_EndloosTraider":
+			bDisableFastReload = true;
+			chrDisableReloadToLocation = true;
+			sld = CharacterFromID("KSM_Alloka")
+			AddPassenger(pchar, sld, false);
+			SetCharacterRemovable(sld, false);
+			LAi_SetActorType(sld);
+			LAi_ActorRunToLocation(sld, "reload", "reload1", "none", "", "", "KSM_EndloosTraider_2", 0.5);
+			
+			SetQuestHeader("KSM_Spasenie_na_rifah");
+			AddQuestRecord("KSM_Spasenie_na_rifah", "1");
+		break;
+		
+		case "KSM_EndloosTraider_2":
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
+			
+			Pchar.quest.KSM_Nashli_Ship.win_condition.l1           = "location";
+        	Pchar.quest.KSM_Nashli_Ship.win_condition.l1.location  = "DeckWithReefs";
+			PChar.quest.KSM_Nashli_Ship.function = "KSM_Nashli_Ship";
+		break;
+		
+		case "KSM_Lovushka":
+			LAi_SetActorType(pchar);
+			LAi_ActorGoToLocator(pchar, "goto", "goto9", "KSM_Lovushka_2", 4);
+		break;
+		
+		case "KSM_Lovushka_2":
+			LAi_ActorTurnToLocator(PChar, "rld", "loc2");
+			DoQuestFunctionDelay("KSM_V_trume_2", 0.5);
+		break;
+		
+		case "KSM_EndloosTraiderKill":
+			LAi_LocationFightDisable(loadedLocation, false); //Разрешаем оружие
+			LAi_SetPlayerType(pchar);
+			LAi_SetFightMode(pchar, true);
+			sld = CharacterFromID("KSM_Alloka")
+			LAi_SetWarriorType(sld);
+			LAi_SetImmortal(sld, false);
+			LAi_group_MoveCharacter(sld, "EnemyFight");
+			for (i=1; i<=3; i++)
+			{
+				sTemp = "pirate_"+(rand(24)+1);
+				sld = GetCharacter(NPC_GenerateCharacter("CSM_Snr_Bandity_"+i, sTemp, "man", "man", 4, PIRATE, -1, true));
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+				ChangeCharacterAddressGroup(sld, pchar.location, "rld",  "aloc1");
+			}
+			for (i=4; i<=5; i++)
+			{
+				sTemp = "pirate_"+(rand(24)+1);
+				sld = GetCharacter(NPC_GenerateCharacter("CSM_Snr_Bandity_"+i, sTemp, "man", "man", 4, PIRATE, -1, true));
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+				ChangeCharacterAddressGroup(sld, pchar.location, "reload",  "reload2");
+			}
+			LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);		//стравливаем
+			LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);
+			LAi_group_SetCheck("EnemyFight", "KSM_Snr_Pobeda");
+			LAi_SetFightMode(pchar, true);
+			DialogExit();
+		break;
+		
+		case "KSM_Snr_Pobeda":
+			//chrDisableReloadToLocation = false;
+			//bDisableFastReload = false;
+			LAi_LocationFightDisable(loadedLocation, true);
+			
+			AddQuestRecord("KSM_Spasenie_na_rifah", "2");
+			CloseQuestHeader("KSM_Spasenie_na_rifah");
+			
+			PChar.quest.CSM_Snr_NaSvobodu.win_condition.l1 = "locator";
+			PChar.quest.CSM_Snr_NaSvobodu.win_condition.l1.location = "My_Deck";
+			PChar.quest.CSM_Snr_NaSvobodu.win_condition.l1.locator_group = "reload";
+			PChar.quest.CSM_Snr_NaSvobodu.win_condition.l1.locator = "reload1";
+			PChar.quest.CSM_Snr_NaSvobodu.win_condition = "CSM_Snr_NaSvobodu";
+		break;
+		
+		case "CSM_Snr_NaSvobodu":
+			DoQuestReloadToLocation("DeckWithReefs", "reload", "reload1", "CSM_Snr_NaSvobodu_2");
+		break;
+		
+		case "CSM_Snr_NaSvobodu_2":
+			chrDisableReloadToLocation = false;
+			bDisableFastReload = false;
+			
+			locations[FindLocation("DeckWithReefs")].alwaysStorm = true;
+			locations[FindLocation("DeckWithReefs")].storm = true;
+			locations[FindLocation("DeckWithReefs")].tornado = true;
+		break;
+		
+//========================  Sinistra Пролог "Анжелика Тич"  =======================			
+		case "Draka_s_Kotesom_Pobeda":
+			LAi_group_Delete("EnemyFight");
+			DoQuestCheckDelay("hide_weapon", 1.2);
+			LAi_RemoveCheckMinHP(pchar);
+			sld = characterFromId("Gasten_Kotes");
+			LAi_SetActorType(sld);
+			LAi_ActorTurnToCharacter(sld, pchar);
+			LAi_ActorAnimation(sld, "kneeling_1", "Draka_s_Kotesom_Pobeda_2", 5.0);
+		break;
+		
+		case "Draka_s_Kotesom_Pobeda_2":
+			sld = CharacterFromID("AT_pr_Rebekka")
+			PlaceCharacter(sld, "goto", PChar.location);
+			sld.dialog.currentnode = "Rebekka_posle_draki";
+			LAi_ActorDialogDelay(sld, pchar, "", 1.0);
+		break;
+		
+		case "AT_pr_Pobeda_v_grote":
+			AddQuestRecord("AT_Mechty_Sbivautsya", "2");
+			chrDisableReloadToLocation = false;
+			
+			SetLocationCapturedState("LaVega_town", true);
+			locations[FindLocation("LaVega_town")].models.always.locatorsl3 = "LaVega_locators_quest";
+			locations[FindLocation("LaVega_town")].models.night.charactersPatch = "LaVega_patch_night_quest";
+			locations[FindLocation("LaVega_town")].models.always.locatorsl2 = "LaVega_1_quest";
+			
+			PChar.quest.AT_pr_tragedia.win_condition.l1 = "location";
+			PChar.quest.AT_pr_tragedia.win_condition.l1.location = "LaVega_town";
+			PChar.quest.AT_pr_tragedia.function = "AT_pr_tragedia";
+			
+			sld = CharacterFromID("Gasten_Kotes")
+			LAi_LoginInCaptureTown(sld, true);
+			LAi_SetStayType(sld);
+			LAi_CharacterEnableDialog(sld);
+			sld.dialog.filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
+			sld.dialog.currentnode = "Stoim_na_pirse";
+			sld.talker = 5;
+			ChangeCharacterAddressGroup(sld, "LaVega_town", "officers", "reload1_2");
+			
+			pchar.Ship.Type = GenerateShipExt(SHIP_BARKENTINE, true, pchar);
+			pchar.Ship.name="Красный Бык";
+			SetBaseShipData(pchar);
+			ChangeCrewExp(pchar, "Sailors", 50);
+			ChangeCrewExp(pchar, "Cannoners", 20);
+			ChangeCrewExp(pchar, "Soldiers", 20);
+			pchar.ship.Crew.Morale = 50;
+			SetCharacterGoods(pchar, GOOD_FOOD, 200);
+			SetCharacterGoods(pchar, GOOD_RUM, 50 + rand(100));
+			SetCharacterGoods(pchar, GOOD_BALLS, 220);
+			SetCharacterGoods(pchar, GOOD_BOMBS, 80);
+			SetCharacterGoods(pchar, GOOD_POWDER, 240);
+			AddCharacterCrew(pchar, -120);
+			pchar.ship.HP = sti(pchar.ship.HP) - 450;
+			pchar.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS16;
+			realships[sti(pchar.ship.type)].SpeedRate = 14.0;
+			pchar.location.from_sea = "LaVega_town";
+			LocatorReloadEnterDisable("LaVega_town", "reload1_back", true);
+			setWDMPointXZ("LaVega_town");
+		break;
+		
+		case "AT_pr_Stoim_na_pirse_9":
+			sld = CharacterFromID("Gasten_Kotes")
+			AddPassenger(pchar, sld, false);
+			SetCharacterRemovable(sld, false);
+			ChangeCharacterAddressGroup(sld, "none", "", "");
+		
+			chrDisableReloadToLocation = false;
+			bDisableFastReload = true;
+			LocatorReloadEnterDisable("LaVega_town", "reload1_back", false);
+			AddQuestRecord("AT_Mechty_Sbivautsya", "3");
+			
+			//Создаём вражеские корабли
+			Group_FindOrCreateGroup("AT_Pir_Attack_1");
+			Group_SetType("AT_Pir_Attack_1", "war");
+            sld = GetCharacter(NPC_GenerateCharacter("AT_pr_1_CaptainAttack_1", "officer_"+(rand(57)+1), "man", "man", 1, PIRATE, -1, true));
+            FantomMakeCoolSailor(sld, SHIP_GALEON1, "", CANNON_TYPE_CANNON_LBS12, 15, 25, 15);
+            FantomMakeCoolFighter(sld, 1, 10, 10, "blade2", "", 10);
+    		Group_AddCharacter("AT_Pir_Attack_1", "AT_pr_1_CaptainAttack_1");
+			Group_SetGroupCommander("AT_Pir_Attack_1", "AT_pr_1_CaptainAttack_1");
+			Group_SetTaskAttack("AT_Pir_Attack_1", PLAYER_GROUP);
+			Group_LockTask("AT_Pir_Attack_1");
+			Group_SetAddress("AT_Pir_Attack_1", "Hispaniola1", "Quest_Ships", "Quest_ship_11");
+			
+			Group_FindOrCreateGroup("AT_Pir_Attack_2");
+			Group_SetType("AT_Pir_Attack_2", "war");
+			sld = GetCharacter(NPC_GenerateCharacter("AT_pr_1_CaptainAttack_2", "officer_"+(rand(57)+1), "man", "man", 1, PIRATE, -1, true));
+            FantomMakeCoolSailor(sld, SHIP_FLEUT, "", CANNON_TYPE_CULVERINE_LBS12, 15, 25, 15);
+            FantomMakeCoolFighter(sld, 1, 10, 10, "blade2", "", 10);
+    		Group_AddCharacter("AT_Pir_Attack_2", "AT_pr_1_CaptainAttack_2");
+			Group_SetGroupCommander("AT_Pir_Attack_2", "AT_pr_1_CaptainAttack_2");
+			Group_SetTaskAttack("AT_Pir_Attack_2", PLAYER_GROUP);
+			Group_LockTask("AT_Pir_Attack_2");
+			Group_SetAddress("AT_Pir_Attack_2", "Hispaniola1", "Quest_Ships", "Quest_ship_12");
+			realships[sti(sld.ship.type)].SpeedRate = 7.0;
+			
+			Group_FindOrCreateGroup("AT_Pir_Attack_3");
+			Group_SetType("AT_Pir_Attack_3", "war");
+			sld = GetCharacter(NPC_GenerateCharacter("AT_pr_1_CaptainAttack_3", "officer_"+(rand(57)+1), "man", "man", 1, PIRATE, -1, true));
+            FantomMakeCoolSailor(sld, SHIP_TARTANE, "", "", 20, 100, 100);
+            FantomMakeCoolFighter(sld, 30, 100, 100, "blade40", "", 100);
+    		Group_AddCharacter("AT_Pir_Attack_3", "AT_pr_1_CaptainAttack_3");
+			Group_SetGroupCommander("AT_Pir_Attack_3", "AT_pr_1_CaptainAttack_3");
+			Group_SetTaskAttack("AT_Pir_Attack_3", PLAYER_GROUP);
+			Group_LockTask("AT_Pir_Attack_3");
+			Group_SetAddress("AT_Pir_Attack_3", "Hispaniola1", "", "");
+			Group_SetPursuitGroup("AT_Pir_Attack_3", PLAYER_GROUP);
+			realships[sti(sld.ship.type)].SpeedRate = 5.0;
+			
+			sld = CharacterFromID("AT_pr_1_CaptainAttack_1")
+			AddCharacterCrew(sld, -330);
+			sld.ship.HP = sti(sld.ship.HP) - 2000;		
+			sld = CharacterFromID("AT_pr_1_CaptainAttack_2")
+			AddCharacterCrew(sld, -120);
+			sld.ship.HP = sti(sld.ship.HP) - 700;
+			
+			PChar.quest.AT_pr_Bejim_ot_piratov.win_condition.l1 = "EnterToSea"
+			PChar.quest.AT_pr_Bejim_ot_piratov.win_condition = "AT_pr_Bejim_ot_piratov";
+		break;
+		
+		case "AT_pr_Bejim_ot_piratov":
+			DoQuestFunctionDelay("AT_pr_Bejim_ot_piratov_2", 8.0);
+			DoQuestFunctionDelay("AT_pr_Bejim_ot_piratov_3", 150.0);
+			
+			PChar.quest.AT_pr_Santo_Domin.win_condition.l1 = "location";
+			PChar.quest.AT_pr_Santo_Domin.win_condition.l1.location = "SantoDomingo_town";
+			PChar.quest.AT_pr_Santo_Domin.win_condition = "AT_pr_Santo_Domin";
+			
+			EndQuestMovie();
+			DeleteAttribute(pchar, "questTemp.AnjelikaTichPrologue");
+			DeleteAttribute(pchar, "questTemp.AnjelikaTichPrologue2");
+			DeleteAttribute(pchar, "questTemp.ATPNapelsy");
+			
+			PChar.quest.ATpr_UbiraemKorabli.win_condition.l1 = "MapEnter";
+			PChar.quest.ATpr_UbiraemKorabli.win_condition = "ATpr_UbiraemKorabli";		
+			
+			SetTimerFunction("ATpr_SvobodaIgry", 0, 0, 5);		//Таймер провала миссии!!!
+		break;
+		
+		case "ATpr_UbiraemKorabli":
+			sld = CharacterFromID("AT_pr_1_CaptainAttack_1")
+			sld.lifeday = 0;
+			sld = CharacterFromID("AT_pr_1_CaptainAttack_2")
+			sld.lifeday = 0;
+			sld = CharacterFromID("AT_pr_1_CaptainAttack_3")
+			sld.lifeday = 0;
+			bDisableFastReload = false;
+		break;
+		
+		case "AT_pr_Santo_Domin":			//Важный кейс
+			sld = CharacterFromID("AT_pr_1_CaptainAttack_1")
+			sld.lifeday = 0;
+			sld = CharacterFromID("AT_pr_1_CaptainAttack_2")
+			sld.lifeday = 0;
+			sld = CharacterFromID("AT_pr_1_CaptainAttack_3")
+			sld.lifeday = 0;
+			
+			LocatorReloadEnterDisable("SantoDomingo_ExitTown", "reload3", false);	//Важная реакция
+			LocatorReloadEnterDisable("PortPax_ExitTown", "reload3", false);	//Важная реакция
+			bDisableFastReload = true;
+			LocatorReloadEnterDisable("SantoDomingo_town", "Reload1_back", true);	//Не даём выйти из города (квест продолжается)
+			LocatorReloadEnterDisable("SantoDomingo_town", "Reload3_back", true);	//Блакируем резиденцию
+			PChar.quest.ATpr_SvobodaIgry.over = "yes";				//Если успели в Санто-Доминго, то выключаем таймер
+		break;
+		
+		case "ATpr_OboronaSD":
+			StartQuestMovie(true, true, true);
+			LAi_SetActorType(pchar);
+			DoQuestFunctionDelay("ATpr_OboronaSD_2", 0.1);
+			ChangeCharacterAddressGroup(pchar, "SantoDomingo_ExitTown", "rld", "aloc15");
+			chrDisableReloadToLocation = true;
+		break;
+		
+		case "ATpr_3Volna":
+			DoQuestFunctionDelay("ATpr_OboronaSD_14", 1.0);
+		break;
+		
+		case "ATpr_3Volna_2":
+			DoQuestFunctionDelay("ATpr_OboronaSD_19", 1.0);
+		break;
+		
+		case "ATpr_3Volna_3":
+			sld = CharacterFromID("Gasten_Kotes")
+			LAi_SetCurHPMax(sld);
+			LAi_SetStayType(sld);
+			ChangeCharacterAddressGroup(sld, "SantoDomingo_ExitTown", "reload", "reload1_back");
+			sld.dialog.filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
+			sld.dialog.currentnode = "ATpr_SD_Koten_1";
+		break;
+		
+		case "ATpr_Jiteli_Uspokoilis":
+			DeleteAttribute(pchar, "questTemp.AnjelikaTichPrologue6");
+		break;
+		
+		case "ATpr_VosstanovimGorod":	
+			LocatorReloadEnterDisable("SantoDomingo_town", "Reload1_back", false);
+			bDisableFastReload = false;
+			ChangeCharacterNationReputation(pchar, SPAIN, 18);
+			
+			sld = CharacterFromID("SantoDomingo_Mayor")
+			sld.Dialog.Filename = "Common_Mayor.c";
+			sld.dialog.currentnode = "First time";
+			
+			AddQuestRecord("AT_Mechty_Sbivautsya", "4");
+			
+			//Восстанавливаем город из пепла
+			SetLocationCapturedState("LaVega_town", false);
+			SetCaptureTownByNation("LaVega", PIRATE);
+			locations[FindLocation("LaVega_town")].models.always.locatorsl3 = "LaVega_locators";
+			locations[FindLocation("LaVega_town")].models.night.charactersPatch = "LaVega_patch_night";
+			locations[FindLocation("LaVega_town")].models.always.locatorsl2 = "LaVega_1";			
+			sld = CharacterFromID("Edward Mansfield")
+			ChangeCharacterAddressGroup(sld, "LaVega_townhall", "sit", "sit1");
+			sld.Dialog.Filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
+			sld.dialog.currentnode = "Pirat_Guber";
+			
+			sld = CharacterFromID("spa_guber")
+			sld.Dialog.Filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
+			sld.dialog.currentnode = "Ispa_Guber";
+			
+			sld = CharacterFromID("AT_pr_devushka_na_rynke")
+			sld.lifeday = 0;
+			sld = CharacterFromID("Old Friend")
+			sld.Dialog.Filename = "Quest/SilencePrice/Luke.c";
+			sld.dialog.currentnode = "First Time";
+		break;
+
 		// Тичингиту
 		case "TichingituFree":
 			sld = characterFromId("Tichingitu");
@@ -10986,7 +11329,7 @@ void WaitNextHours(string qName)
 	pchar.locy = locy;
 	pchar.locz = locz;
 	sHour = "Прошло несколько часов...";
-	if(sti(pchar.quest.waithours) == 1)		sHour = "Прошел один час...";
+	if(sti(pchar.quest.waithours) == 1)		sHour = "Прошёл один час...";
 	if(sti(pchar.quest.waithours) == 24)	sHour = "Прошли одни сутки...";
 	if(isShipInside(pchar.location))
 	{

@@ -44,7 +44,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Step_2":
-		dialog.text = "Так...(читает). Вот черт! Надо же ему было так неудачно вляпаться... Эх, такое дело пропадает... Слушай, моря"+ GetSexPhrase("к","чка") +", ты, смотрю, "+ GetSexPhrase("парень неслабый","деваха боевая") +". Да и вообще, из пиратов, похоже. Не хочешь подзаработать? И ты в выигрыше будешь, и нам перепадет.";
+		dialog.text = "Так...(читает). Вот чёрт! Надо же ему было так неудачно вляпаться... Эх, такое дело пропадает... Слушай, моря"+ GetSexPhrase("к","чка") +", ты, смотрю, "+ GetSexPhrase("парень неслабый","деваха боевая") +". Да и вообще, из пиратов, похоже. Не хочешь подзаработать? И ты в выигрыше будешь, и нам перепадет.";
 					link.l1 = "Подзаработать - это я всегда хочу. Что ты предлагаешь?";
 					link.l1.go = "Step_3";
 
@@ -210,7 +210,7 @@ void ProcessDialogEvent()
 
 		case "Man_FackYou":
 			dialog.text = "Ты что, " + GetSexPhrase("заморыш, сам","дуреха, сама") + " на кинжал лезешь?!";
-			link.l1 = LinkRandPhrase("Дьявол!!", "Каррамба!!", "А-ать, черт!");
+			link.l1 = LinkRandPhrase("Дьявол!!", "Каррамба!!", "А-ать, чёрт!");
 			link.l1.go = "fight";
 		break;
 	}
@@ -243,7 +243,7 @@ switch (rand(6))
 	{
 		case 0:
 			pchar.questTemp.jailCanMove.Deliver.Goods = GOOD_EBONY;
-			pchar.questTemp.jailCanMove.Deliver.add = "черного дерева";
+			pchar.questTemp.jailCanMove.Deliver.add = "чёрного дерева";
 			break;
 		case 1:
 			pchar.questTemp.jailCanMove.Deliver.Goods = GOOD_MAHOGANY;

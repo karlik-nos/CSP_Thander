@@ -32,7 +32,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			}
 		break;
 		case "PL_Q7_2":
-			dialog.text = "Очень жаль, но это мое категорическое условие.";
+			dialog.text = "Очень жаль, но это моё категорическое условие.";
 			link.l1 = "Понятно...";
 			link.l1.go = "exit";
 		break;
@@ -50,7 +50,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 		case "PL_Q7_5":
 			dialog.text = "Я же говорю, что знаю, как узнать. Значит, слушай внимательно. Ричард - человек педантичный, он все записывает в свой судовой журнал. Тебе нужно получить его, вот и все.";
-			link.l1 = "Ха! Может ты еще подскажешь, как это сделать?";
+			link.l1 = "Ха! Может ты ещё подскажешь, как это сделать?";
 			link.l1.go = "PL_Q7_6";
 		break;
 		case "PL_Q7_6":
@@ -60,7 +60,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 		case "PL_Q7_7":
 			dialog.text = "Влезь через окно с задней стороны дома. Только тебе лестница нужна будет, чтобы забраться наверх.";
-			link.l1 = "И где ее взять?";
+			link.l1 = "И где её взять?";
 			link.l1.go = "PL_Q7_8";
 		break;
 		case "PL_Q7_8":

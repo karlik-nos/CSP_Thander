@@ -21,7 +21,7 @@ void CreateCitizens(aref loc)
 	int iColony = -1;
 	int iNation = -1;
 
-	if (isLocationHasCitizens(loc.id)) return; // boal  если есть еще с того раза, но не нужно
+	if (isLocationHasCitizens(loc.id)) return; // boal  если есть ещё с того раза, но не нужно
 
 	if(CheckAttribute(loc, "fastreload"))
 	{
@@ -528,7 +528,7 @@ void CreateHabitues(aref loc)
 
 	OfficersReactionResult(); // уход офов в местах, где есть пьянь и др офы - пока это таверна
 
-	if (!isLocationHasCitizens(loc.id))  // boal  если есть еще с того раза, но не нужно
+	if (!isLocationHasCitizens(loc.id))  // boal  если есть ещё с того раза, но не нужно
 	{
 		if (CheckAttribute(loc, "fastreload"))
 		{
@@ -1168,7 +1168,7 @@ void CreatePearlVillage(aref loc)
 		pchar.GenQuestBox.(sTemp) = true;
         pchar.GenQuestBox.(sTemp).box1.items.jewelry11 = rand(150) + rand(150);
         pchar.GenQuestBox.(sTemp).box2.items.jewelry12 = rand(250) + rand(250);
-		// ==> защитники, повоевать таки придется
+		// ==> защитники, повоевать таки придётся
 		model[0] = "pirate_1";
 		model[1] = "pirate_2";
 		model[2] = "pirate_3";

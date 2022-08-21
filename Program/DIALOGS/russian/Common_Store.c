@@ -83,6 +83,14 @@ void ProcessDialogEvent()
 				NextDiag.TempNode = "First time";
 				break;
             }
+			//Sinistra Пролог Анжелика Тич
+            if (pchar.questTemp.AnjelikaTichPrologue == "ATP")
+            {
+                dialog.Text = "Здравствуйте, сеньорита! Желаете что-нибудь прикупить? Может быть вам нужна соль? У меня много соли! Ах... Какая соль!",
+                Link.l1 = "Сеньор, с вами всё в порядке?";
+				Link.l1.go = "exit";
+				break;
+            }
 			if (npchar.id != "Pirates_trader" && npchar.id != "Caiman_trader" && CheckAttribute(pchar, "BSStart"))
 			{
 				//Black sails
@@ -168,7 +176,7 @@ void ProcessDialogEvent()
 				link.l1 = pcharrepphrase(LinkRandPhrase("Закрой пасть!","Тишина на палубе!","Молчать!")+ " Или я "
 											  + LinkRandPhrase("вырву твой язык и скормлю его псам, ", "вышибу тебе мозги, ","удушу тебя твоими же кишками, ")+ LinkRandPhrase("каналья!", "торгаш!", "мерзавец!"),
 							                    LinkRandPhrase("Ради бога, ", "Прошу вас, ", "Немедленно ")+LinkRandPhrase("закройте рот!", "прекратите верещать, как свинья на бойне!", "заткнитесь, наконец!")
-											  + LinkRandPhrase(" Или я не дам за вашу жизнь и фартинга!"," Меня уже здесь нет! И никогда не было! Вы поняли?"," Или мне придется вас убить на месте."));
+											  + LinkRandPhrase(" Или я не дам за вашу жизнь и фартинга!"," Меня уже здесь нет! И никогда не было! Вы поняли?"," Или мне придётся вас убить на месте."));
 				link.l1.go = "fight";
 				break;
 			}*/
@@ -189,7 +197,7 @@ void ProcessDialogEvent()
 			}    */
 			dialog.text = NPCharRepPhrase(npchar,
 			                 pcharrepphrase(LinkRandPhrase("Капитан ", "Да это "+ GetSexPhrase("сам","сама") +" ", "Кого я вижу? Это же ") +GetFullName(pchar)+"! "
-							                 + LinkRandPhrase("Тебя еще не вздернули на рее? Ха-ха!","Говорят, ты "+ GetSexPhrase("был","была") +" в гостях у морского дьявола!", "А я слышал, тебя повесили в Порт-Рояле.")
+							                 + LinkRandPhrase("Тебя ещё не вздернули на рее? Ха-ха!","Говорят, ты "+ GetSexPhrase("был","была") +" в гостях у морского дьявола!", "А я слышал, тебя повесили в Порт-Рояле.")
 											  + RandPhraseSimple(" Рад тебя видеть!", " Добро пожаловать!"),
 							                LinkRandPhrase("Здравствуйте, ", "Добро пожаловать, ", "Добрый день, ") + "капитан"
 											+ RandPhraseSimple(". Вам понравился ",". Приглянулся ли вам ")+" наш"+ RandPhraseSimple(" остров? "," городок? ")
@@ -201,15 +209,15 @@ void ProcessDialogEvent()
 											"! Похоже, собирается шторм","! Поднимается сильный ветер") +", не правда ли?"));
 
 			link.l1 = NPCharRepPhrase(npchar,
-			            pcharrepphrase(LinkRandPhrase("Ты все еще жив, ", "И я тебе "+ GetSexPhrase("рад","рада") +", ","Мы с тобой знали времена и получше, ")
+			            pcharrepphrase(LinkRandPhrase("Ты все ещё жив, ", "И я тебе "+ GetSexPhrase("рад","рада") +", ","Мы с тобой знали времена и получше, ")
 									  +LinkRandPhrase("каналья!","дружище!","морской волк!") +" А я "+ GetSexPhrase("думал","думала") +", "
 									  +LinkRandPhrase("твоя жена уже сгрызла тебя с элем!","тебя сожрали термиты!", "твоя старуха сжила тебя со свету!"),
 						               LinkRandPhrase("Добрый день, ","Доброго здоровья, ","Привет, ") + GetAddress_FormToNPC(NPChar)+" " +GetFullName(Npchar)
 									   +RandPhraseSimple(". Вы правы, ",". Совершенно "+ GetSexPhrase("согласен","согласна") +", ")
 									   +LinkRandPhrase("а местные "+ GetSexPhrase("мулатки просто очаровательны","жители очень доброжелательны") +"", "с этим трудно спорить", "а "+ GetSexPhrase("здешние дамы вскружат голову кому угодно","горожане и впрямь весьма любезны") +"")+ "."),
-						pcharrepphrase(RandPhraseSimple("К черту такие разговоры, ","Поворачивай на другой галс, ") +GetFullName(Npchar)+ "! "
+						pcharrepphrase(RandPhraseSimple("К чёрту такие разговоры, ","Поворачивай на другой галс, ") +GetFullName(Npchar)+ "! "
 						              +LinkRandPhrase("Болтаешь, как попугай!", "И не морочь мне голову!","Твои слова не дороже сухаря!")
-						              +RandPhraseSimple(" Я "+ GetSexPhrase("пришел","пришла") +" в магазин!"," А зачем ты здесь сидишь?"),
+						              +RandPhraseSimple(" Я "+ GetSexPhrase("пришёл","пришла") +" в магазин!"," А зачем ты здесь сидишь?"),
 						               "Добрый день, " + GetAddress_FormToNPC(NPChar)+ "! Да, но вчера " + LinkRandPhrase("был полный штиль.",
 									    "была отличная погода.", "не было ни ветерка.")));
 			link.l1.go = "node_1";
@@ -239,10 +247,10 @@ void ProcessDialogEvent()
 													   RandPhraseSimple("Пятнадцать человек на сундук мертвеца!","Пей, и дьявол тебя доведет до конца!") +" Йо-хо-хо! И бутылка рома. ")
 													   +RandPhraseSimple("Чего надо, кэп?", "Что вы хотите купить, капитан?"),
 													 pcharrepphrase("А вы любите поторговаться, капитан " + GetFullName(pchar)+". Как постоянному клиенту, я предлагаю вам очень выгодные цены!",
-													                "Ну хорошо, капитан " + GetFullName(pchar)+", из уважения к вам я готов еще немного уступить в цене! Что вы хотите?")),
+													                "Ну хорошо, капитан " + GetFullName(pchar)+", из уважения к вам я готов ещё немного уступить в цене! Что вы хотите?")),
 												  NPCharRepPhrase(npchar,
 												     "Клянусь, мне тошно разговаривать с тобой. "
-													 +LinkRandPhrase("Купи два-три земляных ореха. Их так любят свиньи. ","Ты ждешь, что здесь тебе сапоги будут чистить ромом? ",
+													 +LinkRandPhrase("Купи два-три земляных ореха. Их так любят свиньи. ","Ты ждёшь, что здесь тебе сапоги будут чистить ромом? ",
 													 pcharrepphrase("Знаю я вашего брата. Налакаетесь рому - и на виселицу.","Как это твоя мамаша отпустила тебя в море! В море!!! Уж лучше бы ты "+ GetSexPhrase("стал портным","стала портнихой") +"...")),
 													 pcharrepphrase(RandPhraseSimple("Я полагал, ","Я надеялся, ")+RandPhraseSimple("что вы покинули наш остров.","что больше никогда вас не увижу.")
 													 +RandPhraseSimple(" Мертвецы висят у вас на шее, как мельничные жернова..."," Скольких моряков вы отправили гнить среди кораллов?!"),
@@ -280,7 +288,7 @@ void ProcessDialogEvent()
 													               "Полностью "+ GetSexPhrase("согласен","согласна") +", " +GetAddress_FormToNPC(NPChar)+ " " +GetFullName(npchar)+ ", я хочу обсудить с вами иные дела.")),
 											   NPCharRepPhrase(npchar,
 											        pcharrepphrase("Уже надрался, приятель?! У меня к тебе дело.",
-													               "Я "+ GetSexPhrase("пришел","пришла") +" не торговать, любезный. У меня другое дело."),
+													               "Я "+ GetSexPhrase("пришёл","пришла") +" не торговать, любезный. У меня другое дело."),
 													pcharrepphrase("Разрази тебя гром с твоими ценами, негодяй! У меня дело к тебе.",
 													               "Скидки всегда приятны, " + GetAddress_FormToNPC(NPChar)+ " " +GetFullName(npchar)+ ", но я по другому делу.")),
 											   NPCharRepPhrase(npchar,
@@ -293,7 +301,7 @@ void ProcessDialogEvent()
 			link.l3 = HeroStringReactionRepeat(NPCharRepPhrase(npchar,
 			                                        pcharrepphrase("Сначала дело, потом веселье. Хочу у тебя узнать кое-что.",
 													               "Не сейчас, мне нужна информация."),
-													pcharrepphrase("К черту цены! Сначала ты скажешь все, что мне нужно.",
+													pcharrepphrase("К чёрту цены! Сначала ты скажешь все, что мне нужно.",
 													               "С удовольствием. Я хочу узнать кое-что.")),
 											   NPCharRepPhrase(npchar,
 											        pcharrepphrase("Спасибо за совет, старый убийца. Мне надо кое-что узнать.",
@@ -323,7 +331,7 @@ void ProcessDialogEvent()
 			}
 			if (CheckAttribute(pchar,"Whisper.Contraband") && npchar.id == "Tortuga_trader" && GetSquadronGoods(Pchar, GOOD_EBONY) >= 100)
 			{//Линейка Виспер
-				link.l44 = "Здравствуйте. Я взялась выполнить незавершенную работу бывшего капитана моего корабля. В журнале сказано, что я должна вам сотню единиц черного дерева. Все лежит у меня в трюме и готово к разгрузке.";
+				link.l44 = "Здравствуйте. Я взялась выполнить незавершенную работу бывшего капитана моего корабля. В журнале сказано, что я должна вам сотню единиц чёрного дерева. Все лежит у меня в трюме и готово к разгрузке.";
 				link.l44.go = "Whisper_contraband";
 			}
 			if (CheckAttribute(pchar,"cursed.waitingSkull") && pchar.questTemp.Cursed.TraderId == npchar.id && !CheckAttribute(pchar,"cursed.Skullbought"))
@@ -352,7 +360,7 @@ void ProcessDialogEvent()
 			link.l11 = HeroStringReactionRepeat(NPCharRepPhrase(npchar,
 			                                        pcharrepphrase("Пока, старый пропойца.",
 													               "Всего доброго, "+GetAddress_FormToNPC(NPChar)+" " +GetFullName(npchar)+"."),
-													pcharrepphrase("Каррамба! Никуда не уходи. Я еще зайду.",
+													pcharrepphrase("Каррамба! Никуда не уходи. Я ещё зайду.",
 													               "Приятно было вас видеть, "+GetAddress_FormToNPC(NPChar)+" " +GetFullName(npchar)+"! До свидания!")),
 											   NPCharRepPhrase(npchar,
 											        pcharrepphrase("Отдать швартовы!",
@@ -360,14 +368,14 @@ void ProcessDialogEvent()
 													pcharrepphrase("Эй! Ты что там прячешь? Ром? Нет!?! Ну ладно, пойду, горло промочу.",
 													               "Прошу меня извинить, у меня срочные дела в городе.")),
 											   NPCharRepPhrase(npchar,
-											        pcharrepphrase("Хех! Еще увидимся!",
+											        pcharrepphrase("Хех! Ещё увидимся!",
 													               "Мне надо идти. Прощайте, "+GetAddress_FormToNPC(NPChar)+" " +GetFullName(npchar)+"!"),
 													pcharrepphrase("И не смей мне перечить! Недосуг мне тут с тобой спорить!",
 													               "Пожалуй, стоит проверить, как дела на корабле. Прощайте, "+GetAddress_FormToNPC(NPChar)+" " +GetFullName(npchar)+"!")),
 											   NPCharRepPhrase(npchar,
 											        pcharrepphrase("Что с тобой, старина? Это же я - " +GetFullName(pchar)+ "! Проспись, я потом зайду.",
-													               "Боюсь, ваша печень прикончит вас раньше, чем я еще раз зайду сюда."),
-													pcharrepphrase("Считай свои пиастры, пройдоха! Я еще зайду.",
+													               "Боюсь, ваша печень прикончит вас раньше, чем я ещё раз зайду сюда."),
+													pcharrepphrase("Считай свои пиастры, пройдоха! Я ещё зайду.",
 													               ""+ GetSexPhrase("Рад был","Рада была") +" вас видеть, " + GetAddress_FormToNPC(NPChar)+" " +GetFullName(npchar)+"!")),
 											  npchar, Dialog.CurrentNode);
 			link.l11.go = "exit";
@@ -383,7 +391,7 @@ void ProcessDialogEvent()
 			link.l2.go = "Whisper_contraband_1";
 		break;
 		case "Whisper_contraband_1":
-			dialog.text = "Вообще-то черным деревом на Тортуге торговать строго запрещено. Как бы я не хотел, я не смогу принять у вас товар.";
+			dialog.text = "Вообще-то чёрным деревом на Тортуге торговать строго запрещено. Как бы я не хотел, я не смогу принять у вас товар.";
 			link.l1 = "Что же мне делать в таком случае? Искать другого покупателя?";
 			link.l1.go = "Whisper_contraband_2";
 		break;
@@ -455,7 +463,7 @@ void ProcessDialogEvent()
 			                         "Я хочу купить товар на продажу.",
 									 "Покажи мне ядра, бомбы и прочие товары."));
 			link.l1.go = "trade_1";
-			link.l2 = LinkRandPhrase("Покажи мне сабли, пистолеты, и что там у тебя еще есть?",
+			link.l2 = LinkRandPhrase("Покажи мне сабли, пистолеты, и что там у тебя ещё есть?",
 			                         "Мне не помешает пара новых пистолетов, пули и красивый перстень.",
 									 "Драгоценные камни, диковинные идолы - вот что меня интересует.");
 			link.l2.go = "items";
@@ -561,7 +569,7 @@ void ProcessDialogEvent()
 				                                                     "Клянусь дьяволом, тебе не обмануть меня! У пирса нет твоего корабля!"),
 													  pcharrepphrase("Я не вижу вашего корабля в порту, капитан " +GetFullName(pchar)+ ". Надеюсь, это не 'Летучий голландец'?",
 													                 "Капитан, удобнее грузить товар с пирса. Пришвартуйте корабль и приходите."));
-				link.l1 = NPCharRepPhrase(npchar, pcharrepphrase("" +RandSwear()+"Какая неприятность!!! Ладно, старый проныра, еще увидимся!",
+				link.l1 = NPCharRepPhrase(npchar, pcharrepphrase("" +RandSwear()+"Какая неприятность!!! Ладно, старый проныра, ещё увидимся!",
 				                                                 "Я не хотел"+ GetSexPhrase("","а") +" вас обмануть " +GetFullName(npchar)+ ", корабль на другой стороне острова."),
 												  pcharrepphrase("Нет. Мой корабль называется Black Pearl. Что это ты побелел? Ха-ха! Шутка!",
 												                 "Спасибо за совет, обязательно им воспользуюсь."));
@@ -573,7 +581,7 @@ void ProcessDialogEvent()
 			NPChar.MoneyForStorage = GetNpcQuestPastMonthParam(NPChar, "Storage.Date") * sti(NPChar.Storage.MoneyForStorage);
 			if(sti(NPChar.MoneyForStorage) > 0)
 			{
-				dialog.text = "С вас за аренду еще " + FindRussianMoneyString(sti(NPChar.MoneyForStorage)) + ".";
+				dialog.text = "С вас за аренду ещё " + FindRussianMoneyString(sti(NPChar.MoneyForStorage)) + ".";
 				if(sti(pchar.money) >= sti(NPChar.MoneyForStorage))
 				{
 					link.l1 = "Хорошо, сейчас оплачу аренду.";
@@ -656,7 +664,7 @@ void ProcessDialogEvent()
 			NPChar.MoneyForStorage = GetNpcQuestPastMonthParam(NPChar,"Storage.Date") * sti(NPChar.Storage.MoneyForStorage);
 			if(sti(NPChar.MoneyForStorage) > 0)
 			{
-				dialog.text = "С вас за аренду еще " + FindRussianMoneyString(sti(NPChar.MoneyForStorage)) + ".";
+				dialog.text = "С вас за аренду ещё " + FindRussianMoneyString(sti(NPChar.MoneyForStorage)) + ".";
 				if(sti(pchar.money) >= sti(NPChar.MoneyForStorage))
 				{
 					link.l1 = "Хорошо.";
@@ -712,13 +720,13 @@ void ProcessDialogEvent()
 			iTmp = CheckAvailableTaskForNPC(NPChar, PGG_TASK_WORKONSTORE);
 			if (iTmp != -1)
 			{
-				dialog.text = "Была у меня работенка, но " + GetFullName(&Characters[iTmp]) + " уже взялся выполнить ее для меня.";
+				dialog.text = "Была у меня работенка, но " + GetFullName(&Characters[iTmp]) + " уже взялся выполнить её для меня.";
 				link.l1 = "Да что вы говорите! Ладно, зайду попозже.";
 				link.l1.go = "exit";
 				break;
 			}
 //navy <--
-			dialog.text = NPCharRepPhrase(npchar,"Дела?! Выкладывай все по порядку!","Я вас слушаю. О каком деле идет речь?");
+			dialog.text = NPCharRepPhrase(npchar,"Дела?! Выкладывай все по порядку!","Я вас слушаю. О каком деле идёт речь?");
             ok = (rColony.from_sea == "") || (Pchar.location.from_sea == rColony.from_sea) || (Pchar.location.from_sea == "Shore17");
             if (sti(Pchar.Ship.Type) != SHIP_NOTUSED && ok)
 			{
@@ -745,7 +753,7 @@ void ProcessDialogEvent()
                         {
                             if (rand(1) == 1)
                             {
-                                link.l1 = RandPhraseSimple("Я хочу предложить вам зафрахтовать мое судно для перевозки груза.",
+                                link.l1 = RandPhraseSimple("Я хочу предложить вам зафрахтовать моё судно для перевозки груза.",
 								                           "У меня прекрасный корабль, и я могу доставить любой груз, куда только вы пожелаете.");
             				    link.l1.go = "generate_quest_not_closed";
         				    }
@@ -794,14 +802,14 @@ void ProcessDialogEvent()
 					}
 					else
 					{
-						link.l1 = "Вы еще не одумались, не желаете отдать мне мои честно заработанные деньги?";
+						link.l1 = "Вы ещё не одумались, не желаете отдать мне мои честно заработанные деньги?";
 						link.l1.go = "RBlueBird_retMoney_3";
 					}
 				}
 				// ----------------- квест получения Синей Птицы, продолжение -----------------
 				//homo 25/06/06 слухи
                 link.l6 = pcharrepphrase(RandPhraseSimple("Расскажешь мне последние сплетни? Все равно торчишь тут целый день.",
-                                                          "Не суетись, старый мошенник, а лучше расскажи, как течет жизнь на суше?"),
+                                                          "Не суетись, старый мошенник, а лучше расскажи, как течёт жизнь на суше?"),
                                         RandPhraseSimple("Кажется, что провел"+ GetSexPhrase("","а") +" в море целую вечность. Что новенького в ваших краях?",
                                                          "Вы, наверное, знаете все последние новости? Что важного произошло?"));,
 
@@ -846,7 +854,7 @@ void ProcessDialogEvent()
 			}
 			else
 			{
-                link.l1 = NPCharRepPhrase(npchar, pcharrepphrase("" +RandSwear()+"Я оставил"+ GetSexPhrase("","а") +" корабль на другой стороне острова. Зайду попозже!", "Прошу меня простить, " +GetFullName(npchar)+ ", я зайду позже. Мой корабль еще не подошел к пирсу."), pcharrepphrase("Дьявол! Эти ротозеи не поставили корабль под погрузку! Зайду позже!", "Извините, я долж"+ GetSexPhrase("ен","на") +" приказать поставить свой корабль к пирсу!"));
+                link.l1 = NPCharRepPhrase(npchar, pcharrepphrase("" +RandSwear()+"Я оставил"+ GetSexPhrase("","а") +" корабль на другой стороне острова. Зайду попозже!", "Прошу меня простить, " +GetFullName(npchar)+ ", я зайду позже. Мой корабль ещё не подошёл к пирсу."), pcharrepphrase("Дьявол! Эти ротозеи не поставили корабль под погрузку! Зайду позже!", "Извините, я долж"+ GetSexPhrase("ен","на") +" приказать поставить свой корабль к пирсу!"));
                 link.l1.go = "exit";
     			// --> на кредитный генератор
     			if (CheckAttribute(pchar, "GenQuest.LoanChest.TakeChest") && sti(pchar.GenQuest.LoanChest.TargetIdx) == sti(NPChar.index))
@@ -1004,7 +1012,7 @@ void ProcessDialogEvent()
 								NPChar.sTemp3 = ", что на " + XI_ConvertString(npchar.iTradeIsland3+"Dat");
 							}
 
-							//dialog.text =  "Одну минуту, сейчас найду свой журнал\nВот, что мне нужно сейчас доставить. Груз " + GetGoodsNameAlt(sti(npchar.iTradeGoods1))+ " в количестве " + FindRussianQtyString(sti(npchar.iQuantityGoods1)) + " в город " + NPChar.sNation1 + NPChar.sTemp1 + " за " +  FindRussianDaysString(makeint(sti(npchar.iDaysExpired1))) +", вознаграждение - " +FindRussianMoneyString(sti(npchar.iMoney1)) + ". Еще есть груз " + GetGoodsNameAlt(sti(npchar.iTradeGoods2))+ " в количестве " + FindRussianQtyString(sti(npchar.iQuantityGoods2)) + " в город " + NPChar.sNation2 + NPChar.sTemp2 + " за " +  FindRussianDaysString(makeint(sti(npchar.iDaysExpired2))) +", вознаграждение - " +FindRussianMoneyString(sti(npchar.iMoney2)) + ". А также груз " + GetGoodsNameAlt(sti(npchar.iTradeGoods3))+ " в количестве " + FindRussianQtyString(sti(npchar.iQuantityGoods3)) + " в город " + NPChar.sNation3 + NPChar.sTemp3 + " за " +  FindRussianDaysString(makeint(sti(npchar.iDaysExpired3))) +", вознаграждение - " +FindRussianMoneyString(sti(npchar.iMoney3)) + ".";
+							//dialog.text =  "Одну минуту, сейчас найду свой журнал\nВот, что мне нужно сейчас доставить. Груз " + GetGoodsNameAlt(sti(npchar.iTradeGoods1))+ " в количестве " + FindRussianQtyString(sti(npchar.iQuantityGoods1)) + " в город " + NPChar.sNation1 + NPChar.sTemp1 + " за " +  FindRussianDaysString(makeint(sti(npchar.iDaysExpired1))) +", вознаграждение - " +FindRussianMoneyString(sti(npchar.iMoney1)) + ". Ещё есть груз " + GetGoodsNameAlt(sti(npchar.iTradeGoods2))+ " в количестве " + FindRussianQtyString(sti(npchar.iQuantityGoods2)) + " в город " + NPChar.sNation2 + NPChar.sTemp2 + " за " +  FindRussianDaysString(makeint(sti(npchar.iDaysExpired2))) +", вознаграждение - " +FindRussianMoneyString(sti(npchar.iMoney2)) + ". А также груз " + GetGoodsNameAlt(sti(npchar.iTradeGoods3))+ " в количестве " + FindRussianQtyString(sti(npchar.iQuantityGoods3)) + " в город " + NPChar.sNation3 + NPChar.sTemp3 + " за " +  FindRussianDaysString(makeint(sti(npchar.iDaysExpired3))) +", вознаграждение - " +FindRussianMoneyString(sti(npchar.iMoney3)) + ".";
 							dialog.text =  "Одну минуту, сейчас найду свой журнал\nВот, что мне нужно сейчас доставить. Выбирайте, какой заказ вам больше всего подходит."
 							link.l1 = "Я возьмусь доставить груз " + GetGoodsNameAlt(sti(npchar.iTradeGoods1)) + " в количестве " + FindRussianQtyString(sti(npchar.iQuantityGoods1)) + " в город " + NPChar.sNation1 + NPChar.sTemp1 + ", за " +  FindRussianMoneyString(sti(npchar.iMoney1)) +", не позднее чем за " + FindRussianDaysString(makeint(sti(npchar.iDaysExpired1))) + ".";
 							link.l1.go = "exit_trade1";
@@ -1113,8 +1121,8 @@ void ProcessDialogEvent()
                 dialog.text = RandSwear() + "Я вынужден извиниться перед вами, "+GetAddress_Form(NPChar)+
                               ". Дело в том, что я " + RandPhraseSimple("в затруднительном положении и не смогу оплатить ваши услуги"," уже взял этот груз в другом месте по более выгодной цене")+
                               ". В качестве оплаты вашего фрахта я передаю вам весь доставленный вами груз.";
-				link.l1 = RandSwear() + RandPhraseSimple("И я берег"+ GetSexPhrase("","ла") +" этот чертов груз от всех напастей!!! Я две сотни крыс из-за него убил"+ GetSexPhrase("","а") +"!",
-                                                         "Вы ставите меня в безвыходное положение, и мне придется согласиться.");
+				link.l1 = RandSwear() + RandPhraseSimple("И я берег"+ GetSexPhrase("","ла") +" этот чёртов груз от всех напастей!!! Я две сотни крыс из-за него убил"+ GetSexPhrase("","а") +"!",
+                                                         "Вы ставите меня в безвыходное положение, и мне придётся согласиться.");
 				link.l1.go = "exit";
 				ChangeCharacterReputation(pchar, 2);
 				AddCharacterExpToSkill(pchar, "Sailing", 60);
@@ -1140,10 +1148,10 @@ void ProcessDialogEvent()
 			if (GetSquadronGoods(pchar, iTradeGoods) < iQuantityGoods)
 			{
                 iTmp = iQuantityGoods - GetSquadronGoods(pchar, iTradeGoods);
-                dialog.text = "Вы привезли не весь товар!! Согласно условиям договора недостает еще "
+                dialog.text = "Вы привезли не весь товар!! Согласно условиям договора недостает ещё "
                               + FindRussianQtyString(iTmp) + " груза.";
-				link.l9 = RandPhraseSimple("Да, действительно. Придется восполнить недостачу. Зайду еще раз.",
-                                           RandSwear() +"Дьявольские крысы попортили чертов груз. Я восполню недостачу и зайду еще раз.");
+				link.l9 = RandPhraseSimple("Да, действительно. Придётся восполнить недостачу. Зайду ещё раз.",
+                                           RandSwear() +"Дьявольские крысы попортили чёртов груз. Я восполню недостачу и зайду ещё раз.");
 				link.l9.go = "exit";
                 AddQuestRecord("DELIVERY_TRADE_QUEST", "8");
                 AddQuestUserData("DELIVERY_TRADE_QUEST", "sHaveNotQty", iTmp);
@@ -1265,7 +1273,7 @@ void ProcessDialogEvent()
             iTradeGoods    =  makeint(pchar.CargoQuest.iTradeGoods);
             iQuantityGoods =  makeint(pchar.CargoQuest.iQuantityGoods);
 
-            dialog.text = "Хм. Я слышал, что вы еще не выполнили обязательства по предыдущему фрахту, а уже просите новый. Вы должны были доставить груз " +
+            dialog.text = "Хм. Я слышал, что вы ещё не выполнили обязательства по предыдущему фрахту, а уже просите новый. Вы должны были доставить груз " +
             LanguageConvertString(iSeaGoods, "seg_" + Goods[iTradeGoods].Name)+ " в " + XI_ConvertString("Colony"+pchar.CargoQuest.iTradeColony) + ".";
 			link.l1 = "Да, точно! Вы правы!";
 			link.l1.go = "exit";
@@ -1285,10 +1293,10 @@ void ProcessDialogEvent()
             iQuantityGoods =  makeint(pchar.CargoQuest.iQuantityGoods);
             if (GetSquadronGoods(pchar, iTradeGoods) < iQuantityGoods)
 			{
-				dialog.text = "Минуточку! Но на корабле нет такого количества товара!! Вам недостает еще "
+				dialog.text = "Минуточку! Но на корабле нет такого количества товара!! Вам недостает ещё "
                               + FindRussianQtyString(iQuantityGoods - GetSquadronGoods(pchar, iTradeGoods)) + " груза.";
-				link.l9 = RandPhraseSimple("Да, действительно. Придется восполнить недостачу.",
-                                           RandSwear() +"Корабельные крысы попортили груз. Я докуплю товар и зайду еще раз.");
+				link.l9 = RandPhraseSimple("Да, действительно. Придётся восполнить недостачу.",
+                                           RandSwear() +"Корабельные крысы попортили груз. Я докуплю товар и зайду ещё раз.");
 				link.l9.go = "exit";
 			}
 			else
