@@ -1463,7 +1463,7 @@ ref GetCurrentCharge()
 	if (CheckAttribute(pchar,"perks.list.Turn180.delay")) BattleInterface.textinfo.Turn180CD.text = "Откат Манёвр. разворота: "+sti(pchar.perks.list.Turn180.delay)+" c.";
 	else BattleInterface.textinfo.Turn180CD.text = "";
 	if (CheckAttribute(pchar,"perks.list.ImmediateReload.delay")) BattleInterface.textinfo.ImmediateReloadCD.text = "Откат Предв. перезарядки: "+sti(pchar.perks.list.ImmediateReload.delay)+" c.";
-	else BattleInterface.textinfo.ImmediateReload.text = "";
+	else BattleInterface.textinfo.ImmediateReloadCD.text = "";
 	//<---
 	return &BI_intNRetValue;
 }
