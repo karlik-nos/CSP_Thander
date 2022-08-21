@@ -133,7 +133,7 @@ void ProcessDialogEvent()
 			{
 				dialog.text = RandPhraseSimple("А, это опять вы? По какому вопросу вам понадобился генерал-губернатор " + NationNameGenitive(sti(NPChar.nation))+ " на этот раз?",
                               "Опять отрываете меня от важных государственных дел? Что вам угодно, " +GetAddress_Form(NPChar)+"?");
-				link.l1 = "Я хочу поговорить о работе на благо короны " + NationNameGenitive(sti(NPChar.nation));
+				link.l1 = "Я хочу поговорить о работе на благо короны " + NationNameGenitive(sti(NPChar.nation)) + ".";
 				link.l1.go = "work";
 				link.l2 = "Нужно поговорить с вами об одном деле.";
 				link.l2.go = "quests"; // файл нации
