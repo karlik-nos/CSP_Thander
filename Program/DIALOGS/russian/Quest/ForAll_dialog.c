@@ -554,9 +554,9 @@ void ProcessDialogEvent()
 		case "PGG_hired":
 			bQuestDisableMapEnter = false;
 			chr = CharacterFromID(npchar.CaptanId);
+			Restore_PGG(chr);
 			sld = GetCharacter(NPC_GenerateCharacter(npchar.CaptanId+"Of", "none", chr.sex, chr.model.animation, 1, PIRATE, -1, false));
 			ChangeAttributesFromCharacter(sld, chr, true);
-			Train_PPG(sld, true, false);
 			AddDialogExitQuestFunction("LandEnc_OfficerHired");
 			if (sld.sex != "woman")
 			{

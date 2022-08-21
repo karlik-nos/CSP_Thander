@@ -270,6 +270,7 @@ void ProcessDialogEvent()
 			link.l1.go = "exit";
 			break;
 		}
+		Restore_PGG(npchar);
 		pchar.questTemp.HiringOfficerIDX = NPChar.index;
 		if (NPChar.model.animation == "man" || NPChar.model.animation == "YokoDias" || NPChar.model.animation == "Milenace") Npchar.CanTakeMushket = true;
 		if(npchar.model == "PGG_Whisper_6") EquipCharacterByItem(NPChar, "suit_1");
@@ -330,6 +331,7 @@ void ProcessDialogEvent()
 					"Это интересно. Я тоже думаю, что вместе мы сможем больше!", "Пожалуй, это будет занятно. По рукам."));
 			link.l1 = RandPhraseSimple("Отлично, жду тебя в море!", "По рукам! Мы будем отличной командой.");
 			link.l1.go = "exit";
+			Restore_PGG(npchar);
 			NPChar.PGGAi.IsPGG = false;
 			NPChar.PGGAi.location.town = "none";
 			NPChar.Dialog.TempNode = "hired";

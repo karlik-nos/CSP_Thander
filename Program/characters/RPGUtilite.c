@@ -38,6 +38,36 @@ int GetCharacterBaseHPValue(ref _refCharacter)
 	return ret;
 }
 
+int GetCharacterNormalHp(ref _refCharacter)
+{
+	int ret = GetCharacterBaseHpValue(_refCharacter) + GetCharacterAddHpValue(_refCharacter) * (sti(_refCharacter.rank) - 1);
+	if (CheckCharacterPerk(_refCharacter, "HPPlus"))
+	{
+		ret += 80;
+	}
+	if (CheckCharacterPerk(_refCharacter, "HPPlusFixed"))
+	{
+		ret += 60;
+	}
+	return ret;
+}
+
+void SetHealthToCharacter(ref _refCharacter)
+{
+	_refCharacter.chr_ai.hp_max = GetCharacterNormalHp(_refCharacter);
+	if (!CheckAttribute(_refcharacter, "chr_ai.hp"))
+	{
+		_refcharacter.chr_ai.hp = GetCharacterNormalHp(_refCharacter);
+	}
+	else
+	{
+		if (sti(_refcharacter.chr_ai.hp) > sti(_refcharacter.chr_ai.hp_max))
+		{
+			_refcharacter.chr_ai.hp = _refcharacter.chr_ai.hp_max;
+		}
+	}		
+}
+
 float GetCharacterMaxEnergyValue(ref _refCharacter)
 {
     float ret = (30.0 + GetCharacterSPECIAL(_refCharacter, SPECIAL_A)*10);
@@ -240,6 +270,7 @@ void SetRandSPECIAL_K(ref _refCharacter)  // для штурманов-казн�
 /// влияет только на СПЕЦИАЛ
 int ApplayNavyPenalty(ref _refCharacter, string skillName, int sumSkill)
 {
+	if (CheckAttribute(_refCharacter,"bchangepirates")) {return sumSkill;} // фикс неправильного расчета начальных значений скиллов при старте игры от наличия минусов от навигации
     if (IsCompanion(_refCharacter) && GetRemovable(_refCharacter))//пусть будет для компаньонов тоже sti(_refCharacter.index) == GetMainCharacterIndex()) // только для главного, чтоб не тормозить всю игру
     {
         int sailSkill;
@@ -260,6 +291,7 @@ int ApplayNavyPenalty(ref _refCharacter, string skillName, int sumSkill)
 // пенальти в скилы
 int ApplayNavyPenaltyToSkill(ref _refCharacter, string skillName, int sumSkill)
 {
+	if (CheckAttribute(_refCharacter,"bchangepirates")) {return sumSkill;}
     if (IsCompanion(_refCharacter) && GetRemovable(_refCharacter))//пусть будет для компаньонов тоже sti(_refCharacter.index) == GetMainCharacterIndex()) // только для главного, чтоб не тормозить всю игру
     {
         int sailSkill;
@@ -764,10 +796,11 @@ void ApplayNewSkill(ref _chref, string _skill, int _addValue)
 
 void ClearHPTubeEffect(string qName)
 {
-	float nphp = LAi_GetCharacterMaxHP(pchar) + GetCharacterAddHPValue(pchar);
+	float nphp = LAi_GetCharacterMaxHP(pchar);
 	LAi_SetHP(pchar,nphp-sti(pchar.PerkValue.HPBONUS),nphp-sti(pchar.PerkValue.HPBONUS));
 	DeleteAttribute(pchar,"chr_ai.bonushptube");
 	DeleteAttribute(pchar,"PerkValue.HPBONUS");
+	RestoreModelsBeforeDrugs();
 }
 
 void ClearENTubeEffect(string qName)
@@ -2148,7 +2181,17 @@ void ChangeAttributesFromCharacter(ref CopyChref, ref PastChref, bool _dialogCop
     CopyChref.rank             = PastChref.rank;
     CopyChref.reputation       = makeint(PastChref.reputation);
 	CopyChref.baseCapIdx       = PastChref.index; //Id оригинального в структуру клона
-
+	
+	if(CheckAttribute(PastChref, "ImmortalOfficer"))
+	{
+		CopyChref.ImmortalOfficer = PastChref.ImmortalOfficer;
+		CopyChref.OfficerWantToGo.DontGo = PastChref.OfficerWantToGo.DontGo;
+		CopyChref.HalfImmortal = PastChref.HalfImmortal;
+	}
+	else 
+	{
+		DeleteAttribute(CopyChref, "ImmortalOfficer");
+	}
     if (CheckAttribute(PastChref, "loyality"))
     {
     	CopyChref.loyality         = PastChref.loyality;
