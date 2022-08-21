@@ -432,7 +432,7 @@ void ProcessDialogEvent()
 			DeleteAttribute(pchar, "items.mineral3");
 			if (sti(npchar.quest.takeCandles.Qty) < 400)
 			{
-				dialog.text = "Ну, давай посмотрим. Сейчас ты принёс"+ GetSexPhrase("","ла") +" " + FindRussianQtyString(iTemp) + " свечей. Всего ты принёс"+ GetSexPhrase("","ла") +" " + FindRussianQtyString(sti(npchar.quest.takeCandles.Qty)) + " свечей. Тебе осталось принести ещё " + FindRussianQtyString(400 - sti(npchar.quest.takeCandles.Qty)) + ".";
+				dialog.text = "Ну, давай посмотрим. Сейчас ты прин"+ GetSexPhrase("ёс","есла") +" " + FindRussianQtyString(iTemp) + " свечей. Всего ты прин"+ GetSexPhrase("ёс","есла") +" " + FindRussianQtyString(sti(npchar.quest.takeCandles.Qty)) + " свечей. Тебе осталось принести ещё " + FindRussianQtyString(400 - sti(npchar.quest.takeCandles.Qty)) + ".";
 				link.l1 = "Понятно. Ну что ж, продолжу поиски, святой отец.";
 				link.l1.go = "exit";
 				AddQuestRecord("ISS_takeCandles", "2");
@@ -553,8 +553,8 @@ void ProcessDialogEvent()
 		case "TradeMed2":
 			npchar.amount = GetStrSmallRegister(dialogEditStrings[1]);
 			NPChar.sumtotal = sti(npchar.amount)*10;
-			//dialog.text = "Значит, что получается? Я беру лекарства по 10 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. За каждые 15 тысяч идёт кредитный сундук. Предложение устраивает?"; 
-			dialog.text = "Значит, что получается? Я беру лекарства по 10 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. Предложение устраивает?"; 
+			//dialog.text = "Значит, что получается? Я беру лекарства по 10 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. За каждые 15 тысяч идёт кредитный сундук. Предложение устраивает?";
+			dialog.text = "Значит, что получается? Я беру лекарства по 10 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. Предложение устраивает?";
 			link.l1 = "Да.";
 			link.l1.go = "TradeMed3";
 			link.l2 = "Мне надо подумать.";
@@ -587,8 +587,8 @@ void ProcessDialogEvent()
 		case "TradeCloth2":
 			npchar.amount = GetStrSmallRegister(dialogEditStrings[1]);
 			NPChar.sumtotal = sti(npchar.amount)*5;
-			//dialog.text = "Значит, что получается? Я беру одежду по 5 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. За каждые 15 тысяч идёт кредитный сундук. Предложение устраивает?"; 
-			dialog.text = "Значит, что получается? Я беру одежду по 5 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. Предложение устраивает?"; 
+			//dialog.text = "Значит, что получается? Я беру одежду по 5 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. За каждые 15 тысяч идёт кредитный сундук. Предложение устраивает?";
+			dialog.text = "Значит, что получается? Я беру одежду по 5 за ед. Итого, "+NPChar.sumtotal+" золотых за "+npchar.amount+" ед. Предложение устраивает?";
 			link.l1 = "Да.";
 			link.l1.go = "TradeCloth3";
 			link.l2 = "Мне надо подумать.";

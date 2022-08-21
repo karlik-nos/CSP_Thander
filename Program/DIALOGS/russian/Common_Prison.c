@@ -58,7 +58,7 @@ void ProcessDialogEvent()
 				}
 
 			dialog.text = RandPhraseSimple("Я начальник тюрьмы. Что вам нужно здесь?", "Что вам нужно? Зачем вы явились в тюрьму?");
-			link.l1 = "Да ничего особенного, осматриваю город, знаете ли. Вот и забрёл"+ GetSexPhrase("","а") +" сюда по случаю.";
+			link.l1 = "Да ничего особенного, осматриваю город, знаете ли. Вот и забр"+ GetSexPhrase("ёл","ела") +" сюда по случаю.";
 			link.l1.go = "exit";
 			link.l2 = "Хочу поговорить по делу.";
 			if (CheckCharacterItem(pchar, "CaptainBook") && !CheckAttribute(pchar, "questTemp.different.GiveShipLetters.speakFort"))
@@ -393,7 +393,7 @@ void ProcessDialogEvent()
 
 		case "EncGirl_1":
 			dialog.text = "Слушаю вас внимательно.";
-			link.l1 = "Я привёл"+ GetSexPhrase("","а") +" вашу беглянку.";
+			link.l1 = "Я прив"+ GetSexPhrase("ёл","ела") +" вашу беглянку.";
 			link.l1.go = "EncGirl_2";
 		break;
 

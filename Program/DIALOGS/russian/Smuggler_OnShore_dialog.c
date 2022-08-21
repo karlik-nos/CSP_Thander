@@ -77,7 +77,7 @@ void ProcessDialogEvent()
 				Dialog.snd = "voice\SMSH\SMSH001";
 				dialog.Text = RandPhraseSimple("Эй, что ты тут забыл"+ GetSexPhrase("","а") +", "+ GetSexPhrase("приятель","подруга") +"?",
                                           RandSwear() + "Что тебе тут нужно?!");
-				Link.l1 = RandPhraseSimple("Расслабься, парень, я привёз"+ GetSexPhrase("","ла") +" товар!", "Ты чем смотришь? Я доставил"+ GetSexPhrase("","а") +" товар!");
+				Link.l1 = RandPhraseSimple("Расслабься, парень, я прив"+ GetSexPhrase("ёз","езла") +" товар!", "Ты чем смотришь? Я доставил"+ GetSexPhrase("","а") +" товар!");
 				Pchar.quest.Contraband.Counter = 0; // не торговали
 				if ((Pchar.Location == Pchar.location.from_sea) && (sti(pchar.Ship.Type) != SHIP_NOTUSED))
 				{

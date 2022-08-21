@@ -728,7 +728,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
             }
 			if (CheckAttribute(pchar, "GenQuest.LoanChest.TakeChest") && sti(pchar.GenQuest.LoanChest.TargetIdx) == sti(NPChar.index))
             {
-                link.l2 = "Я привёз"+ GetSexPhrase("","ла") +" ваш кредит.";
+                link.l2 = "Я прив"+ GetSexPhrase("ёз","езла") +" ваш кредит.";
                 link.l2.go = "TakeChest_2";
             }
 			link.l9 = RandPhraseSimple("М-м-м, я, видимо, ошиб"+ GetSexPhrase("ся","лась") +". Никаких финансовых дел я с вами не веду.", "Простите, никаких финансовых вопросов у меня к вам нет.");
@@ -1276,7 +1276,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 		break;
 		case "RBlueBird_retMoney_8":
 			dialog.text = "Ну ладно, забирайте ваши 50 тысяч и убирайтесь отсюда!";
-			link.l1 = "Не так быстро, мон шер. Все дело в том, что я понёс"+ GetSexPhrase("","ла") +" дополнительные финансовые издержки, пытаясь вразумить вас. Не говоря уже о моральном ущербе. Поэтому сумма выросла.";
+			link.l1 = "Не так быстро, мон шер. Все дело в том, что я пон"+ GetSexPhrase("ёс","есла") +" дополнительные финансовые издержки, пытаясь вразумить вас. Не говоря уже о моральном ущербе. Поэтому сумма выросла.";
 			link.l1.go = "RBlueBird_retMoney_9";
 		break;
 		case "RBlueBird_retMoney_9":

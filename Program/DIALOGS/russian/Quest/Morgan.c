@@ -997,7 +997,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "PL_Q4_goodWork_lair":
-			dialog.text = "Да ты, оказывается, крыса! Ты что, идиот"+ GetSexPhrase("","ка") +", думаешь я не в курсе, что ты операцию провёл"+ GetSexPhrase("","а") +"?!";
+			dialog.text = "Да ты, оказывается, крыса! Ты что, идиот"+ GetSexPhrase("","ка") +", думаешь я не в курсе, что ты операцию пров"+ GetSexPhrase("ёл","ела") +"?!";
 			link.l1 = "Генри, не горячись...";
 			link.l1.go = "PL_Q4_goodWork_lair_1";
 		break;
@@ -1671,7 +1671,7 @@ void ProcessDialogEvent()
 		break;
 		//в резиденции взятого Порто Белло
 		case "PL_Q8_PBResidence":
-			dialog.text = "Ты хорошо провёл"+ GetSexPhrase("","а") +" штурм, хвалю.";
+			dialog.text = "Ты хорошо пров"+ GetSexPhrase("ёл","ела") +" штурм, хвалю.";
 			link.l1 = "Порто Белло наш, адмирал. Но у нас есть серьёзная проблема.";
 			link.l1.go = "PL_Q8_PBResidence_1";
 		break;

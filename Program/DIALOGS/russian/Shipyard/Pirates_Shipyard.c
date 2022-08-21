@@ -562,7 +562,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			if (sti(NPChar.Tuning.ShipType) == sti(Pchar.Ship.Type) && NPChar.Tuning.ShipName      == RealShips[sti(Pchar.Ship.Type)].BaseName)
 			{
 				NextDiag.TempNode = "ship_tunning_cannon_all_again";
-				dialog.Text = "Орудия ждут. Принёс"+ GetSexPhrase("","ла") +", что я просил?";
+				dialog.Text = "Орудия ждут. прин"+ GetSexPhrase("ёс","есла") +", что я просил?";
 				Link.l1 = "Да. Кое-что удалось достать.";
 				Link.l1.go = "ship_tunning_cannon_all_again_2";
 				Link.l2 = "Я хочу воспользоваться услугами верфи.";
@@ -752,7 +752,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			if (sti(NPChar.Tuning.ShipType) == sti(Pchar.Ship.Type) && NPChar.Tuning.ShipName      == RealShips[sti(Pchar.Ship.Type)].BaseName)
 			{
 				NextDiag.TempNode = "ship_c_quantity_again";
-				dialog.Text = "Орудия ждут. Принёс"+ GetSexPhrase("","ла") +", что я просил?";
+				dialog.Text = "Орудия ждут. прин"+ GetSexPhrase("ёс","есла") +", что я просил?";
 				Link.l1 = "Да. Кое-что удалось достать.";
 				Link.l1.go = "ship_c_quantity_again_2";
 				Link.l2 = "Я хочу воспользоваться услугами верфи.";
@@ -1054,7 +1054,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		    if (sti(NPChar.Tuning.ShipType) == sti(Pchar.Ship.Type) && NPChar.Tuning.ShipName      == RealShips[sti(Pchar.Ship.Type)].BaseName)
 		    {
                 NextDiag.TempNode = "ship_tunning_Capacity_again";
-				dialog.Text = "Дедвейт ждёт. Принёс"+ GetSexPhrase("","ла") +", что я просил?";
+				dialog.Text = "Дедвейт ждёт. прин"+ GetSexPhrase("ёс","есла") +", что я просил?";
 			    Link.l1 = "Да. Кое-что удалось достать.";
 			    Link.l1.go = "ship_tunning_Capacity_again_2";
 				Link.l2 = "Я хочу воспользоваться услугами верфи.";
@@ -1082,7 +1082,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			{
 				DeleteAttribute(NPChar, "Tuning");
                 NextDiag.TempNode = "ship_tunning_again";
-                dialog.text = "Все привёз"+ GetSexPhrase("","ла") +". Молодец! Начинаю работу...";
+                dialog.text = "Все прив"+ GetSexPhrase("ёз","езла") +". Молодец! Начинаю работу...";
 			    link.l1 = "Жду.";
 			    link.l1.go = "ship_tunning_Capacity_complite";
 			}
@@ -1183,7 +1183,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		    if (sti(NPChar.Tuning.ShipType) == sti(Pchar.Ship.Type) && NPChar.Tuning.ShipName      == RealShips[sti(Pchar.Ship.Type)].BaseName)
 		    {
                 NextDiag.TempNode = "ship_tunning_SpeedRate_again";
-				dialog.Text = "Работа ждёт. Принёс"+ GetSexPhrase("","ла") +", что я просил?";
+				dialog.Text = "Работа ждёт. прин"+ GetSexPhrase("ёс","есла") +", что я просил?";
 			    Link.l1 = "Да. Кое-что удалось достать.";
 			    Link.l1.go = "ship_tunning_SpeedRate_again_2";
 				Link.l2 = "Я хочу воспользоваться услугами верфи.";
@@ -1211,7 +1211,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			{
 				DeleteAttribute(NPChar, "Tuning");
                 NextDiag.TempNode = "ship_tunning_again";
-                dialog.text = "Все привёз"+ GetSexPhrase("","ла") +". Молодец! Начинаю работу...";
+                dialog.text = "Все прив"+ GetSexPhrase("ёз","езла") +". Молодец! Начинаю работу...";
 			    link.l1 = "Жду.";
 			    link.l1.go = "ship_tunning_SpeedRate_complite";
 			}
@@ -1311,7 +1311,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		    if (sti(NPChar.Tuning.ShipType) == sti(Pchar.Ship.Type) && NPChar.Tuning.ShipName      == RealShips[sti(Pchar.Ship.Type)].BaseName)
 		    {
                 NextDiag.TempNode = "ship_tunning_MastMultiplier_again";
-				dialog.Text = "Работа ждёт. Принёс"+ GetSexPhrase("","ла") +", что я просил?";
+				dialog.Text = "Работа ждёт. прин"+ GetSexPhrase("ёс","есла") +", что я просил?";
 			    Link.l1 = "Да. Кое-что удалось достать.";
 			    Link.l1.go = "ship_tunning_MastMultiplier_again_2";
 				Link.l2 = "Я хочу воспользоваться услугами верфи.";
@@ -1339,7 +1339,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			{
 				DeleteAttribute(NPChar, "Tuning");
                 NextDiag.TempNode = "ship_tunning_again";
-                dialog.text = "Все привёз"+ GetSexPhrase("","ла") +". Молодец! Начинаю работу...";
+                dialog.text = "Все прив"+ GetSexPhrase("ёз","езла") +". Молодец! Начинаю работу...";
 			    link.l1 = "Жду.";
 			    link.l1.go = "ship_tunning_MastMultiplier_complite";
 			}
@@ -1431,7 +1431,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		    if (sti(NPChar.Tuning.ShipType) == sti(Pchar.Ship.Type) && NPChar.Tuning.ShipName      == RealShips[sti(Pchar.Ship.Type)].BaseName)
 		    {
                 NextDiag.TempNode = "ship_tunning_MaxCrew_again";
-				dialog.Text = "Дело ждёт. Принёс"+ GetSexPhrase("","ла") +", что я просил?";
+				dialog.Text = "Дело ждёт. прин"+ GetSexPhrase("ёс","есла") +", что я просил?";
 			    Link.l1 = "Да. Кое-что удалось достать.";
 			    Link.l1.go = "ship_tunning_MaxCrew_again_2";
 				Link.l2 = "Я хочу воспользоваться услугами верфи.";
@@ -1459,7 +1459,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			{
 				DeleteAttribute(NPChar, "Tuning");
                 NextDiag.TempNode = "ship_tunning_again";
-                dialog.text = "Все привёз"+ GetSexPhrase("","ла") +". Молодец! Начинаю работу...";
+                dialog.text = "Все прив"+ GetSexPhrase("ёз","езла") +". Молодец! Начинаю работу...";
 			    link.l1 = "Жду.";
 			    link.l1.go = "ship_tunning_MaxCrew_complite";
 			}
@@ -1552,7 +1552,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		    if (sti(NPChar.Tuning.ShipType) == sti(Pchar.Ship.Type) && NPChar.Tuning.ShipName      == RealShips[sti(Pchar.Ship.Type)].BaseName)
 		    {
                 NextDiag.TempNode = "ship_tunning_TurnRate_again";
-				dialog.Text = "Работа ждёт. Принёс"+ GetSexPhrase("","ла") +", что я просил?";
+				dialog.Text = "Работа ждёт. прин"+ GetSexPhrase("ёс","есла") +", что я просил?";
 			    Link.l1 = "Да. Кое-что удалось доставить.";
 			    Link.l1.go = "ship_tunning_TurnRate_again_2";
 				Link.l2 = "Я хочу воспользоваться услугами верфи.";
@@ -1580,7 +1580,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			{
 				DeleteAttribute(NPChar, "Tuning");
                 NextDiag.TempNode = "ship_tunning_again";
-                dialog.text = "Все привёз"+ GetSexPhrase("","ла") +". Молодец! Начинаю работу...";
+                dialog.text = "Все прив"+ GetSexPhrase("ёз","езла") +". Молодец! Начинаю работу...";
 			    link.l1 = "Жду.";
 			    link.l1.go = "ship_tunning_TurnRate_complite";
 			}
@@ -1679,7 +1679,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		    if (sti(NPChar.Tuning.ShipType) == sti(Pchar.Ship.Type) && NPChar.Tuning.ShipName      == RealShips[sti(Pchar.Ship.Type)].BaseName)
 		    {
                 NextDiag.TempNode = "ship_tunning_HP_again";
-				dialog.Text = "Работа ждёт. Принёс"+ GetSexPhrase("","ла") +", что я просил?";
+				dialog.Text = "Работа ждёт. прин"+ GetSexPhrase("ёс","есла") +", что я просил?";
 			    Link.l1 = "Да. Кое-что удалось достать.";
 			    Link.l1.go = "ship_tunning_HP_again_2";
 				Link.l2 = "Я хочу воспользоваться услугами верфи.";
@@ -1707,7 +1707,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			{
 				DeleteAttribute(NPChar, "Tuning");
                 NextDiag.TempNode = "ship_tunning_again";
-                dialog.text = "Все привёз"+ GetSexPhrase("","ла") +". Молодец! Начинаю работу...";
+                dialog.text = "Все прив"+ GetSexPhrase("ёз","езла") +". Молодец! Начинаю работу...";
 			    link.l1 = "Жду.";
 			    link.l1.go = "ship_tunning_HP_complite";
 			}
@@ -1814,7 +1814,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		    if (sti(NPChar.Tuning.ShipType) == sti(Pchar.Ship.Type) && NPChar.Tuning.ShipName      == RealShips[sti(Pchar.Ship.Type)].BaseName)
 		    {
                 NextDiag.TempNode = "ship_tunning_WindAgainst_again";
-			    dialog.Text = "Бейдевинд ждёт. Принёс"+ GetSexPhrase("","ла") +", что я просил?";
+			    dialog.Text = "Бейдевинд ждёт. прин"+ GetSexPhrase("ёс","есла") +", что я просил?";
 			    Link.l1 = "Да. Кое-что удалось доставить.";
 			    Link.l1.go = "ship_tunning_WindAgainst_again_2";
 				Link.l2 = "Я хочу воспользоваться услугами верфи.";
@@ -1842,7 +1842,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			{
 				DeleteAttribute(NPChar, "Tuning");
                 NextDiag.TempNode = "ship_tunning_again";
-                dialog.text = "Все привёз"+ GetSexPhrase("","ла") +". Молодец! Начинаю работу...";
+                dialog.text = "Все прив"+ GetSexPhrase("ёз","езла") +". Молодец! Начинаю работу...";
 			    link.l1 = "Жду.";
 			    link.l1.go = "ship_tunning_WindAgainst_complite";
 			}
@@ -2550,27 +2550,27 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			if (HullSpecial)
 			{
 				shTo.Tuning.HullSpecial = 1;
-				shTo.price = makeint(sti(shTo.price)*1.5); 
+				shTo.price = makeint(sti(shTo.price)*1.5);
 			}
 			if (SailsSpecial)
 			{
 				shTo.Tuning.SailsSpecial = 1;
-				shTo.price = makeint(sti(shTo.price)*1.35); 
+				shTo.price = makeint(sti(shTo.price)*1.35);
 			}
 			if (CannonsSpecial)
 			{
 				shTo.Tuning.CannonsSpecial = 1;
-				shTo.price = makeint(sti(shTo.price)*1.25); 
+				shTo.price = makeint(sti(shTo.price)*1.25);
 			}
 			if (CuBot)
 			{
 				shTo.Tuning.CuBot = 1;
-				shTo.price = makeint(sti(shTo.price)*1.4); 
+				shTo.price = makeint(sti(shTo.price)*1.4);
 			}
 			if (BotPack)
 			{
 				shTo.Tuning.BotPack = 1;
-				shTo.price = makeint(sti(shTo.price)*1.5); 
+				shTo.price = makeint(sti(shTo.price)*1.5);
 				shTo.Capacity = sti(shTo.Capacity) + makeint(sti(shTo.Capacity)/2);
 				shTo.HP = sti(shTo.HP) - makeint(sti(shTo.HP)/2);
 				if (pchar.ship.hp > sti(shTo.HP)) pchar.ship.hp = sti(shTo.HP);
@@ -2578,7 +2578,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			if (HighBort)
 			{
 				shTo.Tuning.HighBort = 1;
-				shTo.price = makeint(sti(shTo.price)*1.4); 
+				shTo.price = makeint(sti(shTo.price)*1.4);
 			}
 
 			dialog.text = "Отлично, приступаю к ремонту... Готово! Теперь твоя легенда засияет новыми красками.";

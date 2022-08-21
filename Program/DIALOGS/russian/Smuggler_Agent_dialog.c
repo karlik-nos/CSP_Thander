@@ -153,7 +153,7 @@ void ProcessDialogEvent()
 				}
 				if(FindFirstContrabandGoods(PChar) != -1)
 				{
-					Link.l1 = "Я привёз"+ GetSexPhrase("","ла") +" немного товаров на продажу.";
+					Link.l1 = "Я прив"+ GetSexPhrase("ёз","езла") +" немного товаров на продажу.";
 					Link.l1.go = "Meeting_3";
 				}
 
@@ -239,7 +239,7 @@ void ProcessDialogEvent()
 		case "Rimalie_2":
 			if (ChangeContrabandRelation(pchar, 0) >= 70)
 			{
-				Dialog.Text = "Ты довольно уважаемый клиент для нашей организации и принёс"+ GetSexPhrase("","ла") +" немало прибыли. Ради тебя мы готовы пойти на уступки и прекратить его преследовать хоть прямо сейчас. Неужели он настолько тебе нужен? О Рималье ходят довольно нехорошие слухи о подстрекательстве к бунту. Не боишься?";
+				Dialog.Text = "Ты довольно уважаемый клиент для нашей организации и прин"+ GetSexPhrase("ёс","есла") +" немало прибыли. Ради тебя мы готовы пойти на уступки и прекратить его преследовать хоть прямо сейчас. Неужели он настолько тебе нужен? О Рималье ходят довольно нехорошие слухи о подстрекательстве к бунту. Не боишься?";
 				Link.l1 = "Ради хорошего офицера-мушкетёра не грех и рискнуть. Благодарю вас за помощь!";
 				Link.l1.go = "exit";
 				pchar.RimalieDone = true;
@@ -1094,7 +1094,7 @@ void ProcessDialogEvent()
 					{
 						if(GetQuestPastDayParam("contraTravel") == sti(PChar.GenQuest.contraTravel.days))
 						{
-							Dialog.Text = "Принёс"+ GetSexPhrase("","ла") +" деньги?";
+							Dialog.Text = "Прин"+ GetSexPhrase("ёс","есла") +" деньги?";
 							Link.l1 = "Да.";
 							Link.l1.go = "Travel_pay";
 							Link.l3 = "Я передумал"+ GetSexPhrase("","а") +"....";

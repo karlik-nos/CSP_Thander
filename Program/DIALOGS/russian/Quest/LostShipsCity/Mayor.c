@@ -257,7 +257,7 @@ void ProcessDialogEvent()
 		//ГГ принёс амулет нарвалов
 		case "NarvalRing_1":
 			dialog.text = "Говори.";
-			link.l1 = "Я тут недавно забрёл"+ GetSexPhrase("","а") +" в каюту корвета 'Протектор', и совершенно случайно наш"+ GetSexPhrase("ел","ла") +" там интересный предмет...";
+			link.l1 = "Я тут недавно забр"+ GetSexPhrase("ёл","ела") +" в каюту корвета 'Протектор', и совершенно случайно наш"+ GetSexPhrase("ел","ла") +" там интересный предмет...";
 			link.l1.go = "NarvalRing_2";
 		break;
 		case "NarvalRing_2":

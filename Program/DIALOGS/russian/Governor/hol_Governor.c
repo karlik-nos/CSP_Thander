@@ -422,7 +422,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
                     if (CheckAttribute(pchar, "questTemp.SandalQtyElseNeed")) pchar.questTemp.SandalQty = sti(pchar.questTemp.SandalQty) + sti(sld.Ship.Cargo.Goods.Sandal);
                 }
             }
-            tempStr = "Минхер, я привёз"+ GetSexPhrase("","ла") +" следующие товары.";
+            tempStr = "Минхер, я прив"+ GetSexPhrase("ёз","езла") +" следующие товары.";
             if (CheckAttribute(pchar, "questTemp.EbonyQty"))
             {
                 if (sti(pchar.questTemp.EbonyQty > 0)) tempStr = tempStr + " Чёрного дерева - " + pchar.questTemp.EbonyQty + " штук.";
@@ -442,7 +442,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
             dialog.text = "Говорите, сколько и чего вы привезли из форта Оранж.";
             link.l1 = tempStr;
             link.l1.go = "Step_2_6";
-            if (tempStr == "Минхер, я привёз"+ GetSexPhrase("","ла") +" следующие товары.")
+            if (tempStr == "Минхер, я прив"+ GetSexPhrase("ёз","езла") +" следующие товары.")
             {
                 link.l1 = "Минхер, я в процессе выполнения. Пока ничего нового доставить не сумел"+ GetSexPhrase("","а") +", прошу меня извинить...";
                 link.l1.go = "exit";

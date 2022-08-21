@@ -230,11 +230,11 @@ void ProcessDialogEvent()
 			}
 			Diag.TempNode = "First time";
 	    break;
-		
+
 		case "Mary_Zastupaetsya_1":
 			StartInstantDialogNoType(pchar.SharleMaryId, "Mary_Zastupaetsya_2", "Habitue_dialog.c");
 		break;
-		
+
 		case "Mary_Zastupaetsya_2":
 			dialog.text = RandPhraseSimple("(к пьянице) Я тебе сейчас глотку порву!", "(к пьянице) Ты сейчас будешь иметь дело со мной, грязная морда!");
 	        link.l1 = "Тише, тише, Мэри, он уже всё понял.";
@@ -242,10 +242,10 @@ void ProcessDialogEvent()
 			LAi_SetActorTypeNoGroup(npchar);
 			LAi_ActorTurnToCharacter(npchar, CharacterFromID(pchar.Mary.hamila.npcharID));
 		break;
-		
+
 		case "Mary_Zastupaetsya_3":
 			DialogExit();
-			
+
 			sld = characterFromID("SharleMary");
 			sld.Dialog.Filename = "Quest\MainheroPrologues\Mary_dialog.c";
 			sld.dialog.currentnode = "hired";
@@ -867,7 +867,7 @@ void ProcessDialogEvent()
 			//	link.l3.go = "Find_Merchant_1";
             //}
             //homo 15/06/06 слухи
-            link.l4 = LinkRandPhrase("Кажется, что провёл"+ GetSexPhrase("","а") +" в море целую вечность. Что новенького в ваших краях?",
+            link.l4 = LinkRandPhrase("Кажется, что пров"+ GetSexPhrase("ёл","ела") +" в море целую вечность. Что новенького в ваших краях?",
                                     "Расскажи-ка мне, о чем теперь болтают? Не зря же я пою тебя ромом...",
                                     "Скажи мне, братец, какие байки ходят по тавернам?");
 		    link.l4.go = "rumours_habitue";

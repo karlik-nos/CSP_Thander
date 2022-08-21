@@ -170,12 +170,12 @@ void ProcessDialogEvent()
 		            	dialog.Text = "Ну что кэп, вы принесли мне " + FindRussianMoneyString(iTemp) + ".";
 		            	if(sti(PChar.Money) >= iTemp)
 		            	{
-							link.l1 = "Да, принёс"+ GetSexPhrase("","ла") +". Вот они...";
+							link.l1 = "Да, прин"+ GetSexPhrase("ёс","есла") +". Вот они...";
 							link.l1.go = "Tavern_ChurchGenQuest1_Node_4_1";
 						}
 						else
 						{
-							link.l1 = "Нет, ещё не принёс"+ GetSexPhrase("","ла") +"...";
+							link.l1 = "Нет, ещё не прин"+ GetSexPhrase("ёс","есла") +"...";
 							link.l1.go = "exit";
 						}
 		            }

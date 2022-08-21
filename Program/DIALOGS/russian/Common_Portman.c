@@ -194,12 +194,12 @@ void ProcessDialogEvent()
 						dialog.text = "Так, что там с деньгами? Вы принесли мне хотя бы 1000 пиастров?";
 						if(sti(PChar.Money) >= 1000)
 						{
-							link.l1 = "Да, принёс"+ GetSexPhrase("","ла") +". Вот ровно тысяча золотых. Теперь информация!";
+							link.l1 = "Да, прин"+ GetSexPhrase("ёс","есла") +". Вот ровно тысяча золотых. Теперь информация!";
 							link.l1.go = "Church_GenQuest1_Node_FillFullInfo_3";
 						}
 						else
 						{
-							link.l1 = LinkRandPhrase("Нет, ещё не принёс"+ GetSexPhrase("","ла") +"...", "Ещё нет...", "Ещё не принёс"+ GetSexPhrase("","ла") +", но скоро принесу...");
+							link.l1 = LinkRandPhrase("Нет, ещё не прин"+ GetSexPhrase("ёс","есла") +"...", "Ещё нет...", "Ещё не прин"+ GetSexPhrase("ёс","есла") +", но скоро принесу...");
 							link.l1.go = "exit";
 						}
 					}
@@ -558,7 +558,7 @@ void ProcessDialogEvent()
 
 		case "EncGirl_1":
 			dialog.text = "Слушаю вас внимательно.";
-			link.l1 = "Я привёл"+ GetSexPhrase("","а") +" вашу беглянку.";
+			link.l1 = "Я прив"+ GetSexPhrase("ёл","ела") +" вашу беглянку.";
 			link.l1.go = "EncGirl_2";
 		break;
 
@@ -1032,7 +1032,7 @@ void ProcessDialogEvent()
 		// Не просрочено - проверяем корабль
 		case "BurntShip12":
 			dialog.text = "О чём вы хотели поговорить?";
-			link.l1 = "Я привёл"+ GetSexPhrase("","а") +" вам судно с неординарной характеристикой. Жду обещанного вознаграждения.";
+			link.l1 = "Я прив"+ GetSexPhrase("ёл","ела") +" вам судно с неординарной характеристикой. Жду обещанного вознаграждения.";
 			link.l1.go = "BurntShip14";
 			link.l2 = "Знаете, " + GetFullName(NPChar) + ", никак мне не попадаются суда с заказанной вами характеристикой. Пожалуй я откажусь от этого поручения. Извините, если подвёл"+ GetSexPhrase("","а") +"...";
 			link.l2.go = "BurntShip13";
@@ -1300,13 +1300,13 @@ void ProcessDialogEvent()
 			//если кэп-вор ещё жив - убираем его
 			if (cn > 0)
 			{
-				characters[cn].LifeDay = 0; 
+				characters[cn].LifeDay = 0;
 				Map_ReleaseQuestEncounter(characters[cn].id);
 				group_DeleteGroup("SeekCapShip_" + characters[cn].index);
 			}
 			DeleteAttribute(npchar, "quest.PortmansSeekShip");
 			npchar.quest = ""; //освобождаем личный флаг квеста для портмана
-			
+
 			ChangeCharacterReputation(pchar, -2);
 		break;
 		case "SeekShip_3":

@@ -256,7 +256,7 @@ void ProcessDialogEvent()
             link.l1.go = "Fight4_1";
         break;
         case "Fight4_1":
-            dialog.text = "Хех, это ты выкладывай. Сколько денег принёс"+ GetSexPhrase("","ла") +"?";
+            dialog.text = "Хех, это ты выкладывай. Сколько денег прин"+ GetSexPhrase("ёс","есла") +"?";
             link.l1 = "Покажи сначала свой товар.";
             link.l1.go = "Fight4_2";
         break;
@@ -277,7 +277,7 @@ void ProcessDialogEvent()
         break;
         //------------ пятая встреча ----------------
         case "Fifth time":
-            dialog.text = "Здравствуйте, " + GetAddress_Form(NPChar) + ". Скажите, не вы ли т"+ GetSexPhrase("от","а") +" знаменит"+ GetSexPhrase("ый капитан","ая женщина-капитан") +", что привёз"+ GetSexPhrase("","ла") +" из Старого Света крупный груз копры?";
+            dialog.text = "Здравствуйте, " + GetAddress_Form(NPChar) + ". Скажите, не вы ли т"+ GetSexPhrase("от","а") +" знаменит"+ GetSexPhrase("ый капитан","ая женщина-капитан") +", что прив"+ GetSexPhrase("ёз","езла") +" из Старого Света крупный груз копры?";
 			if (!CheckAttribute(pchar, "BlockOstin"))
 			{
 				link.l1 = "Нет, я не занимаюсь транзитными перевозками в Старый Свет.";

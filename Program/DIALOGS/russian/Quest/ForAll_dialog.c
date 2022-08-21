@@ -1177,7 +1177,7 @@ void ProcessDialogEvent()
 		break;
 		case "PortmansCap_1":
 			dialog.text = "Наш"+ GetSexPhrase("ел","ла") +"?!";
-			link.l1 = "Ага. В общем, я привёз"+ GetSexPhrase("","ла") +" тебе твой судовой журнал. Который ты забыл у начальника порта " + XI_ConvertString("Colony" + npchar.quest.firstCity + "Gen") + ".";
+			link.l1 = "Ага. В общем, я прив"+ GetSexPhrase("ёз","езла") +" тебе твой судовой журнал. Который ты забыл у начальника порта " + XI_ConvertString("Colony" + npchar.quest.firstCity + "Gen") + ".";
 			link.l1.go = "PortmansCap_2";
 		break;
 		case "PortmansCap_2":

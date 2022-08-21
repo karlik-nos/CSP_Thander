@@ -106,7 +106,7 @@ void ProcessDialogEvent()
 				//квест с вином от Доминика Легро
 				if (CheckAttribute(pchar, "questTemp.LSC.LegroHelp") && pchar.questTemp.LSC.LegroHelp == "toTomasBoil" && CheckCharacterItem(pchar, "potionwine"))
 				{
-					link.l2 = "Приятель, я принёс"+ GetSexPhrase("","ла") +" тебе бутылочку вина от твоего друга Доминика Легро. Выпей, расслабься, а то сидишь тут безвылазно...";
+					link.l2 = "Приятель, я прин"+ GetSexPhrase("ёс","есла") +" тебе бутылочку вина от твоего друга Доминика Легро. Выпей, расслабься, а то сидишь тут безвылазно...";
 					link.l2.go = "WineLogro";
 				}
 				if (CheckAttribute(pchar, "questTemp.LSC.LegroHelp") && pchar.questTemp.LSC.LegroHelp == "toSecondToPrison")

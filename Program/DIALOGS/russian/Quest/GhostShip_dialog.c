@@ -67,7 +67,7 @@ void ProcessDialogEvent()
 			}
 			if (GetCharacterItem(Pchar, "Coins") >= 666 && CheckAttribute(pchar , "GenQuest.GhostShip.NeedCoins"))
 			{
-                Link.l4 = "Я принёс"+ GetSexPhrase("","ла") +" твои жемчужины.";
+                Link.l4 = "Я прин"+ GetSexPhrase("ёс","есла") +" твои жемчужины.";
     			Link.l4.go = "quest_coin_2";
 			}
 		break;

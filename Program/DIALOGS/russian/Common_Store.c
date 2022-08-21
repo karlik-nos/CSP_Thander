@@ -483,7 +483,7 @@ void ProcessDialogEvent()
 
 		case "EncGirl_1":
 			dialog.text = "Слушаю вас внимательно.";
-			link.l1 = "Я привёл"+ GetSexPhrase("","а") +" вашу беглянку.";
+			link.l1 = "Я прив"+ GetSexPhrase("ёл","ела") +" вашу беглянку.";
 			link.l1.go = "EncGirl_2";
 		break;
 
@@ -810,7 +810,7 @@ void ProcessDialogEvent()
 				//homo 25/06/06 слухи
                 link.l6 = pcharrepphrase(RandPhraseSimple("Расскажешь мне последние сплетни? Все равно торчишь тут целый день.",
                                                           "Не суетись, старый мошенник, а лучше расскажи, как течёт жизнь на суше?"),
-                                        RandPhraseSimple("Кажется, что провёл"+ GetSexPhrase("","а") +" в море целую вечность. Что новенького в ваших краях?",
+                                        RandPhraseSimple("Кажется, что пров"+ GetSexPhrase("ёл","ела") +" в море целую вечность. Что новенького в ваших краях?",
                                                          "Вы, наверное, знаете все последние новости? Что важного произошло?"));,
 
     		    link.l6.go = "rumours_trader";
