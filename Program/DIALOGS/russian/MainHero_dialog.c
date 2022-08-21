@@ -490,7 +490,7 @@ void ProcessDialogEvent()
 			Link.l10 = "Установить приоритет использования еды.";
 	    	Link.l10.go = "food_priority";
 			if (pchar.location == Get_My_Cabin())
-				{
+			{
 				Link.l11 = "Использовать еду автоматически.";
 				Link.l11.go = "autofood";
 				if(CheckAttribute(pchar,"autofood"))
@@ -508,6 +508,19 @@ void ProcessDialogEvent()
 			{
 				link.lpotion = "Установить приоритет на использование лучших лечебных средств.";
 				Link.lpotion.go = "potion_priority";
+			}
+			if (pchar.location == Get_My_Cabin())
+			{
+				link.lcompanioncapture = "Проинструктировать компаньонов о распоряжении добычей при абордаже.";
+				if (CheckAttribute(PChar, "CompanionsLeaveCapturesDrift"))
+				{
+					link.lcompanioncapture = link.lcompanioncapture + " Приказать им действовать по-старому - поменять корабль если стоит, ограбить по-быстрому и утопить.";
+				}
+				else
+				{
+					link.lcompanioncapture = link.lcompanioncapture + " Приказать им оставлять призовой корабль дрейфовать.";
+				}
+				link.lcompanioncapture.go = "companion_capture";
 			}
 			if(startHeroType == 2)
 			{
@@ -557,7 +570,14 @@ void ProcessDialogEvent()
 				Link.lSmugglingFlag = "Отключить автоматическую смену флага во время контрабандных сделок.";
 				Link.lSmugglingFlag.go = "SmugglingFlag";
 			}
-
+			if (CheckAttribute(loadedLocation,"id"))
+			{
+				if (loadedLocation.id == "SanGabrielMechanic" && CheckAttribute(pchar,"VedekerDiscount"))
+				{
+					Link.lhenric = "Попросить Хенрика подготовить костюм к новому погружению.";
+					Link.lhenric.go = "RechargeCostume";
+				}
+			}
 			Link.l14 = RandPhraseSimple("Не сейчас. Нет времени.", "Некогда. Дела ждут.");
 			Link.l14.go = "exit";
 		break;
@@ -842,6 +862,16 @@ void ProcessDialogEvent()
 			dialog.text = "Приоритет для еды установлен.";
 			PChar.autofood_betterfood = true;
 			link.l1 = "Славно!";
+			link.l1.go = "exit";
+		break;
+
+		case "companion_capture":
+			dialog.text = "Инструкции переданы.";			
+			if (CheckAttribute(PChar, "CompanionsLeaveCapturesDrift"))
+				DeleteAttribute(PChar, "CompanionsLeaveCapturesDrift");
+			else
+				PChar.CompanionsLeaveCapturesDrift = true;
+			link.l1 = "Отлично!";
 			link.l1.go = "exit";
 		break;
 
@@ -1520,6 +1550,44 @@ void ProcessDialogEvent()
 			Link.l1.go = "exit";
 			NextDiag.TempNode = "TalkSelf_Main";
 			chrDisableReloadToLocation = false;
+		break;
+		case "RechargeCostume":
+			if (!CheckAttribute(pchar,"questTemp.LSC.immersions"))
+			{
+				dialog.Text = "Хенрик сказал, что всё готово к погружению.";
+				Link.l1 = "Ну и отлично.";
+				Link.l1.go = "exit";
+				pchar.questTemp.LSC = "toUnderwater";
+				pchar.questTemp.LSC.immersions = 0;
+				pchar.questTemp.LSC.immersions.pay = true;
+				SaveCurrentQuestDateParam("questTemp.LSC.immersions");
+				WaitDate("", 0, 0, 0, 1, 0);
+				break;
+			}
+			if (CheckAttribute(pchar,"questTemp.LSC.immersions") && pchar.questTemp.LSC.immersions.pay == true)
+			{
+				dialog.Text = "Костюм уже готов, можно погружаться.";
+				Link.l1 = "Ну и отлично.";
+				Link.l1.go = "exit";
+				break;
+			}
+			if (GetQuestPastDayParam("questTemp.LSC.immersions") > 1)
+			{
+				dialog.Text = "Хенрик сказал, что всё готово к погружению.";
+				Link.l1 = "Ну и отлично.";
+				Link.l1.go = "exit";
+				pchar.questTemp.LSC = "toUnderwater";
+				pchar.questTemp.LSC.immersions = 0;
+				pchar.questTemp.LSC.immersions.pay = true;
+				SaveCurrentQuestDateParam("questTemp.LSC.immersions");
+				WaitDate("", 0, 0, 0, 1, 0);
+			}
+			else
+			{
+				dialog.Text = "Хенрик сказал, что костюм не готов к погружению и попросил проверить завтра.";
+				Link.l1 = "Что поделать...";
+				Link.l1.go = "exit";
+			}
 		break;
 
 	}

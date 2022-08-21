@@ -1218,7 +1218,7 @@ void QuestComplete(string sQuestName, string qname)
 				LAi_group_SetCheck("CoastalGuards", "CoastalGuardsAllDead");
 				pchar.quest.CoastG.win_condition.l1 = "NPC_Death";
 				pchar.quest.CoastG.win_condition.l1.character = sld.id;
-				pchar.quest.CoastG.win_condition.function = "Rand_ContraFinal";
+				pchar.quest.CoastG.win_condition = "Rand_ContraFinal";
 				//LAi_SetActorType(Pchar); //fix
 				//LAi_ActorFollow(PChar, &Characters[makeint(Pchar.quest.contraband.SoldierIDX1)], "", 35);
 				//Lai_QuestDelay("Rand_CoastalPatrolAppear", 3.0);

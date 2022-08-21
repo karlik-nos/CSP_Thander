@@ -591,7 +591,7 @@ void BI_LaunchCommand()
         Sea_CabinStartNow();
 		break;
 	case "BI_Boat":
-		if (!CheckAttribute(Characters[targetNum], "LockBoat"))
+		if (!CheckAttribute(Characters[targetNum], "LockBoat") && !HasSubStr(Characters[targetNum].id, "_DriftCap_"))
 		{
 			// Warship 09.07.09 Мэри Селест
 			// Второй раз на нее выслать шлюпку низя
@@ -979,6 +979,7 @@ void AddShipToInterface(int charIndex)
 		}
 	}
 	int myShip = false;
+	int transferableShip = false;
 	int shipRelation = BI_RELATION_NEUTRAL;
 	switch( SeaAI_GetRelation(charIndex,nMainCharacterIndex) )
 	{
@@ -997,7 +998,8 @@ void AddShipToInterface(int charIndex)
 			myShip = true;
 		}
 	}
-
+	transferableShip = myShip;
+	if (HasSubStr(chRef.id, "_DriftCap_") && !LAi_IsDead(chRef)) transferableShip = true;
 
 	if( CharacterIsDead(chRef) )
 	{
@@ -1005,18 +1007,7 @@ void AddShipToInterface(int charIndex)
 			return;
 	}
 
-	if (myShip != true)
-	{
-		bCanSpeak = true;
-	}
-	//заглушка, убирающая интерфейс разговоров в море.
-	//кому из аддонщиков будет интересно привести систему разговоров в норм - раскоментарьте
-	//а у нас поставили сроки жесткие, програмеры в отпуске, и я банально не успеваю всё оттестить
-	//и поправить, ибо некоторые баги програмерские
-	//для изьятия заглушки удалите нах следующую строчку
-	//bCanSpeak = false;
-
-	SendMessage(&BattleInterface,"llaall",BI_IN_CREATE_SHIP,charIndex,chRef,shipRef,myShip,shipRelation);
+	SendMessage(&BattleInterface,"llaallll",BI_IN_CREATE_SHIP,charIndex,chRef,shipRef,myShip,shipRelation,0,transferableShip);
 }
 
 void BI_DeleteShip()
@@ -2364,29 +2355,38 @@ ref ProcessSailDamage()
 	float sailPower = GetEventData();
 
 	ref chref = GetCharacter(chrIdx);
-	if (CheckAttribute(&RealShips[sti(chref.Ship.Type)], "Tuning.SailsSpecial") && rand(2)<1)
-	{
-		BI_g_fRetVal = 0;
-		return &BI_g_fRetVal;
-	}
-
-	if (LAi_IsImmortal(chref))
-	{
-		BI_g_fRetVal = 0;
-		return &BI_g_fRetVal;
-	}
 
 	string groupName = ""+groupNum;
 	aref arSail;
 	makearef(arSail,chref.ship.sails.(reyName).(groupName));
+	
+	if (LAi_IsImmortal(chref))
+	{
+		arSail.hd = DeleteOneSailHole(sti(chref.index), groupName, reyName, holeData, 1);//имитирует защиту залатыванием дырки в месте попадания
+		BI_g_fRetVal = 0;
+		return &BI_g_fRetVal;
+	}
 
 	float sailDmg = 0.0;
 	float sailDmgMax = GetCharacterShipSP(chref) * sailPower;
+	if(!CheckAttribute(arSail, "oldhd"))
+	{
+		arSail.oldhd = 0;
+	}
+	if(!CheckAttribute(arSail, "olddmg"))
+	{
+		arSail.olddmg = 0;
+	}
+	if(!CheckAttribute(arSail, "oldhc")) 
+	{
+		arSail.oldhc = 0;
+	}
 	if( !CheckAttribute(arSail,"dmg") )	{ sailDmg = 0.0; }
-
+	
 	if(sMastName=="*")
 	{
-		sailDmg = sailDmg + GetRigDamage(shootIdx,sti(AIBalls.CurrentBallType),chref);
+		//sailDmg = sailDmg + GetRigDamage(shootIdx,sti(AIBalls.CurrentBallType),chref);
+		//RigDamage тут всегда 0
 		if(sailDmg>sailDmgMax)	{ sailDmg = sailDmgMax; }
 		int needHole = GetNeedHoleFromDmg(sailDmg,sailDmgMax,maxHoleCount);
 		if(holeCount!=needHole)
@@ -2401,6 +2401,7 @@ ref ProcessSailDamage()
 				sailDmg = GetNeedDmgFromHole(holeCount,sailDmgMax,maxHoleCount);
 			}
 		}
+		sailDmg = GetNeedDmgFromHole(holeCount,sailDmgMax,maxHoleCount);
 	}
 	else
 	{
@@ -2412,13 +2413,40 @@ ref ProcessSailDamage()
 	{
 		Log_SetStringtoLog("MUST DIE!!! " + sailDmg);
 	}*/
+	
+	if(CheckAttribute(&RealShips[sti(chref.Ship.Type)], "Tuning.SailsSpecial") && rand(5)<1 && holedata != sti(arSail.oldhd))
+	{
 
-	arSail.hc = holeCount;
-	arSail.hd = holeData;
+		if(sailDmg - stf(arSail.olddmg) >=1)
+		{
+			arSail.hd = DeleteOneSailHole(sti(chref.index), groupName, reyName, holeData, 1);
+			arSail.oldhd = sti(arSail.hd);
+			if(!CheckAttribute(arSail, "defended"))
+			{
+				arSail.defended = 1;
+			}	
+			arSail.defended = sti(arSail.defended)+1;
+			arSail.hc = sti(arSail.oldhc);
+			arSail.oldhc = sti(arSail.hc);
+			arSail.dmg = stf(arSail.olddmg);
+			arSail.olddmg = stf(arSail.dmg);
+			chref.ship.SP = CalculateShipSP(chref);
+			BI_g_fRetVal = 0.0;
+			return &BI_g_fRetVal;
+		}
+	}
+	else
+	{
+		arSail.dmg = sailDmg;
+		arSail.hd = holeData;
+		arSail.hc = holeCount;
+		arSail.oldhd = holeData;
+	}
+	
 	arSail.mhc = maxHoleCount;
 	arSail.sp = sailPower;
-	arSail.dmg = sailDmg;
 
+	
 	chref.ship.SP = CalculateShipSP(chref);
 	BI_g_fRetVal = sailDmg;
 	return &BI_g_fRetVal;
@@ -3236,6 +3264,8 @@ ref procGetSRollSpeed()
 // скорость подъема паруса
 float GetRSRollSpeed(ref chref)
 {
+	if (HasSubStr(chref.id, "_DriftCap_")) return 3.0;
+
 	int iShip = sti(chref.ship.type);
 	if( iShip<0 || iShip>=REAL_SHIPS_QUANTITY ) {return 0.0;}
 
