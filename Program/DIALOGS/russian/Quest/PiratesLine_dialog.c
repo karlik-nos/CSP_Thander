@@ -171,10 +171,10 @@ void ProcessDialogEvent()
 		case "Tavern_5":
 			dialog.text = "Вот и отлично! Ну, счастливо тебе, "+ GetSexPhrase("приятель","подруга") +". Будь здоров"+ GetSexPhrase("","а") +"!";
 			if (pchar.questTemp.AnjelikaTichPrologue8_Gudli == "ATP8")	//Sinistra Пролог Анжелика тич
-				{
-					dialog.text = "Вот и отлично! Ну, счастливо тебе, дочурка Чёрной Бороды. Будь здорова!";
-					DeleteAttribute(pchar, "questTemp.AnjelikaTichPrologue8_Gudli");
-				}
+			{
+				dialog.text = "Вот и отлично! Ну, счастливо тебе, дочурка Чёрной Бороды. Будь здорова!";
+				DeleteAttribute(pchar, "questTemp.AnjelikaTichPrologue8_Gudli");
+			}
 			link.l1 = "И тебе того же...";
 			link.l1.go = "exit";
 			npchar.lifeDay = 0;

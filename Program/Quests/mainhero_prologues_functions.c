@@ -317,7 +317,8 @@ void AnjelikaTich_StartGame(string qName)
 	pchar.questTemp.AnjelikaTichPrologue5 = "ATP5";
 	pchar.questTemp.AnjelikaTichPrologue7_Jackman = "ATP7";
 	pchar.questTemp.AnjelikaTichPrologue8_Gudli = "ATP8";
-	pchar.questTemp.AnjelikaTichPrologue9 = "ATP9";		//На всякий случай (нигде не задействовано)
+	pchar.questTemp.AnjelikaTichPrologue9_BlackBeard = "ATP9";
+	pchar.questTemp.AnjelikaTichPrologue10 = "ATP10";		//На всякий случай (нигде не задействовано)
 	LocatorReloadEnterDisable("SantoDomingo_ExitTown", "reload3", true);
 	LocatorReloadEnterDisable("PortPax_ExitTown", "reload3", true);
 	
