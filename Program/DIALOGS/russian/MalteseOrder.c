@@ -117,6 +117,7 @@ void ProcessDialogEvent()
 			{
 				iOfficer = GetPassenger(pchar, i);
 				sld = GetCharacter(iOfficer);
+				if (CheckAttribute(sld, "prisoned") && (sld.prisoned == true)) continue;
 				if (!GetRemovable(sld)) continue;
 				attrL = "l"+i;
 				Link.(attrL)	= "Офицер " + GetFullName(sld) + ".";
