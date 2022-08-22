@@ -1961,3 +1961,76 @@ float LAi_NPC_EvtGetEny()
 	npc_return_tmp = LAi_GetCharacterRelEnergy(chr);
 	return npc_return_tmp;
 }
+
+// EvgAnat - требование энергии для отскока -->
+bool bIsRecoilEnableWithoutEnergy = false; // можно ли выполнять отскоки при недостатке энергии (это не влияет на расход энергии)
+
+#event_handler("ChrCheckEnergy", "LAi_Chr_CheckEnergy");
+bool LAi_Chr_CheckEnergy()
+{
+	aref chr = GetEventData();
+	string action = GetEventData(); // "recoil" - отскок назад, "strafe_l" и "strafe_r" - отскоки влево и вправо
+	bool res = false;
+	float needEnergy = 0.0;
+	switch(action)
+	{
+		case "recoil":		needEnergy = 3.0;	break;
+		case "strafe_l":	needEnergy = 4.0;	break;
+		case "strafe_r":	needEnergy = 4.0;	break;
+	}
+	if (stf(chr.chr_ai.energy) >= needEnergy)
+	{	
+		res = true;
+		Lai_CharacterChangeEnergy(chr, -needEnergy);
+	}
+	if (bIsRecoilEnableWithoutEnergy)
+		return true;
+	return res;
+}
+// EvgAnat - требование энергии для отскока <--
+
+// EvgAnat - уклонение от выстрела -->
+#event_handler("Check_ChrHitFire", "LAi_Chr_CheckHitFire")
+int LAi_Chr_CheckHitFire() // 1 - не попал, 2 - попал
+{
+	aref shooter = GetEventData(); // стрелок
+	aref target = GetEventData(); // цель
+	bool isRecoil = GetEventData(); // находится ли цель в окне уклонения 
+	float kDist = GetEventData(); // коэффициент дальности, равный 1-d/25; k(0)=1; k(10)=0.6; k(25)=0
+	int res = 2;
+	if(isRecoil)
+	{
+		res = 1;
+		if (shooter.index == GetMainCharacterIndex())
+			Log_SetStringToLog("Мазила!");
+	}
+	return res;
+}
+// EvgAnat - уклонение от выстрела <--
+
+// EvgAnat - уклонение от атаки -->
+#event_handler("Check_ChrHitAttack", "LAi_Chr_CheckHitAttack");
+bool LAi_Chr_CheckHitAttack() // попала ли атака
+{
+	aref attack = GetEventData();
+	aref enemy = GetEventData();
+	bool isRecoil = GetEventData(); // находится ли цель в окне уклонения
+	bool res = true;
+	if (isRecoil)
+		res = false;	
+	return res;
+}
+// EvgAnat - уклонение от атаки <--
+
+// EvgAnat - вероятность желания уклониться от выстрела у нпс -->
+#event_handler("NPC_IsDodge", "LAi_NPC_IsDodge");
+bool LAi_NPC_IsDodge() // true - уклоняется, false - не уклоняется
+{
+	aref chr = GetEventData();
+	float r = Random();
+	bool res = false;
+	if (r <= 1.0)
+		res = true;
+	return res;
+}
+// EvgAnat - вероятность желания уклониться от выстрела у нпс <--
