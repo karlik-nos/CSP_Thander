@@ -1175,9 +1175,9 @@ void ProcessControls()
                 {
                     pchar.chr_ai.energy = stf(pchar.chr_ai.energy) - 3;
                     if (stf(pchar.chr_ai.energy) < 0) pchar.chr_ai.energy = 0;
-                }	*/
+                }	
             return;
-            break;
+            break; */
             case "BOAL_UsePotion": // boal KEY_X
                 if (bLandInterfaceStart)
 				{
