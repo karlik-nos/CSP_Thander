@@ -94,12 +94,12 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = "Step_S5_3";
         break;
         case "Step_S5_3":
-            dialog.text = "Вы должны атаковать и уничтожить поселение буканьеров на Эспаньоле, называемое Ла Вега. Заправляет там всем некий Эдвард Мэнсфилд, старый ладрон. Данное поселение подлежит тотальному уничтожению, все, найденное там - ваша законная добыча. Эспаньола должна быть полностью испанской, и первое препятствие на пути к этому - Ла Вега. Я ожидаю новую партию колонистов, им нужно пространство для жизни.";
+            dialog.text = "Вы должны атаковать и уничтожить поселение буканьеров на Эспаньоле, называемое Ла Вега. Заправляет там всем некий Эдвард Мэнсфилд, старый ладрон. Данное поселение подлежит тотальному уничтожению, всё, найденное там - ваша законная добыча. Эспаньола должна быть полностью испанской, и первое препятствие на пути к этому - Ла Вега. Я ожидаю новую партию колонистов, им нужно пространство для жизни.";
 			link.l1 = "Понятно. Я могу приступать?";
 			link.l1.go = "Step_S5_4";
         break;
         case "Step_S5_4":
-            dialog.text = "Конечно, и чем раньше, тем лучше. Я ещё раз хотел бы заострить ваше внимание на том, что поселение должно быть совершенно уничтожено, там не должно остаться ни одного живого человека. Эспаньола - наш остров, на нем нет места этому сброду.";
+            dialog.text = "Конечно, и чем раньше, тем лучше. Я ещё раз хотел бы заострить ваше внимание на том, что поселение должно быть совершенно уничтожено, там не должно остаться ни одного живого человека. Эспаньола - наш остров, на нём нет места этому сброду.";
 			link.l1 = "Я понимаю и немедленно приступаю к выполнению задачи.";
 			link.l1.go = "Step_S5_5";
         break;
@@ -110,7 +110,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
             pchar.questTemp.State = "Sp5LaVegaAttack_AttackLaVega";
             AddQuestRecord("Spa_Line_5_LaVegaAttack", "2");
             Pchar.quest.Sp5LaVegaAttack_AttackGoOn.win_condition.l1 = "location";
-            Pchar.quest.Sp5LaVegaAttack_AttackGoOn.win_condition.l1.location = "LaVega_ExitTown";
+			Pchar.quest.Sp5LaVegaAttack_AttackGoOn.win_condition.l1.location = "LaVega_town";	// 22.08.2022 Sinistra Теперь сражение происходит сразу в городе из-за новой локации
             Pchar.quest.Sp5LaVegaAttack_AttackGoOn.win_condition = "Sp5LaVegaAttack_AttackGoOn";
             pchar.GenQuestBox.LaVega_townhall.box1.items.jewelry3 = Rand(7)+1;
             pchar.GenQuestBox.LaVega_townhall.box1.items.jewelry4 = Rand(7)+1;
@@ -127,7 +127,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			sld.Default.Crew.MinQuantity = 1100;
 			sld.from_sea = ""; // для захвата с суши
 			sld.Default  = "LaVega_townhall";  // чтоб сухопутные города вернули население
-			sld.Default.BoardLocation = "LaVega_ExitTown";
+			sld.Default.BoardLocation = "LaVega_town";
         break;
         case "Step_S5_6":
             dialog.text = "Прекрасно, сеньор"+ GetSexPhrase("","ита") +"! Просто великолепно! Дон Франсиско Орегон-и-Гаскон может по праву гордится тем, что у него на службе находятся такие офицеры.";
