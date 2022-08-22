@@ -538,7 +538,10 @@ void AT_pr_tragedia(string qName)
 	sld = GetCharacter(NPC_GenerateCharacter("AT_pr_J1", "sold_spa_4", "man", "man", 1, SPAIN, -1, true));
 	LAi_LoginInCaptureTown(sld, true);
 	ChangeCharacterAddressGroup(sld,"LaVega_town","patrol","patrol8");
-	LAi_KillCharacter(sld);
+	LAi_SetActorType(sld);
+	sld.SaveItemsForDead = true;
+	DeleteAttribute(sld, "items");
+	LAi_ActorTurnToLocator(sld, "patrol", "patrol3");
 	
 	sld = GetCharacter(NPC_GenerateCharacter("AT_pr_J2", "sold_spa_6", "man", "man", 1, SPAIN, -1, true));
 	LAi_LoginInCaptureTown(sld, true);
@@ -609,6 +612,9 @@ void AT_pr_tragedia_2(string qName)
 {
 	SetMusic("none");
 	PlaySound("CSR\Music\Quest\Tragic.ogg");
+	
+	sld = CharacterFromID("AT_pr_J1")
+	LAi_KillCharacter(sld);
 	
 	sld = CharacterFromID("AT_pr_LaVegaIspanski_Gubernator")
 	LAi_SetWarriorType(sld);
