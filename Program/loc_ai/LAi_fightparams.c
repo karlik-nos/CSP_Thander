@@ -2031,6 +2031,6 @@ bool LAi_NPC_IsDodge() // true - уклоняется, false - не уклоня
 	bool res = false;
 	if (r <= 1.0)
 		res = true;
-	return res;
+	return true;
 }
 // EvgAnat - вероятность желания уклониться от выстрела у нпс <--
