@@ -6,7 +6,7 @@ int iTunPoints = 8;
 int iTimeMake, iShipPoints, iQBorders, iPriceOrder;
 int iQMAX, iQMIN, iFreeSP, iFreeTP;
 bool Tune_Sheme[10] = {0,0,0,0,0,0,0,0,0,0};//элементы 0(заголовок таблицы) и 2(паруса) пропускаем. просто для удобства
-float Ship_Sheme[11] = {0.0,0.0,0.0,-1.0,0.0,0.0,0.0,0.0,0.0,0.0,-10.0};//тип флоат, чтоб не преобразовывать лишний раз при умножении на коэффициент, по факту - целые
+float Ship_Sheme[11] = {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,-10.0};//тип флоат, чтоб не преобразовывать лишний раз при умножении на коэффициент, по факту - целые
 int CannonTypes[16] = {1000,7,0,8,1,9,2,10,3,11,4,12,5,13,6,14};// #define CANNON_TYPE_CULVERINE_LBS8	0, #define CANNON_TYPE_CANNON_LBS8		7
 
 string CurTable, CurRow, sNation;
@@ -32,17 +32,15 @@ void InitInterface_R(string iniName, ref _shipyarder)
 
 	refNPCShipyard  = _shipyarder;
 	sNation = GetNationNameByType(sti(refNPCShipyard.nation));
-//TODO - надо ли брать нацию локации на случай захвата города(с одной стороны - чужие корабли будут делать, с другой - если вся карта захвачена - то везде одни и те же корабли)
-//TODO - можно снимать ограничение нации квестом каким-нибудь - украсть чертежи кораблей других наций...
 
 	if (refNPCShipyard.id != "Pirates_shipyarder") {iYarderSkill = (sti(refNPCShipyard.reputation) + 11)/2+50; iTunPoints = (iYarderSkill-8)/22;}
 	//берём за навык кораблестроения репутацию верфиста и приводим к отрезку (56:100)
 
 	iShipPoints = 6 + iYarderSkill/6 - (MOD_SKILL_ENEMY_RATE)/3;//целые переменные делятся с округлением вниз
 	iQBorders = (iShipPoints+10)/3;
-	if (iQBorders > 9) iQBorders = 9;
-	iQMAX = iQBorders - 1;
-	iQMIN = -iQBorders - 1;
+	if (iQBorders > 10) iQBorders = 10;
+	iQMAX = iQBorders;
+	iQMIN = -iQBorders;
 	iFreeSP = iShipPoints;
 	iFreeTP = iTunPoints;
 
@@ -213,21 +211,19 @@ void FillShipParam()
 	int iShip = sti(refNPCShipyard.ship.type);
 	if (iShip != SHIP_NOTUSED)
 	{
-	log_info("__| " + iShip);
-
 		ref rRealShip = &RealShips[iShip];
 		ref rBaseShip = GetShipByType(sti(rRealShip.BaseType));
 		DeleteAttribute(rRealShip, "Tuning");//просто затираем записи об апгрейдах
 
-		rRealShip.HP = stf(rBaseShip.HP) * (1 + Ship_Sheme[1]/100);
-		rRealShip.MastMultiplier = stf(rBaseShip.MastMultiplier) - (Ship_Sheme[3]+1)/30;//прочность мачт без коэфф 0,8
-		rRealShip.SpeedRate = stf(rBaseShip.SpeedRate) * (1 + Ship_Sheme[4]/100);
-		rRealShip.TurnRate = stf(rBaseShip.TurnRate) * (1 + Ship_Sheme[5]/100);
-		rRealShip.WindAgainstSpeed = stf(rBaseShip.WindAgainstSpeed) * (1 + Ship_Sheme[6]/100);
-		rRealShip.Capacity = makeint(stf(rBaseShip.Capacity) * (1 + Ship_Sheme[7]/80));
-		rRealShip.OptCrew = stf(rBaseShip.OptCrew) * (1 + Ship_Sheme[8]/60);
-		rRealShip.MaxCrew = stf(rBaseShip.MaxCrew) * (1 + Ship_Sheme[8]/60);
-		rRealShip.MinCrew = stf(rBaseShip.MinCrew) * (1 + Ship_Sheme[8]/60);
+		rRealShip.HP = stf(rBaseShip.HP) * (1 + Ship_Sheme[1]/10.0*SHIP_STAT_RANGE_REQUEST);
+		rRealShip.MastMultiplier = stf(rBaseShip.MastMultiplier) - (Ship_Sheme[3] * 0.03);
+		rRealShip.SpeedRate = stf(rBaseShip.SpeedRate) * (1 + Ship_Sheme[4]/10.0*SHIP_STAT_RANGE_REQUEST);
+		rRealShip.TurnRate = stf(rBaseShip.TurnRate) * (1 + Ship_Sheme[5]/10.0*SHIP_STAT_RANGE_REQUEST);
+		rRealShip.WindAgainstSpeed = stf(rBaseShip.WindAgainstSpeed) * (1 + Ship_Sheme[6]/10.0*SHIP_STAT_RANGE_REQUEST);
+		rRealShip.Capacity = makeint(stf(rBaseShip.Capacity) * (1 + Ship_Sheme[7]/10.0*SHIP_STAT_RANGE_REQUEST));
+		rRealShip.OptCrew = stf(rBaseShip.OptCrew) * (1 + Ship_Sheme[8]/10.0*SHIP_STAT_RANGE_REQUEST);
+		rRealShip.MaxCrew = stf(rBaseShip.MaxCrew) * (1 + Ship_Sheme[8]/10.0*SHIP_STAT_RANGE_REQUEST);
+		rRealShip.MinCrew = stf(rBaseShip.MinCrew) * (1 + Ship_Sheme[8]/10.0*SHIP_STAT_RANGE_REQUEST);
 		rRealShip.MaxCaliber = rBaseShip.MaxCaliber;
 		rRealShip.CannonsQuantityMax = sti(rRealShip.CannonsQuantity);
 

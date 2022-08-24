@@ -8,6 +8,14 @@ object	RealShips[REAL_SHIPS_QUANTITY];
 #define SAIL_COST_PERCENT 10
 #define HULL_COST_PERCENT 20
 
+
+#define SHIP_STAT_RANGE_REQUEST 0.1
+#define SHIP_STAT_RANGE_DRAFT 0.25
+#define SHIP_STAT_RANGE_GENERATION 0.1
+#define SHIP_STAT_RANGE_GENERATION_SHIPYARD 0.08
+
+#define SHIP_STAT_UPGRADE_RATE 0.2
+
 ref GetRealShip(int iType)
 {
 	if(iType >= REAL_SHIPS_QUANTITY)
@@ -17,6 +25,18 @@ ref GetRealShip(int iType)
 		return &ShipsTypes[SHIP_TYPES_QUANTITY + 1]; // для отлова
 	}
 	return &RealShips[iType];
+}
+
+float GenerateShipStatF(float value, float fRandRate)
+{
+	int randRange = sti(value * fRandRate * 100 + 0.5);
+	return value + 0.01 * (rand(2 * randRange) - randRange); 
+}
+
+int GenerateShipStatI(int value, float fRandRate)
+{
+	int randRange = sti(value * fRandRate + 0.5);
+	return value + rand(2 * randRange) - randRange; 
 }
 
 // isStolen это признак ворованности (те цены на верфи)
@@ -48,17 +68,15 @@ int GenerateShip(int iBaseType, bool isStolen)
 
 	if (!CheckAttribute(rRealShip, "isFort"))
 	{
-	    rRealShip.SpeedRate	       = stf(rRealShip.SpeedRate) + frandSmall(stf(rRealShip.SpeedRate) / 5.0) - stf(rRealShip.SpeedRate) / 10.0;
-	    rRealShip.TurnRate         = stf(rRealShip.TurnRate) + frandSmall(stf(rRealShip.TurnRate) / 5.0) - stf(rRealShip.TurnRate) / 10.0;
-	    rRealShip.HP               = sti(rRealShip.HP) + rand(makeint(sti(rRealShip.HP)/5)) - makeint(sti(rRealShip.HP)/10);
-	    rRealShip.WindAgainstSpeed = stf(rRealShip.WindAgainstSpeed) + frandSmall(stf(rRealShip.WindAgainstSpeed)/5.0) - stf(rRealShip.WindAgainstSpeed)/10.0;
+	    rRealShip.SpeedRate	       = GenerateShipStatF(stf(rRealShip.SpeedRate), SHIP_STAT_RANGE_GENERATION);
+	    rRealShip.TurnRate         = GenerateShipStatF(stf(rRealShip.TurnRate), SHIP_STAT_RANGE_GENERATION);
+	    rRealShip.HP               = GenerateShipStatI(sti(rRealShip.HP), SHIP_STAT_RANGE_GENERATION);
+	    rRealShip.WindAgainstSpeed = GenerateShipStatF(stf(rRealShip.WindAgainstSpeed), SHIP_STAT_RANGE_GENERATION);
 	}
-    rRealShip.Capacity        = sti(rRealShip.Capacity) + rand(makeint(sti(rRealShip.Capacity)/4)) - makeint(sti(rRealShip.Capacity)/8);
-    rRealShip.OptCrew         = makeint(sti(rRealShip.OptCrew) + rand(makeint(sti(rRealShip.OptCrew)/3)) - makeint(sti(rRealShip.OptCrew)/6));
+    rRealShip.Capacity        = GenerateShipStatI(sti(rRealShip.Capacity), SHIP_STAT_RANGE_GENERATION);
+    rRealShip.OptCrew         = GenerateShipStatI(sti(rRealShip.OptCrew), SHIP_STAT_RANGE_GENERATION);
     rRealShip.MaxCrew         = makeint(sti(rRealShip.OptCrew) * 1.25 + 0.5);  // 25 процентов перегруза
-    rRealShip.MinCrew         = makeint(sti(rRealShip.MinCrew) + rand(makeint(sti(rRealShip.MinCrew)/3)) - makeint(sti(rRealShip.MinCrew)/6));
-
-	rRealShip.Weight		  = sti(rRealShip.Weight) + rand(sti(rRealShip.Weight)/20) - rand(sti(rRealShip.Weight)/20);
+    rRealShip.MinCrew         = GenerateShipStatI(sti(rRealShip.MinCrew), SHIP_STAT_RANGE_GENERATION);
 
 	// to_do del -->
 	rRealShip.BoardingCrew    = 0;
@@ -82,7 +100,7 @@ int GenerateShipExt(int iBaseType, bool isStolen, ref chr)
 	string  attr, sCity;
 	int 	i;
 	aref 	refShip;
-	float	Кdckyrd = 1.0;
+	float	fStatRange = SHIP_STAT_RANGE_GENERATION;
 	bool	isShipyard = false;
 
 	int iShip = CreateBaseShip(iBaseType);
@@ -115,7 +133,7 @@ int GenerateShipExt(int iBaseType, bool isStolen, ref chr)
 		sCity = chr.City;
 		if(CheckCharacterID(chr, sCity + "_shipyarder"))
 		{
-			Кdckyrd 	= 0.8;
+			fStatRange 	= SHIP_STAT_RANGE_GENERATION_SHIPYARD;
 			isShipyard 	= true;
 		}
 	}
@@ -216,19 +234,19 @@ int GenerateShipExt(int iBaseType, bool isStolen, ref chr)
 
 		if(!CheckAttribute(rRealShip, "QuestShip"))
 		{
-			rRealShip.SpeedRate	   		= stf(rRealShip.SpeedRate) + Кdckyrd * (frandSmall(stf(rRealShip.SpeedRate) / 5.0) - stf(rRealShip.SpeedRate) / 10.0);
-			rRealShip.TurnRate         	= stf(rRealShip.TurnRate) + Кdckyrd * (frandSmall(stf(rRealShip.TurnRate) / 5.0) - stf(rRealShip.TurnRate) / 10.0);
-			rRealShip.HP               	= sti(rRealShip.HP) + makeint(Кdckyrd * (rand(makeint(sti(rRealShip.HP)/5)) - makeint(sti(rRealShip.HP)/10)));
-			rRealShip.WindAgainstSpeed 	= stf(rRealShip.WindAgainstSpeed) + Кdckyrd * (frandSmall(stf(rRealShip.WindAgainstSpeed)/5.0) - stf(rRealShip.WindAgainstSpeed)/10.0);
+			rRealShip.SpeedRate	       = GenerateShipStatF(stf(rRealShip.SpeedRate), fStatRange);
+			rRealShip.TurnRate         = GenerateShipStatF(stf(rRealShip.TurnRate), fStatRange);
+			rRealShip.HP               = GenerateShipStatI(sti(rRealShip.HP), fStatRange);
+			rRealShip.WindAgainstSpeed = GenerateShipStatF(stf(rRealShip.WindAgainstSpeed), fStatRange);
 		}
 	}
 
 	if(!CheckAttribute(rRealShip, "QuestShip"))
 	{
-		rRealShip.Capacity        = sti(rRealShip.Capacity) + makeint(Кdckyrd * (rand(makeint(sti(rRealShip.Capacity)/4)) - makeint(sti(rRealShip.Capacity)/8)));
-		rRealShip.OptCrew         = makeint(sti(rRealShip.OptCrew) + Кdckyrd * (rand(makeint(sti(rRealShip.OptCrew)/3)) - makeint(sti(rRealShip.OptCrew)/6)));
-		rRealShip.MinCrew         = makeint(sti(rRealShip.MinCrew) + Кdckyrd * (rand(makeint(sti(rRealShip.MinCrew)/3)) - makeint(sti(rRealShip.MinCrew)/6)));
-		rRealShip.Weight		  = sti(rRealShip.Weight) + makeint(Кdckyrd * (rand(sti(rRealShip.Weight)/20) - rand(sti(rRealShip.Weight)/20)));
+		rRealShip.Capacity        = GenerateShipStatI(sti(rRealShip.Capacity), fStatRange);
+		rRealShip.OptCrew         = GenerateShipStatI(sti(rRealShip.OptCrew), fStatRange);
+		rRealShip.MaxCrew         = makeint(sti(rRealShip.OptCrew) * 1.25 + 0.5);  // 25 процентов перегруза
+		rRealShip.MinCrew         = GenerateShipStatI(sti(rRealShip.MinCrew), fStatRange);
 	}
 
 	// to_do del -->
@@ -2024,11 +2042,9 @@ void CreateFortMerchants(ref ch, int iNation)
 //Генерация топового корабля
 int GenerateShipTop(int iBaseType, bool isStolen, ref chr)
 {
-	string  attr, sCity;
+	string  attr;
 	int 	i;
 	aref 	refShip;
-	float	Кdckyrd = 1.0;
-	bool	isShipyard = false;
 
 	int iShip = CreateBaseShip(iBaseType);
 
@@ -2063,18 +2079,6 @@ int GenerateShipTop(int iBaseType, bool isStolen, ref chr)
 		case 2: rRealShip.HullArmor = 36; break;
 		case 1: rRealShip.HullArmor = 46; break;
 	}
-
-	// ugeen --> если кораблик генерится на верфи, разброс статов более узкий
-	if (CheckAttribute(chr, "City"))
-	{
-		sCity = chr.City;
-		if(CheckCharacterID(chr, sCity + "_shipyarder"))
-		{
-			Кdckyrd 	= 0.8;
-			isShipyard 	= true;
-		}
-	}
-	// ugeen
 
 	if (!CheckAttribute(rRealShip, "isFort"))
 	{
@@ -2155,19 +2159,19 @@ int GenerateShipTop(int iBaseType, bool isStolen, ref chr)
 		refShip.Cannons = sti(rRealShip.Cannons);
 		// <-- рэндом стволов
 
-		rRealShip.Bonus_Capacity 	= makeint(sti(rRealShip.Capacity)*0.25);
-		rRealShip.Bonus_HP 			= makeint(sti(rRealShip.HP)*0.25);
-		rRealShip.Bonus_SpeedRate   = stf(rRealShip.SpeedRate)*0.25;
-		rRealShip.Bonus_TurnRate    = stf(rRealShip.TurnRate)*0.25;
+		rRealShip.Bonus_Capacity 	= makeint(sti(rRealShip.Capacity)*SHIP_STAT_RANGE_DRAFT);
+		rRealShip.Bonus_HP 			= makeint(sti(rRealShip.HP)*SHIP_STAT_RANGE_DRAFT);
+		rRealShip.Bonus_SpeedRate   = stf(rRealShip.SpeedRate)*SHIP_STAT_RANGE_DRAFT;
+		rRealShip.Bonus_TurnRate    = stf(rRealShip.TurnRate)*SHIP_STAT_RANGE_DRAFT;
 
-		rRealShip.WindAgainstSpeed 	= stf(rRealShip.WindAgainstSpeed)*1.25;
+		rRealShip.WindAgainstSpeed 	= stf(rRealShip.WindAgainstSpeed)*(1.0 + SHIP_STAT_RANGE_DRAFT);
 	}
 
 	// to_do del -->
 	rRealShip.BoardingCrew    = 0;
 	rRealShip.GunnerCrew      = 0;
 	rRealShip.CannonerCrew    = 0;
-	rRealShip.OptCrew      = makeint(sti(rRealShip.OptCrew)*1.25);
+	rRealShip.OptCrew      = makeint(sti(rRealShip.OptCrew)*(1.0 + SHIP_STAT_RANGE_DRAFT));
 	rRealShip.MaxCrew      = makeint(sti(rRealShip.OptCrew)*1.25);
 	// to_do del <--
 
@@ -2184,7 +2188,6 @@ int GenerateShipTop(int iBaseType, bool isStolen, ref chr)
 
 	rRealShip.Stolen = isStolen;  // ворованность
 	rRealShip.soiling = 0;
-	//if (rand(4)==0) GetRandomSpecialUpgrade(rRealShip);
 
 	return iShip;
 }
