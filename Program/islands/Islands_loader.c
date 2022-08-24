@@ -258,7 +258,7 @@ void ChangeSeaMapNew() //string sNewIslandId)
 {
 	//ShipsInit();
 	DelEventHandler("FaderEvent_StartFade", "ChangeSeaMapNew");
-    PauseAllSounds();
+    //PauseAllSounds();
 	DeleteSeaEnvironment();
 	//SetEventHandler("Sea2Sea_Reload", "Sea2Sea_Reload", 0);
 	//PostEvent("Sea2Sea_Reload", 0);
