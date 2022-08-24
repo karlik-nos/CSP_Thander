@@ -15,7 +15,8 @@ object	RealShips[REAL_SHIPS_QUANTITY];
 #define SHIP_STAT_RANGE_GENERATION 0.1
 #define SHIP_STAT_RANGE_GENERATION_SHIPYARD 0.08
 
-#define SHIP_STAT_UPGRADE_RATE 0.2
+#define SHIP_STAT_UPGRADE_BERMUDE 0.2
+#define SHIP_STAT_UPGRADE_FLYING_DUTCHMAN 0.05
 
 ref GetRealShip(int iType)
 {
@@ -227,11 +228,6 @@ int GenerateShipExt(int iBaseType, bool isStolen, ref chr)
 
 		refShip.Cannons = sti(rRealShip.Cannons);
 		// <-- рэндом стволов
-
-		rRealShip.Bonus_Capacity 	= 0;
-		rRealShip.Bonus_HP			= 0;
-		rRealShip.Bonus_SpeedRate   = 0.0;
-		rRealShip.Bonus_TurnRate	= 0.0;
 
 		if(!CheckAttribute(rRealShip, "QuestShip"))
 		{
@@ -2168,28 +2164,22 @@ int GenerateShipTop(int iBaseType, bool isStolen, ref chr)
 		refShip.Cannons.Borts.bcannon = sti(rRealShip.bcannon);
 
 		refShip.Cannons = sti(rRealShip.Cannons);
-		// <-- рэндом стволов
 
-		rRealShip.Bonus_Capacity 	= makeint(sti(rRealShip.Capacity)*SHIP_STAT_RANGE_DRAFT);
-		rRealShip.Bonus_HP 			= makeint(sti(rRealShip.HP)*SHIP_STAT_RANGE_DRAFT);
-		rRealShip.Bonus_SpeedRate   = stf(rRealShip.SpeedRate)*SHIP_STAT_RANGE_DRAFT;
-		rRealShip.Bonus_TurnRate    = stf(rRealShip.TurnRate)*SHIP_STAT_RANGE_DRAFT;
+		rRealShip.Capacity		= makeint(sti(rRealShip.Capacity)*(1.0 + SHIP_STAT_RANGE_DRAFT));
+		rRealShip.HP			= makeint(sti(rRealShip.HP)*(1.0 + SHIP_STAT_RANGE_DRAFT));
+		rRealShip.SpeedRate		= stf(rRealShip.SpeedRate)*(1.0 + SHIP_STAT_RANGE_DRAFT);
+		rRealShip.TurnRate		= stf(rRealShip.TurnRate)*(1.0 + SHIP_STAT_RANGE_DRAFT);
 
 		rRealShip.WindAgainstSpeed 	= stf(rRealShip.WindAgainstSpeed)*(1.0 + SHIP_STAT_RANGE_DRAFT);
 	}
 
 	// to_do del -->
-	rRealShip.BoardingCrew    = 0;
-	rRealShip.GunnerCrew      = 0;
-	rRealShip.CannonerCrew    = 0;
-	rRealShip.OptCrew      = makeint(sti(rRealShip.OptCrew)*(1.0 + SHIP_STAT_RANGE_DRAFT));
-	rRealShip.MaxCrew      = makeint(sti(rRealShip.OptCrew)*1.25);
+	rRealShip.BoardingCrew  = 0;
+	rRealShip.GunnerCrew    = 0;
+	rRealShip.CannonerCrew  = 0;
+	rRealShip.OptCrew       = makeint(sti(rRealShip.OptCrew)*(1.0 + SHIP_STAT_RANGE_DRAFT));
+	rRealShip.MaxCrew       = makeint(sti(rRealShip.OptCrew)*1.25);
 	// to_do del <--
-
-	if(CheckAttribute(rRealShip, "Bonus_Capacity"))	rRealShip.Capacity = sti(rRealShip.Capacity) + sti(rRealShip.Bonus_Capacity);
-	if(CheckAttribute(rRealShip, "Bonus_HP")) rRealShip.HP = sti(rRealShip.HP) + sti(rRealShip.Bonus_HP);
-	if(CheckAttribute(rRealShip, "Bonus_SpeedRate")) rRealShip.SpeedRate = stf(rRealShip.SpeedRate) + stf(rRealShip.Bonus_SpeedRate);
-	if(CheckAttribute(rRealShip, "Bonus_TurnRate"))	rRealShip.TurnRate = stf(rRealShip.TurnRate) + stf(rRealShip.Bonus_TurnRate);
 
 	SetCabinTypeEx(rRealShip, sti(rRealShip.Class)); //Выдача случайной каюты по классу не квестовым - Gregg
 

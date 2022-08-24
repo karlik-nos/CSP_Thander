@@ -869,7 +869,7 @@ void SetShipOTHERTable(string _tabName, ref _chr)
     GameInterface.(_tabName).tr6.td1.icon.image = "AgainstWind";
 	GameInterface.(_tabName).tr6.td2.str = XI_ConvertString("AgainstWind");
 	GameInterface.(_tabName).tr6.td3.str = FloatToString(stf(refBaseShip.WindAgainstSpeed),2);
-	if (!CheckAttribute(&RealShips[iShip], "Tuning.WindAgainst"))
+	if (!CheckAttribute(&RealShips[iShip], "Tuning.WindAgainstSpeed"))
 	{
 		GameInterface.(_tabName).tr6.td3.color = argb(255,255,255,255);
 	}

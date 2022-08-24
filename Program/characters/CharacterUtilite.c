@@ -1585,7 +1585,7 @@ void SetBaseShipData(ref refCharacter)
 		}
 	}
 	refCharacter.ship.crew.disease = 0;
-	SetTuningShipStates(refCharacter);
+	SetBermudeTuningShipStates(refCharacter);
 	//Mett: nation sails —->
 	if(sti(refCharacter.nation) == PIRATE)
 	{

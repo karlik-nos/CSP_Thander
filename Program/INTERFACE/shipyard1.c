@@ -231,9 +231,8 @@ void FillShipParam()
 		rRealShip.Price	= GetShipPriceByTTH(iShip, refNPCShipyard);//цена без пушек
 		CalcTuningPrice();//стоимость апгрейда до применения апгрейдов считаем
 
-		SetTuningStates2Ship(refNPCShipyard, 0, Tune_Sheme[7], Tune_Sheme[4], Tune_Sheme[8], Tune_Sheme[5], Tune_Sheme[1], Tune_Sheme[3]);//калибр отдельно, иначе несколько раз до 36 можно поднимать
-		//void SetTuningStates2Ship(ref chr, bool MaxCaliber, bool Capacity, bool SpeedRate, bool MaxCrew, bool TurnRate, bool HP, bool MastMulti)
-		SetShipWASTuning(refNPCShipyard, Tune_Sheme[6]);//бейдевинд
+		SetBermudeTuningStates2Ship(refNPCShipyard, false, Tune_Sheme[7], Tune_Sheme[4], Tune_Sheme[8], Tune_Sheme[5], Tune_Sheme[1], Tune_Sheme[3], Tune_Sheme[6]);//калибр отдельно, иначе несколько раз до 36 можно поднимать
+		//void SetBermudeTuningStates2Ship(ref chr, bool MaxCaliber, bool Capacity, bool SpeedRate, bool MaxCrew, bool TurnRate, bool HP, bool MastMulti, bool WAS)
 
 		int BaseCaliber = sti(rBaseShip.MaxCaliber);
 		if (Tune_Sheme[9])//тюнинг калибра
@@ -398,20 +397,6 @@ void TableSelectChange()
 		FillOrderShip(iNewShip);
 	}
 	FillShipParam();
-}
-
-void SetShipWASTuning(ref chr, bool isSet)
-{
-	ref rShip = &RealShips[sti(chr.ship.type)];
-
-	if(!CheckAttribute(rShip, "Tuning.WindAgainst"))
-	{
-		if(isSet)
-			{
-				rShip.WindAgainstSpeed   = FloatToString(stf(rShip.WindAgainstSpeed) + stf(rShip.WindAgainstSpeed) / (2*stf(rShip.Class)) + 0.005, 2);
-				rShip.Tuning.WindAgainst = true;
-			}
-	}
 }
 
 void NullSelectTable(string sControl)
