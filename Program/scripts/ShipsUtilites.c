@@ -595,7 +595,7 @@ float ShipSpeedBonusFromPeople(ref _refCharacter)
 	float fCrewOpt = stf(rShip.OptCrew);
 	float fCrewCur = stf(_refCharacter.Ship.Crew.Quantity);
 	if (fCrewCur > fCrewMax) fCrewCur = fCrewMax;
-	float fTRFromPeople = Clampf(0.85 + ((GetCrewExp(_refCharacter, "Sailors") * fCrewCur) / (fCrewOpt * GetCrewExpRate())) * 0.15);
+	float fTRFromPeople = Clampf(0.85 + ((GetCrewExp(_refCharacter, "Sailors") * fCrewCur) / (fCrewOpt * GetCrewExpRate())) * 0.25);
 	return fTRFromPeople;
 }
 float ShipSpeedBonusFromSails(ref _refCharacter)
@@ -611,9 +611,14 @@ float ShipSpeedBonusFromSoiling(ref _refCharacter)
 
 float SpeedBySkill(aref refCharacter)
 {
-	float fSkill = GetSummonSkillFromNameToOld(refCharacter, SKILL_SAILING);
+	int skill = GetSummonSkillFromName(refCharacter, SKILL_SAILING);
 
-	float fTRFromSkill = 0.7 + (0.03 * fSkill);
+	int shipClass = GetCharacterShipClass(refCharacter);
+	int needSkillMin = GetShipClassNavySkill(shipClass);
+	int needSkillMax = func_min(needSkillMin + 10, SKILL_MAX);
+	if (needSkillMin == needSkillMax) needSkillMin = needSkillMin - 1;
+
+	float fSRFromSkill = 0.7 + Bring2Range(0.0, 0.25, makefloat(needSkillMin), makefloat(needSkillMax), makefloat(skill)) + 0.0005 * skill;
 
     float fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "ShipSpeedUp"), 1.0, 1.15);   //slib
     fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "SailingProfessional"), fSpeedPerk, 1.20);
@@ -622,7 +627,7 @@ float SpeedBySkill(aref refCharacter)
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.HullSpecial")) fSpeedPerk *= 0.75;
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.CuBot")) fSpeedPerk *= 1.05;
 
-	return fTRFromSKill * fSpeedPerk;
+	return fSRFromSkill * fSpeedPerk / 1.25;
 }
 
 float FindShipSpeedBonus(ref refCharacter)
@@ -685,7 +690,7 @@ float ShipTurnRateBonusFromPeople(ref _refCharacter)
 	float fCrewCur = stf(_refCharacter.Ship.Crew.Quantity);
 	if (fCrewCur > fCrewMax) fCrewCur = fCrewMax;
 	float  fTRFromPeople;
-	if (iArcadeSails == 1) fTRFromPeople = 0.3 + ((GetCrewExp(_refCharacter, "Sailors") * fCrewCur) / (fCrewOpt * GetCrewExpRate())) * 0.7;
+	if (iArcadeSails == 1) fTRFromPeople = 0.3 + ((GetCrewExp(_refCharacter, "Sailors") * fCrewCur) / (fCrewOpt * GetCrewExpRate())) * 1.0;
 	else fTRFromPeople = 0.05 + ((GetCrewExp(_refCharacter, "Sailors") * fCrewCur) / (fCrewOpt * GetCrewExpRate())) * 0.95;
 	if (fTRFromPeople > 1) fTRFromPeople = 1;
 	return fTRFromPeople;
@@ -703,16 +708,21 @@ float ShipTurnRateBonusFromSoiling(ref _refCharacter)
 
 float TurnBySkill(aref refCharacter)
 {
-	float fSkill = GetSummonSkillFromNameToOld(refCharacter, SKILL_SAILING);
-	float fTRFromSKill;
+	int skill = GetSummonSkillFromName(refCharacter, SKILL_SAILING);
 
+	int shipClass = GetCharacterShipClass(refCharacter);
+	int needSkillMin = GetShipClassNavySkill(shipClass);
+	int needSkillMax = func_min(needSkillMin + 10, SKILL_MAX);
+	if (needSkillMin == needSkillMax) needSkillMin = needSkillMin - 1;
+
+	float fTRFromSKill;
     if (iArcadeSails == 1)
 	{
-		fTRFromSKill = 0.5 + (0.05 * fSkill);
+		fTRFromSKill = 0.5 + Bring2Range(0.0, 0.4, makefloat(needSkillMin), makefloat(needSkillMax), makefloat(skill)) + 0.001 * skill;
 	}
 	else
 	{
-		fTRFromSKill = 0.3 + (0.07 * fSkill);
+		fTRFromSKill = 0.3 + Bring2Range(0.0, 0.4, makefloat(needSkillMin), makefloat(needSkillMax), makefloat(skill)) + 0.003 * skill;
 	}
 
     float fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "ShipTurnRateUp"), 1.0, 1.15);   //slib
@@ -723,7 +733,7 @@ float TurnBySkill(aref refCharacter)
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.HullSpecial")) fSpeedPerk *= 0.75;
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.CuBot")) fSpeedPerk *= 1.05;
 
-	return fTRFromSKill * fSpeedPerk * fFastTurn180;
+	return fTRFromSKill * fSpeedPerk * fFastTurn180 / 1.25;
 }
 
 float FindShipTurnRateBonus(aref refCharacter)
