@@ -3634,9 +3634,8 @@ void Ship_UpdateParameters()
 		}
 	}
 	// boal зависимость от скорости на маневр <--
-	float fTRResult = fMaxSpeedY * fShipTurnRate * fTRFromSailState * fTRFromSpeed;
+	float fTRResult = Clampf(fMaxSpeedY * fShipTurnRate * fTRFromSailState * fTRFromSpeed);
 
-	fTRResult = Bring2Range(0.07, 0.95, 0.00001, 1.0, fTRResult);
 	arCharShip.MaxSpeedY =	fTRResult;
 
     // Apply arcade mode
