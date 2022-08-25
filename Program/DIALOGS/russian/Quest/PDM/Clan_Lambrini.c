@@ -33,7 +33,7 @@ void ProcessDialogEvent()
 
 		case "First time":							//Автор Sinistra
 			dialog.text = "Эй, "+ GetSexPhrase("парень","деваха") +"! Это мой столик, и я не ищу компании.";
-			link.l1 = "Но ты её уже НАШ"+ GetSexPhrase("ЁЛ","ЛА") +". Так что давай поговорим.";
+			link.l1 = "Но ты её уже НАШЁЛ. Так что давай поговорим.";
 			link.l1.go = "Octavio_1_1";
 			link.l2 = "Я не хочу беспокоить тебя. Прощай.";
 			link.l2.go = "exit";
