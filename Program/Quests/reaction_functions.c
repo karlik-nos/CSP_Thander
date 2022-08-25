@@ -7427,7 +7427,7 @@ void ShipGuards()
 
 	location = &Locations[FindLocation("Cabin")];
 	makearef(boxItems, location.(boxId).items);
-	boxItems.money = 4000 * MOD_SKILL_ENEMY_RATE + rand(2000) + 250;
+	boxItems.gold = 4000 * MOD_SKILL_ENEMY_RATE + rand(2000) + 250;
 	boxItems.chest = 4;
 	location.(boxId) = Items_MakeTime(GetTime(), GetDataDay(), GetDataMonth(), GetDataYear());
 }
