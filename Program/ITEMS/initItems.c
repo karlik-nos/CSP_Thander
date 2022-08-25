@@ -1415,14 +1415,14 @@ int InitItems()
 	itm.Generation.Weight.max = 4.8;
 	n++;
 
-	// ККС, Офицерский Клеванг
+	// ККС, Офицерский клеванг
 	makeref(itm,Items[n]);
-	itm.id = "blade46";
+	itm.id = "blade24";
 	itm.groupID = BLADE_ITEM_TYPE;
-	itm.name = "itmname_blade46";
-	itm.describe = "itmdescr_blade46";
+	itm.name = "itmname_blade24";
+	itm.describe = "itmdescr_blade24";
 	itm.folder = "items";
-	itm.model = "blade46";
+	itm.model = "blade24";
 	itm.picIndex = 10;
 	itm.picTexture = "ITEMS_16";
 	// boal 19.01.2004 -->
@@ -1703,12 +1703,12 @@ int InitItems()
 
 	// ГПК Кракемарт
     makeref(itm,Items[n]);
-	itm.id = "blade13";
+	itm.id = "blade46";
 	itm.groupID = BLADE_ITEM_TYPE;
-	itm.name = "itmname_blade13";
-	itm.describe = "itmdescr_blade13";
+	itm.name = "itmname_blade46";
+	itm.describe = "itmdescr_blade46";
 	itm.folder = "items";
-	itm.model = "blade13";
+	itm.model = "blade46";
 	itm.picIndex = 6;
 	itm.picTexture = "ITEMS_3";
 	// boal 19.01.2004 -->
@@ -1930,14 +1930,14 @@ int InitItems()
 	itm.Generation.Weight.max = 10.0;
 	n++;
 
-	// ККС Чиавона
+	// ККС, Скьявона
 	makeref(itm,Items[n]);
-	itm.id = "blade24";
+	itm.id = "blade13";
 	itm.groupID = BLADE_ITEM_TYPE;
-	itm.name = "itmname_blade24";
-	itm.describe = "itmdescr_blade24";
+	itm.name = "itmname_blade13";
+	itm.describe = "itmdescr_blade13";
 	itm.folder = "items";
-	itm.model = "blade24";
+	itm.model = "blade13";
 	itm.picIndex = 5;
 	itm.picTexture = "ITEMS_8";
 	// boal 19.01.2004 -->
