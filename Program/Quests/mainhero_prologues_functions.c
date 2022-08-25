@@ -1030,6 +1030,7 @@ void Undead_StartGame(string qName)
 	WaitDate("",0,0,0,24 - sti(environment.time),5);
 
 	SetQuestsCharacters();
+	pchar.questTemp.UndeadPrologue = "UP";
 
 	LAi_LockFightMode(Pchar, false);
 	LAi_LocationFightDisable(loadedLocation, true);

@@ -851,72 +851,41 @@ void SelectNation(int iNation)
 
 void selectEngland()
 {
-	if (startHeroType == 2) SelectNation(PIRATE);
-	else SelectNation(ENGLAND);
-
+	if (startHeroType > 0) SelectNation(ENGLAND);
+	if (startHeroType == 2) SelectNation(PIRATE);	//Виспер
 	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
-	
-	if (startHeroType == 9) SelectNation(ENGLAND);
-	if (startHeroType == 10) SelectNation(FRANCE);
-	if (startHeroType == 11) SelectNation(SPAIN);
-	if (startHeroType == 12) SelectNation(HOLLAND);
 }
 
 void selectFrance()
 {
-    //homo блокировка нации для Питера Блада
-    if (startHeroType == 1) SelectNation(ENGLAND);
-	if (startHeroType == 2) SelectNation(PIRATE);
-	if (startHeroType > 2) SelectNation(FRANCE);
-	
+	if (startHeroType > 0) SelectNation(FRANCE);
+    if (startHeroType == 1) SelectNation(ENGLAND);	//Питер Блад
+	if (startHeroType == 2) SelectNation(PIRATE);	//Виспер
 	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
-
-	if (startHeroType == 9) SelectNation(ENGLAND);
-	if (startHeroType == 10) SelectNation(FRANCE);
-	if (startHeroType == 11) SelectNation(SPAIN);
-	if (startHeroType == 12) SelectNation(HOLLAND);
 }
 
 void selectSpain()
 {
-    //homo блокировка нации для Питера Блада
-    if (startHeroType == 1) SelectNation(ENGLAND);
-	if (startHeroType == 2) SelectNation(PIRATE);
-	if (startHeroType > 2) SelectNation(SPAIN);
-
-	if (startHeroType == 9) SelectNation(ENGLAND);
-	if (startHeroType == 10) SelectNation(FRANCE);
-	if (startHeroType == 11) SelectNation(SPAIN);
-	if (startHeroType == 12) SelectNation(HOLLAND);
+	if (startHeroType > 0) SelectNation(SPAIN);
+    if (startHeroType == 1) SelectNation(ENGLAND);	//Питер Блад
+	if (startHeroType == 2) SelectNation(PIRATE);	//Виспер
 }
 
 void selectHolland()
 {
-    //homo блокировка нации для Питера Блада
-    if (startHeroType == 1) SelectNation(ENGLAND);
-	if (startHeroType == 2) SelectNation(PIRATE);
-	if (startHeroType > 2) SelectNation(HOLLAND);
-	
+	if (startHeroType > 0) SelectNation(HOLLAND);
+    if (startHeroType == 1) SelectNation(ENGLAND);	//Питер Блад
+	if (startHeroType == 2) SelectNation(PIRATE);	//Виспер
 	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
-
-	if (startHeroType == 9) SelectNation(ENGLAND);
-	if (startHeroType == 10) SelectNation(FRANCE);
-	if (startHeroType == 11) SelectNation(SPAIN);
-	if (startHeroType == 12) SelectNation(HOLLAND);
 }
 
 void selectPirate()
 {
-    	//homo блокировка нации для Питера Блада
-	if (startHeroType == 1) SelectNation(ENGLAND);
-	else SelectNation(PIRATE);
-	
+    if (startHeroType > 0) SelectNation(PIRATE);
+	if (startHeroType == 1) SelectNation(ENGLAND);	//Питер Блад
 	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
-
-	if (startHeroType == 9) SelectNation(ENGLAND);
-	if (startHeroType == 10) SelectNation(FRANCE);
-	if (startHeroType == 11) SelectNation(SPAIN);
-	if (startHeroType == 12) SelectNation(HOLLAND);
+	if (startHeroType == 9) SelectNation(FRANCE);	//Нежить
+	if (startHeroType == 10) SelectNation(HOLLAND);	//Нежить
 }
 
 void IDoExit(int exitCode, bool bCode)

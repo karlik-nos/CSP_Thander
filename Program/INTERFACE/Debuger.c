@@ -2583,11 +2583,17 @@ void CalculateInfoDataF53()
 	Statistic_AddValue(PChar, "Cheats.F53", 1);
 }
 
-string descF54 = "Нет назначений";
+string descF54 = "Sinistra ТЕСТ";
 void CalculateInfoDataF54()
 {
 	totalInfo = descF54;
-
+	PChar.quest.UP_KrovPismo.win_condition.l1 = "Location_Type";	//Тип локации
+	PChar.quest.UP_KrovPismo.win_condition.l1.location_type = "cabin";
+	
+	pchar.GenQuestBox.My_Cabin.box1.items.map_hisp = 1;
+	pchar.GenQuestBox.My_Cabin_Medium2.box1.items.jewelry7 = 1;
+	pchar.GenQuestBox.My_Cabin_Quest.box1.items.mineral8 = 2;
+	pchar.GenQuestBox.My_Cabin.box1.items.jewelry2 = 5;
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 
 	SetFormatedText("INFO_TEXT", totalInfo);

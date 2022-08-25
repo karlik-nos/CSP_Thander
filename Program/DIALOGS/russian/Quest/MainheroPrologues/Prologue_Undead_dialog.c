@@ -13,16 +13,6 @@ void ProcessDialogEvent()
 	switch(Dialog.CurrentNode)
 	{
 		case "First time":
-			if (npchar.id == "SharleMary")
-			{
-				chrDisableReloadToLocation = false;
-				LAi_SetPlayerType(PChar);
-				LAi_SetImmortal(NPChar, true);
-				dialog.text = GetSexPhrase("Мой капитан! Ты весь в крови!","Любовь моя! Ты вся в крови!");
-				link.l1 = "Пустяки. "+GetSexPhrase("приложился","приложилась")+" об камни на берегу. Тебя не задели? Эти дьяволы отравляют своё оружие.";
-				link.l1.go = "2";
-			}
-
 			NextDiag.TempNode = "First time";
 		break;
 
