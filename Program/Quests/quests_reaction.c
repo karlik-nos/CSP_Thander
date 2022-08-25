@@ -10795,6 +10795,19 @@ void QuestComplete(string sQuestName, string qname)
 			sld.Dialog.Filename = "Quest/SilencePrice/Luke.c";
 			sld.dialog.currentnode = "First Time";
 		break;
+		
+//========================  Sinistra "Нежить: Говорящий клинок"  =======================
+
+		case "UP_KrovPismo":
+			PChar.quest.UP_KrovPismo1.over = "yes";
+			PChar.quest.UP_KrovPismo2.over = "yes";
+			PChar.quest.UP_KrovPismo3.over = "yes";
+			PChar.quest.UP_KrovPismo4.over = "yes";
+			PChar.quest.UP_KrovPismo5.over = "yes";
+			PChar.quest.UP_KrovPismo6.over = "yes";
+			PChar.quest.UP_KrovPismo7.over = "yes";
+			Locations[FindLocation(pchar.location)].box1.items.UP_PismoZagadka = 1;
+		break;
 
 		// Тичингиту
 		case "TichingituFree":

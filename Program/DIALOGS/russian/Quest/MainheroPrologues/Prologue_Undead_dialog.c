@@ -20,6 +20,35 @@ void ProcessDialogEvent()
 			dialog.text = GetSexPhrase("Он","Она")+" шевелится!!! Пресвятая дева, помилуй!";
 			link.l1 = "МОЗГИИИ!!!";
 			link.l1.go = "exit_fight";
+			
+			//Продолжение
+			PChar.quest.UP_KrovPismo1.win_condition.l1 = "location";
+			PChar.quest.UP_KrovPismo1.win_condition.l1.location = "My_Cabin_Small";
+			PChar.quest.UP_KrovPismo1.win_condition = "UP_KrovPismo";
+			
+			PChar.quest.UP_KrovPismo2.win_condition.l1 = "location";
+			PChar.quest.UP_KrovPismo2.win_condition.l1.location = "My_Cabin_Medium";
+			PChar.quest.UP_KrovPismo2.win_condition = "UP_KrovPismo";
+			
+			PChar.quest.UP_KrovPismo3.win_condition.l1 = "location";
+			PChar.quest.UP_KrovPismo3.win_condition.l1.location = "My_Cabin_Medium2";
+			PChar.quest.UP_KrovPismo3.win_condition = "UP_KrovPismo";
+			
+			PChar.quest.UP_KrovPismo4.win_condition.l1 = "location";
+			PChar.quest.UP_KrovPismo4.win_condition.l1.location = "My_New_Cabin1";
+			PChar.quest.UP_KrovPismo4.win_condition = "UP_KrovPismo";
+			
+			PChar.quest.UP_KrovPismo5.win_condition.l1 = "location";
+			PChar.quest.UP_KrovPismo5.win_condition.l1.location = "My_New_Cabin2";
+			PChar.quest.UP_KrovPismo5.win_condition = "UP_KrovPismo";
+			
+			PChar.quest.UP_KrovPismo6.win_condition.l1 = "location";
+			PChar.quest.UP_KrovPismo6.win_condition.l1.location = "My_Cabin_Huge";
+			PChar.quest.UP_KrovPismo6.win_condition = "UP_KrovPismo";
+			
+			PChar.quest.UP_KrovPismo7.win_condition.l1 = "location";
+			PChar.quest.UP_KrovPismo7.win_condition.l1.location = "My_Cabin_Quest";
+			PChar.quest.UP_KrovPismo7.win_condition = "UP_KrovPismo";
 		break;
 
 		case "DeadmansGod":
