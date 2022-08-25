@@ -981,7 +981,7 @@ void SetShipQualityTable(ref _chr, string _bar1, string _bar7, string _bar2, str
 
 		fTemp = stf(refShip.MastMultiplier);
 		if (CheckAttribute(refShip, "Untuned.MastMultiplier")) fTemp = refShip.Untuned.MastMultiplier;
-		fMast = 50 * (fTemp - stf(rBaseShip.MastMultiplier)) / 0.6 + 50;
+		fMast = 50 * (stf(rBaseShip.MastMultiplier) - fTemp) / 0.3 + 50;
 
 		fTemp = stf(refShip.WindAgainstSpeed);
 		if (CheckAttribute(refShip, "Untuned.WindAgainstSpeed")) fTemp = refShip.Untuned.WindAgainstSpeed;
