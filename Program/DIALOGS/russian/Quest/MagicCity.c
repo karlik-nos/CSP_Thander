@@ -789,12 +789,12 @@ void SetDanielleInWorld()
 	sld.cityShore = GetIslandRandomShoreId(GetArealByCityName(sld.city));
 	sld.quest.targetCity = SelectAnyColony(sld.city); //определим колонию, в бухту которой он придёт
 	sld.quest.targetShore = GetIslandRandomShoreId(GetArealByCityName(sld.quest.targetCity));
-	Log_TestInfo("Фрегат Queen вышел из: " + sld.city + " и направился в: " + sld.quest.targetShore);
+	Log_TestInfo("Галеон Queen вышел из: " + sld.city + " и направился в: " + sld.quest.targetShore);
 	//==> на карту
 	sld.mapEnc.type = "trade";
 	//выбор типа кораблика на карте
 	sld.mapEnc.worldMapShip = "quest_ship";
-	sld.mapEnc.Name = "Фрегат 'Королева'";
+	sld.mapEnc.Name = "Галеон 'Королева'";
 	int daysQty = GetMaxDaysFromIsland2Island(GetArealByCityName(sld.quest.targetCity), GetArealByCityName(sld.city))+5; //дней доехать даём с запасом
 	Map_CreateTrader(sld.cityShore, sld.quest.targetShore, sld.id, daysQty);
 	//заносим Id кэпа в базу нпс-кэпов

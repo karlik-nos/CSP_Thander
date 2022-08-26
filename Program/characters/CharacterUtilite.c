@@ -1752,7 +1752,7 @@ string CheckCharacterGeneratedItem(ref _refCharacter, string sItemBaseName)
 		}
 	}
 
-	return sItem;
+	return "";
 }
 
 int GetCharacterItem(ref _refCharacter,string itemName)
