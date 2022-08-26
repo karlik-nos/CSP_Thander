@@ -112,22 +112,22 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
             Pchar.quest.Sp5LaVegaAttack_AttackGoOn.win_condition.l1 = "location";
 			Pchar.quest.Sp5LaVegaAttack_AttackGoOn.win_condition.l1.location = "LaVega_town";	// 22.08.2022 Sinistra Теперь сражение происходит сразу в городе из-за новой локации
             Pchar.quest.Sp5LaVegaAttack_AttackGoOn.win_condition = "Sp5LaVegaAttack_AttackGoOn";
-            pchar.GenQuestBox.LaVega_townhall.box1.items.jewelry3 = Rand(7)+1;
-            pchar.GenQuestBox.LaVega_townhall.box1.items.jewelry4 = Rand(7)+1;
-            pchar.GenQuestBox.LaVega_townhall.box1.items.jewelry5 = Rand(7)+1;
-            pchar.GenQuestBox.LaVega_townhall.box1.items.jewelry7 = Rand(7)+1;
-            pchar.GenQuestBox.LaVega_townhall.box1.items.jewelry8 = Rand(7)+1;
-            pchar.GenQuestBox.LaVega_townhall.box1.items.jewelry10 = Rand(7)+1;
-            pchar.GenQuestBox.LaVega_townhall.box1.items.jewelry14 = Rand(7)+1;
-            pchar.GenQuestBox.LaVega_townhall.box1.items.jewelry17 = Rand(7)+1;
-            pchar.GenQuestBox.LaVega_townhall.box1.items.cirass3 = 1;
-			locations[FindLocation("LaVega_townhall")].models.day.charactersPatch = "SmallResidence_BoxPatch";
+            pchar.GenQuestBox.LaVega_townhall.private1.items.jewelry3 = Rand(7)+1;
+            pchar.GenQuestBox.LaVega_townhall.private1.items.jewelry4 = Rand(7)+1;
+            pchar.GenQuestBox.LaVega_townhall.private1.items.jewelry5 = Rand(7)+1;
+            pchar.GenQuestBox.LaVega_townhall.private1.items.jewelry7 = Rand(7)+1;
+            pchar.GenQuestBox.LaVega_townhall.private1.items.jewelry8 = Rand(7)+1;
+            pchar.GenQuestBox.LaVega_townhall.private1.items.jewelry10 = Rand(7)+1;
+            pchar.GenQuestBox.LaVega_townhall.private1.items.jewelry14 = Rand(7)+1;
+            pchar.GenQuestBox.LaVega_townhall.private1.items.jewelry17 = Rand(7)+1;
+            pchar.GenQuestBox.LaVega_townhall.private1.items.cirass3 = 1;
 			sld = characterFromId("Edward Mansfield");
 			sld.Default.Crew.Quantity    = 1700;
 			sld.Default.Crew.MinQuantity = 1100;
 			sld.from_sea = ""; // для захвата с суши
 			sld.Default  = "LaVega_townhall";  // чтоб сухопутные города вернули население
 			sld.Default.BoardLocation = "LaVega_town";
+			SetLocationCapturedState("Lavega_town", true);
         break;
         case "Step_S5_6":
             dialog.text = "Прекрасно, сеньор"+ GetSexPhrase("","ита") +"! Просто великолепно! Дон Франсиско Орегон-и-Гаскон может по праву гордится тем, что у него на службе находятся такие офицеры.";
