@@ -1081,8 +1081,8 @@ void CalculateInfoDataF6()
 	// mc.Ship.Type = GenerateShipExt(SHIP_CLIPPER, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_CORVETTE_QUEST, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_WH_CORVETTE_QUEST, true, mc);
-	// mc.Ship.Type = GenerateShipExt(SHIP_ARABELLA, true, mc);
-	mc.Ship.Type = GenerateShipExt(SHIP_FRIGATEQUEEN, true, mc);
+	mc.Ship.Type = GenerateShipExt(SHIP_ARABELLA, true, mc);
+	// mc.Ship.Type = GenerateShipExt(SHIP_FRIGATEQUEEN, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_CATHERINE, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_FLYINGDUTCHMAN, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_SANTISIMA, true, mc);
@@ -1096,7 +1096,8 @@ void CalculateInfoDataF6()
 
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS8;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS32;
-	mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS42;
+	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS42;
+	mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS48;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS8;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS32;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS36;
