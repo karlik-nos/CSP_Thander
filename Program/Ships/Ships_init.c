@@ -155,7 +155,6 @@ void InitShips()
 	refship.CanEncounter						= true;
 	refship.Type.Merchant						= true;
 	refship.Type.War							= true;
-	refShip.fWindAgainstSpeed					= 10.0;
 	refShip.sea_enchantment						= 4.0;
 	refShip.lowpolycrew = 3;
 	refShip.buildtime = 10;
@@ -195,7 +194,7 @@ void InitShips()
 	refship.nation.spain	= true;
 
 	///////////////////////////////////////////////////////////////////////////
-	/// Plot			Плот
+	/// Plot			Тартанетта
 	///////////////////////////////////////////////////////////////////////////
 	makeref(refShip,ShipsTypes[SHIP_PLOT]);
 	refShip.Name								= "Plot";
@@ -213,8 +212,8 @@ void InitShips()
 	refShip.bcannon 									= 0;
 	refShip.MaxCrew									= 10;
 	refShip.MinCrew									= 2;
-	refShip.SpeedRate						= 10;
-	refShip.TurnRate						= 10;
+	refShip.SpeedRate						= 12.0;
+	refShip.TurnRate						= 65.0;
 	refShip.Price								= 12000;
 	refShip.HP										= 100;
 	refShip.SP										= 100;
@@ -222,7 +221,6 @@ void InitShips()
 	refship.CanEncounter						= true;
 	refship.Type.Merchant						= true;
 	refship.Type.War							= true;
-	refShip.fWindAgainstSpeed					= 10.0;
 	refShip.sea_enchantment						= 4.0;
 	refShip.lowpolycrew							= 3;
 	refShip.buildtime 							= 10;
@@ -231,9 +229,9 @@ void InitShips()
 	refShip.Volume = 100.0;
 
 	refship.WaterLine				= 0;
-	refship.SpeedDependWeight			= 0.2;
+	refship.SpeedDependWeight			= 0.07;
 	refship.SubSeaDependWeight			= 0.4;
-	refship.TurnDependWeight			= 0.2;
+	refship.TurnDependWeight			= 0.07;
     refship.WindAgainstSpeed   = 7.0;//boal
 
 	refship.InertiaAccelerationX	= 3.0;	refship.InertiaBrakingX		= 2.0;
@@ -263,7 +261,7 @@ void InitShips()
 	refship.nation.spain	= true;
 
 	///////////////////////////////////////////////////////////////////////////
-	//// War Tartane			Баркас
+	//// War Tartane			Гукор
 	///////////////////////////////////////////////////////////////////////////
 	makeref(refShip,ShipsTypes[SHIP_WAR_TARTANE]);
 	refShip.Name								= "WarTartane";
@@ -280,9 +278,9 @@ void InitShips()
 	refShip.fcannon 									= 0;
 	refShip.bcannon 									= 0;
 	refShip.MaxCrew									= 20;
-	refShip.MinCrew									= 4;
+	refShip.MinCrew									= 5;
 	refShip.SpeedRate						= 14.0;
-	refShip.TurnRate						= 70;
+	refShip.TurnRate						= 55.0;
 	refShip.Price								= 22000;
 	refShip.HP										= 210;
 	refShip.SP										= 100;
@@ -290,7 +288,6 @@ void InitShips()
 	refship.CanEncounter						= true;
 	refship.Type.Merchant						= true;
 	refship.Type.War							= true;
-	refShip.fWindAgainstSpeed					= 10.0;
 	refShip.sea_enchantment						= 4.0;
 	refShip.lowpolycrew							= 3;
 	refShip.buildtime = 10;
@@ -302,9 +299,9 @@ void InitShips()
 	refShip.Volume = 100.0;
 
 	refship.WaterLine					= 0.1;
-	refship.SpeedDependWeight			= 0.2;
+	refship.SpeedDependWeight			= 0.07;
 	refship.SubSeaDependWeight			= 0.4;
-	refship.TurnDependWeight			= 0.2;
+	refship.TurnDependWeight			= 0.07;
     refship.WindAgainstSpeed   = 7.0;//boal
 
 	refship.InertiaAccelerationX	= 3.0;	refship.InertiaBrakingX		= 2.0;
@@ -335,7 +332,7 @@ void InitShips()
 	refship.nation.spain	= true;
 
 	///////////////////////////////////////////////////////////////////////////
-	/// Bermsloop		Лёг. Шлюп
+	/// Bermsloop		Тартарона
 	///////////////////////////////////////////////////////////////////////////
 	makeref(refShip,ShipsTypes[SHIP_BERMSLOOP]);
 	refShip.Name            			= "Bermsloop";
@@ -362,7 +359,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= true;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 6.0;
 	refShip.sea_enchantment				= 2.0;
 	refShip.lowpolycrew = 8;
 	refShip.buildtime = 20;
@@ -434,7 +430,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= true;
 	refship.Type.War					= false;
-	refShip.fWindAgainstSpeed			= 1.0;
 	refShip.sea_enchantment				= 1.8;
 	refShip.lowpolycrew 				= 10;
 	refShip.buildtime 					= 40;
@@ -509,7 +504,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= true;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 6.0;
 	refShip.sea_enchantment				= 2.0;
 	refShip.lowpolycrew = 8;
 	refShip.buildtime = 20;
@@ -580,7 +574,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 6.0;
 	refShip.sea_enchantment				= 2.0;
 	refShip.lowpolycrew = 8;
 	refShip.buildtime = 20;
@@ -657,7 +650,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 6.0;
 	refShip.sea_enchantment				= 2.0;
 	refShip.lowpolycrew = 8;
 	refShip.buildtime = 20;
@@ -728,7 +720,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= true;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed	= 4.0;
 	refShip.sea_enchantment		= 1.8;
 	refShip.lowpolycrew 		= 16;
 	refShip.buildtime 		= 60;
@@ -807,7 +798,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 5;
 	refShip.sea_enchantment				= 2.0;
 	refShip.lowpolycrew = 8;
 	refShip.buildtime = 20;
@@ -883,7 +873,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= true;
 	refship.Type.War					= false;
-	refShip.fWindAgainstSpeed			= 6.0;
 	refShip.sea_enchantment				= 2.0;
 	refShip.lowpolycrew = 8;
 	refShip.buildtime = 20;
@@ -956,7 +945,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 5;
 	refShip.sea_enchantment				= 2.0;
 	refShip.lowpolycrew = 8;
 	refShip.buildtime = 20;
@@ -1032,7 +1020,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refship.fWindAgainstSpeed 			= 5.0;
 	refShip.lowpolycrew 				= 9;
 
 	refship.Rocking.y 					= 0.45;
@@ -1107,7 +1094,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 3.5;
 	refShip.sea_enchantment					= 1.5;
 	refShip.lowpolycrew = 16;
 	refShip.buildtime = 80;
@@ -1181,7 +1167,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant 					= true;
 	refship.Type.War 						= true;
-	refShip.fWindAgainstSpeed = 4.0;
 	refShip.sea_enchantment = 1.8;
 	refShip.lowpolycrew = 12;
 	refShip.buildtime = 60;
@@ -1260,7 +1245,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= true;
 	refship.Type.War						= false;
-	refShip.fWindAgainstSpeed				= 5.0;
 	refShip.sea_enchantment					= 2;
 	refShip.lowpolycrew = 12;
 	refShip.buildtime = 60;
@@ -1334,7 +1318,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= true;
 	refship.Type.War						= false;
-	refShip.fWindAgainstSpeed				= 3.0;
 	refShip.sea_enchantment					= 1.8;
 	refShip.lowpolycrew = 10;
 	refShip.buildtime = 40;
@@ -1411,7 +1394,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 8.0;
 	refShip.sea_enchantment					= 2.0;
 	refShip.lowpolycrew = 12;
 	refShip.buildtime = 40;
@@ -1493,7 +1475,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= true;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 8.0;
 	refShip.sea_enchantment					= 2.0;
 	refShip.lowpolycrew = 12;
 	refShip.buildtime = 40;
@@ -1570,7 +1551,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 6.0;
 	refShip.sea_enchantment				= 2.0;
 	refShip.lowpolycrew = 8;
 	refShip.buildtime = 20;
@@ -1643,7 +1623,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= true;
 	refship.Type.War					= false;
-	refShip.fWindAgainstSpeed			= 6.0;
 	refShip.sea_enchantment				= 2.0;
 	refShip.lowpolycrew				= 8;
 	refShip.buildtime 				= 20;
@@ -1716,7 +1695,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 6.0;
 	refShip.sea_enchantment				= 2.0;
 	refShip.lowpolycrew				= 8;
 	refShip.buildtime 				= 20;
@@ -1789,7 +1767,6 @@ void InitShips()
 	refship.CanEncounter		= true;
 	refship.Type.Merchant		= true;
 	refship.Type.War			= true;
-	refShip.fWindAgainstSpeed	= 2.0;
 	refShip.sea_enchantment		= 1.8;
 	refShip.lowpolycrew			= 12;
 	refShip.buildtime			= 60;
@@ -1863,7 +1840,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 8.0;
 	refShip.sea_enchantment				= 2.0;
 	refShip.lowpolycrew = 12;
 	refShip.buildtime = 40;
@@ -1935,7 +1911,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= true;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 7.0;
 	refShip.sea_enchantment				= 2.0;
 	refShip.lowpolycrew				= 8;
 	refShip.buildtime 				= 20;
@@ -2012,7 +1987,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 3.5;
 	refShip.sea_enchantment					= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 100;
@@ -2091,7 +2065,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 2.0;
 	refShip.sea_enchantment					= 1.8;
 	refShip.lowpolycrew = 12;
 	refShip.buildtime = 60;
@@ -2167,7 +2140,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= true;
 	refship.Type.War						= false;
-	refShip.fWindAgainstSpeed				= 2.0;
 	refShip.sea_enchantment					= 3;
 	refShip.lowpolycrew = 12;
 	refShip.buildtime = 60;
@@ -2248,7 +2220,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 2.0;
 	refShip.sea_enchantment					= 1.8;
 	refShip.lowpolycrew = 12;
 	refShip.buildtime = 60;
@@ -2329,7 +2300,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 2.0;
 	refShip.sea_enchantment					= 1.8;
 	refShip.lowpolycrew = 12;
 	refShip.buildtime = 60;
@@ -2407,7 +2377,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 2.0;
 	refShip.sea_enchantment					= 1.8;
 	refShip.lowpolycrew = 12;
 	refShip.buildtime = 60;
@@ -2488,7 +2457,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 2.0;
 	refShip.sea_enchantment					= 1.8;
 	refShip.lowpolycrew = 12;
 	refShip.buildtime = 60;
@@ -2567,7 +2535,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= true;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 4.0;
 	refShip.sea_enchantment				= 1.8;
 	refShip.lowpolycrew = 12;
 	refShip.buildtime = 60;
@@ -2646,7 +2613,6 @@ void InitShips()
 	refship.CanEncounter		= true;
 	refship.Type.Merchant		= true;
 	refship.Type.War			= true;
-	refShip.fWindAgainstSpeed	= 1.2;
 	refShip.sea_enchantment		= 1.5;
 	refShip.lowpolycrew 		= 16;
 	refShip.buildtime 		= 60;
@@ -2725,7 +2691,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= true;
 	refship.Type.War					= false;
-	refShip.fWindAgainstSpeed			= 2.0;
 	refShip.sea_enchantment				= 1.8;
 	refShip.lowpolycrew					= 12;
 	refShip.buildtime					= 60;
@@ -2803,7 +2768,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= true;
 	refship.Type.War						= false;
-	refShip.fWindAgainstSpeed				= 2;
 	refShip.sea_enchantment					= 1.5;
 	refShip.lowpolycrew = 16;
 	refShip.buildtime = 60;
@@ -2880,7 +2844,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= true;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 2.2;
 	refShip.sea_enchantment				= 2.1;
 	refShip.lowpolycrew = 16;
 	refShip.buildtime = 60;
@@ -2946,7 +2909,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= true;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.0;
 	refShip.sea_enchantment				= 1.2;
 	refShip.lowpolycrew = 16;
 	refShip.buildtime = 60;
@@ -3026,7 +2988,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 4.0;
 	refShip.sea_enchantment				= 3;
 	refShip.lowpolycrew = 16;
 	refShip.buildtime = 60;
@@ -3106,7 +3067,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 2.2;
 	refShip.sea_enchantment				= 1.5;
 	refShip.lowpolycrew = 16;
 	refShip.buildtime = 80;
@@ -3177,7 +3137,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 2.0;
 	refShip.sea_enchantment				= 3;
 	refShip.lowpolycrew = 12;
 	refShip.buildtime = 60;
@@ -3253,7 +3212,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 3.0;
 	refShip.sea_enchantment				= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 100;
@@ -3336,7 +3294,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 4.0;
 	refShip.sea_enchantment				= 3;
 	refShip.lowpolycrew = 12;
 	refShip.buildtime = 60;
@@ -3416,7 +3373,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refship.fWindAgainstSpeed 			= 5.0;
 
 	refShip.lowpolycrew					= 12;
 
@@ -3490,7 +3446,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= true;
 	refship.Type.War						= false;
-	refShip.fWindAgainstSpeed				= 2;
 	refShip.sea_enchantment					= 1.5;
 	refShip.lowpolycrew = 16;
 	refShip.buildtime = 40;
@@ -3565,7 +3520,6 @@ void InitShips()
     refShip.CanEncounter                    = true;
     refShip.Type.Merchant					= false;
     refShip.Type.War						= true;
-    refShip.fWindAgainstSpeed				= 3.0;
     refShip.sea_enchantment					= 1.2;
     refShip.lowpolycrew = 20;
     refShip.buildtime = 100;
@@ -3650,7 +3604,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 3.0;
 	refShip.sea_enchantment					= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 100;
@@ -3730,7 +3683,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 2.0;
 	refShip.sea_enchantment					= 1.5;
 	refShip.lowpolycrew = 16;
 	refShip.buildtime = 40;
@@ -3801,7 +3753,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 2.2;
 	refShip.sea_enchantment				= 2.1;
 	refShip.lowpolycrew = 16;
 	refShip.buildtime = 60;
@@ -3876,7 +3827,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= true;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 2.2;
 	refShip.sea_enchantment				= 2.1;
 	refShip.lowpolycrew = 16;
 	refShip.buildtime = 60;
@@ -3951,7 +3901,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= true;
 	refship.Type.War						= false;
-	refShip.fWindAgainstSpeed				= 2.0;
 	refShip.sea_enchantment					= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 80;
@@ -4023,7 +3972,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= true;
 	refship.Type.War					= false;
-	refship.fWindAgainstSpeed 			= 3.0;
 	refShip.lowpolycrew 				= 20;
 
 	refship.Rocking.y = 0.5;
@@ -4099,7 +4047,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= true;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 2.3;
 	refShip.sea_enchantment					= 1.1;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 80;
@@ -4185,7 +4132,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed	= 1.1;
 	refShip.sea_enchantment		= 1.1;
 	refShip.lowpolycrew 		= 20;
 	refShip.buildtime 		= 80;
@@ -4262,7 +4208,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= true;
 	refship.Type.War					= false;
-	refShip.fWindAgainstSpeed			= 2.3;
 	refShip.sea_enchantment				= 1.1;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 80;
@@ -4336,7 +4281,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refship.fWindAgainstSpeed 			= 8.0;
 	refShip.lowpolycrew					= 21;
 	refship.WindAgainstSpeed   			= 8.8;
 	refship.CabinType          			= "Cabin_Medium2";
@@ -4409,7 +4353,6 @@ void InitShips()
 	refship.CanEncounter 		= true;
 	refship.Type.Merchant		= true;
 	refship.Type.War			= true;
-	refShip.fWindAgainstSpeed		= 1.1;
 	refShip.sea_enchantment		= 1.2;
 	refShip.lowpolycrew 		= 20;
 	refShip.buildtime 		= 80;
@@ -4488,7 +4431,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 2.0;
 	refShip.sea_enchantment				= 3;
 	refShip.lowpolycrew = 12;
 	refShip.buildtime = 60;
@@ -4567,7 +4509,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 2.2;
 	refShip.sea_enchantment					= 1.5;
 	refShip.lowpolycrew = 16;
 	refShip.buildtime = 80;
@@ -4649,7 +4590,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 4.1;
 	refShip.sea_enchantment					= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 100;
@@ -4731,7 +4671,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 2.2;
 	refShip.sea_enchantment				= 1.5;
 	refShip.lowpolycrew 				= 16;
 	refShip.buildtime 					= 80;
@@ -4807,7 +4746,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 2.2;
 	refShip.sea_enchantment				= 1.5;
 	refShip.lowpolycrew 				= 16;
 	refShip.buildtime 					= 80;
@@ -4883,7 +4821,6 @@ void InitShips()
     refShip.CanEncounter                	= true;
     refShip.Type.Merchant					= false;
     refShip.Type.War						= true;
-    refShip.fWindAgainstSpeed				= 3.0;
     refShip.sea_enchantment					= 1.2;
     refShip.lowpolycrew = 20;
     refShip.buildtime = 100;
@@ -4967,7 +4904,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 2.0;
 	refShip.sea_enchantment				= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 100;
@@ -5044,7 +4980,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= true;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 2.0;
 	refShip.sea_enchantment					= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 100;
@@ -5125,7 +5060,6 @@ void InitShips()
 	refship.CanEncounter			= true;
 	refship.Type.Merchant			= false;
 	refship.Type.War				= true;
-	refShip.fWindAgainstSpeed		= 2.0;
 	refShip.sea_enchantment			= 1.2;
 	refShip.lowpolycrew 			= 20;
 	refShip.buildtime 				= 100;
@@ -5206,7 +5140,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= true;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 2.0;
 	refShip.sea_enchantment					= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 80;
@@ -5289,7 +5222,6 @@ void InitShips()
 	refship.CanEncounter 					= true;
 	refship.Type.Merchant					= true;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 1.2;
 	refShip.sea_enchantment					= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 80;
@@ -5370,7 +5302,6 @@ void InitShips()
 	refship.CanEncounter 				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.2;
 	refShip.sea_enchantment				= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 80;
@@ -5444,7 +5375,6 @@ void InitShips()
 	refship.CanEncounter 				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.2;
 	refShip.sea_enchantment				= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 80;
@@ -5520,7 +5450,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 3.0;
 	refShip.sea_enchantment				= 1.2;
 	refShip.lowpolycrew 				= 20;
 	refShip.buildtime 					= 220;
@@ -5601,7 +5530,6 @@ void InitShips()
 	refship.Type.Merchant				= true;
 	refship.Type.War					= true;
 
-	refShip.fWindAgainstSpeed			= 1.6;
 	refShip.sea_enchantment				= 1.2;
 	refShip.lowpolycrew                             = 20;
 	refShip.buildtime                               = 80;
@@ -5674,7 +5602,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 4.0;
 	refShip.sea_enchantment				= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 100;
@@ -5759,7 +5686,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 2.0;
 	refShip.sea_enchantment					= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 100;
@@ -5835,7 +5761,6 @@ void InitShips()
 	refship.CanEncounter		= true;
 	refship.Type.Merchant 		= false;
 	refship.Type.War 			= true;
-	refShip.fWindAgainstSpeed 	= 3.3;
 	refShip.sea_enchantment 	= 1.2;
 	refShip.lowpolycrew 		= 20;
 	refShip.buildtime 		= 100;
@@ -5915,7 +5840,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed = 2.0;
 	refShip.sea_enchantment = 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 100;
@@ -5993,7 +5917,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 2.0;
 	refShip.sea_enchantment				= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 100;
@@ -6071,7 +5994,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 2.0;
 	refShip.sea_enchantment					= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 100;
@@ -6147,7 +6069,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 2.0;
 	refShip.sea_enchantment				= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 100;
@@ -6223,7 +6144,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 2.0;
 	refShip.sea_enchantment					= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 100;
@@ -6299,7 +6219,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 2.0;
 	refShip.sea_enchantment					= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 100;
@@ -6375,7 +6294,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 2.0;
 	refShip.sea_enchantment				= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 100;
@@ -6462,7 +6380,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 2.2;
 	refShip.sea_enchantment					= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 100;
@@ -6540,7 +6457,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= true;
 	refship.Type.War						= false;
-	refShip.fWindAgainstSpeed				= 1.3;
 	refShip.sea_enchantment					= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 80;
@@ -6614,7 +6530,6 @@ void InitShips()
 	refship.Type.Merchant			= true;
 	refship.Type.War				= true;
 
-	refShip.fWindAgainstSpeed		= 1.6;
 	refShip.sea_enchantment			= 1.2;
 	refShip.lowpolycrew				= 20;
 	refShip.buildtime				= 80;
@@ -6690,7 +6605,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refship.fWindAgainstSpeed 			= 5.0;
 
 	refShip.lowpolycrew 				= 20;
 
@@ -6767,7 +6681,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 2.0;
 	refShip.sea_enchantment					= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 100;
@@ -6849,7 +6762,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refship.fWindAgainstSpeed 			= 5.0;
 	refShip.lowpolycrew 				= 20;
 	refship.Rocking.y 					= 0.4;
 	refship.Rocking.az 					= 0.035;
@@ -6925,7 +6837,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 2.0;
 	refShip.sea_enchantment					= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 80;
@@ -6998,7 +6909,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= true;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 2.0;
 	refShip.sea_enchantment					= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 80;
@@ -7069,7 +6979,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= true;
 	refship.Type.War					= true;
-	refship.fWindAgainstSpeed 			= 4.0;
 	refShip.lowpolycrew 				= 20;
 
 	refship.Rocking.y 					= 0.4;
@@ -7142,7 +7051,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 2.0;
 	refShip.sea_enchantment					= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 100;
@@ -7218,7 +7126,6 @@ void InitShips()
 	refship.CanEncounter					= true;
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
-	refShip.fWindAgainstSpeed				= 1.0;
 	refShip.sea_enchantment					= 1.1;
 	refShip.lowpolycrew = 24;
 	refShip.buildtime = 120;
@@ -7303,7 +7210,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= true;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.0;
 	refShip.sea_enchantment				= 1.1;
 	refShip.lowpolycrew 				= 24;
 	refShip.buildtime 					= 120;
@@ -7387,7 +7293,6 @@ void InitShips()
 	refship.CanEncounter						= true;
 	refship.Type.Merchant 						= false;
 	refship.Type.War 							= true;
-	refShip.fWindAgainstSpeed 					= 2.0;
 	refShip.sea_enchantment 					= 1.2;
 	refShip.lowpolycrew 						= 20;
 	refShip.buildtime 							= 100;
@@ -7465,7 +7370,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 2.0;
 	refShip.sea_enchantment				= 1.2;
 	refShip.lowpolycrew 				= 20;
 	refShip.buildtime 					= 100;
@@ -7541,7 +7445,6 @@ void InitShips()
 	refship.CanEncounter			= true;
 	refship.Type.Merchant			= false;
 	refship.Type.War				= true;
-	refShip.fWindAgainstSpeed		= 1.0;
 	refShip.sea_enchantment			= 1.1;
 	refShip.lowpolycrew 			= 24;
 	refShip.buildtime 				= 120;
@@ -7615,7 +7518,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refship.fWindAgainstSpeed 			= 4.0;
 
 	refShip.lowpolycrew 				= 24;
 
@@ -7692,7 +7594,6 @@ void InitShips()
 	refship.CanEncounter			= true;
 	refship.Type.Merchant			= false;
 	refship.Type.War				= true;
-	refShip.fWindAgainstSpeed		= 1.0;
 	refShip.sea_enchantment			= 1.1;
 	refShip.lowpolycrew 			= 24;
 	refShip.buildtime 				= 120;
@@ -7772,7 +7673,6 @@ void InitShips()
 	refship.CanEncounter			= true;
 	refship.Type.Merchant			= true;
 	refship.Type.War				= true;
-	refShip.fWindAgainstSpeed		= 1.4;
 	refShip.sea_enchantment			= 1.1;
 	refShip.lowpolycrew 			= 24;
 	refShip.buildtime 				= 120;
@@ -7847,7 +7747,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.0;
 	refShip.sea_enchantment				= 1.1;
 	refShip.lowpolycrew 				= 24;
 	refShip.buildtime 					= 120;
@@ -7921,7 +7820,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.0;
 	refShip.sea_enchantment				= 1.1;
 	refShip.lowpolycrew 				= 24;
 	refShip.buildtime 					= 120;
@@ -8001,7 +7899,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.0;
 	refShip.sea_enchantment				= 1.1;
 	refShip.lowpolycrew					= 24;
 	refShip.buildtime 					= 120;
@@ -8086,7 +7983,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.4;
 	refShip.sea_enchantment				= 1.1;
 	refShip.lowpolycrew 				= 24;
 	refShip.buildtime 					= 120;
@@ -8165,7 +8061,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= true;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.0;
 	refShip.sea_enchantment				= 1.1;
 	refShip.lowpolycrew 				= 24;
 	refShip.buildtime 					= 120;
@@ -8247,7 +8142,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.1;
 	refShip.sea_enchantment				= 1.1;
 	refShip.lowpolycrew 				= 24;
 	refShip.buildtime 					= 120;
@@ -8325,7 +8219,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.1;
 	refShip.sea_enchantment				= 1.1;
 	refShip.lowpolycrew 				= 24;
 	refShip.buildtime 					= 120;
@@ -8398,7 +8291,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 2.0;
 	refShip.sea_enchantment				= 1.2;
 	refShip.lowpolycrew 				= 20;
 	refShip.buildtime 					= 100;
@@ -8474,7 +8366,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.4;
 	refShip.sea_enchantment				= 1.1;
 	refShip.lowpolycrew 				= 24;
 	refShip.buildtime 					= 120;
@@ -8555,7 +8446,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.0;
 	refShip.sea_enchantment				= 1.0;
 	refShip.lowpolycrew = 28;
 	refShip.buildtime = 140;
@@ -8632,7 +8522,6 @@ void InitShips()
 	refship.CanEncounter			= true;
 	refship.Type.Merchant			= false;
 	refship.Type.War				= true;
-	refShip.fWindAgainstSpeed		= 1.4;
 	refShip.sea_enchantment			= 1.1;
 	refShip.lowpolycrew 			= 24;
 	refShip.buildtime 				= 120;
@@ -8711,7 +8600,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.0;
 	refShip.sea_enchantment				= 1.1;
 	refShip.lowpolycrew 				= 24;
 	refShip.buildtime 					= 120;
@@ -8795,7 +8683,6 @@ void InitShips()
 	refship.CanEncounter			= true;
 	refship.Type.Merchant			= false;
 	refship.Type.War				= true;
-	refShip.fWindAgainstSpeed		= 1.4;
 	refShip.sea_enchantment			= 1.1;
 	refShip.lowpolycrew 			= 24;
 	refShip.buildtime 				= 120;
@@ -8873,7 +8760,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.4;
 	refShip.sea_enchantment				= 1.1;
 	refShip.lowpolycrew 				= 24;
 	refShip.buildtime 					= 120;
@@ -8957,7 +8843,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed				= 1.0;
 	refShip.sea_enchantment					= 1.1;
 	refShip.lowpolycrew = 24;
 	refShip.buildtime = 120;
@@ -9042,7 +8927,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.0;
 	refShip.sea_enchantment				= 1.1;
 	refShip.lowpolycrew 				= 24;
 	refShip.buildtime 					= 120;
@@ -9116,7 +9000,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.4;
 	refShip.sea_enchantment				= 1.1;
 	refShip.lowpolycrew 				= 24;
 	refShip.buildtime 					= 120;
@@ -9196,7 +9079,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.4;
 	refShip.sea_enchantment				= 1.1;
 	refShip.lowpolycrew 				= 24;
 	refShip.buildtime 					= 120;
@@ -9272,7 +9154,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.0;
 	refShip.sea_enchantment				= 1.0;
 	refShip.lowpolycrew 				= 28;
 	refShip.buildtime 					= 140;
@@ -9348,7 +9229,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.0;
 	refShip.sea_enchantment				= 1.0;
 	refShip.lowpolycrew 				= 28;
 	refShip.buildtime 					= 140;
@@ -9421,7 +9301,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.0;
 	refShip.sea_enchantment				= 1.0;
 	refShip.lowpolycrew 				= 28;
 	refShip.buildtime 					= 140;
@@ -9498,7 +9377,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.0;
 	refShip.sea_enchantment				= 1.0;
 	refShip.lowpolycrew 				= 28;
 	refShip.buildtime 					= 140;
@@ -9578,7 +9456,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.0;
 	refShip.sea_enchantment				= 1.0;
 	refShip.lowpolycrew 				= 28;
 	refShip.buildtime 					= 140;
@@ -9661,7 +9538,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.0;
 	refShip.sea_enchantment				= 1.0;
 	refShip.lowpolycrew 				= 28;
 	refShip.buildtime 					= 140;
@@ -9739,7 +9615,6 @@ void InitShips()
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
-	refShip.fWindAgainstSpeed			= 1.0;
 	refShip.sea_enchantment				= 1.0;
 	refShip.lowpolycrew 				= 28;
 	refShip.buildtime 					= 140;
@@ -9818,7 +9693,6 @@ void InitShips()
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
 	refship.QuestShip					= true;
-	refShip.fWindAgainstSpeed			= 6.0;
 	refShip.sea_enchantment				= 2.0;
 	refShip.lowpolycrew = 8;
 	refShip.buildtime = 20;
@@ -9888,7 +9762,6 @@ void InitShips()
 	refship.Type.Merchant		= false;
 	refship.Type.War			= true;
 	refship.QuestShip			= true;
-	refShip.fWindAgainstSpeed	= 2.0;
 	refShip.sea_enchantment		= 1.8;
 	refShip.lowpolycrew			= 7;
 	refShip.buildtime			= 60;
@@ -9962,7 +9835,6 @@ void InitShips()
 	refship.Type.Merchant		= false;
 	refship.Type.War			= true;
 	refship.QuestShip			= true;
-	refShip.fWindAgainstSpeed	= 2.0;
 	refShip.sea_enchantment		= 1.8;
 	refShip.lowpolycrew			= 12;
 	refShip.buildtime			= 60;
@@ -10036,7 +9908,6 @@ void InitShips()
 	refship.Type.Merchant		= false;
 	refship.Type.War			= true;
 	refship.QuestShip			= true;
-	refShip.fWindAgainstSpeed	= 2.0;
 	refShip.sea_enchantment		= 1.8;
 	refShip.lowpolycrew			= 12;
 	refShip.buildtime			= 60;
@@ -10108,7 +9979,6 @@ void InitShips()
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
 	refship.QuestShip					= true;
-	refShip.fWindAgainstSpeed			= 2.2;
 	refShip.sea_enchantment				= 1.5;
 	refShip.lowpolycrew = 16;
 	refShip.buildtime = 80;
@@ -10182,7 +10052,6 @@ void InitShips()
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
 	refship.QuestShip					= true;
-	refShip.fWindAgainstSpeed			= 2.2;
 	refShip.sea_enchantment				= 1.5;
 	refShip.lowpolycrew = 16;
 	refShip.buildtime = 80;
@@ -10256,7 +10125,6 @@ void InitShips()
 	refship.Type.Merchant					= false;
 	refship.Type.War						= true;
 	refship.QuestShip					= true;
-	refShip.fWindAgainstSpeed				= 2.2;
 	refShip.sea_enchantment					= 1.5;
 	refShip.lowpolycrew = 16;
 	refShip.buildtime = 80;
@@ -10332,7 +10200,6 @@ void InitShips()
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
 	refship.QuestShip					= true;
-	refShip.fWindAgainstSpeed			= 2.0;
 	refShip.sea_enchantment				= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 100;
@@ -10411,7 +10278,6 @@ void InitShips()
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
 	refship.QuestShip					= true;
-	refShip.fWindAgainstSpeed			= 2.0;
 	refShip.sea_enchantment				= 1.2;
 	refShip.lowpolycrew = 20;
 	refShip.buildtime = 100;
@@ -10487,7 +10353,6 @@ void InitShips()
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
 	refship.QuestShip					= true;
-	refShip.fWindAgainstSpeed			= 2.0;
 	refShip.sea_enchantment				= 1.2;
 	refShip.lowpolycrew 				= 20;
 	refShip.buildtime 					= 100;
@@ -10564,7 +10429,6 @@ void InitShips()
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
 	refship.QuestShip					= true;
-	refShip.fWindAgainstSpeed			= 1.0;
 	refShip.sea_enchantment				= 1.1;
 	refShip.lowpolycrew = 24;
 	refShip.buildtime = 120;
@@ -10641,7 +10505,6 @@ void InitShips()
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
 	refship.QuestShip					= true;
-	refShip.fWindAgainstSpeed			= 1.0;
 	refShip.sea_enchantment				= 1.1;
 	refShip.lowpolycrew = 24;
 	refShip.buildtime = 120;
@@ -10719,7 +10582,6 @@ void InitShips()
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
 	refship.QuestShip					= true;
-	refShip.fWindAgainstSpeed			= 1.0;
 	refShip.sea_enchantment				= 1.0;
 	refShip.lowpolycrew = 28;
 	refShip.buildtime = 140;
@@ -10799,7 +10661,6 @@ void InitShips()
 	refship.Type.Merchant				= false;
 	refship.Type.War					= true;
 	refship.QuestShip					= true;
-	refShip.fWindAgainstSpeed			= 1.0;
 	refShip.sea_enchantment				= 1.0;
 	refShip.lowpolycrew = 28;
 	refShip.buildtime = 140;
