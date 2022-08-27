@@ -1060,10 +1060,18 @@ void Undead_Start_Graveyard_1(string qName)
 	ChangeCharacterAddressGroup(sld, pchar.location, "goto", "goto2");
 	LAi_SetActorType(sld);
 	LAi_ActorDialog(sld, pchar, "", 5.0, 0);
+	sld.SaveItemsForDead = true;
+	DeleteAttribute(sld, "items");
+	sld.DontChangeBlade = true;
+	TakeNItems(sld, "suit_1", 1);
 
 	pchar.quest.Undead_Start_Graveyard_2.win_condition.l1 = "NPC_Death";
 	pchar.quest.Undead_Start_Graveyard_2.win_condition.l1.character ="Gravedigger";
 	PChar.quest.Undead_Start_Graveyard_2.function = "Undead_Start_Graveyard_3";
+	
+	//Квест "Проклятый идол" НЕ доступен для Нежити
+	sld = CharacterFromID("James_Callow")
+	LAi_KillCharacter(sld);
 }
 /*
 void Undead_Start_Graveyard_2(string qName)
@@ -1076,9 +1084,9 @@ void Undead_Start_Graveyard_2(string qName)
 }*/
 void Undead_Start_Graveyard_3(string qName)
 {
-	TakeNItems(pchar, "suit_1", 1);
-	Log_Info("Вы получили обноски");
-	PlaySound("interface\important_item.wav");
+	//TakeNItems(pchar, "suit_1", 1);
+	//Log_Info("Вы получили обноски");
+	//PlaySound("interface\important_item.wav");
 	pchar.questTemp.Undead.Leave_Crypt = true;
 	DoQuestCheckDelay("TalkSelf_Quest", 1.0);
 	PChar.quest.Undead_Start_Graveyard_4.win_condition.l1 = "locator";

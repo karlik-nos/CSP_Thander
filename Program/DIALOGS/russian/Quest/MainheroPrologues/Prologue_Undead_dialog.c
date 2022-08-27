@@ -49,6 +49,10 @@ void ProcessDialogEvent()
 			PChar.quest.UP_KrovPismo7.win_condition.l1 = "location";
 			PChar.quest.UP_KrovPismo7.win_condition.l1.location = "My_Cabin_Quest";
 			PChar.quest.UP_KrovPismo7.win_condition = "UP_KrovPismo";
+			
+			PChar.quest.UP_DrugPridet.win_condition.l1 = "item";
+			PChar.quest.UP_DrugPridet.win_condition.l1.item = "UP_PismoZagadka";
+			PChar.quest.UP_DrugPridet.win_condition = "UP_DrugPridet";
 		break;
 
 		case "DeadmansGod":

@@ -1474,6 +1474,13 @@ void QuestComplete(string sQuestName, string qname)
 					DoQuestReloadToLocation(pchar.location + "_upstairs", "goto", "goto1", "restore_hp");
 				}
 			}
+			if (CheckAttribute(pchar, "questTemp.UndeadPrologue2") && pchar.rank >= 5)
+			{
+			    DeleteAttribute(pchar, "QuestTemp.UndeadPrologue2");
+			    pchar.questTemp.UndeadPrologue3 = "UP3";
+			    DoQuestReloadToLocation(pchar.location + "_upstairs", "goto", "goto1", "CallFunctionParam");
+			}
+			pchar.questTemp.UndeadPrologue2 = "UP2";
 			else
 			{
 				DoQuestReloadToLocation(pchar.location + "_upstairs", "goto", "goto1", "restore_hp");
@@ -10807,6 +10814,11 @@ void QuestComplete(string sQuestName, string qname)
 			PChar.quest.UP_KrovPismo6.over = "yes";
 			PChar.quest.UP_KrovPismo7.over = "yes";
 			Locations[FindLocation(pchar.location)].box1.items.UP_PismoZagadka = 1;
+		break;
+		
+		case "UP_DrugPridet":
+			pchar.questTemp.UndeadPrologue2 = "UP2";
+			Log_info("У вас нет ключа");
 		break;
 
 		// Тичингиту
