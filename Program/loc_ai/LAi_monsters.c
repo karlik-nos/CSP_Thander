@@ -836,7 +836,7 @@ bool LAi_CreateEncounters(ref location)
 		// Warship 05.08.09 Генер "Пираты на необитайке"
 		// Pirates on a uninhabited island
 		case 6:
-			// Если reload_cur_island_index > -1 значит, ГГ пришел с моря
+			// Если reload_cur_island_index > -1 значит, ГГ пришёл с моря
 			if(rand(4) == 1 && CheckAttribute(location, "onUninhabitedIsland") && !CheckAttribute(location, "deadlocked") && !CheckAttribute(PChar, "GenQuest.PiratesOnUninhabited") && !CheckAttribute(pchar, "GenQuest.ShipWreck") && reload_cur_island_index > -1)
 			{
 				for(i = 1; i <= 25; i++)

@@ -230,6 +230,11 @@ void wdmInitWorldMap()
 	worldMap.labels.Reefs.id = "Reefs";
 	worldMap.labels.Reefs.locator = "Reefs";
 	worldMap.labels.Reefs.text = CheckingTranslate(idLngFile,"Reefs");
+	
+	worldMap.labels.KhaelRoa.type = "Island";
+	worldMap.labels.KhaelRoa.id = "KhaelRoa";
+	worldMap.labels.KhaelRoa.locator = "KhaelRoa";
+	worldMap.labels.KhaelRoa.text = CheckingTranslate(idLngFile,"KhaelRoa");
 
 	//-------  TOWN ----------------------------------------------------
 
@@ -1073,8 +1078,8 @@ void wdmInitWorldMap()
 	worldMap.islands.Hispaniola1.position.z = 588.696;
 	worldMap.islands.Hispaniola1.SantoDomingo_town.position.x = 198.683;
 	worldMap.islands.Hispaniola1.SantoDomingo_town.position.z = 547.97;
-	worldMap.islands.Hispaniola1.LaVega_port.position.x = 166.708;
-	worldMap.islands.Hispaniola1.LaVega_port.position.z = 662.952;
+	worldMap.islands.Hispaniola1.LaVega_town.position.x = 166.708;
+	worldMap.islands.Hispaniola1.LaVega_town.position.z = 662.952;
 	worldMap.islands.Hispaniola1.Shore32.position.x = 130.591;
 	worldMap.islands.Hispaniola1.Shore32.position.z = 682.362;
 	worldMap.islands.Hispaniola1.Shore33.position.x = 229.081;

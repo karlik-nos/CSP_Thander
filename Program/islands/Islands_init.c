@@ -1239,8 +1239,8 @@ void InitIslands()
 
 		Islands[n].reload.l6.label = "LaVega Port";
 		Islands[n].reload.l6.name = "reload_4";
-		Islands[n].reload.l6.go = "LaVega_port";
-		Islands[n].reload.l6.emerge = "sea";
+		Islands[n].reload.l6.go = "LaVega_town";
+		Islands[n].reload.l6.emerge = "reload1";
 		Islands[n].reload.l6.radius = 600.0;
 		Islands[n].reload.l6.pic = 0;
 		Islands[n].reload.l6.tex = "t1";

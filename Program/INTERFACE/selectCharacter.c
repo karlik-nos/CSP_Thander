@@ -748,11 +748,11 @@ void SetTextForLulz()
 		case 0: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\n..."); break;
 		case 1: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nОй, слишком много вопросов будет, 10 раз неправильно"); break;
 		case 2: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nБяда, читать так и не научились, уже в 20 раз"); break;
-		case 3: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nДавай еще раз прочитаем, 30 раз не пид...."); break;
+		case 3: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nДавай ещё раз прочитаем, 30 раз не пид...."); break;
 		case 4: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nНе, так не пойдёт, мы же не поняли, что тут написано уже в 40 раз"); break;
-		case 5: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nАга, прочитай еще раз, уже раз 50 неверно жмакнул"); break;
+		case 5: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nАга, прочитай ещё раз, уже раз 50 неверно жмакнул"); break;
 		case 6: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nНе, ваши вопросы сильно утомляют по 60 раз на дню писать"); break;
-		case 7: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nНу ладно... Так и быть, дам еще одну попытку - прочитать внимательно еще 70 раз"); break;
+		case 7: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nНу ладно... Так и быть, дам ещё одну попытку - прочитать внимательно ещё 70 раз"); break;
 		case 8: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nЧитать - значит быть умным, прочитать 80 раз"); break;
 		case 9: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nВсё херня, Миша, давай по новой 90 раз"); break;
 		case 10: SetFormatedText("DESC_TEXT2","Число неверных нажатий: "+descWrong+"\n\nВот если бы ты прочитал всё внимательно, уже бы начал играть в СОТЫЙ РАЗ, МАТЬ ТВОЮ!"); break;
@@ -854,10 +854,12 @@ void selectEngland()
 	if (startHeroType == 2) SelectNation(PIRATE);
 	else SelectNation(ENGLAND);
 
-	if (startHeroType == 8) SelectNation(ENGLAND);
-	if (startHeroType == 9) SelectNation(FRANCE);
-	if (startHeroType == 10) SelectNation(SPAIN);
-	if (startHeroType == 11) SelectNation(HOLLAND);
+	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
+	
+	if (startHeroType == 9) SelectNation(ENGLAND);
+	if (startHeroType == 10) SelectNation(FRANCE);
+	if (startHeroType == 11) SelectNation(SPAIN);
+	if (startHeroType == 12) SelectNation(HOLLAND);
 }
 
 void selectFrance()
@@ -866,11 +868,13 @@ void selectFrance()
     if (startHeroType == 1) SelectNation(ENGLAND);
 	if (startHeroType == 2) SelectNation(PIRATE);
 	if (startHeroType > 2) SelectNation(FRANCE);
+	
+	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
 
-	if (startHeroType == 8) SelectNation(ENGLAND);
-	if (startHeroType == 9) SelectNation(FRANCE);
-	if (startHeroType == 10) SelectNation(SPAIN);
-	if (startHeroType == 11) SelectNation(HOLLAND);
+	if (startHeroType == 9) SelectNation(ENGLAND);
+	if (startHeroType == 10) SelectNation(FRANCE);
+	if (startHeroType == 11) SelectNation(SPAIN);
+	if (startHeroType == 12) SelectNation(HOLLAND);
 }
 
 void selectSpain()
@@ -880,10 +884,10 @@ void selectSpain()
 	if (startHeroType == 2) SelectNation(PIRATE);
 	if (startHeroType > 2) SelectNation(SPAIN);
 
-	if (startHeroType == 8) SelectNation(ENGLAND);
-	if (startHeroType == 9) SelectNation(FRANCE);
-	if (startHeroType == 10) SelectNation(SPAIN);
-	if (startHeroType == 11) SelectNation(HOLLAND);
+	if (startHeroType == 9) SelectNation(ENGLAND);
+	if (startHeroType == 10) SelectNation(FRANCE);
+	if (startHeroType == 11) SelectNation(SPAIN);
+	if (startHeroType == 12) SelectNation(HOLLAND);
 }
 
 void selectHolland()
@@ -892,11 +896,13 @@ void selectHolland()
     if (startHeroType == 1) SelectNation(ENGLAND);
 	if (startHeroType == 2) SelectNation(PIRATE);
 	if (startHeroType > 2) SelectNation(HOLLAND);
+	
+	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
 
-	if (startHeroType == 8) SelectNation(ENGLAND);
-	if (startHeroType == 9) SelectNation(FRANCE);
-	if (startHeroType == 10) SelectNation(SPAIN);
-	if (startHeroType == 11) SelectNation(HOLLAND);
+	if (startHeroType == 9) SelectNation(ENGLAND);
+	if (startHeroType == 10) SelectNation(FRANCE);
+	if (startHeroType == 11) SelectNation(SPAIN);
+	if (startHeroType == 12) SelectNation(HOLLAND);
 }
 
 void selectPirate()
@@ -904,11 +910,13 @@ void selectPirate()
     	//homo блокировка нации для Питера Блада
 	if (startHeroType == 1) SelectNation(ENGLAND);
 	else SelectNation(PIRATE);
+	
+	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
 
-	if (startHeroType == 8) SelectNation(ENGLAND);
-	if (startHeroType == 9) SelectNation(FRANCE);
-	if (startHeroType == 10) SelectNation(SPAIN);
-	if (startHeroType == 11) SelectNation(HOLLAND);
+	if (startHeroType == 9) SelectNation(ENGLAND);
+	if (startHeroType == 10) SelectNation(FRANCE);
+	if (startHeroType == 11) SelectNation(SPAIN);
+	if (startHeroType == 12) SelectNation(HOLLAND);
 }
 
 void IDoExit(int exitCode, bool bCode)
@@ -1191,7 +1199,7 @@ void SetVariable(bool _init)
 	pchar.lastname = GetNewMainCharacterParam("heroLastname_" + startHeroType);
 	pchar.sex = GetNewMainCharacterParam("sex_" + startHeroType);
 	pchar.FaceID = GetNewMainCharacterFace();
-	bool bRandCharNation = startHeroType > 7 && startHeroType < 12;
+	bool bRandCharNation = startHeroType > 8 && startHeroType < 13;
 	if (bRandCharNation || startHeroType < 3)	SetSelectable("RANDCHARNATION",false);
 	else	SetSelectable("RANDCHARNATION",true);
 

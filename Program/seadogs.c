@@ -1153,7 +1153,7 @@ void ProcessControls()
 				}
 			}
 			break;
-		    // boal -->
+/*		    // boal -->
             case "ChrBackward": //ChrStrafeLeft ChrStrafeRight
                 if (bLandInterfaceStart && LAi_IsFightMode(pchar))
                 {
@@ -1175,9 +1175,9 @@ void ProcessControls()
                 {
                     pchar.chr_ai.energy = stf(pchar.chr_ai.energy) - 3;
                     if (stf(pchar.chr_ai.energy) < 0) pchar.chr_ai.energy = 0;
-                }
+                }	
             return;
-            break;
+            break; */
             case "BOAL_UsePotion": // boal KEY_X
                 if (bLandInterfaceStart)
 				{
@@ -1366,6 +1366,13 @@ void ProcessControls()
 		{
 			if (InterfaceStates.Buttons.Save.enable == false)
 			{
+				if (CheckAttribute(pchar,"SkipBattle") && pchar.SkipBattle == true)
+				{
+					if (rand(1) == 0) LAi_KillCharacter(CharacterFromID(pchar.ArenaAttack));
+					else LAi_KillCharacter(CharacterFromID(pchar.ArenaEnemy));
+					pchar.SkipBattle = false;
+					return;
+				}
 				Log_SetStringToLog("В данный момент запрещены манипуляции временным потоком.");
 				return;
 			}
@@ -1581,7 +1588,7 @@ void ProcessControls()
 			}
 		break;
 		// <-- ugeen
-		// boal -->
+	/*	// boal -->
 		case "ChrBackward": //ChrStrafeLeft ChrStrafeRight
             if (bLandInterfaceStart && LAi_IsFightMode(pchar))
             {
@@ -1605,7 +1612,7 @@ void ProcessControls()
  				if (stf(pchar.chr_ai.energy) < 0) pchar.chr_ai.energy = 0;
 	        }
 		break;
-
+*/
 		case "BOAL_UsePotion": // boal KEY_C
             if (bLandInterfaceStart)
             {

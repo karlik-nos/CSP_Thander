@@ -100,7 +100,7 @@ int _GetDistanceToColony2D(string _sColony)
 	string sColonyTown = _sColony + "_town";
 
 	if(_sColony == "FortOrange") sColonyTown = "Shore36";
-	if(_sColony == "LaVega") sColonyTown = "LaVega_Port";
+	if(_sColony == "LaVega") sColonyTown = "LaVega_town";
 
 	float X1, Z1;
 	GetCorrectShipCoords(&X1, &Z1)
@@ -1184,7 +1184,7 @@ float _GetDirToColony(string _sColony)
 	string sColonyTown = _sColony + "_town";
 
 	if(_sColony == "FortOrange") sColonyTown = "Shore36";
-	if(_sColony == "LaVega") sColonyTown = "LaVega_Port";
+	if(_sColony == "LaVega") sColonyTown = "LaVega_town";
 
 	float X1, Z1;
 	GetCorrectShipCoords(&X1, &Z1)

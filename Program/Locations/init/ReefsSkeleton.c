@@ -39,7 +39,7 @@ int LocationInitReefs(int n)
     Locations[n].models.always.Waterfall2.uvslide.v1 = 0.0;
 	Locations[n].models.always.Waterfall2.tech = "LocationWaterFall";
 	Locations[n].models.always.Waterfall2.level = 49;
-	locations[n].alwaysStorm = true; //живем в штормах
+	locations[n].alwaysStorm = true; //живём в штормах
 	locations[n].storm = true;
 	locations[n].tornado = true;
 
@@ -108,7 +108,7 @@ int LocationInitReefs(int n)
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-	locations[n].alwaysStorm = true; //живем в штормах
+	locations[n].alwaysStorm = true; //живём в штормах
 	locations[n].storm = true;
 	locations[n].tornado = true;
 

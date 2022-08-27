@@ -38,6 +38,36 @@ int GetCharacterBaseHPValue(ref _refCharacter)
 	return ret;
 }
 
+int GetCharacterNormalHp(ref _refCharacter)
+{
+	int ret = GetCharacterBaseHpValue(_refCharacter) + GetCharacterAddHpValue(_refCharacter) * (sti(_refCharacter.rank) - 1);
+	if (CheckCharacterPerk(_refCharacter, "HPPlus"))
+	{
+		ret += 80;
+	}
+	if (CheckCharacterPerk(_refCharacter, "HPPlusFixed"))
+	{
+		ret += 60;
+	}
+	return ret;
+}
+
+void SetHealthToCharacter(ref _refCharacter)
+{
+	_refCharacter.chr_ai.hp_max = GetCharacterNormalHp(_refCharacter);
+	if (!CheckAttribute(_refcharacter, "chr_ai.hp"))
+	{
+		_refcharacter.chr_ai.hp = GetCharacterNormalHp(_refCharacter);
+	}
+	else
+	{
+		if (sti(_refcharacter.chr_ai.hp) > sti(_refcharacter.chr_ai.hp_max))
+		{
+			_refcharacter.chr_ai.hp = _refcharacter.chr_ai.hp_max;
+		}
+	}		
+}
+
 float GetCharacterMaxEnergyValue(ref _refCharacter)
 {
     float ret = (30.0 + GetCharacterSPECIAL(_refCharacter, SPECIAL_A)*10);
@@ -240,6 +270,7 @@ void SetRandSPECIAL_K(ref _refCharacter)  // для штурманов-казн�
 /// влияет только на СПЕЦИАЛ
 int ApplayNavyPenalty(ref _refCharacter, string skillName, int sumSkill)
 {
+	if (CheckAttribute(_refCharacter,"bchangepirates")) {return sumSkill;} // фикс неправильного расчета начальных значений скиллов при старте игры от наличия минусов от навигации
     if (IsCompanion(_refCharacter) && GetRemovable(_refCharacter))//пусть будет для компаньонов тоже sti(_refCharacter.index) == GetMainCharacterIndex()) // только для главного, чтоб не тормозить всю игру
     {
         int sailSkill;
@@ -260,6 +291,7 @@ int ApplayNavyPenalty(ref _refCharacter, string skillName, int sumSkill)
 // пенальти в скилы
 int ApplayNavyPenaltyToSkill(ref _refCharacter, string skillName, int sumSkill)
 {
+	if (CheckAttribute(_refCharacter,"bchangepirates")) {return sumSkill;}
     if (IsCompanion(_refCharacter) && GetRemovable(_refCharacter))//пусть будет для компаньонов тоже sti(_refCharacter.index) == GetMainCharacterIndex()) // только для главного, чтоб не тормозить всю игру
     {
         int sailSkill;
@@ -749,7 +781,7 @@ void ApplayNewSkill(ref _chref, string _skill, int _addValue)
             }
             else
             {
-                Log_Info("Новый уровень у "+ _chref.name + " "+_chref.lastname);
+                Log_Info(""+ _chref.name + " "+_chref.lastname + " получает новый уровень!");
             }
         }
 		if (sti(_chref.index) == GetMainCharacterIndex())
@@ -764,10 +796,11 @@ void ApplayNewSkill(ref _chref, string _skill, int _addValue)
 
 void ClearHPTubeEffect(string qName)
 {
-	float nphp = LAi_GetCharacterMaxHP(pchar) + GetCharacterAddHPValue(pchar);
+	float nphp = LAi_GetCharacterMaxHP(pchar);
 	LAi_SetHP(pchar,nphp-sti(pchar.PerkValue.HPBONUS),nphp-sti(pchar.PerkValue.HPBONUS));
 	DeleteAttribute(pchar,"chr_ai.bonushptube");
 	DeleteAttribute(pchar,"PerkValue.HPBONUS");
+	RestoreModelsBeforeDrugs();
 }
 
 void ClearENTubeEffect(string qName)
@@ -1157,7 +1190,7 @@ int GetCharacterSkillSimple(ref _refCharacter, string skillName)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_LEADERSHIP, "jewelry4", 10);			// {Изумруд}							(+10 авторитет)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_FORTUNE, "jewelry8", 10);				// {Бронзовое кольцо} 					(+10 к везению)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SNEAK, "indian5", 10);				// {Двойная маска}						(+10 скрытность)
-    	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_F_HEAVY, "indian12", 10);				// {Кубок-тотем Тепейоллотля}			(+10 тяжелое оружие)
+    	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_F_HEAVY, "indian12", 10);				// {Кубок-тотем Тепейоллотля}			(+10 тяжёлое оружие)
 		skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_FORTUNE, "Dozor_HorseShoe", 15);		// {Счастливая подкова}					(+15 к везению)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SNEAK, "jewelry15", 10);				// {Изумрудные подвески} 				(+10 к скрытности)
 
@@ -1208,13 +1241,12 @@ int GetCharacterSkillSimple(ref _refCharacter, string skillName)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_LEADERSHIP, "Totem_6", 5);			// {Тотем Чалчиуитликуэ}				(+5 авторитет)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_FENCING, "Totem_7", 5);				// {Тотем Уицилопочтли}					(+5 среднее оружие)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_F_LIGHT, "Totem_8", 5);				// {Тотем Тлалока}						(+5 легкое оружие)
-    	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_F_HEAVY, "Totem_9", 5); 				// {Тотем Майяуэль}						(+5 тяжелое оружие)
+    	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_F_HEAVY, "Totem_9", 5); 				// {Тотем Майяуэль}						(+5 тяжёлое оружие)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SNEAK, "Dozor_Mirror", 15);			// {Карманное зеркало}					(+15 к скрытности)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SAILING, "hatWhisper", 5);			// {Карманное зеркало}					(+15 к скрытности)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_LEADERSHIP, "hatWhisper", 5);			// {Карманное зеркало}					(+15 к скрытности)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_GRAPPLING, "hatWhisper", 5);			// {Карманное зеркало}					(+15 к скрытности)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SNEAK, "hatWhisper", -5);				// {Карманное зеркало}					(+15 к скрытности)
-		skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_FORTUNE, "Joker", 10);				// {Джокер}							(+10 к везению)
 
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_DEFENCE, "Totem_3", 5);				// {Тотем Кецалькоатля} 				(+5 защита)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_ACCURACY, "Totem_4", 5);				// {Тотем Мишкоатля}					(+5 меткость)
@@ -2124,7 +2156,7 @@ void setWDMPointXZ(string _location)
 	}
 	// координаты на гловал карте <--
 }
-// нужно не перекрывать еще и признаки фантома
+// нужно не перекрывать ещё и признаки фантома
 void ChangeAttributesFromCharacter(ref CopyChref, ref PastChref, bool _dialogCopy)
 {
     aref arToChar;
@@ -2148,7 +2180,17 @@ void ChangeAttributesFromCharacter(ref CopyChref, ref PastChref, bool _dialogCop
     CopyChref.rank             = PastChref.rank;
     CopyChref.reputation       = makeint(PastChref.reputation);
 	CopyChref.baseCapIdx       = PastChref.index; //Id оригинального в структуру клона
-
+	
+	if(CheckAttribute(PastChref, "ImmortalOfficer"))
+	{
+		CopyChref.ImmortalOfficer = PastChref.ImmortalOfficer;
+		CopyChref.OfficerWantToGo.DontGo = PastChref.OfficerWantToGo.DontGo;
+		CopyChref.HalfImmortal = PastChref.HalfImmortal;
+	}
+	else 
+	{
+		DeleteAttribute(CopyChref, "ImmortalOfficer");
+	}
     if (CheckAttribute(PastChref, "loyality"))
     {
     	CopyChref.loyality         = PastChref.loyality;
@@ -2648,7 +2690,7 @@ void initNewMainCharacter()
 	}
 	else
 	{
-		ch.HeroParam.ToCityId = FindAlliedColonyForNationExceptColony("Pirates"); //Бермуды не берем, туда еще добираться надо
+		ch.HeroParam.ToCityId = FindAlliedColonyForNationExceptColony("Pirates"); //Бермуды не берем, туда ещё добираться надо
 	}
 	//ch.HeroParam.ToCityId = "Santiago";
 	// откуда плывем
@@ -2847,7 +2889,7 @@ void initNewMainCharacter()
 
 	// Warship Для разных квестов
 	// Важно: функция MaryCelesteInit() должна быть тут, а не в initStartState2Character()
-	// т.к. в ней идет выборка колоний, которые в функции initStartState2Character() еще не инитились
+	// т.к. в ней идёт выборка колоний, которые в функции initStartState2Character() ещё не инитились
 	OtherQuestCharactersInit(); // Инициализация прочих квестов
 
 	MaryCelesteInit(); // Warship 07.07.09 Пасхалка "Мэри Селест"
@@ -3083,6 +3125,11 @@ void initMainCharacterItem()
 			TakenItems(Pchar, "Totem_2", 1);
 			TakenItems(Pchar, "indian5", 1);
 			TakenItems(Pchar, "indian17", 1);
+			TakenItems(Pchar, "suit_1", 1);
+			SetCharacterPerk(pchar, "FlagEng");
+			SetCharacterPerk(pchar, "FlagFra");
+			SetCharacterPerk(pchar, "FlagSpa");
+			SetCharacterPerk(pchar, "FlagHol");
 			switch (sti(ch.nation))
 			{
 				case ENGLAND:
@@ -3095,10 +3142,7 @@ void initMainCharacterItem()
 					GiveItem2Character(Pchar, "patent_hol");
 				break;
 				case PIRATE:
-					SetCharacterPerk(pchar, "FlagEng");
-					SetCharacterPerk(pchar, "FlagFra");
-					SetCharacterPerk(pchar, "FlagSpa");
-					SetCharacterPerk(pchar, "FlagHol");
+
 				break;
 				case SPAIN:
 					GiveItem2Character(Pchar, "patent_spa");

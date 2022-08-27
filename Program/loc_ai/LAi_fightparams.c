@@ -467,7 +467,8 @@ float LAi_GunCalcProbability(aref attack, float kDist)
 	pmin = pmin + 0.3*aSkill;
 
 	//Вероятность попадания в текущей позиции
-	float p = pmin + (1.0 - pmin)*(kDist/0.9)+(GetCharacterSPECIALSimple(attack, SPECIAL_P)*0.01);
+	//float p = pmin + (1.0 - pmin)*(kDist/0.9)+(GetCharacterSPECIALSimple(attack, SPECIAL_P)*0.01);
+	float p = pmin + (1.0 - pmin)*(kDist/0.9)+(GetCharacterSPECIALSimple(attack, SPECIAL_P)*0.01)-0.25; //добавил базовый штраф в 25%, убирается перками
  	//Учесть абилити
 	if(IsCharacterPerkOn(attack, "GunProfessional"))
 	{
@@ -1515,14 +1516,26 @@ void LAi_ApplyCharacterFireDamage(aref attack, aref enemy, float kDist)
 	}
 	if(damage > 0.0)
 	{
+		//Влияние точности на урон
+		damage *= p;
 		//Начисляем опыт
 		float exp = LAi_GunCalcExperience(attack, enemy, damage);
+		float critd = 1.0;
+		int critchance = 0;
+		int pured = 0;
+		if (CheckCharacterPerk(attack,"Buccaneer")) 
+		{
+			critd = 1.3;
+			critchance = 10;
+		}
 		if(IsEquipCharacterByArtefact(attack, "talisman1"))
 		{
-			if (rand(4)==0)	{LAi_ApplyCharacterDamage(enemy, MakeInt(damage + 0.5)*2); Log_Info("Критический выстрел");}
-			else LAi_ApplyCharacterDamage(enemy, MakeInt(damage + 0.5)+25);
+			critd = 2.0;
+			critchance += 20;
+			pured = 25;
 		}
-		else LAi_ApplyCharacterDamage(enemy, MakeInt(damage + 0.5));
+		if (critchance > 0 && rand(99)<critchance)	{LAi_ApplyCharacterDamage(enemy, MakeInt(damage + 0.5)*critd); Log_Info("Критический выстрел");}
+		else LAi_ApplyCharacterDamage(enemy, MakeInt(damage + 0.5)+pured);
 
 		//Проверим на смерть
 		LAi_CheckKillCharacter(enemy);
@@ -1948,3 +1961,76 @@ float LAi_NPC_EvtGetEny()
 	npc_return_tmp = LAi_GetCharacterRelEnergy(chr);
 	return npc_return_tmp;
 }
+
+// EvgAnat - требование энергии для отскока -->
+bool bIsRecoilEnableWithoutEnergy = false; // можно ли выполнять отскоки при недостатке энергии (это не влияет на расход энергии)
+
+#event_handler("ChrCheckEnergy", "LAi_Chr_CheckEnergy");
+bool LAi_Chr_CheckEnergy()
+{
+	aref chr = GetEventData();
+	string action = GetEventData(); // "recoil" - отскок назад, "strafe_l" и "strafe_r" - отскоки влево и вправо
+	bool res = false;
+	float needEnergy = 0.0;
+	switch(action)
+	{
+		case "recoil":		needEnergy = 3.0;	break;
+		case "strafe_l":	needEnergy = 4.0;	break;
+		case "strafe_r":	needEnergy = 4.0;	break;
+	}
+	if (stf(chr.chr_ai.energy) >= needEnergy)
+	{	
+		res = true;
+		Lai_CharacterChangeEnergy(chr, -needEnergy);
+	}
+	if (bIsRecoilEnableWithoutEnergy)
+		return true;
+	return res;
+}
+// EvgAnat - требование энергии для отскока <--
+
+// EvgAnat - уклонение от выстрела -->
+#event_handler("Check_ChrHitFire", "LAi_Chr_CheckHitFire")
+int LAi_Chr_CheckHitFire() // 1 - не попал, 2 - попал
+{
+	aref shooter = GetEventData(); // стрелок
+	aref target = GetEventData(); // цель
+	bool isRecoil = GetEventData(); // находится ли цель в окне уклонения 
+	float kDist = GetEventData(); // коэффициент дальности, равный 1-d/25; k(0)=1; k(10)=0.6; k(25)=0
+	int res = 2;
+	if(isRecoil)
+	{
+		res = 1;
+		if (shooter.index == GetMainCharacterIndex())
+			Log_SetStringToLog("Мазила!");
+	}
+	return res;
+}
+// EvgAnat - уклонение от выстрела <--
+
+// EvgAnat - уклонение от атаки -->
+#event_handler("Check_ChrHitAttack", "LAi_Chr_CheckHitAttack");
+bool LAi_Chr_CheckHitAttack() // попала ли атака
+{
+	aref attack = GetEventData();
+	aref enemy = GetEventData();
+	bool isRecoil = GetEventData(); // находится ли цель в окне уклонения
+	bool res = true;
+	if (isRecoil)
+		res = false;	
+	return res;
+}
+// EvgAnat - уклонение от атаки <--
+
+// EvgAnat - вероятность желания уклониться от выстрела у нпс -->
+#event_handler("NPC_IsDodge", "LAi_NPC_IsDodge");
+bool LAi_NPC_IsDodge() // true - уклоняется, false - не уклоняется
+{
+	aref chr = GetEventData();
+	float r = Random();
+	bool res = false;
+	if (r <= 1.0)
+		res = true;
+	return true;
+}
+// EvgAnat - вероятность желания уклониться от выстрела у нпс <--

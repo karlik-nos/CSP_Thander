@@ -399,7 +399,7 @@ int CreateBaseShip(int iBaseType)
 		case 1: rRealShip.HullArmor = 42+(rand(2)*hullarmor); break;
 	}
 
-    rRealShip.BaseName = rRealShip.name; // запоминалка для нужд, тк далее идет "странное"
+    rRealShip.BaseName = rRealShip.name; // запоминалка для нужд, тк далее идёт "странное"
 	if (rRealShip.name != "Fort" && rRealShip.name != "Boat") // не знаю зачем :(
 	{
 		rRealShip.name = rRealShip.name + "1"; // без этого вылет, но почему!!!!!!!!!!!!!!
@@ -767,7 +767,7 @@ float FindShipTurnRate(aref refCharacter)
 //================//
 
 // calculate recharge time for cannon
-float Cannon_GetRechargeTimeValue(aref aCharacter)
+float Cannon_GetRechargeTimeValue(ref aCharacter)
 {
 	if(!CheckAttribute(aCharacter, "Ship.type"))
 	{
@@ -788,9 +788,8 @@ float Cannon_GetRechargeTimeValue(aref aCharacter)
 
 	float fMultiply = 1.0;
 	if (CheckCharacterPerk(aCharacter, "FastReload")) fMultiply = 0.9;
-	else fMultiply = 1.0
-	if (IsCharacterPerkOn(aCharacter, "ImmediateReload")) fMultiply *= 0.5;
-	else fMultiply = fMultiply - 0.0;
+	float ImmRel = AIShip_isPerksUse(CheckOfficersPerk(aCharacter, "ImmediateReload"), 1.0, 0.5);
+	fMultiply *= ImmRel;
 	if (CheckAttribute(&RealShips[sti(aCharacter.Ship.Type)], "Tuning.CannonsSpecial")) fMultiply *= 1.2;
 	fMultiply *= (1+CheckOfficersPerk(aCharacter,"InstantRepair"));//x2 времени при активной быстрой починке
 	// boal 060804 для компа поблажки
@@ -896,7 +895,7 @@ void SetShipyardStore(ref NPChar)
     int    iTest_ship, i;
 	string attrName;
 
-	if (CheckAttribute(NPChar, "shipyard")) return; // еще есть корабли с того раза
+	if (CheckAttribute(NPChar, "shipyard")) return; // ещё есть корабли с того раза
 
 	SaveCurrentNpcQuestDateParam(npchar, "shipyardDate"); // дата заполнения верфи
 
@@ -1100,7 +1099,7 @@ void RemoveCannonsFromBortShipyard(ref chr, string sBort)
 	for (i = 0; i < maxQty; i++)
 	{
 		attr = "c" + i;
-		// поломана на 100 процентов, не палит, те нет ее
+		// поломана на 100 процентов, не палит, те нет её
 		chr.Ship.Cannons.borts.(sBort).damages.(attr) = 1.0;
 		chr.Ship.Cannons.borts.(sBort_real).damages.(attr) = 1.0;
 	}
@@ -2200,10 +2199,13 @@ int GetShootDistance(ref chref, string ball)
 
 	ref	rCannon = GetCannonByType(sti(chref.Ship.Cannons.Type));
 	distance = stf(rCannon.FireRange);
-	distance = distance * (1.0 + GetCharacterSPECIALSimple(chref, SPECIAL_P) * 0.02);
 	if (CheckAttribute(chref, "perks.list.LongRangeShoot"))
 	{
-		distance = distance * 1.15;
+		distance = distance * (1.15+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
+	}
+	else
+	{
+		distance = distance * (1.0+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
 	}
 	switch(ball)
 	{

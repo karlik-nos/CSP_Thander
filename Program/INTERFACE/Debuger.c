@@ -1081,8 +1081,8 @@ void CalculateInfoDataF6()
 	// mc.Ship.Type = GenerateShipExt(SHIP_CLIPPER, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_CORVETTE_QUEST, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_WH_CORVETTE_QUEST, true, mc);
-	// mc.Ship.Type = GenerateShipExt(SHIP_ARABELLA, true, mc);
-	mc.Ship.Type = GenerateShipExt(SHIP_FRIGATEQUEEN, true, mc);
+	mc.Ship.Type = GenerateShipExt(SHIP_ARABELLA, true, mc);
+	// mc.Ship.Type = GenerateShipExt(SHIP_FRIGATEQUEEN, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_CATHERINE, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_FLYINGDUTCHMAN, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_SANTISIMA, true, mc);
@@ -1096,7 +1096,8 @@ void CalculateInfoDataF6()
 
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS8;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS32;
-	mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS42;
+	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS42;
+	mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS48;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS8;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS32;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS36;
@@ -1647,7 +1648,7 @@ void CalculateInfoDataF22()
 					}
 					else
 					{
-						totalInfo = totalInfo + NewStr()+ "Слухи по флейтам торговцев еще не активированы.";
+						totalInfo = totalInfo + NewStr()+ "Слухи по флейтам торговцев ещё не активированы.";
 					}
     }
     // <--
@@ -1667,9 +1668,9 @@ void CalculateInfoDataF23()
 	totalInfo += "\n\nCamera.pos.x == " + Camera.pos.x +
 		"\nCamera.pos.y = " + Camera.pos.y +
 		"\nCamera.pos.z == " + Camera.pos.z +
-		"\n\nCamera.ang.z == " + Camera.ang.y +
-		"\nCamera.ang.y == " + Camera.ang.z +
-		"\nCamera.ang.x == " + Camera.ang.y + "\n\n";
+		"\n\nCamera.ang.x == " + Camera.ang.x +
+		"\nCamera.ang.y == " + Camera.ang.y +
+		"\nCamera.ang.z == " + Camera.ang.z + "\n\n";
     // <--
     totalInfo = totalInfo + NewStr() + NewStr() +
                 "Команда отработала успешно!";
