@@ -3594,16 +3594,15 @@ void Ship_UpdateParameters()
 	arCharShip.MaxSpeedZ = fShipSpeed;
 	arCharShip.MaxSpeedZ = Sea_ApplyMaxSpeedZ(arCharShip, fWindDotShip); // учет парусов в др месте
 	// boal <--
-	//  поднимем выше и закэшируем float fShipTurnRate = FindShipTurnRate(rCharacter);
 
 	float fMaxSpeedY = stf(rShip.TurnRate) / Sea_TurnRateMagicNumber(); //boal
 
 	float fTRFromSailState = 1.0;
 	switch (MakeInt(fSailState * 2.0))
 	{
-		case 0: fTRFromSailState = 0.05; break;
+		case 0: fTRFromSailState = 0.75; break;
 		case 1: fTRFromSailState = 1.0; break;
-		case 2: fTRFromSailState = 0.68; break;
+		case 2: fTRFromSailState = 0.9; break;
 	}
 	// boal зависимость от скорости на маневр -->
     float	fTRFromSpeed = 1.0;
@@ -3614,11 +3613,11 @@ void Ship_UpdateParameters()
         {
             if (iArcadeSails == 1)
         	{
-               fTRFromSpeed = 1.0 - 0.5 * (1.0 - Clampf(fCurrentSpeedZ / fShipSpeed));
+               fTRFromSpeed = 1.0 - 0.2 * (1.0 - Clampf(fCurrentSpeedZ / fShipSpeed));
     		}
     		else
     		{
-    		    fTRFromSpeed = 1.0 - 0.86 * (1.0 - Clampf(fCurrentSpeedZ / fShipSpeed));
+    		    fTRFromSpeed = 1.0 - 0.5 * (1.0 - Clampf(fCurrentSpeedZ / fShipSpeed));
     		}
         }
 	}
@@ -3626,11 +3625,11 @@ void Ship_UpdateParameters()
 	{
 		if (iArcadeSails == 1)
     	{
-           fTRFromSpeed = 1.0 - (0.51 - MOD_SKILL_ENEMY_RATE*0.01) * (1.0 - Clampf(fCurrentSpeedZ / fShipSpeed));
+           fTRFromSpeed = 1.0 - (0.2 - MOD_SKILL_ENEMY_RATE*0.002) * (1.0 - Clampf(fCurrentSpeedZ / fShipSpeed));
 		}
 		else
 		{
-		    fTRFromSpeed = 1.0 - (0.87 - MOD_SKILL_ENEMY_RATE*0.01) * (1.0 - Clampf(fCurrentSpeedZ / fShipSpeed));
+		    fTRFromSpeed = 1.0 - (0.5 - MOD_SKILL_ENEMY_RATE*0.005) * (1.0 - Clampf(fCurrentSpeedZ / fShipSpeed));
 		}
 	}
 	// boal зависимость от скорости на маневр <--
