@@ -820,7 +820,6 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
             CloseQuestHeader("Spa_Line_5_LaVegaAttack");
 			//--> огонь и пламень убираем
 			DeleteAttribute(&locations[FindLocation("LaVega_town")], "hidden_effects");
-			DeleteAttribute(&locations[FindLocation("LaVega_ExitTown")], "hidden_effects");
 			//<-- огонь и пламень
             //===> Эдвард убит :( теперь Ла Вегой рулит капитан Купер.
             sld = characterFromID("Edward Mansfield");

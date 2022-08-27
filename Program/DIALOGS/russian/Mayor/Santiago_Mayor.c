@@ -138,7 +138,6 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
             dialog.text = "Ах да... Выполнение столь сложного задания оценивается городом Сантьяго в 100000 пиастров. Извольте получить.";
 			link.l1 = "Великолепно. Сеньор Хименес, мне было приятно иметь с вами дело. Прощайте.";
 			link.l1.go = "exit";
-			locations[FindLocation("LaVega_townhall")].models.day.charactersPatch = "SmallResidence_patch";
             AddMoneyToCharacter(pchar, 100000);
             pchar.questTemp.State = "Sp5LaVegaAttack_BackToHavana";
             AddQuestRecord("Spa_Line_5_LaVegaAttack", "4");
