@@ -615,7 +615,7 @@ float SpeedBySkill(aref refCharacter)
 	int needSkillMax = func_min(needSkillMin + 10, SKILL_MAX);
 	if (needSkillMin == needSkillMax) needSkillMin = needSkillMin - 1;
 
-	float fSRFromSkill = 0.7 + Bring2Range(0.0, 0.25, makefloat(needSkillMin), makefloat(needSkillMax), makefloat(skill)) + 0.0005 * skill;
+	float fSRFromSkill = 0.7 + Bring2Range(0.0, 0.25, makefloat(needSkillMin), makefloat(needSkillMax), makefloat(skill)) + 0.0005 * makefloat(skill);
 
     float fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "ShipSpeedUp"), 1.0, 1.15);   //slib
     fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "SailingProfessional"), fSpeedPerk, 1.20);
@@ -624,7 +624,7 @@ float SpeedBySkill(aref refCharacter)
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.HullSpecial")) fSpeedPerk *= 0.75;
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.CuBot")) fSpeedPerk *= 1.05;
 
-	return fSRFromSkill * fSpeedPerk / 1.25;
+	return fSRFromSkill * fSpeedPerk / 1.2;
 }
 
 float FindShipSpeedBonus(ref refCharacter)
@@ -715,11 +715,11 @@ float TurnBySkill(aref refCharacter)
 	float fTRFromSKill;
     if (iArcadeSails == 1)
 	{
-		fTRFromSKill = 0.5 + Bring2Range(0.0, 0.4, makefloat(needSkillMin), makefloat(needSkillMax), makefloat(skill)) + 0.001 * skill;
+		fTRFromSKill = 0.5 + Bring2Range(0.0, 0.4, makefloat(needSkillMin), makefloat(needSkillMax), makefloat(skill)) + 0.001 * makefloat(skill);
 	}
 	else
 	{
-		fTRFromSKill = 0.3 + Bring2Range(0.0, 0.4, makefloat(needSkillMin), makefloat(needSkillMax), makefloat(skill)) + 0.003 * skill;
+		fTRFromSKill = 0.3 + Bring2Range(0.0, 0.4, makefloat(needSkillMin), makefloat(needSkillMax), makefloat(skill)) + 0.003 * makefloat(skill);
 	}
 
     float fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "ShipTurnRateUp"), 1.0, 1.15);   //slib
@@ -730,7 +730,7 @@ float TurnBySkill(aref refCharacter)
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.HullSpecial")) fSpeedPerk *= 0.75;
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.CuBot")) fSpeedPerk *= 1.05;
 
-	return fTRFromSKill * fSpeedPerk * fFastTurn180 / 1.25;
+	return fTRFromSKill * fSpeedPerk * fFastTurn180 / 1.2;
 }
 
 float FindShipTurnRateBonus(aref refCharacter)
