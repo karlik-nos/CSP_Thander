@@ -315,7 +315,7 @@ int LocationInitLaVega(int n)
  	locations[n].islandId = "Hispaniola";
 	//Models
 	//Always
-	locations[n].models.always.locators = "ResP_locators_x";
+	locations[n].models.always.locators = "ResP_locators";
 	locations[n].models.always.tavern = "ResP";
 	locations[n].models.always.tavern.level = 65538;
 	locations[n].models.always.window = "ResP_windows";
