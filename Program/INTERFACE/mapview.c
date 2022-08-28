@@ -24,7 +24,6 @@ void InitInterface(string iniName)
 	SetEventHandler("ShowInfoWindow","ShowInfoWindow",0);
 	SetEventHandler("MouseRClickUp","HideInfoWindow",0);
 	SetEventHandler("SelectRColony","SelectRColony",0);
-	SetEventHandler("MouseRClickUP", "HideRColony",0);
 	SetEventHandler("OpenMapBest", "OpenMapBest",0);
 
 	FillMapsTable();
@@ -216,250 +215,92 @@ void HideInfoWindow()
 void SelectRColony()
 {
 	float X, Y;
-	int   X1, Y1;
 
 	float fMouseX = stf(GameInterface.mousepos.x);
 	float fMouseY = stf(GameInterface.mousepos.y);
 
-	string sColony;
-	ref rColony;
-
 	int  iGoodIndex = sti(GameInterface.TABLE_MAPS.(CurRow).index);
 	ref  itmRef = &Items[iGoodIndex];
+	
+	if (!chrDisableReloadToLocation) DoTeleport(fMouseX,fMouseY,itmRef.id);
+}
 
-	if(itmRef.id != "Map_Best") return;
-
-	for(int i = 0; i < MAX_COLONIES; i++)
+void DoTeleport(float x, float y, string mapid)
+{
+	log_info(FloatToString(x,1)+" "+FloatToString(y,1)+" "+mapid);
+	if (mapid == "map_bermudas" && CheckAttribute(loadedLocation,"islandId") && loadedLocation.islandId == "Bermudes")
 	{
-		sColony = colonies[i].id;
-		rColony = &colonies[i];
-
-		string sColonyIslandID = rColony.Island;
-		string sColonyTown = sColony + "_town";
-
-		if(sColony == "Pearl") continue;
-		if(sColony == "Tenotchitlan") continue;
-		if(sColony == "Dominica") continue;
-		if(sColony == "Terks") continue;
-		if(sColony == "Caiman") continue;
-		if(sColony == "LostShipsCity") continue;
-
-		if(sColony != "FortOrange" && sColony != "LaVega" && sColony != "KhaelRoa")
+		if (CC(x,y,380,185)) //залив Руны
 		{
-			X = makefloat(worldMap.islands.(sColonyIslandID).(sColonyTown).position.x)+1000;
-			Y = -makefloat(worldMap.islands.(sColonyIslandID).(sColonyTown).position.z)+1000;
+			setCharacterShipLocation(pchar, "Shore3");
+			setWDMPointXZ("Shore3");
+			DoQuestReloadToLocation("Shore3", "reload", "reload1", "");
 		}
-
-		// Оранж и Ла-Вегу придётся выставлять ручками
-		if(sColony == "FortOrange")
+		if (CC(x,y,485,305)) //бухта Разбитого Корыта
 		{
-			X = 600;
-			Y = 1080;
+			setCharacterShipLocation(pchar, "Shore_Ship1");
+			setWDMPointXZ("Shore_Ship1");
+			DoQuestReloadToLocation("Shore_Ship1", "reload", "reload1", "");
 		}
-
-		if(sColony == "LaVega")
+		if (CC(x,y,415,225) || CC(x,y,465,275)) //пещера
 		{
-			X = 1150;
-			Y = 350;
+			DoQuestReloadToLocation("Bermudes_CaveEntrance", "reload", "reload1", "");
 		}
-
-		X1 = makeint(X * iLengthX/2048) + iStartX;
-		Y1 = makeint(Y * iLengthY/2048) + iStartY;
-
-		if(fMouseX >= X1 - 10.0)
+		if (CC(x,y,380,285)) //порт
 		{
-			if(fMouseX <= X1 + 10.0)
-			{
-				if(fMouseY >= Y1 - 10.0)
-				{
-					if(fMouseY <= Y1 + 10.0)
-					{
-						if(sColony != "Tenotchitlan" && sColony != "Pearl" && sColony != "Panama")
-						{
-							XI_WindowDisable("MAIN_WINDOW", true);
-							XI_WindowDisable("INFO_WINDOW", false);
-							XI_WindowShow("INFO_WINDOW", true);
-							ShowColonyInfo(i);
-						}
-					}
-				}
-			}
+			setCharacterShipLocation(pchar, "Pirates_town");
+			setWDMPointXZ("Pirates_town");
+			DoQuestReloadToLocation("Pirates_town", "reload", "reload1", "");
+		}
+	}
+	if (mapid == "map_terks" && CheckAttribute(loadedLocation,"islandId") && loadedLocation.islandId == "Terks")
+	{
+		if (CC(x,y,360,300)) //залив Северный
+		{
+			setCharacterShipLocation(pchar, "Shore56");
+			setWDMPointXZ("Shore56");
+			DoQuestReloadToLocation("Shore56", "reload", "reload1", "");
+		}
+		if (CC(x,y,315,415)) //залив Южный
+		{
+			setCharacterShipLocation(pchar, "Shore57");
+			setWDMPointXZ("Shore57");
+			DoQuestReloadToLocation("Shore57", "reload", "reload1", "");
+		}
+		if (CC(x,y,305,328)) //грот
+		{
+			DoQuestReloadToLocation("Terks_CaveEntrance", "reload", "reload1", "");
+		}
+	}
+	if (mapid == "map_tortuga" && CheckAttribute(loadedLocation,"islandId") && loadedLocation.islandId == "Tortuga")
+	{
+		if (CC(x,y,520,390)) //маяк Тортуги
+		{
+			setCharacterShipLocation(pchar, "Mayak6");
+			setWDMPointXZ("Mayak6");
+			DoQuestReloadToLocation("Mayak6", "reload", "reload1", "");
+		}
+		if (CC(x,y,530,290)) //пляж Глаз Рыбы
+		{
+			setCharacterShipLocation(pchar, "Shore58");
+			setWDMPointXZ("Shore58");
+			DoQuestReloadToLocation("Shore58", "reload", "reload1", "");
+		}
+		if (CC(x,y,425,230)) //грот
+		{
+			DoQuestReloadToLocation("Tortuga_CaveEntrance", "reload", "reload1", "");
+		}
+		if (CC(x,y,480,405)) //грот
+		{
+			setCharacterShipLocation(pchar, "Tortuga_town");
+			setWDMPointXZ("Tortuga_town");
+			DoQuestReloadToLocation("Tortuga_town", "reload", "reload1", "");
 		}
 	}
 }
 
-void HideRColony()
+bool CC(float x, float y, int dx, int dy)
 {
-	XI_WindowDisable("MAIN_WINDOW", false);
-	XI_WindowDisable("INFO_WINDOW", true);
-	XI_WindowShow("INFO_WINDOW", false);
-}
-
-void ShowColonyInfo(int iColony)
-{
-	// "COLONY_INFO_TEXT" - названия, "COLONY_INFO_TEXT2" - значения
-	string sText;
-	ref sld, rColony;
-	rColony = &colonies[iColony];
-	string sColony = colonies[iColony].id;
-	int iColor;
-
-	sText = XI_ConvertString("Colony" + sColony);
-	SetFormatedText("INFO_CAPTION", sText);
-
-	sText = GetNationNameByType(sti(rColony.nation));
-	SetNewGroupPicture("INFO_NATION_PICTURE", "NATIONS", sText);
-
-	SetFormatedText("COLONY_INFO", "");
-	SetFormatedText("COLONY_INFO_TEXT", "");
-	SetFormatedText("COLONY_INFO_TEXT2", "");
-	SetFormatedText("COLONY_INFO_SIEGE", "");
-	SetFormatedText("IMPORT_CAPTION", XI_ConvertString("IMPORTING:"));
-	SetFormatedText("EXPORT_CAPTION", XI_ConvertString("EXPORTING:"));
-	SetFormattedTextLastLineColor("IMPORT_CAPTION", argb(255,196,196,255));
-	SetFormattedTextLastLineColor("EXPORT_CAPTION", argb(255,196,255,196));
-
-	int iDays = makeint(GetDistanceToColony2D(sColony)/100);
-	if(iDays <= 0) iDays = 1;
-	sText = XI_ConvertString("ColonyDistance") + " - " + iDays + " " + XI_ConvertString("day1") + ".";
-	SetFormatedText("COLONY_TRAVEL_INFO", sText);
-
-//	ref rFC = CharacterFromID(sColony + " Fort Commander");
-//	DumpAttributes(rColony);
-
-	sText = XI_ConvertString("ColonyInfo");
-	AddLineToFormatedText("COLONY_INFO_LABEL", sText);
-
-	sText = XI_ConvertString("SalaryQuantity");
-	AddLineToFormatedText("COLONY_INFO_TEXT", sText);
-	sText = sti(colonies[iColony].ship.crew.quantity);
-	AddLineToFormatedText("COLONY_INFO_TEXT2", sText);
-	sText = XI_ConvertString("Fort");
-	AddLineToFormatedText("COLONY_INFO_TEXT", sText);
-
-	if(!CheckAttribute(rColony, "HasNoFort"))
-	{
-		sText = XI_ConvertString("FortYes");
-		AddLineToFormatedText("COLONY_INFO_TEXT2", sText);
-
-		sld = CharacterFromID(sColony + " Fort Commander");
-		sText = XI_ConvertString("CrewQuantity");
-		AddLineToFormatedText("COLONY_INFO_TEXT", sText);
-		sText = sti(sld.ship.crew.quantity);
-		AddLineToFormatedText("COLONY_INFO_TEXT2", sText);
-
-		sText = XI_ConvertString("Quantity_info");
-		AddLineToFormatedText("COLONY_INFO_TEXT", sText);
-		sText = GetMaxFortCannons(sld.id);
-		AddLineToFormatedText("COLONY_INFO_TEXT2", sText);
-	}
-	else
-	{
-		sText = XI_ConvertString("FortNo");
-		AddLineToFormatedText("COLONY_INFO_TEXT2", sText);
-	}
-
-	if(CheckAttribute(rColony, "siege"))
-	{
-		sText = XI_ConvertString("ThisColonySiege");
-		AddLineToFormatedText("COLONY_INFO_SIEGE", sText);
-	}
-
-	SetFormatedText("IMPORT_INFO", "");
-	SetFormatedText("EXPORT_INFO", "");
-
-	int iGood = -1;
-	string sGood = "";
-	int iIsland = FindIsland(rColony.Island);
-
-	for(int i=1; i<=3; i++)
-	{
-		string sGoodNum = "id" + i;
-		// Импорт
-		if(CheckAttribute(islands[iIsland], "Trade.Import." + sGoodNum))
-		{
-			iColor = argb(255,196,196,255);
-			iGood = islands[iIsland].Trade.Import.(sGoodNum);
-			sGood = goods[iGood].name;
-			SetNewGroupPicture("IMPORT" + i + "_PICTURE", "GOODS", sGood);
-
-			sGood = XI_ConvertString(sGood);
-			AddLineToFormatedText("IMPORT_INFO", sGood);
-			SetFormattedTextLastLineColor("IMPORT_INFO", iColor);
-		}
-		else
-		{
-			SetNewGroupPicture("IMPORT" + i + "_PICTURE", "", "");
-		}
-
-		// Экспорт
-		if(CheckAttribute(islands[iIsland], "Trade.Export." + sGoodNum)) // Если есть. На Бермудах третьего товара нету.
-		{
-			iColor = argb(255,196,255,196);
-			iGood = islands[iIsland].Trade.Export.(sGoodNum);
-			sGood = goods[iGood].name;
-			SetNewGroupPicture("EXPORT" + i + "_PICTURE", "GOODS", sGood);
-
-			sGood = XI_ConvertString(sGood);
-			AddLineToFormatedText("EXPORT_INFO", sGood);
-			SetFormattedTextLastLineColor("EXPORT_INFO", iColor);
-		}
-		else
-		{
-			SetNewGroupPicture("EXPORT" + i + "_PICTURE", "", "");
-		}
-	}
-}
-
-int GetMaxFortCannons(string _FortCommander)
-{
-	int _iCannons = 0;
-	switch(_FortCommander)
-	{
-		case "Bridgetown Fort Commander": _iCannons = 39; break;
-
-		case "SentJons Fort Commander": _iCannons = 103; break;
-
-		case "SanJuan Fort Commander": _iCannons = 45; break;
-
-		case "Charles Fort Commander": _iCannons = 157; break;
-
-		case "Marigo Fort Commander": _iCannons = 161; break;
-
-		case "BasTer Fort Commander": _iCannons = 82; break;
-
-		case "FortFrance Fort Commander": _iCannons = 92; break;
-
-		case "Villemstad Fort Commander": _iCannons = 76; break;
-
-		case "PortSpein Fort Commander": _iCannons = 83; break;
-
-		case "Cumana Fort Commander": _iCannons = 80; break;
-
-		case "Caracas Fort Commander": _iCannons = 164; break;
-
-		case "Maracaibo Fort Commander": _iCannons = 70; break;
-
-		case "Cartahena Fort Commander": _iCannons = 85; break;
-
-		case "PortoBello Fort Commander": _iCannons = 82; break;
-
-		case "SantaCatalina Fort Commander": _iCannons = 164; break;
-
-		case "Beliz Fort Commander": _iCannons = 80; break;
-
-		case "PortRoyal Fort Commander": _iCannons = 204; break;
-
-		case "PortPax Fort Commander": _iCannons = 179; break;
-
-		case "SantoDomingo Fort Commander": _iCannons = 128; break;
-
-		case "Santiago Fort Commander": _iCannons = 128; break;
-
-		case "Tortuga Fort Commander": _iCannons = 28; break;
-
-		case "Havana Fort Commander": _iCannons = 80; break;
-	}
-
-	return _iCannons;
+	if (x >= dx && x <= dx+30 && y >= dy && y <= dy+30) return true;
+	return false;
 }
