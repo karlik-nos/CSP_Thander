@@ -34,17 +34,13 @@ void CreateBallsEnvironment()
 	makearef(Balls,AIBalls.Balls.Balls);
 	makearef(Bombs,AIBalls.Balls.Bombs);
 
-	// Bombs
 	Bombs.SubTexIndex = 0;		Bombs.Size = 0.3;		Bombs.GoodIndex = GOOD_BOMBS;
-	Bombs.Particle = "bomb_smoke";
+	Bombs.Particle = "bomb_smoke_high";
+	Balls.SubTexIndex = 2;		Balls.Size = 0.2;		Balls.GoodIndex = GOOD_BALLS;
+	Balls.Particle = "ball_smoke_high";
 
-	// Grapes
 	Grapes.SubTexIndex = 1;		Grapes.Size = 0.2;		Grapes.GoodIndex = GOOD_GRAPES;
 
-	// Balls
-	Balls.SubTexIndex = 2;		Balls.Size = 0.2;		Balls.GoodIndex = GOOD_BALLS;
-
-	// Knippels
 	Knippels.SubTexIndex = 3;	Knippels.Size = 0.2;	Knippels.GoodIndex = GOOD_KNIPPELS;
 
 	AIBalls.isDone = 1;
@@ -146,6 +142,7 @@ void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0,
 	}
 	//if (rand(1) == 0) // boal оптимизация дыма
 	CreateParticleSystem(sParticleName, fX, fY, fZ, -fHeightAng - (fCannonHeightMultiply - 1.0) * 0.1, fDirAng, 0.0, 5);
+	
 	Play3DSound(rCannon.Sound, fX, fY, fZ);
 }
 

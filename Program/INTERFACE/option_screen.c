@@ -69,6 +69,7 @@ void InitInterface(string iniName)
 	SetFormatedText("TEXT_NATIONS_PIC_SETTINGS", "Иконки наций");
 	SetFormatedText("TEXT_VISUAL_CIRASS_PIC_SETTINGS", "Визуал кирас");
 	SetFormatedText("TEXT_FONT_QUESTBOOK_PIC_SETTINGS", "Шрифт журнала");
+	SetFormatedText("TEXT_PARTICLES_PIC_SETTINGS", "Партиклы бомб");
 
 	aref ar; makearef(ar,objControlsState.key_codes);
 	SendMessage(&GameInterface,"lsla",MSG_INTERFACE_MSG_TO_NODE,"KEY_CHOOSER", 0,ar);
@@ -1453,6 +1454,11 @@ void ShowInfo()
             sPicture = "INTERFACES\FaqPictures\ALTFONT_CHECKBOX.png";
 			xx = 570;
 			yy = 494;
+		break;
+
+		case "PARTICLES_CHECKBOX":
+			sHeader = XI_ConvertString("Particles_title");
+			sText1 = XI_ConvertString("Particles_descr");
 		break;
 
 		case "NOINT_CHECKBOX":
