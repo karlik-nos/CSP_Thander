@@ -46,6 +46,14 @@ void ProcessDialogEvent()
 					link.l2.go = "exit";
 					npchar.quest.meeting = "1";
 					DeleteAttribute(npchar, "talker"); //снимаем говорилку
+					if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")	//Sinistra Нежить
+					{
+						dialog.text = "Приветствую тебя в нашей уютной пещере! Чувствуй себя как дома.";
+						link.l1 = "У меня есть к тебе предложение.";
+						link.l1.go = "crew";
+						link.l2 = "Благодарю, сородич. Я тут осмотрюсь.";
+						link.l2.go = "exit";
+					}
 					break;
 				}
 				dialog.text = LinkRandPhrase("Приветствую, капитан! Что вам угодно от простого матроса?","Здравствуйте, суда"+ GetSexPhrase("рь","рыня") +". Чем могу быть вам полезен?","Доброго дня, уважаем"+ GetSexPhrase("ый","ая") +". Вы что-то хотели?");
@@ -60,6 +68,14 @@ void ProcessDialogEvent()
 				{
 					dialog.text = "Приветствую, сударыня! Что вам угодно от простого матроса?";
 					link.l1 = "Да так, жениха моей сестре ищу.";
+					link.l1.go = "exit";
+					DeleteAttribute(link, "l2");
+					DeleteAttribute(link, "l3");
+				}
+				if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
+				{
+					dialog.text = "Приветствую тебя в нашей уютной пещере! Чувствуй себя как дома.";
+					link.l1 = "Благодарю, сородич. Я тут осмотрюсь.";
 					link.l1.go = "exit";
 					DeleteAttribute(link, "l2");
 					DeleteAttribute(link, "l3");
@@ -102,6 +118,14 @@ void ProcessDialogEvent()
 			link.l1.go = "crew_1";
 			link.l2 = "Сожалею, матрос, но моя команда полностью укомплектована. Так что придётся тебе поискать другого капитана.";
 			link.l2.go = "exit";
+			if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
+			{
+				dialog.text = "И что ты хочешь мне предложить?";
+				link.l1 = "У меня есть корабль, и я хочу нанять твоих костлявых ребят к себе в команду, что скажешь?";
+				link.l1.go = "crew_1";
+				link.l2 = "А знаешь, я передумал.";
+				link.l2.go = "exit";
+			}
 		break;
 
 		case "crew_1":
@@ -112,12 +136,23 @@ void ProcessDialogEvent()
 				case 2: sTemp = "Но наша стихия - это абордажная схватка. Блеск сабель, запах пороха и крови - вот наше призвание. В бою с нами нелегко совладать, так что в случае опасности наши клинки выручат вас, капитан!"; break;
 			}
 			dialog.text = "Нас "+sti(npchar.quest.crew.qty)+" человек, и пойдём мы на службу только все вместе. Умеем мы всё, что положено матросу. "+sTemp+"";
+			if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
+			{
+				dialog.text = "Нас "+sti(npchar.quest.crew.qty)+" скелетов, и мы рады будем служить тебе как преданные слуги.";
+			}
 			if (GetFreeCrewQuantity(pchar) >= sti(npchar.quest.crew.qty))
 			{
 				link.l1 = "Звучит весьма заманчиво. Сколько вы хотите аванса?";
 				link.l1.go = "crew_2";
 				link.l2 = "Сожалею, матрос, но я рассчитывал на несколько... иное. Придётся вам поискать другого капитана.";
 				link.l2.go = "exit";
+				if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
+				{
+					link.l1 = "Да, столько мне подойдёт, и сколько вы хотите?";
+					link.l1.go = "crew_2";
+					link.l2 = "Этого недостаточно, забудь.";
+					link.l2.go = "exit";
+				}
 			}
 			else
 			{
@@ -199,13 +234,27 @@ void ProcessDialogEvent()
 		case "crew_2":
 			iTemp = sti(npchar.quest.crew.money)*sti(npchar.quest.crew.qty);
 			dialog.text = ""+FindRussianMoneyString(sti(npchar.quest.crew.money))+" на брата. Потом - обычное матросское жалование. Мы лишнего не попросим, кэп.";
+			if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
+			{
+				dialog.text = ""+FindRussianMoneyString(sti(npchar.quest.crew.money))+" на скелета. Потом - обычное матросское жалование. Мы лишнего не попросим.";
+			}
 			if (sti(pchar.money) >= iTemp)
 			{
 				link.l1 = "Договорились! Вот здесь вся сумма. Отправляйтесь на мой корабль, он называется '"+pchar.ship.name+"', стоит на рейде. Боцман выделит вам места в кубрике и даст работу.";
 				link.l1.go = "crew_3";
+				if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
+				{
+					link.l1 = "Договорились! А теперь подняли свои костлявые задницы и марш на корабль, он называется '"+pchar.ship.name+"'. Чтоб через час все были на месте.";
+					link.l1.go = "crew_3";
+				}
 			}
 			link.l2 = "К сожалению, я не могу себе позволить оплатить ваши услуги. Придётся вам поискать другого капитана.";
 			link.l2.go = "exit";
+			if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
+			{
+				link.l2 = "Вы слишком много просите, давай забудем об этом.";
+				link.l2.go = "exit";
+			}			
 		break;
 
 		case "crew_3":
@@ -214,6 +263,12 @@ void ProcessDialogEvent()
 			dialog.text = "Уже идём, капитан! Я соберу ребят, и мы отправимся на борт немедленно!";
 			link.l1 = "Давайтие, поторапливайтесь, я долго задерживаться тут не планирую.";
 			link.l1.go = "crew_4";
+			if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
+			{
+				dialog.text = "Слушаемся и повинуемся, о повелитель!";
+				link.l1 = "Так-то лучше!";
+				link.l1.go = "crew_4";
+			}
 		break;
 
 		case "crew_4":

@@ -305,7 +305,7 @@ heroNameDat_9 {Весёлому Роджеру}
 heroLastNameDat_9 {}
 
 heroFace_9 {511}
-heroModel_9 {PGG_Skeletcap_0,PGG_Skeletcap_1,PGG_Skeletcap_2,PGG_Skeletcap_3,PGG_Skeletcap_4,PGG_Skeletcap_5}
+heroModel_9 {PGG_Skeletcap_0,PGG_Skeletcap_1,PGG_Skeletcap_2,PGG_Skeletcap_3,PGG_Skeletcap_4,PGG_Skeletcap_5,panhandler_3}
 
 heroType_9 {Рубака}
 heroNation_9 {Франция}
@@ -330,7 +330,7 @@ heroNameDat_10 {Ужасный}
 heroLastNameDat_10 {}
 
 heroFace_10 {537}
-heroModel_10 {PGG_Meriman_0,PGG_Meriman_1,PGG_Meriman_2,PGG_Meriman_3,PGG_Meriman_4,PGG_Meriman_5}
+heroModel_10 {PGG_Meriman_0,PGG_Meriman_1,PGG_Meriman_2,PGG_Meriman_3,PGG_Meriman_4,PGG_Meriman_5,panhandler_3}
 
 heroType_10 {Фехтовальщик}
 heroNation_10 {Голландия}
