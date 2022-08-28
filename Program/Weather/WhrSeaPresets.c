@@ -24,9 +24,9 @@ void WhrSetSeaPreset(int iCurWeatherNum, string sPreset)
     Whr.Sea2.Transparency = 0.3;
     Whr.Sea2.Frenel = 0.3;
     Whr.Sea2.Attenuation = 0.3;
-    Whr.Sea2.WaterColor = argb(0, 10, 30, 50);
-    Whr.Sea2.SkyColor = argb(0, 255, 255, 255);
-    Whr.Sea2.BumpScale = 0.075; //ћ?Ћ »? ¬ќЋЌџ */
+    Whr.Sea2.WaterColor = argb(0, 10, 30, 50);*/
+    Whr.Sea2.SkyColor = argb(0, 50, 100, 125);
+    /*Whr.Sea2.BumpScale = 0.075; //ћ?Ћ »? ¬ќЋЌџ */
 
 	switch(sPreset)
 	{
@@ -52,13 +52,13 @@ void WhrSetSeaPreset(int iCurWeatherNum, string sPreset)
 				Whr.Sea2.FoamK = 0.5;//яркость пены по высоте 0.1 - пена §рка§ с 10 метров 1.0 через метр после начала
 				Whr.Sea2.FoamV = 1.5;////высота с которой начинаетс§ пена
 				Whr.Sea2.FoamUV = 1.0; //тайлинг пены
-				Whr.Sea2.FoamTexDisturb = 0.7;//сдвиг по нормали. х.з. что это надо поюзать. значение от 0.0 до 1.0
+				Whr.Sea2.FoamTexDisturb = 0.5;//сдвиг по нормали. х.з. что это надо поюзать. значение от 0.0 до 1.0
 
-				Whr.Sea2.Reflection = 0.76;//0.8;
+				Whr.Sea2.Reflection = 0.4;//0.8;
 				Whr.Sea2.Transparency = 0.15;//0.6;
-				Whr.Sea2.Frenel = 0.3;//0.6;
+				Whr.Sea2.Frenel = 0.15;//0.6;
 				Whr.Sea2.Attenuation = 0.3;//0.2;
-				Whr.Sea2.WaterColor = argb(0, 10, 55, 40);
+				Whr.Sea2.WaterColor = argb(0, 10, 45, 50);
 			break;
 
 			case "light_breeze": //легкий бриз
@@ -78,13 +78,13 @@ void WhrSetSeaPreset(int iCurWeatherNum, string sPreset)
 				Whr.Sea2.FoamK = 0.5;//§ркость пены по высоте 0.1 - пена §рка§ с 10 метров 1.0 через метр после начала
 				Whr.Sea2.FoamV = 1.75;////высота с которой начинаетс§ пена
 				Whr.Sea2.FoamUV = 1.0; //тайлинг пены
-				Whr.Sea2.FoamTexDisturb = 0.7;//сдвиг по нормали. х.з. что это надо поюзать. значение от 0.0 до 1.0
+				Whr.Sea2.FoamTexDisturb = 0.5;//сдвиг по нормали. х.з. что это надо поюзать. значение от 0.0 до 1.0
 
-				Whr.Sea2.Reflection = 0.76;//0.8;
+				Whr.Sea2.Reflection = 0.4;//0.8;
 				Whr.Sea2.Transparency = 0.14;//0.6;
-				Whr.Sea2.Frenel = 0.3;//0.6;
+				Whr.Sea2.Frenel = 0.15;//0.6;
 				Whr.Sea2.Attenuation = 0.3;//0.2;
-				Whr.Sea2.WaterColor = argb(0, 10, 55, 40);
+				Whr.Sea2.WaterColor = argb(0, 10, 45, 50);
 			break;
 
 			case "breeze":	//бриз
@@ -101,16 +101,16 @@ void WhrSetSeaPreset(int iCurWeatherNum, string sPreset)
 				Whr.Sea2.BumpScale = 0.075; //Ю?О†ї? ђЭОНЯ
 				Whr.Sea2.PosShift = 1.1;//остроконечность волн
 
-				Whr.Sea2.FoamK = 0.15;//§ркость пены по высоте 0.1 - пена §рка§ с 10 метров 1.0 через метр после начала
+				Whr.Sea2.FoamK = 0.2;//§ркость пены по высоте 0.1 - пена §рка§ с 10 метров 1.0 через метр после начала
 				Whr.Sea2.FoamV = 3.0;//высота с которой начинаетс§ пена
 				Whr.Sea2.FoamUV = 0.65; //тайлинг пены
-				Whr.Sea2.FoamTexDisturb = 0.7;//сдвиг по нормали. х.з. что это надо поюзать. значение от 0.0 до 1.0
+				Whr.Sea2.FoamTexDisturb = 0.5;//сдвиг по нормали. х.з. что это надо поюзать. значение от 0.0 до 1.0
 
-				Whr.Sea2.Reflection = 0.76;//0.8;
+				Whr.Sea2.Reflection = 0.4;//0.8;
 				Whr.Sea2.Transparency = 0.14;//0.6;
-				Whr.Sea2.Frenel = 0.3;//0.6;
+				Whr.Sea2.Frenel = 0.15;//0.6;
 				Whr.Sea2.Attenuation = 0.3;//0.2;
-				Whr.Sea2.WaterColor = argb(0, 10, 55, 40);
+				Whr.Sea2.WaterColor = argb(0, 10, 45, 50);
 			break;
 
 			case "moderate_breeze":	//бриз
@@ -130,13 +130,13 @@ void WhrSetSeaPreset(int iCurWeatherNum, string sPreset)
 				Whr.Sea2.FoamK = 0.3;//§ркость пены по высоте 0.1 - пена §рка§ с 10 метров 1.0 через метр после начала
 				Whr.Sea2.FoamV = 6.0;//высота с которой начинаетс§ пена
 				Whr.Sea2.FoamUV = 0.45; //тайлинг пены
-				Whr.Sea2.FoamTexDisturb = 0.7;//сдвиг по нормали. х.з. что это надо поюзать. значение от 0.0 до 1.0
+				Whr.Sea2.FoamTexDisturb = 0.5;//сдвиг по нормали. х.з. что это надо поюзать. значение от 0.0 до 1.0
 
-				Whr.Sea2.Reflection = 0.76;//0.8;
+				Whr.Sea2.Reflection = 0.4;//0.8;
 				Whr.Sea2.Transparency = 0.14;//0.6;
-				Whr.Sea2.Frenel = 0.3;//0.6;
+				Whr.Sea2.Frenel = 0.15;//0.6;
 				Whr.Sea2.Attenuation = 0.3;//0.2;
-				Whr.Sea2.WaterColor = argb(0, 10, 55, 35);
+				Whr.Sea2.WaterColor = argb(0, 10, 45, 50);
 			break;
 
 			case "strong_breeze"://ветрено
@@ -149,51 +149,48 @@ void WhrSetSeaPreset(int iCurWeatherNum, string sPreset)
 				Whr.Sea2.AnimSpeed2 = 4.0;
 				Whr.Sea2.Scale2 = 1.0;
 				Whr.Sea2.MoveSpeed2 = "0.0, 0.0, -1.0";
-				
-				Whr.Sea2.Amp3 = 40.0
-				Whr.Sea2.AnimSpeed3 = 4.0;
-				Whr.Sea2.Scale3 = 0.12;
-				Whr.Sea2.MoveSpeed3 = "8.0, 0.0, 0.0";
 
 				Whr.Sea2.BumpScale = 0.075; //Ю?О†ї? ђЭОНЯ
 				Whr.Sea2.PosShift = 2.0; //остроконечность волн
+				Sea.Sea2.LodScale = 0.5;
+	            Sea.Sea2.GridStep = 0.05;
 
 				Whr.Sea2.FoamK = 0.25;//§ркость пены по высоте 0.1 - пена §рка§ с 10 метров 1.0 через метр после начала
 				Whr.Sea2.FoamV = 11.0;//высота с которой начинаетс§ пена
 				Whr.Sea2.FoamUV = 0.30; //тайлинг пены
-				Whr.Sea2.FoamTexDisturb = 0.7;//сдвиг по нормали. х.з. что это надо поюзать. значение от 0.0 до 1.0
+				Whr.Sea2.FoamTexDisturb = 0.5;//сдвиг по нормали. х.з. что это надо поюзать. значение от 0.0 до 1.0
 
-				Whr.Sea2.Reflection = 0.76;//0.8;
+				Whr.Sea2.Reflection = 0.4;//0.8;
 				Whr.Sea2.Transparency = 0.14;//0.6;
-				Whr.Sea2.Frenel = 0.3;//0.6;
+				Whr.Sea2.Frenel = 0.15;//0.6;
 				Whr.Sea2.Attenuation = 0.3;//0.2;
-				Whr.Sea2.WaterColor = argb(0, 10, 55, 35);
+				Whr.Sea2.WaterColor = argb(1000, 10, 45, 50);
 			break;
 
 			case "storm"://шторм
-				Whr.Sea2.Amp1 = 40.0; //амплитуда 1 волны
-				Whr.Sea2.AnimSpeed1 = 2.0; //скорость анимации
-				Whr.Sea2.Scale1 = 0.12; //размеры волны
-				Whr.Sea2.MoveSpeed1 = "8.0, 0.0, 0.0"; //скорость движени§
+				Whr.Sea2.Amp1 = 64.0; //амплитуда 1 волны
+				Whr.Sea2.AnimSpeed1 = 2.25; //скорость анимации
+				Whr.Sea2.Scale1 = 0.075; //размеры волны
+				Whr.Sea2.MoveSpeed1 = "12.0, 0.0, 0.0"; //скорость движени§
 
-				Whr.Sea2.Amp2 = 4.0;
-				Whr.Sea2.AnimSpeed2 = 2.0;
-				Whr.Sea2.Scale2 = 1.3;
-				Whr.Sea2.MoveSpeed2 = "0.0, 0.0, -1.0";
+				Whr.Sea2.Amp2 = 9.0;
+				Whr.Sea2.AnimSpeed2 = 8.0;
+				Whr.Sea2.Scale2 = 0.5;
+				Whr.Sea2.MoveSpeed2 = "0.0, 0.0, 4.0";
 
 				Whr.Sea2.BumpScale = 0.05; //Ю?О†ї? ђЭОНЯ
 				Whr.Sea2.PosShift = 2.0; //остроконечность волн
 
-				Whr.Sea2.FoamK = 0.10;//§ркость пены по высоте 0.1 - пена §рка§ с 10 метров 1.0 через метр после начала
-				Whr.Sea2.FoamV = 24.0;//высота с которой начинаетс§ пена
+				Whr.Sea2.FoamK = 0.045;//§ркость пены по высоте 0.1 - пена §рка§ с 10 метров 1.0 через метр после начала
+				Whr.Sea2.FoamV = 36.0;//высота с которой начинаетс§ пена
 				Whr.Sea2.FoamUV = 0.25; //тайлинг пены
-				Whr.Sea2.FoamTexDisturb = 0.1;//сдвиг по нормали. х.з. что это надо поюзать. значение от 0.0 до 1.0
+				Whr.Sea2.FoamTexDisturb = 0.7;//сдвиг по нормали. х.з. что это надо поюзать. значение от 0.0 до 1.0
 
 				Whr.Sea2.Reflection = 0.4;
 				Whr.Sea2.Transparency = 0.15;
 				Whr.Sea2.Frenel = 0.4;
 				Whr.Sea2.Attenuation = 0.3;
-				Whr.Sea2.WaterColor = argb(0, 20, 50, 40);
+				Whr.Sea2.WaterColor = argb(0, 30, 65, 55);
 			break;
 	}
 	Log_TestInfo("WhrSetSeaPreset: выбран пресет " + sPreset);
