@@ -41,7 +41,7 @@ void CreateBallsEnvironment()
 	{
 		case 0:
 			Bombs.Particle = "bomb_smoke_old";
-			Balls.Particle = "ball_smoke";
+			// Balls.Particle = "ball_smoke";
 		break;
 		case 1:
 			Bombs.Particle = "bomb_smoke_low";
