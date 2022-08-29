@@ -46,13 +46,20 @@ void ProcessDialogEvent()
 					link.l2.go = "exit";
 					npchar.quest.meeting = "1";
 					DeleteAttribute(npchar, "talker"); //снимаем говорилку
-					if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")	//Sinistra Нежить
+					if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton" && pchar.questTemp.UP_SkeletyVPeshere != "SVP")	//Sinistra Нежить
 					{
 						dialog.text = "Приветствую тебя в нашей уютной пещере! Чувствуй себя как дома.";
 						link.l1 = "У меня есть к тебе предложение.";
 						link.l1.go = "crew";
 						link.l2 = "Благодарю, сородич. Я тут осмотрюсь.";
-						link.l2.go = "exit";
+						link.l2.go = "UP_Skelet_Vihod";
+					}
+					if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton" && pchar.questTemp.UP_SkeletyVPeshere == "SVP")	//Sinistra Нежить
+					{
+						dialog.text = "Приветствую тебя в нашей уютной пещере! Чувствуй себя как дома.";
+						link.l1 = "Благодарю, сородич. Я тут осмотрюсь.";
+						link.l1.go = "UP_Skelet_Vihod";
+						DeleteAttribute(link, "l2");
 					}
 					break;
 				}
@@ -76,7 +83,7 @@ void ProcessDialogEvent()
 				{
 					dialog.text = "Приветствую тебя в нашей уютной пещере! Чувствуй себя как дома.";
 					link.l1 = "Благодарю, сородич. Я тут осмотрюсь.";
-					link.l1.go = "exit";
+					link.l1.go = "UP_Skelet_Vihod";
 					DeleteAttribute(link, "l2");
 					DeleteAttribute(link, "l3");
 				}
@@ -124,7 +131,7 @@ void ProcessDialogEvent()
 				link.l1 = "У меня есть корабль, и я хочу нанять твоих костлявых ребят к себе в команду, что скажешь?";
 				link.l1.go = "crew_1";
 				link.l2 = "А знаешь, я передумал.";
-				link.l2.go = "exit";
+				link.l2.go = "UP_Skelet_Vihod";
 			}
 		break;
 
@@ -151,7 +158,7 @@ void ProcessDialogEvent()
 					link.l1 = "Да, столько мне подойдёт, и сколько вы хотите?";
 					link.l1.go = "crew_2";
 					link.l2 = "Этого недостаточно, забудь.";
-					link.l2.go = "exit";
+					link.l2.go = "UP_Skelet_Vihod";
 				}
 			}
 			else
@@ -253,7 +260,7 @@ void ProcessDialogEvent()
 			if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
 			{
 				link.l2 = "Вы слишком много просите, давай забудем об этом.";
-				link.l2.go = "exit";
+				link.l2.go = "UP_Skelet_Vihod";
 			}			
 		break;
 
@@ -288,6 +295,17 @@ void ProcessDialogEvent()
 			LAi_SetActorType(npchar);
 			LAi_ActorRunToLocation(npchar, "reload", "reload1_back", "none", "", "", "", 20.0);
 			npchar.lifeday = 0;
+			if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
+			{
+				for (i=1; i<=15; i++)
+				{
+				sld = CharacterFromID("Skelet_Drug_"+i)
+				LAi_SetActorType(sld);
+				LAi_ActorRunToLocation(sld, "reload", "reload1_back", "none", "", "", "", 20.0);
+				}
+				pchar.questTemp.UP_SkeletyVPeshere = "SVP";
+				SetTimerCondition("UP_SkeletyVPeshere_NanyatSnova", 0, 0, 2, false);	//Sinistra: скелетов можно будет нанимать через два дня!
+			}
 		break;
 
 		//замечание по обнажённому оружию от персонажей типа citizen
@@ -320,6 +338,13 @@ void ProcessDialogEvent()
 			LAi_SetCitizenTypeNoGroup(&characters[sti(pchar.GenQuest.SeekSpy.BaseIdx)]);
 			NextDiag.CurrentNode = "First Time";
 			DialogExit();
+		break;
+		
+		case "UP_Skelet_Vihod":
+			DialogExit();
+			sld = CharacterFromID("Skelet_Drug")
+			LAi_SetWarriorType(sld);
+			LAi_CharacterDisableDialog(sld);
 		break;
 	}
 }

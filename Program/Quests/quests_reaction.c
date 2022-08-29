@@ -9856,7 +9856,7 @@ void QuestComplete(string sQuestName, string qname)
             LAi_SetFightMode(Pchar, true);
 			Log_SetStringToLog("Скелеты атакуют!!!");
 			//Скелеты
-            for (i=1; i<=6; i++)
+			for (i=1; i<=6; i++)
 			{
 				sTemp = "skel_"+(rand(3)+1);
 				sld = GetCharacter(NPC_GenerateCharacter("PDM_PI_skel_"+i, sTemp, "skeleton", "skeleton", 10, PIRATE, -1, true));
@@ -10818,6 +10818,16 @@ void QuestComplete(string sQuestName, string qname)
 		case "UP_DrugPridet":
 			pchar.questTemp.UndeadPrologue2 = "UP2";
 			Log_info("У вас нет ключа");
+		break;
+		
+		case "UP_Skelet_Moryak_HoditPoPeshere":
+			sld = CharacterFromID("Skelet_Drug")
+			LAi_SetWarriorType(sld);
+			LAi_CharacterDisableDialog(sld);
+		break;
+		
+		case "UP_SkeletyVPeshere_NanyatSnova":
+			DeleteAttribute(pchar, "questTemp.UP_SkeletyVPeshere");
 		break;
 
 		// Тичингиту

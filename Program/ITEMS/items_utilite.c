@@ -854,20 +854,32 @@ void QuestCheckEnterLocItem(aref _location, string _locator) /// <<<провер
 			if (pchar.sex == "Skeleton" && GetCharacterEquipSuitID(pchar)!= "suit_1")
 			{
 				sTemp = "skel_"+(rand(3)+1);
-				sld = GetCharacter(NPC_GenerateCharacter("Skelet_Moryak", sTemp, "skeleton", "skeleton", 10, PIRATE, -1, true));
+				sld = GetCharacter(NPC_GenerateCharacter("Skelet_Drug", sTemp, "skeleton", "skeleton", 3, PIRATE, -1, true));
 				LAi_SetActorType(sld);
 				PlaceCharacter(sld, "monsters", PChar.location);
 				LAi_ActorDialog(sld, pchar, "", -1, 0);
 				sld.lifeday = 0;
 				sld.dialog.filename = "Sailor.c";
 				sld.dialog.currentnode = "First time";
-				LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER_OWN);
-				if (rand(40) <= 10+GetSummonSkillFromNameToOld(GetMainCharacter(),SKILL_LEADERSHIP)) // WW нанимаются в команду в 20-40 процентов случаев от авторитета
+				LAi_SetImmortal(sld, true);
+				LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
+				if (rand(20) <= 10+GetSummonSkillFromNameToOld(GetMainCharacter(),SKILL_LEADERSHIP)) // WW нанимаются в команду в % от авторитета (У нежити выше шанс)
 				{
 					sld.quest.crew = "true";
 					sld.quest.crew.qty = 10+rand(14)+(GetSummonSkillFromNameToOld(GetMainCharacter(),SKILL_LEADERSHIP) * 8); // WW 10-24 + 6-60 = 16-84 от авторитета
 					sld.quest.crew.type = rand(2);
-					sld.quest.crew.money = (60+rand(2)*20+rand(80))*(1+(sti(Pchar.rank)/4))+rand(100); // LEO: 60-180 Переправил, ибо дешево было ппц
+					sld.quest.crew.money = (30+rand(2)*10+rand(50))*(1+(sti(Pchar.rank)/4))+rand(100);	//Для нежити дешевле
+				}
+				bMonstersGen = true; //флаг генерации скелетов
+				for (i=1; i<=15; i++)
+				{
+				sTemp = "skel_"+(rand(3)+1);
+				sld = GetCharacter(NPC_GenerateCharacter("Skelet_Drug_"+i, sTemp, "skeleton", "skeleton", 3, PIRATE, -1, true));
+				PlaceCharacter(sld, "monsters", "random_free");
+				LAi_SetWarriorType(sld);
+				sld.lifeday = 0;
+				LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
+				LAi_CharacterDisableDialog(sld);
 				}
 			}
 			else
