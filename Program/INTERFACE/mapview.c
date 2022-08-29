@@ -7,6 +7,7 @@ int iStartX = 20;
 int iStartY = 62;
 int iLengthX = 580;//606;
 int iLengthY = 520;//542
+object oMapTeleport;
 
 void InitInterface(string iniName)
 {
@@ -228,30 +229,30 @@ void SelectRColony()
 void DoTeleport(float x, float y, string mapid)
 {
 	log_info(FloatToString(x,1)+" "+FloatToString(y,1)+" "+mapid);
-	if (mapid == "map_bermudas" && CheckAttribute(loadedLocation,"islandId") && loadedLocation.islandId == "Bermudes")
+	InitMapTeleport();
+	
+	ref map_root;
+	makeref(map_root,oMapTeleport);
+	aref mapname;
+	string map_name;
+	int i;
+	int mapsnum = GetAttributesNum(oMapTeleport);
+	for(i=0; i<mapsnum; i++)
 	{
-		if (CC(x,y,380,185)) //залив Руны
+		mapname = GetAttributeN(map_root,i);
+		map_name = GetAttributeName(mapname);
+		if (map_name == mapid && CheckAttribute(loadedLocation,"islandId") && mapname.island == loadedLocation.islandId)
 		{
-			setCharacterShipLocation(pchar, "Shore3");
-			setWDMPointXZ("Shore3");
-			DoQuestReloadToLocation("Shore3", "reload", "reload1", "");
+			log_info("да");
 		}
-		if (CC(x,y,485,305)) //бухта Разбитого Корыта
-		{
-			setCharacterShipLocation(pchar, "Shore_Ship1");
-			setWDMPointXZ("Shore_Ship1");
-			DoQuestReloadToLocation("Shore_Ship1", "reload", "reload1", "");
-		}
-		if (CC(x,y,415,225) || CC(x,y,465,275)) //пещера
-		{
-			DoQuestReloadToLocation("Bermudes_CaveEntrance", "reload", "reload1", "");
-		}
-		if (CC(x,y,380,285)) //порт
-		{
-			setCharacterShipLocation(pchar, "Pirates_town");
-			setWDMPointXZ("Pirates_town");
-			DoQuestReloadToLocation("Pirates_town", "reload", "reload1", "");
-		}
+
+	}
+	
+	/*if (CC(x,y,380,185)) //залив Руны
+	{
+		setCharacterShipLocation(pchar, "Shore3");
+		setWDMPointXZ("Shore3");
+		DoQuestReloadToLocation("Shore3", "reload", "reload1", "");
 	}
 	if (mapid == "map_terks" && CheckAttribute(loadedLocation,"islandId") && loadedLocation.islandId == "Terks")
 	{
@@ -296,11 +297,36 @@ void DoTeleport(float x, float y, string mapid)
 			setWDMPointXZ("Tortuga_town");
 			DoQuestReloadToLocation("Tortuga_town", "reload", "reload1", "");
 		}
-	}
+	}*/
 }
 
 bool CC(float x, float y, int dx, int dy)
 {
 	if (x >= dx && x <= dx+30 && y >= dy && y <= dy+30) return true;
 	return false;
+}
+
+void InitMapTeleport()
+{
+	oMapTeleport.map_bermudas.island = "Bermudes";
+	oMapTeleport.map_bermudas.Shore3.Pos0.X = 380;
+	oMapTeleport.map_bermudas.Shore3.Pos0.Y = 185;
+	oMapTeleport.map_bermudas.Shore_Ship1.Pos0.X = 485;
+	oMapTeleport.map_bermudas.Shore_Ship1.Pos0.Y = 305;
+	oMapTeleport.map_bermudas.Bermudes_CaveEntrance.Pos0.X = 415;
+	oMapTeleport.map_bermudas.Bermudes_CaveEntrance.Pos0.Y = 225;
+	oMapTeleport.map_bermudas.Bermudes_CaveEntrance.Pos1.X = 465;
+	oMapTeleport.map_bermudas.Bermudes_CaveEntrance.Pos1.Y = 275;
+	oMapTeleport.map_bermudas.Pirates_town.Pos0.X = 380;
+	oMapTeleport.map_bermudas.Pirates_town.Pos0.Y = 285;
+	
+	oMapTeleport.map_tortuga.island = "Tortuga";
+	oMapTeleport.map_tortuga.Mayak6.Pos0.X = 520;
+	oMapTeleport.map_tortuga.Mayak6.Pos0.Y = 390;
+	oMapTeleport.map_tortuga.Shore58.Pos0.X = 530;
+	oMapTeleport.map_tortuga.Shore58.Pos0.Y = 290;
+	oMapTeleport.map_tortuga.Tortuga_CaveEntrance.Pos0.X = 425;
+	oMapTeleport.map_tortuga.Tortuga_CaveEntrance.Pos0.Y = 230;
+	oMapTeleport.map_tortuga.Tortuga_town.Pos0.X = 480;
+	oMapTeleport.map_tortuga.Tortuga_town.Pos0.Y = 405;
 }
