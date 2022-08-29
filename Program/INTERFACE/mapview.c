@@ -258,27 +258,6 @@ void DoTeleport(float x, float y, string mapid)
 			}
 		}
 	}
-	
-	/*
-	if (mapid == "map_terks" && CheckAttribute(loadedLocation,"islandId") && loadedLocation.islandId == "Terks")
-	{
-		if (CC(x,y,360,300)) //залив Северный
-		{
-			setCharacterShipLocation(pchar, "Shore56");
-			setWDMPointXZ("Shore56");
-			DoQuestReloadToLocation("Shore56", "reload", "reload1", "");
-		}
-		if (CC(x,y,315,415)) //залив Южный
-		{
-			setCharacterShipLocation(pchar, "Shore57");
-			setWDMPointXZ("Shore57");
-			DoQuestReloadToLocation("Shore57", "reload", "reload1", "");
-		}
-		if (CC(x,y,305,328)) //грот
-		{
-			DoQuestReloadToLocation("Terks_CaveEntrance", "reload", "reload1", "");
-		}
-	}*/
 }
 
 bool CC(float x, float y, int dx, int dy)
@@ -310,4 +289,12 @@ void InitMapTeleport()
 	oMapTeleport.map_tortuga.Tortuga_CaveEntrance.Pos0.Y = 230;
 	oMapTeleport.map_tortuga.Tortuga_town.Pos0.X = 480;
 	oMapTeleport.map_tortuga.Tortuga_town.Pos0.Y = 405;
+	
+	oMapTeleport.map_terks.island = "Terks";
+	oMapTeleport.map_terks.Shore56.Pos0.X = 360;
+	oMapTeleport.map_terks.Shore56.Pos0.Y = 300;
+	oMapTeleport.map_terks.Shore57.Pos0.X = 315;
+	oMapTeleport.map_terks.Shore57.Pos0.Y = 415;
+	oMapTeleport.map_terks.Terks_CaveEntrance.Pos0.X = 305;
+	oMapTeleport.map_terks.Terks_CaveEntrance.Pos0.Y = 328;
 }
