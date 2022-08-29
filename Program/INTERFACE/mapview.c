@@ -28,6 +28,7 @@ void InitInterface(string iniName)
 	SetEventHandler("OpenMapBest", "OpenMapBest",0);
 
 	FillMapsTable();
+	InitMapTeleport();
 }
 
 void ProcessBreakExit()
@@ -50,7 +51,6 @@ void IDoExit(int exitCode)
 	DelEventHandler("ShowInfoWindow","ShowInfoWindow");
 	DelEventHandler("MouseRClickUp","HideInfoWindow");
 	DelEventHandler("SelectRColony","SelectRColony");
-	DelEventHandler("MouseRClickUP", "HideRColony");
 	DelEventHandler("OpenMapBest", "OpenMapBest");
 
 	// По всему файлу мне лень править, а здесь оно тоже будет работать прекрасно
@@ -229,31 +229,37 @@ void SelectRColony()
 void DoTeleport(float x, float y, string mapid)
 {
 	log_info(FloatToString(x,1)+" "+FloatToString(y,1)+" "+mapid);
-	InitMapTeleport();
 	
-	ref map_root;
-	makeref(map_root,oMapTeleport);
-	aref mapname;
-	string map_name;
-	int i;
-	int mapsnum = GetAttributesNum(oMapTeleport);
-	for(i=0; i<mapsnum; i++)
-	{
-		mapname = GetAttributeN(map_root,i);
-		map_name = GetAttributeName(mapname);
-		if (map_name == mapid && CheckAttribute(loadedLocation,"islandId") && mapname.island == loadedLocation.islandId)
-		{
-			log_info("да");
-		}
+	aref mapname,shorename,shorenum;
+	string shore_name,shore_numname;
+	int i,j;
 
+	makearef(mapname,oMapTeleport.(mapid));
+	if (CheckAttribute(loadedLocation,"islandId") && mapname.island == loadedLocation.islandId)
+	{
+		for(i=0; i<GetAttributesNum(mapname); i++)
+		{
+			shorename = GetAttributeN(mapname,i);
+			shore_name = GetAttributeName(shorename);
+			for (j=0; j< GetAttributesNum(shorename); j++)
+			{
+				shorenum = GetAttributeN(shorename,j);
+				shore_numname = GetAttributeName(shorenum);
+				if (CC(x,y,sti(shorename.(shore_numname).X),sti(shorename.(shore_numname).Y)))
+				{
+					if (!HasSubStr(shore_name,"CaveE"))
+					{
+						setCharacterShipLocation(pchar, shore_name);
+						setWDMPointXZ(shore_name);
+					}
+					DoQuestReloadToLocation(shore_name, "reload", "reload1", "");
+					return;
+				}
+			}
+		}
 	}
 	
-	/*if (CC(x,y,380,185)) //залив Руны
-	{
-		setCharacterShipLocation(pchar, "Shore3");
-		setWDMPointXZ("Shore3");
-		DoQuestReloadToLocation("Shore3", "reload", "reload1", "");
-	}
+	/*
 	if (mapid == "map_terks" && CheckAttribute(loadedLocation,"islandId") && loadedLocation.islandId == "Terks")
 	{
 		if (CC(x,y,360,300)) //залив Северный
@@ -271,31 +277,6 @@ void DoTeleport(float x, float y, string mapid)
 		if (CC(x,y,305,328)) //грот
 		{
 			DoQuestReloadToLocation("Terks_CaveEntrance", "reload", "reload1", "");
-		}
-	}
-	if (mapid == "map_tortuga" && CheckAttribute(loadedLocation,"islandId") && loadedLocation.islandId == "Tortuga")
-	{
-		if (CC(x,y,520,390)) //маяк Тортуги
-		{
-			setCharacterShipLocation(pchar, "Mayak6");
-			setWDMPointXZ("Mayak6");
-			DoQuestReloadToLocation("Mayak6", "reload", "reload1", "");
-		}
-		if (CC(x,y,530,290)) //пляж Глаз Рыбы
-		{
-			setCharacterShipLocation(pchar, "Shore58");
-			setWDMPointXZ("Shore58");
-			DoQuestReloadToLocation("Shore58", "reload", "reload1", "");
-		}
-		if (CC(x,y,425,230)) //грот
-		{
-			DoQuestReloadToLocation("Tortuga_CaveEntrance", "reload", "reload1", "");
-		}
-		if (CC(x,y,480,405)) //грот
-		{
-			setCharacterShipLocation(pchar, "Tortuga_town");
-			setWDMPointXZ("Tortuga_town");
-			DoQuestReloadToLocation("Tortuga_town", "reload", "reload1", "");
 		}
 	}*/
 }
