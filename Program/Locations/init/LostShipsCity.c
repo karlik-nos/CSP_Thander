@@ -1385,7 +1385,6 @@ int LocationInitLostShipsCity(int n)
 	locations[n].private1.items.rabble = 1;
 	locations[n].private1.items.topor3 = 1;
 	locations[n].private1.items.mineral9 = 26;
-	locations[n].private1.items.topor10 = 1;
 	locations[n].private1.items.mineral3 = 2;
 
 	locations[n].private2.key = "key2";
@@ -2517,7 +2516,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].private1.items.food1 = 10;
 	locations[n].private1.items.food2 = 30;
 
-	locations[n].private2.items.Mineral11 = 1;
+	locations[n].private2.items.Mineral10 = 1;
 
 	locations[n].private4.items.potionrum = 40; // 40 бутылок рома
 
@@ -2529,7 +2528,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].private9.items.blade21 = 1;
 
 	locations[n].private10.items.jewelry15 = 30;
-	locations[n].private10.items.jewelry19 = 10;
+	locations[n].private10.items.jewelry18 = 10;
 
 	locations[n].private11.items.jewelry1 = 20;
 
