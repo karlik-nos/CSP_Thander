@@ -70,6 +70,7 @@ void InitInterface(string iniName)
 	SetFormatedText("TEXT_VISUAL_CIRASS_PIC_SETTINGS", "Визуал кирас");
 	SetFormatedText("TEXT_FONT_QUESTBOOK_PIC_SETTINGS", "Шрифт журнала");
 	SetFormatedText("TEXT_PARTICLES_PIC_SETTINGS", "Партиклы бомб");
+	SetFormatedText("TEXT_ALT_GUN_SOUNDS_SETTINGS", "Звуки выстрелов");
 
 	aref ar; makearef(ar,objControlsState.key_codes);
 	SendMessage(&GameInterface,"lsla",MSG_INTERFACE_MSG_TO_NODE,"KEY_CHOOSER", 0,ar);
@@ -244,6 +245,12 @@ void IReadVariableAfterInit()
 		nEnabledOldStore = sti(InterfaceStates.EnabledOldStore);
 	}
 	SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"GOOD_OLD_STORE_CHECKBOX", 2, 1, nEnabledOldStore );
+
+	int nEnabledAltSoundsGun = 0;
+	if( CheckAttribute(&InterfaceStates,"EnabledAltSoundsGun") ) {
+		nEnabledAltSoundsGun = sti(InterfaceStates.EnabledAltSoundsGun);
+	}
+	SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"ALT_GUN_SOUNDS_CHECKBOX", 2, 1, nEnabledAltSoundsGun );
 
 	int nEnabledShipMarks = 1;
 	if( CheckAttribute(&InterfaceStates,"EnabledShipMarks") ) {
@@ -495,6 +502,13 @@ void procCheckBoxChange()
 	{
 		{ // Show battle mode border
 			InterfaceStates.EnabledOldStore = bBtnState;
+		}
+	}
+
+	if( sNodName == "ALT_GUN_SOUNDS_CHECKBOX" )
+	{
+		{ // Show battle mode border
+			InterfaceStates.EnabledAltSoundsGun = bBtnState;
 		}
 	}
 
@@ -1423,6 +1437,11 @@ void ShowInfo()
             sPicture = "INTERFACES\FaqPictures\OLDSTORE_CHECKBOX.png";
 			xx = 607;
 			yy = 258;
+		break;
+
+		case "ALT_GUN_SOUNDS_CHECKBOX":
+			sHeader = XI_ConvertString("AltSoundsGun");
+			sText1 = XI_ConvertString("AltSoundsGun_descr");
 		break;
 
 		case "FLAGALLWDM_CHECKBOX":
