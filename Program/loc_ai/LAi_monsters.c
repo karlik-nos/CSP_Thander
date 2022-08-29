@@ -272,7 +272,7 @@ bool LAi_CreateEncounters(ref location)
 			if(CheckAttribute(location, "onUninhabitedIsland") || location.type == "seashore" || location.type == "mayak") return false; // На необитаемых  островах, маяках и бухтах нельзя
 			num = GetAttributesNum(grp); //кол-во локаторов
 
-			if (bBettaTestMode || drand(95)==0)
+			/*if (bBettaTestMode || drand(95)==0)
 			{
 				if (!CheckAttribute(pchar,"OldSpawn"))
 				{
@@ -324,7 +324,7 @@ bool LAi_CreateEncounters(ref location)
 					pchar.OldSpawn = true;
 					break;
 				}
-			}
+			}*/
 
 			if (num < 2) return false;
 			if(CheckAttribute(pchar, "GenQuest.EncGirl") && pchar.GenQuest.EncGirl != "close") return false;
