@@ -177,6 +177,12 @@ void GetRealOptions(ref optref)
 	} else {
 		optref.cameramode.AltFont = 0;
 	}
+	
+	if( CheckAttribute(&InterfaceStates,"BombsParticles") ) {
+		optref.cameramode.BombsParticles = sti(InterfaceStates.BombsParticles);
+	} else {
+		optref.cameramode.BombsParticles = 0;
+	}
 
 	if( CheckAttribute(&InterfaceStates,"NoInt") ) {
 		optref.cameramode.NoInt = sti(InterfaceStates.NoInt);
@@ -345,6 +351,11 @@ void SetCurentOptions(ref optref)
 		InterfaceStates.AltFont = optref.cameramode.AltFont;
 	} else {
 		InterfaceStates.AltFont = 0;
+	}
+	if( CheckAttribute(optref,"cameramode.BombsParticles") ) {
+		InterfaceStates.BombsParticles = optref.cameramode.BombsParticles;
+	} else {
+		InterfaceStates.BombsParticles = 0;
 	}
 	if( CheckAttribute(optref,"cameramode.NoInt") ) {
 		InterfaceStates.NoInt = optref.cameramode.NoInt;

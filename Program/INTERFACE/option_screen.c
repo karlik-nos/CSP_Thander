@@ -69,6 +69,7 @@ void InitInterface(string iniName)
 	SetFormatedText("TEXT_NATIONS_PIC_SETTINGS", "Иконки наций");
 	SetFormatedText("TEXT_VISUAL_CIRASS_PIC_SETTINGS", "Визуал кирас");
 	SetFormatedText("TEXT_FONT_QUESTBOOK_PIC_SETTINGS", "Шрифт журнала");
+	SetFormatedText("TEXT_PARTICLES_PIC_SETTINGS", "Партиклы бомб");
 
 	aref ar; makearef(ar,objControlsState.key_codes);
 	SendMessage(&GameInterface,"lsla",MSG_INTERFACE_MSG_TO_NODE,"KEY_CHOOSER", 0,ar);
@@ -206,6 +207,7 @@ void IReadVariableAfterInit()
 	GetFlagAllOptionsData();
 	GetVisualCirassOptionsData();
 	GetAltFontOptionsData();
+	GetBombsParticlesOptionsData();
 
 	int nShowBattleMode = 0;
 	if( CheckAttribute(&InterfaceStates,"ShowBattleMode") ) {
@@ -660,6 +662,32 @@ void procCheckBoxChange()
 		}
 		return;
 	}
+	
+	if( sNodName == "PARTICLES_CHECKBOX" )
+	{
+		if( bBtnState == true )
+		{
+			switch( nBtnIndex )
+			{
+				case 1:
+					InterfaceStates.BombsParticles=0;
+					SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"PARTICLES_CHECKBOX", 2, 2, false );
+					SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"PARTICLES_CHECKBOX", 2, 3, false );
+				break;
+				case 2:
+					InterfaceStates.BombsParticles=1;
+					SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"PARTICLES_CHECKBOX", 2, 1, false );
+					SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"PARTICLES_CHECKBOX", 2, 3, false );
+				break;
+				case 3:
+					InterfaceStates.BombsParticles=2;
+					SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"PARTICLES_CHECKBOX", 2, 1, false );
+					SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"PARTICLES_CHECKBOX", 2, 2, false );
+				break;
+			}
+		}
+		return;
+	}
 }
 
 void procSlideChange()
@@ -1082,6 +1110,17 @@ void GetAltFontOptionsData()
 	SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"ALTFONT_CHECKBOX", 2, nSelBtn, true );
 }
 
+void GetBombsParticlesOptionsData()
+{
+	int nSelBtn = 0;
+	switch( sti(InterfaceStates.BombsParticles) ) {
+	case 0: nSelBtn=1; break;
+	case 1: nSelBtn=2; break;
+	case 2: nSelBtn=3; break;
+	}
+	SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"PARTICLES_CHECKBOX", 2, nSelBtn, true );
+}
+
 void GetControlsStatesData()
 {
 	int nAlwaysRun = 0;
@@ -1453,6 +1492,11 @@ void ShowInfo()
             sPicture = "INTERFACES\FaqPictures\ALTFONT_CHECKBOX.png";
 			xx = 570;
 			yy = 494;
+		break;
+
+		case "PARTICLES_CHECKBOX":
+			sHeader = XI_ConvertString("Particles_title");
+			sText1 = XI_ConvertString("Particles_descr");
 		break;
 
 		case "NOINT_CHECKBOX":
