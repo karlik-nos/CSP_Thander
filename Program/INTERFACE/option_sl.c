@@ -130,6 +130,12 @@ void GetRealOptions(ref optref)
 		optref.cameramode.EnabledOldStore = false;
 	}
 
+	if( CheckAttribute(&InterfaceStates,"EnabledAltSoundsGun") ) {
+		optref.cameramode.EnabledAltSoundsGun = sti(InterfaceStates.EnabledAltSoundsGun);
+	} else {
+		optref.cameramode.EnabledAltSoundsGun = false;
+	}
+
 	if( CheckAttribute(&InterfaceStates,"EnabledShipMarks") ) {
 		optref.cameramode.EnabledShipMarks = sti(InterfaceStates.EnabledShipMarks);
 	} else {
@@ -303,6 +309,12 @@ void SetCurentOptions(ref optref)
 		InterfaceStates.EnabledOldStore = optref.cameramode.EnabledOldStore;
 	} else {
 		InterfaceStates.EnabledOldStore = false;
+	}
+
+	if( CheckAttribute(optref,"cameramode.EnabledAltSoundsGun") ) {
+		InterfaceStates.EnabledAltSoundsGun = optref.cameramode.EnabledAltSoundsGun;
+	} else {
+		InterfaceStates.EnabledAltSoundsGun = false;
 	}
 
 	if( CheckAttribute(optref,"cameramode.EnabledShipMarks") ) {
