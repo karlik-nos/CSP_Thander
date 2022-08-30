@@ -79,7 +79,7 @@ void ProcessDialogEvent()
 					DeleteAttribute(link, "l2");
 					DeleteAttribute(link, "l3");
 				}
-				if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
+				if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")	//Sinistra Нежить
 				{
 					dialog.text = "Приветствую тебя в нашей уютной пещере! Чувствуй себя как дома.";
 					link.l1 = "Благодарю, сородич. Я тут осмотрюсь.";
@@ -133,6 +133,12 @@ void ProcessDialogEvent()
 				link.l2 = "А знаешь, я передумал.";
 				link.l2.go = "UP_Skelet_Vihod";
 			}
+			if (pchar.sex == "Skeleton" && npchar.sex == "man")	//Sinistra Нежить
+			{
+				link.l1 = "Жаль тебя разочаровывать, матрос, но... Мне 'живые' в команду не нужны. Хе-хе.";
+				link.l1.go = "exit";
+				DeleteAttribute(link, "l2");
+			}
 		break;
 
 		case "crew_1":
@@ -176,6 +182,11 @@ void ProcessDialogEvent()
 								link.l1 = "Сожалею, матрос, но для всех вас у меня нет мест на корабле. Придётся вам пойти к моему компаньону, его зовут "+ rChar.name + " " + rChar.lastname + ".";
 								link.l1.go = "crew_comp";
 								pchar.addcrew.character = rChar.id;
+								if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
+								{
+									link.l1 = "Сожалею, сородич, но для всех вас у меня нет мест на корабле. Придётся вам пойти к моему компаньону, его зовут "+ rChar.name + " " + rChar.lastname + ".";
+									link.l1.go = "crew_comp";
+								}
 								break;
 							}
 						}
@@ -183,6 +194,11 @@ void ProcessDialogEvent()
 						{
 							link.l1 = "Сожалею, матрос, но для всех вас у меня нет мест ни на одном корабле. Придётся вам поискать другого капитана.";
 							link.l1.go = "exit";
+							if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
+							{
+								link.l1 = "Сожалею, сородич, но для всех вас у меня нет мест ни на одном корабле. Оставайтесь здесь в пещере.";
+								link.l1.go = "UP_Skelet_Vihod";
+							}
 						}
 
 					}
@@ -192,22 +208,45 @@ void ProcessDialogEvent()
 					link.l1 = "Сожалею, матрос, но для всех вас у меня нет мест ни на одном корабле. Придётся вам поискать другого капитана.";
 					link.l1.go = "exit";
 				}
+				if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
+				{
+					link.l1 = "Сожалею, сородич, но для всех вас у меня нет мест ни на одном корабле. Оставайтесь здесь в пещере.";
+					link.l1.go = "UP_Skelet_Vihod";
+				}
 				link.l2 = "Сожалею, матрос, но я рассчитывал на несколько... иное. Придётся вам поискать другого капитана.";
 				link.l2.go = "exit";
+				if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
+				{
+					DeleteAttribute(link, "l2");
+				}
 			}
 		break;
 
 		case "crew_comp":
 			iTemp = sti(npchar.quest.crew.money)*sti(npchar.quest.crew.qty);
 			dialog.text = ""+FindRussianMoneyString(sti(npchar.quest.crew.money))+" на брата. Потом - обычное матросское жалование. Мы лишнего не попросим, кэп.";
+			if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
+			{
+				dialog.text = ""+FindRussianMoneyString(sti(npchar.quest.crew.money))+" на скелета. Потом - обычное матросское жалование. Мы лишнего не попросим.";
+			}
 			if (sti(pchar.money) >= iTemp)
 			{
 				rChar = CharacterFromID(pchar.addcrew.character);
 				link.l1 = "Договорились! Вот здесь вся сумма. Отправляйтесь на корабль, он называется '"+rChar.ship.name+"', стоит на рейде. Боцман выделит вам места в кубрике и даст работу.";
 				link.l1.go = "crew_comp1";
+				if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
+				{
+					link.l1 = "Договорились! А теперь подняли свои костлявые задницы и марш на корабль, он называется '"+rChar.ship.name+"'. Чтоб через час все были на месте.";
+					link.l1.go = "crew_comp1";
+				}
 			}
 			link.l2 = "К сожалению, я не могу себе позволить оплатить ваши услуги. Придётся вам поискать другого капитана.";
 			link.l2.go = "exit";
+			if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
+			{
+				link.l2 = "Вы слишком много просите, давай забудем об этом.";
+				link.l2.go = "UP_Skelet_Vihod";
+			}	
 		break;
 
 		case "crew_comp1":
@@ -216,6 +255,12 @@ void ProcessDialogEvent()
 			dialog.text = "Уже идём, капитан! Я соберу ребят, и мы отправимся на борт немедленно!";
 			link.l1 = "Давайте, поторапливайтесь, я долго задерживаться тут не планирую.";
 			link.l1.go = "crew_comp2";
+			if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
+			{
+				dialog.text = "Слушаемся и повинуемся, "RandPhraseSimple("о повелитель!", "тёмный господин!");
+				link.l1 = "Так-то лучше!";
+				link.l1.go = "crew_comp2";
+			}
 		break;
 
 		case "crew_comp2":
@@ -236,6 +281,17 @@ void ProcessDialogEvent()
 			LAi_SetActorType(npchar);
 			LAi_ActorRunToLocation(npchar, "reload", "reload1_back", "none", "", "", "", 20.0);
 			npchar.lifeday = 0;
+			if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
+			{
+				for (i=1; i<=15; i++)
+				{
+				sld = CharacterFromID("Skelet_Drug_"+i)
+				LAi_SetActorType(sld);
+				LAi_ActorRunToLocation(sld, "reload", "reload1_back", "none", "", "", "", 20.0);
+				}
+				pchar.questTemp.UP_SkeletyVPeshere = "SVP";
+				SetTimerCondition("UP_SkeletyVPeshere_NanyatSnova", 0, 0, 2, false);	//Sinistra: скелетов можно будет нанимать через два дня!
+			}
 		break;
 
 		case "crew_2":
@@ -272,7 +328,7 @@ void ProcessDialogEvent()
 			link.l1.go = "crew_4";
 			if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
 			{
-				dialog.text = "Слушаемся и повинуемся, о повелитель!";
+				dialog.text = "Слушаемся и повинуемся, "RandPhraseSimple("о повелитель!", "тёмный господин!");
 				link.l1 = "Так-то лучше!";
 				link.l1.go = "crew_4";
 			}
