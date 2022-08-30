@@ -101,5 +101,23 @@ void ProcessDialogEvent()
 			LAi_group_SetRelation(LAI_GROUP_MONSTERS, LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
 			DialogExit();
 		break;
+		
+		case "PGG_Undead_1":
+			dialog.text = "...";
+			link.l1 = "";
+			link.l1.go = "PGG_Undead_2";
+		break;
+		
+		case "PGG_Undead_2":
+			dialog.text = "...";
+			link.l1 = "";
+			link.l1.go = "PGG_Undead_10";
+		break;
+		
+		case "PGG_Undead_10":
+			DialogExit();
+			sld = CharacterFromID("PGG_Undead")
+			LAi_ActorGoToLocation(sld, "reload", "reload1", "none", "", "", "UD_DrugUshel", -1);
+		break;
 	}
 }

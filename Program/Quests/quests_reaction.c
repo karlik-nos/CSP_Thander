@@ -1474,13 +1474,16 @@ void QuestComplete(string sQuestName, string qname)
 					DoQuestReloadToLocation(pchar.location + "_upstairs", "goto", "goto1", "restore_hp");
 				}
 			}
-			if (CheckAttribute(pchar, "questTemp.UndeadPrologue2") && pchar.rank >= 5)
+			if (CheckAttribute(pchar, "questTemp.UndeadPrologue2") && pchar.rank >= 5)	//Sinistra: Нежить, спим в таверне
 			{
 			    DeleteAttribute(pchar, "QuestTemp.UndeadPrologue2");
-			    pchar.questTemp.UndeadPrologue3 = "UP3";
-			    DoQuestReloadToLocation(pchar.location + "_upstairs", "goto", "goto1", "CallFunctionParam");
+			    DoQuestReloadToLocation(pchar.location + "_upstairs", "goto", "goto1", "UP_DrugPridet_2");
 			}
-			pchar.questTemp.UndeadPrologue2 = "UP2";
+			if (CheckAttribute(pchar, "questTemp.UndeadPrologue3") && pchar.rank >= 10)	//Sinistra: Нежить, спим в таверне
+			{
+			    DeleteAttribute(pchar, "QuestTemp.UndeadPrologue3");
+			    DoQuestReloadToLocation(pchar.location + "_upstairs", "goto", "goto1", "UP_DrugPridet_2");
+			}
 			else
 			{
 				DoQuestReloadToLocation(pchar.location + "_upstairs", "goto", "goto1", "restore_hp");
@@ -10817,7 +10820,36 @@ void QuestComplete(string sQuestName, string qname)
 		
 		case "UP_DrugPridet":
 			pchar.questTemp.UndeadPrologue2 = "UP2";
-			Log_info("У вас нет ключа");
+		break;
+		
+		case "UP_DrugPridet_2":
+			bDisableFastReload = true;
+			chrDisableReloadToLocation = true;
+			if (pchar.name == "Весёлый Роджер")
+			{
+				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Meriman_0", "skeleton", "man", 10, PIRATE, -1, true));
+				sld.name = "Ужасный";
+				sld.lastname = "";
+			}
+			if (pchar.name == "Ужасный")
+			{
+				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Skeletcap_0", "skeleton", "skeleton", 10, PIRATE, -1, true));
+				sld.name = "Весёлый";
+				sld.lastname = "Роджер";
+			}
+			ChangeCharacterAddressGroup(sld, pchar.location, "quest", "quest3");
+			LAi_SetActorType(sld);
+			LAi_ActorDialogDelay(sld, pchar, "", 1.0);
+			sld.dialog.filename = "Quest/MainheroPrologues/Prologue_Undead_dialog.c";
+			sld.dialog.currentnode = "PGG_Undead_1";
+			sld.lifeday = 0;
+			LAi_SetImmortal(sld, true);
+		break;
+		
+		case "UD_DrugUshel":
+			pchar.questTemp.UndeadPrologue3 = "UP3";
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
 		break;
 		
 		case "UP_Skelet_Moryak_HoditPoPeshere":
