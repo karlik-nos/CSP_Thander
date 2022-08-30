@@ -157,16 +157,13 @@ void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0,
 	//if (rand(1) == 0) // boal оптимизация дыма
 	CreateParticleSystem(sParticleName, fX, fY, fZ, -fHeightAng - (fCannonHeightMultiply - 1.0) * 0.1, fDirAng, 0.0, 5);
 	
-	string sCannSound = rCannon.Sound;
-	if (InterfaceStates.EnabledOldStore) 
+	if (sti(InterfaceStates.EnabledAltSoundsGun) != 0) 
 	{
-		sCannSound = sCannSound +"_CSP";
-		Play3DSound(sCannSound, fX, fY, fZ);
+		Play3DSound(rCannon.Sound+"_alt", fX, fY, fZ);
 	}
 	else 
 	{
-		sCannSound = sCannSound+"_ALT";
-		Play3DSound(sCannSound, fX, fY, fZ);
+		Play3DSound(rCannon.Sound, fX, fY, fZ);
 	}
 }
 
