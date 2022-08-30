@@ -228,7 +228,7 @@ void SelectRColony()
 
 void DoTeleport(float x, float y, string mapid)
 {
-	log_info(FloatToString(x,1)+" "+FloatToString(y,1)+" "+mapid);
+	log_info(FloatToString(x,1)+" "+FloatToString(y,1)+" "+mapid+" "+loadedLocation.islandId);
 	
 	aref mapname,shorename,shorenum;
 	string shore_name,shore_numname;
@@ -247,7 +247,7 @@ void DoTeleport(float x, float y, string mapid)
 				shore_numname = GetAttributeName(shorenum);
 				if (CC(x,y,sti(shorename.(shore_numname).X),sti(shorename.(shore_numname).Y)))
 				{
-					if (!HasSubStr(shore_name,"CaveE"))
+					if (!HasSubStr(shore_name,"Entr"))
 					{
 						setCharacterShipLocation(pchar, shore_name);
 						setWDMPointXZ(shore_name);
@@ -287,8 +287,8 @@ void InitMapTeleport()
 	oMapTeleport.map_tortuga.Shore58.Pos0.Y = 290;
 	oMapTeleport.map_tortuga.Tortuga_CaveEntrance.Pos0.X = 425;
 	oMapTeleport.map_tortuga.Tortuga_CaveEntrance.Pos0.Y = 230;
-	oMapTeleport.map_tortuga.Tortuga_town.Pos0.X = 480;
-	oMapTeleport.map_tortuga.Tortuga_town.Pos0.Y = 405;
+	oMapTeleport.map_tortuga.Tortuga_ExitTown.Pos0.X = 480;
+	oMapTeleport.map_tortuga.Tortuga_ExitTown.Pos0.Y = 405;
 	
 	oMapTeleport.map_terks.island = "Terks";
 	oMapTeleport.map_terks.Shore56.Pos0.X = 360;
@@ -297,4 +297,24 @@ void InitMapTeleport()
 	oMapTeleport.map_terks.Shore57.Pos0.Y = 415;
 	oMapTeleport.map_terks.Terks_CaveEntrance.Pos0.X = 305;
 	oMapTeleport.map_terks.Terks_CaveEntrance.Pos0.Y = 328;
+	
+	oMapTeleport.map_sm.island = "SentMartin";
+	oMapTeleport.map_sm.Marigo_ExitTown.Pos0.X = 300;
+	oMapTeleport.map_sm.Marigo_ExitTown.Pos0.Y = 365;
+	oMapTeleport.map_sm.Shore40.Pos0.X = 395;
+	oMapTeleport.map_sm.Shore40.Pos0.Y = 135;
+	oMapTeleport.map_sm.Shore41.Pos0.X = 285;
+	oMapTeleport.map_sm.Shore41.Pos0.Y = 270;
+	oMapTeleport.map_sm.Marigo_CaveEntrance.Pos0.X = 420;
+	oMapTeleport.map_sm.Marigo_CaveEntrance.Pos0.Y = 375;
+	
+	oMapTeleport.map_puerto.island = "PuertoRico";
+	oMapTeleport.map_puerto.SanJuan_ExitTown.Pos0.X = 475;
+	oMapTeleport.map_puerto.SanJuan_ExitTown.Pos0.Y = 275;
+	oMapTeleport.map_puerto.Shore45.Pos0.X = 595;
+	oMapTeleport.map_puerto.Shore45.Pos0.Y = 375;
+	oMapTeleport.map_puerto.Shore44.Pos0.X = 215;
+	oMapTeleport.map_puerto.Shore44.Pos0.Y = 220;
+	oMapTeleport.map_puerto.SanJuan_CaveEntrance.Pos0.X = 370;
+	oMapTeleport.map_puerto.SanJuan_CaveEntrance.Pos0.Y = 350;
 }
