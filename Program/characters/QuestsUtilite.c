@@ -2622,6 +2622,45 @@ void PDMQuestsInit()
 	LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
 	ChangeCharacterAddressGroup(sld,"SentJons_tavern","goto","goto1");
 }
+//Пираты Карибского Моря
+void PKMQuestsInit()
+{
+	ref sld;
+	//******Странные вещи творятся в архипелаге******
+	//Девушки ищут детей
+	sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA_Devushka_1", "girl_9", "woman", "woman", 1, HOLLAND, -1, false));
+	sld.name	= "Жаннеке";
+	sld.lastname	= "Блинкерхоф";
+	sld.Dialog.Filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+	sld.dialog.currentnode = "First time";
+	LAi_SetStayType(sld);
+	LAi_SetLoginTime(sld, 6.0, 21.99);
+	LAi_SetImmortal(sld, true);
+	LAi_group_MoveCharacter(sld, "HOLLAND_CITIZENS");
+	ChangeCharacterAddressGroup(sld,"Marigo_town","quest","quest4");
+	
+	sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA_Devushka_2", "girl_6", "woman", "woman", 1, HOLLAND, -1, false));
+	sld.name	= "Райан";
+	sld.lastname	= "Леккерс";
+	sld.Dialog.Filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+	sld.dialog.currentnode = "First time";
+	LAi_SetStayType(sld);
+	LAi_SetLoginTime(sld, 6.0, 21.99);
+	LAi_SetImmortal(sld, true);
+	LAi_group_MoveCharacter(sld, "HOLLAND_CITIZENS");
+	ChangeCharacterAddressGroup(sld,"Marigo_town","quest","quest5");
+	
+	sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA_Devushka_3", "girl_1", "woman", "woman", 1, HOLLAND, -1, false));
+	sld.name	= "Лизбет";
+	sld.lastname	= "Шефольд";
+	sld.Dialog.Filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+	sld.dialog.currentnode = "First time";
+	LAi_SetStayType(sld);
+	LAi_SetLoginTime(sld, 6.0, 21.99);
+	LAi_SetImmortal(sld, true);
+	LAi_group_MoveCharacter(sld, "HOLLAND_CITIZENS");
+	ChangeCharacterAddressGroup(sld,"Marigo_town","quest","quest3");
+}
 //Сундук Мертвеца
 void KSMQuestsInit()
 {

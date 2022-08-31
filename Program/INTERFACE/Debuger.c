@@ -2588,6 +2588,11 @@ string descF54 = "Нет назначений";
 void CalculateInfoDataF54()
 {
 	totalInfo = descF54;
+	sld = CharacterFromID("PKM_SvtvA_Devushka_1")
+	sld.Dialog.Filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+	sld.dialog.currentnode = "First time";
+	ChangeCharacterAddressGroup(sld,"Marigo_town","quest","quest4");
+	
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 
