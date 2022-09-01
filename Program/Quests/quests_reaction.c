@@ -10893,6 +10893,22 @@ void QuestComplete(string sQuestName, string qname)
 			AddPassenger(pchar, sld, false);
 			SetCharacterRemovable(sld, false);
 			LAi_SetActorType(sld);
+			
+			sld = GetCharacter(NPC_GenerateCharacter("UP_Korabl_s_klinkom", "officer_30", "man", "man", sti(PChar.rank)+2, PIRATE, 40, true));
+			FantomMakeCoolSailor(sld, SHIP_SCHOONER, "Везучий Тюльпан", CANNON_TYPE_CULVERINE_LBS12, 40, 40, 40);
+			
+			SetCaptanModelByEncType(sld, "war");
+			sld.AlwaysEnemy = true;
+			sld.DontRansackCaptain = true;
+			sld.mapEnc.type = "war";
+			sld.mapEnc.Name = "корабль, на котором находится 'Говорящий клинок'";
+			sld.hunter = "pirate";
+			Group_AddCharacter("UP_Ship", "UP_Korabl_s_klinkom");
+
+			Group_SetGroupCommander("UP_Ship", "UP_Korabl_s_klinkom");
+			Group_SetTaskAttackInMap("UP_Ship", PLAYER_GROUP);
+			Group_LockTask("UP_Ship");
+			Map_CreateFastWarrior("", "UP_Korabl_s_klinkom", 30);
 		break;
 
 		// Тичингиту
