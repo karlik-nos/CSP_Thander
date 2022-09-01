@@ -141,7 +141,7 @@ void LandHunterReactionResult(ref loc)  // отработает после вх�
 			order = false;
 			if (j == SPAIN)
 			{
-				if (pchar.name == "Виспер" || pchar.name == "Тёмный" || CheckAttribute(pchar, "PGGWhisperComplete"))
+				if (pchar.name == "Виспер" || pchar.name == "Тёмный Странник" || CheckAttribute(pchar, "PGGWhisperComplete"))
 				{
 					if (!CheckAttribute(pchar,"OrderDestroyed"))
 					{

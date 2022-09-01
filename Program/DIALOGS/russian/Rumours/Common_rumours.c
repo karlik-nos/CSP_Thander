@@ -267,7 +267,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 		}
 		if(CheckAttribute(pchar,"GiantEvilSkeleton") && rand(20)==0 && !CheckAttribute(pchar,"MalteseInfo"))
 		{
-			 if (pchar.name != "Виспер" && pchar.name != "Тёмный" && pchar.sex != "skeleton" && !CheckAttribute(pchar, "OrderHunter"))
+			 if (pchar.name != "Виспер" && pchar.name != "Тёмный Странник" && pchar.sex != "skeleton" && !CheckAttribute(pchar, "OrderHunter"))
 			 {
 				dialog.text = "Ходят слухи, что Испанская инквизиция собирает информацию о рифе Скелета. С какой целью - неизвестно, но любому, кто знает хоть что-то, обещано вознаграждение...";
 				Log_Info("Это стоит запомнить. Испанская инквизиция и риф Скелета.");
