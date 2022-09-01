@@ -103,21 +103,64 @@ void ProcessDialogEvent()
 		break;
 		
 		case "PGG_Undead_1":
-			dialog.text = "...";
-			link.l1 = "";
+			dialog.text = "Хватит здесь дрыхнуть!";
+			link.l1 = "Что, ты как сюда попал?";
 			link.l1.go = "PGG_Undead_2";
 		break;
 		
 		case "PGG_Undead_2":
-			dialog.text = "...";
-			link.l1 = "";
+			dialog.text = "Бог мёртвых не доволен твоим бездействием.";
+			link.l1 = "Я уже давно перестал слышать голос бога мёртвых, теперь я занимаюсь своими делами.";
+			link.l1.go = "PGG_Undead_3";
+		break;
+		
+		case "PGG_Undead_3":
+			dialog.text = "Не спеши, у Миктлантекутли на тебя большие планы. Но тебе нужно ещё подрасти. Для армии мёртвых нужен сильный лидер, и тёмный повелитель ждёт, когда ты будешь готов. \nОставляю тебя переваривать эту информацию. Мы ещё увидимся, прощай.";
+			link.l1 = "Эй, постой...";
+			link.l1.go = "PGG_Undead_4";
+		break;
+		
+		case "PGG_Undead_4":
+			DialogExit();
+			sld = CharacterFromID("PGG_Undead")
+			LAi_ActorGoToLocation(sld, "reload", "reload1", "none", "", "", "UD_DrugUshel", -1);
+			pchar.questTemp.UndeadPrologue3 = "UP3";
+		break;
+		
+		case "PGG_Undead_5":
+			dialog.text = "Вот я тебя и нашёл.";
+			link.l1 = "Снова ты?";
+			link.l1.go = "PGG_Undead_6";
+		break;
+		
+		case "PGG_Undead_6":
+			dialog.text = "Время пришло. Миктлантекутли требует, чтобы ты взял ЕГО громадный зачарованный меч, и возглавил армию мёртвых, чтобы нести смерть всему живому! Муа-ха-ха \n(неуверенно) ...ха-ха... Да... Есть одна мал-ю-ю-ю-ю-юсенькая проблемочка. Э-э...";
+			link.l1 = "Мне даже интересно стало.";
+			link.l1.go = "PGG_Undead_7";
+		break;
+		
+		case "PGG_Undead_7":
+			dialog.text = "Мне было поручено вручить тебе этот меч, но я его потерял... \nТеперь он в руках живых, что не есть хорошо, ведь через него они могут общаться с САМИМ богом мёртвых, что УМУ НЕПОСТИЖИМО! Это КОШМАР, КАТАСТРОФА! \nТолько не говори пожалуйста Миктлантекутли, а то он из меня котлету сделает, правду говорю!";
+			link.l1 = "Да, дела у тебя совсем хреновые.";
+			link.l1.go = "PGG_Undead_8";
+		break;
+		
+		case "PGG_Undead_8":
+			dialog.text = "Это ещё полбеды! Вот если воришки догадаются, как работает меч, и позвонят самому Миктлантекутли... Сам понимаешь, что будет...";
+			link.l1 = "Я понял, но от меня-то ты что хочешь?";
+			link.l1.go = "PGG_Undead_9";
+		break;
+		
+		case "PGG_Undead_9":
+			dialog.text = "Ты с дуба рухнул?! Найди меч, он ведь необычный, а - 'Говорящий меч'. Ты ведь нежить, а значит должен чувствовать энергетику меча. Он должен звать тебя, притягивать своим магнитизмом. Просто выйди в море, и ты сразу поймёшь, куда держать курс.";
+			link.l1 = "Безумие какое-то. Ну ладно, пойдём искать твой меч.";
 			link.l1.go = "PGG_Undead_10";
 		break;
 		
 		case "PGG_Undead_10":
 			DialogExit();
 			sld = CharacterFromID("PGG_Undead")
-			LAi_ActorGoToLocation(sld, "reload", "reload1", "none", "", "", "UD_DrugUshel", -1);
+			LAi_ActorGoToLocation(sld, "reload", "reload1", "none", "", "", "UD_DrugUshel_2", -1);
 		break;
 	}
 }

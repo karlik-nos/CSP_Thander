@@ -1482,7 +1482,7 @@ void QuestComplete(string sQuestName, string qname)
 			if (CheckAttribute(pchar, "questTemp.UndeadPrologue3") && pchar.rank >= 10)	//Sinistra: Нежить, спим в таверне
 			{
 			    DeleteAttribute(pchar, "QuestTemp.UndeadPrologue3");
-			    DoQuestReloadToLocation(pchar.location + "_upstairs", "goto", "goto1", "UP_DrugPridet_2");
+			    DoQuestReloadToLocation(pchar.location + "_upstairs", "goto", "goto1", "UP_DrugPridet_3");
 			}
 			else
 			{
@@ -10843,7 +10843,30 @@ void QuestComplete(string sQuestName, string qname)
 			sld.dialog.filename = "Quest/MainheroPrologues/Prologue_Undead_dialog.c";
 			sld.dialog.currentnode = "PGG_Undead_1";
 			sld.lifeday = 0;
-			LAi_SetImmortal(sld, true);
+			LAi_SetImmortal(sld, false);
+		break;
+		
+		case "UP_DrugPridet_3":
+			bDisableFastReload = true;
+			chrDisableReloadToLocation = true;
+			if (pchar.name == "Весёлый Роджер")
+			{
+				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Meriman_0", "skeleton", "man", 10, PIRATE, -1, true));
+				sld.name = "Ужасный";
+				sld.lastname = "";
+			}
+			if (pchar.name == "Ужасный")
+			{
+				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Skeletcap_0", "skeleton", "skeleton", 10, PIRATE, -1, true));
+				sld.name = "Весёлый";
+				sld.lastname = "Роджер";
+			}
+			ChangeCharacterAddressGroup(sld, pchar.location, "quest", "quest3");
+			LAi_SetActorType(sld);
+			LAi_ActorDialogDelay(sld, pchar, "", 1.0);
+			sld.dialog.filename = "Quest/MainheroPrologues/Prologue_Undead_dialog.c";
+			sld.dialog.currentnode = "PGG_Undead_5";
+			sld.lifeday = 0;
 		break;
 		
 		case "UD_DrugUshel":
@@ -10860,6 +10883,16 @@ void QuestComplete(string sQuestName, string qname)
 		
 		case "UP_SkeletyVPeshere_NanyatSnova":
 			DeleteAttribute(pchar, "questTemp.UP_SkeletyVPeshere");
+		break;
+		
+		case "UD_DrugUshel_2":
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
+			
+			sld = CharacterFromID("PGG_Undead")
+			AddPassenger(pchar, sld, false);
+			SetCharacterRemovable(sld, false);
+			LAi_SetActorType(sld);
 		break;
 
 		// Тичингиту
