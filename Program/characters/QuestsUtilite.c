@@ -2494,8 +2494,8 @@ void SilencePriceInit()
 void PDMQuestsInit()
 {
 	ref sld;
-	//******Альбрех Пальцфер Sinistra******
-	//Альбрех Пальцфер
+	//******Альбрехт Цальпфер Sinistra******
+	//Альбрехт Цальпфер
 	sld = GetCharacter(NPC_GenerateCharacter("Albreht_Zalpfer", "Mechanic", "man", "man", 6, ENGLAND, -1, false));
 	sld.name	= "Альбрехт";
 	sld.lastname	= "Цальпфер";
@@ -2626,7 +2626,7 @@ void PDMQuestsInit()
 void PKMQuestsInit()
 {
 	ref sld;
-	//******Странные вещи творятся в архипелаге******
+	//******Свтна******
 	//Девушки ищут детей
 	sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA_Devushka_1", "girl_9", "woman", "woman", 1, HOLLAND, -1, false));
 	sld.name	= "Жаннеке";

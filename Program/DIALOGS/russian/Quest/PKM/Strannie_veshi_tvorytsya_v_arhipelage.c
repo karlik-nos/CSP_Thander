@@ -69,7 +69,10 @@ void ProcessDialogEvent()
 			sld.Dialog.Filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
 			sld.dialog.currentnode = "Verni_detey_7";
 			
-			pchar.questTemp.PKM_SvtvA_Gde_Deti = "Gde_Deti_suchka";
+			pchar.questTemp.PKM_SvtvA_Gde_Deti = "Gde_Deti";
+			SetQuestHeader("PKM_Animists");
+			AddQuestRecord("PKM_Animists", "1");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
 		break;
 		
 		case "Verni_detey_7":
@@ -78,6 +81,38 @@ void ProcessDialogEvent()
 			link.l1.go = "exit";
 			NextDiag.TempNode = "Verni_detey_7";
 			PlayVoice("Kopcapkz\Voices\Quest\Dut_f_a_002.wav");
+		break;
+		
+		case "Capitan_v_taverne_1":
+			dialog.text = "Хочешь поставить мне выпивку?";
+			link.l1 = "Извини, выпивку не куплю, но вопросы тебе задам. Ты видел чёрный фрегат у острова?";
+			link.l1.go = "Capitan_v_taverne_2";
+		break;
+		
+		case "Capitan_v_taverne_2":
+			dialog.text = "Ну, видел и что?";
+			link.l1 = "Каким курсом он шёл?";
+			link.l1.go = "Capitan_v_taverne_3";
+		break;
+		
+		case "Capitan_v_taverne_3":
+			dialog.text = "Прямиком на Барбадос.";
+			link.l1 = "Могли это быть местные пираты?";
+			link.l1.go = "Capitan_v_taverne_4";
+		break;
+		
+		case "Capitan_v_taverne_4":
+			dialog.text = "Дьявол их знает! Пойди и спроси у них. Ха-ха!";
+			link.l1 = "Спасибо, любезный.";
+			link.l1.go = "Capitan_v_taverne_5";
+			npchar.lifeday = 0;
+			LAi_CharacterDisableDialog(npchar);
+		break;
+		
+		case "Capitan_v_taverne_5":
+			DialogExit();
+			AddQuestRecord("PKM_Animists", "4");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
 		break;
 	}
 }
