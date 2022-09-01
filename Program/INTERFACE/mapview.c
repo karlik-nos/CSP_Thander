@@ -317,4 +317,38 @@ void InitMapTeleport()
 	oMapTeleport.map_puerto.Shore44.Pos0.Y = 220;
 	oMapTeleport.map_puerto.SanJuan_CaveEntrance.Pos0.X = 370;
 	oMapTeleport.map_puerto.SanJuan_CaveEntrance.Pos0.Y = 350;
+	
+	oMapTeleport.map_hisp.island = "Hispaniola";
+	oMapTeleport.map_hisp.SantoDomingo_ExitTown.Pos0.X = 575;
+	oMapTeleport.map_hisp.SantoDomingo_ExitTown.Pos0.Y = 395;
+	oMapTeleport.map_hisp.Mayak8.Pos0.X = 510;
+	oMapTeleport.map_hisp.Mayak8.Pos0.Y = 410;
+	oMapTeleport.map_hisp.Shore33.Pos0.X = 630;
+	oMapTeleport.map_hisp.Shore33.Pos0.Y = 345;
+	oMapTeleport.map_hisp.Shore32.Pos0.X = 430;
+	oMapTeleport.map_hisp.Shore32.Pos0.Y = 200;
+	oMapTeleport.map_hisp.LaVega_ExitTown.Pos0.X = 540;
+	oMapTeleport.map_hisp.LaVega_ExitTown.Pos0.Y = 255;
+	oMapTeleport.map_hisp.LaVega_town.Pos0.X = 515;
+	oMapTeleport.map_hisp.LaVega_town.Pos0.Y = 230;
+	oMapTeleport.map_hisp.PortPax_ExitTown.Pos0.X = 330;
+	oMapTeleport.map_hisp.PortPax_ExitTown.Pos0.Y = 325;
+	oMapTeleport.map_hisp.Shore34.Pos0.X = 320;
+	oMapTeleport.map_hisp.Shore34.Pos0.Y = 235;
+	oMapTeleport.map_hisp.Mayak7.Pos0.X = 285;
+	oMapTeleport.map_hisp.Mayak7.Pos0.Y = 290;
+	oMapTeleport.map_hisp.Hispaniola_CaveEntrance.Pos0.X = 450;
+	oMapTeleport.map_hisp.Hispaniola_CaveEntrance.Pos0.Y = 350;
+	
+	oMapTeleport.map_nevis.island = "Nevis";
+	oMapTeleport.map_nevis.Charles_ExitTown.Pos0.X = 295;
+	oMapTeleport.map_nevis.Charles_ExitTown.Pos0.Y = 365;
+	oMapTeleport.map_nevis.Mayak5.Pos0.X = 300;
+	oMapTeleport.map_nevis.Mayak5.Pos0.Y = 425;
+	oMapTeleport.map_nevis.Shore42.Pos0.X = 410;
+	oMapTeleport.map_nevis.Shore42.Pos0.Y = 105;
+	oMapTeleport.map_nevis.Shore43.Pos0.X = 435;
+	oMapTeleport.map_nevis.Shore43.Pos0.Y = 495;
+	oMapTeleport.map_nevis.Charles_CaveEntrance.Pos0.X = 450;
+	oMapTeleport.map_nevis.Charles_CaveEntrance.Pos0.Y = 320;
 }
