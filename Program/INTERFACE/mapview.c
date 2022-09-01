@@ -351,4 +351,62 @@ void InitMapTeleport()
 	oMapTeleport.map_nevis.Shore43.Pos0.Y = 495;
 	oMapTeleport.map_nevis.Charles_CaveEntrance.Pos0.X = 450;
 	oMapTeleport.map_nevis.Charles_CaveEntrance.Pos0.Y = 320;
+	
+	oMapTeleport.map_antigua.island = "Antigua";
+	oMapTeleport.map_antigua.SentJons_ExitTown.Pos0.X = 285;
+	oMapTeleport.map_antigua.SentJons_ExitTown.Pos0.Y = 265;
+	oMapTeleport.map_antigua.Antigua_CaveEntrance.Pos0.X = 505;
+	oMapTeleport.map_antigua.Antigua_CaveEntrance.Pos0.Y = 295;
+	oMapTeleport.map_antigua.Shore1.Pos0.X = 310;
+	oMapTeleport.map_antigua.Shore1.Pos0.Y = 140;
+	oMapTeleport.map_antigua.Shore2.Pos0.X = 455;
+	oMapTeleport.map_antigua.Shore2.Pos0.Y = 430;
+	
+	oMapTeleport.map_guad.island = "Guadeloupe";
+	oMapTeleport.map_guad.BasTer_ExitTown.Pos0.X = 285;
+	oMapTeleport.map_guad.BasTer_ExitTown.Pos0.Y = 440;
+	oMapTeleport.map_guad.Guadeloupe_CaveEntrance.Pos0.X = 270;
+	oMapTeleport.map_guad.Guadeloupe_CaveEntrance.Pos0.Y = 310;
+	oMapTeleport.map_guad.Shore28.Pos0.X = 425;
+	oMapTeleport.map_guad.Shore28.Pos0.Y = 155;
+	oMapTeleport.map_guad.Shore29.Pos0.X = 350;
+	oMapTeleport.map_guad.Shore29.Pos0.Y = 460;
+	oMapTeleport.map_guad.Shore30.Pos0.X = 450;
+	oMapTeleport.map_guad.Shore30.Pos0.Y = 465;
+	oMapTeleport.map_guad.Shore31.Pos0.X = 535;
+	oMapTeleport.map_guad.Shore31.Pos0.Y = 460;
+	oMapTeleport.map_guad.Mayak4.Pos0.X = 245;
+	oMapTeleport.map_guad.Mayak4.Pos0.Y = 385;
+	
+	oMapTeleport.map_dominica.island = "Dominica";
+	oMapTeleport.map_dominica.Shore26.Pos0.X = 500;
+	oMapTeleport.map_dominica.Shore26.Pos0.Y = 250;
+	oMapTeleport.map_dominica.Shore27.Pos0.X = 390;
+	oMapTeleport.map_dominica.Shore27.Pos0.Y = 480;
+	oMapTeleport.map_dominica.Dominica_CaveEntrance.Pos0.X = 375;
+	oMapTeleport.map_dominica.Dominica_CaveEntrance.Pos0.Y = 270;
+	
+	oMapTeleport.map_martiniqua.island = "Martinique";
+	oMapTeleport.map_martiniqua.Shore38.Pos0.X = 235;
+	oMapTeleport.map_martiniqua.Shore38.Pos0.Y = 175;
+	oMapTeleport.map_martiniqua.Shore39.Pos0.X = 520;
+	oMapTeleport.map_martiniqua.Shore39.Pos0.Y = 475;
+	oMapTeleport.map_martiniqua.FortFrance_ExitTown.Pos0.X = 375;
+	oMapTeleport.map_martiniqua.FortFrance_ExitTown.Pos0.Y = 325;
+	oMapTeleport.map_martiniqua.LeFransua_ExitTown.Pos0.X = 485;
+	oMapTeleport.map_martiniqua.LeFransua_ExitTown.Pos0.Y = 320;
+	oMapTeleport.map_martiniqua.LeFransua_port.Pos0.X = 490;
+	oMapTeleport.map_martiniqua.LeFransua_port.Pos0.Y = 260;
+	
+	oMapTeleport.map_barbados.island = "Barbados";
+	oMapTeleport.map_barbados.Mayak2.Pos0.X = 290;
+	oMapTeleport.map_barbados.Mayak2.Pos0.Y = 390;
+	oMapTeleport.map_barbados.Bridgetown_ExitTown.Pos0.X = 275;
+	oMapTeleport.map_barbados.Bridgetown_ExitTown.Pos0.Y = 435;
+	oMapTeleport.map_barbados.Barbados_CaveEntrance.Pos0.X = 410;
+	oMapTeleport.map_barbados.Barbados_CaveEntrance.Pos0.Y = 335;
+	oMapTeleport.map_barbados.Shore4.Pos0.X = 280;
+	oMapTeleport.map_barbados.Shore4.Pos0.Y = 120;
+	oMapTeleport.map_barbados.Shore5.Pos0.X = 525;
+	oMapTeleport.map_barbados.Shore5.Pos0.Y = 440;
 }
