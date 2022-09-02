@@ -409,4 +409,81 @@ void InitMapTeleport()
 	oMapTeleport.map_barbados.Shore4.Pos0.Y = 120;
 	oMapTeleport.map_barbados.Shore5.Pos0.X = 525;
 	oMapTeleport.map_barbados.Shore5.Pos0.Y = 440;
+	
+	oMapTeleport.map_Curacao.island = "Curacao";
+	oMapTeleport.map_Curacao.Villemstad_ExitTown.Pos0.X = 470;
+	oMapTeleport.map_Curacao.Villemstad_ExitTown.Pos0.Y = 430;
+	oMapTeleport.map_Curacao.Shore22.Pos0.X = 355;
+	oMapTeleport.map_Curacao.Shore22.Pos0.Y = 315;
+	oMapTeleport.map_Curacao.Shore23.Pos0.X = 345;
+	oMapTeleport.map_Curacao.Shore23.Pos0.Y = 380;
+	oMapTeleport.map_Curacao.Shore24.Pos0.X = 645;
+	oMapTeleport.map_Curacao.Shore24.Pos0.Y = 470;
+	oMapTeleport.map_Curacao.Curacao_CaveEntrance.Pos0.X = 475;
+	oMapTeleport.map_Curacao.Curacao_CaveEntrance.Pos0.Y = 350;
+	
+	oMapTeleport.map_trinidad.island = "Trinidad";
+	oMapTeleport.map_trinidad.PortSpein_ExitTown.Pos0.X = 250;
+	oMapTeleport.map_trinidad.PortSpein_ExitTown.Pos0.Y = 420;
+	oMapTeleport.map_trinidad.Trinidad_CaveEntrance.Pos0.X = 225;
+	oMapTeleport.map_trinidad.Trinidad_CaveEntrance.Pos0.Y = 355;
+	oMapTeleport.map_trinidad.Mayak1.Pos0.X = 205;
+	oMapTeleport.map_trinidad.Mayak1.Pos0.Y = 480;
+	oMapTeleport.map_trinidad.Mayak1.Pos1.X = 310;
+	oMapTeleport.map_trinidad.Mayak1.Pos1.Y = 280;
+	oMapTeleport.map_trinidad.Shore59.Pos0.X = 490;
+	oMapTeleport.map_trinidad.Shore59.Pos0.Y = 160;
+	oMapTeleport.map_trinidad.Shore60.Pos0.X = 420;
+	oMapTeleport.map_trinidad.Shore60.Pos0.Y = 300;
+	
+	oMapTeleport.map_jam.island = "Jamaica";
+	oMapTeleport.map_jam.PortRoyal_ExitTown.Pos0.X = 515;
+	oMapTeleport.map_jam.PortRoyal_ExitTown.Pos0.Y = 335;
+	oMapTeleport.map_jam.Mayak3.Pos0.X = 530;
+	oMapTeleport.map_jam.Mayak3.Pos0.Y = 365;
+	oMapTeleport.map_jam.Jamaica_CaveEntrance.Pos0.X = 445;
+	oMapTeleport.map_jam.Jamaica_CaveEntrance.Pos0.Y = 240;
+	oMapTeleport.map_jam.Shore36.Pos0.X = 455;
+	oMapTeleport.map_jam.Shore36.Pos0.Y = 370;
+	oMapTeleport.map_jam.Shore35.Pos0.X = 185;
+	oMapTeleport.map_jam.Shore35.Pos0.Y = 275;
+	oMapTeleport.map_jam.FortOrange_ExitTown.Pos0.X = 190;
+	oMapTeleport.map_jam.FortOrange_ExitTown.Pos0.Y = 230;
+	
+	oMapTeleport.map_cayman.island = "Caiman";
+	if (PChar.ColonyBuilding.Stage == "0" || PChar.ColonyBuilding.Stage == "1")
+	{
+		oMapTeleport.map_cayman.Shore16.Pos0.X = 550;
+		oMapTeleport.map_cayman.Shore16.Pos0.Y = 295;
+		oMapTeleport.map_cayman.Shore17.Pos0.X = 355;
+		oMapTeleport.map_cayman.Shore17.Pos0.Y = 370;
+	}
+	oMapTeleport.map_cayman.Caiman_CaveEntrance.Pos0.X = 370;
+	oMapTeleport.map_cayman.Caiman_CaveEntrance.Pos0.Y = 275;
+	
+	oMapTeleport.map_cuba.island = "Cuba";
+	oMapTeleport.map_cuba.PuertoPrincipe_port.Pos0.X = 605;
+	oMapTeleport.map_cuba.PuertoPrincipe_port.Pos0.Y = 255;
+	oMapTeleport.map_cuba.PuertoPrincipe_ExitTown.Pos0.X = 600;
+	oMapTeleport.map_cuba.PuertoPrincipe_ExitTown.Pos0.Y = 290;
+	oMapTeleport.map_cuba.Santiago_ExitTown.Pos0.X = 550;
+	oMapTeleport.map_cuba.Santiago_ExitTown.Pos0.Y = 345;
+	oMapTeleport.map_cuba.Mayak9.Pos0.X = 565;
+	oMapTeleport.map_cuba.Mayak9.Pos0.Y = 390;
+	oMapTeleport.map_cuba.Shore11.Pos0.X = 510;
+	oMapTeleport.map_cuba.Shore11.Pos0.Y = 205;
+	oMapTeleport.map_cuba.Shore12.Pos0.X = 440;
+	oMapTeleport.map_cuba.Shore12.Pos0.Y = 265;
+	oMapTeleport.map_cuba.Mayak10.Pos0.X = 195;
+	oMapTeleport.map_cuba.Mayak10.Pos0.Y = 200;
+	oMapTeleport.map_cuba.Havana_ExitTown.Pos0.X = 220;
+	oMapTeleport.map_cuba.Havana_ExitTown.Pos0.Y = 170;
+	oMapTeleport.map_cuba.Cuba_CaveEntrance.Pos0.X = 375;
+	oMapTeleport.map_cuba.Cuba_CaveEntrance.Pos0.Y = 205;
+	oMapTeleport.map_cuba.Shore13.Pos0.X = 265;
+	oMapTeleport.map_cuba.Shore13.Pos0.Y = 220;
+	oMapTeleport.map_cuba.Shore14.Pos0.X = 200;
+	oMapTeleport.map_cuba.Shore14.Pos0.Y = 300;
+	oMapTeleport.map_cuba.Shore15.Pos0.X = 150;
+	oMapTeleport.map_cuba.Shore15.Pos0.Y = 330;
 }
