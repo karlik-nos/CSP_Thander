@@ -1669,6 +1669,8 @@ void ProcessDialogEvent()
             AddCharacterExpToSkill(npchar, "Pistol", 15);
             AddCharacterHealth(pchar, 12);
             AddCharacterHealth(npchar, 12);
+			LAi_SetCurHPMax(pchar);
+			LAi_SetCurHPMax(npchar);
    			AddDialogExitQuest("PlaySex_1");
 			NextDiag.CurrentNode = "Mary_sex_after";
 		break;
@@ -1682,6 +1684,10 @@ void ProcessDialogEvent()
             AddCharacterExpToSkill(npchar, "Fencing", 15);
             AddCharacterExpToSkill(pchar, "Pistol", 15);
             AddCharacterExpToSkill(npchar, "Pistol", 15);
+			AddCharacterHealth(pchar, 12);
+            AddCharacterHealth(npchar, 12);
+			LAi_SetCurHPMax(pchar);
+			LAi_SetCurHPMax(npchar);
 			if (sti(pchar.money) >= 10) AddMoneyToCharacter(pchar, -10);
 			if (npchar.chr_ai.type == "actor")
 			{
@@ -1693,7 +1699,7 @@ void ProcessDialogEvent()
 			DoQuestReloadToLocation(pchar.location+"_upstairs", "quest", "quest4", "");
 			ChangeCharacterAddressGroup(npchar, pchar.location+"_upstairs", "quest", "quest3");
 			}
-			AddDialogExitQuest("PlaySex_1");
+			DoQuestCheckDelay("PlaySex_1", 2.1);
 			NextDiag.CurrentNode = "Mary_sex_after";
 		break;
 		

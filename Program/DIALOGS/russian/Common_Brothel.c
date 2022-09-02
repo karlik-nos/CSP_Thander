@@ -334,7 +334,7 @@ void ProcessDialogEvent()
 			sld = &characters[sti(npchar.quest.choiceIdx)];
 			if (sti(pchar.money) >= sti(sld.quest.price))
 			{
-				if (rand(4) == 0 && pchar.sex != "woman" && !CheckAttribute(pchar,"NoPriest") && GetCharacterSPECIALSimple(pchar, SPECIAL_L) >= 8)
+				/*if (rand(4) == 0 && pchar.sex != "woman" && !CheckAttribute(pchar,"NoPriest") && GetCharacterSPECIALSimple(pchar, SPECIAL_L) >= 8)
 				{
 					dialog.text = "Отлично, дорогой, " + sld.name + " будет ждать тебя в комнате для уединения на втором этаже. Уверена, ты будешь оооочень доволен...");
 					Link.l1 = "Хех, ну я пошёл...";
@@ -354,13 +354,13 @@ void ProcessDialogEvent()
 					pchar.quest.Pedro.function = "Pedro_Horse";
 				}
 				else
-				{
+				{*/
 					dialog.text = "Отлично, дорог"+ GetSexPhrase("ой","уша") +". " + sld.name + " будет ждать тебя в комнате для уединения на втором этаже.";
 					Link.l1 = ""+ GetSexPhrase("Хех, ну я пошёл","Ну, я побежала") +"...";
 					Link.l1.go = "exit";
 					AddMoneyToCharacter(pchar, -sti(sld.quest.price));
 					sld.dialog.currentnode = "Horse_ReadyFack";
-				}
+				//}
 				//--> таймер на возврат, чтобы не вечно ждали
 				str = npchar.city;
 				pchar.quest.(str).win_condition.l1            = "Timer";
