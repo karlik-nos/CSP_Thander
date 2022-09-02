@@ -139,6 +139,13 @@ void ProcessDialogEvent()
 	    			link.l11.go = "Antonio_1_4";
 				}
 				//<-- Квест ***Клан Ламбрини*** Sinistra
+				//--> Квест ***Странные вещи творятся на архипелаге*** Sinistra
+				if (CheckAttribute(pchar, "questTemp.PKM_SvtvA_SprositKapitanov_v_more"))
+				{
+	    			link.l10 = "Меня интересует чёрный фрегат, который покинул порт этой ночью. Вы что-нибудь знаете о нём?";
+	    			link.l10.go = "PKM_SvtvA_Deti_Plachut";
+				}
+				//<-- Квест ***Странные вещи творятся на архипелаге*** Sinistra
     			link.l5 = "Желаете развеяться?";
 			    link.l5.go = "Play_Game";
                 link.l9 = "Думаю, мне пора!";
@@ -153,6 +160,19 @@ void ProcessDialogEvent()
                 Diag.TempNode = "Go_away_Good";
 			}
         break;
+		//--> Квест ***Странные вещи творятся на архипелаге*** Sinistra
+		case "PKM_SvtvA_Deti_Plachut":
+			dialog.text = "Понятия не имею, и вам не советую с ними связываться, если вас интересует моё мнение.\nКстати, когда этот корабль поднял якорь, несколько моих людей, следивших за ним, уверяли, что услышали детский плач, доносившийся до них с палубы.";
+			link.l1 = "Понятно. Ладно, мне уже пора.";
+			link.l1.go = "PKM_SvtvA_Deti_Plachut_2";
+		break;
+		case "PKM_SvtvA_Deti_Plachut_2":
+			DialogExit();
+			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_SprositKapitanov_v_more");
+			AddQuestRecord("PKM_Animists", "5");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
+		break;
+		//<-- Квест ***Странные вещи творятся на архипелаге*** Sinistra
 		//--> Квест ***Клан Ламбрини*** Sinistra
 		case "Antonio_Bitva":
 			bDisableFastReload = true;

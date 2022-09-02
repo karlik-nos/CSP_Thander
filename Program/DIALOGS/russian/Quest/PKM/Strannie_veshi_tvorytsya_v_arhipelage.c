@@ -97,7 +97,7 @@ void ProcessDialogEvent()
 		
 		case "Capitan_v_taverne_3":
 			dialog.text = "Прямиком на Барбадос.";
-			link.l1 = "Могли это быть местные пираты?";
+			link.l1 = "Могли это быть пираты?";
 			link.l1.go = "Capitan_v_taverne_4";
 		break;
 		
@@ -113,6 +113,85 @@ void ProcessDialogEvent()
 			DialogExit();
 			AddQuestRecord("PKM_Animists", "4");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
+			pchar.questTemp.PKM_SvtvA_SprositKapitanov_v_more = "SprositKapitanov";
+			pchar.questTemp.PKM_SvtvA_NevisTaverna_1 = "Taverna";
+			pchar.questTemp.PKM_SvtvA_NevisPortMan_1 = "PortMan";
+			
+			PChar.quest.PKM_SvtvA_SprositKapitanov_v_more.win_condition.l1 = "MapEnter";
+			PChar.quest.PKM_SvtvA_SprositKapitanov_v_more.win_condition = "PKM_SvtvA_SprositKapitanov_v_more";
+			
+			sld = GetCharacter(NPC_GenerateCharacter("PKM_SvpvA_Shturman_1", "shipowner_17", "man", "man", 10, ENGLAND, -1, true));
+			sld.name = "Баллтезар";
+			sld.lastname = "Фигуейдал";
+			FreeSitLocator("Charles_tavern", "sit_base4");
+			sld.Dialog.Filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "Shturman_v_taverne_1";
+			LAi_SetSitType(sld);
+			LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
+			ChangeCharacterAddressGroup(sld, "Charles_tavern", "sit", "sit_base4");	
 		break;
+		
+		case "Shturman_v_taverne_1":
+			dialog.text = "Проваливай, "+ GetSexPhrase("приятель","девка") +"!";
+			link.l1 = "";
+			link.l1.go = "exit";
+			NextDiag.TempNode = "Shturman_v_taverne_1";
+		break;
+		
+		case "Shturman_v_taverne_2":
+			dialog.text = ""+ GetSexPhrase("Старина","Подруга") +"! Поставь выпивку не самому последнему штурману в Новом Свете!";
+			link.l1 = "Что уже всё пропил, приятель?";
+			link.l1.go = "Shturman_v_taverne_3";
+		break;
+		
+		case "Shturman_v_taverne_3":
+			dialog.text = "Всё, до пенса. Ну что, поставишь кружечку?";
+			link.l1 = "Потом. Ты видел чёрный фрегат во время плавания?";
+			link.l1.go = "Shturman_v_taverne_4";
+		break;
+		
+		case "Shturman_v_taverne_4":
+			dialog.text = "Угости меня ромом, и я тебе всё расскажу!";
+			link.l1 = "Вот твой ром.";
+			link.l1.go = "Shturman_v_taverne_5";
+			link.l2 = "А, может приложить тебя пару раз о столешницу?";
+			link.l2.go = "Shturman_v_taverne_9";
+		break;
+		
+		case "Shturman_v_taverne_5":
+			dialog.text = "Гульп-гульп. Хор-р-роший ром!";
+			link.l1 = "Итак, ты видел фрегат?";
+			link.l1.go = "Shturman_v_taverne_6";
+			AddMoneyToCharacter(pchar, -10);
+		break;
+		
+		case "Shturman_v_taverne_9":
+			dialog.text = "Хм... Обойдёмся без этого.";
+			link.l1 = "Итак, ты видел фрегат?";
+			link.l1.go = "Shturman_v_taverne_6";
+			ChangeCharacterReputation(pchar, -2);
+		break;
+		
+		case "Shturman_v_taverne_6":
+			dialog.text = "Фрегат-то? Чёрный?! Видел я его, как тебя вижу. Если бы шли не порожняком, то сейчас не разговаривал бы с тобой - у них то трюмы явно под завязку были\nИмечко ещё у него странное было, не христианское какое-то - 'Мефисто'.";
+			link.l1 = "Каким курсом плыл фрегат?";
+			link.l1.go = "Shturman_v_taverne_7";
+		break;
+		
+		case "Shturman_v_taverne_7":
+			dialog.text = "На юг. Может на Гваделупу, а может и на Мартинику... к пиратам. Дьявол его знает.";
+			link.l1 = "Мда...";
+			link.l1.go = "Shturman_v_taverne_8";
+			npchar.lifeday = 0;
+			LAi_CharacterDisableDialog(npchar);
+		break;
+		
+		case "Shturman_v_taverne_8":
+			DialogExit();
+			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_NevisPortMan_1");
+			AddQuestRecord("PKM_Animists", "6");
+			pchar.questTemp.PKM_SvtvA_LeFrancuaTaverna_1 = "Taverna";
+		break;
+		
 	}
 }
