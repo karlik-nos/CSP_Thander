@@ -2499,35 +2499,27 @@ void PDMQuestsInit()
 	sld = GetCharacter(NPC_GenerateCharacter("Albreht_Zalpfer", "Mechanic", "man", "man", 6, ENGLAND, -1, false));
 	sld.name	= "Альбрехт";
 	sld.lastname	= "Цальпфер";
-	sld.City = "Charles";
-	sld.location	= "Charles_town";
-	sld.location.group = "goto";
-	sld.location.locator = "goto22";
 	sld.Dialog.Filename = "Quest/PDM/Albreht_Zalpfer.c";
 	sld.greeting = "Albrecht_Zalpfer";
 	SetCharacterPerk(sld, "Carpenter");
 	SetCharacterPerk(sld, "BasicBattleState");
 	SetShipSkill(sld, 2, 3, 2, 3, 1, 21, 3, 1, 2);
-	sld.talker = 7;
-	sld.nation = ENGLAND;
+	sld.talker = 6;
 	LAi_SetLoginTime(sld, 6.0, 21.99);
 	LAi_SetCitizenType(sld);
 	LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
 	LAi_SetImmortal(sld, false);
+	ChangeCharacterAddressGroup(sld,"Charles_town","goto","goto22");
 
 	//******Проклятый идол Sinistra******
 	//Джеймс Кэллоу
-	sld = GetCharacter(NPC_GenerateCharacter("James_Callow", "ozg_green", "man", "man", 6, PIRATE, -1, false));
+	sld = GetCharacter(NPC_GenerateCharacter("James_Callow", "ozg_green", "man", "man", 15, PIRATE, -1, false));
 	sld.name	= "Джеймс";
 	sld.lastname	= "Кэллоу";
-	sld.rank     = 7;
 	sld.model	= "ozg_green";
-	GiveItem2Character(sld, BLADE_LONG);
-	sld.sex = "man";
-	sld.City = "LaVega";
-	sld.location	= "LaVega_tavern";
+	GiveItem2Character(sld, "blade12");
+	EquipCharacterByItem(sld, "blade12");
 	sld.Dialog.Filename = "Quest/PDM/Cursed_Idol.c";
-	sld.nation = PIRATE;
 	LAi_SetSitType(sld);
 	LAi_SetImmortal(sld, true);
 	ChangeCharacterAddressGroup(sld,"LaVega_tavern","sit","sit_base3");
