@@ -10231,12 +10231,9 @@ void QuestComplete(string sQuestName, string qname)
 			sld = CharacterFromID("Josephine_Lodet")
 			sld.dialog.currentnode   = "Konets";
 
-			Log_SetStringToLog("Холодное оружие + 1");
-
-
-			AddCharacterSkillDontClearExp(pchar, "FencingLight", 1);
-			AddCharacterSkillDontClearExp(pchar, "Fencing", 1);
-			AddCharacterSkillDontClearExp(pchar, "FencingHeavy", 1);
+			AddCharacterExpToSkill(pchar, "FencingLight", 100);
+			AddCharacterExpToSkill(pchar, "Fencing", 100);
+			AddCharacterExpToSkill(pchar, "FencingHeavy", 100);
 			ChangeCharacterReputation(pchar, -10);
 			ChangeCharacterNationReputation(pchar, SPAIN, -7);
 		break;
