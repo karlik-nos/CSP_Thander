@@ -9769,19 +9769,16 @@ void QuestComplete(string sQuestName, string qname)
         break;
 
 		case "PDM_Albreht_Vhod":
-			chrDisableReloadToLocation = false;
+			bDisableFastReload = true;
+			chrDisableReloadToLocation = true;
             sld = CharacterFromID("Albreht_Zalpfer");
-	        sld.dialog.currentnode = "Ja_1";
-			sld.greeting = "Albrecht_Zalpfer";
-			LAi_SetActorType(sld);
-			LAi_ActorDialog(sld, pchar, "", 0.5, 0);
 			PlaceCharacter(sld, "goto", PChar.location);
+			RemovePassenger(pchar, sld);
+			RemoveCharacterCompanion(pchar, sld);
+	        sld.dialog.currentnode = "Ja_1";
+			LAi_SetActorType(sld);
+			LAi_ActorDialog(sld, pchar, "", -1, 0);
 			Locations[FindLocation("PortRoyal_town")].reload.l23.disable = false;   //открывает архитектора
-        break;
-
-		case "PDM_Albreht_Vihod":
-			sld = CharacterFromID("Albreht_Zalpfer")
-			ChangeCharacterAddressGroup(sld, "PortRoyal_town", "none", "");
         break;
 
 //========================  Квест "Проклятый идол".  =======================
