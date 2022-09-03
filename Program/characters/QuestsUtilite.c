@@ -2526,15 +2526,11 @@ void PDMQuestsInit()
 
 	//******Новая Родина Sinistra******
 	//Хьюго Лесопилка
-	sld = GetCharacter(NPC_GenerateCharacter("Hugo_Lesopilka", "officer_63", "man", "man", 10, PIRATE, -1, false));
+	sld = GetCharacter(NPC_GenerateCharacter("Hugo_Lesopilka", "officer_63", "man", "man", 10, PIRATE, -1, true));
 	sld.name	= "Хьюго";
 	sld.lastname	= "Лесопилка";
-	GiveItem2Character(sld, BLADE_LONG);
 	sld.sex = "man";
-	sld.City = "PuertoPrincipe";
-	sld.location	= "PuertoPrincipe_tavern";
 	sld.Dialog.Filename = "Quest/PDM/Novaya_Rodina.c";
-	sld.nation = PIRATE;
 	LAi_SetSitType(sld);
 	LAi_SetImmortal(sld, true);
 	ChangeCharacterAddressGroup(sld,"PuertoPrincipe_tavern","sit","sit_front2");
@@ -2570,7 +2566,7 @@ void PDMQuestsInit()
 
 	//******Клан Ламбрини Sinistra******
 	//Октавио Ламбрини
-	sld = GetCharacter(NPC_GenerateCharacter("PDM_Octavio_Lambrini", "barmen_3", "man", "man", 10, PIRATE, -1, false));
+	sld = GetCharacter(NPC_GenerateCharacter("PDM_Octavio_Lambrini", "barmen_3", "man", "man", 10, PIRATE, -1, true));
 	sld.name	= "Октавио";
 	sld.lastname	= "Ламбрини";
 	sld.Dialog.Filename = "Quest/PDM/Clan_Lambrini.c";
@@ -2586,7 +2582,6 @@ void PDMQuestsInit()
 	LAi_SetLoginTime(sld, 6.0, 21.99);
 	sld.talker = 7;
 	LAi_SetStayType(sld);
-	sld.City = "FortFrance";
 	FantomMakeCoolFighter(sld, 25, 25, 25, "blade10", "", 40);
 	LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
 	ChangeCharacterAddressGroup(sld,"FortFrance_town","officers","soldier_uniq2");
@@ -2597,7 +2592,6 @@ void PDMQuestsInit()
 	sld.dialog.filename   = "Common_Soldier.c";
 	LAi_SetLoginTime(sld, 6.0, 21.99);
 	LAi_SetGuardianType(sld);
-	sld.City = "FortFrance";
 	FantomMakeCoolFighter(sld, 25, 25, 25, "blade10", "", 40);
 	LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
 	ChangeCharacterAddressGroup(sld,"FortFrance_town","officers","soldier_uniq1");
