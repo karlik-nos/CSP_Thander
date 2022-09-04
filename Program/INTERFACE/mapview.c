@@ -233,6 +233,8 @@ void DoTeleport(float x, float y, string mapid)
 	aref mapname,shorename,shorenum;
 	string shore_name,shore_numname;
 	int i,j;
+	int gridsize = 30;
+	if (mapid == "map_maine_1" || mapid == "map_maine_2") gridsize = 15;
 
 	makearef(mapname,oMapTeleport.(mapid));
 	if (CheckAttribute(loadedLocation,"islandId") && mapname.island == loadedLocation.islandId)
@@ -245,7 +247,7 @@ void DoTeleport(float x, float y, string mapid)
 			{
 				shorenum = GetAttributeN(shorename,j);
 				shore_numname = GetAttributeName(shorenum);
-				if (CC(x,y,sti(shorename.(shore_numname).X),sti(shorename.(shore_numname).Y)))
+				if (CC(x,y,sti(shorename.(shore_numname).X),sti(shorename.(shore_numname).Y),gridsize))
 				{
 					if (!HasSubStr(shore_name,"Entr"))
 					{
@@ -260,9 +262,9 @@ void DoTeleport(float x, float y, string mapid)
 	}
 }
 
-bool CC(float x, float y, int dx, int dy)
+bool CC(float x, float y, int dx, int dy, int gridsize)
 {
-	if (x >= dx && x <= dx+30 && y >= dy && y <= dy+30) return true;
+	if (x >= dx && x <= dx+gridsize && y >= dy && y <= dy+gridsize) return true;
 	return false;
 }
 
@@ -463,6 +465,11 @@ void InitMapTeleport()
 		oMapTeleport.map_cayman.Shore16.Pos0.Y = 295;
 		oMapTeleport.map_cayman.Shore17.Pos0.X = 355;
 		oMapTeleport.map_cayman.Shore17.Pos0.Y = 370;
+	}
+	else
+	{
+		oMapTeleport.map_cayman.Caiman_town.Pos0.X = 355;
+		oMapTeleport.map_cayman.Caiman_town.Pos0.Y = 370;
 	}
 	oMapTeleport.map_cayman.Caiman_CaveEntrance.Pos0.X = 370;
 	oMapTeleport.map_cayman.Caiman_CaveEntrance.Pos0.Y = 275;
