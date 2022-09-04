@@ -266,6 +266,12 @@ bool CC(float x, float y, int dx, int dy)
 	return false;
 }
 
+bool CWMC(float x, float z, float x2, float z2)
+{
+	if (stf(worldMap.playerShipX) >= x-100 && stf(worldMap.playerShipX) <= z+100 && stf(worldMap.playerShipZ) >= x2-100 && stf(worldMap.playerShipZ) <= z2+100) return true;
+	return false;
+}
+
 void InitMapTeleport()
 {
 	oMapTeleport.map_bermudas.island = "Bermudes";
@@ -486,4 +492,84 @@ void InitMapTeleport()
 	oMapTeleport.map_cuba.Shore14.Pos0.Y = 300;
 	oMapTeleport.map_cuba.Shore15.Pos0.X = 150;
 	oMapTeleport.map_cuba.Shore15.Pos0.Y = 330;
+	
+	//log_info(FloatToString(worldMap.playerShipX,1)+" "+FloatToString(worldMap.playerShipZ,1))
+	if (CWMC(-1023,-900,150,600))
+	{
+		oMapTeleport.map_beliz.island = "Mein";
+		oMapTeleport.map_beliz.Beliz_ExitTown.Pos0.X = 190;
+		oMapTeleport.map_beliz.Beliz_ExitTown.Pos0.Y = 500;
+		oMapTeleport.map_beliz.Shore_ship2.Pos0.X = 160;
+		oMapTeleport.map_beliz.Shore_ship2.Pos0.Y = 100;
+		oMapTeleport.map_beliz.Shore6.Pos0.X = 240;
+		oMapTeleport.map_beliz.Shore6.Pos0.Y = 105;
+		oMapTeleport.map_beliz.Shore7.Pos0.X = 235;
+		oMapTeleport.map_beliz.Shore7.Pos0.Y = 270;
+		oMapTeleport.map_beliz.Shore8.Pos0.X = 210;
+		oMapTeleport.map_beliz.Shore8.Pos0.Y = 370;
+		oMapTeleport.map_beliz.Beliz_CaveEntrance_3.Pos0.X = 160;
+		oMapTeleport.map_beliz.Beliz_CaveEntrance_3.Pos0.Y = 380;
+		oMapTeleport.map_beliz.Beliz_CaveEntrance_1.Pos0.X = 135;
+		oMapTeleport.map_beliz.Beliz_CaveEntrance_1.Pos0.Y = 440;
+		oMapTeleport.map_beliz.Beliz_CaveEntrance_2.Pos0.X = 140;
+		oMapTeleport.map_beliz.Beliz_CaveEntrance_2.Pos0.Y = 510;
+	}
+	if (CWMC(574,924,-969,-929))
+	{
+		oMapTeleport.map_cumana.island = "Mein";
+		oMapTeleport.map_cumana.Cumana_ExitTown.Pos0.X = 340;
+		oMapTeleport.map_cumana.Cumana_ExitTown.Pos0.Y = 385;
+		oMapTeleport.map_cumana.Cumana_CaveEntrance.Pos0.X = 260;
+		oMapTeleport.map_cumana.Cumana_CaveEntrance.Pos0.Y = 515;
+		oMapTeleport.map_cumana.Shore18.Pos0.X = 550;
+		oMapTeleport.map_cumana.Shore18.Pos0.Y = 470;
+		oMapTeleport.map_cumana.Shore19.Pos0.X = 420;
+		oMapTeleport.map_cumana.Shore19.Pos0.Y = 415;
+		oMapTeleport.map_cumana.Shore20.Pos0.X = 190;
+		oMapTeleport.map_cumana.Shore20.Pos0.Y = 425;
+	}
+	if (CWMC(-486,-279,-1005,-907))
+	{
+		oMapTeleport.map_panama.island = "Mein";
+		oMapTeleport.map_panama.PortoBello_ExitTown.Pos0.X = 455;
+		oMapTeleport.map_panama.PortoBello_ExitTown.Pos0.Y = 275;
+		oMapTeleport.map_panama.Panama_ExitTown.Pos0.X = 485;
+		oMapTeleport.map_panama.Panama_ExitTown.Pos0.Y = 360;
+		oMapTeleport.map_panama.Shore47.Pos0.X = 275;
+		oMapTeleport.map_panama.Shore47.Pos0.Y = 430;
+		oMapTeleport.map_panama.PortoBello_CaveEntrance.Pos0.X = 220;
+		oMapTeleport.map_panama.PortoBello_CaveEntrance.Pos0.Y = 490;
+		oMapTeleport.map_panama.Shore48.Pos0.X = 675;
+		oMapTeleport.map_panama.Shore48.Pos0.Y = 410;
+		oMapTeleport.map_panama.Panama_CaveEntrance.Pos0.X = 425;
+		oMapTeleport.map_panama.Panama_CaveEntrance.Pos0.Y = 405;
+	}
+	if (CWMC(-115,440,-994,-828))
+	{
+		oMapTeleport.map_maracaibo.island = "Mein";
+		oMapTeleport.map_maracaibo.Cartahena_ExitTown.Pos0.X = 230;
+		oMapTeleport.map_maracaibo.Cartahena_ExitTown.Pos0.Y = 385;
+		oMapTeleport.map_maracaibo.Mayak11.Pos0.X = 205;
+		oMapTeleport.map_maracaibo.Mayak11.Pos0.Y = 345;
+		oMapTeleport.map_maracaibo.Shore25.Pos0.X = 160;
+		oMapTeleport.map_maracaibo.Shore25.Pos0.Y = 450;
+		oMapTeleport.map_maracaibo.Cartahena_CaveEntrance.Pos0.X = 130;
+		oMapTeleport.map_maracaibo.Cartahena_CaveEntrance.Pos0.Y = 535;
+		oMapTeleport.map_maracaibo.Maracaibo_ExitTown.Pos0.X = 385;
+		oMapTeleport.map_maracaibo.Maracaibo_ExitTown.Pos0.Y = 445;
+		oMapTeleport.map_maracaibo.Shore37.Pos0.X = 390;
+		oMapTeleport.map_maracaibo.Shore37.Pos0.Y = 310;
+		oMapTeleport.map_maracaibo.Maracaibo_CaveEntrance_02.Pos0.X = 325;
+		oMapTeleport.map_maracaibo.Maracaibo_CaveEntrance_02.Pos0.Y = 330;
+		oMapTeleport.map_maracaibo.Maracaibo_CaveEntrance.Pos0.X = 335;
+		oMapTeleport.map_maracaibo.Maracaibo_CaveEntrance.Pos0.Y = 390;
+		oMapTeleport.map_maracaibo.Shore_ship3.Pos0.X = 445;
+		oMapTeleport.map_maracaibo.Shore_ship3.Pos0.Y = 510;
+		oMapTeleport.map_maracaibo.Caracas_ExitTown.Pos0.X = 665;
+		oMapTeleport.map_maracaibo.Caracas_ExitTown.Pos0.Y = 470;
+		oMapTeleport.map_maracaibo.Shore21.Pos0.X = 635;
+		oMapTeleport.map_maracaibo.Shore21.Pos0.Y = 425;
+		oMapTeleport.map_maracaibo.Caracas_CaveEntrance.Pos0.X = 555;
+		oMapTeleport.map_maracaibo.Caracas_CaveEntrance.Pos0.Y = 400;
+	}
 }
