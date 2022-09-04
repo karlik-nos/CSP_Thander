@@ -572,4 +572,76 @@ void InitMapTeleport()
 		oMapTeleport.map_maracaibo.Caracas_CaveEntrance.Pos0.X = 555;
 		oMapTeleport.map_maracaibo.Caracas_CaveEntrance.Pos0.Y = 400;
 	}
+	if (CWMC(-792,-26,-907,-331))
+	{
+		oMapTeleport.map_santa.island = "Mein";
+		oMapTeleport.map_santa.SantaCatalina_ExitTown.Pos0.X = 260;
+		oMapTeleport.map_santa.SantaCatalina_ExitTown.Pos0.Y = 245;
+		oMapTeleport.map_santa.Shore46.Pos0.X = 300;
+		oMapTeleport.map_santa.Shore46.Pos0.Y = 445;
+		oMapTeleport.map_santa.Shore53.Pos0.X = 250;
+		oMapTeleport.map_santa.Shore53.Pos0.Y = 75;
+		oMapTeleport.map_santa.Shore54.Pos0.X = 265;
+		oMapTeleport.map_santa.Shore54.Pos0.Y = 185;
+		oMapTeleport.map_santa.Shore55.Pos0.X = 275;
+		oMapTeleport.map_santa.Shore55.Pos0.Y = 365;
+		oMapTeleport.map_santa.SantaCatalina_CaveEntrance.Pos0.X = 225;
+		oMapTeleport.map_santa.SantaCatalina_CaveEntrance.Pos0.Y = 155;
+		oMapTeleport.map_santa.SantaCatalina_PearlCaveEntrance.Pos0.X = 230;
+		oMapTeleport.map_santa.SantaCatalina_PearlCaveEntrance.Pos0.Y = 410;
+		oMapTeleport.map_santa.Pearl_CaveEntrance.Pos0.X = 220;
+		oMapTeleport.map_santa.Pearl_CaveEntrance.Pos0.Y = 340;
+		oMapTeleport.map_santa.Pearl_CaveEntrance.Pos1.X = 240;
+		oMapTeleport.map_santa.Pearl_CaveEntrance.Pos1.Y = 310;
+		oMapTeleport.map_santa.SantaCatalina_GrotEntrance.Pos0.X = 250;
+		oMapTeleport.map_santa.SantaCatalina_GrotEntrance.Pos0.Y = 345;
+		oMapTeleport.map_santa.Cartahena_ExitTown.Pos0.X = 595;
+		oMapTeleport.map_santa.Cartahena_ExitTown.Pos0.Y = 420;
+		oMapTeleport.map_santa.Shore25.Pos0.X = 560;
+		oMapTeleport.map_santa.Shore25.Pos0.Y = 490;
+		oMapTeleport.map_santa.PortoBello_ExitTown.Pos0.X = 430;
+		oMapTeleport.map_santa.PortoBello_ExitTown.Pos0.Y = 455;
+		oMapTeleport.map_santa.Panama_ExitTown.Pos0.X = 445;
+		oMapTeleport.map_santa.Panama_ExitTown.Pos0.Y = 505;
+		oMapTeleport.map_santa.Shore48.Pos0.X = 490;
+		oMapTeleport.map_santa.Shore48.Pos0.Y = 515;
+		oMapTeleport.map_santa.Shore47.Pos0.X = 375;
+		oMapTeleport.map_santa.Shore47.Pos0.Y = 520;
+	}
+	if (CWMC(-1017,-627,-940,-33))
+	{
+		oMapTeleport.map_Pearl.island = "Mein";
+		oMapTeleport.map_Pearl.Shore9.Pos0.X = 175;
+		oMapTeleport.map_Pearl.Shore9.Pos0.Y = 75;
+		oMapTeleport.map_Pearl.Shore10.Pos0.X = 270;
+		oMapTeleport.map_Pearl.Shore10.Pos0.Y = 150;
+		oMapTeleport.map_Pearl.Shore53.Pos0.X = 305;
+		oMapTeleport.map_Pearl.Shore53.Pos0.Y = 285;
+		oMapTeleport.map_Pearl.Shore54.Pos0.X = 325;
+		oMapTeleport.map_Pearl.Shore54.Pos0.Y = 435;
+		oMapTeleport.map_Pearl.Tenotchitlan_CaveEntrance.Pos0.X = 145;
+		oMapTeleport.map_Pearl.Tenotchitlan_CaveEntrance.Pos0.Y = 165;
+		oMapTeleport.map_Pearl.Temple.Pos0.X = 145;
+		oMapTeleport.map_Pearl.Temple.Pos0.Y = 205;
+		oMapTeleport.map_Pearl.Pearl_GrotEntrance.Pos0.X = 190;
+		oMapTeleport.map_Pearl.Pearl_GrotEntrance.Pos0.Y = 300;
+		oMapTeleport.map_Pearl.Pearl_Jungle_03.Pos0.X = 280;
+		oMapTeleport.map_Pearl.Pearl_Jungle_03.Pos0.Y = 345;
+		oMapTeleport.map_Pearl.SantaCatalina_ExitTown.Pos0.X = 325;
+		oMapTeleport.map_Pearl.SantaCatalina_ExitTown.Pos0.Y = 525;
+		oMapTeleport.map_Pearl.SantaCatalina_ExitTown.Pos1.X = 600;
+		oMapTeleport.map_Pearl.SantaCatalina_ExitTown.Pos1.Y = 225;
+		oMapTeleport.map_Pearl.Shore46.Pos0.X = 630;
+		oMapTeleport.map_Pearl.Shore46.Pos0.Y = 415;
+		oMapTeleport.map_Pearl.Shore55.Pos0.X = 615;
+		oMapTeleport.map_Pearl.Shore55.Pos0.Y = 350;
+		oMapTeleport.map_Pearl.SantaCatalina_GrotEntrance.Pos0.X = 570;
+		oMapTeleport.map_Pearl.SantaCatalina_GrotEntrance.Pos0.Y = 330;
+		oMapTeleport.map_Pearl.SantaCatalina_PearlCaveEntrance.Pos0.X = 550;
+		oMapTeleport.map_Pearl.SantaCatalina_PearlCaveEntrance.Pos0.Y = 415;
+		oMapTeleport.map_Pearl.Pearl_CaveEntrance.Pos0.X = 525;
+		oMapTeleport.map_Pearl.Pearl_CaveEntrance.Pos0.Y = 325;
+		oMapTeleport.map_Pearl.Pearl_CaveEntrance.Pos1.X = 560;
+		oMapTeleport.map_Pearl.Pearl_CaveEntrance.Pos1.Y = 290;
+	}
 }
