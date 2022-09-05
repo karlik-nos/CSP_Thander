@@ -81,8 +81,28 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 					link.l1 = "Добрый день, " + npchar.name + ". Сегодня он действительно добрый. С бандой Джа Престона покончено навсегда.";
 					link.l1.go = "Endtaskhunt_5";
 				}
+				if(pchar.questTemp.PKM_SvtvA_LeFrancuaTaverna_1 == "Taverna")		//Квест "Странные вещи творятся на архипелаге"
+				{
+					link.l1 = "Меня интересует, не заходил ли в бухту чёрный фрегат под именем 'Мефисто'?";
+					link.l1.go = "PKM_SvtvA_1";
+				}
 			}
 		break;
+		//Квест "Странные вещи творятся на архипелаге"
+		case "PKM_SvtvA_1":
+			dialog.text = "Эти сумасшедшие? Да, были они тут, но я бы тебе не советовал с ними связываться.\nОни тут поругались с каким-то молодчиком, так в одно мгновение нарисовали ему новую улыбку, я даже моргнуть не успел.";
+			link.l1 = "Спасибо за предупреждение, но мне нужно найти их.";
+			link.l1.go = "PKM_SvtvA_2";
+		break;
+		case "PKM_SvtvA_2":
+			dialog.text = "Тут я ничем не могу тебе помочь - эти парни куда-то уплыли.\nНо я слышал, что типами в красных балахонах заинтересовалась церковь Порт Рояля, тебе стоит отправиться туда и разузнать обо всём там.";
+			link.l1 = "Я так и сделаю. Спасибо тебе, дружище!";
+			link.l1.go = "exit";
+			AddQuestRecord("PKM_Animists", "7");
+			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_LeFrancuaTaverna_1");
+			pchar.questTemp.PKM_SvtvA_PortRoyalChurch_1 = "Church1";
+		break;
+		
 		//пиратка, квест №2, чёрная метка для Лоу
 		case "PL_Q2_1":
 			dialog.text = NPCStringReactionRepeat("Как же не проживает? очень даже проживает.",

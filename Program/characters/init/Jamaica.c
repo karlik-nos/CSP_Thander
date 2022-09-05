@@ -32,8 +32,10 @@ int CreateJamaicaCharacters(int n)
 
 	makeref(ch,Characters[n]);			//Священик
 	ch.id		= "PortRoyal_Priest";
-	ch.model	= "priest_1";
-	ch.model.animation = "man";
+	ch.name		= "отец Бернард";
+	ch.lastname = "";
+	ch.model	= "monk";
+	ch.model.animation = "man1";
 	ch.sex = "man";
 	ch.City = "PortRoyal";
 	ch.location	= "PortRoyal_church";
