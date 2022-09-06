@@ -2592,6 +2592,7 @@ void UnsetSpecialAttributes(ref chr)
 	chr.chr_ai.special.valueT = 0;
 	chr.chr_ai.special.valueB = 0;
 	chr.chr_ai.special.valueP = 0;
+	chr.chr_ai.special.valueV = 0;
 }
 
 void SetWeaponsSpecials(ref chr, ref arItm)
@@ -2628,6 +2629,10 @@ void SetWeaponsSpecials(ref chr, ref arItm)
 	if (CheckAttribute(arItm,"special.valueP"))
 	{
 		chr.chr_ai.special.valueP = sti(arItm.special.valueP);
+	}
+	if (CheckAttribute(arItm,"special.valueV"))
+	{
+		chr.chr_ai.special.valueV = sti(arItm.special.valueV);
 	}
 }
 
