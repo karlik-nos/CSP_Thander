@@ -254,8 +254,8 @@ void DoTeleport(float x, float y, string mapid)
 					{
 						setCharacterShipLocation(pchar, shore_name);
 						setWDMPointXZ(shore_name);
-						pchar.quest.waithours = sti(pchar.quest.waithours) + rand(1);
-						if (mapname.island == "Mein") pchar.quest.waithours = sti(pchar.quest.waithours) + rand(2);
+						pchar.quest.waithours = sti(pchar.quest.waithours) + 1+ rand(1);
+						if (mapname.island == "Mein") pchar.quest.waithours = sti(pchar.quest.waithours) + 1 + rand(2);
 					}
 					DoQuestFunctionDelay("WaitNextHours", 0.0);
 					log_info("Прошло часов в пути: "+pchar.quest.waithours);
