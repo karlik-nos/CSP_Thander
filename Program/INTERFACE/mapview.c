@@ -223,7 +223,7 @@ void SelectRColony()
 	int  iGoodIndex = sti(GameInterface.TABLE_MAPS.(CurRow).index);
 	ref  itmRef = &Items[iGoodIndex];
 	
-	if (!chrDisableReloadToLocation) DoTeleport(fMouseX,fMouseY,itmRef.id);
+	if (!chrDisableReloadToLocation && !LAi_group_IsActivePlayerAlarm()) DoTeleport(fMouseX,fMouseY,itmRef.id);
 }
 
 void DoTeleport(float x, float y, string mapid)
