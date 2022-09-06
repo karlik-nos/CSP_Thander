@@ -2925,3 +2925,33 @@ itmdescr_ATpr_pismo
 {
 Отчёт губернатора Санто-Доминго о происшествии на Эспаньоле.
 }
+
+itmname_PKM_SvtvA_amulet	{Амулет Сатаны}
+itmdescr_PKM_SvtvA_amulet
+{
+Зловещий амулет, похожий на гибрид птицы и жука-скаробея.
+}
+
+itmname_PKM_SvtvA_znachok	{Значок сатаниста}
+itmdescr_PKM_SvtvA_znachok
+{
+Значок сатанистов, который указывает на их принадлежность к секте.
+}
+
+itmname_PKM_SvtvA_pismo1	{Письмо для падре Домингеса}
+itmdescr_PKM_SvtvA_pismo1
+{
+Письмо от отца Бернарда для падре Домингеса.
+}
+
+itmname_PKM_SvtvA_pismo2	{Письмо для отца Бернарда}
+itmdescr_PKM_SvtvA_pismo2
+{
+Письмо от падре Домингеса для отца Бернарда.
+}
+
+itmname_PKM_SvtvA_pismo3	{Письмо от отца Бернарда}
+itmdescr_PKM_SvtvA_pismo3
+{
+Письмо от отца Бернарда, позволяющее вам забрать узника из тюрьмы.
+}

@@ -42,13 +42,32 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = "PKM_SvtvA_Ch1_5";
 		break;
 		case "PKM_SvtvA_Ch1_5":
-			dialog.text = "Вот и отлично. Итак, вот письмо, вы должны доставить его священнику по имени падре Домингес и только ему. Вы сможете найти его на Пуэрто Рико\nТакже я вам выдам документ, который позволит вам находиться в Пуэрто-Рико на законных основаниях.\nИ умоляю вас - не заходите в порт. Высадитесь где-нибудь в укромной бухте, чтобы вас никто не видел. Это письмо имеет большую важность.";
+			dialog.text = "Вот и отлично. Итак, вот письмо, вы должны доставить его священнику по имени падре Домингес и только ему. Вы сможете найти его на Пуэрто Рико...";
+			link.l1 = "";
+			link.l1.go = "PKM_SvtvA_Ch1_5.1";
+			GiveItem2Character(PChar, "PKM_SvtvA_pismo1");
+		break;
+		case "PKM_SvtvA_Ch1_5.1":
+			dialog.text = "Также я вам выдам документ, который позволит вам находиться в Пуэрто-Рико на законных основаниях.\nИ умоляю вас - не заходите в порт. Высадитесь где-нибудь в укромной бухте, чтобы вас никто не видел. Это письмо имеет большую важность.";
 			link.l1 = "Хорошо. не думаю, что это займёт у меня слишком много времени.";
 			link.l1.go = "PKM_SvtvA_Ch1_6";
+			GiveNationLicence(SPAIN, 8);
 		break;
 		case "PKM_SvtvA_Ch1_6":
 			DialogExit();
 			AddQuestRecord("PKM_Animists", "8");
+			
+			PChar.quest.PKM_SvtvA_SJ_B1.win_condition.l1 = "location";
+			PChar.quest.PKM_SvtvA_SJ_B1.win_condition.l1.location = "SanJuan_town";
+			PChar.quest.PKM_SvtvA_SJ_B1.win_condition = "PKM_SvtvA_DostavkaPisma_Gorod_1";
+			
+			PChar.quest.PKM_SvtvA_SJ_B2.win_condition.l1 = "location";
+			PChar.quest.PKM_SvtvA_SJ_B2.win_condition.l1.location = "Shore44";
+			PChar.quest.PKM_SvtvA_SJ_B2.win_condition = "PKM_SvtvA_DostavkaPisma_Buhta_1";
+			
+			PChar.quest.PKM_SvtvA_SJ_B3.win_condition.l1 = "location";
+			PChar.quest.PKM_SvtvA_SJ_B3.win_condition.l1.location = "Shore45";
+			PChar.quest.PKM_SvtvA_SJ_B3.win_condition = "PKM_SvtvA_DostavkaPisma_Buhta_1";
 		break;
 		
         case "Step_E6_1":

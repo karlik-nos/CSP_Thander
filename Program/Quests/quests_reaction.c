@@ -10493,7 +10493,79 @@ void QuestComplete(string sQuestName, string qname)
 			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_SprositKapitanov_v_more");
 		break;
 		
+		case "PKM_SvtvA_DostavkaPisma_Gorod_1":
+			LAi_LocationFightDisable(loadedLocation, true);
+			bDisableFastReload = true;
+			chrDisableReloadToLocation = true;
+			sld = GetCharacter(NPC_GenerateCharacter("SatanaElita_11", "Animists1", "man", "man", 60, PIRATE, -1, true));
+			sld.name = "Загадочный человек";
+			sld.lastname = "";
+			FantomMakeCoolFighter(sld, 70, 100, 100, BLADE_LONG, "", 200);
+			LAi_SetStayType(sld);
+			sld.talker = 6;
+			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "Satanist_v_gorode_1";
+			ChangeCharacterAddressGroup(sld, pchar.location, "quest",  "quest1");
+			for (i=1; i<=5; i++)
+			{
+				sld = GetCharacter(NPC_GenerateCharacter("SatanaElita_"+i, "Animists1", "man", "man", 60, PIRATE, -1, true));
+				FantomMakeCoolFighter(sld, 70, 100, 100, BLADE_LONG, "", 200);
+				//LAi_SetActorType(sld);
+				LAi_SetStayType(sld);
+				LAi_CharacterDisableDialog(sld);
+				ChangeCharacterAddressGroup(sld, pchar.location, "quest",  "quest1");
+				//LAi_ActorFollow(sld, pchar, "", -1);
+			}
+			for (i=6; i<=8; i++)
+			{
+				sld = GetCharacter(NPC_GenerateCharacter("SatanaElita_"+i, "Animists1_mush_x", "man", "mushketer", 70, PIRATE, -1, false));
+				sld.MusketerDistance = 0;
+				ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto19");
+				LAi_CharacterDisableDialog(sld);
+				LAi_SetWarriorType(sld);
+				LAi_SetActorType(sld);
+				LAi_ActorTurnToCharacter(sld, pchar);
+			}
+			for (i=9; i<=10; i++)
+			{
+				sld = GetCharacter(NPC_GenerateCharacter("SatanaElita_"+i, "Animists1_mush_x", "man", "mushketer", 70, PIRATE, -1, false));
+				sld.MusketerDistance = 0;
+				ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto1");
+				LAi_CharacterDisableDialog(sld);
+				LAi_SetWarriorType(sld);
+				LAi_SetActorType(sld);
+				LAi_ActorTurnToCharacter(sld, pchar);
+			}			
+		break;
 		
+		case "PKM_SvtvA_DostavkaPisma_Gorod_2":
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
+		break;
+		
+		case "PKM_SvtvA_DostavkaPisma_Buhta_1":
+			LAi_LocationFightDisable(loadedLocation, true);
+			bDisableFastReload = true;
+			chrDisableReloadToLocation = true;
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_1", "Animists1", "man", "man", Rank, PIRATE, -1, true));
+			sld.name = "Загадочный человек";
+			sld.lastname = "";
+			FantomMakeCoolFighter(sld, Rank, 30, 30, "blade5", "", 0);
+			LAi_SetActorType(sld);
+			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "Satanist_v_buhte_1";
+			ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto1");
+			LAi_ActorDialog(sld, pchar, "", -1, 0);
+			for (i=2; i<=4; i++)
+			{
+				sld = GetCharacter(NPC_GenerateCharacter("Satanist_"+i, "Animists1", "man", "man", Rank, PIRATE, -1, true));
+				FantomMakeCoolFighter(sld, Rank, 30, 30, "blade5", "", 0);
+				LAi_SetActorType(sld);
+				LAi_CharacterDisableDialog(sld);
+				ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto1");
+				LAi_ActorFollow(sld, pchar, "", -1);
+			}		
+		break;
 		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////   	КВЕСТЫ "Пираты Карибского Моря" КОНЕЦ

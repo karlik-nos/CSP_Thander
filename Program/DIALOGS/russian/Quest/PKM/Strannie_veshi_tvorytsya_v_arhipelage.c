@@ -193,5 +193,54 @@ void ProcessDialogEvent()
 			pchar.questTemp.PKM_SvtvA_LeFrancuaTaverna_1 = "Taverna";
 		break;
 		
+		case "Satanist_v_gorode_1":
+			dialog.text = "Не спешите так, сеньор! Вы же не откажетесь побеседовать с нами?!";
+			link.l1 = "Не думаю, что хочу с вами разговаривать.";
+			link.l1.go = "Satanist_v_gorode_2";
+		break;
+		
+		case "Satanist_v_gorode_2":
+			dialog.text = "А ну живо отдавай письмо!";
+			link.l1 = "А, может быть, выпьем по кружечке эля и пойдём каждый своей дорогой? Нет? Я так и знал.";
+			link.l1.go = "Satanist_v_gorode_3";
+		break;
+		
+		case "Satanist_v_gorode_3":
+			DialogExit();
+			LAi_LocationFightDisable(loadedLocation, false);
+			for (i=1; i<=11; i++)
+			{
+				sld = CharacterFromID("SatanaElita_"+i)
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+			}
+			LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+			LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);
+			LAi_group_SetCheck("EnemyFight", "PKM_SvtvA_DostavkaPisma_Gorod_2");
+			LAi_SetFightMode(pchar, true);			
+		break;
+		
+		case "Satanist_v_buhte_1":
+			dialog.text = "Не спешите так, сеньор! Вы же не откажетесь побеседовать с нами?!";
+			link.l1 = "Не думаю, что хочу с вами разговаривать.";
+			link.l1.go = "Satanist_v_buhte_3333";
+			link.l2 = "Давайте поговорим, только побыстрее, я спешу.";
+			link.l2.go = "Satanist_v_buhte_2";
+		break;
+		
+		case "Satanist_v_buhte_2":
+			dialog.text = "Нам стало известно, что вы везёте некое письмо, и нам нужно прочитать его\nНе беспокойтесь, у нас есть копия сургучной печати, которым оно запечатано, и адресат ничего не узнает о случившемся\nА в качестве вознаграждения за оказанную нам услугу мы согласны заплатить вам 10000 пиастров. Что скажете?";
+			link.l1 = "Что скажу? Дайте подобрать подходящую фразу... Хм... А! Во - а не пойти ли вам прочь? А вашу печать можете засунуть себе сами знаете куда.";
+			link.l1.go = "Satanist_v_buhte_3";
+			link.l2 = "Хм... 10000 монет... Звучит заманчиво, думаю, что мы договорились. Вот письмо.";
+			link.l2.go = "Satanist_v_buhte_4555";
+		break;
+		
+		case "Satanist_v_buhte_3":
+			dialog.text = "В таком случае мы будем вынуждены вас убить.";
+			link.l1 = "Попробуйте!";
+			link.l1.go = "Satanist_v_buhte_4";
+		break;
+		
 	}
 }

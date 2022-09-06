@@ -7720,6 +7720,18 @@ int InitItems()
 	itm.minlevel = 1;
 	itm.rare = 0.001;
 	n++;
+	
+	makeref(itm,Items[n]);
+	itm.id = "Joker";	// Джокер
+	itm.groupID = TALISMAN_ITEM_TYPE;
+	itm.name = "itmname_Joker";
+	itm.describe = "itmdescr_Joker";
+	itm.picIndex = 7;
+	itm.picTexture = "ITEMS_20";
+	itm.price = 25000;
+	itm.weight = 0.5;
+	itm.ItemType = "QUESTITEMS";
+	n++;
 	/////////////////////////////////////////////////////////
 	/////		-->		CSP Книги 56 штук				/////
 	/////////////////////////////////////////////////////////
@@ -9122,6 +9134,59 @@ int InitItems()
 	itm.id = "ATpr_pismo";	//Письмо
 	itm.name = "itmname_ATpr_pismo";
 	itm.describe = "itmdescr_ATpr_pismo";
+	itm.picIndex = 7;
+	itm.picTexture = "ITEMS_12";
+	itm.price = 0;
+	itm.weight = 0.1;
+	itm.ItemType = "QUESTITEMS";
+	n++;
+	
+	makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
+	itm.id = "PKM_SvtvA_amulet";	//Амулет главного сатаниста
+	itm.name = "itmname_PKM_SvtvA_amulet";
+	itm.describe = "itmdescr_PKM_SvtvA_amulet";
+	itm.picIndex = 11;
+	itm.picTexture = "ITEMS_20";
+	itm.price = 30000;
+	itm.weight = 0.5;
+	n++;
+	
+	makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
+	itm.id = "PKM_SvtvA_znachok";	//Значок рядового сатаниста
+	itm.name = "itmname_PKM_SvtvA_znachok";
+	itm.describe = "itmdescr_PKM_SvtvA_znachok";
+	itm.picIndex = 12;
+	itm.picTexture = "ITEMS_4";
+	itm.price = 1200;
+	itm.weight = 0.1;
+	n++;
+	
+	makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
+	itm.id = "PKM_SvtvA_pismo1";	//Письмо для падре Домингеса
+	itm.name = "itmname_PKM_SvtvA_pismo1";
+	itm.describe = "itmdescr_PKM_SvtvA_pismo1";
+	itm.picIndex = 7;
+	itm.picTexture = "ITEMS_12";
+	itm.price = 0;
+	itm.weight = 0.1;
+	itm.ItemType = "QUESTITEMS";
+	n++;
+	
+	makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
+	itm.id = "PKM_SvtvA_pismo2";	//Письмо для отца Бернарда
+	itm.name = "itmname_PKM_SvtvA_pismo2";
+	itm.describe = "itmdescr_PKM_SvtvA_pismo2";
+	itm.picIndex = 7;
+	itm.picTexture = "ITEMS_12";
+	itm.price = 0;
+	itm.weight = 0.1;
+	itm.ItemType = "QUESTITEMS";
+	n++;
+	
+	makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
+	itm.id = "PKM_SvtvA_pismo3";	//Письмо от отца Бернарда
+	itm.name = "itmname_PKM_SvtvA_pismo3";
+	itm.describe = "itmdescr_PKM_SvtvA_pismo3";
 	itm.picIndex = 7;
 	itm.picTexture = "ITEMS_12";
 	itm.price = 0;
