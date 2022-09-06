@@ -6520,7 +6520,7 @@ void InitShips()
 	refShip.bcannon 						= 2;
 	refShip.MaxCrew         			= 540;
 	refShip.MinCrew         			= 108;
-	refShip.SpeedRate			= 8.3;
+	refShip.SpeedRate			= 7.6;
 	refShip.TurnRate        	= 23.0;
 	refShip.Price           		= 340350;
 	refShip.HP              			= 7000;
@@ -6672,7 +6672,7 @@ void InitShips()
 	refShip.bcannon 							= 4;
 	refShip.MaxCrew         				= 350;
 	refShip.MinCrew         				= 70;
-	refShip.SpeedRate       		= 12.8;
+	refShip.SpeedRate       		= 13.0;
 	refShip.TurnRate        		= 45.0;
 	refShip.Price           			= 316955;
 	refShip.HP              				= 7000;
@@ -6828,7 +6828,7 @@ void InitShips()
 	refShip.bcannon 							= 2;
 	refShip.MaxCrew         				= 510;
 	refShip.MinCrew         				= 85;
-	refShip.SpeedRate				= 10.0;
+	refShip.SpeedRate				= 8.0;
 	refShip.TurnRate        		= 30.0;
 	refShip.Price           			= 322804;
 	refShip.HP              				= 7500;
@@ -6970,7 +6970,7 @@ void InitShips()
 	refShip.bcannon 							= 6;
 	refShip.MaxCrew         				= 470;
 	refShip.MinCrew         				= 94;
-	refShip.SpeedRate				= 9.8;
+	refShip.SpeedRate				= 8.5;
 	refShip.TurnRate        		= 35.0;
 	refShip.Price           			= 309505;
 	refShip.HP              				= 6800;
@@ -7201,7 +7201,7 @@ void InitShips()
 	refShip.bcannon 							= 2;
 	refShip.MaxCrew         				= 550;
 	refShip.MinCrew         				= 110;
-	refShip.SpeedRate				= 9.5;
+	refShip.SpeedRate				= 7.8;
 	refShip.TurnRate        		= 30.0;
 	refShip.Price           			= 316555;
 	refShip.HP              				= 8500;
@@ -7284,7 +7284,7 @@ void InitShips()
 	refShip.bcannon 									= 2;
 	refShip.MaxCrew 								= 340;
 	refShip.MinCrew 								= 68;
-	refShip.SpeedRate 						= 12.5;
+	refShip.SpeedRate 						= 12.0;
 	refShip.TurnRate 						= 35.0;
 	refShip.Price 								= 320250;
 	refShip.HP 										= 7700;
@@ -7361,7 +7361,7 @@ void InitShips()
 	refShip.bcannon 							= 4;
 	refShip.MaxCrew         				= 380;
 	refShip.MinCrew         				= 62;
-	refShip.SpeedRate       		= 12.4;
+	refShip.SpeedRate       		= 12.2;
 	refShip.TurnRate        		= 35.0;
 	refShip.Price           			= 305741;
 	refShip.HP              				= 7000;
@@ -7436,7 +7436,7 @@ void InitShips()
 	refShip.bcannon 						= 4;
 	refShip.MaxCrew         			= 380;
 	refShip.MinCrew         			= 76;
-	refShip.SpeedRate			= 11.8;
+	refShip.SpeedRate			= 11.3;
 	refShip.TurnRate        	= 35.0;
 	refShip.Price           		= 299450;
 	refShip.HP              			= 7000;
@@ -7509,7 +7509,7 @@ void InitShips()
 	refShip.bcannon 							= 2;
 	refShip.MaxCrew         				= 450;
 	refShip.MinCrew         				= 90;
-	refShip.SpeedRate				= 11.0;
+	refShip.SpeedRate				= 10.6;
 	refShip.TurnRate        		= 30.0;
 	refShip.Price           			= 344480;
 	refShip.HP              				= 9900;
@@ -7585,7 +7585,7 @@ void InitShips()
 	refShip.bcannon 						= 2;
 	refShip.MaxCrew         			= 420;
 	refShip.MinCrew         			= 84;
-	refShip.SpeedRate			= 11.8;
+	refShip.SpeedRate			= 11.0;
 	refShip.TurnRate        	= 30.0;
 	refShip.Price           		= 321750;
 	refShip.HP              			= 8200;
@@ -7738,7 +7738,7 @@ void InitShips()
 	refShip.bcannon 							= 4;
 	refShip.MaxCrew         				= 470;
 	refShip.MinCrew         				= 94;
-	refShip.SpeedRate				= 9.5;
+	refShip.SpeedRate				= 10.0;
 	refShip.TurnRate        		= 25.0;
 	refShip.Price           			= 344605;
 	refShip.HP              				= 11500;
@@ -7811,7 +7811,7 @@ void InitShips()
 	refShip.bcannon 							= 2;
 	refShip.MaxCrew         				= 420;
 	refShip.MinCrew         				= 84;
-	refShip.SpeedRate       		= 9.7;
+	refShip.SpeedRate       		= 10.0;
 	refShip.TurnRate        		= 30.0;
 	refShip.Price           			= 343950;
 	refShip.HP              				= 10000;
@@ -7890,7 +7890,7 @@ void InitShips()
 	refShip.bcannon 							= 4;
 	refShip.MaxCrew         				= 500;
 	refShip.MinCrew         				= 100;
-	refShip.SpeedRate				= 10.2;
+	refShip.SpeedRate				= 9.6;
 	refShip.TurnRate        		= 35.0;
 	refShip.Price           			= 336900;
 	refShip.HP              				= 8900;
@@ -7974,7 +7974,7 @@ void InitShips()
 	refShip.bcannon 							= 4;
 	refShip.MaxCrew         				= 460;
 	refShip.MinCrew         				= 92;
-	refShip.SpeedRate				= 9.7;
+	refShip.SpeedRate				= 9.8;
 	refShip.TurnRate        		= 25.0;
 	refShip.Price           			= 317700;
 	refShip.HP              				= 9000;
@@ -8052,7 +8052,7 @@ void InitShips()
 	refShip.bcannon 							= 6;
 	refShip.MaxCrew         				= 480;
 	refShip.MinCrew         				= 96;
-	refShip.SpeedRate				= 9.3;
+	refShip.SpeedRate				= 9.5;
 	refShip.TurnRate        		= 25.0;
 	refShip.Price           			= 267275;
 	refShip.HP              				= 6000;
@@ -8513,7 +8513,7 @@ void InitShips()
 	refShip.bcannon 						= 2;
 	refShip.MaxCrew         			= 600;
 	refShip.MinCrew         			= 120;
-	refShip.SpeedRate			= 8.0;
+	refShip.SpeedRate			= 7.8;
 	refShip.TurnRate        	= 20.0;
 	refShip.Price           		= 556350;
 	refShip.HP              			= 11000;
@@ -8591,7 +8591,7 @@ void InitShips()
 	refShip.bcannon 							= 4;
 	refShip.MaxCrew         				= 600;
 	refShip.MinCrew         				= 120;
-	refShip.SpeedRate				= 7.5;
+	refShip.SpeedRate				= 7.7;
 	refShip.TurnRate        		= 20.0;
 	refShip.Price           			= 568350;
 	refShip.HP              				= 12000;
