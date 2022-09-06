@@ -1242,7 +1242,7 @@ void Whr_WindChange()
 	fWeatherAngle = stf(Weather.Wind.Angle);
 	fWeatherSpeed = stf(Weather.Wind.Speed);
 
-	if (InterfaceStates.IslandLoader) CheckIslandChange();
+	if (sti(InterfaceStates.IslandLoader) != 0) CheckIslandChange();
 }
 
 bool Whr_isRainEnable()

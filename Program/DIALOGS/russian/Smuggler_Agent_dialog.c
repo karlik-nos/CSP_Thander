@@ -1209,6 +1209,7 @@ void ProcessDialogEvent()
 
 			//активируем квест
 			pchar.GenQuest.contraTravel.active = true;
+			pchar.GenQuest.contraTravel.GuardNation = npchar.nation;
 			NextDiag.CurrentNode = NextDiag.TempNode;
 			DialogExit();
 			break;

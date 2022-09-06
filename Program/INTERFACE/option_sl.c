@@ -130,6 +130,12 @@ void GetRealOptions(ref optref)
 		optref.cameramode.EnabledOldStore = false;
 	}
 
+	if( CheckAttribute(&InterfaceStates,"EnabledAltSoundsGun") ) {
+		optref.cameramode.EnabledAltSoundsGun = sti(InterfaceStates.EnabledAltSoundsGun);
+	} else {
+		optref.cameramode.EnabledAltSoundsGun = false;
+	}
+
 	if( CheckAttribute(&InterfaceStates,"EnabledShipMarks") ) {
 		optref.cameramode.EnabledShipMarks = sti(InterfaceStates.EnabledShipMarks);
 	} else {
@@ -176,6 +182,12 @@ void GetRealOptions(ref optref)
 		optref.cameramode.AltFont = sti(InterfaceStates.AltFont);
 	} else {
 		optref.cameramode.AltFont = 0;
+	}
+	
+	if( CheckAttribute(&InterfaceStates,"BombsParticles") ) {
+		optref.cameramode.BombsParticles = sti(InterfaceStates.BombsParticles);
+	} else {
+		optref.cameramode.BombsParticles = 0;
 	}
 
 	if( CheckAttribute(&InterfaceStates,"NoInt") ) {
@@ -299,6 +311,12 @@ void SetCurentOptions(ref optref)
 		InterfaceStates.EnabledOldStore = false;
 	}
 
+	if( CheckAttribute(optref,"cameramode.EnabledAltSoundsGun") ) {
+		InterfaceStates.EnabledAltSoundsGun = optref.cameramode.EnabledAltSoundsGun;
+	} else {
+		InterfaceStates.EnabledAltSoundsGun = false;
+	}
+
 	if( CheckAttribute(optref,"cameramode.EnabledShipMarks") ) {
 		InterfaceStates.EnabledShipMarks = optref.cameramode.EnabledShipMarks;
 	} else {
@@ -345,6 +363,11 @@ void SetCurentOptions(ref optref)
 		InterfaceStates.AltFont = optref.cameramode.AltFont;
 	} else {
 		InterfaceStates.AltFont = 0;
+	}
+	if( CheckAttribute(optref,"cameramode.BombsParticles") ) {
+		InterfaceStates.BombsParticles = optref.cameramode.BombsParticles;
+	} else {
+		InterfaceStates.BombsParticles = 0;
 	}
 	if( CheckAttribute(optref,"cameramode.NoInt") ) {
 		InterfaceStates.NoInt = optref.cameramode.NoInt;

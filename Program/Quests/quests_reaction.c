@@ -1186,13 +1186,20 @@ void QuestComplete(string sQuestName, string qname)
 				chrDisableReloadToLocation = true;
 				LAi_SetFightMode(pchar, false);
 				LAi_LockFightMode(pchar, true);
-				// солдаты в начале
-				iTemp = GetCityNation(GetCityNameByIsland(GiveArealByLocation(loadedLocation)));
-				if(iTemp == -1)
+
+				// может быть два квеста - или торговля с контром, или корсарское метро
+				// iTemp - Нация патруля
+				if (CheckAttribute(PChar, "GenQuest.Contraband.GuardNation"))
 				{
-					iTemp = sti(pchar.GenQuest.Contraband.GuardNation);// Нация патруля
+					iTemp = sti(pchar.GenQuest.Contraband.GuardNation);
 				}
+				else
+				{
+					iTemp = sti(pchar.GenQuest.ContraTravel.GuardNation);
+				}
+
 				Pchar.quest.contraband.SoldierQty = makeint(2*GetOfficersQuantity(Pchar) + 3);
+				// солдаты в начале
 				for (i = 2; i <= sti(Pchar.quest.contraband.SoldierQty); i++)
 				{
 					sld = SetFantomDefenceForts("", "", iTemp, "CoastalGuards");

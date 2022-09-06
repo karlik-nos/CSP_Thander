@@ -309,13 +309,13 @@ void ProcessDialogEvent()
 					if(sti(pchar.questTemp.tournamentcount) >= 3) UnlockAchievement("AchTurnir", 2);
 					if(sti(pchar.questTemp.tournamentcount) >= 7) UnlockAchievement("AchTurnir", 3);
 
-					if (rand(3) == 0 && !CheckAttribute(pchar,"ScamFanActive"))
+					/*if (rand(3) == 0 && !CheckAttribute(pchar,"ScamFanActive"))
 					{
 						pchar.quest.SpawnScamFan.win_condition.l1 = "Location";
 						pchar.quest.SpawnScamFan.win_condition.l1.location = "FencingTown_ExitTown";
 						pchar.quest.SpawnScamFan.win_condition = "SpawnScamFan";
 						pchar.ScamFanActive = true;
-					}
+					}*/
 
 					bool nopirate = false;
 					if (!CheckAttribute(pchar,"questTemp.UniquePirate.Barbarigo") || !CheckAttribute(pchar,"questTemp.UniquePirate.BlackBeard") || !CheckAttribute(pchar,"questTemp.UniquePirate.Levasser")) nopirate = true;

@@ -3059,7 +3059,7 @@ void SetMushketFromSeaToMap(string qName)
     NullCharacter.capitainBase.(sTemp).checkTime.control_year = GetDataYear();
 }
 
-//новый фрегат Даниэль
+//новый галеон Даниэль
 void SetDanielleFromSeaToMap(string qName)
 {
 	sld = characterFromId("Danielle");
@@ -3080,7 +3080,7 @@ void SetDanielleFromSeaToMap(string qName)
 	sld.mapEnc.type = "trade";
 	//выбор типа кораблика на карте
 	sld.mapEnc.worldMapShip = "quest_ship";
-	sld.mapEnc.Name = "Фрегат 'Королева'";
+	sld.mapEnc.Name = "Галеон 'Королева'";
 	int daysQty = GetMaxDaysFromIsland2Island(GetArealByCityName(sld.quest.targetCity), GetArealByCityName(sld.city))+5; //дней доехать даем с запасом
 	Map_CreateTrader(sld.cityShore, sld.quest.targetShore, sld.id, daysQty);
 	//меняем сроки проверки по Id кэпа в базе нпс-кэпов
@@ -7427,7 +7427,7 @@ void ShipGuards()
 
 	location = &Locations[FindLocation("Cabin")];
 	makearef(boxItems, location.(boxId).items);
-	boxItems.money = 4000 * MOD_SKILL_ENEMY_RATE + rand(2000) + 250;
+	boxItems.gold = 4000 * MOD_SKILL_ENEMY_RATE + rand(2000) + 250;
 	boxItems.chest = 4;
 	location.(boxId) = Items_MakeTime(GetTime(), GetDataDay(), GetDataMonth(), GetDataYear());
 }

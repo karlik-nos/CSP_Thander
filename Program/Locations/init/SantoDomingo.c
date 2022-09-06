@@ -230,19 +230,19 @@ int LocationInitSantoDomingo(int n)
 	locations[n].reload.l34.label = "House";
 
 	locations[n].reload.l35.name = "houseK_5";
-	locations[n].reload.l35.go = "BigHouseKNS";
+	locations[n].reload.l35.go = "BigHouseKNS_SD";
 	locations[n].reload.l35.emerge = "reload1";
 	locations[n].reload.l35.autoreload = "0";
 	locations[n].reload.l35.label = "House"; 
 
 	locations[n].reload.l36.name = "houseK_6";
-	locations[n].reload.l36.go = "BigHouseKNS";
+	locations[n].reload.l36.go = "BigHouseKNS_SD";
 	locations[n].reload.l36.emerge = "reload2";
 	locations[n].reload.l36.autoreload = "0";
 	locations[n].reload.l36.label = "House"; 
 
 	locations[n].reload.l37.name = "houseK_7";
-	locations[n].reload.l37.go = "BigHouseKNS";
+	locations[n].reload.l37.go = "BigHouseKNS_SD";
 	locations[n].reload.l37.emerge = "reload3";
 	locations[n].reload.l37.autoreload = "0";
 	locations[n].reload.l37.label = "House"; 
@@ -263,7 +263,7 @@ int LocationInitSantoDomingo(int n)
         locations[n].reload.l39.disable = 1; // Закроем на совсем
 
 	locations[n].reload.l40.name = "houseK_4";
-	locations[n].reload.l40.go = "BigHouseKNS";
+	locations[n].reload.l40.go = "BigHouseKNS_SD";
 	locations[n].reload.l40.emerge = "reload3";
 	locations[n].reload.l40.autoreload = "0";
 	locations[n].reload.l40.label = "House";
@@ -1127,7 +1127,7 @@ int LocationInitSantoDomingo(int n)
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//  Дом с 3 дверьми (NikK)
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	locations[n].id = "BigHouseKNS";
+	locations[n].id = "BigHouseKNS_SD";
  	locations[n].id.label = "House";
 	locations[n].image = "loading\jonny_load\inside\BigHouseKNS.tga";
  	//Town sack
