@@ -234,7 +234,7 @@ void DoTeleport(float x, float y, string mapid)
 	string shore_name,shore_numname;
 	int i,j;
 	int gridsize = 30;
-	if (mapid == "map_maine_1" || mapid == "map_maine_2") gridsize = 15;
+	//if (mapid == "map_maine_1" || mapid == "map_maine_2") gridsize = 15;
 
 	makearef(mapname,oMapTeleport.(mapid));
 	if (CheckAttribute(loadedLocation,"islandId") && mapname.island == loadedLocation.islandId)
@@ -247,13 +247,18 @@ void DoTeleport(float x, float y, string mapid)
 			{
 				shorenum = GetAttributeN(shorename,j);
 				shore_numname = GetAttributeName(shorenum);
-				if (CC(x,y,sti(shorename.(shore_numname).X),sti(shorename.(shore_numname).Y),gridsize))
+				if (CC(x,y,sti(shorename.(shore_numname).X),sti(shorename.(shore_numname).Y),gridsize) && loadedLocation.id != shore_name)
 				{
+					pchar.quest.waithours = 1+rand(1);
 					if (!HasSubStr(shore_name,"Entr"))
 					{
 						setCharacterShipLocation(pchar, shore_name);
 						setWDMPointXZ(shore_name);
+						pchar.quest.waithours = sti(pchar.quest.waithours) + rand(1);
+						if (mapname.island == "Mein") pchar.quest.waithours = sti(pchar.quest.waithours) + rand(2);
 					}
+					DoQuestFunctionDelay("WaitNextHours", 0.0);
+					log_info("Прошло часов в пути: "+pchar.quest.waithours);
 					DoQuestReloadToLocation(shore_name, "reload", "reload1", "");
 					return;
 				}
@@ -602,8 +607,8 @@ void InitMapTeleport()
 		oMapTeleport.map_santa.Pearl_CaveEntrance.Pos1.Y = 310;
 		oMapTeleport.map_santa.SantaCatalina_GrotEntrance.Pos0.X = 250;
 		oMapTeleport.map_santa.SantaCatalina_GrotEntrance.Pos0.Y = 345;
-		oMapTeleport.map_santa.Cartahena_ExitTown.Pos0.X = 595;
-		oMapTeleport.map_santa.Cartahena_ExitTown.Pos0.Y = 420;
+		//oMapTeleport.map_santa.Cartahena_ExitTown.Pos0.X = 595;
+		//oMapTeleport.map_santa.Cartahena_ExitTown.Pos0.Y = 420;
 		oMapTeleport.map_santa.Shore25.Pos0.X = 560;
 		oMapTeleport.map_santa.Shore25.Pos0.Y = 490;
 		oMapTeleport.map_santa.PortoBello_ExitTown.Pos0.X = 430;
