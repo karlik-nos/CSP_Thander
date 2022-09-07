@@ -384,7 +384,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			if ( sti(Pchar.Ship.Type) == SHIP_NOTUSED || Pchar.location.from_sea != "Pirates_town")
             {
                 dialog.Text = "Корабль-то где? Что вы мне тут голову морочите?!";
-			    Link.l1 = "И то правда.. что это я... Извиняюсь";
+			    Link.l1 = "И то правда.. что это я... Извиняюсь.";
 			    Link.l1.go = "ship_tunning_not_now";
             }
             else
