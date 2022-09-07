@@ -573,7 +573,7 @@ void ProcessDialogEvent()
 
 		case "Companion_TaskBoarding":
 			dialog.Text = "Что же вы желаете?";
-			Link.l1 = "Я хочу чтобы ты не брал"+ GetSexPhrase("","а") +" корабли на абордаж. Побереги себя и свою команду.";
+			Link.l1 = "Я хочу чтобы ты не брал корабли на абордаж. Побереги себя и свою команду.";
 			Link.l1.go = "Companion_TaskBoardingNo";
 			Link.l2 = "Мне нужно чтобы ты брал вражеские корабли на абордаж.";
 			Link.l2.go = "Companion_TaskBoardingYes";

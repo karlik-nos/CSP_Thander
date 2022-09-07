@@ -2498,6 +2498,8 @@ void SetShipToDrift()
 {
 	ExitDecisionWindow();
 
+	if (bSwap) SeaAI_SwapShipAfterAbordage(refCharacter, refEnemyCharacter);
+
 	if (HasSubStr(xi_refCharacter.id, "_DriftCap_"))
 	{
 		LAi_SetCurHP(xi_refCharacter, 1.0);
@@ -2522,22 +2524,22 @@ void SetShipToDrift()
 		xi_refCharacter = sld;
 		SeaAI_SetCaptainFree(xi_refCharacter, refEnemyCharacter);
 		refEnemyCharacter.location = "none";
-
-		if (bSeaActive)
-		{
-			if (!bTransferMode)
-			{
-				ShipTakenFree(sti(refEnemyCharacter.index), KILL_BY_ABORDAGE, sti(refCharacter.index));
-			}
-
-			PostEvent("evntQuestsCheck", 400);
-			UpdateRelations();
-			RefreshBattleInterface();
-			CheckQuestAboardCabinSituation(xi_refCharacter);
-			DoQuestCheckDelay("NationUpdate", 1.5);
-		}
-		ClearShipTypeForPassenger();
 	}
+
+	if (bSeaActive)
+	{
+		if (!bTransferMode)
+		{
+			ShipTakenFree(sti(refEnemyCharacter.index), KILL_BY_ABORDAGE, sti(refCharacter.index));
+		}
+
+		PostEvent("evntQuestsCheck", 400);
+		UpdateRelations();
+		RefreshBattleInterface();
+		CheckQuestAboardCabinSituation(xi_refCharacter);
+		DoQuestCheckDelay("NationUpdate", 1.5);
+	}
+	ClearShipTypeForPassenger();
 
 	if (bTransferMode)
 	{
