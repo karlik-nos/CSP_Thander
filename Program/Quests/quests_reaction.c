@@ -10541,37 +10541,48 @@ void QuestComplete(string sQuestName, string qname)
 		case "PKM_SvtvA_DostavkaPisma_Gorod_2":
 			bDisableFastReload = false;
 			chrDisableReloadToLocation = false;
+			AddQuestRecord("PKM_Animists", "9.1");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
+			AddQuestUserData("PKM_Animists", "sSex2", GetSexPhrase("ся","ась"));
+		break;
+		
+		case "PKM_SvtvA_DostavkaPisma_Buhta_2":
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
+			AddQuestRecord("PKM_Animists", "9.2");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
+			AddQuestUserData("PKM_Animists", "sSex2", GetSexPhrase("ся","ась"));
 		break;
 		
 		case "PKM_SvtvA_DostavkaPisma_Buhta_1":
 			LAi_LocationFightDisable(loadedLocation, true);
 			bDisableFastReload = true;
 			chrDisableReloadToLocation = true;
-			sld = GetCharacter(NPC_GenerateCharacter("Satanist_1", "Animists1", "man", "man", Rank, PIRATE, -1, true));
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_1", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
 			sld.name = "Загадочный человек";
 			sld.lastname = "";
-			//FantomMakeCoolFighter(sld, Rank, 30, 30, "blade5", "", 0);
-			sld.DontChangeBlade = true;
-			DeleteAttribute(sld, "items");
-			sld.SaveItemsForDead = true;
-			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			FantomMakeCoolFighter(sld, sti(pchar.rank), 30, 30, "blade5", "", 0);
 			LAi_SetActorType(sld);
 			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
 			sld.dialog.currentnode = "Satanist_v_buhte_1";
 			ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto1");
 			LAi_ActorDialog(sld, pchar, "", -1, 0);
+			DeleteAttribute(sld, "items");
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
 			for (i=2; i<=4; i++)
 			{
-				sld = GetCharacter(NPC_GenerateCharacter("Satanist_"+i, "Animists1", "man", "man", Rank, PIRATE, -1, true));
-				//FantomMakeCoolFighter(sld, Rank, 30, 30, "blade5", "", 0);
-				DeleteAttribute(sld, "items");
-				sld.SaveItemsForDead = true;
-				GiveItem2Character(sld, "PKM_SvtvA_znachok");
-				sld.DontChangeBlade = true;
+				sld = GetCharacter(NPC_GenerateCharacter("Satanist_"+i, "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				FantomMakeCoolFighter(sld, sti(pchar.rank), 30, 30, "blade5", "", 0);
 				LAi_SetActorType(sld);
 				LAi_CharacterDisableDialog(sld);
 				ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto1");
 				LAi_ActorFollow(sld, pchar, "", -1);
+				DeleteAttribute(sld, "items");
+				sld.SaveItemsForDead = true;
+				GiveItem2Character(sld, "PKM_SvtvA_znachok");
+				AddItems(sld, "mineral3", rand(7)-4);
 			}		
 		break;
 		
