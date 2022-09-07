@@ -546,10 +546,10 @@ void IDoExit(int exitCode)
 
 	csmDA(pchar, "CSM.LootCollector.Run");
 	// CSM <--
-	if (!bLandInterfaceStart)
+	/*if (!bLandInterfaceStart)
 	{
 		StartBattleLandInterface();
-	}
+	}*/
 }
 
 void ProcCommand()
