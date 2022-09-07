@@ -3311,7 +3311,7 @@ void SetReefSkeletonsToLocation(aref _location, string loc)
 			}
 			if (loc != "MountainPath")
 			{
-				if (pchar.name != "Виспер" && pchar.name != "Тёмный" && !CheckAttribute(pchar, "PGGWhisperQuest"))
+				if (pchar.name != "Виспер" && pchar.name != "Тёмный Странник" && !CheckAttribute(pchar, "PGGWhisperQuest"))
 				{
 					Log_info("Вы пробудили проклятых!");
 					chrDisableReloadToLocation = true; //пока Злой Скелет Гигант жив - хер, а не выход
