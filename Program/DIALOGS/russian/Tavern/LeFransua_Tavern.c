@@ -19,6 +19,11 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 				link.l1 = "Дружище, я опять к тебе... Скажи, а куда подевался Эдвард Лоу? Мне он срочно нужен...";
 				link.l1.go = "PL_Q3_1";
 			}
+			if(pchar.questTemp.PKM_SvtvA_LeFrancuaTaverna_1 == "Taverna")		//Квест "Странные вещи творятся на архипелаге"
+			{
+				link.l1 = "Меня интересует, не заходил ли в бухту чёрный фрегат под именем 'Мефисто'?";
+				link.l1.go = "PKM_SvtvA_1";
+			}
 
 			//-->ОЗГ
 			if(CheckAttribute(pchar, "questTemp.Headhunter"))
@@ -80,11 +85,6 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 				{
 					link.l1 = "Добрый день, " + npchar.name + ". Сегодня он действительно добрый. С бандой Джа Престона покончено навсегда.";
 					link.l1.go = "Endtaskhunt_5";
-				}
-				if(pchar.questTemp.PKM_SvtvA_LeFrancuaTaverna_1 == "Taverna")		//Квест "Странные вещи творятся на архипелаге"
-				{
-					link.l1 = "Меня интересует, не заходил ли в бухту чёрный фрегат под именем 'Мефисто'?";
-					link.l1.go = "PKM_SvtvA_1";
 				}
 			}
 		break;
