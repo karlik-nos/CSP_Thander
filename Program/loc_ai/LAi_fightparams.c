@@ -924,7 +924,7 @@ void LAi_ApplyCharacterAttackDamage(aref attack, aref enemy, string attackType, 
 	MakePoisonAttackCheckSex(enemy, attack);
 	//Есть ли оружие у цели
 	bool isSetBlade = (CheckAttribute(enemy, "equip.blade"));//(SendMessage(enemy, "ls", MSG_CHARACTER_EX_MSG, "isSetBlade") != 0);
-	if (CheckAttribute(attack,"vampire"))
+	if (CheckAttribute(attack,"vampire") || sti(attack.chr_ai.special.valueV) > 0)
 	{
 		float hp = attack.chr_ai.hp;
 		float maxhp = attack.chr_ai.hp_max;

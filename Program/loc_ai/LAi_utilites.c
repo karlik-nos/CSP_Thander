@@ -606,7 +606,7 @@ void CreateHabitues(aref loc)
 		            chr.City = Colonies[iColony].id;  // это можно прописать в статике, но мне лениво по 20 городам лазить.
 		            chr.nation = iNation; // нация его нужна, тк она будет нацией патруля на берегу, он не пират
 					CreateModel(iChar, "pirate", MAN);
-					sTemp = PlaceCharacter(chr, "sit", "random_free");
+					sTemp = LAi_FindFreeRandomLocator("sit");
 					FreeSitLocator(loc.id, sTemp);
 					ChangeCharacterAddressGroup(chr, loc.id, "sit", sTemp);
 					LAi_group_MoveCharacter(chr, slai_group);

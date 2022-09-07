@@ -458,7 +458,7 @@ void LAi_CheckKillCharacter(aref chr)
 		}
 		if(IsCharacterPerkOn(chr, "Adventurer"))
 		{
-			if (!CheckAttribute(chr, "ScriptedDeath") && !CheckAttribute(chr, "Adventurers_Luck") && rand(10) <= GetCharacterSPECIALSimple(chr, SPECIAL_L))
+			if (!CheckAttribute(chr, "ScriptedDeath") && !CheckAttribute(chr, "Adventurers_Luck") && rand(15) <= GetCharacterSPECIALSimple(chr, SPECIAL_L))
 			{
 				chr.Adventurers_Luck = true;
 				int hitpoints = LAi_GetCharacterMaxHP(chr) / 2;
@@ -469,7 +469,7 @@ void LAi_CheckKillCharacter(aref chr)
 				if (sti(chr.index) == GetMainCharacterIndex())
 				{
 					chr.chr_ai.hp =  hitpoints;
-					Log_Info("Судьба дает вам второй шанс!");
+					Log_Info("Судьба даёт вам второй шанс!");
 					PlaySound("interface\heartbeat.wav");
 					//Сюда можно поставить юз звука
 					return;

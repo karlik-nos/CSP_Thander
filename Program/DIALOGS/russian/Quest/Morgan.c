@@ -1200,7 +1200,7 @@ void ProcessDialogEvent()
 			link.l1.go = "PL_Q7_begin_4";
 		break;
 		case "PL_Q7_begin_4":
-			dialog.text = "Ха-ха-ха! Этот надёжный. Зовут Стив Линней, отправился в Ла-Вегу, потом должен был посетить каждое пиратское поселение. А вот посетил или нет, это выяснишь ты сам"+ GetSexPhrase("","а") +".";
+			dialog.text = "Ха-ха-ха! Этот надёжный. Зовут Стив Линней, отправился в Ла Вегу, потом должен был посетить каждое пиратское поселение. А вот посетил или нет, это выяснишь ты сам"+ GetSexPhrase("","а") +".";
 			link.l1 = "Понял"+ GetSexPhrase("","а") +". Пош"+ GetSexPhrase("ел","ла") +" собираться.";
 			link.l1.go = "exit";
             SetQuestHeader("Pir_Line_7_Soukins");
@@ -1212,7 +1212,7 @@ void ProcessDialogEvent()
 
 		case "PL_Q7_LaVegaLate":
 			dialog.text = "О-о, опять "+ GetSexPhrase("наш герой","наша героиня") +" явил"+ GetSexPhrase("ся","ась") +". Ну, что узнал"+ GetSexPhrase("","а") +"?";
-			link.l1 = "Ты знаешь, я не наш"+ GetSexPhrase("ел","ла") +" Стива Линнея в Ла-Веге.";
+			link.l1 = "Ты знаешь, я не наш"+ GetSexPhrase("ел","ла") +" Стива Линнея в Ла Веге.";
 			link.l1.go = "PL_Q7_LaVegaLate_1";
 		break;
 		case "PL_Q7_LaVegaLate_1":
@@ -1236,7 +1236,7 @@ void ProcessDialogEvent()
 		break;
 		case "PL_Q7_LeonNotFound_1":
 			dialog.text = "Как это?";
-			link.l1 = "Его куда-то вызвали двое неизвестных в Ла-Веге, с тех пор его никто не видел, а корабль его был продан на верфи Санто-Доминго.";
+			link.l1 = "Его куда-то вызвали двое неизвестных в Ла Веге, с тех пор его никто не видел, а корабль его был продан на верфи Санто-Доминго.";
 			link.l1.go = "PL_Q7_LeonNotFound_2";
 		break;
 		case "PL_Q7_LeonNotFound_2":
