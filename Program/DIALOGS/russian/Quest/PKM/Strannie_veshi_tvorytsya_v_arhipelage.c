@@ -194,14 +194,14 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Satanist_v_gorode_1":
-			dialog.text = "Не спешите так, сеньор! Вы же не откажетесь побеседовать с нами?!";
+			dialog.text = "Не спешите так, сеньор"+ GetSexPhrase("","ита") +"! Вы же не откажетесь побеседовать с нами?!";
 			link.l1 = "Не думаю, что хочу с вами разговаривать.";
 			link.l1.go = "Satanist_v_gorode_2";
 		break;
 		
 		case "Satanist_v_gorode_2":
 			dialog.text = "А ну живо отдавай письмо!";
-			link.l1 = "А, может быть, выпьем по кружечке эля и пойдём каждый своей дорогой? Нет? Я так и знал.";
+			link.l1 = "А, может быть, выпьем по кружечке эля и пойдём каждый своей дорогой? Нет? Я так и знал"+ GetSexPhrase("","а") +".";
 			link.l1.go = "Satanist_v_gorode_3";
 		break;
 		
@@ -221,11 +221,32 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Satanist_v_buhte_1":
-			dialog.text = "Не спешите так, сеньор! Вы же не откажетесь побеседовать с нами?!";
+			dialog.text = "Не спешите так, сеньор"+ GetSexPhrase("","ита") +"! Вы же не откажетесь побеседовать с нами?!";
 			link.l1 = "Не думаю, что хочу с вами разговаривать.";
-			link.l1.go = "Satanist_v_buhte_3333";
+			link.l1.go = "Satanist_v_buhte_2";
 			link.l2 = "Давайте поговорим, только побыстрее, я спешу.";
-			link.l2.go = "Satanist_v_buhte_2";
+			link.l2.go = "Satanist_v_buhte_4";
+		break;
+		
+		case "Satanist_v_buhte_2":
+			dialog.text = "А ну живо отдавай письмо!";
+			link.l1 = "А, может быть, выпьем по кружечке эля и пойдём каждый своей дорогой? Нет? Я так и знал"+ GetSexPhrase("","а") +".";
+			link.l1.go = "Satanist_v_buhte_3";
+		break;
+		
+		case "Satanist_v_buhte_3":
+			DialogExit();
+			LAi_LocationFightDisable(loadedLocation, false);
+			for (i=1; i<=4; i++)
+			{
+				sld = CharacterFromID("Satanist_"+i)
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+			}
+			LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+			LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);
+			LAi_group_SetCheck("EnemyFight", "PKM_SvtvA_DostavkaPisma_Buhta_2");
+			LAi_SetFightMode(pchar, true);			
 		break;
 		
 		case "Satanist_v_buhte_2":

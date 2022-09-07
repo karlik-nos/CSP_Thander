@@ -10551,6 +10551,7 @@ void QuestComplete(string sQuestName, string qname)
 			sld.name = "Загадочный человек";
 			sld.lastname = "";
 			FantomMakeCoolFighter(sld, Rank, 30, 30, "blade5", "", 0);
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
 			LAi_SetActorType(sld);
 			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
 			sld.dialog.currentnode = "Satanist_v_buhte_1";
@@ -10560,6 +10561,7 @@ void QuestComplete(string sQuestName, string qname)
 			{
 				sld = GetCharacter(NPC_GenerateCharacter("Satanist_"+i, "Animists1", "man", "man", Rank, PIRATE, -1, true));
 				FantomMakeCoolFighter(sld, Rank, 30, 30, "blade5", "", 0);
+				GiveItem2Character(sld, "PKM_SvtvA_znachok");
 				LAi_SetActorType(sld);
 				LAi_CharacterDisableDialog(sld);
 				ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto1");
