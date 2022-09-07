@@ -10550,7 +10550,10 @@ void QuestComplete(string sQuestName, string qname)
 			sld = GetCharacter(NPC_GenerateCharacter("Satanist_1", "Animists1", "man", "man", Rank, PIRATE, -1, true));
 			sld.name = "Загадочный человек";
 			sld.lastname = "";
-			FantomMakeCoolFighter(sld, Rank, 30, 30, "blade5", "", 0);
+			//FantomMakeCoolFighter(sld, Rank, 30, 30, "blade5", "", 0);
+			sld.DontChangeBlade = true;
+			DeleteAttribute(sld, "items");
+			sld.SaveItemsForDead = true;
 			GiveItem2Character(sld, "PKM_SvtvA_znachok");
 			LAi_SetActorType(sld);
 			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
@@ -10560,8 +10563,11 @@ void QuestComplete(string sQuestName, string qname)
 			for (i=2; i<=4; i++)
 			{
 				sld = GetCharacter(NPC_GenerateCharacter("Satanist_"+i, "Animists1", "man", "man", Rank, PIRATE, -1, true));
-				FantomMakeCoolFighter(sld, Rank, 30, 30, "blade5", "", 0);
+				//FantomMakeCoolFighter(sld, Rank, 30, 30, "blade5", "", 0);
+				DeleteAttribute(sld, "items");
+				sld.SaveItemsForDead = true;
 				GiveItem2Character(sld, "PKM_SvtvA_znachok");
+				sld.DontChangeBlade = true;
 				LAi_SetActorType(sld);
 				LAi_CharacterDisableDialog(sld);
 				ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto1");
