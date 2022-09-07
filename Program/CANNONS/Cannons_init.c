@@ -22,7 +22,7 @@ void InitCannons()
 	rCannon.TimeSpeedMultiply = 1.0;
 	rCannon.BigBall = 0;
 	rCannon.SizeMultiply = 1.0;
-	rCannon.HeightMultiply = 1.0;
+	rCannon.HeightMultiply = 0.3;
 	rCannon.DamageMultiply = 6;
 	rCannon.hp = 35.0;
 	InitBaseCannons_CalcSpeedV0(&rCannon,400.0);
@@ -41,7 +41,7 @@ void InitCannons()
 	rCannon.TimeSpeedMultiply = 1.0;
 	rCannon.BigBall = 0;
 	rCannon.SizeMultiply = 1.3;
-	rCannon.HeightMultiply = 1.0;
+	rCannon.HeightMultiply = 0.3;
 	rCannon.DamageMultiply = 9;
 	rCannon.hp = 40.0;
 	InitBaseCannons_CalcSpeedV0(&rCannon,500.0);
@@ -60,7 +60,7 @@ void InitCannons()
 	rCannon.TimeSpeedMultiply = 1.0;
 	rCannon.BigBall = 0;
 	rCannon.SizeMultiply = 1.6;
-	rCannon.HeightMultiply = 1.0;
+	rCannon.HeightMultiply = 0.3;
 	rCannon.DamageMultiply = 12;
 	rCannon.hp = 45.0;
 	InitBaseCannons_CalcSpeedV0(&rCannon,600.0);
@@ -79,7 +79,7 @@ void InitCannons()
 	rCannon.TimeSpeedMultiply = 1.0;
 	rCannon.BigBall = 0;
 	rCannon.SizeMultiply = 1.6;
-	rCannon.HeightMultiply = 0.6;
+	rCannon.HeightMultiply = 0.3;
 	rCannon.DamageMultiply = 15;
 	rCannon.hp = 45.0;
 	InitBaseCannons_CalcSpeedV0(&rCannon,650.0);
@@ -98,7 +98,7 @@ void InitCannons()
 	rCannon.TimeSpeedMultiply = 1.0;
 	rCannon.BigBall = 0;
 	rCannon.SizeMultiply = 1.9;
-	rCannon.HeightMultiply = 1.0;
+	rCannon.HeightMultiply = 0.3;
 	rCannon.DamageMultiply = 18;
 	rCannon.hp = 50.0;
 	InitBaseCannons_CalcSpeedV0(&rCannon,700.0);
@@ -117,7 +117,7 @@ void InitCannons()
 	rCannon.TimeSpeedMultiply = 1.0;
 	rCannon.BigBall = 0;
 	rCannon.SizeMultiply = 2.2;
-	rCannon.HeightMultiply = 1.0;
+	rCannon.HeightMultiply = 0.3;
 	rCannon.DamageMultiply = 24;
 	rCannon.hp = 55.0;
 	InitBaseCannons_CalcSpeedV0(&rCannon,750.0);
@@ -136,7 +136,7 @@ void InitCannons()
 	rCannon.TimeSpeedMultiply = 1.0;
 	rCannon.BigBall = 0;
 	rCannon.SizeMultiply = 2.2;
-	rCannon.HeightMultiply = 1.0;
+	rCannon.HeightMultiply = 0.3;
 	rCannon.DamageMultiply = 28;
 	rCannon.hp = 55.0;
 	InitBaseCannons_CalcSpeedV0(&rCannon,750.0);
@@ -155,7 +155,7 @@ void InitCannons()
 	rCannon.TimeSpeedMultiply = 1.0;
 	rCannon.BigBall = 0;
 	rCannon.SizeMultiply = 1.0;
-	rCannon.HeightMultiply = 1.0;
+	rCannon.HeightMultiply = 0.3;
 	rCannon.DamageMultiply = 8;
 	rCannon.hp = 40.0;
 	InitBaseCannons_CalcSpeedV0(&rCannon,300.0);
@@ -174,7 +174,7 @@ void InitCannons()
 	rCannon.TimeSpeedMultiply = 1.0;
 	rCannon.BigBall = 0;
 	rCannon.SizeMultiply = 1.4;
-	rCannon.HeightMultiply = 1.0;
+	rCannon.HeightMultiply = 0.3;
 	rCannon.DamageMultiply = 12;
 	rCannon.hp = 45.0;
 	InitBaseCannons_CalcSpeedV0(&rCannon,400.0);
@@ -193,7 +193,7 @@ void InitCannons()
 	rCannon.TimeSpeedMultiply = 1.0;
 	rCannon.BigBall = 0;
 	rCannon.SizeMultiply = 1.6;
-	rCannon.HeightMultiply = 1.0;
+	rCannon.HeightMultiply = 0.3;
 	rCannon.DamageMultiply = 16;
 	rCannon.hp = 50.0;
 	InitBaseCannons_CalcSpeedV0(&rCannon,500.0);
@@ -212,7 +212,7 @@ void InitCannons()
 	rCannon.TimeSpeedMultiply = 1.0;
 	rCannon.BigBall = 0;
 	rCannon.SizeMultiply = 1.6;
-	rCannon.HeightMultiply = 1.0;
+	rCannon.HeightMultiply = 0.3;
 	rCannon.DamageMultiply = 20;
 	rCannon.hp = 50.0;
 	InitBaseCannons_CalcSpeedV0(&rCannon,550.0);
@@ -231,7 +231,7 @@ void InitCannons()
 	rCannon.TimeSpeedMultiply = 1.0;
 	rCannon.BigBall = 0;
 	rCannon.SizeMultiply = 1.9;
-	rCannon.HeightMultiply = 1.0;
+	rCannon.HeightMultiply = 0.3;
 	rCannon.DamageMultiply = 24;
 	rCannon.hp = 55.0;
 	InitBaseCannons_CalcSpeedV0(&rCannon,600.0);
@@ -250,7 +250,7 @@ void InitCannons()
 	rCannon.TimeSpeedMultiply = 1.0;
 	rCannon.BigBall = 0;
 	rCannon.SizeMultiply = 2.2;
-	rCannon.HeightMultiply = 1.0;
+	rCannon.HeightMultiply = 0.3;
 	rCannon.DamageMultiply = 32;
 	rCannon.hp = 60.0;
 	InitBaseCannons_CalcSpeedV0(&rCannon,650.0);
@@ -269,7 +269,7 @@ void InitCannons()
 	rCannon.TimeSpeedMultiply = 1.0;
 	rCannon.BigBall = 0;
 	rCannon.SizeMultiply = 2.2;
-	rCannon.HeightMultiply = 1.0;
+	rCannon.HeightMultiply = 0.3;
 	rCannon.DamageMultiply = 36;
 	rCannon.hp = 60.0;
 	InitBaseCannons_CalcSpeedV0(&rCannon,650.0);
@@ -288,7 +288,7 @@ void InitCannons()
 	rCannon.TimeSpeedMultiply = 1.0;
 	rCannon.BigBall = 0;
 	rCannon.SizeMultiply = 2.5;
-	rCannon.HeightMultiply = 1.0;
+	rCannon.HeightMultiply = 0.3;
 	rCannon.DamageMultiply = 42;
 	rCannon.TradeOff = true;
 	rCannon.hp = 70.0;
@@ -309,7 +309,7 @@ void InitCannons()
 	rCannon.TimeSpeedMultiply = 1.0;
 	rCannon.BigBall = 0;
 	rCannon.SizeMultiply = 2.8;
-	rCannon.HeightMultiply = 1.0;
+	rCannon.HeightMultiply = 0.3;
 	rCannon.TradeOff = true;
 	rCannon.hp = 80.0;
 	InitBaseCannons_CalcSpeedV0(&rCannon,900.0);
