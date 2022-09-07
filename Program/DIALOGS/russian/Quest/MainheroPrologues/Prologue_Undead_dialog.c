@@ -94,7 +94,6 @@ void ProcessDialogEvent()
 
 		case "exit_fight":
 			AddDialogExitQuest("MainHeroFightModeOn");
-			//LAi_group_Attack(NPChar, Pchar);
 			LAi_SetWarriorType(NPChar);
 			LAi_group_MoveCharacter(NPChar, LAI_GROUP_MONSTERS);
 			LAi_SetImmortal(npchar, false);
@@ -166,7 +165,12 @@ void ProcessDialogEvent()
 		case "PGG_Undead_10":
 			DialogExit();
 			sld = CharacterFromID("PGG_Undead")
+			LAi_SetActorType(sld);
 			LAi_ActorGoToLocation(sld, "reload", "reload1", "none", "", "", "UD_DrugUshel_2", -1);
+			
+			PChar.quest.UP_PGGUndead_Off.win_condition.l1 = "ExitFromLocation";
+			PChar.quest.UP_PGGUndead_Off.win_condition.l1.location = PChar.location;
+			PChar.quest.UP_PGGUndead_Off.win_condition = "UP_PGGUndead_Off";
 		break;
 	}
 }

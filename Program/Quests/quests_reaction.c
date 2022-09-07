@@ -10812,7 +10812,7 @@ void QuestComplete(string sQuestName, string qname)
 			sld.dialog.currentnode = "First Time";
 		break;
 		
-//========================  Sinistra "Нежить: Говорящий клинок"  =======================
+//========================  Sinistra "Нежить: Лиларкор"  =======================
 
 		case "UP_KrovPismo":
 			PChar.quest.UP_KrovPismo1.over = "yes";
@@ -10896,11 +10896,6 @@ void QuestComplete(string sQuestName, string qname)
 			bDisableFastReload = false;
 			chrDisableReloadToLocation = false;
 			
-			sld = CharacterFromID("PGG_Undead")
-			AddPassenger(pchar, sld, false);
-			SetCharacterRemovable(sld, false);
-			LAi_SetActorType(sld);
-			
 			sld = GetCharacter(NPC_GenerateCharacter("UP_Korabl_s_klinkom", "officer_30", "man", "man", sti(PChar.rank)+2, PIRATE, 40, true));
 			FantomMakeCoolSailor(sld, SHIP_SCHOONER, "Везучий Тюльпан", CANNON_TYPE_CULVERINE_LBS12, 40, 40, 40);
 			
@@ -10916,6 +10911,27 @@ void QuestComplete(string sQuestName, string qname)
 			Group_SetTaskAttackInMap("UP_Ship", PLAYER_GROUP);
 			Group_LockTask("UP_Ship");
 			Map_CreateFastWarrior("", "UP_Korabl_s_klinkom", 30);
+		break;
+		
+		case "UP_PGGUndead_Off":
+			if (pchar.name == "Весёлый Роджер")
+			{
+				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Meriman_0", "skeleton", "man", 10, PIRATE, -1, true));
+				sld.name = "Ужасный";
+				sld.lastname = "";
+				sld.FaceId = 537;
+				AddPassenger(pchar, sld, false);
+				SetCharacterRemovable(sld, false);
+			}
+			if (pchar.name == "Ужасный")
+			{
+				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Skeletcap_0", "skeleton", "skeleton", 10, PIRATE, -1, true));
+				sld.name = "Весёлый";
+				sld.lastname = "Роджер";
+				sld.FaceId = 511;
+				AddPassenger(pchar, sld, false);
+				SetCharacterRemovable(sld, false);
+			}
 		break;
 
 		// Тичингиту
