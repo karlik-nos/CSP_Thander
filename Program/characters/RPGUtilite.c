@@ -2708,6 +2708,12 @@ void initNewMainCharacter()
 		ch.HeroParam.Location = ch.HeroParam.ToCityId + "_port";
 		ch.HeroParam.Group    = "reload";
 		ch.HeroParam.Locator  = "sea";
+		if (ch.HeroParam.ToCityId == "LaVega")	//Ла Вега town
+		{
+			ch.HeroParam.Location = ch.HeroParam.ToCityId + "_town";
+			ch.HeroParam.Group    = "reload";
+			ch.HeroParam.Locator  = "reload1";
+		}
 		if(startherotype == 2)
 		{
 			ch.HeroParam.Location = "PuertoPrincipe_port";

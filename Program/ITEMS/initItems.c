@@ -9,6 +9,7 @@
 	itm.special.valueT = 100; 	// Травмы
 	itm.special.valueB = 100; 	// Кровоток
 	itm.special.valueP = 100; 	// Отравление
+	itm.special.valueV = 1; 	// Вампиризм
 
 	itm.points_shop = 1; // Атрибут для магазина ачивок
 */

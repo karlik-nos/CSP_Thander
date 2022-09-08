@@ -2499,50 +2499,38 @@ void PDMQuestsInit()
 	sld = GetCharacter(NPC_GenerateCharacter("Albreht_Zalpfer", "Mechanic", "man", "man", 6, ENGLAND, -1, false));
 	sld.name	= "Альбрехт";
 	sld.lastname	= "Цальпфер";
-	sld.City = "Charles";
-	sld.location	= "Charles_town";
-	sld.location.group = "goto";
-	sld.location.locator = "goto22";
 	sld.Dialog.Filename = "Quest/PDM/Albreht_Zalpfer.c";
 	sld.greeting = "Albrecht_Zalpfer";
 	SetCharacterPerk(sld, "Carpenter");
 	SetCharacterPerk(sld, "BasicBattleState");
 	SetShipSkill(sld, 2, 3, 2, 3, 1, 21, 3, 1, 2);
-	sld.talker = 7;
-	sld.nation = ENGLAND;
+	sld.talker = 6;
 	LAi_SetLoginTime(sld, 6.0, 21.99);
 	LAi_SetCitizenType(sld);
 	LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
 	LAi_SetImmortal(sld, false);
+	ChangeCharacterAddressGroup(sld,"Charles_town","goto","goto22");
 
 	//******Проклятый идол Sinistra******
 	//Джеймс Кэллоу
-	sld = GetCharacter(NPC_GenerateCharacter("James_Callow", "ozg_green", "man", "man", 6, PIRATE, -1, false));
+	sld = GetCharacter(NPC_GenerateCharacter("James_Callow", "ozg_green", "man", "man", 15, PIRATE, -1, false));
 	sld.name	= "Джеймс";
 	sld.lastname	= "Кэллоу";
-	sld.rank     = 7;
 	sld.model	= "ozg_green";
-	GiveItem2Character(sld, BLADE_LONG);
-	sld.sex = "man";
-	sld.City = "LaVega";
-	sld.location	= "LaVega_tavern";
+	GiveItem2Character(sld, "blade12");
+	EquipCharacterByItem(sld, "blade12");
 	sld.Dialog.Filename = "Quest/PDM/Cursed_Idol.c";
-	sld.nation = PIRATE;
 	LAi_SetSitType(sld);
 	LAi_SetImmortal(sld, true);
 	ChangeCharacterAddressGroup(sld,"LaVega_tavern","sit","sit_base3");
 
 	//******Новая Родина Sinistra******
 	//Хьюго Лесопилка
-	sld = GetCharacter(NPC_GenerateCharacter("Hugo_Lesopilka", "officer_63", "man", "man", 10, PIRATE, -1, false));
+	sld = GetCharacter(NPC_GenerateCharacter("Hugo_Lesopilka", "officer_63", "man", "man", 10, PIRATE, -1, true));
 	sld.name	= "Хьюго";
 	sld.lastname	= "Лесопилка";
-	GiveItem2Character(sld, BLADE_LONG);
 	sld.sex = "man";
-	sld.City = "PuertoPrincipe";
-	sld.location	= "PuertoPrincipe_tavern";
 	sld.Dialog.Filename = "Quest/PDM/Novaya_Rodina.c";
-	sld.nation = PIRATE;
 	LAi_SetSitType(sld);
 	LAi_SetImmortal(sld, true);
 	ChangeCharacterAddressGroup(sld,"PuertoPrincipe_tavern","sit","sit_front2");
@@ -2578,7 +2566,7 @@ void PDMQuestsInit()
 
 	//******Клан Ламбрини Sinistra******
 	//Октавио Ламбрини
-	sld = GetCharacter(NPC_GenerateCharacter("PDM_Octavio_Lambrini", "barmen_3", "man", "man", 10, PIRATE, -1, false));
+	sld = GetCharacter(NPC_GenerateCharacter("PDM_Octavio_Lambrini", "barmen_3", "man", "man", 10, PIRATE, -1, true));
 	sld.name	= "Октавио";
 	sld.lastname	= "Ламбрини";
 	sld.Dialog.Filename = "Quest/PDM/Clan_Lambrini.c";
@@ -2594,7 +2582,6 @@ void PDMQuestsInit()
 	LAi_SetLoginTime(sld, 6.0, 21.99);
 	sld.talker = 7;
 	LAi_SetStayType(sld);
-	sld.City = "FortFrance";
 	FantomMakeCoolFighter(sld, 25, 25, 25, "blade10", "", 40);
 	LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
 	ChangeCharacterAddressGroup(sld,"FortFrance_town","officers","soldier_uniq2");
@@ -2605,7 +2592,6 @@ void PDMQuestsInit()
 	sld.dialog.filename   = "Common_Soldier.c";
 	LAi_SetLoginTime(sld, 6.0, 21.99);
 	LAi_SetGuardianType(sld);
-	sld.City = "FortFrance";
 	FantomMakeCoolFighter(sld, 25, 25, 25, "blade10", "", 40);
 	LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
 	ChangeCharacterAddressGroup(sld,"FortFrance_town","officers","soldier_uniq1");
@@ -3350,7 +3336,7 @@ void SetReefSkeletonsToLocation(aref _location, string loc)
 			}
 			if (loc != "MountainPath")
 			{
-				if (pchar.name != "Виспер" && pchar.name != "Тёмный" && !CheckAttribute(pchar, "PGGWhisperQuest"))
+				if (pchar.name != "Виспер" && pchar.name != "Тёмный Странник" && !CheckAttribute(pchar, "PGGWhisperQuest"))
 				{
 					Log_info("Вы пробудили проклятых!");
 					chrDisableReloadToLocation = true; //пока Злой Скелет Гигант жив - хер, а не выход

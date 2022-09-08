@@ -747,7 +747,6 @@ void ProcessDialogEvent()
 			SetCharacterPerk(sld, "Sliding");
 			SetCharacterPerk(sld, "Energaiser");
 			SetCharacterPerk(sld, "ByWorker");
-			GiveItem2Character(sld, BLADE_LONG);
 			LAi_SetHP(sld, 270.0, 270.0);
 			SetSPECIAL(sld, 9,8,10,4,6,7,9);		//(Сила, Воспр, Выносл, Лидер, Обуч, Реак, Удача)
 			SetSelfSkill(sld, 52, 60, 46, 38, 57);		//(ЛО, СО, ТО, пистолеты, фортуна)

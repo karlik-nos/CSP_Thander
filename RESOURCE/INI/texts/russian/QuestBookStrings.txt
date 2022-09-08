@@ -18,13 +18,13 @@ PDM_Aptekar {Аптекарь}
 
 PDM_Proklyataya_Jara {Проклятая жара}
 
-BSChaseBegun {Погоня началась!}
+BSChaseBegun {Погоня началась}
 
 BSCourtlyPassions {Куртуазные страсти}
 
-BSOnTheHorizon {Чёрные паруса на горизонте!}
+BSOnTheHorizon {Чёрные паруса на горизонте}
 
-BSPrologue {Не плюй в колодец...}
+BSPrologue {Не плюй в колодец}
 
 PDM_Clan_Lambrini {Клан Ламбрини}
 
@@ -108,7 +108,7 @@ CompanionTravel {Компаньон в свободном плавании}
 
 Xebeca_BlueBird {Уничтожить шебеку 'Синяя Птица'}
 
-SharpPearl {Найти промысел ловцов жемчуга.}
+SharpPearl {Найти промысел ловцов жемчуга}
 
 SharpPearl_SeekSpy {Найти человека среди ловцов жемчуга, который даёт информацию Шарпу}
 
@@ -136,15 +136,15 @@ SeekMayorsRing {Поиски обручального кольца в борде
 
 SeekUsurersJewel {Найти драгоценный камень ростовщика}
 
-Church_DestroyGhost {Задание церкви. Чистка от нечисти.}
+Church_DestroyGhost {Задание церкви по очистке от нечисти}
 
 Church_NightGuard {Ночное дежурство в церкви}
 
-PortmansBook_Delivery {Задание начальника порта. Догнать капитана.}
+PortmansBook_Delivery {Задание начальника порта догнать капитана}
 
-Portmans_SeekShip {Задание начальника порта. Вернуть украденный корабль.}
+Portmans_SeekShip {Задание начальника порта вернуть украденный корабль}
 
-SCQ_manSlave {Месть бывшего раба. Просьба горожанина.}
+SCQ_manSlave {Месть бывшего раба}
 
 SCQ_womanHasband {Найти мужа горожанки}
 
@@ -196,7 +196,7 @@ Tenochtitlan {Тенотчитлан}
 
 MagicCity {Зачарованный город}
 
-Slavetrader {Работорговец.}
+Slavetrader {Работорговец}
 
 PrisonGun {Орудия для форта}
 
@@ -222,9 +222,9 @@ MerchantOnMap {Лёгкая добыча}
 
 ShipTuning {Улучшение корабля}
 
-Gen_LoanFindCitizen {Помощь ростовщикам. Найти должника.}
+Gen_LoanFindCitizen {Помощь ростовщику найти должника}
 
-Gen_LoanTakeChest {Помощь ростовщикам. Доставить золото.}
+Gen_LoanTakeChest {Помощь ростовщику доставить золото}
 
 convoy_quest {Сопровождение торговцев}
 
