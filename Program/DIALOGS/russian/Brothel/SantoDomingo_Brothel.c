@@ -94,19 +94,19 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 		// Квест "Потерянное кольцо"
 		case "PDM_PK_UvestiNaVerh":
-			dialog.text = "О-о, "+ GetSexPhrase("красавчик","красавица") +", Франческа одна из лучших девушек нашего заведения. За неё тебе придётся заплатить 15000 золотых.";
+			dialog.text = "О-о, "+ GetSexPhrase("красавчик","красавица") +", Франческа одна из лучших девушек нашего заведения. За неё тебе придётся заплатить 10000 золотых.";
 			link.l1 = "Да, конечно.";
 			link.l1.go = "PDM_PK_UvestiNaVerh_2";
 			link.l2 = "Я передумал"+ GetSexPhrase("","а") +".";
 			link.l2.go = "exit";
 		break;
 		case "PDM_PK_UvestiNaVerh_2":
-			if (sti(pchar.Money) >= 15000)
+			if (sti(pchar.Money) >= 10000)
 			{
 				dialog.text = "Отлично, "+ GetSexPhrase("дорогой","дорогая") +". Фраческа будет ждать тебя в комнате для уединения на втором этаже.";
 				link.l1 = "Хех, ну я "+ GetSexPhrase("пошёл","пошла") +"...";
 				link.l1.go = "PDM_PK_UvestiNaVerh_3";
-				AddMoneyToCharacter(pchar, -15000);
+				AddMoneyToCharacter(pchar, -10000);
 				DeleteAttribute(pchar, "questTemp.PDM_PK_UvestiNaVerh");
 			}
 			else

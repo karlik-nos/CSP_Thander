@@ -9779,19 +9779,16 @@ void QuestComplete(string sQuestName, string qname)
         break;
 
 		case "PDM_Albreht_Vhod":
-			chrDisableReloadToLocation = false;
+			bDisableFastReload = true;
+			chrDisableReloadToLocation = true;
             sld = CharacterFromID("Albreht_Zalpfer");
-	        sld.dialog.currentnode = "Ja_1";
-			sld.greeting = "Albrecht_Zalpfer";
-			LAi_SetActorType(sld);
-			LAi_ActorDialog(sld, pchar, "", 0.5, 0);
 			PlaceCharacter(sld, "goto", PChar.location);
+			RemovePassenger(pchar, sld);
+			RemoveCharacterCompanion(pchar, sld);
+	        sld.dialog.currentnode = "Ja_1";
+			LAi_SetActorType(sld);
+			LAi_ActorDialog(sld, pchar, "", -1, 0);
 			Locations[FindLocation("PortRoyal_town")].reload.l23.disable = false;   //открывает архитектора
-        break;
-
-		case "PDM_Albreht_Vihod":
-			sld = CharacterFromID("Albreht_Zalpfer")
-			ChangeCharacterAddressGroup(sld, "PortRoyal_town", "none", "");
         break;
 
 //========================  Квест "Проклятый идол".  =======================
@@ -9869,9 +9866,7 @@ void QuestComplete(string sQuestName, string qname)
 			for (i=1; i<=6; i++)
 			{
 				sTemp = "skel_"+(rand(3)+1);
-				sld = GetCharacter(NPC_GenerateCharacter("PDM_PI_skel_"+i, sTemp, "skeleton", "skeleton", 10, PIRATE, -1, true));
-				FantomMakeCoolFighter(sld, sti(pchar.rank), 10 + MOD_SKILL_ENEMY_RATE * 2, 10 + MOD_SKILL_ENEMY_RATE * 2, BLADE_LONG, "", 10 + MOD_SKILL_ENEMY_RATE * 2);
-				//ChangeCharacterAddressGroup(sld, pchar.location, "goto", "goto2");
+				sld = GetCharacter(NPC_GenerateCharacter("PDM_PI_skel_"+i, sTemp, "skeleton", "skeleton", sti(pchar.rank), PIRATE, -1, true));;
 				PlaceCharacter(sld, "goto", "random_free");
 				LAi_SetWarriorType(sld);
 				LAi_group_MoveCharacter(sld, "EnemyFight");
@@ -9889,9 +9884,7 @@ void QuestComplete(string sQuestName, string qname)
 			for (i=7; i<=10; i++)
 			{
 				sTemp = "shipowner_"+(rand(28)+1);
-				sld = GetCharacter(NPC_GenerateCharacter("PDM_PI_Matrosiki_"+i, sTemp, "man", "man", 10, PIRATE, -1, true));
-				FantomMakeCoolFighter(sld, sti(pchar.rank), 15, 15, BLADE_LONG, "", 25);
-				//ChangeCharacterAddressGroup(sld, pchar.location, "goto", "goto2");
+				sld = GetCharacter(NPC_GenerateCharacter("PDM_PI_Matrosiki_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
 				PlaceCharacter(sld, "goto", "random");
 				LAi_SetWarriorType(sld);
 				LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
@@ -9912,7 +9905,6 @@ void QuestComplete(string sQuestName, string qname)
 			if (pchar.rank >= 19) AddCharacterCrew(pchar, -200));
             InterfaceStates.Buttons.Save.enable = 1;
             pchar.quest.Munity = "Deads";
-            //LAi_group_SetAlarm(LAI_GROUP_PLAYER, "EnemyFight", 0.0);
             LAi_SetFightMode(Pchar, false);
 			SetTimerFunction("PDM_PI_Skelety_v_more", 0, 0, 14);
         break;
@@ -10249,12 +10241,9 @@ void QuestComplete(string sQuestName, string qname)
 			sld = CharacterFromID("Josephine_Lodet")
 			sld.dialog.currentnode   = "Konets";
 
-			Log_SetStringToLog("Холодное оружие + 1");
-
-
-			AddCharacterSkillDontClearExp(pchar, "FencingLight", 1);
-			AddCharacterSkillDontClearExp(pchar, "Fencing", 1);
-			AddCharacterSkillDontClearExp(pchar, "FencingHeavy", 1);
+			AddCharacterExpToSkill(pchar, "FencingLight", 100);
+			AddCharacterExpToSkill(pchar, "Fencing", 100);
+			AddCharacterExpToSkill(pchar, "FencingHeavy", 100);
 			ChangeCharacterReputation(pchar, -10);
 			ChangeCharacterNationReputation(pchar, SPAIN, -7);
 		break;
