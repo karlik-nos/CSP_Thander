@@ -34,8 +34,8 @@ int CreateJamaicaCharacters(int n)
 	ch.id		= "PortRoyal_Priest";
 	ch.name		= "отец Бернард";
 	ch.lastname = "";
-	ch.model	= "monk";
-	ch.model.animation = "man1";
+	ch.model	= "Priest_2";
+	ch.model.animation = "man";
 	ch.sex = "man";
 	ch.City = "PortRoyal";
 	ch.location	= "PortRoyal_church";

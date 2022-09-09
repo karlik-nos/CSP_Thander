@@ -9174,7 +9174,7 @@ int InitItems()
 	n++;
 	
 	makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
-	itm.id = "PKM_SvtvA_pismo2";	//Письмо для отца Бернарда
+	itm.id = "PKM_SvtvA_pismo2";	//Письмо для отца Клермона
 	itm.name = "itmname_PKM_SvtvA_pismo2";
 	itm.describe = "itmdescr_PKM_SvtvA_pismo2";
 	itm.picIndex = 7;
@@ -9185,7 +9185,7 @@ int InitItems()
 	n++;
 	
 	makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
-	itm.id = "PKM_SvtvA_pismo3";	//Письмо от отца Бернарда
+	itm.id = "PKM_SvtvA_pismo3";	//Письмо от отца Клермона
 	itm.name = "itmname_PKM_SvtvA_pismo3";
 	itm.describe = "itmdescr_PKM_SvtvA_pismo3";
 	itm.picIndex = 7;

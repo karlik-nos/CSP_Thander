@@ -33,6 +33,8 @@ int CreateMartiniqueCharacters(int n)
 
 	makeref(ch,Characters[n]);			//Священик
 	ch.id		= "FortFrance_Priest";
+	ch.name		= "отец Клермон";
+	ch.lastname = "";
 	ch.model	= "priest_4";
 	ch.model.animation = "man";
 	ch.sex = "man";

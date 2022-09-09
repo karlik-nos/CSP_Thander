@@ -10498,7 +10498,7 @@ void QuestComplete(string sQuestName, string qname)
 			for (i=1; i<=5; i++)
 			{
 				sld = GetCharacter(NPC_GenerateCharacter("SatanaElita_"+i, "Animists1", "man", "man", 60, PIRATE, -1, true));
-				FantomMakeCoolFighter(sld, 70, 100, 100, BLADE_LONG, "", 200);
+				FantomMakeCoolFighter(sld, 70, 100, 100, BLADE_LONG, "pistol1", 200);
 				//LAi_SetActorType(sld);
 				LAi_SetStayType(sld);
 				LAi_CharacterDisableDialog(sld);
@@ -10524,23 +10524,70 @@ void QuestComplete(string sQuestName, string qname)
 				LAi_SetWarriorType(sld);
 				LAi_SetActorType(sld);
 				LAi_ActorTurnToCharacter(sld, pchar);
-			}			
+			}
+			sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA_Jitel1", "Citiz_2", "man", "man", 1, SPAIN, -1, false));
+			ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto20");
+			LAi_SetActorType(sld);
+			LAi_ActorGoToLocator(sld, "soldiers", "protector4", "", -1);
+			
+			sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA_Jitel2", "Citiz_5", "man", "man", 1, SPAIN, -1, false));
+			ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto20");
+			LAi_SetActorType(sld);
+			LAi_ActorGoToLocator(sld, "goto", "goto21", "", -1);
+			
+			DoQuestCheckDelay("PKM_SvtvA_Satamist_lutuet_1", 1.3);
+			DoQuestCheckDelay("PKM_SvtvA_Satamist_lutuet_2", 1.9);
+			LAi_SetActorType(pchar);
 		break;
 		
-		case "PKM_SvtvA_DostavkaPisma_Gorod_2":
+		case "PKM_SvtvA_Satamist_lutuet_1":
+			sld = CharacterFromID("SatanaElita_2")
+			LAi_SetActorType(sld);
+			LAi_ActorAnimation(sld, "shot", "PKM_SvtvA_Satamist_lutuet_3", 1.0);
+		break;
+		case "PKM_SvtvA_Satamist_lutuet_2":
+			sld = CharacterFromID("SatanaElita_5")
+			LAi_SetActorType(sld);
+			LAi_ActorAnimation(sld, "shot", "PKM_SvtvA_Satamist_lutuet_4", 1.0);
+		break;
+		
+		case "PKM_SvtvA_Satamist_lutuet_3":
+			sld = CharacterFromID("PKM_SvtvA_Jitel1")
+			LAi_KillCharacter(sld);
+		break;
+		case "PKM_SvtvA_Satamist_lutuet_4":
+			sld = CharacterFromID("PKM_SvtvA_Jitel2")
+			LAi_KillCharacter(sld);
+			
+			LAi_SetPlayerType(pchar);
+		break;
+		
+
+		
+		case "PKM_SvtvA_DostavkaPisma_Gorod_2":		//Битва в городе
 			bDisableFastReload = false;
 			chrDisableReloadToLocation = false;
 			AddQuestRecord("PKM_Animists", "9.1");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
 			AddQuestUserData("PKM_Animists", "sSex2", GetSexPhrase("ся","ась"));
+			pchar.questTemp.PKM_SvtvA_SanJuanChurch_1 = "Church1";
 		break;
 		
-		case "PKM_SvtvA_DostavkaPisma_Buhta_2":
+		case "PKM_SvtvA_DostavkaPisma_Buhta_2":		//Битва в бухте без разговора
 			bDisableFastReload = false;
 			chrDisableReloadToLocation = false;
 			AddQuestRecord("PKM_Animists", "9.2");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
 			AddQuestUserData("PKM_Animists", "sSex2", GetSexPhrase("ся","ась"));
+			pchar.questTemp.PKM_SvtvA_SanJuanChurch_1 = "Church1";
+		break;
+		
+		case "PKM_SvtvA_DostavkaPisma_Buhta_3":		//Битва в бухте с разговором и отказываемся отдавать письмо
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
+			AddQuestRecord("PKM_Animists", "10");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("ёл","ла"));
+			pchar.questTemp.PKM_SvtvA_SanJuanChurch_1 = "Church1";
 		break;
 		
 		case "PKM_SvtvA_DostavkaPisma_Buhta_1":

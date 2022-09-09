@@ -95,12 +95,12 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = "PKM_SvtvA_2";
 		break;
 		case "PKM_SvtvA_2":
-			dialog.text = "Тут я ничем не могу тебе помочь - эти парни куда-то уплыли.\nНо я слышал, что типами в красных балахонах заинтересовалась церковь Порт Рояля, тебе стоит отправиться туда и разузнать обо всём там.";
+			dialog.text = "Тут я ничем не могу тебе помочь - эти парни куда-то уплыли.\nНо я слышал, что типами в красных балахонах заинтересовалась церковь из Форт де Франс. Тебе стоит отправиться туда и разузнать обо всём там.";
 			link.l1 = "Я так и сделаю. Спасибо тебе, дружище!";
 			link.l1.go = "exit";
 			AddQuestRecord("PKM_Animists", "7");
 			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_LeFrancuaTaverna_1");
-			pchar.questTemp.PKM_SvtvA_PortRoyalChurch_1 = "Church1";
+			pchar.questTemp.PKM_SvtvA_FortFranceChurch_1 = "Church1";
 		break;
 		
 		//пиратка, квест №2, чёрная метка для Лоу

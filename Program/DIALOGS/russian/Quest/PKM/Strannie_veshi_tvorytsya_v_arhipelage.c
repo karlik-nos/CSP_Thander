@@ -205,7 +205,7 @@ void ProcessDialogEvent()
 			link.l1.go = "Satanist_v_gorode_3";
 		break;
 		
-		case "Satanist_v_gorode_3":
+		case "Satanist_v_gorode_3":		//Битва в городе
 			DialogExit();
 			LAi_LocationFightDisable(loadedLocation, false);
 			for (i=1; i<=11; i++)
@@ -234,7 +234,7 @@ void ProcessDialogEvent()
 			link.l1.go = "Satanist_v_buhte_3";
 		break;
 		
-		case "Satanist_v_buhte_3":
+		case "Satanist_v_buhte_3":		//Битва в бухте без разговора
 			DialogExit();
 			LAi_LocationFightDisable(loadedLocation, false);
 			for (i=1; i<=4; i++)
@@ -249,18 +249,59 @@ void ProcessDialogEvent()
 			LAi_SetFightMode(pchar, true);			
 		break;
 		
-		case "Satanist_v_buhte_2":
-			dialog.text = "Нам стало известно, что вы везёте некое письмо, и нам нужно прочитать его\nНе беспокойтесь, у нас есть копия сургучной печати, которым оно запечатано, и адресат ничего не узнает о случившемся\nА в качестве вознаграждения за оказанную нам услугу мы согласны заплатить вам 10000 пиастров. Что скажете?";
+		case "Satanist_v_buhte_4":
+			dialog.text = "Нам стало известно, что вы везёте некое письмо, и нам нужно прочитать его\nНе беспокойтесь, у нас есть копия сургучной печати, которым оно запечатано, и адресат ничего не узнает о случившемся\nА в качестве вознаграждения за оказанную нам услугу мы согласны заплатить вам 20000 пиастров. Что скажете?";
 			link.l1 = "Что скажу? Дайте подобрать подходящую фразу... Хм... А! Во - а не пойти ли вам прочь? А вашу печать можете засунуть себе сами знаете куда.";
-			link.l1.go = "Satanist_v_buhte_3";
-			link.l2 = "Хм... 10000 монет... Звучит заманчиво, думаю, что мы договорились. Вот письмо.";
-			link.l2.go = "Satanist_v_buhte_4555";
+			link.l1.go = "Satanist_v_buhte_5";
+			link.l2 = "Хм... 20000 монет... Звучит заманчиво, думаю, что мы договорились. Вот письмо.";
+			link.l2.go = "Satanist_v_buhte_7";
 		break;
 		
-		case "Satanist_v_buhte_3":
+		case "Satanist_v_buhte_5":
 			dialog.text = "В таком случае мы будем вынуждены вас убить.";
 			link.l1 = "Попробуйте!";
-			link.l1.go = "Satanist_v_buhte_4";
+			link.l1.go = "Satanist_v_buhte_6";
+		break;
+		
+		case "Satanist_v_buhte_6":		//Битва в бухте с разговором и отказываемся отдавать письмо
+			DialogExit();
+			LAi_LocationFightDisable(loadedLocation, false);
+			for (i=1; i<=4; i++)
+			{
+				sld = CharacterFromID("Satanist_"+i)
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+			}
+			LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+			LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);
+			LAi_group_SetCheck("EnemyFight", "PKM_SvtvA_DostavkaPisma_Buhta_3");
+			LAi_SetFightMode(pchar, true);			
+		break;
+		
+		case "Satanist_v_buhte_7":
+			dialog.text = "Вы поступили правильно, сеньор"+ GetSexPhrase("","ита") +". Вот ваши деньги, а теперь посмотрим письмо\nТак-так.. хм... я так и думал... Ну, тут они ошибаются... Что же, я узнал всё, что хотел. Запечатываю письмо обратно - видите, узор на печатях идентичен? Можете идти.";
+			link.l1 = "Хорошо.";
+			link.l1.go = "Satanist_v_buhte_8";
+			AddMoneyToCharacter(pchar, 20000);
+		break;
+		
+		case "Satanist_v_buhte_8":
+			DialogExit();
+			for (i=1; i<=4; i++)
+			{
+				sld = CharacterFromID("Satanist_"+i)
+				LAi_SetActorType(sld);
+				LAi_ActorGoToLocation(sld, "reload", "reload1_back", "none", "", "", "", -1);
+				sld.lifeday = 0;
+				LAi_CharacterDisableDialog(sld);
+				LAi_SetImmortal(sld, true);
+			}
+			LAi_LocationFightDisable(loadedLocation, false);
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
+			AddQuestRecord("PKM_Animists", "11");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("ся","ась"));
+			pchar.questTemp.PKM_SvtvA_SanJuanChurch_1 = "Church1";
 		break;
 		
 	}

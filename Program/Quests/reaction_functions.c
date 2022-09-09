@@ -10740,6 +10740,10 @@ void LambriniPGG_Tavern(string qName)
 }
 //Sinistra Клан Ламбрини <--
 
+//Sinistra "Странные вещи творятся на архипелаге" -->
+
+//Sinistra "Странные вещи творятся на архипелаге" <--
+
 //Sinistra Мэри и Шарль -->
 bool SharleMaryIsHere()	//Проверка на Мэри абордажника
 {

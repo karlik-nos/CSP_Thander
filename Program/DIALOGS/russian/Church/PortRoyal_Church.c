@@ -14,60 +14,6 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
                 link.l1 = "Святой отец, скажите мне, местный ростовщик ваш прихожанин?";
                 link.l1.go = "Step_E6_1";
             }
-			if (pchar.questTemp.PKM_SvtvA_PortRoyalChurch_1 == "Church1")		//Квест "Странные вещи творятся на архипелаге"
-            {
-                link.l1 = "Святой отец, я слышал, что вы тоже разыскиваете загадочный чёрный фрегат, который похитил детей на Сан Мартине.";
-                link.l1.go = "PKM_SvtvA_Ch1_1";
-            }
-		break;
-		//Квест "Странные вещи творятся на архипелаге"
-		case "PKM_SvtvA_Ch1_1":
-			dialog.text = "Похитили детей?! Хм. Я не знал про это.\nНо мы действительно обеспокоены, так как в Порт Рояле в одном из домов были обнаружены следы проведения языческого ритуала, и там же лежали мёртвые тела наших добрых законопослушных граждан. У каждого из них были зверски вырваны сердца...";
-			link.l1 = "Что за монстры могли сотворить такое?";
-			link.l1.go = "PKM_SvtvA_Ch1_2";
-		break;
-		case "PKM_SvtvA_Ch1_2":
-			dialog.text = "Если вам действительно небезразлично всё это, то может быть вы могли бы выполнить моё поручение?\nВаша информация про детей проливает кое-какой свет на эту картину.\nЯ хочу, чтобы вы доставили письмо на Пуэрто-Рико, и передали его лично в руки человеку, которого зовут падре Домингес. Вы найдёте его в соборе, и он даст вам дальнейшие указания, если сочтёт нужным.";
-			link.l1 = "Это довольно простое задание. Я немедленно отправляюсь, Святой отец.";
-			link.l1.go = "PKM_SvtvA_Ch1_3";
-		break;
-		case "PKM_SvtvA_Ch1_3":
-			dialog.text = "Не спешите, "+ GetSexPhrase("сын мой","дочь моя") +". Человек, который должен был отвезти письмо сегодня, был найден умирающим на пороге своего дома\nВсё, что он успел сказать перед смертью, было то, что на него напали какие-то люди в красных рясах, вооруженные кинжалами.\nУ меня есть основания полагать, что дело тут не чисто - кто-то явно не хочет, чтобы письмо было доставлено.";
-			link.l1 = "Стало быть, и меня могут попробовать перехватить по дороге?";
-			link.l1.go = "PKM_SvtvA_Ch1_4";
-		break;
-		case "PKM_SvtvA_Ch1_4":
-			dialog.text = "Да, боюсь, что вы правы, поэтому, если вы откажитесь доставить письмо, я вас пойму.";
-			link.l1 = "Не вижу причин, по которым мне пришлось бы отказаться от этого дела.";
-			link.l1.go = "PKM_SvtvA_Ch1_5";
-		break;
-		case "PKM_SvtvA_Ch1_5":
-			dialog.text = "Вот и отлично. Итак, вот письмо, вы должны доставить его священнику по имени падре Домингес и только ему. Вы сможете найти его на Пуэрто Рико...";
-			link.l1 = "";
-			link.l1.go = "PKM_SvtvA_Ch1_5.1";
-			GiveItem2Character(PChar, "PKM_SvtvA_pismo1");
-		break;
-		case "PKM_SvtvA_Ch1_5.1":
-			dialog.text = "Также я вам выдам документ, который позволит вам находиться в Пуэрто-Рико на законных основаниях.\nИ умоляю вас - не заходите в порт. Высадитесь где-нибудь в укромной бухте, чтобы вас никто не видел. Это письмо имеет большую важность.";
-			link.l1 = "Хорошо. не думаю, что это займёт у меня слишком много времени.";
-			link.l1.go = "PKM_SvtvA_Ch1_6";
-			GiveNationLicence(SPAIN, 8);
-		break;
-		case "PKM_SvtvA_Ch1_6":
-			DialogExit();
-			AddQuestRecord("PKM_Animists", "8");
-			
-			PChar.quest.PKM_SvtvA_SJ_B1.win_condition.l1 = "location";
-			PChar.quest.PKM_SvtvA_SJ_B1.win_condition.l1.location = "SanJuan_town";
-			PChar.quest.PKM_SvtvA_SJ_B1.win_condition = "PKM_SvtvA_DostavkaPisma_Gorod_1";
-			
-			PChar.quest.PKM_SvtvA_SJ_B2.win_condition.l1 = "location";
-			PChar.quest.PKM_SvtvA_SJ_B2.win_condition.l1.location = "Shore44";
-			PChar.quest.PKM_SvtvA_SJ_B2.win_condition = "PKM_SvtvA_DostavkaPisma_Buhta_1";
-			
-			PChar.quest.PKM_SvtvA_SJ_B3.win_condition.l1 = "location";
-			PChar.quest.PKM_SvtvA_SJ_B3.win_condition.l1.location = "Shore45";
-			PChar.quest.PKM_SvtvA_SJ_B3.win_condition = "PKM_SvtvA_DostavkaPisma_Buhta_1";
 		break;
 		
         case "Step_E6_1":
