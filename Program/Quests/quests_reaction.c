@@ -10552,17 +10552,13 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 		
 		case "PKM_SvtvA_Satamist_lutuet_3":
-			sld = CharacterFromID("PKM_SvtvA_Jitel1")
-			LAi_KillCharacter(sld);
+			LAi_KillCharacter(CharacterFromID("PKM_SvtvA_Jitel1"));
 		break;
 		case "PKM_SvtvA_Satamist_lutuet_4":
-			sld = CharacterFromID("PKM_SvtvA_Jitel2")
-			LAi_KillCharacter(sld);
+			LAi_KillCharacter(CharacterFromID("PKM_SvtvA_Jitel2"));
 			
 			LAi_SetPlayerType(pchar);
 		break;
-		
-
 		
 		case "PKM_SvtvA_DostavkaPisma_Gorod_2":		//Битва в городе
 			bDisableFastReload = false;
@@ -10570,7 +10566,7 @@ void QuestComplete(string sQuestName, string qname)
 			AddQuestRecord("PKM_Animists", "9.1");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
 			AddQuestUserData("PKM_Animists", "sSex2", GetSexPhrase("ся","ась"));
-			pchar.questTemp.PKM_SvtvA_SanJuanChurch_1 = "Church1";
+			pchar.questTemp.PKM_SvtvA_SanJuanChurch_1_Dobro = "Church1";
 		break;
 		
 		case "PKM_SvtvA_DostavkaPisma_Buhta_2":		//Битва в бухте без разговора
@@ -10579,7 +10575,7 @@ void QuestComplete(string sQuestName, string qname)
 			AddQuestRecord("PKM_Animists", "9.2");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
 			AddQuestUserData("PKM_Animists", "sSex2", GetSexPhrase("ся","ась"));
-			pchar.questTemp.PKM_SvtvA_SanJuanChurch_1 = "Church1";
+			pchar.questTemp.PKM_SvtvA_SanJuanChurch_1_Dobro = "Church1";
 		break;
 		
 		case "PKM_SvtvA_DostavkaPisma_Buhta_3":		//Битва в бухте с разговором и отказываемся отдавать письмо
@@ -10587,7 +10583,7 @@ void QuestComplete(string sQuestName, string qname)
 			chrDisableReloadToLocation = false;
 			AddQuestRecord("PKM_Animists", "10");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("ёл","ла"));
-			pchar.questTemp.PKM_SvtvA_SanJuanChurch_1 = "Church1";
+			pchar.questTemp.PKM_SvtvA_SanJuanChurch_1_Dobro = "Church1";
 		break;
 		
 		case "PKM_SvtvA_DostavkaPisma_Buhta_1":

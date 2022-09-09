@@ -301,7 +301,7 @@ void ProcessDialogEvent()
 			chrDisableReloadToLocation = false;
 			AddQuestRecord("PKM_Animists", "11");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("ся","ась"));
-			pchar.questTemp.PKM_SvtvA_SanJuanChurch_1 = "Church1";
+			pchar.questTemp.PKM_SvtvA_SanJuanChurch_1_Zlo = "Church1";
 		break;
 		
 	}
