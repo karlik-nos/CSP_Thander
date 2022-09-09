@@ -187,7 +187,7 @@ void ProcessDialogEvent()
 
 		case "DHreaction":
 			dialog.text = "Убирайся! Мне не о чем с тобой говорить!";
-			link.l1 = "Мда... ты же просто дурачок.";
+			link.l1 = "Не очень-то и хотелось.";
 			link.l1.go = "exit";
 			ChangeCharacterNationReputation(pchar, sti(NPChar.nation), -5);
 			npchar.quest.BadMeeting = lastspeak_date;
