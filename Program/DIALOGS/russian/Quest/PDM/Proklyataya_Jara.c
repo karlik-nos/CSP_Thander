@@ -57,7 +57,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Mne_Jarko_4":
-			dialog.text = "Спасибо вам, "+ GetSexPhrase("месье","мадмуазэль") +"... Я в вечном долгу перед вами. Прошу вас, поспешите.";
+			dialog.text = "Я в вечном долгу перед вами. Прошу вас, поспешите.";
 			link.l1 = "Не успеешь моргнуть, как я уже вернусь.";
 			link.l1.go = "Mne_Jarko_5";
 			DeleteAttribute(npchar, "talker");
@@ -90,13 +90,12 @@ void ProcessDialogEvent()
 
 		case "Prines_Vino_2":
 			TakeItemFromCharacter(pchar, "PDM_PJ_Vino");
-			sld = CharacterFromID("FortFrance_tavernkeeper")
 			dialog.text = "Я и не думал, что вы вправду сподобитесь принести мне бутылку. Спасибо, капитан "+pchar.name+". Сколько я должен вам за это вино?";
 			MakeRandomLinkOrderTwo(link,
 			"Не волнуйся относительно денег - мне было приятно сделать это для тебя.",
 			"Prines_Vino_Drujba_1",
 
-			"500 золотых. Я попросил"+ GetSexPhrase("","а") +" вина не очень дорогого, но, похоже, в вашей таверне заправляет бывший пират, этот "+sld.name+".",
+			"500 золотых. Я попросил"+ GetSexPhrase("","а") +" вина не очень дорогого, но, похоже, в вашей таверне заправляет бывший пират, этот "+GetFullName(CharacterFromID("FortFrance_tavernkeeper"))+".",
 			"Prines_Vino_Obman_1");
 		break;
 
@@ -192,7 +191,7 @@ void ProcessDialogEvent()
 		case "Prines_Rom_1":
 			npchar.dialog.filename   = "Common_Soldier.c";
 			npchar.dialog.currentnode   = "First time";
-			dialog.text = "Ой, вы вернулись, капитан? И... прошу прощения, "+ GetSexPhrase("месье","мадмуазэль") +"... но... вы не нашли рома?";
+			dialog.text = "Ой, вы вернулись, капитан? И... прошу прощения... но... вы не нашли рома?";
 			link.l1 = "Вот, возьмите. Полагаю, это укрепит мою репутацию лучшего местного поставщика спиртных напитков для французской армии.";
 			link.l1.go = "Prines_Rom_2";
 		break;
@@ -200,7 +199,7 @@ void ProcessDialogEvent()
 		case "Prines_Rom_2":
 			ChangeCharacterNationReputation(pchar, FRANCE, 5);
 			TakeItemFromCharacter(pchar, "PDM_PJ_Rom");
-			dialog.text = "Хорошая шутка, "+ GetSexPhrase("месье","мадмуазэль") +". И большое вам спасибо за ром. Вы "+ GetSexPhrase("сильный мужчина","симпатичная девушка") +" с добрым сердцем, не то, что эти заносчивые аристократы. Хотелось бы мне, чтобы у меня был такой командир.";
+			dialog.text = "Хорошая шутка. И большое вам спасибо за ром. Вы "+ GetSexPhrase("сильный мужчина","симпатичная девушка") +" с добрым сердцем, не то, что эти заносчивые аристократы. Хотелось бы мне, чтобы у меня был такой командир.";
 			link.l1 = "Хорошо, солдат, вам лучше вернуться на пост. И помалкивайте насчёт рома, а не то моя шутка может оказаться слишком похожей на правду...";
 			link.l1.go = "Prines_Rom_3";
 		break;
@@ -215,8 +214,8 @@ void ProcessDialogEvent()
 			DialogExit();
 			CloseQuestHeader("PDM_Proklyataya_Jara");
 			AddQuestRecord("PDM_Proklyataya_Jara", "5");
-			AddCharacterSkillDontClearExp(pchar, "Leadership", 1);
-			Log_SetStringToLog("Авторитет + 1");
+			AddCharacterExpToSkill(pchar, "Leadership", 140);
+			AddCharacterExpToSkill(pchar, "Commerce", 70);
 		break;
 
 	}
