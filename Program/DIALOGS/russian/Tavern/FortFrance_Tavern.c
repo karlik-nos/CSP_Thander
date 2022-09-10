@@ -38,13 +38,13 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 
 		case "PDM_PJ_1":
-			dialog.text = "Так это же не проблема, "+ GetSexPhrase("месье","мадмуазэль") +"! Хе-хе-хе-хе! Вы пришли как раз куда надо, и говорите как раз с тем, кто вам нужен! Хотите бутылочку вина? Можете купить бочку! Лучшее вино на всем архипелаге!",
+			dialog.text = "Так это же не проблема! Хе-хе-хе-хе! Вы пришли как раз куда надо, и говорите как раз с тем, кто вам нужен! Хотите бутылочку вина? Можете купить бочку! Лучшее вино на всем архипелаге!",
 			link.l1 = "Что ж, это просто замечательно, но мне нужна всего одна бутылка. Сколько вы за неё хотите?",
 			link.l1.go = "PDM_PJ_2";
 		break;
 
 		case "PDM_PJ_2":
-			dialog.text = "Ой, "+ GetSexPhrase("месье","мадмуазэль") +", уверен, что вы почувствуете истинную ценность этого божественного нектара! Вы получите бутылку моего прекрасного старого вина всего за пять золотых монет!",
+			dialog.text = "Ой, "+ GetSexPhrase("месье","мадмуазэль") +", уверен, что вы почувствуете истинную ценность этого божественного нектара! Вы получите бутылку моего прекрасного старого вина всего за 200 золотых монет!",
 			MakeRandomLinkOrderThree(link,
 			"Я возьму вино, "+npchar.name+". Но с такими ценами у тебя вряд ли появится много покупателей.",
 			"PDM_PJ_Beru_1",
@@ -63,7 +63,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 
 		case "PDM_PJ_Beru_2":
-			dialog.text = "Надуть? Хе-хе-хе, "+ GetSexPhrase("месье","мадмуазэль") +", вы, конечно, шутите. Да, во Франции вы можете купить бутылку бургундского за пять золотых. Но Мартиника ведь находится не во Франции, верно? Хе-хе-хе!",
+			dialog.text = "Надуть? Хе-хе-хе, "+ GetSexPhrase("месье","мадмуазэль") +", вы, конечно, шутите. Да, во Франции вы можете купить бутылку бургундского за 200 золотых. Но Мартиника ведь находится не во Франции, верно? Хе-хе-хе!",
 			link.l1 = "Дайте мне это проклятое вино, и во имя Господа, прекратите это хихиканье!",
 			link.l1.go = "PDM_PJ_Beru_3";
 		break;
@@ -73,7 +73,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 
 			AddQuestRecord("PDM_Proklyataya_Jara", "2");
 			GiveItem2Character(PChar, "PDM_PJ_Vino");
-			AddMoneyToCharacter(pchar, -5);
+			AddMoneyToCharacter(pchar, -200);
 			DeleteAttribute(pchar, "questTemp.PDM_PJ_KV");
 			sld = CharacterFromID("PDM_PJ_Strajnik_1")
 			sld.Dialog.Filename = "Quest/PDM/Proklyataya_Jara.c";

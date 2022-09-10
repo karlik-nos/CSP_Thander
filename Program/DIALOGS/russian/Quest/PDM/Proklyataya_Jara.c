@@ -96,19 +96,19 @@ void ProcessDialogEvent()
 			"Не волнуйся относительно денег - мне было приятно сделать это для тебя.",
 			"Prines_Vino_Drujba_1",
 
-			"Десять золотых. Я попросил"+ GetSexPhrase("","а") +" вина не очень дорогого, но, похоже, в вашей таверне заправляет бывший пират, этот "+sld.name+".",
+			"500 золотых. Я попросил"+ GetSexPhrase("","а") +" вина не очень дорогого, но, похоже, в вашей таверне заправляет бывший пират, этот "+sld.name+".",
 			"Prines_Vino_Obman_1");
 		break;
 
 		case "Prines_Vino_Drujba_1":
-			dialog.text = "Вы очень добрый человек, "+ GetSexPhrase("месье","мадмуазэль") +". Я буду рад послужить вам, если вам что-то понадобится.";
+			dialog.text = "Вы очень добрый человек. Я буду рад послужить вам, если вам что-то понадобится.";
 			link.l1 = "Спасибо, дружок. До встречи.";
 			link.l1.go = "A_Eto_eshe_ne_vse";
 			ChangeCharacterReputation(pchar, 3);
 		break;
 
 		case "Prines_Vino_Obman_1":
-			dialog.text = "Десять? Ой, но это же половина моего жалованья... И что мне теперь делать?";
+			dialog.text = "500 золотых? Ой, но это же половина моего жалованья... И что мне теперь делать?";
 			MakeRandomLinkOrderTwo(link,
 			"Тебе следовало подумать об этом раньше. А теперь уж плати.",
 			"Prines_Vino_Obman_2",
@@ -122,8 +122,8 @@ void ProcessDialogEvent()
 			dialog.text = "Чёрт подери. Ну, попадись мне этот "+sld.name+". Ладно, берите деньги. Всё, мне нужно стоять на посту, я на могу разговаривать с вами больше. До встречи.";
 			link.l1 = "До свидания, солдат.";
 			link.l1.go = "A_Eto_eshe_ne_vse";
-			ChangeCharacterReputation(pchar, -3);
-			AddMoneyToCharacter(pchar, 8);
+			ChangeCharacterReputation(pchar, -4);
+			AddMoneyToCharacter(pchar, 437);
 		break;
 
 		case "A_Eto_eshe_ne_vse":
