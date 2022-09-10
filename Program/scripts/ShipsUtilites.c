@@ -616,6 +616,7 @@ float SpeedBySkill(aref refCharacter)
 	if (needSkillMin == needSkillMax) needSkillMin = needSkillMin - 1;
 
 	float fSRFromSkill = 0.7 + Bring2Range(0.0, 0.25, makefloat(needSkillMin), makefloat(needSkillMax), makefloat(skill)) + 0.0005 * makefloat(skill);
+	if (skill < needSkillMin) fSRFromSkill *= Bring2Range(0.05, 0.9, makefloat(needSkillMin) - 15.0, makefloat(needSkillMin), makefloat(skill));
 
     float fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "ShipSpeedUp"), 1.0, 1.15);   //slib
     fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "SailingProfessional"), fSpeedPerk, 1.20);
@@ -721,6 +722,7 @@ float TurnBySkill(aref refCharacter)
 	{
 		fTRFromSKill = 0.3 + Bring2Range(0.0, 0.4, makefloat(needSkillMin), makefloat(needSkillMax), makefloat(skill)) + 0.003 * makefloat(skill);
 	}
+	if (skill < needSkillMin) fTRFromSKill *= Bring2Range(0.05, 0.9, makefloat(needSkillMin) - 15.0, makefloat(needSkillMin), makefloat(skill));
 
     float fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "ShipTurnRateUp"), 1.0, 1.15);   //slib
     fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "SailingProfessional"), fSpeedPerk, 1.20);
