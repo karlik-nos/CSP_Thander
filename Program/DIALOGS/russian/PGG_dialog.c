@@ -356,6 +356,7 @@ void ProcessDialogEvent()
 			DeleteAttribute(NPChar, "PGGAi.LockService");
 			SetCharacterRemovable(NPChar, true);
 			SaveCurrentNpcQuestDateParam(NPChar, "Companion.CheckRelation");
+			LAi_SetImmortal(NPChar, false);
 		}
 		else
 		{
