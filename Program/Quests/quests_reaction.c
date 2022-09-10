@@ -10495,15 +10495,21 @@ void QuestComplete(string sQuestName, string qname)
 			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
 			sld.dialog.currentnode = "Satanist_v_gorode_1";
 			ChangeCharacterAddressGroup(sld, pchar.location, "quest",  "quest1");
+			DeleteAttribute(sld, "items");
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
 			for (i=1; i<=5; i++)
 			{
 				sld = GetCharacter(NPC_GenerateCharacter("SatanaElita_"+i, "Animists1", "man", "man", 60, PIRATE, -1, true));
 				FantomMakeCoolFighter(sld, 70, 100, 100, BLADE_LONG, "pistol1", 200);
-				//LAi_SetActorType(sld);
 				LAi_SetStayType(sld);
 				LAi_CharacterDisableDialog(sld);
 				ChangeCharacterAddressGroup(sld, pchar.location, "quest",  "quest1");
-				//LAi_ActorFollow(sld, pchar, "", -1);
+				DeleteAttribute(sld, "items");
+				sld.SaveItemsForDead = true;
+				GiveItem2Character(sld, "PKM_SvtvA_znachok");
+				AddItems(sld, "mineral3", rand(7)-4);
 			}
 			for (i=6; i<=8; i++)
 			{
@@ -10514,6 +10520,10 @@ void QuestComplete(string sQuestName, string qname)
 				LAi_SetWarriorType(sld);
 				LAi_SetActorType(sld);
 				LAi_ActorTurnToCharacter(sld, pchar);
+				DeleteAttribute(sld, "items");
+				sld.SaveItemsForDead = true;
+				GiveItem2Character(sld, "PKM_SvtvA_znachok");
+				AddItems(sld, "mineral3", rand(7)-4);
 			}
 			for (i=9; i<=10; i++)
 			{
@@ -10524,6 +10534,10 @@ void QuestComplete(string sQuestName, string qname)
 				LAi_SetWarriorType(sld);
 				LAi_SetActorType(sld);
 				LAi_ActorTurnToCharacter(sld, pchar);
+				DeleteAttribute(sld, "items");
+				sld.SaveItemsForDead = true;
+				GiveItem2Character(sld, "PKM_SvtvA_znachok");
+				AddItems(sld, "mineral3", rand(7)-4);
 			}
 			sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA_Jitel1", "Citiz_2", "man", "man", 1, SPAIN, -1, false));
 			ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto20");
