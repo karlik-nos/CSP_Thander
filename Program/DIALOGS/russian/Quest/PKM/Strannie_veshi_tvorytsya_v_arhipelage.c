@@ -302,6 +302,9 @@ void ProcessDialogEvent()
 			AddQuestRecord("PKM_Animists", "11");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("ся","ась"));
 			pchar.questTemp.PKM_SvtvA_SanJuanChurch_1_Zlo = "Church1";
+			PChar.quest.PKM_SvtvA_SJ_B1.over = "yes";
+			PChar.quest.PKM_SvtvA_SJ_B2.over = "yes";
+			PChar.quest.PKM_SvtvA_SJ_B3.over = "yes";
 		break;
 		
 	}

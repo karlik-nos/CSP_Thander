@@ -10567,6 +10567,9 @@ void QuestComplete(string sQuestName, string qname)
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
 			AddQuestUserData("PKM_Animists", "sSex2", GetSexPhrase("ся","ась"));
 			pchar.questTemp.PKM_SvtvA_SanJuanChurch_1_Dobro = "Church1";
+			PChar.quest.PKM_SvtvA_SJ_B1.over = "yes";
+			PChar.quest.PKM_SvtvA_SJ_B2.over = "yes";
+			PChar.quest.PKM_SvtvA_SJ_B3.over = "yes";
 		break;
 		
 		case "PKM_SvtvA_DostavkaPisma_Buhta_2":		//Битва в бухте без разговора
@@ -10576,6 +10579,9 @@ void QuestComplete(string sQuestName, string qname)
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
 			AddQuestUserData("PKM_Animists", "sSex2", GetSexPhrase("ся","ась"));
 			pchar.questTemp.PKM_SvtvA_SanJuanChurch_1_Dobro = "Church1";
+			PChar.quest.PKM_SvtvA_SJ_B1.over = "yes";
+			PChar.quest.PKM_SvtvA_SJ_B2.over = "yes";
+			PChar.quest.PKM_SvtvA_SJ_B3.over = "yes";
 		break;
 		
 		case "PKM_SvtvA_DostavkaPisma_Buhta_3":		//Битва в бухте с разговором и отказываемся отдавать письмо
@@ -10584,6 +10590,9 @@ void QuestComplete(string sQuestName, string qname)
 			AddQuestRecord("PKM_Animists", "10");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("ёл","ла"));
 			pchar.questTemp.PKM_SvtvA_SanJuanChurch_1_Dobro = "Church1";
+			PChar.quest.PKM_SvtvA_SJ_B1.over = "yes";
+			PChar.quest.PKM_SvtvA_SJ_B2.over = "yes";
+			PChar.quest.PKM_SvtvA_SJ_B3.over = "yes";
 		break;
 		
 		case "PKM_SvtvA_DostavkaPisma_Buhta_1":
