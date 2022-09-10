@@ -68,6 +68,7 @@ void ProcessDialogEvent()
 			AddQuestRecord("PDM_Proklyataya_Jara", "1");
 			DialogExit();
 			pchar.questTemp.PDM_PJ_KV = "KupitVino";
+			pchar.questTemp.PDM_PJ_SS = "SdatSoldata";
 			sld = CharacterFromID("PDM_PJ_Strajnik_1")
 			sld.Dialog.Filename = "Quest/PDM/Proklyataya_Jara.c";
 			sld.dialog.currentnode = "Mne_Jarko_5_EsheRaz";
