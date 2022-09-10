@@ -75,6 +75,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			GiveItem2Character(PChar, "PDM_PJ_Vino");
 			AddMoneyToCharacter(pchar, -200);
 			DeleteAttribute(pchar, "questTemp.PDM_PJ_KV");
+			DeleteAttribute(pchar, "questTemp.PDM_PJ_SS");
 			sld = CharacterFromID("PDM_PJ_Strajnik_1")
 			sld.Dialog.Filename = "Quest/PDM/Proklyataya_Jara.c";
 			sld.dialog.currentnode = "Prines_Vino_1";
