@@ -20,22 +20,13 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = "PDM_PJ_SS_2";
 			DeleteAttribute(pchar, "questTemp.PDM_PJ_SS");
 			DeleteAttribute(pchar, "questTemp.PDM_PJ_KV");
+			AddMoneyToCharacter(pchar, 5000);
 		break;
 		
 		case "PDM_PJ_SS_2":
 			DialogExit();
-			AddMoneyToCharacter(pchar, 5000);
-			sld = CharacterFromID("PDM_PJ_Strajnik_1")
-			sld.name	= "Лоран";
-			sld.lastname	= "";
-			sld.model = "sold_fra_2";
-			sld.dialog.filename   = "Common_Soldier.c";
-			sld.dialog.currentnode   = "First time";
-			
-			CloseQuestHeader("PDM_Proklyataya_Jara");
-			AddQuestRecord("PDM_Proklyataya_Jara", "6");
-			AddCharacterExpToSkill(pchar, "Leadership", 110);
-			AddCharacterExpToSkill(pchar, "Sneak", 100);
+			LAi_SetActorType(pchar);
+			DoQuestReloadToLocation("FortFrance_town", "goto", "goto2", "PDM_PJ_Arest_0");
 		break;
 	}
 	UnloadSegment(NPChar.FileDialog2);  // если где-то выход внутри switch  по return не забыть сделать анлод

@@ -2588,35 +2588,6 @@ string descF54 = "Sinistra ТЕСТ";
 void CalculateInfoDataF54()
 {
 	totalInfo = descF54;
-<<<<<<< Updated upstream
-=======
-	
-	//Стражники
-	sld = GetCharacter(NPC_GenerateCharacter("PDM_PJ_Strajnik_3", "sold_fra_3", "man", "manKSM", 10, FRANCE, -1, true));
-	LAi_SetActorType(sld);
-	LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
-	ChangeCharacterAddressGroup(sld,"FortFrance_town","goto","goto34");
-	LAi_ActorGoToLocator(sld, "reload", "patrol", "patrol22", -1);
-
-	sld = GetCharacter(NPC_GenerateCharacter("PDM_PJ_Strajnik_4", "sold_fra_4", "man", "man", 10, FRANCE, -1, true));
-	LAi_SetActorType(sld);
-	LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
-	ChangeCharacterAddressGroup(sld,"FortFrance_town","goto","goto34");
-	LAi_ActorGoToLocator(sld, "reload", "reload", "reloadPr1", -1);
-	
-	sld = GetCharacter(NPC_GenerateCharacter("PDM_PJ_Strajnik_5", "sold_fra_4", "man", "man", 10, FRANCE, -1, true));
-	LAi_SetActorType(sld);
-	LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
-	ChangeCharacterAddressGroup(sld,"FortFrance_town","goto","goto34");
-	LAi_ActorGoToLocator(sld, "reload", "reload", "reloadPr1", -1);
-	
-	sld = CharacterFromID("PDM_PJ_Strajnik_1")
-	LAi_SetLoginTime(sld, 0.0, 24.0);
-	sld = CharacterFromID("PDM_PJ_Strajnik_2")
-	LAi_SetLoginTime(sld, 0.0, 24.0);
-	
-	DoQuestFunctionDelay("PDM_PJ_Arest_1", 3.0);
->>>>>>> Stashed changes
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 

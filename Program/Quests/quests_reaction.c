@@ -10277,7 +10277,103 @@ void QuestComplete(string sQuestName, string qname)
 			bDisableFastReload = false;
 			chrDisableReloadToLocation = false;
 		break;
+		
+//========================  Квест "Проклятая жара".  =======================		
 
+		case "PDM_PJ_Arest_0":
+			sld = GetCharacter(NPC_GenerateCharacter("PDM_PJ_Strajnik_4", "sold_fra_4", "man", "man", 10, FRANCE, -1, true));
+			LAi_SetActorType(sld);
+			sld.lifeday = 0;
+			LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
+			ChangeCharacterAddressGroup(sld,"FortFrance_town","goto","goto34");
+			LAi_ActorGoToLocator(sld, "officers", "reloadPr1_1", "", -1);
+		
+			sld = GetCharacter(NPC_GenerateCharacter("PDM_PJ_Strajnik_3", "sold_fra_3", "man", "man", 10, FRANCE, -1, true));
+			LAi_SetActorType(sld);
+			sld.lifeday = 0;
+			LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
+			ChangeCharacterAddressGroup(sld,"FortFrance_town","goto","goto34");
+			LAi_ActorGoToLocator(sld, "officers", "reloadPr1_3", "PDM_PJ_Arest_1_1", -1);
+			
+			sld = CharacterFromID("PDM_PJ_Strajnik_1")
+			LAi_SetActorType(sld);
+			sld.lifeday = 0;
+			LAi_SetLoginTime(sld, 0.0, 24.0);
+			sld = CharacterFromID("PDM_PJ_Strajnik_2")
+			LAi_SetLoginTime(sld, 0.0, 24.0);
+			
+			StartQuestMovie(true, true, true);
+			locCameraFromToPos(-35.50, 7.00, 25.00, true, -20.00, 0.00, 15.00);
+		break;
+
+		case "PDM_PJ_Arest_1":
+			sld = CharacterFromID("PDM_PJ_Strajnik_3")
+			LAi_ActorAnimation(sld, "barman_idle", "", 1.5);
+			DoQuestCheckDelay("PDM_PJ_Arest_2", 1.5);
+			DoQuestCheckDelay("PDM_PJ_Arest_1_2", 0.8);
+			sld = CharacterFromID("PDM_PJ_Strajnik_4")
+			LAi_ActorTurnToCharacter(sld, CharacterFromID("PDM_PJ_Strajnik_1"));
+		break;
+		
+		case "PDM_PJ_Arest_1_1":
+			locCameraFromToPos(-31.50, 6.00, 40.00, true, -20.00, 0.00, 0.00);
+			DoQuestCheckDelay("PDM_PJ_Arest_1", 0.4);
+		break;
+		
+		case "PDM_PJ_Arest_1_2":
+			sld = CharacterFromID("PDM_PJ_Strajnik_1")
+			RemoveCharacterEquip(sld, BLADE_ITEM_TYPE);
+		break;
+		
+		case "PDM_PJ_Arest_2":
+			sld = CharacterFromID("PDM_PJ_Strajnik_1")
+			LAi_ActorGoToLocator(sld, "reload", "reload6_back", "", -1);
+			DoQuestCheckDelay("PDM_PJ_Arest_3", 1.0);
+		break;
+		
+		case "PDM_PJ_Arest_3":
+			sld = CharacterFromID("PDM_PJ_Strajnik_3")
+			LAi_ActorGoToLocator(sld, "reload", "reload6_back", "", -1);
+			sld = CharacterFromID("PDM_PJ_Strajnik_4")
+			LAi_ActorGoToLocator(sld, "officers", "reload6_3", "", -1);
+			DoQuestCheckDelay("PDM_PJ_Arest_4", 5.0);
+		break;
+		
+		case "PDM_PJ_Arest_4":
+			DoQuestReloadToLocation("FortFrance_prison", "reload", "reload1", "PDM_PJ_Arest_5");
+		break;
+		
+		case "PDM_PJ_Arest_5":
+			sld = GetCharacter(NPC_GenerateCharacter("PDM_PJ_Strajnik_5", "sold_fra_2", "man", "man", 10, FRANCE, -1, true));
+			sld.name	= "Лоран";
+			sld.lastname	= "";
+			sld.dialog.filename   = "Common_Soldier.c";
+			sld.dialog.currentnode   = "First time";
+			LAi_SetLoginTime(sld, 6.0, 21.99);
+			LAi_SetGuardianType(sld);
+			LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
+			ChangeCharacterAddressGroup(sld,"FortFrance_town","officers","soldier_uniq2");
+			
+			sld = CharacterFromID("PDM_PJ_Strajnik_3")
+			LAi_SetLoginTime(sld, 6.0, 21.99);
+			
+			EndQuestMovie();
+			LAi_SetPlayerType(pchar);
+			CloseQuestHeader("PDM_Proklyataya_Jara");
+			AddQuestRecord("PDM_Proklyataya_Jara", "6");
+			AddCharacterExpToSkill(pchar, "Leadership", 130);
+			AddCharacterExpToSkill(pchar, "Sneak", 130);
+		break;
+		
+		case "PDM_PJ_Protrezvel":
+			sld = CharacterFromID("PDM_PJ_Strajnik_1")
+			sld.dialog.filename   = "Common_Soldier.c";
+			sld.dialog.currentnode   = "First time";
+			LAi_SetLoginTime(sld, 6.0, 21.99);
+			LAi_SetGuardianType(sld);
+			LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");		
+		break;
+		
 //========================  Квест "Клан Ламбрини".  =======================
 
 		case "PDM_CL_Lodka":

@@ -120,6 +120,10 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			sld.Dialog.Filename = "Quest/PDM/Proklyataya_Jara.c";
 			sld.dialog.currentnode = "Prines_Rom_1";
 			AddQuestRecord("PDM_Proklyataya_Jara", "4");
+			
+			sld = CharacterFromID("PDM_PJ_Strajnik_1")
+			LAi_SetActorType(sld);
+			LAi_ActorAnimation(sld, "stun_1", "", 1.0);
 		break;
 
 

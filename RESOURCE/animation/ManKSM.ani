@@ -1817,7 +1817,7 @@ event = "Jump pause", 4268 , normal
 	[stun_1] 
 	type = normal
 	start_time = 4790
-	end_time = 4820
+	end_time = 4829
 	
 	speed = 1.
 	loop = true

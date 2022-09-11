@@ -10662,13 +10662,6 @@ void PDM_ONV_Kazn_4(string qName)
 }
 //Sinistra Охота на ведьму <--
 
-//Sinistra Проклятая жара -->
-void PDM_PJ_Arest_1(string qName)
-{
-	sld = CharacterFromID("PDM_ONV_Podjigatel")
-}
-//Sinistra Проклятая жара <--
-
 //Sinistra Клан Ламбрини -->
 void PDM_CL_Ubrat_Lodku(string qName)
 {
