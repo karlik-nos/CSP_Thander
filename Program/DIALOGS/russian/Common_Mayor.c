@@ -1721,7 +1721,7 @@ void ProcessDialogEvent()
 			if  (GetCharacterSPECIALSimple(PChar, SPECIAL_C) >= dRand(11))   i = -1;       //WW   харизма героя перебивает работу у ПГГ
 			if (i != -1)
 			{
-				dialog.text = "Увы, на сегодня у меня заданий больше нет. Последнее выполнил " + GetFullName(&Characters[i])
+				dialog.text = "Увы, на сегодня у меня заданий больше нет. Последнее выполнил" + NPCharSexPhrase(&Characters[i], " ", "а ") + GetFullName(&Characters[i])
 					+ ". Зайдите завтра, может что-то появится.";
 				link.l1 = "Ах, чёрт!!! Не везет...";
 				link.l1.go = "exit";
