@@ -10379,7 +10379,9 @@ void QuestComplete(string sQuestName, string qname)
 			sld.name = "Антонио";
 			sld.lastname = "де Гальвес";
 			sld.greeting = "GR_Spainguard";
-			sld.equip.blade = "blade39";
+			Blade = GetGeneratedItem("blade39");
+			GiveItem2Character(sld, Blade);
+			EquipCharacterbyItem(sld, Blade);
 			ChangeCharacterAddressGroup(sld, "Shore37", "goto", "goto7");
 			LAi_SetActorType(sld);
 			LAi_ActorDialog(sld, pchar, "", -1, 0);
