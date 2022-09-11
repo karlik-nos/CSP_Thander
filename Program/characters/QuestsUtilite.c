@@ -393,7 +393,7 @@ void FillAboardCabinBox(ref _location, ref _npchar)
 			if(rand(1) == 0) { _location.box1.items.mineral4 = rand(118) + 85; }
 			_location.box1.items.mineral5 = rand(78) + 115;
 			if(rand(1) == 0) { _location.box1.items.mineral8 = rand(86) + 44; }
-			_location.box1.items.mineral11 = rand(146) + 131;
+			_location.box1.items.indian2 = rand(146) + 131;
 		}
 		_location.box1.money = 12560 + rand(1000);
 		ok = false;
