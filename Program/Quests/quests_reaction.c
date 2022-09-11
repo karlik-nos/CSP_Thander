@@ -10346,7 +10346,7 @@ void QuestComplete(string sQuestName, string qname)
 		case "PDM_PJ_Arest_5":
 			sld = GetCharacter(NPC_GenerateCharacter("PDM_PJ_Strajnik_5", "sold_fra_2", "man", "man", 10, FRANCE, -1, true));
 			sld.name	= "Лоран";
-			sld.lastname	= "";
+			sld.lastname	= "Тома";
 			sld.dialog.filename   = "Common_Soldier.c";
 			sld.dialog.currentnode   = "First time";
 			LAi_SetLoginTime(sld, 6.0, 21.99);
@@ -10354,7 +10354,7 @@ void QuestComplete(string sQuestName, string qname)
 			LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
 			ChangeCharacterAddressGroup(sld,"FortFrance_town","officers","soldier_uniq2");
 			
-			sld = CharacterFromID("PDM_PJ_Strajnik_3")
+			sld = CharacterFromID("PDM_PJ_Strajnik_2")
 			LAi_SetLoginTime(sld, 6.0, 21.99);
 			
 			EndQuestMovie();
