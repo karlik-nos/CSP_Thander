@@ -2575,7 +2575,7 @@ void PDMQuestsInit()
 	ChangeCharacterAddressGroup(sld,"PortSpein_tavern","sit","sit_front2");
 	//******Проклятая жара Sinistra******
 	//Стражники
-	sld = GetCharacter(NPC_GenerateCharacter("PDM_PJ_Strajnik_1", "sold_fra_5", "man", "man", 10, FRANCE, -1, false));
+	sld = GetCharacter(NPC_GenerateCharacter("PDM_PJ_Strajnik_1", "sold_fra_5KSM", "man", "manKSM", 10, FRANCE, -1, false));
 	sld.name	= "Джори";
 	sld.lastname	= "";
 	sld.Dialog.Filename = "Quest/PDM/Proklyataya_Jara.c";
