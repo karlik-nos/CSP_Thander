@@ -54,7 +54,7 @@ void WhrSetSeaPreset(int iCurWeatherNum, string sPreset)
 				Whr.Sea2.FoamUV = 1.0; //тайлинг пены
 				Whr.Sea2.FoamTexDisturb = 0.5;//сдвиг по нормали. х.з. что это надо поюзать. значение от 0.0 до 1.0
 
-				Whr.Sea2.Reflection = 0.9;//0.8;Отражение
+				Whr.Sea2.Reflection = 1.5;//0.8;Отражение
 				Whr.Sea2.Transparency = 0.2;//0.6;Прозрачность
 				Whr.Sea2.Frenel = 0.8;//0.6;Рябь
 				Whr.Sea2.Attenuation = 0.7;//0.2;Затухание
@@ -81,7 +81,7 @@ void WhrSetSeaPreset(int iCurWeatherNum, string sPreset)
 				Whr.Sea2.FoamUV = 1.0; //тайлинг пены
 				Whr.Sea2.FoamTexDisturb = 0.5;//сдвиг по нормали. х.з. что это надо поюзать. значение от 0.0 до 1.0
 
-				Whr.Sea2.Reflection = 0.9;//0.8;Отражение
+				Whr.Sea2.Reflection = 1.5;//0.8;Отражение
 				Whr.Sea2.Transparency = 0.2;//0.6;Прозрачность
 				Whr.Sea2.Frenel = 0.8;//0.6;Рябь
 				Whr.Sea2.Attenuation = 0.7;//0.2;Затухание
@@ -108,7 +108,7 @@ void WhrSetSeaPreset(int iCurWeatherNum, string sPreset)
 				Whr.Sea2.FoamUV = 0.65; //тайлинг пены
 				Whr.Sea2.FoamTexDisturb = 0.5;//сдвиг по нормали. х.з. что это надо поюзать. значение от 0.0 до 1.0
 
-				Whr.Sea2.Reflection = 0.9;//0.8;Отражение
+				Whr.Sea2.Reflection = 1.5;//0.8;Отражение
 				Whr.Sea2.Transparency = 0.2;//0.6;Прозрачность
 				Whr.Sea2.Frenel = 0.8;//0.6;Рябь
 				Whr.Sea2.Attenuation = 0.7;//0.2;Затухание
@@ -135,10 +135,10 @@ void WhrSetSeaPreset(int iCurWeatherNum, string sPreset)
 				Whr.Sea2.FoamUV = 0.45; //тайлинг пены
 				Whr.Sea2.FoamTexDisturb = 0.5;//сдвиг по нормали. х.з. что это надо поюзать. значение от 0.0 до 1.0
 
-				Whr.Sea2.Reflection = 0.85;//0.8;Отражение
-				Whr.Sea2.Transparency = 0.25;//0.6;Прозрачность
-				Whr.Sea2.Frenel = 0.6;//0.6;Рябь
-				Whr.Sea2.Attenuation = 0.5;//0.2;Затухание
+				Whr.Sea2.Reflection = 1.5;//0.8;Отражение
+				Whr.Sea2.Transparency = 0.2;//0.6;Прозрачность
+				Whr.Sea2.Frenel = 0.8;//0.6;Рябь
+				Whr.Sea2.Attenuation = 0.7;//0.2;Затухание
 				Whr.Sea2.WaterColor = argb(0, 10, 50, 60);
 				Whr.Sea2.SkyColor = argb(0, 40, 50, 60);
 			break;
@@ -191,12 +191,12 @@ void WhrSetSeaPreset(int iCurWeatherNum, string sPreset)
 				Whr.Sea2.FoamUV = 0.25; //тайлинг пены
 				Whr.Sea2.FoamTexDisturb = 0.7;//сдвиг по нормали. х.з. что это надо поюзать. значение от 0.0 до 1.0
 
-				Whr.Sea2.Reflection = 1.99;
+				Whr.Sea2.Reflection = 1.5;
 				Whr.Sea2.Transparency = 0.2;
-				Whr.Sea2.Frenel = 0.8;
+				Whr.Sea2.Frenel = 0.5;
 				Whr.Sea2.Attenuation = 0.7;
-				Whr.Sea2.WaterColor = argb(0, 10, 50, 30);
-				Whr.Sea2.SkyColor = argb(0, 5, 50, 75)
+				Whr.Sea2.WaterColor = argb(0, 5, 30, 25);
+				Whr.Sea2.SkyColor = argb(0, 40, 50, 60)
 			break;
 	}
 	Log_TestInfo("WhrSetSeaPreset: выбран пресет " + sPreset);

@@ -35,7 +35,7 @@ int Whr_InitNight(int n)
 	Weathers[n].Sky.Color = argb(0,200,200,255);
 	Weathers[n].Sky.Rotate.Min = 0.0;
 	Weathers[n].Sky.Rotate.Max = 0.0;
-	Weathers[n].Sky.Size = 1000.0;
+	Weathers[n].Sky.Size = 2000.0;
 	Weathers[n].Sky.Angle = 0.0;
 	
 	Weathers[n].Planets.enable = true;
@@ -45,9 +45,9 @@ int Whr_InitNight(int n)
 	Weathers[n].Stars.Color = argb(0, 255, 255, 255);
 	Weathers[n].Stars.Radius = 2000.0;
 	Weathers[n].Stars.Size = 15.0;
-	Weathers[n].Stars.HeightFade = 200.0;
+	Weathers[n].Stars.HeightFade = 500.0;
 	Weathers[n].Stars.SunFade = 1.0;
-	Weathers[n].Stars.VisualMagnitude = 8.0;
+	Weathers[n].Stars.VisualMagnitude = 10.0;
 
 	Weathers[n].Fog.Enable = true;
 	Weathers[n].Fog.Height = 100;
@@ -80,16 +80,7 @@ int Whr_InitNight(int n)
 	Weathers[n].Rainbow.Enable = false;
 	Weathers[n].Rainbow.Texture = "weather\rainbow\rainbow.tga.tx";
 
-	Weathers[n].Planets.Enable = false;
-
-	Weathers[n].Stars.Enable = false;
-	Weathers[n].Stars.Texture = "weather\astronomy\stars.tga.tx";
-	Weathers[n].Stars.Color = argb(0, 255, 255, 255);
-	Weathers[n].Stars.Radius = 2000.0;
-	Weathers[n].Stars.Size = 15.0;
-	Weathers[n].Stars.HeightFade = 200.0;
-	Weathers[n].Stars.SunFade = 1.0;
-	Weathers[n].Stars.VisualMagnitude = 8.0;
+	Weathers[n].Planets.Enable = true;
 
 	Weathers[n].Sun.Color = argb(0,25,45,105);
 	Weathers[n].Sun.Ambient = argb(0,12,23,33);
@@ -224,19 +215,19 @@ int Whr_InitNight(int n)
 	Weathers[n].Sky.Color = argb(0,200,200,255);
 	Weathers[n].Sky.Rotate.Min = 0.0;
 	Weathers[n].Sky.Rotate.Max = 0.0;
-	Weathers[n].Sky.Size = 1000.0;
+	Weathers[n].Sky.Size = 2000.0;
 	Weathers[n].Sky.Angle = 0.0;
 	
 	Weathers[n].Planets.enable = false;
 
-	Weathers[n].Stars.Enable = false;
+	Weathers[n].Stars.Enable = true;
 	Weathers[n].Stars.Texture = "weather\astronomy\stars.tga.tx";
 	Weathers[n].Stars.Color = argb(0, 255, 255, 255);
 	Weathers[n].Stars.Radius = 2000.0;
 	Weathers[n].Stars.Size = 15.0;
-	Weathers[n].Stars.HeightFade = 200.0;
+	Weathers[n].Stars.HeightFade = 500.0;
 	Weathers[n].Stars.SunFade = 1.0;
-	Weathers[n].Stars.VisualMagnitude = 8.0;
+	Weathers[n].Stars.VisualMagnitude = 10.0;
 
 	Weathers[n].Fog.Enable = true;
 	Weathers[n].Fog.Height = 100;
@@ -269,16 +260,7 @@ int Whr_InitNight(int n)
 	Weathers[n].Rainbow.Enable = false;
 	Weathers[n].Rainbow.Texture = "weather\rainbow\rainbow.tga.tx";
 
-	Weathers[n].Planets.Enable = false;
-
-	Weathers[n].Stars.Enable = false;
-	Weathers[n].Stars.Texture = "weather\astronomy\stars.tga.tx";
-	Weathers[n].Stars.Color = argb(0, 255, 255, 255);
-	Weathers[n].Stars.Radius = 2000.0;
-	Weathers[n].Stars.Size = 15.0;
-	Weathers[n].Stars.HeightFade = 200.0;
-	Weathers[n].Stars.SunFade = 1.0;
-	Weathers[n].Stars.VisualMagnitude = 8.0;
+	Weathers[n].Planets.Enable = true;
 
 	Weathers[n].Sun.Color = argb(0,25,50,105);
 	Weathers[n].Sun.Ambient = argb(0,12,23,33);
@@ -413,12 +395,12 @@ int Whr_InitNight(int n)
 	Weathers[n].Sky.Color = argb(0,200,200,255);
 	Weathers[n].Sky.Rotate.Min = 0.0;
 	Weathers[n].Sky.Rotate.Max = 0.0;
-	Weathers[n].Sky.Size = 1000.0;
+	Weathers[n].Sky.Size = 2000.0;
 	Weathers[n].Sky.Angle = 0.0;
 	
 	Weathers[n].Planets.enable = false;
 
-	Weathers[n].Stars.Enable = false;
+	Weathers[n].Stars.Enable = true;
 	Weathers[n].Stars.Texture = "weather\astronomy\stars.tga.tx";
 	Weathers[n].Stars.Color = argb(0, 255, 255, 255);
 	Weathers[n].Stars.Radius = 2000.0;
@@ -458,9 +440,9 @@ int Whr_InitNight(int n)
 	Weathers[n].Rainbow.Enable = false;
 	Weathers[n].Rainbow.Texture = "weather\rainbow\rainbow.tga.tx";
 
-	Weathers[n].Planets.Enable = false;
+	Weathers[n].Planets.Enable = true;
 
-	Weathers[n].Stars.Enable = false;
+	Weathers[n].Stars.Enable = true;
 	Weathers[n].Stars.Texture = "weather\astronomy\stars.tga.tx";
 	Weathers[n].Stars.Color = argb(0, 255, 255, 255);
 	Weathers[n].Stars.Radius = 2000.0;
@@ -602,12 +584,12 @@ int Whr_InitNight(int n)
 	Weathers[n].Sky.Color = argb(0,200,200,255);
 	Weathers[n].Sky.Rotate.Min = 0.0;
 	Weathers[n].Sky.Rotate.Max = 0.0;
-	Weathers[n].Sky.Size = 1000.0;
+	Weathers[n].Sky.Size = 2000.0;
 	Weathers[n].Sky.Angle = 0.0;
 	
 	Weathers[n].Planets.enable = false;
 
-	Weathers[n].Stars.Enable = false;
+	Weathers[n].Stars.Enable = true;
 	Weathers[n].Stars.Texture = "weather\astronomy\stars.tga.tx";
 	Weathers[n].Stars.Color = argb(0, 255, 255, 255);
 	Weathers[n].Stars.Radius = 2000.0;
@@ -647,9 +629,9 @@ int Whr_InitNight(int n)
 	Weathers[n].Rainbow.Enable = false;
 	Weathers[n].Rainbow.Texture = "weather\rainbow\rainbow.tga.tx";
 
-	Weathers[n].Planets.Enable = false;
+	Weathers[n].Planets.Enable = true;
 
-	Weathers[n].Stars.Enable = false;
+	Weathers[n].Stars.Enable = true;
 	Weathers[n].Stars.Texture = "weather\astronomy\stars.tga.tx";
 	Weathers[n].Stars.Color = argb(0, 255, 255, 255);
 	Weathers[n].Stars.Radius = 2000.0;
@@ -792,7 +774,7 @@ int Whr_InitNight(int n)
 	Weathers[n].Sky.Color = argb(0,200,200,255);
 	Weathers[n].Sky.Rotate.Min = 0.0;
 	Weathers[n].Sky.Rotate.Max = 0.0;;
-	Weathers[n].Sky.Size = 1000.0;
+	Weathers[n].Sky.Size = 2000.0;
 	Weathers[n].Sky.Angle = 0.0;
 	
 	Weathers[n].Planets.enable = false;
@@ -837,9 +819,9 @@ int Whr_InitNight(int n)
 	Weathers[n].Rainbow.Enable = false;
 	Weathers[n].Rainbow.Texture = "weather\rainbow\rainbow.tga.tx";
 
-	Weathers[n].Planets.Enable = false;
+	Weathers[n].Planets.Enable = true;
 
-	Weathers[n].Stars.Enable = false;
+	Weathers[n].Stars.Enable = true;
 	Weathers[n].Stars.Texture = "weather\astronomy\stars.tga.tx";
 	Weathers[n].Stars.Color = argb(0, 255, 255, 255);
 	Weathers[n].Stars.Radius = 2000.0;
@@ -981,12 +963,12 @@ int Whr_InitNight(int n)
 	Weathers[n].Sky.Color = argb(0,255,255,255);
 	Weathers[n].Sky.Rotate.Min = 0.0;
 	Weathers[n].Sky.Rotate.Max = 0.0;
-	Weathers[n].Sky.Size = 512.0;
+	Weathers[n].Sky.Size = 2000.0;
 	Weathers[n].Sky.Angle = 0.0;
 
 	Weathers[n].Planets.enable = false;
 
-	Weathers[n].Stars.Enable = false;
+	Weathers[n].Stars.Enable = true;
 	Weathers[n].Stars.Texture = "weather\astronomy\stars.tga.tx";
 	Weathers[n].Stars.Color = argb(0, 255, 255, 255);
 	Weathers[n].Stars.Radius = 2000.0;
