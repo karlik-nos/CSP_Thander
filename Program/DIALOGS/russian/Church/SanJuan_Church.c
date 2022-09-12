@@ -1,6 +1,8 @@
 // диалог по городам
 void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 {
+	string sStr;
+	
     switch (Dialog.CurrentNode)
 	{
 		case "quests":
@@ -35,14 +37,20 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			dialog.text = "Дайте-ка его мне сюда. Так-так... хм... Так я и думал! Хм... Что же, вы хорошо потрудились, но позвольте задать вам несколько вопросов.";
 			link.l1 = "Да, что именно вы хотите узнать?";
 			link.l1.go = "PKM_SvtvA_Ch1_2_Dobro";
+			
+			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_SanJuanChurch_1_Dobro");
+			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_SanJuanChurch_1_Zlo");
 		break;
 
 		case "PKM_SvtvA_Ch1_1_Zlo":
 			dialog.text = "Дайте-ка его мне сюда. Так-так... хм... Так я и думал! Кстати, а кто вскрывал письмо?";
-			link.l1 = "Его никто не вскрывал, что вы?! Вы думаете, я способен на такое?!";
+			link.l1 = "Его никто не вскрывал, что вы?! Вы думаете, я способ"+ GetSexPhrase("ен","на") +" на такое?!";
 			link.l1.go = "PKM_SvtvA_Ch1_2_Zlo_Poka";
-			link.l2 = "Вы догадались?! Так я и знал, что это добром не кончится.";
+			link.l2 = "Вы догадались?! Так я и знал"+ GetSexPhrase("","а") +", что это добром не кончится.";
 			link.l2.go = "PKM_SvtvA_Ch1_2_Zlo";
+			
+			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_SanJuanChurch_1_Dobro");
+			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_SanJuanChurch_1_Zlo");
 		break;
 
 		case "PKM_SvtvA_Ch1_2_Zlo":
@@ -52,36 +60,42 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 
 		case "PKM_SvtvA_Ch1_3_Zlo":
-			dialog.text = "Хорошо. Вижу, что вам можно простить этот грех. Тем более, что мы предвидели такой исход событий, и для того, чтобы понять истинный смысл слов этого письма, нужно обладать кое-какими познаниями\nВы даже в чём-то помогли нам, введя этих людей в заблуждение. Думаю, я даже могу выплатить вам обещанную сумму.";
+			dialog.text = "Хорошо. Вижу, что вам можно простить этот грех. Тем более, что мы предвидели такой исход событий, и для того, чтобы понять истинный смысл слов этого письма, нужно обладать кое-какими познаниями. Вы даже в чём-то помогли нам, введя этих людей в заблуждение. Думаю, я даже могу выплатить вам обещанную сумму.";
 			link.l1 = "О, благодарю вас, благодарю!";
 			link.l1.go = "PKM_SvtvA_Ch1_6";
-			ChangeCharacterReputation(pchar, -5);
+			ChangeCharacterReputation(pchar, -15);
 			AddMoneyToCharacter(pchar, 1000);
-			//AddPartyExp(pchar, 1500);
-			AddQuestRecord("ANIMISTS", "12");
+			AddQuestRecord("PKM_Animists", "12");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
 		break;
 
-		case "letter_bad_exit":
+		case "PKM_SvtvA_Ch1_2_Zlo_Poka":
 			dialog.text = "Вижу, что вы не собираетесь раскаиваться в содеянном. Тоже, воля ваша, а теперь покиньте церковь!";
 			link.l1 = "Как вам будет угодно.";
-			link.l1.go = "letter_bad_exit_2";
+			link.l1.go = "PKM_SvtvA_Ch1_3_Zlo_Poka";
 			link.l2 = "Нет, подождите, я раскаиваюсь! Бес попутал!";
-			link.l2.go = "letter_bad_2";
+			link.l2.go = "PKM_SvtvA_Ch1_2_Zlo";
 		break;
 
-		case "letter_bad_exit_2":
+		case "PKM_SvtvA_Ch1_3_Zlo_Poka":
 			DialogExit();
-			NextDiag.CurrentNode = NextDiag.TempNode;
 
-			ChangeCharacterReputation(pchar, -20);
-			AddQuestRecord("ANIMISTS", "13");
-			CloseQuestheader("ANIMISTS");
+			ChangeCharacterReputation(pchar, -30);
+			AddQuestRecord("PKM_Animists", "13");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
+			AddQuestUserData("PKM_Animists", "sSex2", GetSexPhrase("ся","ась"));
+			CloseQuestheader("PKM_Animists");
 		break;
 
 		case "PKM_SvtvA_Ch1_2_Dobro":
 			dialog.text = "Не было ли у вас в пути каких-либо неприятностей?";
 			link.l1 = "Вы знаете, "+GetFullName(CharacterFromID("FortFrance_Priest"))+" попросил меня высадиться в укромной бухте, чтобы избежать неожиданностей, но дело в том, что меня там уже ждали...";
 			link.l1.go = "PKM_SvtvA_Ch1_3_Dobro";
+			if (CheckAttribute(Pchar, "questTemp.PKM_SvtvA_DralisVG"))	//Если дрались в городе
+			{
+				link.l1 = "Вы знаете, на причале меня уже ждали загадочные люди в красном... После моего отказа отдать им письмо, они напали на меня. Как видите, я здесь стою, жив"+ GetSexPhrase("ой","ая") +", что не скажешь о моих убийцах.";
+				link.l1.go = "PKM_SvtvA_Ch1_4_Dobro";
+			}
 		break;
 
 		case "PKM_SvtvA_Ch1_3_Dobro":
@@ -119,7 +133,17 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		case "PKM_SvtvA_Ch1_8":
 			dialog.text = "Итак, вы должны встретить барк 'Маёнез', которым командует некто Мергильдо Хуртадо, испанский офицер.";
 			link.l1 = "Отлично, этой информации достаточно. Думаю, я могу отплывать - чем быстрее я это сделаю, тем выше шансы на успех.";
-			link.l1.go = "exit";
+			link.l1.go = "PKM_SvtvA_Ch1_9";
+		break;
+		
+		case "PKM_SvtvA_Ch1_9":
+			DialogExit();
+			AddQuestRecord("PKM_Animists", "14");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
+			if (CheckAttribute(Pchar, "questTemp.PKM_SvtvA_DralisVG")) sStr = "причале";
+			else sStr = "пляже";
+			AddQuestUserData("PKM_Animists", "sStr", sStr);
+			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_DralisVG");
 		break;
 
 		//Квест "История прекрасной Изабеллы"

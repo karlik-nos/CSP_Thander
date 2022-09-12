@@ -10584,6 +10584,7 @@ void QuestComplete(string sQuestName, string qname)
 			PChar.quest.PKM_SvtvA_SJ_B1.over = "yes";
 			PChar.quest.PKM_SvtvA_SJ_B2.over = "yes";
 			PChar.quest.PKM_SvtvA_SJ_B3.over = "yes";
+			pchar.questTemp.PKM_SvtvA_DralisVG = "DVG";
 		break;
 		
 		case "PKM_SvtvA_DostavkaPisma_Buhta_2":		//Битва в бухте без разговора
