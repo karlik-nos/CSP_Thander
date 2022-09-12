@@ -300,6 +300,7 @@ void ReloadStartFade()
     //#20191123-01 Fix
     DialogExit();
 	ApplayNewSkill(pchar, "", 0);
+	Item_OnExitLocator(loadedLocation, pchar.activelocator);
 	// ResetSoundScheme();
 	ResetSound(); // new
 	PauseAllSounds();
