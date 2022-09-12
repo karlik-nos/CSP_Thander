@@ -25,6 +25,8 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		
 		case "PDM_PJ_SS_2":
 			DialogExit();
+			bDisableFastReload = true;
+			chrDisableReloadToLocation = true;
 			LAi_SetActorType(pchar);
 			DoQuestReloadToLocation("FortFrance_town", "goto", "goto2", "PDM_PJ_Arest_0");
 		break;

@@ -10359,6 +10359,8 @@ void QuestComplete(string sQuestName, string qname)
 			
 			EndQuestMovie();
 			LAi_SetPlayerType(pchar);
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
 			CloseQuestHeader("PDM_Proklyataya_Jara");
 			AddQuestRecord("PDM_Proklyataya_Jara", "6");
 			AddCharacterExpToSkill(pchar, "Leadership", 130);
