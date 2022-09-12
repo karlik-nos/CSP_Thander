@@ -574,7 +574,7 @@ int Whr_InitMorning(int n)
 	Weathers[n].Sky.Angle = 0.0;
 	Weathers[n].Planets.enable = true;
 
-	Weathers[n].Stars.Enable = true;
+	Weathers[n].Stars.Enable = false;
 	Weathers[n].Stars.Texture = "weather\astronomy\stars.tga.tx";
 	Weathers[n].Stars.Color = argb(0, 255, 255, 255);
 	Weathers[n].Stars.Radius = 2000.0;
