@@ -853,7 +853,7 @@ void ProcessDialogEvent()
 
 		case "autofood_finished":
 			dialog.text = "Приоритет для еды установлен.";
-			DeleteAttribute(pchar, "autofood_betterfood");
+			DeleteAttribute(pchar, "betterfood");
 			link.l1 = "Славно!";
 			link.l1.go = "exit";
 		break;
