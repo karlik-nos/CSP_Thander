@@ -860,7 +860,7 @@ void ProcessDialogEvent()
 
 		case "autofood_finished_betterfood":
 			dialog.text = "Приоритет для еды установлен.";
-			PChar.autofood_betterfood = true;
+			PChar.betterfood = true;
 			link.l1 = "Славно!";
 			link.l1.go = "exit";
 		break;
