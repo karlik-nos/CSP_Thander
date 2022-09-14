@@ -259,7 +259,7 @@ int Whr_InitEvening(int n)
 	Weathers[n].Rainbow.Enable = false;
 	Weathers[n].Rainbow.Texture = "weather\rainbow\rainbow.tga.tx";
 
-	Weathers[n].Sun.Color = argb(0,182,85,15);
+	Weathers[n].Sun.Color = argb(0,132,85,15);
 	Weathers[n].Sun.Ambient = argb(0,73,47,48);
 	//Weathers[n].Sun.AzimuthAngle = Degree2Radian(-25.0);
 	//Weathers[n].Sun.HeightAngle = 0.60;
@@ -442,7 +442,7 @@ int Whr_InitEvening(int n)
 	Weathers[n].Stars.SunFade = 1.0;
 	Weathers[n].Stars.VisualMagnitude = 8.0;
 
-	Weathers[n].Sun.Color = argb(0,205,91,5);
+	Weathers[n].Sun.Color = argb(0,155,91,5);
 	Weathers[n].Sun.Ambient = argb(0,66,33,33);
 	//Weathers[n].Sun.AzimuthAngle = Degree2Radian(37.0);
 	Weathers[n].Sun.AzimuthAngle = Degree2Radian(337.0);
