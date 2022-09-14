@@ -10262,16 +10262,12 @@ void QuestComplete(string sQuestName, string qname)
 //========================  Квест "Непутёвый казначей".  =======================
 
 		case "PDM_NK_Viktor":
-			Log_SetStringToLog("Холодное оружие + 1");
-			Log_SetStringToLog("Пистолеты + 1");
-			Log_SetStringToLog("Скрытность - 1");
-			Log_SetStringToLog("Торговля - 1");
-			AddCharacterSkillDontClearExp(pchar, "FencingLight", 1);
-			AddCharacterSkillDontClearExp(pchar, "Fencing", 1);
-			AddCharacterSkillDontClearExp(pchar, "FencingHeavy", 1);
-			AddCharacterSkillDontClearExp(pchar, "Pistol", 1);
-			AddCharacterSkillDontClearExp(pchar, "Sneak", -1);
-			AddCharacterSkillDontClearExp(pchar, "Commerce", -1);
+			AddCharacterExpToSkill(pchar, "FencingLight", 100);
+			AddCharacterExpToSkill(pchar, "Fencing", 100);
+			AddCharacterExpToSkill(pchar, "FencingHeavy", 100);
+			AddCharacterExpToSkill(pchar, "Pistol", 100);
+			AddCharacterExpToSkill(pchar, "Sneak", -120);
+			AddCharacterExpToSkill(pchar, "Commerce", -100);
 
 			AddQuestRecord("PDM_Neputyovy_kaznachey", "4");
 
@@ -10324,6 +10320,7 @@ void QuestComplete(string sQuestName, string qname)
 			LAi_SetLoginTime(sld, 0.0, 24.0);
 			
 			StartQuestMovie(true, true, true);
+			ChangeShowIntarface();
 			locCameraFromToPos(-35.50, 7.00, 25.00, true, -20.00, 0.00, 15.00);
 		break;
 

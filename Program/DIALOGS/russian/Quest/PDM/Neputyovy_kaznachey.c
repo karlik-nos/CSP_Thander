@@ -199,12 +199,9 @@ void ProcessDialogEvent()
 
 		case "Zaplati_2":
 			AddMoneyToCharacter(pchar, -sti(Plata2));
-			Log_SetStringToLog("Авторитет + 1");
-			Log_SetStringToLog("Торговля + 2");
-			Log_SetStringToLog("Скрытность + 1");
-			AddCharacterSkillDontClearExp(pchar, "Leadership", 1);
-			AddCharacterSkillDontClearExp(pchar, "Commerce", 2);
-			AddCharacterSkillDontClearExp(pchar, "Sneak", 1);
+			AddCharacterExpToSkill(pchar, "Leadership", 150);
+			AddCharacterExpToSkill(pchar, "Commerce", 220);
+			AddCharacterExpToSkill(pchar, "Sneak", 150);
 			sld = CharacterFromID("PDM_NK_Viktor")
 			sld.dialog.filename   = "Quest/PDM/Neputyovy_kaznachey.c";
 			sld.dialog.currentnode   = "Viktor_Poka";
