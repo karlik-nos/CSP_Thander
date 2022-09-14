@@ -30,8 +30,8 @@ void WhrCreateSeaEnvironment()
 	ref mchr = GetMainCharacter();
 	string sLocation = mchr.location;
 
-	float FogDensity = 1.5;
-	float FogSeaDensity = 1.5;
+	float FogDensity = 3.0;
+	float FogSeaDensity = 3.0;
 
 	if (FindLocation(sLocation) != -1 && !bCabinStarted)
 	{
@@ -52,8 +52,8 @@ void WhrCreateSeaEnvironment()
             {
 				fMaxSeaHeight = 0.5;
 			}
-			FogDensity = 5.0;
-			FogSeaDensity = 5.0;
+			FogDensity = 10.0;
+			FogSeaDensity = 10.0;
 
 			Sea.Sea2.LodScale = 2.0;
 			Sea.Sea2.GridStep = 0.15;
