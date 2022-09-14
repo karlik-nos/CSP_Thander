@@ -75,7 +75,7 @@ int Whr_InitMorning(int n)
 	Weathers[n].Rainbow.Enable = false;
 	Weathers[n].Rainbow.Texture = "weather\rainbow\rainbow.tga.tx";
 
-	Weathers[n].Sun.Color = argb(0,205,158,150);
+	Weathers[n].Sun.Color = argb(0,145,98,90);
 	Weathers[n].Sun.Ambient = argb(0,55,44,44);
 	//Weathers[n].Sun.AzimuthAngle = Degree2Radian(337.0);
 	Weathers[n].Sun.AzimuthAngle = Degree2Radian(160.0);
@@ -255,7 +255,7 @@ int Whr_InitMorning(int n)
 	Weathers[n].Rainbow.Enable = false;
 	Weathers[n].Rainbow.Texture = "weather\rainbow\rainbow.tga.tx";
 
-	Weathers[n].Sun.Color = argb(0,205,158,150);
+	Weathers[n].Sun.Color = argb(0,145,98,90);
 	Weathers[n].Sun.Ambient = argb(0,55,44,44);
 	//Weathers[n].Sun.AzimuthAngle = Degree2Radian(337.0);
 	Weathers[n].Sun.AzimuthAngle = Degree2Radian(160.0);
@@ -434,7 +434,7 @@ int Whr_InitMorning(int n)
 	Weathers[n].Rainbow.Enable = false;
 	Weathers[n].Rainbow.Texture = "weather\rainbow\rainbow.tga.tx";
 
-	Weathers[n].Sun.Color = argb(0,205,158,150);
+	Weathers[n].Sun.Color = argb(0,145,98,90);
 	Weathers[n].Sun.Ambient = argb(0,55,44,44);
 	//Weathers[n].Sun.AzimuthAngle = Degree2Radian(337.0);
 	Weathers[n].Sun.AzimuthAngle = Degree2Radian(160.0);
