@@ -869,5 +869,12 @@ void ProcessDialogEvent()
 			AddCharacterExpToSkill(pchar, "Fortune", 60);
 			Log_SetStringToLog("Вы получили опыт");
 		break;
+		
+		case "Matros_preduprejdaet":
+			dialog.text = "Капитан! Мертвецы атакуют!!!";
+            link.l1 = "Дьявол!";
+			link.l1.go = "exit";
+			AddDialogExitQuest("PDM_PI_Skelety_on_Ship_3");
+		break;
 	}
 }

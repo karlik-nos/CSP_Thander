@@ -9842,14 +9842,46 @@ void QuestComplete(string sQuestName, string qname)
 		case "PDM_PI_Skelety_on_Ship":
             pchar.quest.Munity = "";
             pchar.GenQuest.MunityStart = true;
-			//SetMusic("none");
-			//PlayStereoOGG("CSR\Music\Sea\Deck_Nekro.ogg");
-            PlayVoice("Kopcapkz\Voices\Skeletons\Skeleton_hit_14.ogg");
-			PlayVoice("Kopcapkz\Voices\Skeletons\Skeleton_hit_16.ogg");
-			PlayVoice("Kopcapkz\Voices\Skeletons\Skeleton_hit_23.ogg");
-			PlayVoice("CSR\Music\Sea\Deck_Nekro.ogg");
+			
+			StartQuestMovie(true, true, true);
+			ChangeShowIntarface();
+			locCameraFromToPos(-3.20, 7.00, -3.40, false, 20.00, -4.00, -25.00);
+			
+			sTemp = "shipowner_"+(rand(28)+1);
+			sld = GetCharacter(NPC_GenerateCharacter("PDM_PI_Matrosiki_10", sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+			ChangeCharacterAddressGroup(sld, PChar.location, "goto", "goto4");
+			sld.name = "Матрос";
+			sld.lastname = "";
+			LAi_SetActorType(sld);
+			sld.dialog.filename = "Quest/PDM/Cursed_Idol.c";
+			sld.dialog.currentnode = "Matros_preduprejdaet";
+			LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
+			LAi_ActorDialogDelay(sld, pchar, "", 1.0);
+			for (i=6; i<=9; i++)
+			{
+				sTemp = "shipowner_"+(rand(28)+1);
+				sld = GetCharacter(NPC_GenerateCharacter("PDM_PI_Matrosiki_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				PlaceCharacter(sld, "goto", "random");
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
+			}
+			LAi_SetActorType(pchar);
+			LAi_ActorGoToLocator(pchar, "goto", "goto2", "", -1);
+			DoQuestCheckDelay("PDM_PI_Skelety_on_Ship_2", 3.0);
+        break;
+		
+		case "PDM_PI_Skelety_on_Ship_2":
+			LAi_SetPlayerType(pchar);
+			sld = CharacterFromID("PDM_PI_Matrosiki_10")
+            LAi_ActorDialogDelay(sld, pchar, "", 0.0);
+        break;
+		
+		case "PDM_PI_Skelety_on_Ship_3":
+			EndQuestMovie();
+			ChangeShowIntarface();
+		
 			DoQuestFunctionDelay("PDM_PI_Vykl_Music", 1.0);
-            InterfaceStates.Buttons.Save.enable = 0;
+            InterfaceStates.Buttons.Save.enable = 1;
             LAi_SetFightMode(Pchar, true);
 			Log_SetStringToLog("Скелеты атакуют!!!");
 			//Скелеты
@@ -9862,22 +9894,11 @@ void QuestComplete(string sQuestName, string qname)
 				LAi_group_MoveCharacter(sld, "EnemyFight");
 				sld.SaveItemsForDead = true;
 				sld.DontChangeBlade = true;
-				TakeItemFromCharacter(sld, "spyglass3");
-				TakeNItems(sld, "food1", -10);
-				TakeNItems(sld, "potion2", -10);
-				AddMoneyToCharacter(sld, 250);
-				AddItems(sld, "mineral6", rand(100));
-				AddItems(sld, "mineral10", rand(15));
+				DeleteAttribute(sld, "items");
+				AddMoneyToCharacter(sld, 66);
+				AddItems(sld, "mineral6", rand(100)-40);
+				AddItems(sld, "mineral10", rand(15)-5);
 				AddItems(sld, "compcraft_flint", rand(3));
-			}
-			//Матросы 1
-			for (i=7; i<=10; i++)
-			{
-				sTemp = "shipowner_"+(rand(28)+1);
-				sld = GetCharacter(NPC_GenerateCharacter("PDM_PI_Matrosiki_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
-				PlaceCharacter(sld, "goto", "random");
-				LAi_SetWarriorType(sld);
-				LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
 			}
             ChangeCrewExp(PChar, "Soldiers", 2); // бонус на подавление
             LAi_group_SetHearRadius("EnemyFight", 100.0);
@@ -9885,7 +9906,7 @@ void QuestComplete(string sQuestName, string qname)
             LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
 
             LAi_group_SetCheck("EnemyFight", "PDM_PI_Dead_Skelety");
-        break;
+		break;
 
         case "PDM_PI_Dead_Skelety":
 			Log_SetStringToLog("Вы потеряли часть команды");
@@ -9896,7 +9917,7 @@ void QuestComplete(string sQuestName, string qname)
             InterfaceStates.Buttons.Save.enable = 1;
             pchar.quest.Munity = "Deads";
             LAi_SetFightMode(Pchar, false);
-			SetTimerFunction("PDM_PI_Skelety_v_more", 0, 0, 14);
+			SetTimerFunction("PDM_PI_Skelety_v_more", 0, 0, 20);
         break;
 //========================  Квест "Новая Родина".  =======================
 

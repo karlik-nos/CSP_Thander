@@ -10432,41 +10432,34 @@ void PDM_Callow_RodjerProdolg(string qName)
 }
 void PDM_PI_Skelety_v_more(string qName)
 {
-	if(IsEntity(worldMap) && CheckAttribute(pchar, "questTemp.PDM_PI_Skelety_v_more"))
+	if (CheckAttribute(pchar, "questTemp.PDM_PI_Skelety_v_more"))
 	{
-		SetLaunchFrameFormParam("Капитан! Мертвецы атакуют!", "", 0, 3.0);
-		LaunchFrameForm();
-		DoQuestFunctionDelay("PDM_PI_Skelety_v_more_paluba", 3.0);
-	}
-	if(!IsEntity(worldMap) && CheckAttribute(pchar, "questTemp.PDM_PI_Skelety_v_more"))
-	{
-		SetTimerFunction("PDM_PI_Skelety_v_more_2", 0, 0, 1);
-	}
-}
-void PDM_PI_Skelety_v_more_2(string qName)
-{
-	if(IsEntity(worldMap) && CheckAttribute(pchar, "questTemp.PDM_PI_Skelety_v_more"))
-	{
-		SetLaunchFrameFormParam("Капитан! Мертвецы атакуют!", "", 0, 3.0);
-		LaunchFrameForm();
-		DoQuestFunctionDelay("PDM_PI_Skelety_v_more_paluba", 3.0);
-	}
-	if(!IsEntity(worldMap) && CheckAttribute(pchar, "questTemp.PDM_PI_Skelety_v_more"))
-	{
-		SetTimerFunction("PDM_PI_Skelety_v_more", 0, 0, 3);
+		if (IsEntity(worldMap))
+		{
+			DoQuestFunctionDelay("PDM_PI_Skelety_v_more_paluba", 0.0);
+		}
+		else
+		{
+			PChar.quest.PDM_Ne_Spryacheshsy.win_condition.l1 = "MapEnter";
+			PChar.quest.PDM_Ne_Spryacheshsy.function = "PDM_PI_Skelety_v_more";
+		}
 	}
 }
 void PDM_PI_Skelety_v_more_paluba(string qName)
 {
 	int i;
-	MakeCloneShipDeck(pchar, true); // подмена палубы
+	MakeCloneShipDeck(pchar, false); // подмена палубы
 	i = FindLocation("Ship_deck");
 	Locations[i].image = "loading\jonny_load\load\rebel.tga";
-	DoQuestReloadToLocation("Ship_deck", "reload", "reload1", "PDM_PI_Skelety_on_Ship");
+	DoQuestReloadToLocation("Ship_deck", "reload", "reload3", "PDM_PI_Skelety_on_Ship");
 }
 void PDM_PI_Vykl_Music(string qName)
 {
 	SetMusic("none");
+	PlayVoice("Kopcapkz\Voices\Skeletons\Skeleton_hit_14.ogg");
+	PlayVoice("Kopcapkz\Voices\Skeletons\Skeleton_hit_16.ogg");
+	PlayVoice("Kopcapkz\Voices\Skeletons\Skeleton_hit_23.ogg");
+	PlayVoice("CSR\Music\Sea\Deck_Nekro.ogg");
 }
 //Sinistra Проклятый идол <--
 
@@ -10547,6 +10540,11 @@ void PDM_Zoloto_ne_tonet_BITVA_na_sushe(string qName)
 	LAi_group_SetCheck("PDM_ENGenemy", "PDM_ZolNeTon_PobNaSush");
 }
 //Sinistra Золото не тонет <--
+
+void Sinistra_TEST(string qName)
+{
+	MakeAutoSave();
+}
 
 //Sinistra Охота на ведьму -->
 void PDM_ONV_NaRabotu(string qName)
