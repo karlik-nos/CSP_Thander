@@ -1591,13 +1591,13 @@ void SetBaseShipData(ref refCharacter)
 	if (!CheckAttribute(refCharacter,"DontRefresh"))
 	{
 		refCharacter.ship.crew.disease = 0;
-		SetTuningShipStates(refCharacter);
+		SetBermudeTuningShipStates(refCharacter);
 		//Mett: nation sails —->
 		if(sti(refCharacter.nation) == PIRATE)
 		{
 			refBaseShip.ship.upgrades.sails = 38 + rand(50); // LEO: пиратские паруса
 		}
-			else refBaseShip.ship.upgrades.sails = 1 + rand(22); // LEO: все остальные
+		else refBaseShip.ship.upgrades.sails = 1 + rand(22); // LEO: все остальные
 	}
 	if (CheckAttribute(refCharacter,"DontRefresh")) DeleteAttribute(refCharacter,"DontRefresh");
 	// <-—

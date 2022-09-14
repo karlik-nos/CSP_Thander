@@ -854,8 +854,6 @@ float Sea_TurnRateMagicNumber();
     return 244.444; //162.962; //244.444; *2/3
 }
 
-//#define WIND_NORMAL_POWER		18.0 // делитель для силы ветра на циферблате - влияет на мах скорость
-
 float Sea_ApplyMaxSpeedZ(aref arCharShip, float fWindDotShip) //float fTRFromSailDamage
 // arCharShip - корабль на НПС,  fTRFromSailDamage - паруса 0..1, fWindDotShip - направление ветра -1..1
 {

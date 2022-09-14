@@ -1691,7 +1691,6 @@ void ProcessControls()
 		if (!CheckOfficersPerk(pchar, "Turn180") && GetOfficersPerkUsing(pchar, "Turn180"))
 		{
 			ActivateCharacterPerk(pchar,"Turn180");
-			Ship_Turn180(pchar);
 		}
 		else
 		{
