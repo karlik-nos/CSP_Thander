@@ -10680,8 +10680,7 @@ void PDM_CL_Ubrat_Lodku(string qName)
 	sld.name = "Антонио";
 	sld.lastname = "де Гальвес";
 	sld.greeting = "GR_Spainguard";
-	FantomMakeCoolFighter(sld, Rank, Sila, Sila, "", "pistol2", DopHP);
-	sld.equip.blade = "blade39";
+	FantomMakeCoolFighter(sld, Rank, Sila, Sila, "blade39", "pistol2", DopHP);
 	sld.nonTable = true;
 	LAi_SetSitType(sld);
 	sld.Dialog.Filename = "Quest/PDM/Clan_Lambrini.c";

@@ -1721,7 +1721,7 @@ void ProcessDialogEvent()
 			if  (GetCharacterSPECIALSimple(PChar, SPECIAL_C) >= dRand(11))   i = -1;       //WW   харизма героя перебивает работу у ПГГ
 			if (i != -1)
 			{
-				dialog.text = "Увы, на сегодня у меня заданий больше нет. Последнее выполнил " + GetFullName(&Characters[i])
+				dialog.text = "Увы, на сегодня у меня заданий больше нет. Последнее выполнил" + NPCharSexPhrase(&Characters[i], " ", "а ") + GetFullName(&Characters[i])
 					+ ". Зайдите завтра, может что-то появится.";
 				link.l1 = "Ах, чёрт!!! Не везет...";
 				link.l1.go = "exit";
@@ -1733,7 +1733,7 @@ void ProcessDialogEvent()
 				SaveCurrentNpcQuestDateParam(npchar, "work_date");
 				if (rand(10) > 9 && !bBettaTestMode)             // WW     с 20 процентов до 10 процентов   просто посылание  уменьшил
 				{
-					dialog.text = LinkRandPhrase("Сейчас у меня нет работы для таких, как вы. Зайдите завтра, что ли...",
+					dialog.text = LinkRandPhrase("Сейчас у меня нет для вас работы. Зайдите завтра, что ли...",
 						"Никакого поручения для вас у меня сегодня нет. Заходите позже, через день-другой.",
 						"Сегодня ничего нет такого, что я мог бы вам поручить. Буду рад видеть вас в другой день.");
 					link.l1 = "Я понял"+ GetSexPhrase("","а") +", " + GetAddress_FormToNPC(NPChar) + ".";
@@ -1787,13 +1787,25 @@ void ProcessDialogEvent()
 						break;
 						//========== пробраться во вражеский город ============
 						case 2:
-							pchar.GenQuest.Intelligence.Terms = dRand(10) + (42 - MOD_SKILL_ENEMY_RATE); //сроки выполнения задания
-							pchar.GenQuest.Intelligence.Money = ((dRand(4) + 6) * 1000) + (sti(pchar.rank) * 1000 + 10000); //вознаграждение
-							pchar.GenQuest.Intelligence.City = GetSpyColony(npchar); //враждебная колония
-                            sTemp = ", что на " + XI_ConvertString(colonies[FindColony(pchar.GenQuest.Intelligence.City)].islandLable+"Dat");
-							dialog.text = "У меня есть для вас задание, сопряжённое с серьёзным риском. Мне нужно, чтобы вы пробрались в " + XI_ConvertString("Colony"+pchar.GenQuest.Intelligence.City+"Acc") + sTemp + ", встретились там с указанным человеком и доставили мне то, что он вам даст.";
-							link.l1 = "Хм, не сказал"+ GetSexPhrase("","а") +" бы, что в " + XI_ConvertString("Colony"+pchar.GenQuest.Intelligence.City+"Dat") + " будут рады меня видеть...";
-							link.l1.go = "Intelligence";
+							sTemp = GetSpyColony(npchar); //враждебная колония
+							if (sTemp == "none")
+							{
+								dialog.text = LinkRandPhrase("Сейчас у меня нет для вас работы. Зайдите завтра, что ли...",
+									"Никакого поручения для вас у меня сегодня нет. Заходите позже, через день-другой.",
+									"Сегодня ничего нет такого, что я мог бы вам поручить. Буду рад видеть вас в другой день.");
+								link.l1 = "Я понял"+ GetSexPhrase("","а") +", " + GetAddress_FormToNPC(NPChar) + ".";
+								link.l1.go = "exit";
+							}
+							else
+							{
+								pchar.GenQuest.Intelligence.Terms = dRand(10) + (42 - MOD_SKILL_ENEMY_RATE); //сроки выполнения задания
+								pchar.GenQuest.Intelligence.Money = ((dRand(4) + 6) * 1000) + (sti(pchar.rank) * 1000 + 10000); //вознаграждение
+								pchar.GenQuest.Intelligence.City = sTemp;
+								sTemp = ", что на " + XI_ConvertString(colonies[FindColony(pchar.GenQuest.Intelligence.City)].islandLable+"Dat");
+								dialog.text = "У меня есть для вас задание, сопряжённое с серьёзным риском. Мне нужно, чтобы вы пробрались в " + XI_ConvertString("Colony"+pchar.GenQuest.Intelligence.City+"Acc") + sTemp + ", встретились там с указанным человеком и доставили мне то, что он вам даст.";
+								link.l1 = "Хм, не сказал"+ GetSexPhrase("","а") +" бы, что в " + XI_ConvertString("Colony"+pchar.GenQuest.Intelligence.City+"Dat") + " будут рады меня видеть...";
+								link.l1.go = "Intelligence";
+							}
 						break;
 						//========== уничтожение контрабандистов ============
 						case 3:
@@ -2793,7 +2805,7 @@ string GetSpyColony(ref NPChar)
 
 	for(int n=0; n<MAX_COLONIES; n++)
 	{
-		if (colonies[n].nation != "none" && sti(colonies[n].nation) != PIRATE && GetRelation2BaseNation(sti(colonies[n].nation)) == RELATION_ENEMY && colonies[n].id != "Panama" && colonies[n].id != npchar.City)
+		if (colonies[n].nation != "none" && sti(colonies[n].nation) != PIRATE && GetNationRelation(sti(colonies[n].nation), sti(NPChar.nation)) == RELATION_ENEMY && colonies[n].id != "Panama" && colonies[n].id != npchar.City)
 		{
 			storeArray[howStore] = n;
 			howStore++;

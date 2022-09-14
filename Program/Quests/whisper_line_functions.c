@@ -2119,36 +2119,26 @@ void DHmessages_2(string qName)
 
 void DHRaceAgainstTime(string qName)
 {
-	LocatorReloadEnterDisable("LaVega_town", "reload1", true);
-	LocatorReloadEnterDisable("LaVega_town", "reload2", true);
-	LocatorReloadEnterDisable("LaVega_town", "reload3", true);
-	LocatorReloadEnterDisable("LaVega_town", "reload4", true);
-	LocatorReloadEnterDisable("LaVega_town", "reload5", true);
-	LocatorReloadEnterDisable("LaVega_town", "reload6", true);
-	//LocatorReloadEnterDisable("LaVega_town", "reload7", true);
-	LocatorReloadEnterDisable("LaVega_town", "reload8", true);
 	LocatorReloadEnterDisable("LaVega_town", "reload1_back", true);
+	LocatorReloadEnterDisable("LaVega_town", "reload2_back", true);
 	LocatorReloadEnterDisable("LaVega_town", "reload3_back", true);
+	LocatorReloadEnterDisable("LaVega_town", "reload4_back", true);
+	LocatorReloadEnterDisable("LaVega_town", "reload6_back", true);
 
 	AddQuestRecord("DHRaceAgainstTime", "4");
 
 	PChar.quest.DHRaceAgainstTime1.win_condition.l1 = "location";
-	PChar.quest.DHRaceAgainstTime1.win_condition.l1.location = "CommonRoom_MH2";
+	PChar.quest.DHRaceAgainstTime1.win_condition.l1.location = "CommonStoneHouse";
 	PChar.quest.DHRaceAgainstTime1.function = "DHRaceAgainstTime_findHouse";
 }
 
 void DHRaceAgainstTime_findHouse(string qName)
 {
-	LocatorReloadEnterDisable("LaVega_town", "reload1", false);
-	LocatorReloadEnterDisable("LaVega_town", "reload2", false);
-	LocatorReloadEnterDisable("LaVega_town", "reload3", false);
-	LocatorReloadEnterDisable("LaVega_town", "reload4", false);
-	LocatorReloadEnterDisable("LaVega_town", "reload5", false);
-	LocatorReloadEnterDisable("LaVega_town", "reload6", false);
-	//LocatorReloadEnterDisable("LaVega_town", "reload7", false);
-	LocatorReloadEnterDisable("LaVega_town", "reload8", false);
 	LocatorReloadEnterDisable("LaVega_town", "reload1_back", false);
+	LocatorReloadEnterDisable("LaVega_town", "reload2_back", false);
 	LocatorReloadEnterDisable("LaVega_town", "reload3_back", false);
+	LocatorReloadEnterDisable("LaVega_town", "reload4_back", false);
+	LocatorReloadEnterDisable("LaVega_town", "reload6_back", false);
 
 	if(GetQuestPastDayParam("pchar.questTemp.DHRaceAgainstTime") < 59)
 	{
@@ -2157,7 +2147,7 @@ void DHRaceAgainstTime_findHouse(string qName)
 		sld = GetCharacter(NPC_GenerateCharacter("DHMerc", "OZG_" + (rand(6) + 1), "man", "man", 10+MOD_SKILL_ENEMY_RATE, PIRATE, -1, false));
 		LAi_SetWarriorType(sld);
 		LAi_warrior_SetStay(sld, true);
-		ChangeCharacterAddressGroup(sld, "CommonRoom_MH2", "goto", "goto4");
+		ChangeCharacterAddressGroup(sld, "CommonStoneHouse", "goto", "goto3");
 		GiveItem2Character(sld, "blade202");
 		EquipCharacterByItem(sld, "blade202");
 		sld.SaveItemsForDead = true;
@@ -2168,7 +2158,7 @@ void DHRaceAgainstTime_findHouse(string qName)
 		pchar.quest.DHRaceAgainstTime_End.win_condition.c1.character ="DHMerc";
 
 		sld = GetCharacter(NPC_GenerateCharacter("DHIncq", "PGG_Vincento_0", "man", "man", 5+MOD_SKILL_ENEMY_RATE, SPAIN, -1, true));
-		ChangeCharacterAddressGroup(sld, "CommonRoom_MH2", "goto", "goto3");
+		ChangeCharacterAddressGroup(sld, "CommonStoneHouse", "goto", "goto1");
 		ChangeItemName("DeSouzaCross", "itmname_DeSouzaCross_DH");
 		GiveItem2Character(sld, "DeSouzaCross");
 		sld.SaveItemsForDead = true;

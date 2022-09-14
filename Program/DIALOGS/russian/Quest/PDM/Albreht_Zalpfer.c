@@ -140,6 +140,9 @@ void ProcessDialogEvent()
 			AddQuestRecord("ColonyBuilding", "0.2");
 			RemovePassenger(pchar, NPChar);
 			RemoveCharacterCompanion(pchar, NPChar);
+			npchar.lifeday = 0;
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
 			NextDiag.TempNode = "Ja_2";
 		break;
 
@@ -154,13 +157,9 @@ void ProcessDialogEvent()
 			Log_info("Получены чертежи от Альбрехта Цальпфера.");
 			PlaySound("Interface\important_item.wav");
 			GiveItem2Character(PChar, "Ship_Print_6");
-			AddCharacterSkillDontClearExp(pchar, "Repair", 1);
-			Log_SetStringToLog("Починка + 1");
+			AddCharacterExpToSkill(pchar, "Sailing", 130);
 			ChangeCharacterReputation(pchar, 3);
 			LAi_SetCitizenType(npchar);
-			Pchar.quest.PDM_Albreht_Vihod.win_condition.l1           = "ExitFromLocation";
-        	Pchar.quest.PDM_Albreht_Vihod.win_condition.l1.location  = "PortRoyal_town";
-        	Pchar.quest.PDM_Albreht_Vihod.win_condition              = "PDM_Albreht_Vihod";
 			NextDiag.CurrentNode = NextDiag.TempNode;
 			DialogExit();
 		break;
