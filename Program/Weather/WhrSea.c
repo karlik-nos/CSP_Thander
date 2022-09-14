@@ -30,20 +30,20 @@ void WhrCreateSeaEnvironment()
 	ref mchr = GetMainCharacter();
 	string sLocation = mchr.location;
 
-	float FogDensity = 1.0;
-	float FogSeaDensity = 1.0;
+	float FogDensity = 1.5;
+	float FogSeaDensity = 1.5;
 
 	if (FindLocation(sLocation) != -1 && !bCabinStarted)
 	{
 		/*if(CheckAttribute(&locations[FindLocation(sLocation)], "fastreload"))
 		{*/
-			Sea.LodScale = 0.5;
-			Sea.MaxVertices = 32000;
-			Sea.MaxIndices = 33200;
+			Sea.LodScale = 32.0;
+			Sea.MaxVertices = 2000;
+			Sea.MaxIndices = 2600;
 			Sea.MaxWaveDistance = 10.0;
 			Sea.MaxDim = 65536;
-			Sea.MinDim = 128;
-			Sea.GridStep = 0.07;//GridStepPC*5.0;
+			Sea.MinDim = 64;
+			Sea.GridStep = GridStepPC*5.0;
 			if (CheckAttribute(aCurWeather, "Storm") && sti(aCurWeather.Storm) == true)
 			{
 				fMaxSeaHeight = 2.0;
@@ -52,11 +52,11 @@ void WhrCreateSeaEnvironment()
             {
 				fMaxSeaHeight = 0.5;
 			}
-			/*FogDensity = 20.0;
-			FogSeaDensity = 20.0;*/
+			FogDensity = 5.0;
+			FogSeaDensity = 5.0;
 
-			Sea.Sea2.LodScale = 0.5;
-			Sea.Sea2.GridStep = 0.07;
+			Sea.Sea2.LodScale = 2.0;
+			Sea.Sea2.GridStep = 0.15;
 			Sea.Sea2.BumpScale = 0.3;
             //SetSeaSettings();
 		/*}
@@ -88,7 +88,7 @@ void WhrCreateSeaEnvironment()
 			i = FindIsland(sLocation);
 			if ( i != -1)
 			{
-				/* Sea.LodScale = 4.0;
+				Sea.LodScale = 4.0;
 				Sea.MaxVertices = 4000;
 				Sea.MaxIndices = 5200;
 				Sea.MaxWaveDistance = 1000.0;
@@ -97,7 +97,7 @@ void WhrCreateSeaEnvironment()
 				Sea.GridStep = GridStepPC;
 				fMaxSeaHeight = SetMaxSeaHeight(i); //boal
 				Sea.Sea2.LodScale = 1.0;
-				Sea.Sea2.GridStep = 0.15; */
+				Sea.Sea2.GridStep = 0.15;
 				SetSeaSettings();
 				fMaxSeaHeight = SetMaxSeaHeight(i); //boal
 			}
