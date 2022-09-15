@@ -851,41 +851,65 @@ void SelectNation(int iNation)
 
 void selectEngland()
 {
-	if (startHeroType > 0) SelectNation(ENGLAND);
+	if (startHeroType == 1) SelectNation(ENGLAND);	//Питер Блад
 	if (startHeroType == 2) SelectNation(PIRATE);	//Виспер
+	if (startHeroType == 3) SelectNation(PIRATE);	//Беатрис Шарп
+	if (startHeroType == 4) SelectNation(PIRATE);	//Блэйз Шарп
+	if (startHeroType == 5) SelectNation(FRANCE);	//Шарль де Мор
+	if (startHeroType == 6) SelectNation(FRANCE);	//Мэри Каспер
 	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
+	if (startHeroType > 7) SelectNation(ENGLAND);
 }
 
 void selectFrance()
 {
-	if (startHeroType > 0) SelectNation(FRANCE);
     if (startHeroType == 1) SelectNation(ENGLAND);	//Питер Блад
 	if (startHeroType == 2) SelectNation(PIRATE);	//Виспер
+	if (startHeroType == 3) SelectNation(PIRATE);	//Беатрис Шарп
+	if (startHeroType == 4) SelectNation(PIRATE);	//Блэйз Шарп
+	if (startHeroType == 5) SelectNation(FRANCE);	//Шарль де Мор
+	if (startHeroType == 6) SelectNation(FRANCE);	//Мэри Каспер
 	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
+	if (startHeroType > 7) SelectNation(FRANCE);
 }
 
 void selectSpain()
 {
-	if (startHeroType > 0) SelectNation(SPAIN);
     if (startHeroType == 1) SelectNation(ENGLAND);	//Питер Блад
 	if (startHeroType == 2) SelectNation(PIRATE);	//Виспер
+	if (startHeroType == 3) SelectNation(PIRATE);	//Беатрис Шарп
+	if (startHeroType == 4) SelectNation(PIRATE);	//Блэйз Шарп
+	if (startHeroType == 5) SelectNation(FRANCE);	//Шарль де Мор
+	if (startHeroType == 6) SelectNation(FRANCE);	//Мэри Каспер
+	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
+	if (startHeroType > 7) SelectNation(SPAIN);
 }
 
 void selectHolland()
 {
-	if (startHeroType > 0) SelectNation(HOLLAND);
     if (startHeroType == 1) SelectNation(ENGLAND);	//Питер Блад
 	if (startHeroType == 2) SelectNation(PIRATE);	//Виспер
+	if (startHeroType == 3) SelectNation(PIRATE);	//Беатрис Шарп
+	if (startHeroType == 4) SelectNation(PIRATE);	//Блэйз Шарп
+	if (startHeroType == 5) SelectNation(FRANCE);	//Шарль де Мор
+	if (startHeroType == 6) SelectNation(FRANCE);	//Мэри Каспер
 	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
+	if (startHeroType > 7) SelectNation(HOLLAND);
 }
 
 void selectPirate()
 {
-    if (startHeroType > 0) SelectNation(PIRATE);
 	if (startHeroType == 1) SelectNation(ENGLAND);	//Питер Блад
+	if (startHeroType == 2) SelectNation(PIRATE);	//Виспер
+	if (startHeroType == 3) SelectNation(PIRATE);	//Беатрис Шарп
+	if (startHeroType == 4) SelectNation(PIRATE);	//Блэйз Шарп
+	if (startHeroType == 5) SelectNation(FRANCE);	//Шарль де Мор
+	if (startHeroType == 6) SelectNation(FRANCE);	//Мэри Каспер
 	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
+	if (startHeroType == 8) SelectNation(PIRATE);	//Тёмный Странник
 	if (startHeroType == 9) SelectNation(FRANCE);	//Нежить
 	if (startHeroType == 10) SelectNation(HOLLAND);	//Нежить
+	if (startHeroType > 10) SelectNation(PIRATE);
 }
 
 void IDoExit(int exitCode, bool bCode)
@@ -1168,8 +1192,7 @@ void SetVariable(bool _init)
 	pchar.lastname = GetNewMainCharacterParam("heroLastname_" + startHeroType);
 	pchar.sex = GetNewMainCharacterParam("sex_" + startHeroType);
 	pchar.FaceID = GetNewMainCharacterFace();
-	bool bRandCharNation = startHeroType > 8 && startHeroType < 13;
-	if (bRandCharNation || startHeroType < 3)	SetSelectable("RANDCHARNATION",false);
+	if (startHeroType < 11)	SetSelectable("RANDCHARNATION",false);	//Отключение у сюжетных ГГ функции "Случайные нация и характер"
 	else	SetSelectable("RANDCHARNATION",true);
 
     if (_init)
