@@ -34,6 +34,7 @@ void ProcessDialogEvent()
 			link.l1.go = "Fickler_1";
 			PlayVoice("Kopcapkz\Voices\PDM\Andreas Fickler.wav");
 			DeleteAttribute(npchar, "talker");
+			UnmarkCharacter(npchar);
 		break;
 
 		case "Fickler_1":
