@@ -10698,6 +10698,22 @@ void QuestComplete(string sQuestName, string qname)
 			LAi_ActorDialogDelay(sld, pchar, "", 1.0);
 		break;
 		
+		case "AT_pr_Piraty_v_grote_1":
+			sld = CharacterFromID("AT_pr_Rebekka")
+			ChangeCharacterAddressGroup(sld, "Hispaniola_Grot", "goto", "goto2");
+			DoQuestFunctionDelay("AT_pr_Piraty_v_grote_2", 1.0);
+			DoQuestFunctionDelay("AT_pr_Piraty_v_grote_1_1", 0.1);
+			
+			for (i=1; i<=2; i++)
+			{
+				sTemp = "pirate_"+(rand(24)+1);					
+				sld = GetCharacter(NPC_GenerateCharacter("AT_pr_Piraty_"+i, sTemp, "man", "man", 3, PIRATE, -1, true));
+				LAi_SetActorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+				ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto1");
+			}
+		break;
+		
 		case "AT_pr_Pobeda_v_grote":
 			AddQuestRecord("AT_Mechty_Sbivautsya", "2");
 			chrDisableReloadToLocation = false;
@@ -10883,6 +10899,15 @@ void QuestComplete(string sQuestName, string qname)
 		
 		case "ATpr_Jiteli_Uspokoilis":
 			DeleteAttribute(pchar, "questTemp.AnjelikaTichPrologue6");
+		break;
+		
+		case "ATpr_Pereodevaemsya":
+			LAi_SetPlayerType(pchar);
+			sld = CharacterFromID("Gasten_Kotes")
+			LAi_SetActorType(sld);
+			sld.dialog.filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
+			sld.dialog.currentnode = "ATpr_SD_Koten_6_3";
+			LAi_ActorDialogNow(sld, Pchar, "", -1);
 		break;
 		
 		case "ATpr_VosstanovimGorod":	

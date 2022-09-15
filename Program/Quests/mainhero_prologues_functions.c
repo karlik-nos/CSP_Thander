@@ -468,7 +468,6 @@ void AT_pr_Grot_3(string qName)
 }
 void AT_pr_Strelba_is_pushki(string qName)
 {
-	LAi_SetActorType(pchar);
 	PlayVoice("CSR\GUNSFIRE\Cannon_36_1.wav");
 	DoQuestFunctionDelay("AT_pr_Strelba_is_pushki_2", 1.4);
 }
@@ -488,7 +487,6 @@ void AT_pr_Strelba_is_pushki_3(string qName)
 }
 void AT_pr_Strelba_is_pushki_4(string qName)
 {
-	LAi_SetActorType(pchar);
 	PlayVoice("CSR\GUNSFIRE\Fort_cannon_02.wav");
 	DoQuestFunctionDelay("AT_pr_Strelba_is_pushki_5", 1.4);
 }
@@ -517,20 +515,11 @@ void AT_pr_Piraty_v_grote(string qName)
 	WaitDate("", 0, 0, 0, 14, 40);	//Крутим время до ночи, чтобы когда вышли из пещеры, была ночь.
 	locCameraTarget(PChar)
 	locCameraFollow();
-	LAi_SetActorType(pchar);
-	ChangeCharacterAddressGroup(pchar, "Hispaniola_Grot", "goto", "goto4");
-	sld = CharacterFromID("AT_pr_Rebekka")
-	ChangeCharacterAddressGroup(sld, "Hispaniola_Grot", "goto", "goto2");
-	DoQuestFunctionDelay("AT_pr_Piraty_v_grote_2", 1.0);
-	
-	for (i=1; i<=2; i++)
-    {
-		sTemp = "pirate_"+(rand(24)+1);					
- 		sld = GetCharacter(NPC_GenerateCharacter("AT_pr_Piraty_"+i, sTemp, "man", "man", 3, PIRATE, -1, true));
-		LAi_SetActorType(sld);
-        LAi_group_MoveCharacter(sld, "EnemyFight");
-        ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto1");
-    }
+	DoQuestReloadToLocation("Hispaniola_Grot", "goto", "goto4", "AT_pr_Piraty_v_grote_1");
+}
+void AT_pr_Piraty_v_grote_1_1(string qName)
+{
+	ChangeShowIntarface();
 }
 void AT_pr_Piraty_v_grote_2(string qName)
 {
