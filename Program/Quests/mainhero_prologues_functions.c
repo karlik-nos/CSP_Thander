@@ -319,7 +319,7 @@ void AnjelikaTich_StartGame(string qName)
 	pchar.questTemp.AnjelikaTichPrologue8_Gudli = "ATP8";
 	pchar.questTemp.AnjelikaTichPrologue9_BlackBeard = "ATP9";
 	pchar.questTemp.AnjelikaTichPrologue10 = "ATP10";		//На всякий случай (нигде не задействовано)
-	LocatorReloadEnterDisable("SantoDomingo_ExitTown", "reload3", true);
+	LocatorReloadEnterDisable("SantoDomingo_ExitTown", "reload1_back", true);
 	LocatorReloadEnterDisable("PortPax_ExitTown", "reload3", true);
 	
 	DeleteAttribute(Pchar, "ship");
@@ -348,7 +348,12 @@ void AnjelikaTich_StartGame(string qName)
 	
 	LAi_SetActorType(pchar);
 	DoQuestFunctionDelay("AnjelikaTich_Razgovor_1", 2.0);
+	DoQuestFunctionDelay("AnjelikaTich_SprInt", 0.1);
 	StartQuestMovie(true, true, true);
+}
+void AnjelikaTich_SprInt(string qName)
+{
+	ChangeShowIntarface();
 }
 void AnjelikaTich_Razgovor_1(string qName)
 {
@@ -394,9 +399,9 @@ void AT_pr_Torgovets_6_2(string qName)
 	LAi_SetPlayerType(pchar);
 	sld = CharacterFromID("Gasten_Kotes")
 	//LAi_SetActorType(sld);
-	LAi_ActorDialog(sld, pchar, "", 0.0, 0);
 	sld.dialog.filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
 	sld.dialog.currentnode = "Torgovets_6_3";
+	LAi_ActorDialogNow(sld, Pchar, "", -1);
 }
 void AT_pr_Torgovets_10_1(string qName)
 {
@@ -435,12 +440,17 @@ void AT_pr_Oba_ischezaut(string qName)
 void AT_pr_Grot(string qName)
 {
 	StartQuestMovie(true, true, true);
+	DoQuestFunctionDelay("AT_pr_Grot_1_1", 0.1);
 	DoQuestFunctionDelay("AT_pr_Grot_2", 0.4);
 	LAi_SetActorType(pchar);
 	chrDisableReloadToLocation = true;
 	
 	sld = CharacterFromID("AT_pr_Rebekka")
 	ChangeCharacterAddressGroup(sld, "Hispaniola_Grot", "goto", "goto4");
+}
+void AT_pr_Grot_1_1(string qName)
+{
+	ChangeShowIntarface();
 }
 void AT_pr_Grot_2(string qName)
 {
@@ -451,10 +461,10 @@ void AT_pr_Grot_3(string qName)
 {
 	LAi_SetPlayerType(pchar);
 	sld = CharacterFromID("AT_pr_Rebekka")
-	//LAi_SetActorType(sld);
-	LAi_ActorDialog(sld, pchar, "", 0.5, 0);
 	sld.dialog.filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
 	sld.dialog.currentnode = "Rebekka_v_grote_1";
+	//LAi_SetActorType(sld);
+	LAi_ActorDialogNow(sld, Pchar, "", -1);
 }
 void AT_pr_Strelba_is_pushki(string qName)
 {
@@ -471,9 +481,10 @@ void AT_pr_Strelba_is_pushki_3(string qName)
 {
 	LAi_SetPlayerType(pchar);
 	sld = CharacterFromID("AT_pr_Rebekka")
-	LAi_ActorDialog(sld, pchar, "", 0.3, 0);
 	sld.dialog.filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
 	sld.dialog.currentnode = "Rebekka_v_grote_8";
+	//LAi_ActorDialog(sld, pchar, "", 0.0, 0);
+	LAi_ActorDialogNow(sld, Pchar, "", -1);
 }
 void AT_pr_Strelba_is_pushki_4(string qName)
 {
@@ -495,14 +506,17 @@ void AT_pr_Strelba_is_pushki_6(string qName)
 {
 	LAi_SetPlayerType(pchar);
 	sld = CharacterFromID("AT_pr_Rebekka")
-	LAi_ActorDialog(sld, pchar, "", 0.3, 0);
 	sld.dialog.filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
 	sld.dialog.currentnode = "Rebekka_v_grote_11";
+	//LAi_ActorDialog(sld, pchar, "", 0.0, 0);
+	LAi_ActorDialogNow(sld, Pchar, "", -1);
 }
 void AT_pr_Piraty_v_grote(string qName)
 {
 	TavernWaitDate("wait_day");		//Sinistra Делаем день, чтобы в пещере было светло.
 	WaitDate("", 0, 0, 0, 14, 40);	//Крутим время до ночи, чтобы когда вышли из пещеры, была ночь.
+	locCameraTarget(PChar)
+	locCameraFollow();
 	LAi_SetActorType(pchar);
 	ChangeCharacterAddressGroup(pchar, "Hispaniola_Grot", "goto", "goto4");
 	sld = CharacterFromID("AT_pr_Rebekka")
@@ -546,66 +560,119 @@ void AT_pr_tragedia(string qName)
 	sld = GetCharacter(NPC_GenerateCharacter("AT_pr_J2", "sold_spa_6", "man", "man", 1, SPAIN, -1, true));
 	LAi_LoginInCaptureTown(sld, true);
 	ChangeCharacterAddressGroup(sld,"LaVega_town","patrol","patrol5");
+	LaunchBlood(sld, 1.0, true);
+	LaunchBlood(sld, 2.0, true);
+	LaunchBlood(sld, 3.0, true);
+	LaunchBlood(sld, 4.0, true);
 	LAi_KillCharacter(sld);
 	
 	sld = GetCharacter(NPC_GenerateCharacter("AT_pr_J3", "priest_1", "man", "man", 1, SPAIN, -1, false));
 	LAi_LoginInCaptureTown(sld, true);
 	ChangeCharacterAddressGroup(sld,"LaVega_town","goto","goto3");
+	LaunchBlood(sld, 1.0, true);
+	LaunchBlood(sld, 2.0, true);
+	LaunchBlood(sld, 3.0, true);
+	LaunchBlood(sld, 4.0, true);
 	LAi_KillCharacter(sld);
+	
 	
 	sld = GetCharacter(NPC_GenerateCharacter("AT_pr_J4", "trader_6", "man", "man", 1, SPAIN, -1, false));
 	LAi_LoginInCaptureTown(sld, true);
 	ChangeCharacterAddressGroup(sld,"LaVega_town","goto","goto2");
+	LaunchBlood(sld, 1.0, true);
+	LaunchBlood(sld, 2.0, true);
+	LaunchBlood(sld, 3.0, true);
+	LaunchBlood(sld, 4.0, true);
 	LAi_KillCharacter(sld);
 	
 	sld = GetCharacter(NPC_GenerateCharacter("AT_pr_J5", "pirate_4", "man", "man", 1, PIRATE, -1, true));
 	LAi_LoginInCaptureTown(sld, true);
 	ChangeCharacterAddressGroup(sld,"LaVega_town","goto","goto1");
+	LaunchBlood(sld, 1.0, true);
+	LaunchBlood(sld, 2.0, true);
+	LaunchBlood(sld, 3.0, true);
+	LaunchBlood(sld, 4.0, true);
 	LAi_KillCharacter(sld);
 	
 	sld = GetCharacter(NPC_GenerateCharacter("AT_pr_J6", "pirate_13", "man", "man", 1, PIRATE, -1, true));
 	LAi_LoginInCaptureTown(sld, true);
 	ChangeCharacterAddressGroup(sld,"LaVega_town","merchant","merchant3");
+	LaunchBlood(sld, 1.0, true);
+	LaunchBlood(sld, 2.0, true);
+	LaunchBlood(sld, 3.0, true);
+	LaunchBlood(sld, 4.0, true);
 	LAi_KillCharacter(sld);
 	
 	sld = GetCharacter(NPC_GenerateCharacter("AT_pr_J7", "Girl_3", "woman", "woman", 1, SPAIN, -1, false));
 	LAi_LoginInCaptureTown(sld, true);
 	ChangeCharacterAddressGroup(sld,"LaVega_town","patrol","patrol1");
+	LaunchBlood(sld, 1.0, true);
+	LaunchBlood(sld, 2.0, true);
+	LaunchBlood(sld, 3.0, true);
+	LaunchBlood(sld, 4.0, true);
 	LAi_KillCharacter(sld);
 	
 	sld = GetCharacter(NPC_GenerateCharacter("AT_pr_J8", "sold_spa_1", "man", "man", 1, SPAIN, -1, true));
 	LAi_LoginInCaptureTown(sld, true);
 	ChangeCharacterAddressGroup(sld,"LaVega_town","goto","goto9");
+	LaunchBlood(sld, 1.0, true);
+	LaunchBlood(sld, 2.0, true);
+	LaunchBlood(sld, 3.0, true);
+	LaunchBlood(sld, 4.0, true);
 	LAi_KillCharacter(sld);
 	
 	sld = GetCharacter(NPC_GenerateCharacter("AT_pr_J9", "sold_spa_7", "man", "man", 1, SPAIN, -1, true));
 	LAi_LoginInCaptureTown(sld, true);
 	ChangeCharacterAddressGroup(sld,"LaVega_town","officers","reload10_3");
+	LaunchBlood(sld, 1.0, true);
+	LaunchBlood(sld, 2.0, true);
+	LaunchBlood(sld, 3.0, true);
+	LaunchBlood(sld, 4.0, true);
 	LAi_KillCharacter(sld);
 	
 	sld = GetCharacter(NPC_GenerateCharacter("AT_pr_J10", "sold_spa_2", "man", "man", 1, SPAIN, -1, true));
 	LAi_LoginInCaptureTown(sld, true);
 	ChangeCharacterAddressGroup(sld,"LaVega_town","goto","goto11");
+	LaunchBlood(sld, 1.0, true);
+	LaunchBlood(sld, 2.0, true);
+	LaunchBlood(sld, 3.0, true);
+	LaunchBlood(sld, 4.0, true);
 	LAi_KillCharacter(sld);
 	
 	sld = GetCharacter(NPC_GenerateCharacter("AT_pr_J11", "shipowner_18", "man", "man", 1, SPAIN, -1, false));
 	LAi_LoginInCaptureTown(sld, true);
 	ChangeCharacterAddressGroup(sld,"LaVega_town","reload","houseSp4");
+	LaunchBlood(sld, 1.0, true);
+	LaunchBlood(sld, 2.0, true);
+	LaunchBlood(sld, 3.0, true);
+	LaunchBlood(sld, 4.0, true);
 	LAi_KillCharacter(sld);
 	
 	sld = GetCharacter(NPC_GenerateCharacter("AT_pr_J12", "prison_2", "man", "man", 1, SPAIN, -1, false));
 	LAi_LoginInCaptureTown(sld, true);
 	ChangeCharacterAddressGroup(sld,"LaVega_town","goto","goto10");
+	LaunchBlood(sld, 1.0, true);
+	LaunchBlood(sld, 2.0, true);
+	LaunchBlood(sld, 3.0, true);
+	LaunchBlood(sld, 4.0, true);
 	LAi_KillCharacter(sld);
 	
 	sld = GetCharacter(NPC_GenerateCharacter("AT_pr_J13", "barmen_16", "man", "man", 1, SPAIN, -1, false));
 	LAi_LoginInCaptureTown(sld, true);
 	ChangeCharacterAddressGroup(sld,"LaVega_town","patrol","patrol7");
+	LaunchBlood(sld, 1.0, true);
+	LaunchBlood(sld, 2.0, true);
+	LaunchBlood(sld, 3.0, true);
+	LaunchBlood(sld, 4.0, true);
 	LAi_KillCharacter(sld);
 	
 	sld = GetCharacter(NPC_GenerateCharacter("AT_pr_J14", "trader_7", "man", "man", 1, SPAIN, -1, false));
 	LAi_LoginInCaptureTown(sld, true);
 	ChangeCharacterAddressGroup(sld,"LaVega_town","goto","goto4");
+	LaunchBlood(sld, 1.0, true);
+	LaunchBlood(sld, 2.0, true);
+	LaunchBlood(sld, 3.0, true);
+	LaunchBlood(sld, 4.0, true);
 	LAi_KillCharacter(sld);
 }
 void AT_pr_tragedia_2(string qName)
@@ -614,6 +681,10 @@ void AT_pr_tragedia_2(string qName)
 	PlaySound("CSR\Music\Quest\Tragic.ogg");
 	
 	sld = CharacterFromID("AT_pr_J1")
+	LaunchBlood(sld, 1.0, true);
+	LaunchBlood(sld, 2.0, true);
+	LaunchBlood(sld, 3.0, true);
+	LaunchBlood(sld, 4.0, true);
 	LAi_KillCharacter(sld);
 	
 	sld = CharacterFromID("AT_pr_LaVegaIspanski_Gubernator")
@@ -621,29 +692,32 @@ void AT_pr_tragedia_2(string qName)
 	LAi_LoginInCaptureTown(sld, true);
 	LAi_SetImmortal(sld, false);
 	ChangeCharacterAddressGroup(sld,"LaVega_town","patrol","patrol4");
-	sld.SaveItemsForDead = true;
-	DeleteAttribute(sld, "items");
-	AddMoneyToCharacter(sld, 12345);
-	GiveItem2Character(sld, "blade19");
-	GiveItem2Character(sld, "BackPack2");
-	GiveItem2Character(sld, "talisman6");
-	AddItems(sld, "jewelry4", 30);
+	LaunchBlood(sld, 1.0, true);
+	LaunchBlood(sld, 2.0, true);
+	LaunchBlood(sld, 3.0, true);
+	LaunchBlood(sld, 4.0, true);
 	LAi_KillCharacter(sld);
 }
 void AT_pr_Bejim_ot_piratov_2(string qName)
 {
-	Log_SetStringToLog("Мне нужно оторваться от пиратов!");
 	Log_SetStringToLog("Держу курс на Санто-Доминго!");
 }
 void AT_pr_Bejim_ot_piratov_3(string qName)
 {
-	Log_SetStringToLog("С пиратами воевать нет смысла!");
+	Log_SetStringToLog("Мне нужно оторваться от пиратов!");
+	Log_SetStringToLog("С ними воевать нет смысла!");
 	Log_SetStringToLog("Нужно спешить в Санто-Доминго!");
+}
+void AT_pr_Bejim_ot_piratov_4(string qName)
+{
+	Island_SetReloadEnableGlobal("Hispaniola1", true);
+	bQuestDisableMapEnter = false;
 }
 void ATpr_OboronaSD_2(string qName)
 {	
 	//locCameraToPos(-14.50, 7.00, 0.00, false);
 	locCameraFromToPos(-14.50, 7.00, 0.00, false, 0.22, 2.60, 0.00);
+	ChangeShowIntarface();
 	DoQuestFunctionDelay("ATpr_OboronaSD_3", 1.5);
 }
 void ATpr_OboronaSD_3(string qName)
@@ -868,6 +942,7 @@ void ATpr_OboronaSD_13(string qName)
 void ATpr_OboronaSD_14(string qName)
 {
 	EndQuestMovie();
+	ChangeShowIntarface();
 	locCameraTarget(PChar)
 	locCameraFollow();
 	DoQuestFunctionDelay("ATpr_OboronaSD_15", 1.0);
@@ -990,7 +1065,7 @@ void ATpr_OboronaSD_22(string qName)
 void ATpr_SvobodaIgry(string qName)
 {
 	PChar.quest.AT_pr_Santo_Domin.over = "yes";
-	LocatorReloadEnterDisable("SantoDomingo_ExitTown", "reload3", false);	//Важная реакция
+	LocatorReloadEnterDisable("SantoDomingo_ExitTown", "reload1_back", false);	//Важная реакция
 	LocatorReloadEnterDisable("PortPax_ExitTown", "reload3", false);	//Важная реакция
 	bDisableFastReload = false;
 	AddQuestRecord("AT_Mechty_Sbivautsya", "7");

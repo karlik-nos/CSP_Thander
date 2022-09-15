@@ -10752,6 +10752,10 @@ void QuestComplete(string sQuestName, string qname)
 			LocatorReloadEnterDisable("LaVega_town", "reload1_back", false);
 			AddQuestRecord("AT_Mechty_Sbivautsya", "3");
 			
+			Island_SetReloadEnableGlobal("Hispaniola1", false);
+			bQuestDisableMapEnter = true;
+			pchar.wind.angle = 300.0;
+			
 			//Создаём вражеские корабли
 			Group_FindOrCreateGroup("AT_Pir_Attack_1");
 			Group_SetType("AT_Pir_Attack_1", "war");
@@ -10776,19 +10780,6 @@ void QuestComplete(string sQuestName, string qname)
 			Group_SetAddress("AT_Pir_Attack_2", "Hispaniola1", "Quest_Ships", "Quest_ship_12");
 			realships[sti(sld.ship.type)].SpeedRate = 7.0;
 			
-			Group_FindOrCreateGroup("AT_Pir_Attack_3");
-			Group_SetType("AT_Pir_Attack_3", "war");
-			sld = GetCharacter(NPC_GenerateCharacter("AT_pr_1_CaptainAttack_3", "officer_"+(rand(57)+1), "man", "man", 1, PIRATE, -1, true));
-            FantomMakeCoolSailor(sld, SHIP_TARTANE, "", "", 20, 100, 100);
-            FantomMakeCoolFighter(sld, 30, 100, 100, "blade40", "", 100);
-    		Group_AddCharacter("AT_Pir_Attack_3", "AT_pr_1_CaptainAttack_3");
-			Group_SetGroupCommander("AT_Pir_Attack_3", "AT_pr_1_CaptainAttack_3");
-			Group_SetTaskAttack("AT_Pir_Attack_3", PLAYER_GROUP);
-			Group_LockTask("AT_Pir_Attack_3");
-			Group_SetAddress("AT_Pir_Attack_3", "Hispaniola1", "", "");
-			Group_SetPursuitGroup("AT_Pir_Attack_3", PLAYER_GROUP);
-			realships[sti(sld.ship.type)].SpeedRate = 5.0;
-			
 			sld = CharacterFromID("AT_pr_1_CaptainAttack_1")
 			AddCharacterCrew(sld, -330);
 			sld.ship.HP = sti(sld.ship.HP) - 2000;		
@@ -10801,14 +10792,14 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 		
 		case "AT_pr_Bejim_ot_piratov":
-			DoQuestFunctionDelay("AT_pr_Bejim_ot_piratov_2", 8.0);
-			DoQuestFunctionDelay("AT_pr_Bejim_ot_piratov_3", 150.0);
+			DoQuestFunctionDelay("AT_pr_Bejim_ot_piratov_2", 4.0);
+			DoQuestFunctionDelay("AT_pr_Bejim_ot_piratov_3", 200.0);
+			DoQuestFunctionDelay("AT_pr_Bejim_ot_piratov_4", 300.0);
 			
 			PChar.quest.AT_pr_Santo_Domin.win_condition.l1 = "location";
 			PChar.quest.AT_pr_Santo_Domin.win_condition.l1.location = "SantoDomingo_town";
 			PChar.quest.AT_pr_Santo_Domin.win_condition = "AT_pr_Santo_Domin";
 			
-			EndQuestMovie();
 			DeleteAttribute(pchar, "questTemp.AnjelikaTichPrologue");
 			DeleteAttribute(pchar, "questTemp.AnjelikaTichPrologue2");
 			DeleteAttribute(pchar, "questTemp.ATPNapelsy");
@@ -10824,8 +10815,6 @@ void QuestComplete(string sQuestName, string qname)
 			sld.lifeday = 0;
 			sld = CharacterFromID("AT_pr_1_CaptainAttack_2")
 			sld.lifeday = 0;
-			sld = CharacterFromID("AT_pr_1_CaptainAttack_3")
-			sld.lifeday = 0;
 			bDisableFastReload = false;
 		break;
 		
@@ -10834,16 +10823,38 @@ void QuestComplete(string sQuestName, string qname)
 			sld.lifeday = 0;
 			sld = CharacterFromID("AT_pr_1_CaptainAttack_2")
 			sld.lifeday = 0;
-			sld = CharacterFromID("AT_pr_1_CaptainAttack_3")
-			sld.lifeday = 0;
 			
-			LocatorReloadEnterDisable("SantoDomingo_ExitTown", "reload3", false);	//Важная реакция
+			LocatorReloadEnterDisable("SantoDomingo_ExitTown", "reload1_back", false);	//Важная реакция
 			LocatorReloadEnterDisable("PortPax_ExitTown", "reload3", false);	//Важная реакция
 			bDisableFastReload = true;
 			LocatorReloadEnterDisable("SantoDomingo_town", "Reload1_back", true);	//Не даём выйти из города (квест продолжается)
 			LocatorReloadEnterDisable("SantoDomingo_town", "Reload3_back", true);	//Блакируем резиденцию
 			PChar.quest.ATpr_SvobodaIgry.over = "yes";				//Если успели в Санто-Доминго, то выключаем таймер
+			
+			/*PChar.quest.ATpr_KrasivoSD.win_condition.l1 = "locator";			//Встаём на определённое место
+			PChar.quest.ATpr_KrasivoSD.win_condition.l1.location = "SantoDomingo_town";
+			PChar.quest.ATpr_KrasivoSD.win_condition.l1.locator_group = "goto";
+			PChar.quest.ATpr_KrasivoSD.win_condition.l1.locator = "goto7";
+			PChar.quest.ATpr_KrasivoSD.win_condition = "ATpr_KrasivoSD";*/
 		break;
+		
+		/*case "ATpr_KrasivoSD":
+			StartQuestMovie(true, true, true);
+			ChangeShowIntarface();
+			LAi_SetActorType(pchar);
+			object cam_pause;
+			LoadTrackCamera("RESOURCE\MODELS\Locations\Town_SantoDomingo\Town\Margarita_track_camera_2.ant", 30.0, &cam_pause);
+			DoQuestCheckDelay("ATpr_KrasivoSD_2", 20.0);
+		break;
+		
+		case "ATpr_KrasivoSD_2":
+			EndQuestMovie();
+			ChangeShowIntarface();
+			LAi_SetPlayerType(pchar);
+			locCameraToPos(0.00, 0.50, 0.50, false);
+			locCameraTarget(PChar);
+			locCameraFollow();
+		break;*/
 		
 		case "ATpr_OboronaSD":
 			StartQuestMovie(true, true, true);

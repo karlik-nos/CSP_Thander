@@ -10543,7 +10543,7 @@ void PDM_Zoloto_ne_tonet_BITVA_na_sushe(string qName)
 
 void Sinistra_TEST(string qName)
 {
-	MakeAutoSave();
+	
 }
 
 //Sinistra Охота на ведьму -->
