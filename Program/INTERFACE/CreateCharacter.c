@@ -33,7 +33,7 @@ void InitInterface(string iniName)
 	
 	LoadStartGameParam();
 	startHeroType = 1;
-	if (CheckAttribute(pchar,"RemovePGG.PGG1"))
+	if (CheckAttribute(pchar,"RemovePGG.PGG1") && pchar.RemovePGG.PGG1 == 1)
 	{
 		CheckButton_SetState("REMOVE_PGG_CHECKBOX", 1, 1);
 	}

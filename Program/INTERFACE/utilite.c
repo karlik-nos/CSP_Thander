@@ -783,6 +783,7 @@ void SaveStartGameParam()
 		{
 			optref.StartGameParam.DisabledPGGs.(sBlockPGG) = 1;
 		}
+		else optref.StartGameParam.DisabledPGGs.(sBlockPGG) = 0;
 	}
 	
 
@@ -918,6 +919,7 @@ void LoadStartGameParam()
 		{
 			pchar.RemovePGG.(sBlockPGG) = 1;
 		}
+		else pchar.RemovePGG.(sBlockPGG) = 0;
 	}
 }
 void LoadPlayerProfileDefault()
