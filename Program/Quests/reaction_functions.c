@@ -11440,25 +11440,22 @@ void KSM_Snr_Nashli_Ship(string qName)
 {
 	bDisableFastReload = true;
 	chrDisableReloadToLocation = true;
-	//StartQuestMovie(true, true, true);
-	//locCameraFromToPos(9.50, 16.00, -19.00, false, -10.00, 8.00, -20.00);
-	//DoQuestFunctionDelay("KSM_Snr_Nashli_Ship_2", 3.0);
+	StartQuestMovie(true, true, true);
+	DoQuestFunctionDelay("KSM_Snr_Nashli_Ship_2", 3.0);
+	DoQuestFunctionDelay("KSM_Snr_Nashli_Ship_Cam", 0.1);
 	ChangeCharacterAddressGroup(pchar, "WreckedShip", "rld", "loc2");
-	//LAi_SetActorType(pchar);
-	//LAi_ActorGoToLocator(pchar, "goto", "goto4", "", -1);
+	DoQuestFunctionDelay("UbratPortret", 0.1);
+	LAi_SetActorType(pchar);
+	LAi_ActorGoToLocator(pchar, "goto", "goto4", "", -1);
 	
 	sld = CharacterFromID("KSM_Alloka")
-	FantomMakeCoolFighter(sld, sti(pchar.rank), 15 + MOD_SKILL_ENEMY_RATE * 4, 15 + MOD_SKILL_ENEMY_RATE * 4, "blade46", "pistol9", 50 + MOD_SKILL_ENEMY_RATE * 4);
+	FantomMakeCoolFighter(sld, sti(pchar.rank) + 5, 15 + MOD_SKILL_ENEMY_RATE * 4, 15 + MOD_SKILL_ENEMY_RATE * 4, "blade46", "pistol9", 50 + MOD_SKILL_ENEMY_RATE * 4);
 	sld.SaveItemsForDead = true;
 	sld.DontChangeGun = true;
 	TakeItemFromCharacter(sld, "spyglass3");
 	TakeNItems(sld, "food1", -10);
-	AddMoneyToCharacter(sld, 10000);
-	AddItems(sld, "chest", 2);
-	AddItems(sld, "jewelry2", 30);
-	AddItems(sld, "jewelry3", 35);
-	AddItems(sld, "jewelry4", 20);
-	AddItems(sld, "jewelry5", 75);
+	TakeNItems(sld, "potionwine", 2);
+	AddMoneyToCharacter(sld, 2000);
 	ChangeCharacterAddressGroup(sld, "WreckedShip", "rld", "aloc14");
 	sld.Dialog.Filename = "Quest/KSM/Spasenie_na_rifah.c";
 	sld.dialog.currentnode   = "REEFS";
@@ -11505,6 +11502,29 @@ void KSM_Snr_Nashli_Ship(string qName)
 	LAi_group_MoveCharacter(sld, "EnemyFight");
 	
 }
+void KSM_Snr_Nashli_Ship_Cam(string qName)
+{
+	locCameraFromToPos(9.50, 16.00, -19.00, false, -10.00, 8.00, -20.00);
+	Locations[FindLocation(pchar.location)].box1.items.grenade = 5;
+	Locations[FindLocation(pchar.location)].box1.items.grapeshot = 15;
+	Locations[FindLocation(pchar.location)].box1.items.bullet = 20;
+	Locations[FindLocation(pchar.location)].box1.items.GunPowder = 25;
+	Locations[FindLocation(pchar.location)].box1.items.Mushket_english = 1;
+	Locations[FindLocation(pchar.location)].box1.items.compcraft_sulfur = 20;
+	Locations[FindLocation(pchar.location)].box1.items.compcraft_powdermixture = 20;
+	
+	Locations[FindLocation(pchar.location)].box2.items.chest = 1;
+	Locations[FindLocation(pchar.location)].box2.items.jewelry1 = rand(10)+10;
+	Locations[FindLocation(pchar.location)].box2.items.jewelry2 = rand(10)+10;
+	Locations[FindLocation(pchar.location)].box2.items.jewelry3 = rand(10)+10;
+	Locations[FindLocation(pchar.location)].box2.items.jewelry4 = rand(10)+10;
+	Locations[FindLocation(pchar.location)].box2.items.jewelry17 = rand(20)+10;
+	
+	Locations[FindLocation(pchar.location)].box3.items.chest = 1;
+	Locations[FindLocation(pchar.location)].box3.items.jewelry5 = rand(20)+10;
+	Locations[FindLocation(pchar.location)].box3.items.jewelry17 = rand(10)+10;
+	Locations[FindLocation(pchar.location)].box3.items.potionrum = rand(2)+2;
+}
 void KSM_Snr_Nashli_Ship_2(string qName)
 {
 	locCameraFromToPos(-8.50, 16.00, -30.00, true, 10.00, 13.00, 5.00);
@@ -11524,55 +11544,10 @@ void KSM_Snr_Razgovor_1(string qName)
 	sld = CharacterFromID("KSM_Alloka")
 	LAi_ActorDialogNow(sld, Pchar, "", -1);
 }
-void KSM_Snr_Nashli_Ship_7777(string qName)
+void UbratPortret(string qName)
 {
-	LAi_SetPlayerType(pchar);
-	sld = CharacterFromID("KSM_Alloka")
-	FantomMakeCoolFighter(sld, sti(pchar.rank), 15 + MOD_SKILL_ENEMY_RATE * 4, 15 + MOD_SKILL_ENEMY_RATE * 4, "blade46", "pistol9", 50 + MOD_SKILL_ENEMY_RATE * 4);
-	sld.SaveItemsForDead = true;
-	sld.DontChangeGun = true;
-	TakeItemFromCharacter(sld, "spyglass3");
-	TakeNItems(sld, "food1", -10);
-	AddMoneyToCharacter(sld, 10000);
-	AddItems(sld, "chest", 2);
-	AddItems(sld, "jewelry2", 30);
-	AddItems(sld, "jewelry3", 35);
-	AddItems(sld, "jewelry4", 20);
-	AddItems(sld, "jewelry5", 75);
-	PlaceCharacter(sld, "rld", PChar.location);
-	LAi_ActorDialog(sld, pchar, "", 1.5, 0);
-	sld.Dialog.Filename = "Quest/KSM/Spasenie_na_rifah.c";
-	sld.dialog.currentnode   = "REEFS";
+	ChangeShowIntarface();
 }
-
-
-void Sinistra_TEST(string qName)
-{
-	StartQuestMovie(true, true, true);
-	locCameraFromToPos(9.50, 16.00, -19.00, false, -10.00, 8.00, -20.00);
-	DoQuestFunctionDelay("Sinistra_TEST_2", 3.0);
-	ChangeCharacterAddressGroup(pchar, "WreckedShip", "rld", "loc2");
-	LAi_SetActorType(pchar);
-	LAi_ActorGoToLocator(pchar, "goto", "goto4", "", -1);
-}
-void Sinistra_TEST_2(string qName)
-{
-	locCameraFromToPos(-8.50, 16.00, -30.00, true, 10.00, 13.00, 5.00);
-	DoQuestFunctionDelay("Sinistra_TEST_3", 5.0);
-	ChangeCharacterAddressGroup(pchar, "WreckedShip", "rld", "loc12");
-	LAi_SetActorType(pchar);
-	LAi_ActorGoToLocator(pchar, "goto", "goto4", "", -1);
-	sld = CharacterFromID("KSM_Snr_Matrosiki_3")
-	ChangeCharacterAddressGroup(sld, "WreckedShip", "rld", "loc11");
-	LAi_SetActorType(sld);
-	LAi_ActorGoToLocator(sld, "rld", "aloc9", "", -1);
-}
-void Sinistra_TEST_3(string qName)
-{
-	locCameraFromToPos(-5.50, 16.00, -10.00, false, 3.00, 11.30, 5.00);
-	DoQuestFunctionDelay("KSM_Snr_Razgovor_1", 4.0);
-}
-
 //<-- Квест. Чудесное спасение на рифах.
 
 

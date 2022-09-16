@@ -10498,58 +10498,67 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 		
 		case "KSM_Snr_EndloosTraiderKill":
-			LAi_LocationFightDisable(loadedLocation, false); //Разрешаем оружие
 			LAi_SetPlayerType(pchar);
 			LAi_SetFightMode(pchar, true);
 			sld = CharacterFromID("KSM_Alloka")
 			LAi_SetWarriorType(sld);
 			LAi_SetImmortal(sld, false);
 			LAi_group_MoveCharacter(sld, "EnemyFight");
+			//Враги
+			for (i=1; i<=6; i++)
+			{
+				sTemp = "pirate_"+(rand(24)+1);
+				sld = GetCharacter(NPC_GenerateCharacter("CSM_Snr_Bandity_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+				ChangeCharacterAddressGroup(sld, pchar.location, "randitem",  "randitem1");
+			}
+			for (i=7; i<=11; i++)
+			{
+				sTemp = "pirate_"+(rand(24)+1);
+				sld = GetCharacter(NPC_GenerateCharacter("CSM_Snr_Bandity_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+				ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto7");
+			}
+			for (i=12; i<=15; i++)
+			{
+				sTemp = "pirate_"+(rand(24)+1);
+				sld = GetCharacter(NPC_GenerateCharacter("CSM_Snr_Bandity_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+				ChangeCharacterAddressGroup(sld, pchar.location, "rld",  "aloc15");
+			}
+			//Наши
+			for (i=4; i<=14; i++)
+			{
+				sTemp = "shipowner_"+(rand(24)+1);
+				sld = GetCharacter(NPC_GenerateCharacter("KSM_Snr_Matrosiki_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
+				ChangeCharacterAddressGroup(sld, pchar.location, "rld",  "loc0");
+			}
 			for (i=1; i<=3; i++)
 			{
-				sTemp = "pirate_"+(rand(24)+1);
-				sld = GetCharacter(NPC_GenerateCharacter("CSM_Snr_Bandity_"+i, sTemp, "man", "man", 4, PIRATE, -1, true));
+				sld = CharacterFromID("KSM_Snr_Matrosiki_"+i)
 				LAi_SetWarriorType(sld);
-				LAi_group_MoveCharacter(sld, "EnemyFight");
-				ChangeCharacterAddressGroup(sld, pchar.location, "rld",  "aloc1");
-			}
-			for (i=4; i<=5; i++)
-			{
-				sTemp = "pirate_"+(rand(24)+1);
-				sld = GetCharacter(NPC_GenerateCharacter("CSM_Snr_Bandity_"+i, sTemp, "man", "man", 4, PIRATE, -1, true));
-				LAi_SetWarriorType(sld);
-				LAi_group_MoveCharacter(sld, "EnemyFight");
-				ChangeCharacterAddressGroup(sld, pchar.location, "reload",  "reload2");
+				LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
 			}
 			LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);		//стравливаем
 			LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);
 			LAi_group_SetCheck("EnemyFight", "KSM_Snr_Pobeda");
 			LAi_SetFightMode(pchar, true);
+			EndQuestMovie();
+			ChangeShowIntarface();
 			DialogExit();
 		break;
 		
 		case "KSM_Snr_Pobeda":
-			//chrDisableReloadToLocation = false;
-			//bDisableFastReload = false;
-			LAi_LocationFightDisable(loadedLocation, true);
+			chrDisableReloadToLocation = false;
+			bDisableFastReload = false;
 			
 			AddQuestRecord("KSM_Spasenie_na_rifah", "2");
 			CloseQuestHeader("KSM_Spasenie_na_rifah");
-			
-			PChar.quest.CSM_Snr_NaSvobodu.win_condition.l1 = "locator";
-			PChar.quest.CSM_Snr_NaSvobodu.win_condition.l1.location = "My_Deck";
-			PChar.quest.CSM_Snr_NaSvobodu.win_condition.l1.locator_group = "reload";
-			PChar.quest.CSM_Snr_NaSvobodu.win_condition.l1.locator = "reload1";
-			PChar.quest.CSM_Snr_NaSvobodu.win_condition = "CSM_Snr_NaSvobodu";
-		break;
-		
-		case "CSM_Snr_NaSvobodu":
-			DoQuestReloadToLocation("DeckWithReefs", "reload", "reload1", "CSM_Snr_NaSvobodu_2");
-		break;
-		
-		case "CSM_Snr_NaSvobodu_2":
-			chrDisableReloadToLocation = false;
-			bDisableFastReload = false;
 		break;
 		
 //========================  Sinistra Пролог "Анжелика Тич"  =======================			
