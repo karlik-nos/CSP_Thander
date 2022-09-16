@@ -75,8 +75,8 @@ int Whr_InitEvening(int n)
 	Weathers[n].Rainbow.Enable = false;
 	Weathers[n].Rainbow.Texture = "weather\rainbow\rainbow.tga.tx";
 
-	Weathers[n].Sun.Color = argb(0,158,80,25);
-	Weathers[n].Sun.Ambient = argb(0,82,63,62);
+	Weathers[n].Sun.Color = argb(0,184,125,85);
+	Weathers[n].Sun.Ambient = argb(0,91,79,76);
 	//Weathers[n].Sun.AzimuthAngle = Degree2Radian(-25.0);
 	//Weathers[n].Sun.HeightAngle = 0.60;
 	Weathers[n].Sun.AzimuthAngle = Degree2Radian(300.0);
@@ -259,8 +259,8 @@ int Whr_InitEvening(int n)
 	Weathers[n].Rainbow.Enable = false;
 	Weathers[n].Rainbow.Texture = "weather\rainbow\rainbow.tga.tx";
 
-	Weathers[n].Sun.Color = argb(0,132,85,15);
-	Weathers[n].Sun.Ambient = argb(0,73,47,48);
+	Weathers[n].Sun.Color = argb(0,138,80,55);
+	Weathers[n].Sun.Ambient = argb(0,82,63,62);
 	//Weathers[n].Sun.AzimuthAngle = Degree2Radian(-25.0);
 	//Weathers[n].Sun.HeightAngle = 0.60;
 	Weathers[n].Sun.AzimuthAngle = Degree2Radian(300.0);
@@ -442,8 +442,8 @@ int Whr_InitEvening(int n)
 	Weathers[n].Stars.SunFade = 1.0;
 	Weathers[n].Stars.VisualMagnitude = 8.0;
 
-	Weathers[n].Sun.Color = argb(0,155,91,5);
-	Weathers[n].Sun.Ambient = argb(0,66,33,33);
+	Weathers[n].Sun.Color = argb(0,112,85,45);
+	Weathers[n].Sun.Ambient = argb(0,73,47,48);
 	//Weathers[n].Sun.AzimuthAngle = Degree2Radian(37.0);
 	Weathers[n].Sun.AzimuthAngle = Degree2Radian(337.0);
 	Weathers[n].Sun.HeightAngle = 1.00;
@@ -622,7 +622,7 @@ int Whr_InitEvening(int n)
 	Weathers[n].Stars.SunFade = 1.0;
 	Weathers[n].Stars.VisualMagnitude = 15.0;
 
-	Weathers[n].Sun.Color = argb(0,177,109,72);
+	Weathers[n].Sun.Color = argb(0,157,109,72);
 	Weathers[n].Sun.Ambient = argb(0,48,30,33);
 	//Weathers[n].Sun.AzimuthAngle = Degree2Radian(37.0);
 	Weathers[n].Sun.AzimuthAngle = Degree2Radian(337.0);
