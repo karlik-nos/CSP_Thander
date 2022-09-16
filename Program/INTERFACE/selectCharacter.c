@@ -189,6 +189,14 @@ void SetByDefault()
     {
         CheckButton_SetState("CHECK_LOWERSELF", 1, false);
     }
+	if (bRankRequirement)// 1 0
+    {
+    	CheckButton_SetState("CHECK_RANK_REQUIREMENT", 1, true);
+    }
+    else
+    {
+        CheckButton_SetState("CHECK_RANK_REQUIREMENT", 1, false);
+    }
 	if (bHalfImmortalPGG)// 1 0
     {
     	CheckButton_SetState("CHECK_HALFIMMORTALPGG", 1, true);
@@ -382,6 +390,14 @@ void IProcessFrame()
 	else
 	{
 		bHigherSelfRate = false;
+	}
+	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_RANK_REQUIREMENT", 3, 1))
+	{
+		bRankRequirement = true;
+	}
+	else
+	{
+		bRankRequirement = false;
 	}
 	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_NOBONUS_SKILL_OFF", 3, 1))
 	{
@@ -1119,6 +1135,12 @@ void ShowInfo()
 			sHeader = XI_ConvertString("LowerSelf");
 			sText1 = GetRPGText("LowerSelf_hint");
 		break;
+		
+		case "CHECK_RANK_REQUIREMENT":
+			sHeader = XI_ConvertString("CHECK_RANK_REQUIREMENT");
+			sText1 = XI_ConvertString("CHECK_RANK_REQUIREMENT_descr");
+		break;
+		
 		case "CHECK_HALFIMMORTALPGG":
 			sHeader = XI_ConvertString("HalfImmortalPGG");
 			sText1 = GetRPGText("HalfImmortalPGG_hint");

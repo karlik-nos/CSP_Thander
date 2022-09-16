@@ -758,6 +758,7 @@ void SaveStartGameParam()
 	optref.StartGameParam.bHardBoss  		 	 = bHardBoss;
 	optref.StartGameParam.bHigherShipRate  		 = bHigherShipRate;
 	optref.StartGameParam.bHigherSelfRate  		 = bHigherSelfRate;
+	optref.StartGameParam.bRankRequirement  	 = bRankRequirement;
 	optref.StartGameParam.bHalfImmortalPGG  	 = bHalfImmortalPGG;
 	optref.StartGameParam.bPortPermission  		 = bPortPermission;
 	optref.StartGameParam.bBribeSoldiers  		 = bBribeSoldiers;
@@ -854,6 +855,10 @@ void LoadStartGameParam()
 	if (CheckAttribute(optref, "StartGameParam.bHigherSelfRate"))
 	{
     	bHigherSelfRate = sti(optref.StartGameParam.bHigherSelfRate);
+    }
+	if (CheckAttribute(optref, "StartGameParam.bRankRequirement"))
+	{
+    	bRankRequirement = sti(optref.StartGameParam.bRankRequirement);
     }
 	if (CheckAttribute(optref, "StartGameParam.bHalfImmortalPGG"))
 	{
