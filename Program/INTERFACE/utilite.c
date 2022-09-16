@@ -769,6 +769,7 @@ void SaveStartGameParam()
 	optref.StartGameParam.bAltBalance          	 = bAltBalance;
 	optref.StartGameParam.bFillEncyShips         = bFillEncyShips;
 	optref.StartGameParam.bDifficultyWeight      = bDifficultyWeight;
+	optref.StartGameParam.iStealthSystem         = iStealthSystem;
     // иначе сброс галки может быть optref.StartGameParam.bWorldAlivePause       = bWorldAlivePause;
 
     optref.StartGameParam.HeroType         = NullCharacter.HeroParam.HeroType;
@@ -910,6 +911,10 @@ void LoadStartGameParam()
 	if (CheckAttribute(optref, "StartGameParam.bDifficultyWeight"))
 	{
     	bDifficultyWeight = sti(optref.StartGameParam.bDifficultyWeight);
+    }
+	if (CheckAttribute(optref, "StartGameParam.iStealthSystem"))
+	{
+    	iStealthSystem = sti(optref.StartGameParam.iStealthSystem);
     }
 	int  heroQty   = sti(GetNewMainCharacterParam("ps_hero_qty"));
 	for (int n=1; n<=heroQty; n++)
