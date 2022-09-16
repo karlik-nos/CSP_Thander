@@ -530,7 +530,7 @@ void CreateWeatherEnvironment()
 	WhrCreateSkyEnvironment();
 
 	string sPreset = WhrGetSeaPresetFromWind(fWeatherSpeed);
-    WhrSetSeaPreset(iCurWeatherNum, sPreset);
+    //WhrSetSeaPreset(iCurWeatherNum, sPreset);
 	WhrCreateSeaEnvironment();
 
 	if(iLocation != -1)
@@ -947,7 +947,7 @@ void Whr_UpdateWeatherHour()
                 if(stf(Sea.MaxSeaHeight) != SetMaxSeaHeight(i))
 
 					string sPreset = WhrGetSeaPresetFromWind(fWeatherSpeed);
-					WhrSetSeaPreset(iCurWeatherNum, sPreset);
+					//WhrSetSeaPreset(iCurWeatherNum, sPreset);
                     WhrCreateSeaEnvironment(); // boal смена волн на лету
 	 		}
  		}
