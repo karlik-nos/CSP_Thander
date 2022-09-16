@@ -2588,8 +2588,6 @@ string descF54 = "Тест кораблей";
 void CalculateInfoDataF54()
 {
 	totalInfo = descF54;
-<<<<<<< Updated upstream
-=======
 	
 	sld = GetCharacter(NPC_GenerateCharacter("LoL", "ozg_green", "man", "man", 5, PIRATE, -1, true));
 	FantomMakeCoolFighter(sld, 5, 30, 30, "blade30", "pistol2", 5);
@@ -2611,7 +2609,6 @@ void CalculateInfoDataF54()
 	Group_LockTask("Test_Attack");
 	QuestToSeaLogin_Launch();
 	QuestToSeaLogin_PrepareLoc("Reefs", "Quest_Ships", "Quest_ship_1", true);
->>>>>>> Stashed changes
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 
