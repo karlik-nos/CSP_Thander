@@ -11436,23 +11436,95 @@ void LooserGenerator_DopProverka(string s)
 //<-- Квест. Проигравшийся игрок.
 
 //Квест. Чудесное спасение на рифах. -->
-void KSM_Nashli_Ship(string qName)
+void KSM_Snr_Nashli_Ship(string qName)
 {
 	bDisableFastReload = true;
 	chrDisableReloadToLocation = true;
-	DoQuestFunctionDelay("KSM_Nashli_Ship_2", 1.0);
+	//StartQuestMovie(true, true, true);
+	//locCameraFromToPos(9.50, 16.00, -19.00, false, -10.00, 8.00, -20.00);
+	//DoQuestFunctionDelay("KSM_Snr_Nashli_Ship_2", 3.0);
+	ChangeCharacterAddressGroup(pchar, "WreckedShip", "rld", "loc2");
+	//LAi_SetActorType(pchar);
+	//LAi_ActorGoToLocator(pchar, "goto", "goto4", "", -1);
+	
+	sld = CharacterFromID("KSM_Alloka")
+	FantomMakeCoolFighter(sld, sti(pchar.rank), 15 + MOD_SKILL_ENEMY_RATE * 4, 15 + MOD_SKILL_ENEMY_RATE * 4, "blade46", "pistol9", 50 + MOD_SKILL_ENEMY_RATE * 4);
+	sld.SaveItemsForDead = true;
+	sld.DontChangeGun = true;
+	TakeItemFromCharacter(sld, "spyglass3");
+	TakeNItems(sld, "food1", -10);
+	AddMoneyToCharacter(sld, 10000);
+	AddItems(sld, "chest", 2);
+	AddItems(sld, "jewelry2", 30);
+	AddItems(sld, "jewelry3", 35);
+	AddItems(sld, "jewelry4", 20);
+	AddItems(sld, "jewelry5", 75);
+	ChangeCharacterAddressGroup(sld, "WreckedShip", "rld", "aloc14");
+	sld.Dialog.Filename = "Quest/KSM/Spasenie_na_rifah.c";
+	sld.dialog.currentnode   = "REEFS";
+	
+	//Наши матросы
+	for (i=1; i<=2; i++)
+	{
+		sTemp = "shipowner_"+(rand(28)+1);
+		sld = GetCharacter(NPC_GenerateCharacter("KSM_Snr_Matrosiki_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+		ChangeCharacterAddressGroup(sld, "WreckedShip", "goto", "goto1");
+		LAi_SetActorType(sld);
+		LAi_ActorFollow(sld, pchar, "", -1);
+		LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
+	}
+	sTemp = "shipowner_"+(rand(28)+1);
+	sld = GetCharacter(NPC_GenerateCharacter("KSM_Snr_Matrosiki_3", sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+	ChangeCharacterAddressGroup(sld, "WreckedShip", "goto", "goto1");
+	LAi_SetActorType(sld);
+	LAi_ActorGoToLocator(sld, "rld", "aloc9", "", -1);
+	LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
+	//Вражеские мушкетёры
+	sTemp = "Mushketer_"+(rand(24)+1);
+	sld = GetCharacter(NPC_GenerateCharacter("KSM_Snr_Mushkety_1", sTemp, "man", "mushketer", sti(pchar.rank), PIRATE, -1, false));
+	sld.MusketerDistance = 0;
+	ChangeCharacterAddressGroup(sld, "WreckedShip", "rld", "aloc12");
+	LAi_SetWarriorType(sld);
+	LAi_warrior_SetStay(sld, true);
+	LAi_group_MoveCharacter(sld, "EnemyFight");
+	
+	sTemp = "Mushketer_"+(rand(24)+1);
+	sld = GetCharacter(NPC_GenerateCharacter("KSM_Snr_Mushkety_2", sTemp, "man", "mushketer", sti(pchar.rank), PIRATE, -1, false));
+	sld.MusketerDistance = 0;
+	ChangeCharacterAddressGroup(sld, "WreckedShip", "rld", "aloc13");
+	LAi_SetWarriorType(sld);
+	LAi_warrior_SetStay(sld, true);
+	LAi_group_MoveCharacter(sld, "EnemyFight");
+	
+	sTemp = "Mushketer_"+(rand(24)+1);
+	sld = GetCharacter(NPC_GenerateCharacter("KSM_Snr_Mushkety_3", sTemp, "man", "mushketer", sti(pchar.rank), PIRATE, -1, false));
+	sld.MusketerDistance = 0;
+	ChangeCharacterAddressGroup(sld, "WreckedShip", "rld", "aloc15");
+	LAi_SetWarriorType(sld);
+	LAi_warrior_SetStay(sld, true);
+	LAi_group_MoveCharacter(sld, "EnemyFight");
+	
 }
-void KSM_Nashli_Ship_2(string qName)
+void KSM_Snr_Nashli_Ship_2(string qName)
 {
-	SetLaunchFrameFormParam("Вы на лодке отправились на разбитое судно. Через 15 минут вы уже спускаетесь в трюм, пытаясь найти выживший экипаж и ценный груз.", "", 0, 6.5);
-	LaunchFrameForm();
-	DoQuestFunctionDelay("KSM_V_trume", 6.5);
+	locCameraFromToPos(-8.50, 16.00, -30.00, true, 10.00, 13.00, 5.00);
+	DoQuestFunctionDelay("KSM_Snr_Nashli_Ship_3", 5.0);
+	ChangeCharacterAddressGroup(pchar, "WreckedShip", "rld", "loc12");
+	LAi_SetActorType(pchar);
+	LAi_ActorGoToLocator(pchar, "goto", "goto4", "", -1);
 }
-void KSM_V_trume(string qName)
+void KSM_Snr_Nashli_Ship_3(string qName)
 {
-	DoQuestReloadToLocation("My_Deck", "rld", "loc1", "KSM_Lovushka");
+	locCameraFromToPos(-5.50, 16.00, -10.00, false, 3.00, 11.30, 5.00);
+	DoQuestFunctionDelay("KSM_Snr_Razgovor_1", 4.0);
 }
-void KSM_V_trume_2(string qName)
+void KSM_Snr_Razgovor_1(string qName)
+{
+	LAi_SetPlayerType(pchar);
+	sld = CharacterFromID("KSM_Alloka")
+	LAi_ActorDialogNow(sld, Pchar, "", -1);
+}
+void KSM_Snr_Nashli_Ship_7777(string qName)
 {
 	LAi_SetPlayerType(pchar);
 	sld = CharacterFromID("KSM_Alloka")
@@ -11472,6 +11544,35 @@ void KSM_V_trume_2(string qName)
 	sld.Dialog.Filename = "Quest/KSM/Spasenie_na_rifah.c";
 	sld.dialog.currentnode   = "REEFS";
 }
+
+
+void Sinistra_TEST(string qName)
+{
+	StartQuestMovie(true, true, true);
+	locCameraFromToPos(9.50, 16.00, -19.00, false, -10.00, 8.00, -20.00);
+	DoQuestFunctionDelay("Sinistra_TEST_2", 3.0);
+	ChangeCharacterAddressGroup(pchar, "WreckedShip", "rld", "loc2");
+	LAi_SetActorType(pchar);
+	LAi_ActorGoToLocator(pchar, "goto", "goto4", "", -1);
+}
+void Sinistra_TEST_2(string qName)
+{
+	locCameraFromToPos(-8.50, 16.00, -30.00, true, 10.00, 13.00, 5.00);
+	DoQuestFunctionDelay("Sinistra_TEST_3", 5.0);
+	ChangeCharacterAddressGroup(pchar, "WreckedShip", "rld", "loc12");
+	LAi_SetActorType(pchar);
+	LAi_ActorGoToLocator(pchar, "goto", "goto4", "", -1);
+	sld = CharacterFromID("KSM_Snr_Matrosiki_3")
+	ChangeCharacterAddressGroup(sld, "WreckedShip", "rld", "loc11");
+	LAi_SetActorType(sld);
+	LAi_ActorGoToLocator(sld, "rld", "aloc9", "", -1);
+}
+void Sinistra_TEST_3(string qName)
+{
+	locCameraFromToPos(-5.50, 16.00, -10.00, false, 3.00, 11.30, 5.00);
+	DoQuestFunctionDelay("KSM_Snr_Razgovor_1", 4.0);
+}
+
 //<-- Квест. Чудесное спасение на рифах.
 
 

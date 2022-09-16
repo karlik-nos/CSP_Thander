@@ -2588,6 +2588,8 @@ string descF54 = "Нет назначений";
 void CalculateInfoDataF54()
 {
 	totalInfo = descF54;
+	
+	DoQuestFunctionDelay("Sinistra_TEST", 1.0);
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 

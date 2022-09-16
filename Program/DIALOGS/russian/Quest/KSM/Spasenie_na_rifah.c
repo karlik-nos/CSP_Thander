@@ -22,9 +22,7 @@ void ProcessDialogEvent()
 			dialog.text = "Капитан, как хорошо, что я вас встретил! Вы можете мне помочь?";
 			link.l1 = "В чём дело?";
 			link.l1.go = "1";
-			DeleteAttribute(&locations[FindLocation("DeckWithReefs")], "alwaysStorm");
-			DeleteAttribute(&locations[FindLocation("DeckWithReefs")], "storm");
-			DeleteAttribute(&locations[FindLocation("DeckWithReefs")], "tornado");
+			UnmarkCharacter(npchar);
 			
 			NextDiag.TempNode = "First time";
 		break;
@@ -67,13 +65,13 @@ void ProcessDialogEvent()
 
 		case "4":
 			dialog.text = "Ещё не поняли? Как же вы доверчивы. Мой корабль действительно разбился на этих скалах, и заполучить новый можно было только одним способом...";
-			link.l1 = "Заманить в западню "+ GetSexPhrase("какого-нибудь доверчивого простофилю","хрупкую наивную девицу") +".";
+			link.l1 = "Заманить в западню "+ GetSexPhrase("какого-нибудь доверчивого простофилю","какую-нибудь наивную лохушку") +".";
 			link.l1.go = "5";
 		break;
 
 		case "5":
 			dialog.text = "Совершенно верно, капитан, и именно "+ GetSexPhrase("таким простофилей","такой наивной лохушкой") +", к моей величайшей радости, оказались вы. Прощайте...";
-			link.l1 = "Вам так просто мой корабль не заполучить!";
+			link.l1 = "Это засада! К оружию!";
 			link.l1.go = "Exit2";
 		break;
 
@@ -93,13 +91,13 @@ void ProcessDialogEvent()
 		case "Exit1":
 			NextDiag.CurrentNode = NextDiag.TempNode;
 			DialogExit();
-			AddDialogExitQuest("KSM_EndloosTraider");
+			AddDialogExitQuest("KSM_Snr_EndloosTraider");
 		break;
 
         case "Exit2":
 			NextDiag.CurrentNode = NextDiag.TempNode;
 			DialogExit();
-			AddDialogExitQuest("KSM_EndloosTraiderKill");
+			AddDialogExitQuest("KSM_Snr_EndloosTraiderKill");
 		break;
 	}
 }

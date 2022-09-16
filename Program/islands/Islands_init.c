@@ -1532,6 +1532,14 @@ void InitIslands()
         Islands[n].reload.l2.radius = 600.0;
         Islands[n].reload.l2.pic = 0;
         Islands[n].reload.l2.tex = "t1";
+		
+		Islands[n].reload.l3.label = "WreckedShip";
+        Islands[n].reload.l3.name = "reload_3";
+        Islands[n].reload.l3.go = "WreckedShip";
+        Islands[n].reload.l3.emerge = "reload1";
+        Islands[n].reload.l3.radius = 400.0;
+        Islands[n].reload.l3.pic = 0;
+        Islands[n].reload.l3.tex = "t1";
 
         SendMessage(&locator,"le",LM_LOCATE_I,&Islands[n]);
 

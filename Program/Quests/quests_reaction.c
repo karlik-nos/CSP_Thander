@@ -10475,39 +10475,29 @@ void QuestComplete(string sQuestName, string qname)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //========================  Квест "Спасение на рифах".  =======================
-		case "KSM_EndloosTraider":
+		case "KSM_Snr_EndloosTraider":
 			bDisableFastReload = true;
 			chrDisableReloadToLocation = true;
 			sld = CharacterFromID("KSM_Alloka")
 			AddPassenger(pchar, sld, false);
 			SetCharacterRemovable(sld, false);
 			LAi_SetActorType(sld);
-			LAi_ActorRunToLocation(sld, "reload", "reload1", "none", "", "", "KSM_EndloosTraider_2", 0.5);
+			LAi_ActorRunToLocation(sld, "reload", "reload1", "none", "", "", "KSM_Snr_EndloosTraider_2", 0.5);
 			
 			SetQuestHeader("KSM_Spasenie_na_rifah");
 			AddQuestRecord("KSM_Spasenie_na_rifah", "1");
 		break;
 		
-		case "KSM_EndloosTraider_2":
+		case "KSM_Snr_EndloosTraider_2":
 			bDisableFastReload = false;
 			chrDisableReloadToLocation = false;
 			
-			Pchar.quest.KSM_Nashli_Ship.win_condition.l1           = "location";
-        	Pchar.quest.KSM_Nashli_Ship.win_condition.l1.location  = "DeckWithReefs";
-			PChar.quest.KSM_Nashli_Ship.function = "KSM_Nashli_Ship";
+			Pchar.quest.KSM_Snr_Nashli_Ship.win_condition.l1           = "location";
+        	Pchar.quest.KSM_Snr_Nashli_Ship.win_condition.l1.location  = "WreckedShip";
+			PChar.quest.KSM_Snr_Nashli_Ship.function = "KSM_Snr_Nashli_Ship";
 		break;
 		
-		case "KSM_Lovushka":
-			LAi_SetActorType(pchar);
-			LAi_ActorGoToLocator(pchar, "goto", "goto9", "KSM_Lovushka_2", 4);
-		break;
-		
-		case "KSM_Lovushka_2":
-			LAi_ActorTurnToLocator(PChar, "rld", "loc2");
-			DoQuestFunctionDelay("KSM_V_trume_2", 0.5);
-		break;
-		
-		case "KSM_EndloosTraiderKill":
+		case "KSM_Snr_EndloosTraiderKill":
 			LAi_LocationFightDisable(loadedLocation, false); //Разрешаем оружие
 			LAi_SetPlayerType(pchar);
 			LAi_SetFightMode(pchar, true);
@@ -10560,10 +10550,6 @@ void QuestComplete(string sQuestName, string qname)
 		case "CSM_Snr_NaSvobodu_2":
 			chrDisableReloadToLocation = false;
 			bDisableFastReload = false;
-			
-			locations[FindLocation("DeckWithReefs")].alwaysStorm = true;
-			locations[FindLocation("DeckWithReefs")].storm = true;
-			locations[FindLocation("DeckWithReefs")].tornado = true;
 		break;
 		
 //========================  Sinistra Пролог "Анжелика Тич"  =======================			
