@@ -36,22 +36,20 @@ void InitInterface(string iniName)
 	GameInterface.PROFILE_NAME.str = DEFAULT_NAME;
 	GameInterface.PROFILE_PASS.str = DEFAULT_PASS;
 
-    LoadStartGameParam(); // boal
-    MOD_EXP_RATE =  10; // задаем в начале игры (выбор, от 5 до 15, 10 - середина по умолчанию, 15 - медлено)
-    GameInterface.nodes.EXP_SLIDE.value = 0.5;
-    SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"EXP_SLIDE", 0, 0.5);
+    //LoadStartGameParam(); // boal
+    GameInterface.nodes.EXP_SLIDE.value = makefloat(MOD_EXP_RATE-15)/10.0;
+	if (stf(GameInterface.nodes.EXP_SLIDE.value) < 0) GameInterface.nodes.EXP_SLIDE.value = stf(GameInterface.nodes.EXP_SLIDE.value)*(-1);
+    SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"EXP_SLIDE", 0, stf(GameInterface.nodes.EXP_SLIDE.value));
 
 	MOD_OFFICERS_RATE = 3;
 	GameInterface.nodes.OFF_SLIDE.value = 0.5;
     SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"OFF_SLIDE", 0, 0.5);
 
-	MOD_DEAD_CLEAR_TIME = 100;
-	GameInterface.nodes.DEAD_SLIDE.value = 0.5;
-    SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"DEAD_SLIDE", 0, 0.5);
+	GameInterface.nodes.DEAD_SLIDE.value = makefloat(MOD_DEAD_CLEAR_TIME-500+400)/400.0;
+    SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"DEAD_SLIDE", 0, stf(GameInterface.nodes.DEAD_SLIDE.value));
 
-	MOD_DEFENDERS_RATE = 4;
-	GameInterface.nodes.DEFENDERS_SLIDE.value = 0.5;
-    SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"DEFENDERS_SLIDE", 0, 0.5);
+	GameInterface.nodes.DEFENDERS_SLIDE.value = makefloat(MOD_DEFENDERS_RATE)/5.0;
+    SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"DEFENDERS_SLIDE", 0, stf(GameInterface.nodes.DEFENDERS_SLIDE.value));
 
 	startHeroType = sti(pchar.starttype);
     if (startHeroType < 1) startHeroType = 1; // fix
@@ -614,7 +612,6 @@ void ProcessCommandExecute()
 				//DeleteProfile();
 				//exitOk();
 				isOkExit = true;
-				SaveStartGameParam(); // boal
 				IDoExit(RC_INTERFACE_CHARACTER_SELECT_EXIT, true);
 			}
 
@@ -955,6 +952,8 @@ void IDoExit(int exitCode, bool bCode)
 
 		MOD_DEFENDERS_RATE = makeint(5 - 5.0 * (1.0 - stf(GameInterface.nodes.DEFENDERS_SLIDE.value)));  // 0т 0 до 5
 		trace("MOD_DEFENDERS_RATE_RATE = " + MOD_DEFENDERS_RATE);
+		
+		SaveStartGameParam(); // boal
 
 		interfaceResultCommand = exitCode;
 		EndCancelInterface(bCode);
