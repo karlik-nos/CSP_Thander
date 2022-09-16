@@ -10521,12 +10521,14 @@ void QuestComplete(string sQuestName, string qname)
 				DeleteAttribute(pchar,"LambriniPGGInPrison");
 				PGG_ChangeRelation2MainCharacter(CharacterFromID(pchar.LambriniPGG), -200);
 			}
-				sld = CharacterFromID(pchar.LambriniPGG);
-				DeleteAttribute(sld, "PGGAi.DontUpdate");
-				DeleteAttribute(sld, "LambiniAsoleda");
-				DeleteAttribute(sld, "PGGAi.Task.SetSail");
-				DeleteAttribute(pchar, "LambriniPGG");
-				DeleteAttribute(pchar, "LambriniPGGPlata");
+			sld = CharacterFromID(pchar.LambriniPGG);
+			sld.dialog.filename = "pgg_dialog_town.c";
+			sld.dialog.currentnode = "First time";
+			DeleteAttribute(sld, "PGGAi.DontUpdate");
+			DeleteAttribute(sld, "LambiniAsoleda");
+			DeleteAttribute(sld, "PGGAi.Task.SetSail");
+			DeleteAttribute(pchar, "LambriniPGG");
+			DeleteAttribute(pchar, "LambriniPGGPlata");
 
 		break;
 
