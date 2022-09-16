@@ -746,7 +746,9 @@ void SaveStartGameParam()
 
     optref.StartGameParam.PlayerProfile    = GameInterface.PROFILE_NAME.str;//PlayerProfile.name;
     optref.StartGameParam.MOD_SKILL_ENEMY_RATE   = MOD_SKILL_ENEMY_RATE;
+	optref.StartGameParam.MOD_EXP_RATE   = MOD_EXP_RATE;
 	optref.StartGameParam.MOD_DEAD_CLEAR_TIME   = MOD_DEAD_CLEAR_TIME;
+	optref.StartGameParam.MOD_DEFENDERS_RATE   = MOD_DEFENDERS_RATE;
 	optref.StartGameParam.MainChAnim   = MainChAnim;
     optref.StartGameParam.bHardcoreGame          = bHardcoreGame;
 	optref.StartGameParam.bPartitionSet          = bPartitionSet;
@@ -772,6 +774,18 @@ void SaveStartGameParam()
     optref.StartGameParam.HeroType         = NullCharacter.HeroParam.HeroType;
     optref.StartGameParam.Nation           = NullCharacter.HeroParam.Nation;
     optref.StartGameParam.CurHeroNum       = startHeroType;
+	
+	int  heroQty   = sti(GetNewMainCharacterParam("ps_hero_qty"));
+	for (int n=1; n<=heroQty; n++)
+	{
+		string sBlockPGG = "PGG"+n;
+		if (CheckAttribute(pchar,"RemovePGG." + sBlockPGG) && sti(pchar.RemovePGG.(sBlockPGG)) == 1)
+		{
+			optref.StartGameParam.DisabledPGGs.(sBlockPGG) = 1;
+		}
+		else optref.StartGameParam.DisabledPGGs.(sBlockPGG) = 0;
+	}
+	
 
 	SaveSavedOptionsEx(&gopt);
 }
@@ -792,9 +806,17 @@ void LoadStartGameParam()
 	{
     	MOD_SKILL_ENEMY_RATE = sti(optref.StartGameParam.MOD_SKILL_ENEMY_RATE);
     }
+	if (CheckAttribute(optref, "StartGameParam.MOD_EXP_RATE"))
+	{
+    	MOD_EXP_RATE = sti(optref.StartGameParam.MOD_EXP_RATE);
+    }
 	if (CheckAttribute(optref, "StartGameParam.MOD_DEAD_CLEAR_TIME"))
 	{
     	MOD_DEAD_CLEAR_TIME = sti(optref.StartGameParam.MOD_DEAD_CLEAR_TIME);
+    }
+	if (CheckAttribute(optref, "StartGameParam.MOD_DEFENDERS_RATE"))
+	{
+    	MOD_DEFENDERS_RATE = sti(optref.StartGameParam.MOD_DEFENDERS_RATE);
     }
 	if (CheckAttribute(optref, "StartGameParam.MainChAnim"))
 	{
@@ -889,6 +911,16 @@ void LoadStartGameParam()
 	{
     	bDifficultyWeight = sti(optref.StartGameParam.bDifficultyWeight);
     }
+	int  heroQty   = sti(GetNewMainCharacterParam("ps_hero_qty"));
+	for (int n=1; n<=heroQty; n++)
+	{
+		string sBlockPGG = "PGG"+n;
+		if (CheckAttribute(optref,"StartGameParam.DisabledPGGs." + sBlockPGG) && sti(optref.StartGameParam.DisabledPGGs.(sBlockPGG)) == 1)
+		{
+			pchar.RemovePGG.(sBlockPGG) = 1;
+		}
+		else pchar.RemovePGG.(sBlockPGG) = 0;
+	}
 }
 void LoadPlayerProfileDefault()
 {
