@@ -2584,10 +2584,34 @@ void CalculateInfoDataF53()
 	Statistic_AddValue(PChar, "Cheats.F53", 1);
 }
 
-string descF54 = "Нет назначений";
+string descF54 = "Тест кораблей";
 void CalculateInfoDataF54()
 {
 	totalInfo = descF54;
+<<<<<<< Updated upstream
+=======
+	
+	sld = GetCharacter(NPC_GenerateCharacter("LoL", "ozg_green", "man", "man", 5, PIRATE, -1, true));
+	FantomMakeCoolFighter(sld, 5, 30, 30, "blade30", "pistol2", 5);
+	FantomMakeCoolSailor(sld, SHIP_BRIGHEAVY, "Тестовый корабль", CANNON_TYPE_CULVERINE_LBS16, 50, 60, 70); //КОРАБЛЬ
+		
+	sld.ship.Crew.Morale = 50;								//Мораль
+	ChangeCrewExp(sld, "Sailors", 50);						//Матросы
+	ChangeCrewExp(sld, "Cannoners", 60);					//Канониры
+	ChangeCrewExp(sld, "Soldiers", 70);						//Солдаты
+	sld.DontRansackCaptain = true; 							//Квестовые не сдаются
+	sld.AlwaysSandbankManeuver = true;
+	Group_FindOrCreateGroup("Test_Attack");
+	Group_SetType("Test_Attack", "war");
+	Group_AddCharacter("Test_Attack", "LoL");
+
+	Group_SetGroupCommander("Test_Attack", "LoL");
+	Group_SetTaskAttack("Test_Attack", PLAYER_GROUP);
+	Group_SetAddress("Test_Attack", "Reefs", "quest_ships", "Quest_ship_3");
+	Group_LockTask("Test_Attack");
+	QuestToSeaLogin_Launch();
+	QuestToSeaLogin_PrepareLoc("Reefs", "Quest_Ships", "Quest_ship_1", true);
+>>>>>>> Stashed changes
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 
