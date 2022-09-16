@@ -2599,6 +2599,7 @@ void CalculateInfoDataF54()
 	ChangeCrewExp(sld, "Soldiers", 70);						//Солдаты
 	sld.DontRansackCaptain = true; 							//Квестовые не сдаются
 	sld.AlwaysSandbankManeuver = true;
+	sld.AlwaysEnemy = true;
 	Group_FindOrCreateGroup("Test_Attack");
 	Group_SetType("Test_Attack", "war");
 	Group_AddCharacter("Test_Attack", "LoL");
