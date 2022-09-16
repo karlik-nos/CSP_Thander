@@ -267,6 +267,21 @@ void SetRandSPECIAL_K(ref _refCharacter)  // для штурманов-казн�
                (2 + rand(8)));
 }
 
+int ChecKSufficientRankForClass(int shipClass)
+{
+	switch (shipClass)
+    {
+		case 1 : return 30; break;
+		case 2 : return 25; break;
+		case 3 : return 18; break;
+		case 4 : return 10; break;
+		case 5 : return 5; break;
+		case 6 : return 1; break;
+		case 7 : return 1; break;
+		else return 0;
+    }
+}
+
 /// влияет только на СПЕЦИАЛ
 int ApplayNavyPenalty(ref _refCharacter, string skillName, int sumSkill)
 {
@@ -307,6 +322,12 @@ int ApplayNavyPenaltyToSkill(ref _refCharacter, string skillName, int sumSkill)
 
         int shipClass = GetCharacterShipClass(_refCharacter);
         int needSkill = GetShipClassNavySkill(shipClass);
+		if (bRankRequirement)
+		{
+			int needRank = (ChecKSufficientRankForClass(shipClass) - sti(_refCharacter.rank))*2;
+			if (needRank < 0) needRank = 0;
+			needSkill += needRank;
+		}
 
         if (sailSkill < needSkill)
         {
