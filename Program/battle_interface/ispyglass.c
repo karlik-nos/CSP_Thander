@@ -321,8 +321,79 @@ void SetSpyGlassData()
 		if (CheckAttribute(chref, "Ship.LastBallCharacter")) Log_Info("LastBallCharacter = " + chref.Ship.LastBallCharacter);
 		if (CheckAttribute(arScopeItm,"scope.show.mushketshot") && sti(arScopeItm.scope.show.mushketshot) != 0  && CheckOfficersPerk(chref, "MusketsShoot")) Log_Info("MushketShot enabled");
 		if (CheckAttribute(chref,"Situation")) Log_Info("Cap. Situation : " + chref.situation +" type :" + chref.situation.type);
+		ActiveF12Controll(sti(chref.index));
 	}
 	// boal <--
+}
+
+///  статы персонажа в близи
+void ActiveF12Controll(int chr)
+{
+
+    //Найти ближайшего видимого персонажа в заданном радиусе
+    int res = chr;
+    if (res != -1)
+    {
+        ref findCh = GetCharacter(res);
+        res = findCh.chr_ai.hp;
+        Log_SetStringToLog("" + GetFullName(findCh) +
+                           " "+XI_ConvertString("Rank")+" " + findCh.rank + " "+XI_ConvertString("Health")+" "+res + "/" + LAi_GetCharacterMaxHP(findCh));
+
+		if (bBettaTestMode)
+        {
+            Log_SetStringToLog("Id= " + findCh.id);
+            Log_SetStringToLog("Idx= " + findCh.index);
+            if(CheckAttribute(findCh, "LifeDay"))
+		Log_Info("LifeDay - " + findCh.LifeDay);
+
+	    if(CheckAttribute(findCh, "City"))
+	    	Log_Info("City - " + findCh.City);
+            if (CheckAttribute(findCh, "equip.blade"))
+            {
+                Log_SetStringToLog("Blade= " + findCh.equip.blade);
+            }
+            if (CheckAttribute(findCh, "equip.pistol"))
+            {
+                Log_SetStringToLog("Pistol= " + findCh.equip.pistol);
+            }
+            Log_SetStringToLog("model= " + findCh.model);
+            Log_SetStringToLog("face= " + findCh.faceId);
+            Log_SetStringToLog("chr_ai.type= " + findCh.chr_ai.type);
+            Log_SetStringToLog("Group= "+findCh.location.group + " locator= " + findCh.location.locator);
+            if (CheckAttribute(findCh, "cirassId"))
+            {
+                Log_SetStringToLog("cirassId= " + sti(findCh.cirassId));
+            }
+            else
+            {
+                Log_SetStringToLog("Нет брони");
+            }
+            if (CheckAttribute(findCh, "chr_ai.FencingType"))
+            {
+                Log_SetStringToLog("chr_ai.FencingType= " + findCh.chr_ai.FencingType));
+            }
+            else
+            {
+                Log_SetStringToLog("Нет FencingType - error");
+            }
+			Log_SetStringToLog("Нация: " + findCh.nation);
+			Log_SetStringToLog("Пол: " + findCh.sex);
+			Log_SetStringToLog("Группа: " + findCh.chr_ai.group);
+			Log_SetStringToLog("Темплейт: " + findCh.chr_ai.tmpl);
+			Log_SetStringToLog("Стейт: " + findCh.chr_ai.tmpl.state);
+			dumpattributes(findCh);
+
+            pchar.SystemInfo.OnlyShowCharacter = true;
+			LaunchCharacter(findCh);
+        }
+        else
+        {
+            if (MOD_BETTATESTMODE == "Test")
+	        {
+	            Log_SetStringToLog("Id= " + findCh.id);
+	        }
+        }
+    }
 }
 
 void ResetSpyGlassData()
