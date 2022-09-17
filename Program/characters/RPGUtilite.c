@@ -869,7 +869,7 @@ void InitStartParam(ref _chref)
     for (i=1; i<15; i++)
     {
         skillName = GetSkillNameByIdx(i);
-        _chref.skill.(skillName) = makeint(MOD_EXP_RATE / GetCharacterExpRate(_chref, skillName) + 0.5);
+        _chref.skill.(skillName) = makeint(MOD_EXP_RATE / GetCharacterExpRate(_chref, skillName));
     }
     LAi_SetHP(_chref, GetCharacterBaseHPValue(_chref), GetCharacterBaseHPValue(_chref));
 	MAX_NUM_FIGHTERS=MOD_OFFICERS_RATE;
@@ -928,7 +928,7 @@ float GetCharacterExpRate(ref _chref, string _skill)
                 divBy = GetCharacterSPECIAL(_chref, SPECIAL_P)*0.5 + GetCharacterSPECIAL(_chref, SPECIAL_L)*0.5;
             break;
         }
-        _chref.skill.(skill_rate) = makefloat(MOD_EXP_RATE / divBy);
+        _chref.skill.(skill_rate) = makefloat(MOD_EXP_RATE / (divBy * 2.8696 * pow(divBy,-0.457)));
     }
     return  stf(_chref.skill.(skill_rate));
 }
