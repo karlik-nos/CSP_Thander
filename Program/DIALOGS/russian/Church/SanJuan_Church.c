@@ -144,6 +144,18 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			else sStr = "пляже";
 			AddQuestUserData("PKM_Animists", "sStr", sStr);
 			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_DralisVG");
+			
+			//Корабль 'Маёнез'
+			sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA_Mayonez", "off_spa_2", "man", "man", 10, SPAIN, -1, true);
+			FantomMakeCoolSailor(sld, SHIP_XebekVML, "Синяя Птица", CANNON_TYPE_CULVERINE_LBS24, 70, 70, 70);	//Корабль
+			Group_FindOrCreateGroup("PKM_SvtvA_Malta");
+			Group_SetType("PKM_SvtvA_Malta", "war");
+			Group_AddCharacter("PKM_SvtvA_Malta", "Капитан");
+
+			Group_SetGroupCommander("PKM_SvtvA_Malta", "Капитан");
+			Group_SetTaskAttack("PKM_SvtvA_Malta", PLAYER_GROUP);
+			Group_SetAddress("PKM_SvtvA_Malta", "SentMartin", "quest_ships", "Quest_ship_1");
+			Group_LockTask("PKM_SvtvA_Malta");
 		break;
 
 		//Квест "История прекрасной Изабеллы"

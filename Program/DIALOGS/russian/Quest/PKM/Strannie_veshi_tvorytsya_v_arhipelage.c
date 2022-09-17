@@ -96,7 +96,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Capitan_v_taverne_3":
-			dialog.text = "Прямиком на Барбадос.";
+			dialog.text = "Прямиком на Невис.";
 			link.l1 = "Могли это быть пираты?";
 			link.l1.go = "Capitan_v_taverne_4";
 		break;
