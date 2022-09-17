@@ -73,7 +73,7 @@ float LAi_CalcDamageForBlade(aref attack, aref enemy, string attackType, bool is
 
 	// TO_DO оптимизация на ветку параметров
 	//if (sti(attack.index) == GetMainCharacterIndex()) Log_Info(attackType);
-	if (bAltBalance)
+	if (bAltBalanceProHits)
 	{
 		switch(attackType)
 		{

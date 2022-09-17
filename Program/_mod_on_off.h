@@ -103,6 +103,9 @@ int 	iStealthSystem = 1;
 bool 	bFillEncyShips              = false;
 //альтернативный баланс
 bool 	bAltBalance                 = false;
+bool 	bAltBalanceTimeSlow         = false;
+bool 	bAltBalanceOffTopPerk       = false;
+bool 	bAltBalanceProHits          = false;
 //Разговор местных жителей
 bool 	bCharVoice                 = false;
 
