@@ -2653,6 +2653,16 @@ void VSEnpcInit()
 	LAi_SetImmortal(sld, true);
 	LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
 	ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","goto","goto2");
+	//Глаша уборщица в резиденции Мариго
+	sld = GetCharacter(NPC_GenerateCharacter("CleanUpGrandmatha", "BaynesWife", "woman", "towngirl", 1, Holland, 1, false));
+	ChangeCharacterAddressGroup(sld, "Marigo_hall", "goto", "goto11");
+	LAi_SetCitizenType(sld);
+	sld.name = "уборщица Глаша";
+	sld.lastname = "";
+	LAi_SetLoginTime(sld, 11.0, 16.99);
+	LAi_group_MoveCharacter(sld, "HOLLAND_CITIZENS");
+	sld.dialog.filename = "Janitor.c";
+	sld.dialog.currentnode = "First";
 }
 void OfficerGirlInit()
 {
