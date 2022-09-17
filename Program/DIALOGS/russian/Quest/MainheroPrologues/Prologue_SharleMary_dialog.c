@@ -151,6 +151,11 @@ void ProcessDialogEvent()
 			sld.HoldEquip = true;
 			sld.HalfImmortal = true;  // Контузия
 			LAi_SetImmortal(NPChar, false);
+			if (bHalfImmortalPGG)
+			{
+				sld.immortalofficer = true;
+				pchar.Option_ImmortalOfficers = "1";
+			}
 			AddDialogExitQuestFunction("LandEnc_OfficerHired");
 			if (pchar.sex == "man")
 			{
