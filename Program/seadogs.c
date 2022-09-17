@@ -1368,8 +1368,24 @@ void ProcessControls()
 			{
 				if (CheckAttribute(pchar,"SkipBattle") && pchar.SkipBattle == true)
 				{
-					if (rand(1) == 0) LAi_KillCharacter(CharacterFromID(pchar.ArenaAttack));
-					else LAi_KillCharacter(CharacterFromID(pchar.ArenaEnemy));
+					float EffHp1,EffHp2, ASkill1, ASkill2;
+					ASkill1 = LAi_GetCharacterFightLevel(CharacterFromID(pchar.ArenaAttack));
+					ASkill2 = LAi_GetCharacterFightLevel(CharacterFromID(pchar.ArenaEnemy));
+					if (ASkill1 > ASkill2)
+					{
+						EffHp1 = GetCharacterEffectiveHp(CharacterFromID(pchar.ArenaAttack)) / (1.0 + 0.7 * (ASkill2 - ASkill1));
+						EffHp2 = GetCharacterEffectiveHp(CharacterFromID(pchar.ArenaEnemy));
+					}
+					else
+					{
+						EffHp1 = GetCharacterEffectiveHp(CharacterFromID(pchar.ArenaAttack));
+						EffHp2 = GetCharacterEffectiveHp(CharacterFromID(pchar.ArenaEnemy)) / (1.0 + 0.7 * (ASkill1 - ASkill2));
+					}
+					Log_TestInfo("Effhp1:" + sti(effhp1) + " Effhp2:" + sti(effhp2));
+					if (EffHp1 > EffHp2) 
+						LAi_KillCharacter(CharacterFromID(pchar.ArenaEnemy));
+					else
+						LAi_KillCharacter(CharacterFromID(pchar.ArenaAttack));
 					pchar.SkipBattle = false;
 					return;
 				}

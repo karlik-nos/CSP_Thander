@@ -52,6 +52,46 @@ int GetCharacterNormalHp(ref _refCharacter)
 	return ret;
 }
 
+float GetCharacterEffectiveHp(ref _refCharacter)
+{
+	float EffHp;
+	if (CheckAttribute(_refCharacter, "Cirassid")) 
+	{
+		if(IsCharacterPerkOn(_refCharacter, "SwordplayProfessional"))
+			EffHp = sti(_refCharacter.chr_ai.hp_max) / 0.7 / (1 - stf(Items[sti(_refCharacter.cirassId)].CirassLevel.break));
+		else
+		{
+			if(IsCharacterPerkOn(_refCharacter, "AdvancedDefense"))
+				EffHp = sti(_refCharacter.chr_ai.hp_max) / 0.8 / (1 - stf(Items[sti(_refCharacter.cirassId)].CirassLevel.break));
+			else
+			{
+				if(IsCharacterPerkOn(_refCharacter, "BasicDefense"))
+					EffHp = sti(_refCharacter.chr_ai.hp_max) / 0.9 / (1 - stf(Items[sti(_refCharacter.cirassId)].CirassLevel.break));
+				else
+					EffHp = sti(_refCharacter.chr_ai.hp_max) / (1 - stf(Items[sti(_refCharacter.cirassId)].CirassLevel.break));
+			}
+		}
+	}
+	else
+	{
+		if(IsCharacterPerkOn(_refCharacter, "SwordplayProfessional"))
+			EffHp = sti(_refCharacter.chr_ai.hp_max) / 0.7 ;
+		else
+		{
+			if(IsCharacterPerkOn(_refCharacter, "AdvancedDefense"))
+				EffHp = sti(_refCharacter.chr_ai.hp_max) / 0.8;
+			else
+			{
+				if(IsCharacterPerkOn(_refCharacter, "BasicDefense"))
+					EffHp = sti(_refCharacter.chr_ai.hp_max) / 0.9;
+				else
+					EffHp = sti(_refCharacter.chr_ai.hp_max);
+			}
+		}
+	}
+	return EffHp;
+}
+
 void SetHealthToCharacter(ref _refCharacter)
 {
 	_refCharacter.chr_ai.hp_max = GetCharacterNormalHp(_refCharacter);
