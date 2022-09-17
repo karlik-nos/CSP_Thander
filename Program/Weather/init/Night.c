@@ -82,7 +82,7 @@ int Whr_InitNight(int n)
 
 	Weathers[n].Planets.Enable = true;
 
-	Weathers[n].Sun.Color = argb(0,25,45,105);
+	Weathers[n].Sun.Color = argb(0,25,45,75);
 	Weathers[n].Sun.Ambient = argb(0,12,23,33);
 	Weathers[n].Sun.AzimuthAngle = Degree2Radian(337.0);
 	Weathers[n].Sun.HeightAngle = 0.1;
@@ -262,7 +262,7 @@ int Whr_InitNight(int n)
 
 	Weathers[n].Planets.Enable = true;
 
-	Weathers[n].Sun.Color = argb(0,25,50,105);
+	Weathers[n].Sun.Color = argb(0,25,50,75);
 	Weathers[n].Sun.Ambient = argb(0,12,23,33);
 	Weathers[n].Sun.AzimuthAngle = Degree2Radian(337.0);
 	Weathers[n].Sun.HeightAngle = 0.1;
@@ -451,7 +451,7 @@ int Whr_InitNight(int n)
 	Weathers[n].Stars.SunFade = 1.0;
 	Weathers[n].Stars.VisualMagnitude = 8.0;
 
-	Weathers[n].Sun.Color = argb(0,25,50,105);
+	Weathers[n].Sun.Color = argb(0,25,50,75);
 	Weathers[n].Sun.Ambient = argb(0,11,11,22);
 	Weathers[n].Sun.AzimuthAngle = Degree2Radian(337.0);
 	Weathers[n].Sun.HeightAngle = 0.1;
@@ -640,7 +640,7 @@ int Whr_InitNight(int n)
 	Weathers[n].Stars.SunFade = 1.0;
 	Weathers[n].Stars.VisualMagnitude = 8.0;
 
-	Weathers[n].Sun.Color = argb(0,25,50,105);
+	Weathers[n].Sun.Color = argb(0,25,50,75);
 	Weathers[n].Sun.Ambient = argb(0,11,11,22);
 	Weathers[n].Sun.AzimuthAngle = Degree2Radian(337.0);
 	Weathers[n].Sun.HeightAngle = 0.1;
@@ -830,7 +830,7 @@ int Whr_InitNight(int n)
 	Weathers[n].Stars.SunFade = 1.0;
 	Weathers[n].Stars.VisualMagnitude = 8.0;
 
-	Weathers[n].Sun.Color = argb(0,25,50,105);
+	Weathers[n].Sun.Color = argb(0,25,50,75);
 	Weathers[n].Sun.Ambient = argb(0,11,11,22);
 	Weathers[n].Sun.AzimuthAngle = Degree2Radian(337.0);
 	Weathers[n].Sun.HeightAngle = 0.1;
@@ -1010,7 +1010,7 @@ int Whr_InitNight(int n)
 	Weathers[n].Rainbow.Enable = false;
 	Weathers[n].Rainbow.Texture = "weather\rainbow\rainbow.tga.tx";
 
-	Weathers[n].Sun.Color = argb(0,20,45,95);
+	Weathers[n].Sun.Color = argb(0,20,45,65);
 	Weathers[n].Sun.Ambient = argb(0,20,20,33);
 	Weathers[n].Sun.AzimuthAngle = Degree2Radian(320.0);
 	Weathers[n].Sun.HeightAngle = 0.28;
