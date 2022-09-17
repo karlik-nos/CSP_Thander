@@ -675,6 +675,7 @@ void ProcessDialogEvent()
 			DeleteAttribute(npchar,"questTemp.ShipOrderTime");
 			DeleteAttribute(npchar,"questTemp.NPCid");
 			sld.id = "ShipOrder";//сбрасываем индекс к стандартному, чтобы этот номер массива в следующий раз можно было занять
+			DeleteAttribute(npchar,"questTemp.chest"));//фикс - стирание необходимости доставки материала
 			DeleteAttribute(sld,"ship");//затираем данные корабля
 			sld.ship = "";
 			LAi_SetCurHP(sld, 0.0);//ещё и убивать непися, чтоб точно очистился из массива?
