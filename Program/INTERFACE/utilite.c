@@ -768,6 +768,9 @@ void SaveStartGameParam()
 	optref.StartGameParam.iEncountersCountRate   = iEncountersCountRate;
 	optref.StartGameParam.iArcadeSails           = iArcadeSails;
 	optref.StartGameParam.bAltBalance          	 = bAltBalance;
+	optref.StartGameParam.bAltBalanceTimeSlow    = bAltBalanceTimeSlow;
+	optref.StartGameParam.bAltBalanceOffTopPerk  = bAltBalanceOffTopPerk;
+	optref.StartGameParam.bAltBalanceProHits     = bAltBalanceProHits;
 	optref.StartGameParam.bFillEncyShips         = bFillEncyShips;
 	optref.StartGameParam.bDifficultyWeight      = bDifficultyWeight;
 	optref.StartGameParam.iStealthSystem         = iStealthSystem;
@@ -909,10 +912,24 @@ void LoadStartGameParam()
 	{
 		startHeroType = sti(optref.StartGameParam.CurHeroNum);
 	}
+	
 	if (CheckAttribute(optref, "StartGameParam.bAltBalance"))
 	{
     	bAltBalance = sti(optref.StartGameParam.bAltBalance);
     }
+	if (CheckAttribute(optref, "StartGameParam.bAltBalanceTimeSlow"))
+	{
+    	bAltBalanceTimeSlow = sti(optref.StartGameParam.bAltBalanceTimeSlow);
+    }
+	if (CheckAttribute(optref, "StartGameParam.bAltBalanceOffTopPerk"))
+	{
+    	bAltBalanceOffTopPerk = sti(optref.StartGameParam.bAltBalanceOffTopPerk);
+    }
+	if (CheckAttribute(optref, "StartGameParam.bAltBalanceProHits"))
+	{
+    	bAltBalanceProHits = sti(optref.StartGameParam.bAltBalanceProHits);
+    }
+	
 	if (CheckAttribute(optref, "StartGameParam.bDifficultyWeight"))
 	{
     	bDifficultyWeight = sti(optref.StartGameParam.bDifficultyWeight);

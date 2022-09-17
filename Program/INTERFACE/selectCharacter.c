@@ -229,6 +229,30 @@ void SetByDefault()
 	{
 		CheckButton_SetState("CHECK_ALTERNATIVE_BALANCE",1,false);
 	}
+	if(bAltBalanceTimeSlow)
+	{
+		CheckButton_SetState("CHECK_AB_TIMESLOW",1,true);
+	}
+	else
+	{
+		CheckButton_SetState("CHECK_AB_TIMESLOW",1,false);
+	}
+	if(bAltBalanceOffTopPerk)
+	{
+		CheckButton_SetState("CHECK_AB_OFFTOPPERK",1,true);
+	}
+	else
+	{
+		CheckButton_SetState("CHECK_AB_OFFTOPPERK",1,false);
+	}
+	if(bAltBalanceProHits)
+	{
+		CheckButton_SetState("CHECK_AB_PROHITS",1,true);
+	}
+	else
+	{
+		CheckButton_SetState("CHECK_AB_PROHITS",1,false);
+	}
 	if(bDifficultyWeight)
 	{
 		CheckButton_SetState("CHECK_DIFFICULTY_WEIGHT",1,true);
@@ -430,6 +454,30 @@ void IProcessFrame()
 	else
 	{
 		bAltBalance = false;
+	}
+	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_AB_TIMESLOW", 3, 1))
+	{
+		bAltBalanceTimeSlow = true;
+	}
+	else
+	{
+		bAltBalanceTimeSlow = false;
+	}
+	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_AB_OFFTOPPERK", 3, 1))
+	{
+		bAltBalanceOffTopPerk = true;
+	}
+	else
+	{
+		bAltBalanceOffTopPerk = false;
+	}
+	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_AB_PROHITS", 3, 1))
+	{
+		bAltBalanceProHits = true;
+	}
+	else
+	{
+		bAltBalanceProHits = false;
 	}
 	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_DIFFICULTY_WEIGHT", 3, 1))
 	{
@@ -750,6 +798,18 @@ void ProcessCommandExecute()
 				XI_WindowDisable("DESCRIPTION",true);
     		}
     	break;
+		case "CHECK_ALTERNATIVE_BALANCE":
+		if(comName=="click" && bAltBalance == 0)
+		{
+			ShowAltBalanceWindow(true);
+		}
+    	break;
+		case "ALTBALANCE_WINDOW_CLOSE":
+		if(comName=="click")
+		{
+			ShowAltBalanceWindow(false);
+		}
+    	break;
 	}
 
 }
@@ -789,6 +849,27 @@ void ShowConfirmWindow(bool show)
 	{
 		XI_WindowDisable("CONFIRM_WINDOW", true);
 		XI_WindowShow("CONFIRM_WINDOW", false);
+		XI_WindowDisable("MAIN_WINDOW", false);
+		SetCurrentNode("OK_BUTTON");
+	}
+}
+
+void ShowAltBalanceWindow(bool show)
+{
+	if (show)
+	{
+		SetCurrentNode("ALTBALANCE_WINDOW_CLOSE");
+
+		XI_WindowDisable("MAIN_WINDOW", true);
+		XI_WindowDisable("ALTBALANCE_WINDOW", false);
+		XI_WindowShow("ALTBALANCE_WINDOW", true);
+		EI_CreateFrame("ALTBALANCE_WINDOW_BORDERS",190,190,610,360);
+
+	}
+	else
+	{
+		XI_WindowDisable("ALTBALANCE_WINDOW", true);
+		XI_WindowShow("ALTBALANCE_WINDOW", false);
 		XI_WindowDisable("MAIN_WINDOW", false);
 		SetCurrentNode("OK_BUTTON");
 	}
@@ -969,6 +1050,13 @@ void IDoExit(int exitCode, bool bCode)
 		MOD_DEFENDERS_RATE = makeint(5 - 5.0 * (1.0 - stf(GameInterface.nodes.DEFENDERS_SLIDE.value)));  // 0т 0 до 5
 		trace("MOD_DEFENDERS_RATE_RATE = " + MOD_DEFENDERS_RATE);
 		
+		if (bAltBalance == false)
+		{
+			bAltBalanceTimeSlow = false;
+			bAltBalanceOffTopPerk = false;
+			bAltBalanceProHits = false;
+		}
+		
 		SaveStartGameParam(); // boal
 
 		interfaceResultCommand = exitCode;
@@ -1104,6 +1192,21 @@ void ShowInfo()
 		case "CHECK_ALTERNATIVE_BALANCE":
 			sHeader = XI_ConvertString("CHECK_ALTERNATIVE_BALANCE");
 			sText1 = GetRPGText("CHECK_ALTERNATIVE_BALANCE_hint");
+		break;
+		
+		case "CHECK_AB_TIMESLOW":
+			sHeader = XI_ConvertString("CHECK_AB_TIMESLOW");
+			sText1 = GetRPGText("CHECK_AB_TIMESLOW_hint");
+		break;
+		
+		case "CHECK_AB_OFFTOPPERK":
+			sHeader = XI_ConvertString("CHECK_AB_OFFTOPPERK");
+			sText1 = GetRPGText("CHECK_AB_OFFTOPPERK_hint");
+		break;
+		
+		case "CHECK_AB_PROHITS":
+			sHeader = XI_ConvertString("CHECK_AB_PROHITS");
+			sText1 = GetRPGText("CHECK_AB_PROHITS_hint");
 		break;
 
 		case "CHECK_DIFFICULTY_WEIGHT":

@@ -1353,7 +1353,7 @@ void ProcessControls()
         //Boyer change #20170318-38
         // if (CheckAttribute(&loadedLocation, "type") && loadedLocation.type == "underwater") return; //запрет ускорения под водой.
 		//if (bAltBalance && !bSeaActive && ControlName == "TimeScaleSlower" && TimeScaleCounter == 0)
-		if (bAltBalance && TimeScaleCounter == 0)
+		if (bAltBalanceTimeSlow && TimeScaleCounter == 0)
 		{
 			if (ControlName == "TimeScaleSlower" || ControlName == "TimeScaleSlowerBA")
 			{
