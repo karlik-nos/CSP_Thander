@@ -458,18 +458,18 @@ void SetCurentOptions(ref optref)
 void ReadSavedOptions(ref gopt)
 {
 	string sFileName = "options";
-	if( CheckAttribute(&PlayerProfile,"name") && PlayerProfile.name!="" ) {
+	/*if( CheckAttribute(&PlayerProfile,"name") && PlayerProfile.name!="" ) {
 		sFileName = "SAVE\" + PlayerProfile.name+"\options\options";
-	}
+	}*/
 	SendMessage(&GameInterface, "lsa", MSG_INTERFACE_LOADOPTIONS, sFileName, gopt);
 }
 
 void SaveSavedOptions(ref gopt)
 {
 	string sFileName = "options";
-	if( CheckAttribute(&PlayerProfile,"name") && PlayerProfile.name!="" ) {
+	/* if( CheckAttribute(&PlayerProfile,"name") && PlayerProfile.name!="" ) {
 		sFileName = "SAVE\" + PlayerProfile.name+"\options\options";
-	}
+	} */
 	SendMessage(&GameInterface, "lsa", MSG_INTERFACE_SAVEOPTIONS, sFileName, gopt);
 }
 
