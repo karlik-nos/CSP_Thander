@@ -36,7 +36,6 @@
 #define IDOLS_RIGHT_ITEM_TYPE 				"idols_right"
 
 
-#define TOTAL_ITEMS				1000 // Warship 08.05.09 - Новая система предметов
 #define ITEMS_QUANTITY			  423  // не забываем менять номер
 
 #define MAX_BUTTONS               64

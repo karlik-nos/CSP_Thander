@@ -17,36 +17,6 @@ void ProcessDialogEvent()
 			DialogExit();
 		break;
 
-		case "Jackman_Defeated":
-			sld = CharacterFromID("gatri_temp");
-			sld.location.locator = "goto6";
-
-			dialog.text = "Приш"+ GetSexPhrase("ел","ла") +" поглумиться надо мной?";
-			link.l1 = "Вовсе нет. Мне просто любопытно, почему Гатри оставила тебя в живых?";
-			link.l1.go = "Jackman_Defeated_1";
-		break;
-		case "Jackman_Defeated_1":
-			dialog.text = "Эта хитрая сука хочет использовать меня как правителя-марионетку. Она знает, что Береговое Братство рассыпется, услышав о моей смерти, ведь они уж точно не пойдут за бабой"+ GetSexPhrase(".","... без обид.") +" Пусть и такой суровой, как Гатри. Но так она сможет всем управлять, через меня.";
-			link.l1 = "И тебя устраивает этот расклад?";
-			link.l1.go = "Jackman_Defeated_2";
-		break;
-		case "Jackman_Defeated_2":
-			dialog.text = "Спрашиваешь! Да я по стенке эту шлюху размажу при первой же возможности! Ты не думай, что Джекмен сдался, я ещё верну своё.";
-			link.l1 = "Советую говорить потише, а то Гатри все свои планы раскроешь. Ну ладно, бывай.";
-			link.l1.go = "Jackman_Defeated_exit";
-		break;
-		case "Jackman_Defeated_exit":
-			npchar.Dialog.Filename = "Mayor\Jackman.c";
-			NextDiag.CurrentNode = "I_know_you_good";
-            DialogExit();
-
-			if (WhisperIsHere())
-			{
-				SaveOldDialog(CharacterFromID(pchar.WhisperPGG));
-				StartInstantDialogNoType(pchar.WhisperPGG, "BS_3_WhisperIsHere", "Quest\WhisperLine\Whisper.c");
-			}
-		break;
-
 		//Заменить хозяйку борделя в ПР на Максин. Пускать на глобалке английских охотников (скоростые) 2-3 третьеклассника.
 
 		//Прибыли в ПР. Идём в бордель к мадам. Опа, сюрприз. Это Макс (смуглянка)

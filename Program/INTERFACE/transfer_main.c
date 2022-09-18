@@ -240,6 +240,7 @@ void InitInterface_RRS(string iniName, ref rLeftChar, ref rRightChar, string _ty
 	{
 		FillShipsScroll();
 		bShipScrollEnabled = true;
+		SetCurrentNode("SHIPS_SCROLL");
 	}
 	else
 	{
@@ -253,7 +254,7 @@ void InitInterface_RRS(string iniName, ref rLeftChar, ref rRightChar, string _ty
 void FillShipsScroll()
 {
 	nCurScrollNum = -1;
-	FillScrollImageWithCompanions("SHIPS_SCROLL", COMPANION_MAX-1);
+	FillScrollImageWithCompanions("SHIPS_SCROLL", COMPANION_MAX);
 
 	if(!CheckAttribute(&GameInterface,"SHIPS_SCROLL.current"))
 	{
@@ -1641,6 +1642,7 @@ void GoToShipChange() // нажатие ОК на табличке ок-отме
 			CheckQuestAboardCabinSituation(xi_refCharacter);
 			OnShipScrollChange();
 
+			DeleteAttribute(&GameInterface,"SHIPS_SCROLL");
 			SetNodeUsing("SHIPS_SCROLL",false);
 			SetNodeUsing("SHIPS_LEFTSCROLLBUTTON",false);
 			SetNodeUsing("SHIPS_RIGHTSCROLLBUTTON",false);
@@ -1768,7 +1770,8 @@ void SwapProcess()
 	bool bOk = !bSeaActive && LAi_grp_alarmactive;
 	if (bTransferMode && !bDisableMapEnter && !bOk && !chrDisableReloadToLocation && !HasSubStr(refEnemyCharacter.id, "_DriftCap_"))
 	{
-		FillScrollImageWithCompanionsUp("SHIPS_SCROLL", COMPANION_MAX-1);
+		DeleteAttribute(&GameInterface,"SHIPS_SCROLL");
+		FillScrollImageWithCompanions("SHIPS_SCROLL", COMPANION_MAX);
 		SeaAI_SwapShipAfterAbordage(refCharacter, xi_refCharacter);
 	}
 }
@@ -1821,6 +1824,7 @@ void AcceptAddOfficer()
 	bool bOk = !bSeaActive && LAi_grp_alarmactive;
 	if (bTransferMode && !bDisableMapEnter && !bOk && !chrDisableReloadToLocation && !HasSubStr(refEnemyCharacter.id, "_DriftCap_"))
 	{
+		FillScrollImageWithCompanions("SHIPS_SCROLL",COMPANION_MAX);
 		SetNodeUsing("SHIPS_SCROLL",true);
 		SetNodeUsing("SHIPS_LEFTSCROLLBUTTON",true);
 		SetNodeUsing("SHIPS_RIGHTSCROLLBUTTON",true);

@@ -778,8 +778,8 @@ heroLastnameGen_28 {Бархарда}
 heroNameDat_28 {Элиасу}
 heroLastNameDat_28 {Бархарду}
 
-heroFace_28 {24}
-heroModel_28 {PGG_Barhard_0,PGG_Barhard_1,PGG_Barhard_2,PGG_Barhard_3,PGG_Barhard_4,PGG_Barhard_5}
+heroFace_28 {700}
+heroModel_28 {PGG_Barhard_0,PGG_Barhard_1,PGG_Barhard_2,PGG_Barhard_3,PGG_Barhard_4,PGG_Barhard_5,PGG_Barhard_6,PGG_Barhard_7,PGG_Barhard_8}
 
 heroType_28 {Буканьер}
 heroNation_28 {Пират}

@@ -1018,7 +1018,9 @@ void ProcessDialogEvent()
 			sld.name = "Антонио";
 			sld.lastname = "де Гальвес";
 			sld.greeting = "GR_Spainguard";
-			sld.equip.blade = "blade39";
+			string sBlade = GetGeneratedItem("blade39");
+			GiveItem2Character(sld, sBlade);
+			EquipCharacterbyItem(sld, sBlade);
 			ChangeCharacterAddressGroup(sld, "Shore37", "goto", "goto7");
 			sld.Dialog.Filename = "Quest/PDM/Clan_Lambrini.c";
 			//sld = CharacterFromID("PDM_CL_Antonio3");

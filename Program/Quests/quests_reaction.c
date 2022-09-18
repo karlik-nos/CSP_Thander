@@ -10379,7 +10379,9 @@ void QuestComplete(string sQuestName, string qname)
 			sld.name = "Антонио";
 			sld.lastname = "де Гальвес";
 			sld.greeting = "GR_Spainguard";
-			sld.equip.blade = "blade39";
+			Blade = GetGeneratedItem("blade39");
+			GiveItem2Character(sld, Blade);
+			EquipCharacterbyItem(sld, Blade);
 			ChangeCharacterAddressGroup(sld, "Shore37", "goto", "goto7");
 			LAi_SetActorType(sld);
 			LAi_ActorDialog(sld, pchar, "", -1, 0);
@@ -11245,30 +11247,7 @@ void QuestComplete(string sQuestName, string qname)
 			LAi_ActorRunToLocation(sld, "reload", "reload1", "", "", "", "OpenTheDoors", -1);
 			sld.LifeDay = 0;
 		break;
-		case "CleanUpGrandma":
-			sld = GetCharacter(NPC_GenerateCharacter("CleanUpGrandmatha", "BaynesWife", "woman", "towngirl", 1, PIRATE, 1, false));
-			ChangeCharacterAddressGroup(sld, "Temple_h", "goto", "goto19");
-			LAi_SetActorType(sld);
-			sld.name = "техничка";
-			sld.lastname = "Глаша";
-			sld.dialog.filename = "Janitor.c";
-			sld.dialog.currentnode = "First";
-			DoQuestFunctionDelay("CleanUpGrandma2", 10.0);
-		break;
-		case "CleanUpGrandmaClean":
-			sld = CharacterFromID("CleanUpGrandmatha");
-			LAi_ActorAnimation(sld,"taverngirl","",1.0);
-			LAi_Actor2WaitDialog(sld,pchar);
-			sld.dialog.currentnode = "First";
-		break;
-		case "CleanGrandma":
-			sld = CharacterFromID("CleanUpGrandmatha");
-			ChangeCharacterAddressGroup(sld, "none", "", "");
-			sld.lifeDay = 0;
-			pchar.Grandma = true;
-			pchar.quest.CleanUpGrandma.over = "yes";
-			pchar.quest.CleanUpGrandmaClean.over = "yes";
-		break;
+		
 		case "SpawnSalasarSupports":
 			for(i = 0; i < 10; i++)
 			{
@@ -11388,22 +11367,6 @@ void QuestComplete(string sQuestName, string qname)
 			LAi_ActorDialog(sld, pchar, "", 1.0, 0);
 		break;
 	}
-}
-
-void CleanUpGrandma1()
-{
-	if (CheckAttribute(pchar,"Grandma")) return;
-	ref sld = CharacterFromID("CleanUpGrandmatha");
-	LAi_ActorRunToLocator(sld, "goto", "goto19", "CleanUpGrandmaClean", 0.0);
-	DoQuestFunctionDelay("CleanUpGrandma2", 11.0);
-}
-
-void CleanUpGrandma2()
-{
-	if (CheckAttribute(pchar,"Grandma")) return;
-	ref sld = CharacterFromID("CleanUpGrandmatha");
-	LAi_ActorRunToLocator(sld, "goto", "goto20", "CleanUpGrandmaClean", 0.0);
-	DoQuestFunctionDelay("CleanUpGrandma1", 11.0);
 }
 
 //Lipsar подпилил Хемфри для красоты --->
