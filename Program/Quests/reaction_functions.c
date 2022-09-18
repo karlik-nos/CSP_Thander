@@ -10742,6 +10742,11 @@ void LambriniPGG_Tavern(string qName)
 
 //Sinistra "Странные вещи творятся на архипелаге" -->
 
+void Sinistra(string qName)
+{
+	Log_info("ffffУ вас нет ключа");
+}
+
 //Sinistra "Странные вещи творятся на архипелаге" <--
 
 //Sinistra Мэри и Шарль -->

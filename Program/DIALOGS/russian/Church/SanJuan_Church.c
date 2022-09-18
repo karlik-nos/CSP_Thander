@@ -147,13 +147,14 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			
 			//Корабль 'Маёнез'
 			sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA_Mayonez", "off_spa_2", "man", "man", 10, SPAIN, -1, true);
-			FantomMakeCoolSailor(sld, SHIP_XebekVML, "Синяя Птица", CANNON_TYPE_CULVERINE_LBS24, 70, 70, 70);	//Корабль
+			FantomMakeCoolSailor(sld, SHIP_BARQUE, "Маёнез", CANNON_TYPE_CULVERINE_LBS16, 30, 50, 30);	//Корабль
+			sld.AlwaysFriend = true;
 			Group_FindOrCreateGroup("PKM_SvtvA_Malta");
-			Group_SetType("PKM_SvtvA_Malta", "war");
-			Group_AddCharacter("PKM_SvtvA_Malta", "Капитан");
+			Group_SetType("PKM_SvtvA_Malta", "trade");
+			Group_AddCharacter("PKM_SvtvA_Malta", "PKM_SvtvA_Mayonez");
 
-			Group_SetGroupCommander("PKM_SvtvA_Malta", "Капитан");
-			Group_SetTaskAttack("PKM_SvtvA_Malta", PLAYER_GROUP);
+			Group_SetGroupCommander("PKM_SvtvA_Malta", "PKM_SvtvA_Mayonez");
+			//Group_SetTaskAttack("PKM_SvtvA_Malta", PLAYER_GROUP);
 			Group_SetAddress("PKM_SvtvA_Malta", "SentMartin", "quest_ships", "Quest_ship_1");
 			Group_LockTask("PKM_SvtvA_Malta");
 		break;

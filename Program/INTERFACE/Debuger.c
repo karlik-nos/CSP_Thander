@@ -2588,11 +2588,6 @@ string descF54 = "Нет назначений";
 void CalculateInfoDataF54()
 {
 	totalInfo = descF54;
-	sld = CharacterFromID("PKM_SvtvA_Devushka_1")
-	sld.Dialog.Filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
-	sld.dialog.currentnode = "First time";
-	ChangeCharacterAddressGroup(sld,"Marigo_town","quest","quest4");
-	
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 
@@ -2606,6 +2601,20 @@ string descF55 = "Нет назначений";
 void CalculateInfoDataF55()
 {
 	totalInfo = descF55;
+	
+	sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA_Mayonez", "off_spa_2", "man", "man", 10, SPAIN, -1, true);
+	FantomMakeCoolSailor(sld, SHIP_XebekVML, "Синяя Птица", CANNON_TYPE_CULVERINE_LBS24, 70, 70, 70);	//Корабль
+	sld.AlwaysFriend = true;
+	Group_FindOrCreateGroup("Enemy_Attack");					//Название группы
+	Group_SetType("Enemy_Attack", "war");						//Тип поведения
+	Group_AddCharacter("Enemy_Attack", "PKM_SvtvA_Mayonez");				//Добавить капитана
+
+	Group_SetGroupCommander("Enemy_Attack", "PKM_SvtvA_Mayonez");
+	Group_SetTaskAttack("Enemy_Attack", PLAYER_GROUP);
+	Group_SetPursuitGroup("Enemy_Attack", PLAYER_GROUP);		//Ставить рядом с ГГ
+	Group_SetAddress("Enemy_Attack", "Maracaibo", "quest_ships", "Quest_ship_1");	//Установить местоположение
+	Group_LockTask("Enemy_Attack");
+
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 
