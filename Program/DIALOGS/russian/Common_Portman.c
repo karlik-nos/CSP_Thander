@@ -1798,7 +1798,15 @@ void ProcessDialogEvent()
 							if (!ok && GetRemovable(&characters[_curCharIdx]))
 							{
 								attrL = "l"+i;
-								Link.(attrL)	= GetFullName(&characters[_curCharIdx]);
+								sProf = "";
+								if (IsOfficer(sld)) sProf += " (абордажник)";
+								if (sti(pchar.Fellows.Passengers.navigator) == sti(sld.index)) sProf += " (штурман)";
+								if (sti(pchar.Fellows.Passengers.boatswain) == sti(sld.index)) sProf += " (боцман)";
+								if (sti(pchar.Fellows.Passengers.cannoner) == sti(sld.index)) sProf += " (канонир)";
+								if (sti(pchar.Fellows.Passengers.doctor) == sti(sld.index)) sProf += " (врач)";
+								if (sti(pchar.Fellows.Passengers.carpenter) == sti(sld.index)) sProf += " (плотник)";
+							    if (sti(pchar.Fellows.Passengers.treasurer) == sti(sld.index)) sProf += " (казначей)";
+								Link.(attrL)	= GetFullName(&characters[_curCharIdx]) + sProf;
 								Link.(attrL).go = "ShipStockManBack2_" + i;
 								q++;
 							}
