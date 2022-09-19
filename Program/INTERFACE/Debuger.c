@@ -2584,12 +2584,26 @@ void CalculateInfoDataF53()
 	Statistic_AddValue(PChar, "Cheats.F53", 1);
 }
 
-string descF54 = "Получить все карты";
+string descF54 = "Нет назначений";
 void CalculateInfoDataF54()
 {
 	totalInfo = descF54;
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
+
+	SetFormatedText("INFO_TEXT", totalInfo);
+
+	// Статистика по читам
+	Statistic_AddValue(PChar, "Cheats.F54", 1);
+}
+
+string descF55 = "Получить все карты";
+void CalculateInfoDataF55()
+{
+	totalInfo = descF55;
+
+	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
+	
 	for (int z = 0; z < ITEMS_QUANTITY;z++)
 	{
 		if (CheckAttribute(Items[z],"id") && HasSubStr(Items[z].id,"map_"))
@@ -2598,19 +2612,6 @@ void CalculateInfoDataF54()
 		}
 	}
 	RefreshEquippedMaps(GetMainCharacter());
-
-	SetFormatedText("INFO_TEXT", totalInfo);
-
-	// Статистика по читам
-	Statistic_AddValue(PChar, "Cheats.F54", 1);
-}
-
-string descF55 = "Нет назначений";
-void CalculateInfoDataF55()
-{
-	totalInfo = descF55;
-
-	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 
 	SetFormatedText("INFO_TEXT", totalInfo);
 
