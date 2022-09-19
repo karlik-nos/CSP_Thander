@@ -1,6 +1,7 @@
 // boal 08/04/06 общий диалог верфи
 string Tun_Name1_Goods[8] = {"Mahogany","Planks","Silk","Linen","Cotton","Sandal","Leather","Ebony"};
 string Tun_Name2_Items[8] = {"jewelry17","jewelry9","jewelry2","jewelry3","jewelry4","jewelry5","jewelry1","icollection"};
+string sProf;
 #include "DIALOGS\russian\Rumours\Common_rumours.c"  //homo 25/06/06
 void ProcessDialogEvent()
 {
@@ -587,7 +588,15 @@ void ProcessDialogEvent()
 							if (!ok && GetRemovable(&characters[_curCharIdx]))
 							{
 								attrLoc = "l"+i;
-								Link.(attrLoc)	= GetFullName(&characters[_curCharIdx]);
+								sProf = "";
+								if (IsOfficer(sld)) sProf += " (абордажник)";
+								if (sti(pchar.Fellows.Passengers.navigator) == sti(sld.index)) sProf += " (штурман)";
+								if (sti(pchar.Fellows.Passengers.boatswain) == sti(sld.index)) sProf += " (боцман)";
+								if (sti(pchar.Fellows.Passengers.cannoner) == sti(sld.index)) sProf += " (канонир)";
+								if (sti(pchar.Fellows.Passengers.doctor) == sti(sld.index)) sProf += " (врач)";
+								if (sti(pchar.Fellows.Passengers.carpenter) == sti(sld.index)) sProf += " (плотник)";
+							    if (sti(pchar.Fellows.Passengers.treasurer) == sti(sld.index)) sProf += " (казначей)";
+								Link.(attrLoc)	= GetFullName(&characters[_curCharIdx]) + sProf;
 								Link.(attrLoc).go = "shiporderend2_" + i;
 								q++;
 							}
@@ -675,7 +684,9 @@ void ProcessDialogEvent()
 			DeleteAttribute(npchar,"questTemp.ShipOrderTime");
 			DeleteAttribute(npchar,"questTemp.NPCid");
 			sld.id = "ShipOrder";//сбрасываем индекс к стандартному, чтобы этот номер массива в следующий раз можно было занять
+			DeleteAttribute(npchar,"questTemp.chest"));//фикс - стирание необходимости доставки материала
 			DeleteAttribute(sld,"ship");//затираем данные корабля
+			DeleteAttribute(npchar,"questTemp.chest"));//убираем необходимость доставки материалов
 			sld.ship = "";
 			LAi_SetCurHP(sld, 0.0);//ещё и убивать непися, чтоб точно очистился из массива?
 
@@ -1136,36 +1147,42 @@ void ProcessDialogEvent()
 						dialog.text = "Да, этот чертёж имеет определённую ценность. Я готов заплатить вам за него " + FindRussianMoneyString(1500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ". Оплату произведу серебряными слитками. Не возражаете?";
 						link.l1 = "Нет, конечно! Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
+						NPChar.reputation = sti(NPChar.reputation) + 1;
 						TakeNItems(pchar, "jewelry17", makeint(1500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)/100));
 					break;
 					case 2:
 						dialog.text = "Да, этот чертёж имеет определённую ценность. Я готов заплатить вам за него " + FindRussianMoneyString(3000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ". Оплату произведу золотыми слитками. Не возражаете?";
 						link.l1 = "Нет, конечно! Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
+						NPChar.reputation = sti(NPChar.reputation) + 1;
 						TakeNItems(pchar, "jewelry5", makeint(3000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)/200));
 					break;
 					case 3:
 						dialog.text = "Да, этот чертёж имеет определённую ценность. Я готов заплатить вам за него " + FindRussianMoneyString(4500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ".";
 						link.l1 = "Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
+						NPChar.reputation = sti(NPChar.reputation) + 1;
 						AddMoneyToCharacter(pchar, 4500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L));
 					break;
 					case 4:
 						dialog.text = "Да, этот чертёж имеет значительную ценность. Я готов заплатить вам за него " + FindRussianMoneyString(6000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ".";
 						link.l1 = "Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
+						NPChar.reputation = sti(NPChar.reputation) + 1;
 						AddMoneyToCharacter(pchar, 6000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L));
 					break;
 					case 5:
 						dialog.text = "О! Это очень, очень ценный чертёж! Я готов заплатить вам за него 60 000 золотом. Оплату произведу кредитными сундуками. Не возражаете?";
 						link.l1 = "Нет, конечно! Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
+						NPChar.reputation = sti(NPChar.reputation) + 2;
 						TakeNItems(pchar, "chest", 4);
 					break;
 					case 6:
 						dialog.text = "Да, этот чертёж имеет определённую ценность. Правда, денег в наличии у меня сейчас нет, поэтому я могу отдать вам один из сундуков с ремесленными материалами.";
 						link.l1 = "Ну, раз нет ничего другого, то давайте.";
 						link.l1.go = "ShipyardsMapOk_5";
+						NPChar.reputation = sti(NPChar.reputation) + 1;
 						TakeNItems(pchar, "Chest_Craftsmans", 1);
 						Log_info("Вы получили сундук ремесленника.")
 					break;

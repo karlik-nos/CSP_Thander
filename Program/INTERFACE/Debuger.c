@@ -1096,8 +1096,8 @@ void CalculateInfoDataF6()
 
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS8;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS32;
-	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS42;
-	mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS48;
+	mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS42;
+	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS48;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS8;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS32;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS36;
@@ -2584,12 +2584,51 @@ void CalculateInfoDataF53()
 	Statistic_AddValue(PChar, "Cheats.F53", 1);
 }
 
-string descF54 = "Нет назначений";
+string descF54 = "Тест кораблей";
 void CalculateInfoDataF54()
 {
 	totalInfo = descF54;
-	
-	DoQuestFunctionDelay("Sinistra_TEST", 1.0);
+
+	sld = GetCharacter(NPC_GenerateCharacter("LoL", "ozg_green", "man", "man", 5, PIRATE, -1, true));
+	FantomMakeCoolFighter(sld, 5, 30, 30, "blade30", "pistol2", 5);
+	FantomMakeCoolSailor(sld, SHIP_POSEIDON, "Тестовый корабль", CANNON_TYPE_CANNON_LBS42, 50, 60, 70); //КОРАБЛЬ
+	// FantomMakeCoolSailor(sld, SHIP_HMS_CENTURION, "Тестовый корабль", CANNON_TYPE_CANNON_LBS42, 50, 60, 70); //КОРАБЛЬ
+	// FantomMakeCoolSailor(sld, SHIP_RESOLUTION, "Тестовый корабль", CANNON_TYPE_CANNON_LBS42, 50, 60, 70); //КОРАБЛЬ
+	// FantomMakeCoolSailor(sld, SHIP_FR_SUPERIORWARSHIP1, "Тестовый корабль", CANNON_TYPE_CANNON_LBS42, 50, 60, 70); //КОРАБЛЬ
+	// FantomMakeCoolSailor(sld, SHIP_LINK, "Тестовый корабль", CANNON_TYPE_CANNON_LBS42, 50, 60, 70); //КОРАБЛЬ
+	// FantomMakeCoolSailor(sld, SHIP_SUPERBE, "Тестовый корабль", CANNON_TYPE_CANNON_LBS42, 50, 60, 70); //КОРАБЛЬ
+	// FantomMakeCoolSailor(sld, SHIP_BATTLESHIP, "Тестовый корабль", CANNON_TYPE_CANNON_LBS42, 50, 60, 70); //КОРАБЛЬ
+	// FantomMakeCoolSailor(sld, SHIP_LINK2, "Тестовый корабль", CANNON_TYPE_CANNON_LBS42, 50, 60, 70); //КОРАБЛЬ
+	// FantomMakeCoolSailor(sld, SHIP_BELLONA, "Тестовый корабль", CANNON_TYPE_CANNON_LBS42, 50, 60, 70); //КОРАБЛЬ
+	// FantomMakeCoolSailor(sld, SHIP_LINEARSHIP, "Тестовый корабль", CANNON_TYPE_CANNON_LBS42, 50, 60, 70); //КОРАБЛЬ
+	// FantomMakeCoolSailor(sld, SHIP_SHARK, "Тестовый корабль", CANNON_TYPE_CANNON_LBS42, 50, 60, 70); //КОРАБЛЬ
+	// FantomMakeCoolSailor(sld, SHIP_ZEVENPROVINCIEN, "Тестовый корабль", CANNON_TYPE_CANNON_LBS42, 50, 60, 70); //КОРАБЛЬ
+	// FantomMakeCoolSailor(sld, SHIP_FR_TRINITY, "Тестовый корабль", CANNON_TYPE_CANNON_LBS42, 50, 60, 70); //КОРАБЛЬ
+	// FantomMakeCoolSailor(sld, SHIP_MANOWAR_FAST, "Тестовый корабль", CANNON_TYPE_CANNON_LBS42, 50, 60, 70); //КОРАБЛЬ
+	// FantomMakeCoolSailor(sld, SHIP_BATTLEMANOWAR, "Тестовый корабль", CANNON_TYPE_CANNON_LBS42, 50, 60, 70); //КОРАБЛЬ
+	// FantomMakeCoolSailor(sld, SHIP_MANOWAR_GUB, "Тестовый корабль", CANNON_TYPE_CANNON_LBS42, 50, 60, 70); //КОРАБЛЬ
+	// FantomMakeCoolSailor(sld, SHIP_PRINCE, "Тестовый корабль", CANNON_TYPE_CANNON_LBS42, 50, 60, 70); //КОРАБЛЬ
+	// FantomMakeCoolSailor(sld, SHIP_MANOWAR, "Тестовый корабль", CANNON_TYPE_CANNON_LBS42, 50, 60, 70); //КОРАБЛЬ
+	// FantomMakeCoolSailor(sld, SHIP_HMS_VICTORY, "Тестовый корабль", CANNON_TYPE_CANNON_LBS42, 50, 60, 70); //КОРАБЛЬ
+	// FantomMakeCoolSailor(sld, SHIP_SP_SANFELIPE, "Тестовый корабль", CANNON_TYPE_CANNON_LBS42, 50, 60, 70); //КОРАБЛЬ
+
+	sld.ship.Crew.Morale = 50;								//Мораль
+	ChangeCrewExp(sld, "Sailors", 50);						//Матросы
+	ChangeCrewExp(sld, "Cannoners", 60);					//Канониры
+	ChangeCrewExp(sld, "Soldiers", 70);						//Солдаты
+	sld.DontRansackCaptain = true; 							//Квестовые не сдаются
+	sld.AlwaysSandbankManeuver = true;
+	sld.AlwaysEnemy = true;
+	Group_FindOrCreateGroup("Test_Attack");
+	Group_SetType("Test_Attack", "war");
+	Group_AddCharacter("Test_Attack", "LoL");
+
+	Group_SetGroupCommander("Test_Attack", "LoL");
+	Group_SetTaskAttack("Test_Attack", PLAYER_GROUP);
+	Group_SetAddress("Test_Attack", "Reefs", "quest_ships", "Quest_ship_3");
+	Group_LockTask("Test_Attack");
+	QuestToSeaLogin_Launch();
+	QuestToSeaLogin_PrepareLoc("Reefs", "Quest_Ships", "Quest_ship_1", true);
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 

@@ -1033,9 +1033,19 @@ void LAi_AllCharactersUpdate(float dltTime)
 						LAi_SetFightMode(chr, true);
 					}
 					else
-					{
-						LAi_SetWarriorTypeNoGroup(chr);
-						LAi_SetFightMode(chr, true);
+					{	
+						if(chr.chr_ai.backuptype == officer)
+						{
+							DeleteAttribute(chr, "ai_type.backuptype");
+							LAi_type_officer_Init(chr);
+							LAi_SetFightMode(chr, true);
+						}
+						else
+						{
+							DeleteAttribute(chr, "ai_type.backuptype");
+							LAi_SetWarriorTypeNoGroup(chr);
+							LAi_SetFightMode(chr, true);
+						}
 					}
 				}
 			}

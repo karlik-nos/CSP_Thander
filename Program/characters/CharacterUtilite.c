@@ -4020,7 +4020,7 @@ void OfficersFree()
         {
             ref offchar = GetCharacter(idx);
             if(bAbordageStarted) SetCharacterTask_GotoPoint(offchar, "rld", LAi_FindFreeRandomLocator("rld"));
-            else LAi_tmpl_walk_go(offchar);
+            else LAi_tmpl_walk_InitTemplate(offchar);
         }
     }
 }

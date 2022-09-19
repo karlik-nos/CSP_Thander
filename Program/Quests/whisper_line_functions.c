@@ -2316,7 +2316,7 @@ void CaptureCapitol_ShoreBattle(string q)
 	iNation = SPAIN;
 
 	perSailor = 50;
-	iRnd = GetCrewQuantity(pchar)/perSailor - GetOfficersQuantity(pchar);
+	iRnd = (GetCrewQuantity(pchar) + GetTroopersCrewQuantity(pchar))/perSailor - GetOfficersQuantity(pchar);
 
 	pchar.CaptureCapitolSailors = iRnd;
 	pchar.CaptureCapitolPerSailor = perSailor;

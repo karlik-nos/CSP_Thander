@@ -284,7 +284,7 @@ void LAi_type_barman_Ask(aref chr)
 	}
 	LAi_tmpl_ani_PlayAnimation(chr, animation, 4.0 + frand(3.0));
 	//Выбираем проигрываемый звук
-	if(bCharVoice) // LEO
+	if(sti(InterfaceStates.CharVoice)==1) // LEO
 	{
 		LAi_CharacterPlaySound(chr, "Gr_Barmen");
 	}

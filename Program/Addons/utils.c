@@ -478,7 +478,7 @@ void GetBoardModeToLocation(ref loc)
 	switch(loc.id)
 	{
 		case "BOARDING_SMALL_DECK":
-			if(bBoardMode)
+			if(sti(InterfaceStates.ShowBoardMode) == 1)
 			{
 				sFile = "DeckLowVSMedium_locators_lugger";
 			}
@@ -489,7 +489,7 @@ void GetBoardModeToLocation(ref loc)
 		break;
 
 		case "BOARDING_MEDIUM_DECK":
-			if(bBoardMode)
+			if(sti(InterfaceStates.ShowBoardMode) == 1)
 			{
 				sFile = "deckLowVSBig_locators_lugger";
 			}
@@ -500,7 +500,7 @@ void GetBoardModeToLocation(ref loc)
 		break;
 
 		case "BOARDING_BIG_DECK":
-			if(bBoardMode)
+			if(sti(InterfaceStates.ShowBoardMode) == 1)
 			{
 				sFile = "deckMediumVSBig_locators_lugger";
 			}
@@ -511,7 +511,7 @@ void GetBoardModeToLocation(ref loc)
 		break;
 
 		case "BOARDING_LNSHP_FRGT_DECK":
-			if(bBoardMode)
+			if(sti(InterfaceStates.ShowBoardMode) == 1)
 			{
 				sFile = "deckLineshipVSFrigate_locators_lugger";
 			}

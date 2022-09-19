@@ -33,7 +33,7 @@ void InitInterface_R(string iniName, ref _shipyarder)
 	refNPCShipyard  = _shipyarder;
 	sNation = GetNationNameByType(sti(refNPCShipyard.nation));
 
-	if (refNPCShipyard.id != "Pirates_shipyarder") {iYarderSkill = (sti(refNPCShipyard.reputation) + 11)/2+50; iTunPoints = (iYarderSkill-8)/22;}
+	if (refNPCShipyard.id != "Pirates_shipyarder") {iYarderSkill = sti(refNPCShipyard.reputation)/2+50; iTunPoints = (iYarderSkill-41)/18;}
 	//берём за навык кораблестроения репутацию верфиста и приводим к отрезку (56:100)
 
 	iShipPoints = 6 + iYarderSkill/6 - (MOD_SKILL_ENEMY_RATE)/3;//целые переменные делятся с округлением вниз
