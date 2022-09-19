@@ -1,4 +1,5 @@
 #include "DIALOGS\russian\Rumours\Common_rumours.c"  //homo 25/06/06
+string sProf;
 
 void ProcessDialogEvent()
 {
