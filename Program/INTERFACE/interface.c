@@ -2129,13 +2129,14 @@ void MakeQuickLoad()
 	
 	SetEventHandler("evntLoad","LoadGame",0);
 	PostEvent("evntLoad",0,"s", "SAVE\" + PlayerProfile.name+"\"+curSave);*/
-	object lastsave;
-	string sFileName = "lastsave";
-	SendMessage(&GameInterface, "lsa", MSG_INTERFACE_LOADOPTIONS, sFileName, &lastsave);
-	ref lastsaven = &lastsave;
+	GameInterface.SavePath = "SAVE\" + PlayerProfile.name;
+    string saveName;
+    int nSaveSize;
+    SendMessage(&GameInterface,"llee",MSG_INTERFACE_SAVE_FILE_FIND,0,&saveName,&nSaveSize);
+    string curSave = saveName;
 	
 	SetEventHandler("evntLoad","LoadGame",0);
-	PostEvent("evntLoad",0,"s", lastsaven.name);
+	PostEvent("evntLoad",0,"s", GameInterface.SavePath+"\"+saveName);
 }
 
 void MakeQuickSave()
