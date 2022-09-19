@@ -1,6 +1,7 @@
 // boal 08/04/06 общий диалог верфи
 string Tun_Name1_Goods[8] = {"Mahogany","Planks","Silk","Linen","Cotton","Sandal","Leather","Ebony"};
 string Tun_Name2_Items[8] = {"jewelry17","jewelry9","jewelry2","jewelry3","jewelry4","jewelry5","jewelry1","icollection"};
+string sProf;
 #include "DIALOGS\russian\Rumours\Common_rumours.c"  //homo 25/06/06
 void ProcessDialogEvent()
 {
@@ -587,7 +588,15 @@ void ProcessDialogEvent()
 							if (!ok && GetRemovable(&characters[_curCharIdx]))
 							{
 								attrLoc = "l"+i;
-								Link.(attrLoc)	= GetFullName(&characters[_curCharIdx]);
+								sProf = "";
+								if (IsOfficer(sld)) sProf += " (абордажник)";
+								if (sti(pchar.Fellows.Passengers.navigator) == sti(sld.index)) sProf += " (штурман)";
+								if (sti(pchar.Fellows.Passengers.boatswain) == sti(sld.index)) sProf += " (боцман)";
+								if (sti(pchar.Fellows.Passengers.cannoner) == sti(sld.index)) sProf += " (канонир)";
+								if (sti(pchar.Fellows.Passengers.doctor) == sti(sld.index)) sProf += " (врач)";
+								if (sti(pchar.Fellows.Passengers.carpenter) == sti(sld.index)) sProf += " (плотник)";
+							    if (sti(pchar.Fellows.Passengers.treasurer) == sti(sld.index)) sProf += " (казначей)";
+								Link.(attrLoc)	= GetFullName(&characters[_curCharIdx]) + sProf;
 								Link.(attrLoc).go = "shiporderend2_" + i;
 								q++;
 							}
