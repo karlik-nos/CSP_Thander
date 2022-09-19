@@ -2588,7 +2588,7 @@ string descF54 = "Тест кораблей";
 void CalculateInfoDataF54()
 {
 	totalInfo = descF54;
-	
+
 	sld = GetCharacter(NPC_GenerateCharacter("LoL", "ozg_green", "man", "man", 5, PIRATE, -1, true));
 	FantomMakeCoolFighter(sld, 5, 30, 30, "blade30", "pistol2", 5);
 	FantomMakeCoolSailor(sld, SHIP_POSEIDON, "Тестовый корабль", CANNON_TYPE_CANNON_LBS42, 50, 60, 70); //КОРАБЛЬ
