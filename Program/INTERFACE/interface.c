@@ -2120,14 +2120,22 @@ void MakeQuickLoad()
 	// boal лишнее if( InterfaceStates.Launched != 0 ) {return;}
 	if( bPlayVideoNow ) {return;}
 	// ugeen 2017 -->
-	int QuickSaveIndex = 1;
+	/*int QuickSaveIndex = 1;
 	if( CheckAttribute(&PlayerProfile,"QuickSaveIndex") ) {
 		QuickSaveIndex = sti(PlayerProfile.QuickSaveIndex);
 	}
 	string curSave = PlayerProfile.name + " QuickSave " + QuickSaveIndex;
 	// <-- ugeen 2017
+	
 	SetEventHandler("evntLoad","LoadGame",0);
-	PostEvent("evntLoad",0,"s", "SAVE\" + PlayerProfile.name+"\"+curSave);
+	PostEvent("evntLoad",0,"s", "SAVE\" + PlayerProfile.name+"\"+curSave);*/
+	object lastsave;
+	string sFileName = "lastsave";
+	SendMessage(&GameInterface, "lsa", MSG_INTERFACE_LOADOPTIONS, sFileName, &lastsave);
+	ref lastsaven = &lastsave;
+	
+	SetEventHandler("evntLoad","LoadGame",0);
+	PostEvent("evntLoad",0,"s", lastsaven.name);
 }
 
 void MakeQuickSave()

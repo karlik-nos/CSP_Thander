@@ -458,6 +458,11 @@ void SaveGame()
 		pchar.version_number = 104;
 		SaveEngineState(saveName);
 		ISetSaveData(saveName,saveData);
+		
+		object lastsave;
+		lastsave.name = saveName;
+		string sFileName = "lastsave";
+		SendMessage(&GameInterface, "lsa", MSG_INTERFACE_SAVEOPTIONS, sFileName, lastsave);
 	}
 
 	//hide interface
