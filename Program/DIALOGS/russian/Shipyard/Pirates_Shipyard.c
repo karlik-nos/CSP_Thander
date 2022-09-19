@@ -384,7 +384,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			if ( sti(Pchar.Ship.Type) == SHIP_NOTUSED || Pchar.location.from_sea != "Pirates_town")
             {
                 dialog.Text = "Корабль-то где? Что вы мне тут голову морочите?!";
-			    Link.l1 = "И то правда.. что это я... Извиняюсь";
+			    Link.l1 = "И то правда.. что это я... Извиняюсь.";
 			    Link.l1.go = "ship_tunning_not_now";
             }
             else
@@ -489,7 +489,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
     			        Link.l7 = "Увеличить прочность корпуса.";
     			        Link.l7.go = "ship_tunning_HP";
     			    }
-    			    if (!CheckAttribute(&RealShips[sti(Pchar.Ship.Type)], "Tuning.WindAgainst"))
+    			    if (!CheckAttribute(&RealShips[sti(Pchar.Ship.Type)], "Tuning.WindAgainstSpeed"))
                     {
     			        Link.l8 = "Увеличить ход в бейдевинд.";
     			        Link.l8.go = "ship_tunning_WindAgainst";
@@ -612,58 +612,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			DeleteAttribute(NPChar, "Tuning");
 
 			// изменим калибр орудий
-			iCaliber = sti(shTo.MaxCaliber);
-			switch(iCaliber)
-			{
-				case 8:
-					iCaliber = 0;
-				break;
-				case 12:
-					iCaliber = 1;
-				break;
-				case 16:
-					iCaliber = 2;
-				break;
-				case 20:
-					iCaliber = 3;
-				break;
-				case 24:
-					iCaliber = 4;
-				break;
-				case 32:
-					iCaliber = 5;
-				break;
-				case 36:
-					iCaliber = 6;
-				break;
-			}
-			iCaliber = iCaliber + 1;
-			if (iCaliber > 6) iCaliber = 6;
-			switch(iCaliber)
-			{
-				case 0:
-					iCaliber = 8;
-				break;
-				case 1:
-					iCaliber = 12;
-				break;
-				case 2:
-					iCaliber = 16;
-				break;
-				case 3:
-					iCaliber = 20;
-				break;
-				case 4:
-					iCaliber = 24;
-				break;
-				case 5:
-					iCaliber = 32;
-				break;
-				case 6:
-					iCaliber = 36;
-				break;
-			}
-			shTo.MaxCaliber = iCaliber;
+			SetShipBermudeTuningMaxCaliber(Pchar);
 
 			// изменим количество орудий
 			shTo.rcannon = sti(shTo.rcannon) + cannonDiff/2;
@@ -675,7 +624,6 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			Pchar.Ship.Cannons.Borts.cannonf = sti(shTo.fcannon);
 			Pchar.Ship.Cannons.Borts.cannonb = sti(shTo.bcannon);
 			Pchar.Ship.Cannons = sti(shTo.CannonsQuantity);
-			shTo.Tuning.Cannon = true;
 
 			// finish <--
 			NextDiag.TempNode = "ship_tunning_again";
@@ -927,63 +875,8 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 
 		case "ship_tunning_cannon_complite":
 		    AddTimeToCurrent(6, 30);
-		    shTo = &RealShips[sti(Pchar.Ship.Type)];
 		    DeleteAttribute(NPChar, "Tuning");
-			// изменим калибр орудий
-			iCaliber = sti(shTo.MaxCaliber);
-			switch(iCaliber)
-			{
-				case 8:
-					iCaliber = 0;
-				break;
-				case 12:
-					iCaliber = 1;
-				break;
-				case 16:
-					iCaliber = 2;
-				break;
-				case 20:
-					iCaliber = 3;
-				break;
-				case 24:
-					iCaliber = 4;
-				break;
-				case 32:
-					iCaliber = 5;
-				break;
-				case 36:
-					iCaliber = 6;
-				break;
-			}
-			iCaliber = iCaliber + 1;
-			if (iCaliber > 6) iCaliber = 6;
-			switch(iCaliber)
-			{
-				case 0:
-					iCaliber = 8;
-				break;
-				case 1:
-					iCaliber = 12;
-				break;
-				case 2:
-					iCaliber = 16;
-				break;
-				case 3:
-					iCaliber = 20;
-				break;
-				case 4:
-					iCaliber = 24;
-				break;
-				case 5:
-					iCaliber = 32;
-				break;
-				case 6:
-					iCaliber = 36;
-				break;
-			}
-			shTo.MaxCaliber = iCaliber;
-			shTo.Tuning.Cannon = true;
-			// finish <--
+			SetShipBermudeTuningMaxCaliber(Pchar);
             NextDiag.TempNode = "ship_tunning_again";
 			dialog.Text = "... Вроде бы всё... Можешь менять калибр - качество гарантирую.";
 			Link.l1 = "Спасибо! Проверю обязательно.";
@@ -1100,19 +993,8 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 
 		case "ship_tunning_Capacity_complite":
 		    AddTimeToCurrent(6, 30);
-		    shTo = &RealShips[sti(Pchar.Ship.Type)];
 		    DeleteAttribute(NPChar, "Tuning");
-		    // изменим
-			if(!CheckAttribute(shTo, "Bonus_Capacity"))
-			{
-				shTo.Capacity        = sti(shTo.Capacity) + makeint(sti(shTo.Capacity)/5);
-			}
-			else
-			{
-				shTo.Capacity        = makeint((sti(shTo.Capacity) - sti(shTo.Bonus_Capacity)) * 1.2 + sti(shTo.Bonus_Capacity));
-			}
-	        shTo.Tuning.Capacity = true;
-	        // finish <--
+			SetShipBermudeTuningCapacity(Pchar);
             NextDiag.TempNode = "ship_tunning_again";
 			dialog.Text = "... Вроде бы всё... Можешь грузиться по полной - качество работы гарантирую.";
 			Link.l1 = "Спасибо! Проверю обязательно.";
@@ -1229,19 +1111,8 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 
 		case "ship_tunning_SpeedRate_complite":
 		    AddTimeToCurrent(6, 30);
-		    shTo = &RealShips[sti(Pchar.Ship.Type)];
 		    DeleteAttribute(NPChar, "Tuning");
-		    // изменим
-			if(!CheckAttribute(shTo, "Bonus_SpeedRate"))
-			{
-					shTo.SpeedRate        = (stf(shTo.SpeedRate) + stf(shTo.SpeedRate)/5.0);
-			}
-			else
-			{
-					shTo.SpeedRate        = (stf(shTo.SpeedRate) - stf(shTo.Bonus_SpeedRate)) * 1.2 + stf(shTo.Bonus_SpeedRate);
-			}
-	        shTo.Tuning.SpeedRate = true;
-	        // finish <--
+			SetShipBermudeTuningSpeedRate(Pchar);
             NextDiag.TempNode = "ship_tunning_again";
 			dialog.Text = "... Вроде бы всё... Можешь ловить ветер полными парусами. Проверяй!";
 			Link.l1 = "Спасибо! Проверю обязательно.";
@@ -1357,13 +1228,8 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 
 		case "ship_tunning_MastMultiplier_complite":
 		    AddTimeToCurrent(6, 30);
-		    shTo = &RealShips[sti(Pchar.Ship.Type)];
 		    DeleteAttribute(NPChar, "Tuning");
-		    // изменим
-			shTo.MastMultiplier        = stf(shTo.MastMultiplier) - 0.3;
-
-	        shTo.Tuning.MastMultiplier = true;
-	        // finish <--
+		    SetShipBermudeTuningMastMultiplier(Pchar);
             NextDiag.TempNode = "ship_tunning_again";
 			dialog.Text = "... Вроде бы всё... Можешь ловить своими мачтами книппели безо всяких опасений. Проверяй!";
 			Link.l1 = "Спасибо! Проверю обязательно.";
@@ -1477,12 +1343,8 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 
 		case "ship_tunning_MaxCrew_complite":
 		    AddTimeToCurrent(6, 30);
-		    shTo = &RealShips[sti(Pchar.Ship.Type)];
 		    DeleteAttribute(NPChar, "Tuning");
-		    // изменим
-	        shTo.MaxCrew        = sti(shTo.MaxCrew) + makeint(sti(shTo.MaxCrew)/5);
-	        shTo.Tuning.MaxCrew = true;
-	        // finish <--
+		    SetShipBermudeTuningMaxCrew(Pchar);
             NextDiag.TempNode = "ship_tunning_again";
 			dialog.Text = "... Вроде бы всё... Набирай матросов, всем места хватит.";
 			Link.l1 = "Спасибо! Проверю обязательно.";
@@ -1598,19 +1460,8 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 
 		case "ship_tunning_TurnRate_complite":
 		    AddTimeToCurrent(6, 30);
-		    shTo = &RealShips[sti(Pchar.Ship.Type)];
 		    DeleteAttribute(NPChar, "Tuning");
-		    // изменим
-			if(!CheckAttribute(shTo, "Bonus_TurnRate"))
-			{
-				shTo.TurnRate        = (stf(shTo.TurnRate) + stf(shTo.TurnRate)/5.0);
-			}
-			else
-			{
-				shTo.TurnRate        = (stf(shTo.TurnRate) - stf(shTo.Bonus_TurnRate)) * 1.2 + stf(shTo.Bonus_TurnRate);
-			}
-	        shTo.Tuning.TurnRate = true;
-	        // finish <--
+			SetShipBermudeTuningTurnRate(Pchar);
             NextDiag.TempNode = "ship_tunning_again";
 			dialog.Text = "... Вроде бы всё... Можешь крутить штурвал.";
 			Link.l1 = "Спасибо! Проверю обязательно.";
@@ -1727,17 +1578,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		    AddTimeToCurrent(6, 30);
 		    shTo = &RealShips[sti(Pchar.Ship.Type)];
 		    DeleteAttribute(NPChar, "Tuning");
-		    // изменим
-			if(!CheckAttribute(shTo, "Bonus_HP"))
-			{
-				shTo.HP        = sti(shTo.HP) + makeint(sti(shTo.HP)/5);
-			}
-			else
-			{
-				shTo.HP        = makeint((sti(shTo.HP) - sti(shTo.Bonus_HP)) * 1.2 + sti(shTo.Bonus_HP));
-			}
-	        shTo.Tuning.HP = true;
-	        // finish <--
+			SetShipBermudeTuningHP(Pchar);
             NextDiag.TempNode = "ship_tunning_again";
 			if(shTo.BaseName == "Flyingdutchman") // ЛГ
 			{
@@ -1756,7 +1597,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			AddQuestRecord("ShipTuning", "End");
 			CloseQuestHeader("ShipTuning");
 		break;
-		////////////////////////////////////////// WindAgainst ////////////////////////////////////////////////////
+		////////////////////////////////////////// WindAgainstSpeed ////////////////////////////////////////////////////
 		case "ship_tunning_WindAgainst":
 			s1 = "Давайте посмотрим, что можно сделать. Бейдевинд сейчас " + FloatToString(shipWindAgainst, 2);
 
@@ -1860,12 +1701,8 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 
 		case "ship_tunning_WindAgainst_complite":
 		    AddTimeToCurrent(6, 30);
-		    shTo = &RealShips[sti(Pchar.Ship.Type)];
 		    DeleteAttribute(NPChar, "Tuning");
-		    // изменим
-	        shTo.WindAgainstSpeed   = FloatToString(stf(shTo.WindAgainstSpeed) + 0.5* stf(shTo.WindAgainstSpeed) / stf(shTo.Class) + 0.005, 2);
-	        shTo.Tuning.WindAgainst = true;
-	        // finish <--
+			SetShipBermudeTuningWindAgainstSpeed(Pchar);
             NextDiag.TempNode = "ship_tunning_again";
 			dialog.Text = "... Вроде бы всё... Скорость против ветра теперь поболе будет.";
 			Link.l1 = "Спасибо! Проверю обязательно.";
@@ -2421,12 +2258,12 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			}
 			shTo.MaxCaliber = iCaliber;
 
-			GetBaseShipParam_ToUpgrade(shTo, "SpeedRate", 2.0);
-			GetBaseShipParam_ToUpgrade(shTo, "TurnRate", 10.0);
-			GetBaseShipParam_ToUpgrade(shTo, "HP", 1000);
-			GetBaseShipParam_ToUpgrade(shTo, "MaxCrew", 120);
-			GetBaseShipParam_ToUpgrade(shTo, "WindAgainstSpeed", 1.0);
-			GetBaseShipParam_ToUpgrade(shTo, "Capacity", 700);
+			SetShipTuningF(Pchar, "SpeedRate", 2.0 / stf(shTo.SpeedRate));
+			SetShipTuningF(Pchar, "TurnRate", 10.0 / stf(shTo.TurnRate));
+			SetShipTuningI(Pchar, "HP", 1000 / stf(shTo.HP));
+			SetShipTuningI(Pchar, "MaxCrew", 120 / stf(shTo.MaxCrew));
+			SetShipTuningF(Pchar, "WindAgainstSpeed", 1.0 / stf(shTo.WindAgainstSpeed));
+			SetShipTuningI(Pchar, "Capacity", 700 / stf(shTo.Capacity));
 			shTo.HullArmor = 30;
 			shTo.OptCrew = 300;
 
@@ -2499,7 +2336,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			if (CheckAttribute(shTo,"Tuning.MastMultiplier")) TuneMast = true;
 			if (CheckAttribute(shTo,"Tuning.SpeedRate")) TuneSpeed = true;
 			if (CheckAttribute(shTo,"Tuning.TurnRate")) TuneTurn = true;
-			if (CheckAttribute(shTo,"Tuning.WindAgainst")) TuneWA = true;
+			if (CheckAttribute(shTo,"Tuning.WindAgainstSpeed")) TuneWA = true;
 			if (CheckAttribute(shTo,"Tuning.Capacity")) TuneCap = true;
 			if (CheckAttribute(shTo,"Tuning.MaxCrew")) TuneMaxCrew = true;
 
@@ -2534,7 +2371,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			if (TuneWA)
 			{
 				shTo.WindAgainstSpeed = FloatToString(stf(shTo.WindAgainstSpeed) + 0.5* stf(shTo.WindAgainstSpeed) / stf(shTo.Class) + 0.005, 2);
-				shTo.Tuning.WindAgainst = true;
+				shTo.Tuning.WindAgainstSpeed = true;
 			}
 			if (TuneCap)
 			{
@@ -2628,23 +2465,4 @@ void checkMatherial(ref Pchar, ref NPChar, int good1, int good2, int good3)
     }
     TakeNItems(pchar, good3, -amount);
     NPChar.Tuning.Matherial3 = sti(NPChar.Tuning.Matherial3) - amount;
-}
-
-void GetBaseShipParam_ToUpgrade(ref shTo, string param, float num)
-{
-	string sAttr = "Bonus_"+param;
-	Log_Info(sAttr);
-	int iRealShipType = sti(shTo.basetype);
-	string sParam =	GetBaseShipParamFromType(iRealShipType, param);
-	if(CheckAttribute(shTo, sAttr))
-	{
-		shTo.(param) = stf(shTo.(param)) - stf(shTo.(sAttr));
-		shTo.(sAttr) = stf(shTo.(sAttr)) + num;
-		shTo.(param) = stf(shTo.(param)) + stf(shTo.(sAttr));
-	}
-	else
-	{
-		shTo.(sAttr) = num;
-		shTo.(param) = stf(shTo.(param)) + stf(shTo.(sAttr));
-	}
 }

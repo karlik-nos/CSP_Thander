@@ -16,7 +16,8 @@ void LAi_NPC_Equip(ref chr, int rank, bool isWeapons, bool isGun)
 	string sGunPowder;
 
 	DeleteAttribute(chr, "equip");
-	DeleteAttribute(chr, "perks.list"); // FIX 101104 убрать накопивщиеся умения
+	DeleteAttribute(chr, "perks.list"); // FIX 101104 убрать накопившиеся умения
+	SetSpeciality(chr, PerksChars());
 	DelBakSkillAttr(chr); // fix
 
 	if (chr.model.animation == "mushketer")

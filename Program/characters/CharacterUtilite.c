@@ -1591,13 +1591,13 @@ void SetBaseShipData(ref refCharacter)
 	if (!CheckAttribute(refCharacter,"DontRefresh"))
 	{
 		refCharacter.ship.crew.disease = 0;
-		SetTuningShipStates(refCharacter);
+		SetBermudeTuningShipStates(refCharacter);
 		//Mett: nation sails —->
 		if(sti(refCharacter.nation) == PIRATE)
 		{
 			refBaseShip.ship.upgrades.sails = 38 + rand(50); // LEO: пиратские паруса
 		}
-			else refBaseShip.ship.upgrades.sails = 1 + rand(22); // LEO: все остальные
+		else refBaseShip.ship.upgrades.sails = 1 + rand(22); // LEO: все остальные
 	}
 	if (CheckAttribute(refCharacter,"DontRefresh")) DeleteAttribute(refCharacter,"DontRefresh");
 	// <-—
@@ -2592,6 +2592,7 @@ void UnsetSpecialAttributes(ref chr)
 	chr.chr_ai.special.valueT = 0;
 	chr.chr_ai.special.valueB = 0;
 	chr.chr_ai.special.valueP = 0;
+	chr.chr_ai.special.valueV = 0;
 }
 
 void SetWeaponsSpecials(ref chr, ref arItm)
@@ -2628,6 +2629,10 @@ void SetWeaponsSpecials(ref chr, ref arItm)
 	if (CheckAttribute(arItm,"special.valueP"))
 	{
 		chr.chr_ai.special.valueP = sti(arItm.special.valueP);
+	}
+	if (CheckAttribute(arItm,"special.valueV"))
+	{
+		chr.chr_ai.special.valueV = sti(arItm.special.valueV);
 	}
 }
 
@@ -4015,7 +4020,7 @@ void OfficersFree()
         {
             ref offchar = GetCharacter(idx);
             if(bAbordageStarted) SetCharacterTask_GotoPoint(offchar, "rld", LAi_FindFreeRandomLocator("rld"));
-            else LAi_tmpl_walk_go(offchar);
+            else LAi_tmpl_walk_InitTemplate(offchar);
         }
     }
 }

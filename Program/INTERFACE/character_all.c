@@ -2218,7 +2218,7 @@ void ChoosePerk()
 				ok = false;
 			}
 		}
-		if (bAltBalance && xi_refCharacter.id == pchar.id)
+		if (bAltBalanceOffTopPerk && xi_refCharacter.id == pchar.id)
 		{
 			if (perkName == "SeaDogProfessional" || perkName == "GrapplingProfessional" || perkName == "CannonProfessional" || perkName == "Builder" || perkName == "InstantRepair" || perkName == "ShipDefenseProfessional" || perkName == "SailingProfessional" || perkName == "EmergentSurgeon") ok = false;
 		}

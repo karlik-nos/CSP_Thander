@@ -222,7 +222,7 @@ void LAi_type_priest_Ask(aref chr)
 	}
 	LAi_tmpl_ani_PlayAnimation(chr, animation, -1.0);
 	//Выбираем проигрываемый звук
-	if(bCharVoice) // LEO
+	if(sti(InterfaceStates.CharVoice)==1) // LEO
 	{
 		LAi_CharacterPlaySound(chr, "Gr_Church");
 	}

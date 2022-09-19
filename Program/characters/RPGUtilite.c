@@ -52,6 +52,46 @@ int GetCharacterNormalHp(ref _refCharacter)
 	return ret;
 }
 
+float GetCharacterEffectiveHp(ref _refCharacter)
+{
+	float EffHp;
+	if (CheckAttribute(_refCharacter, "Cirassid")) 
+	{
+		if(IsCharacterPerkOn(_refCharacter, "SwordplayProfessional"))
+			EffHp = sti(_refCharacter.chr_ai.hp_max) / 0.7 / (1 - stf(Items[sti(_refCharacter.cirassId)].CirassLevel.break));
+		else
+		{
+			if(IsCharacterPerkOn(_refCharacter, "AdvancedDefense"))
+				EffHp = sti(_refCharacter.chr_ai.hp_max) / 0.8 / (1 - stf(Items[sti(_refCharacter.cirassId)].CirassLevel.break));
+			else
+			{
+				if(IsCharacterPerkOn(_refCharacter, "BasicDefense"))
+					EffHp = sti(_refCharacter.chr_ai.hp_max) / 0.9 / (1 - stf(Items[sti(_refCharacter.cirassId)].CirassLevel.break));
+				else
+					EffHp = sti(_refCharacter.chr_ai.hp_max) / (1 - stf(Items[sti(_refCharacter.cirassId)].CirassLevel.break));
+			}
+		}
+	}
+	else
+	{
+		if(IsCharacterPerkOn(_refCharacter, "SwordplayProfessional"))
+			EffHp = sti(_refCharacter.chr_ai.hp_max) / 0.7 ;
+		else
+		{
+			if(IsCharacterPerkOn(_refCharacter, "AdvancedDefense"))
+				EffHp = sti(_refCharacter.chr_ai.hp_max) / 0.8;
+			else
+			{
+				if(IsCharacterPerkOn(_refCharacter, "BasicDefense"))
+					EffHp = sti(_refCharacter.chr_ai.hp_max) / 0.9;
+				else
+					EffHp = sti(_refCharacter.chr_ai.hp_max);
+			}
+		}
+	}
+	return EffHp;
+}
+
 void SetHealthToCharacter(ref _refCharacter)
 {
 	_refCharacter.chr_ai.hp_max = GetCharacterNormalHp(_refCharacter);
@@ -267,6 +307,21 @@ void SetRandSPECIAL_K(ref _refCharacter)  // для штурманов-казн�
                (2 + rand(8)));
 }
 
+int ChecKSufficientRankForClass(int shipClass)
+{
+	switch (shipClass)
+    {
+		case 1 : return 30; break;
+		case 2 : return 25; break;
+		case 3 : return 18; break;
+		case 4 : return 10; break;
+		case 5 : return 5; break;
+		case 6 : return 1; break;
+		case 7 : return 1; break;
+		else return 0;
+    }
+}
+
 /// влияет только на СПЕЦИАЛ
 int ApplayNavyPenalty(ref _refCharacter, string skillName, int sumSkill)
 {
@@ -307,6 +362,12 @@ int ApplayNavyPenaltyToSkill(ref _refCharacter, string skillName, int sumSkill)
 
         int shipClass = GetCharacterShipClass(_refCharacter);
         int needSkill = GetShipClassNavySkill(shipClass);
+		if (bRankRequirement)
+		{
+			int needRank = (ChecKSufficientRankForClass(shipClass) - sti(_refCharacter.rank))*2;
+			if (needRank < 0) needRank = 0;
+			needSkill += needRank;
+		}
 
         if (sailSkill < needSkill)
         {
@@ -848,7 +909,7 @@ void InitStartParam(ref _chref)
     for (i=1; i<15; i++)
     {
         skillName = GetSkillNameByIdx(i);
-        _chref.skill.(skillName) = makeint(MOD_EXP_RATE / GetCharacterExpRate(_chref, skillName) + 0.5);
+        _chref.skill.(skillName) = makeint(MOD_EXP_RATE / GetCharacterExpRate(_chref, skillName));
     }
     LAi_SetHP(_chref, GetCharacterBaseHPValue(_chref), GetCharacterBaseHPValue(_chref));
 	MAX_NUM_FIGHTERS=MOD_OFFICERS_RATE;
@@ -907,7 +968,7 @@ float GetCharacterExpRate(ref _chref, string _skill)
                 divBy = GetCharacterSPECIAL(_chref, SPECIAL_P)*0.5 + GetCharacterSPECIAL(_chref, SPECIAL_L)*0.5;
             break;
         }
-        _chref.skill.(skill_rate) = makefloat(MOD_EXP_RATE / divBy);
+        _chref.skill.(skill_rate) = makefloat(MOD_EXP_RATE / (divBy * 2.8696 * pow(divBy,-0.457)));
     }
     return  stf(_chref.skill.(skill_rate));
 }
@@ -2708,6 +2769,12 @@ void initNewMainCharacter()
 		ch.HeroParam.Location = ch.HeroParam.ToCityId + "_port";
 		ch.HeroParam.Group    = "reload";
 		ch.HeroParam.Locator  = "sea";
+		if (ch.HeroParam.ToCityId == "LaVega")	//Ла Вега town
+		{
+			ch.HeroParam.Location = ch.HeroParam.ToCityId + "_town";
+			ch.HeroParam.Group    = "reload";
+			ch.HeroParam.Locator  = "reload1";
+		}
 		if(startherotype == 2)
 		{
 			ch.HeroParam.Location = "PuertoPrincipe_port";

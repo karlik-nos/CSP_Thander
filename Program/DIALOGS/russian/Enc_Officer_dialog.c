@@ -128,6 +128,15 @@ void ProcessDialogEvent()
 				}
 			}
 			//aw013 <-- Найм на постоянку
+			
+			//Расторжение контракта
+			
+			if (CheckAttribute(npchar, "ImmortalOfficer"))
+			{
+				Link.l6 = "Я хочу расторгнуть заключённый между нами контракт.";
+				Link.l6.go = "cancelcontract1";
+			}
+			
            		// boal отчёт о корабле
 			if(CheckAttribute(NPChar, "treasurer") && NPChar.treasurer == 1)
 			{
@@ -756,6 +765,49 @@ void ProcessDialogEvent()
 			Link.l1 = "Вот и отлично! Договорились";
 			Link.l1.go = "Exit";
 		break;
+		
+		case "cancelcontract1":
+			dialog.text = "Довольно неожиданно, капитан. И в чем же я " + NPCharSexPhrase(NPChar,"провинился?","провинилась?");
+			Link.l1 = "Забудь, я ошиб" + GetSexPhrase("ся.","лась.");
+			Link.l1.go = "Exit";
+			Link.l2 = "Меня не устраивают твои навыки.";
+			Link.l2.go = "cancelcontract2";
+		break;
+			
+		case "cancelcontract2":
+			NPChar.contractMoney = makeint(sti(NPChar.rank)*MOD_SKILL_ENEMY_RATE*1000);
+			dialog.text = "Вот как, ну что ж если вы оплатите неустойку по контракту, то у меня не будет претензий.";
+			if (sti(Pchar.money) >= sti(NPChar.contractMoney))
+			{
+				Link.l1 = "Как скажешь, " + sti(NPChar.contractMoney) + " золотых прямо сейчас на руки тебя устроит?";
+				Link.l1.go = "cancelcontract3";
+			}
+			Link.l2 = "У меня сейчас проблемы с наличностью, вернемся к этому разговору позже.";
+			Link.l2.go = "Exit";
+		break;
+			
+		case "cancelcontract3":
+			dialog.text = "Вполне, капитан. Я соглас" + NPCharSexPhrase(NPChar,"ен.","на.");
+			AddMoneyToCharacter(Pchar, -sti(NPChar.contractMoney));
+			pchar.Option_ImmortalOfficers = sti(sti(pchar.Option_ImmortalOfficers) - 1);
+			NPChar.OfficerWantToGo.DontGo = false;
+			NPChar.HalfImmortal = false;
+			NPchar.loyalty = MAX_LOYALITY / 2;
+			DeleteAttribute(npchar,"ImmortalOfficer");
+			if (rand(sti(pchar.reputation)) >= 50)
+			{
+				NPchar.alignment  = "good";
+				NPchar.reputation = 51 + rand(48);
+			}
+			else
+			{
+				NPchar.alignment = "bad";
+				NPchar.reputation = 49 - rand(48);
+			}
+			Link.l1 = "Вот и хорошо.";
+			Link.l1.go = "Exit";
+		break;
+		
 		//aw013 <-- Найм на постоянку
 		// boal 29.05.04 офицер хочет свалить -->
         case "WantToGo":
@@ -1839,7 +1891,7 @@ void ProcessDialogEvent()
 
 		case "Companion_TaskBoarding":
 			dialog.Text = "Что же вы желаете?";
-			Link.l1 = "Я хочу чтобы ты не брал"+ GetSexPhrase("","а") +" корабли на абордаж. Побереги себя и свою команду.";
+			Link.l1 = "Я хочу чтобы ты не брал корабли на абордаж. Побереги себя и свою команду.";
 			Link.l1.go = "Companion_TaskBoardingNo";
 			Link.l2 = "Мне нужно чтобы ты брал вражеские корабли на абордаж.";
 			Link.l2.go = "Companion_TaskBoardingYes";
@@ -1847,7 +1899,7 @@ void ProcessDialogEvent()
 
 		case "Companion_TaskChange":
 			dialog.Text = "Что же вы желаете?";
-			Link.l1 = "Я хочу чтобы ты не менял"+ GetSexPhrase("","а") +" свой корабль после абордажа. Он слишком ценен.";
+			Link.l1 = "Я хочу чтобы ты не менял свой корабль после абордажа. Он слишком ценен.";
 			Link.l1.go = "Companion_TaskChangeNo";
 			Link.l2 = "Когда будешь брать врагов на абордаж, посмотри, вдруг кораблик приличный будет, тогда бери себе.";
 			Link.l2.go = "Companion_TaskChangeYes";

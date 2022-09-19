@@ -413,7 +413,7 @@ void ProcessDialogEvent()
 		}
 		break;
 		case "NotPegYou":
-			dialog.text = RandPhraseSimple("А-а-а, вижу... Всё в порядке, вы можете идти, " + GetAddress_Form(pchar) + ".", "Что-то я немного подустал в карауле... Всё в порядке, " + GetAddress_Form(pchar) + ", прошу прощения.");
+			dialog.text = RandPhraseSimple("А-а-а, вижу... Всё в порядке, вы можете идти, " + GetAddress_Form(NPChar) + ".", "Что-то я немного подустал в карауле... Всё в порядке, " + GetAddress_Form(NPChar) + ", прошу прощения.");
 			link.l1 = "Так-то!";
 			link.l1.go = "exit";
 			if (!CheckAttribute(pchar,"questTemp.stels.landSolder"))
@@ -428,7 +428,7 @@ void ProcessDialogEvent()
 		}
 		break;
 				case "NotPegYou_2":
-			dialog.text = RandPhraseSimple("А вот за это спасибо вам, " + GetAddress_Form(pchar) + "." + " На прощание, дам вам бесплатный совет: загляните к нашему портовому начальнику и попросите какую-нибудь бумажку. Сразу легче жить станет.", "Я думаю, в вашем кошеле найдётся гораздо больше монет, " + GetAddress_Form(pchar) + ", но ладно, я сегодня добрый." + " На прощание, дам вам бесплатный совет: загляните к нашему портовому начальнику и попросите какую-нибудь бумажку. Сразу легче жить станет.");
+			dialog.text = RandPhraseSimple("А вот за это спасибо вам, " + GetAddress_Form(NPChar) + "." + " На прощание, дам вам бесплатный совет: загляните к нашему портовому начальнику и попросите какую-нибудь бумажку. Сразу легче жить станет.", "Я думаю, в вашем кошеле найдётся гораздо больше монет, " + GetAddress_Form(NPChar) + ", но ладно, я сегодня добрый." + " На прощание, дам вам бесплатный совет: загляните к нашему портовому начальнику и попросите какую-нибудь бумажку. Сразу легче жить станет.");
 			link.l1 = "До свидания.";
 			link.l1.go = "exit";
 			AddMoneyToCharacter(Pchar, -sti(pchar.BribePrice));
@@ -489,7 +489,7 @@ void ProcessDialogEvent()
 		break;
 		case "PortRoyal_Gans":
 			dialog.text = LinkRandPhrase("Не нужно ходить возле орудий - это военный объект!", "Доступ к орудиям посторонних лиц категорически запрещён!", "Если я замечу, что ты ошиваешься возле орудий - тебе конец!");
-			link.l1 = RandPhraseSimple("Я понял" + GetSexPhrase("","а") + "тебя.", "Хорошо, я всё понял" + GetSexPhrase("","а") + ".");
+			link.l1 = RandPhraseSimple("Я понял"+ GetSexPhrase("","а") +" тебя.", "Хорошо, я всё понял"+ GetSexPhrase("","а") +".");
 			link.l1.go = "exit";
 			NextDiag.TempNode = "PortRoyal_Gans";
 		break;

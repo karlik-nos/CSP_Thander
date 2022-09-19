@@ -254,7 +254,7 @@ void CalculateSkillsForRank (ref npchar, int rank)
 		TempStr = GetSkillNameByIdx(i);
 		TempF = MOD_EXP_RATE / GetCharacterExpRate(npchar,TempStr);
 		Log_TestInfo(TempStr + ":" + FloatToString(TempF,1));
-		npchar.skill.(TempStr) = makeint(sti(TempF + 0.5) +  CorrectionCoeff * TempF / 10 * (rank - 1) * GetCharacterRankRate(npchar) / 14); 
+		npchar.skill.(TempStr) = makeint(sti(TempF) +  CorrectionCoeff * TempF / 10 * (rank - 1) * GetCharacterRankRate(npchar) / 14); 
 	}
 	Log_TestInfo("Total amount of skills on 1 rank:" + Correction);
 	CorrectSkillParam(npchar);
@@ -853,8 +853,6 @@ float Sea_TurnRateMagicNumber();
 {
     return 244.444; //162.962; //244.444; *2/3
 }
-
-//#define WIND_NORMAL_POWER		18.0 // делитель для силы ветра на циферблате - влияет на мах скорость
 
 float Sea_ApplyMaxSpeedZ(aref arCharShip, float fWindDotShip) //float fTRFromSailDamage
 // arCharShip - корабль на НПС,  fTRFromSailDamage - паруса 0..1, fWindDotShip - направление ветра -1..1

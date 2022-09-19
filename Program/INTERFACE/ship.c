@@ -1123,7 +1123,6 @@ void DropGoodsToSeaFromInterface(int iGoodIndex, int iQuantity)
 			}
 
 			RecalculateCargoLoad(xi_refCharacter);
-	        xi_refCharacter.Tmp.SpeedRecall = 0; // чтоб пересчитались скорость и маневр
 
 			if (CheckAttribute(&Goods[iGoodIndex], "Swim"))
 			{
