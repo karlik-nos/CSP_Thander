@@ -726,13 +726,13 @@ bool XI_FindFoldersWithoutNetsave(string sFindTemplate,aref arFoldersList)
 // boal -->
 void ReadSavedOptionsEx(ref gopt)
 {
-	string sFileName = "options";
+	string sFileName = "options_start";
 	SendMessage(&GameInterface, "lsa", MSG_INTERFACE_LOADOPTIONS, sFileName, gopt);
 }
 
 void SaveSavedOptionsEx(ref gopt)
 {
-	string sFileName = "options";
+	string sFileName = "options_start";
 	SendMessage(&GameInterface, "lsa", MSG_INTERFACE_SAVEOPTIONS, sFileName, gopt);
 }
 
