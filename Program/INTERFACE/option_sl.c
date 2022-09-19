@@ -207,6 +207,18 @@ void GetRealOptions(ref optref)
 	} else {
 		optref.cameramode.AltIntIcons = true;
 	}
+	
+	if( CheckAttribute(&InterfaceStates,"ShowBoardMode") ) {
+		optref.cameramode.ShowBoardMode = sti(InterfaceStates.ShowBoardMode);
+	} else {
+		optref.cameramode.ShowBoardMode = true;
+	}
+	
+	if( CheckAttribute(&InterfaceStates,"CharVoice") ) {
+		optref.cameramode.CharVoice = sti(InterfaceStates.CharVoice);
+	} else {
+		optref.cameramode.CharVoice = true;
+	}
 
 	GetControlsOptions(optref);
 
@@ -385,6 +397,18 @@ void SetCurentOptions(ref optref)
 	} else {
 		InterfaceStates.AltIntIcons = false;
 	}
+	
+	if( CheckAttribute(optref,"cameramode.ShowBoardMode") ) {
+		InterfaceStates.ShowBoardMode = optref.cameramode.ShowBoardMode;
+	} else {
+		InterfaceStates.ShowBoardMode = false;
+	}
+	
+	if( CheckAttribute(optref,"cameramode.CharVoice") ) {
+		InterfaceStates.CharVoice = optref.cameramode.CharVoice;
+	} else {
+		InterfaceStates.CharVoice = false;
+	}
 
 
 	// mouse
@@ -458,18 +482,18 @@ void SetCurentOptions(ref optref)
 void ReadSavedOptions(ref gopt)
 {
 	string sFileName = "options";
-	if( CheckAttribute(&PlayerProfile,"name") && PlayerProfile.name!="" ) {
+	/*if( CheckAttribute(&PlayerProfile,"name") && PlayerProfile.name!="" ) {
 		sFileName = "SAVE\" + PlayerProfile.name+"\options\options";
-	}
+	}*/
 	SendMessage(&GameInterface, "lsa", MSG_INTERFACE_LOADOPTIONS, sFileName, gopt);
 }
 
 void SaveSavedOptions(ref gopt)
 {
 	string sFileName = "options";
-	if( CheckAttribute(&PlayerProfile,"name") && PlayerProfile.name!="" ) {
+	/* if( CheckAttribute(&PlayerProfile,"name") && PlayerProfile.name!="" ) {
 		sFileName = "SAVE\" + PlayerProfile.name+"\options\options";
-	}
+	} */
 	SendMessage(&GameInterface, "lsa", MSG_INTERFACE_SAVEOPTIONS, sFileName, gopt);
 }
 
