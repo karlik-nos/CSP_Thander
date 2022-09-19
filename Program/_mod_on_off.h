@@ -92,7 +92,7 @@ bool 	bHalfImmortalPGG 			= false;
 // Сбор денег за швартовку
 bool 	bPortPermission 			= false;
 //Абордаж стенка на стенку
-bool   bBoardMode                   = false;
+//bool   bBoardMode                   = false;
 //Срез скиллов от офицеров
 bool   bNoBonusSkillOff             = false;
 //Взятки стражникам
@@ -107,7 +107,7 @@ bool 	bAltBalanceTimeSlow         = false;
 bool 	bAltBalanceOffTopPerk       = false;
 bool 	bAltBalanceProHits          = false;
 //Разговор местных жителей
-bool 	bCharVoice                 = false;
+//bool 	bCharVoice                 = false;
 
 // платный сайв-лоад
 //bool    bPayForSaveLoad           = true;
