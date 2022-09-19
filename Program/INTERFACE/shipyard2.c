@@ -42,7 +42,7 @@ void InitInterface_R(string iniName, ref _shipyarder)
 //TODO - надо ли брать нацию локации на случай захвата города(с одной стороны - чужие корабли будут делать, с другой - если вся карта захвачена - то везде одни и те же корабли)
 //TODO - можно снимать ограничение нации квестом каким-нибудь - украсть чертежи кораблей других наций...
 
-	if (refNPCShipyard.id != "Pirates_shipyarder") {iYarderSkill = (sti(refNPCShipyard.reputation) + 11)/2+50; iTunPoints = (iYarderSkill-8)/22;}
+	if (refNPCShipyard.id != "Pirates_shipyarder") {iYarderSkill = sti(refNPCShipyard.reputation)/2+50; iTunPoints = (iYarderSkill-41)/18;}
 	//берём за навык кораблестроения репутацию верфиста и приводим к отрезку (56:100)
 
 	iShipPoints = 999;//целые переменные делятся с округлением вниз
