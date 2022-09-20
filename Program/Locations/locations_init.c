@@ -36,7 +36,7 @@
 #include "locations\init\KhaelRoa.c"
 #include "locations\init\OldWorld.c"
 #include "locations\init\ReefsSkeleton.c"
-#include "locations\init\StLucia.c"
+//#include "locations\init\StLucia.c"
 #include "locations\init\Bahames.c"
 
 void InitLocations()
@@ -317,10 +317,10 @@ void InitLocations()
 	Locations[0].IslandsList.KhaelRoa.end = n;
 	Trace("KhaelRoa locations " + n);
 	
-	Locations[0].IslandsList.StLucia.begin = n;
+	/*Locations[0].IslandsList.StLucia.begin = n;
 	n = LocationInitStLucia(n);
 	Locations[0].IslandsList.StLucia.end = n;
-	Trace("StLucia locations " + n);
+	Trace("StLucia locations " + n);*/
 	
 	Locations[0].IslandsList.Bahames.begin = n;
 	n = LocationInitBahames(n);
