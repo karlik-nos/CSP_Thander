@@ -304,7 +304,6 @@ void ProcessDialogEvent()
 
 		case "AskQuest":
 				//--->> квест украсть чертёж на верфи
-				//дача квеста
 				if (rand(1) && pchar.questTemp.different == "free" && GetNpcQuestPastDayWOInit(npchar, "questShipyardsMap") > 7 && !CheckAttribute(pchar, "questTemp.different.ShipyardsMap") && GetSummonSkillFromName(pchar, SKILL_SNEAK) > 25)
 				{
 					dialog.text = "Послушайте, у меня есть к вам одно важное дело. Надеюсь, сумеете мне помочь...";
@@ -313,9 +312,8 @@ void ProcessDialogEvent()
 					SaveCurrentNpcQuestDateParam(npchar, "questShipyardsMap");
 					break;
 				}
-				//<<--- квест украсть чертёж на верфи
+
 				/* автор - Jason (BlackMark Studio); перенос в CSP - Nathaniel ---------- */
-				/* 12.03.21 ------------------------------------------------------------- */
 				if (drand(4) == 2 && !CheckAttribute(pchar, "GenQuest.Findship.Shipyarder"))
 				{
 					if (!CheckAttribute(npchar, "Findship") || GetNpcQuestPastDayParam(npchar, "Findship") >= 20)
@@ -324,10 +322,10 @@ void ProcessDialogEvent()
 						pchar.GenQuest.Findship.Shipyarder.ShipBaseName = GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.Findship.Shipyarder.ShipType), "Name") + ""));
 						pchar.GenQuest.Findship.Shipyarder.City = npchar.city; //город квестодателя
 						dialog.text = "Да, у меня есть проблема, требующая решения. Мне поступил заказ. Моему клиенту как можно скорее требуется " + pchar.GenQuest.Findship.Shipyarder.ShipBaseName + ". Однако у меня на верфи сейчас такого корабля нет, сделать его за два месяца у меня тоже нет возможности\nЕсли вы сможете доставить мне такой корабль, я буду весьма вам благодарен и заплачу сумму, в полтора раза превышающую его продажную стоимость.";
-						link.l1 = "Мне это не интересно.";
-						link.l1.go = "Findship_exit";
-						link.l2 = "Интересное предложение!";
-						link.l2.go = "Findship";
+						link.l1 = "Интересное предложение!";
+						link.l1.go = "Findship";
+						link.l2 = "Мне это не интересно.";
+						link.l2.go = "Findship_exit";
 						SaveCurrentNpcQuestDateParam(npchar, "Findship");
 						break;
 					}
