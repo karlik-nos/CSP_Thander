@@ -2,6 +2,7 @@
 // метод для совместимости с .ИНИ файлом (секция SKILLCHANGER)
 #include "scripts\Pusher.c"
 #include "scripts\Utils2.c"
+string checkskillfortrauma = "LeadershipFencingLightFencingHeavyPistolFortuneSneak"
 
 // порог ранга
 int GetCharacterRankRate(ref _refCharacter)
@@ -375,8 +376,8 @@ int ApplayNavyPenaltyToSkill(ref _refCharacter, string skillName, int sumSkill)
 			sumSkill = sumSkill - sailSkill;
 	        if (sumSkill < 1) sumSkill = 1;
         }
-		if (CheckAttribute(_refCharacter,"chr_ai.Trauma")) sumSkill = sumSkill - 20; //штраф от травмы - Gregg
-		if (CheckAttribute(_refCharacter,"chr_ai.HeavyTrauma")) sumSkill = sumSkill - 30; //штраф от тяжелой травмы - Gregg
+		if (CheckAttribute(_refCharacter,"chr_ai.Trauma") && HasSubStr(checkskillfortrauma,skillname)) sumSkill = sumSkill - 20; //штраф от травмы - Gregg
+		if (CheckAttribute(_refCharacter,"chr_ai.HeavyTrauma") && HasSubStr(checkskillfortrauma,skillname)) sumSkill = sumSkill - 30; //штраф от тяжелой травмы - Gregg
     }
 	else
 	{
