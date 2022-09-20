@@ -141,6 +141,7 @@ void InitInterface(string iniName)
 		if(sColony == "SantaQuiteria") continue;
 		if(sColony == "IslaDeVieques") continue;
 		if(sColony == "SanAndres") continue;
+		if(sColony == "Nassau") continue;
 		if(sColony == "Is") continue;
 		if(sColony == "IslaMona" && !CheckAttribute(CharacterFromID("Islamona_carpenter"), "Storage.Activate")) continue;
 
@@ -1102,6 +1103,8 @@ int GetMaxFortCannons(string _FortCommander)
 		case "Tortuga Fort Commander": _iCannons = 28; break;
 
 		case "Havana Fort Commander": _iCannons = 80; break;
+		
+		case "Nassau Fort Commander": _iCannons = 80; break;
 	}
 
 	return _iCannons;
