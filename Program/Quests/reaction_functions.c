@@ -11078,6 +11078,7 @@ void UnexpectedInheritanceTerks(string part)
 			sld.HeroModel = "BSUnd5,BSUnd5_1,BSUnd5_2,BSUnd5_3,BSUnd5_4,BSUnd5_5";
 			ChangeCharacterAddressGroup(sld, "Terks_Grot", "monsters", "monster3");
 			sld.SaveItemsForDead = true;
+			sld.DontChangeGun = true;
 			pchar.quest.UnexpectedInheritanceEnd.win_condition.l1 = "NPC_Death";
 			pchar.quest.UnexpectedInheritanceEnd.win_condition.l1.character ="UI_skel1";
 			PChar.quest.UnexpectedInheritanceEnd.function = "UnexpectedInheritanceEnd";
