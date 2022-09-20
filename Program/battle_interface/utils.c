@@ -43,7 +43,8 @@ void procActionRepair()
 	if(chrIdx<0) return;
 	if(!bSeaActive)	return;
 	ref chref = GetCharacter(chrIdx);
-	ref rBaseShip = &ShipsTypes[sti(chref.Ship.Type)];
+	ref rBaseShip = &ShipsTypes[sti(RealShips[sti(chref.Ship.Type)])];
+	
 	// boal 29.02.2004 -->
 	if (!IsCompanion(chref)) return;
 	// boal 29.02.2004 <--
