@@ -212,6 +212,7 @@ void FillShipParam()
 		ref rRealShip = &RealShips[iShip];
 		ref rBaseShip = GetShipByType(sti(rRealShip.BaseType));
 		DeleteAttribute(rRealShip, "Tuning");//просто затираем записи об апгрейдах
+		DeleteAttribute(rRealShip, "Untuned");
 
 		rRealShip.HP = stf(rBaseShip.HP) * (1 + Ship_Sheme[1]/10.0*SHIP_STAT_RANGE_REQUEST);
 		rRealShip.MastMultiplier = stf(rBaseShip.MastMultiplier) - (Ship_Sheme[3] * 0.03);

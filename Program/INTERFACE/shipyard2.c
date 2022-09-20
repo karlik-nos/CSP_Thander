@@ -2,7 +2,7 @@ ref refNPCShipyard;
 ref refStore;
 
 int z = 0;
-int iYarderSkill = 200;
+int iYarderSkill = 100;
 int iTunPoints = 8;
 int iTimeMake, iShipPoints, iQBorders, iPriceOrder;
 int iQMAX, iQMIN, iFreeSP, iFreeTP;
@@ -217,6 +217,7 @@ void FillShipParam()
 		ref rRealShip = &RealShips[iShip];
 		ref rBaseShip = GetShipByType(sti(rRealShip.BaseType));
 		DeleteAttribute(rRealShip, "Tuning");//просто затираем записи об апгрейдах
+		DeleteAttribute(rRealShip, "Untuned");
 
 		rRealShip.HP = stf(rBaseShip.HP) * (1 + Ship_Sheme[1]/10.0*SHIP_STAT_RANGE_DRAFT);
 		rRealShip.MastMultiplier = stf(rBaseShip.MastMultiplier) - (Ship_Sheme[3] * 0.03);
