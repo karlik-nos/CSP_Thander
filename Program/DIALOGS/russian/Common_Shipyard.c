@@ -181,36 +181,6 @@ void ProcessDialogEvent()
 			}
 			else
 			{
-				//--->> квест украсть чертёж на верфи
-				//дача квеста
-				if (rand(1) && pchar.questTemp.different == "free" && GetNpcQuestPastDayWOInit(npchar, "questShipyardsMap") > 7 && !CheckAttribute(pchar, "questTemp.different.ShipyardsMap") && GetSummonSkillFromName(pchar, SKILL_SNEAK) > 25)
-				{
-					dialog.text = "Послушайте, у меня есть к вам одно важное дело. Надеюсь, сумеете мне помочь...";
-					link.l1 = "Давайте послушаем, что за дело.";
-					link.l1.go = "ShipyardsMap_1";
-					SaveCurrentNpcQuestDateParam(npchar, "questShipyardsMap");
-					break;
-				}
-				//<<--- квест украсть чертёж на верфи
-				/* автор - Jason (BlackMark Studio); перенос в CSP - Nathaniel ---------- */
-				/* 12.03.21 ------------------------------------------------------------- */
-				if (drand(4) == 2 && !CheckAttribute(pchar, "GenQuest.Findship.Shipyarder"))
-				{
-					if (!CheckAttribute(npchar, "Findship") || GetNpcQuestPastDayParam(npchar, "Findship") >= 20)
-					{
-						SelectFindship_ShipType(); //выбор типа корабля
-						pchar.GenQuest.Findship.Shipyarder.ShipBaseName = GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.Findship.Shipyarder.ShipType), "Name") + ""));
-						pchar.GenQuest.Findship.Shipyarder.City = npchar.city; //город квестодателя
-						dialog.text = "Да, у меня есть проблема, требующая решения. Мне поступил заказ. Моему клиенту как можно скорее требуется " + pchar.GenQuest.Findship.Shipyarder.ShipBaseName + ". Однако у меня на верфи сейчас такого корабля нет, сделать его за два месяца у меня тоже нет возможности\nЕсли вы сможете доставить мне такой корабль, я буду весьма вам благодарен и заплачу сумму, в полтора раза превышающую его продажную стоимость.";
-						link.l1 = "Мне это не интересно.";
-						link.l1.go = "Findship_exit";
-						link.l2 = "Интересное предложение!";
-						link.l2.go = "Findship";
-						SaveCurrentNpcQuestDateParam(npchar, "Findship");
-						break;
-					}
-				}
-
 				dialog.Text = pcharrepphrase("А, это опять ты? Ну да ладно, деньги не пахнут.",
 										TimeGreeting() + ", чем я могу помочь вам, " + GetAddress_Form(NPChar) + "?");
 				Link.l1 = pcharrepphrase("Вот-вот, я плачу - ты делаешь.",
@@ -272,6 +242,10 @@ void ProcessDialogEvent()
 				}
 				Link.l2 = "Я только хочу поговорить.";
 				Link.l2.go = "quests"; //(перессылка в файл города)
+
+				link.l15 = "Я лишь хотел"+ GetSexPhrase("","а") +"узнать, нет ли у вас работы, подходящей для меня? ";
+				link.l15.go = "AskQuest";
+
 				// -->
 				if (CheckAttribute(pchar, "GenQuest.LoanChest.TakeChest") && sti(pchar.GenQuest.LoanChest.TargetIdx) == sti(NPChar.index))
 				{
@@ -328,6 +302,45 @@ void ProcessDialogEvent()
 			}
 		break;
 
+		case "AskQuest":
+				//--->> квест украсть чертёж на верфи
+				//дача квеста
+				if (rand(1) && pchar.questTemp.different == "free" && GetNpcQuestPastDayWOInit(npchar, "questShipyardsMap") > 7 && !CheckAttribute(pchar, "questTemp.different.ShipyardsMap") && GetSummonSkillFromName(pchar, SKILL_SNEAK) > 25)
+				{
+					dialog.text = "Послушайте, у меня есть к вам одно важное дело. Надеюсь, сумеете мне помочь...";
+					link.l1 = "Давайте послушаем, что за дело.";
+					link.l1.go = "ShipyardsMap_1";
+					SaveCurrentNpcQuestDateParam(npchar, "questShipyardsMap");
+					break;
+				}
+				//<<--- квест украсть чертёж на верфи
+				/* автор - Jason (BlackMark Studio); перенос в CSP - Nathaniel ---------- */
+				/* 12.03.21 ------------------------------------------------------------- */
+				if (drand(4) == 2 && !CheckAttribute(pchar, "GenQuest.Findship.Shipyarder"))
+				{
+					if (!CheckAttribute(npchar, "Findship") || GetNpcQuestPastDayParam(npchar, "Findship") >= 20)
+					{
+						SelectFindship_ShipType(); //выбор типа корабля
+						pchar.GenQuest.Findship.Shipyarder.ShipBaseName = GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.Findship.Shipyarder.ShipType), "Name") + ""));
+						pchar.GenQuest.Findship.Shipyarder.City = npchar.city; //город квестодателя
+						dialog.text = "Да, у меня есть проблема, требующая решения. Мне поступил заказ. Моему клиенту как можно скорее требуется " + pchar.GenQuest.Findship.Shipyarder.ShipBaseName + ". Однако у меня на верфи сейчас такого корабля нет, сделать его за два месяца у меня тоже нет возможности\nЕсли вы сможете доставить мне такой корабль, я буду весьма вам благодарен и заплачу сумму, в полтора раза превышающую его продажную стоимость.";
+						link.l1 = "Мне это не интересно.";
+						link.l1.go = "Findship_exit";
+						link.l2 = "Интересное предложение!";
+						link.l2.go = "Findship";
+						SaveCurrentNpcQuestDateParam(npchar, "Findship");
+						break;
+					}
+				}
+
+				dialog.Text = "Ну, удивили! Сюда же ко мне за помощью все приходят... Вы уверены, что вашему судну не нужен ремонт?";
+				link.l1 = pcharrepphrase("Это верно, я плачу - ты делаешь.",
+										"Мне и правда нужно воспользоваться услугами верфи.");
+				link.l1.go = "Shipyard";
+				link.l2	= "Не в этот раз, прощайте.";
+				link.l2.go = "exit";
+		break;
+
 		case "Meeting":
 				dialog.Text = "Хорошо, я рад встрече с новым клиентом. Моя верфь к вашим услугам.";
 				Link.l1 = "Великолепно, " + GetFullName(NPChar) + ". Давайте посмотрим то, что вы можете мне предложить.";
@@ -345,6 +358,9 @@ void ProcessDialogEvent()
 				link.l12.go = "SailsGerald";
 				Link.l2 = "Я только хочу поговорить.";
 				link.l2.go = "quests";
+
+				link.l15 = "Я лишь хотел"+ GetSexPhrase("","а") +"узнать, нет ли у вас работы, подходящей для меня? ";
+				link.l15.go = "AskQuest";
 				// -->
 				if (CheckAttribute(pchar, "GenQuest.LoanChest.TakeChest") && sti(pchar.GenQuest.LoanChest.TargetIdx) == sti(NPChar.index))
 				{
