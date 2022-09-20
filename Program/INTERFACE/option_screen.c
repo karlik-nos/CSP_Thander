@@ -298,6 +298,12 @@ void IReadVariableAfterInit()
 		nShowBoardMode = sti(InterfaceStates.ShowBoardMode);
 	}
 	SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"BOARD_MODE_CHECKBOX", 2, 1, nShowBoardMode );
+	
+	int nCharVoice = 0;
+	if( CheckAttribute(&InterfaceStates,"CharVoice") ) {
+		nCharVoice = sti(InterfaceStates.CharVoice);
+	}
+	SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"CHAR_VOICE_CHECKBOX", 2, 1, nCharVoice );
 
 	int nDeadBoxText = 0;
 	if( CheckAttribute(&InterfaceStates,"DeadBoxText") ) {
@@ -330,7 +336,7 @@ void IReadVariableAfterInit()
 	SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"ALT_INT_ICONS_CHECKBOX", 2, 1, nAltIntIcons );
 
 
-	if(bBoardMode)
+	/*if(bBoardMode)
 	{
 		CheckButton_SetState("BOARD_MODE_CHECKBOX", 1, true);
 	}
@@ -344,7 +350,7 @@ void IReadVariableAfterInit()
 	{
 		nCharVoice = bCharVoice;
 	}
-	SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"CHAR_VOICE_CHECKBOX", 2, 1, nCharVoice );
+	SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"CHAR_VOICE_CHECKBOX", 2, 1, nCharVoice );*/
 
 }
 
@@ -589,19 +595,26 @@ void procCheckBoxChange()
 		}
 	}
 
- 	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "BOARD_MODE_CHECKBOX", 3, 1))
+ 	/*if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "BOARD_MODE_CHECKBOX", 3, 1))
 	{
 		bBoardMode = true;
 	}
 	else
 	{
 		bBoardMode = false;
+	}*/
+	
+	if( sNodName == "BOARD_MODE_CHECKBOX")
+	{
+		{ // Show battle mode border
+			InterfaceStates.ShowBoardMode = bBtnState;
+		}
 	}
 
 	if( sNodName == "CHAR_VOICE_CHECKBOX")
 	{
 		{
-			bCharVoice = bBtnState;
+			InterfaceStates.CharVoice = bBtnState;
 		}
 	}
 

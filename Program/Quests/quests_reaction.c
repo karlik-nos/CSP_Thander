@@ -10389,7 +10389,9 @@ void QuestComplete(string sQuestName, string qname)
 			sld.name = "Антонио";
 			sld.lastname = "де Гальвес";
 			sld.greeting = "GR_Spainguard";
-			sld.equip.blade = "blade39";
+			Blade = GetGeneratedItem("blade39");
+			GiveItem2Character(sld, Blade);
+			EquipCharacterbyItem(sld, Blade);
 			ChangeCharacterAddressGroup(sld, "Shore37", "goto", "goto7");
 			LAi_SetActorType(sld);
 			LAi_ActorDialog(sld, pchar, "", -1, 0);
@@ -10483,95 +10485,90 @@ void QuestComplete(string sQuestName, string qname)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //========================  Квест "Спасение на рифах".  =======================
-		case "KSM_EndloosTraider":
+		case "KSM_Snr_EndloosTraider":
 			bDisableFastReload = true;
 			chrDisableReloadToLocation = true;
 			sld = CharacterFromID("KSM_Alloka")
 			AddPassenger(pchar, sld, false);
 			SetCharacterRemovable(sld, false);
 			LAi_SetActorType(sld);
-			LAi_ActorRunToLocation(sld, "reload", "reload1", "none", "", "", "KSM_EndloosTraider_2", 0.5);
+			LAi_ActorRunToLocation(sld, "reload", "reload1", "none", "", "", "KSM_Snr_EndloosTraider_2", 0.5);
 			
 			SetQuestHeader("KSM_Spasenie_na_rifah");
 			AddQuestRecord("KSM_Spasenie_na_rifah", "1");
 		break;
 		
-		case "KSM_EndloosTraider_2":
+		case "KSM_Snr_EndloosTraider_2":
 			bDisableFastReload = false;
 			chrDisableReloadToLocation = false;
 			
-			Pchar.quest.KSM_Nashli_Ship.win_condition.l1           = "location";
-        	Pchar.quest.KSM_Nashli_Ship.win_condition.l1.location  = "DeckWithReefs";
-			PChar.quest.KSM_Nashli_Ship.function = "KSM_Nashli_Ship";
+			Pchar.quest.KSM_Snr_Nashli_Ship.win_condition.l1           = "location";
+        	Pchar.quest.KSM_Snr_Nashli_Ship.win_condition.l1.location  = "WreckedShip";
+			PChar.quest.KSM_Snr_Nashli_Ship.function = "KSM_Snr_Nashli_Ship";
 		break;
 		
-		case "KSM_Lovushka":
-			LAi_SetActorType(pchar);
-			LAi_ActorGoToLocator(pchar, "goto", "goto9", "KSM_Lovushka_2", 4);
-		break;
-		
-		case "KSM_Lovushka_2":
-			LAi_ActorTurnToLocator(PChar, "rld", "loc2");
-			DoQuestFunctionDelay("KSM_V_trume_2", 0.5);
-		break;
-		
-		case "KSM_EndloosTraiderKill":
-			LAi_LocationFightDisable(loadedLocation, false); //Разрешаем оружие
+		case "KSM_Snr_EndloosTraiderKill":
 			LAi_SetPlayerType(pchar);
 			LAi_SetFightMode(pchar, true);
 			sld = CharacterFromID("KSM_Alloka")
 			LAi_SetWarriorType(sld);
 			LAi_SetImmortal(sld, false);
 			LAi_group_MoveCharacter(sld, "EnemyFight");
+			//Враги
+			for (i=1; i<=6; i++)
+			{
+				sTemp = "pirate_"+(rand(24)+1);
+				sld = GetCharacter(NPC_GenerateCharacter("CSM_Snr_Bandity_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+				ChangeCharacterAddressGroup(sld, pchar.location, "randitem",  "randitem1");
+			}
+			for (i=7; i<=11; i++)
+			{
+				sTemp = "pirate_"+(rand(24)+1);
+				sld = GetCharacter(NPC_GenerateCharacter("CSM_Snr_Bandity_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+				ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto7");
+			}
+			for (i=12; i<=15; i++)
+			{
+				sTemp = "pirate_"+(rand(24)+1);
+				sld = GetCharacter(NPC_GenerateCharacter("CSM_Snr_Bandity_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+				ChangeCharacterAddressGroup(sld, pchar.location, "rld",  "aloc15");
+			}
+			//Наши
+			for (i=4; i<=14; i++)
+			{
+				sTemp = "shipowner_"+(rand(24)+1);
+				sld = GetCharacter(NPC_GenerateCharacter("KSM_Snr_Matrosiki_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
+				ChangeCharacterAddressGroup(sld, pchar.location, "rld",  "loc0");
+			}
 			for (i=1; i<=3; i++)
 			{
-				sTemp = "pirate_"+(rand(24)+1);
-				sld = GetCharacter(NPC_GenerateCharacter("CSM_Snr_Bandity_"+i, sTemp, "man", "man", 4, PIRATE, -1, true));
+				sld = CharacterFromID("KSM_Snr_Matrosiki_"+i)
 				LAi_SetWarriorType(sld);
-				LAi_group_MoveCharacter(sld, "EnemyFight");
-				ChangeCharacterAddressGroup(sld, pchar.location, "rld",  "aloc1");
-			}
-			for (i=4; i<=5; i++)
-			{
-				sTemp = "pirate_"+(rand(24)+1);
-				sld = GetCharacter(NPC_GenerateCharacter("CSM_Snr_Bandity_"+i, sTemp, "man", "man", 4, PIRATE, -1, true));
-				LAi_SetWarriorType(sld);
-				LAi_group_MoveCharacter(sld, "EnemyFight");
-				ChangeCharacterAddressGroup(sld, pchar.location, "reload",  "reload2");
+				LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
 			}
 			LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);		//стравливаем
 			LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);
 			LAi_group_SetCheck("EnemyFight", "KSM_Snr_Pobeda");
 			LAi_SetFightMode(pchar, true);
+			EndQuestMovie();
+			ChangeShowIntarface();
 			DialogExit();
 		break;
 		
 		case "KSM_Snr_Pobeda":
-			//chrDisableReloadToLocation = false;
-			//bDisableFastReload = false;
-			LAi_LocationFightDisable(loadedLocation, true);
-			
-			AddQuestRecord("KSM_Spasenie_na_rifah", "2");
-			CloseQuestHeader("KSM_Spasenie_na_rifah");
-			
-			PChar.quest.CSM_Snr_NaSvobodu.win_condition.l1 = "locator";
-			PChar.quest.CSM_Snr_NaSvobodu.win_condition.l1.location = "My_Deck";
-			PChar.quest.CSM_Snr_NaSvobodu.win_condition.l1.locator_group = "reload";
-			PChar.quest.CSM_Snr_NaSvobodu.win_condition.l1.locator = "reload1";
-			PChar.quest.CSM_Snr_NaSvobodu.win_condition = "CSM_Snr_NaSvobodu";
-		break;
-		
-		case "CSM_Snr_NaSvobodu":
-			DoQuestReloadToLocation("DeckWithReefs", "reload", "reload1", "CSM_Snr_NaSvobodu_2");
-		break;
-		
-		case "CSM_Snr_NaSvobodu_2":
 			chrDisableReloadToLocation = false;
 			bDisableFastReload = false;
 			
-			locations[FindLocation("DeckWithReefs")].alwaysStorm = true;
-			locations[FindLocation("DeckWithReefs")].storm = true;
-			locations[FindLocation("DeckWithReefs")].tornado = true;
+			AddQuestRecord("KSM_Spasenie_na_rifah", "2");
+			CloseQuestHeader("KSM_Spasenie_na_rifah");
 		break;
 		
 //========================  Sinistra Пролог "Анжелика Тич"  =======================			
@@ -11203,30 +11200,7 @@ void QuestComplete(string sQuestName, string qname)
 			LAi_ActorRunToLocation(sld, "reload", "reload1", "", "", "", "OpenTheDoors", -1);
 			sld.LifeDay = 0;
 		break;
-		case "CleanUpGrandma":
-			sld = GetCharacter(NPC_GenerateCharacter("CleanUpGrandmatha", "BaynesWife", "woman", "towngirl", 1, PIRATE, 1, false));
-			ChangeCharacterAddressGroup(sld, "Temple_h", "goto", "goto19");
-			LAi_SetActorType(sld);
-			sld.name = "техничка";
-			sld.lastname = "Глаша";
-			sld.dialog.filename = "Janitor.c";
-			sld.dialog.currentnode = "First";
-			DoQuestFunctionDelay("CleanUpGrandma2", 10.0);
-		break;
-		case "CleanUpGrandmaClean":
-			sld = CharacterFromID("CleanUpGrandmatha");
-			LAi_ActorAnimation(sld,"taverngirl","",1.0);
-			LAi_Actor2WaitDialog(sld,pchar);
-			sld.dialog.currentnode = "First";
-		break;
-		case "CleanGrandma":
-			sld = CharacterFromID("CleanUpGrandmatha");
-			ChangeCharacterAddressGroup(sld, "none", "", "");
-			sld.lifeDay = 0;
-			pchar.Grandma = true;
-			pchar.quest.CleanUpGrandma.over = "yes";
-			pchar.quest.CleanUpGrandmaClean.over = "yes";
-		break;
+		
 		case "SpawnSalasarSupports":
 			for(i = 0; i < 10; i++)
 			{
@@ -11346,22 +11320,6 @@ void QuestComplete(string sQuestName, string qname)
 			LAi_ActorDialog(sld, pchar, "", 1.0, 0);
 		break;
 	}
-}
-
-void CleanUpGrandma1()
-{
-	if (CheckAttribute(pchar,"Grandma")) return;
-	ref sld = CharacterFromID("CleanUpGrandmatha");
-	LAi_ActorRunToLocator(sld, "goto", "goto19", "CleanUpGrandmaClean", 0.0);
-	DoQuestFunctionDelay("CleanUpGrandma2", 11.0);
-}
-
-void CleanUpGrandma2()
-{
-	if (CheckAttribute(pchar,"Grandma")) return;
-	ref sld = CharacterFromID("CleanUpGrandmatha");
-	LAi_ActorRunToLocator(sld, "goto", "goto20", "CleanUpGrandmaClean", 0.0);
-	DoQuestFunctionDelay("CleanUpGrandma1", 11.0);
 }
 
 //Lipsar подпилил Хемфри для красоты --->

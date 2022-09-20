@@ -393,7 +393,7 @@ void FillAboardCabinBox(ref _location, ref _npchar)
 			if(rand(1) == 0) { _location.box1.items.mineral4 = rand(118) + 85; }
 			_location.box1.items.mineral5 = rand(78) + 115;
 			if(rand(1) == 0) { _location.box1.items.mineral8 = rand(86) + 44; }
-			_location.box1.items.mineral11 = rand(146) + 131;
+			_location.box1.items.indian2 = rand(146) + 131;
 		}
 		_location.box1.money = 12560 + rand(1000);
 		ok = false;
@@ -2665,6 +2665,16 @@ void VSEnpcInit()
 	LAi_SetImmortal(sld, true);
 	LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
 	ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","goto","goto2");
+	//Глаша уборщица в резиденции Мариго
+	sld = GetCharacter(NPC_GenerateCharacter("CleanUpGrandmatha", "BaynesWife", "woman", "towngirl", 1, Holland, 1, false));
+	ChangeCharacterAddressGroup(sld, "Marigo_hall", "goto", "goto11");
+	LAi_SetCitizenType(sld);
+	sld.name = "уборщица Глаша";
+	sld.lastname = "";
+	LAi_SetLoginTime(sld, 11.0, 16.99);
+	LAi_group_MoveCharacter(sld, "HOLLAND_CITIZENS");
+	sld.dialog.filename = "Janitor.c";
+	sld.dialog.currentnode = "First";
 }
 void OfficerGirlInit()
 {

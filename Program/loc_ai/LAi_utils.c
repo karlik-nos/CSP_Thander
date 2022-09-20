@@ -1548,6 +1548,7 @@ void MakeSwiftAttack(aref enemy, aref attacked, float coeff) // Резкий у�
 void MushketStun(aref enemy) // Мушкетный стан - Gregg
 {
 	LAi_LockFightMode(enemy, true);
+	enemy.chr_ai.backuptype = enemy.chr_ai.type;
 	LAi_SetActorTypeNoGroup(enemy);
 	float understun = 0.0;
 	if(CheckAttribute(enemy, "chr_ai.understun"))

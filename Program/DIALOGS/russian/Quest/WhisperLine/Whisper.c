@@ -1339,7 +1339,7 @@ void ProcessDialogEvent()
 				}
 				if(sti(PChar.OrderHunter) > 3)
 				{
-					Link.l2 = "Никак вы, б***ь не научитесь! Опять кому-то умереть захотелось?";
+					Link.l2 = "Эх, совсем ничему не учитесь... Опять кому-то умереть захотелось?";
 					Link.l2.go = "OrderHunterCheck";
 				}
 			}

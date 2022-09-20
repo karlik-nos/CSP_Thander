@@ -2,7 +2,7 @@ int FindFoodFromChr(ref chref, ref arFind, int startIdx)
 {
 	int i;
 	aref arItm;
-	for(i=startIdx; i<ITEMS_QUANTITY; i++)
+	for(i=startIdx; i<10; i++)
 	{
 		if (i!= -1)
 		{
@@ -12,6 +12,22 @@ int FindFoodFromChr(ref chref, ref arFind, int startIdx)
 				arFind = arItm;
 				return i;
 			}
+		}
+	}
+	return -1;
+}
+
+int FindBetterFoodFromChr(ref chref, ref arFind)
+{
+	int i;
+	aref arItm;
+	for(i=10; i>-1; i--)
+	{
+		makearef(arItm,Items[i]);
+		if( CheckAttribute(arItm,"Food") && GetCharacterItem(chref,Items[i].id)>0 )
+		{
+			arFind = arItm;
+			return i;
 		}
 	}
 	return -1;

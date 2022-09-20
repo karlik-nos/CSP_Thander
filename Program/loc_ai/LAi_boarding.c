@@ -882,7 +882,7 @@ void LAi_EnableReload()
 						boarding_player_crew = boarding_player_crew + 1;
 						//LAi_tmpl_stay_InitTemplate(chr);  // 05.02.08 требует локаторов ГОТО, что б не ходили за ГГ матросы толпой - нихрена это не работает, всё равно ходят !
 						//LAi_SetStayType(chr); // а вот так не ходят !!  <-- ugeen
-						if (!IsOfficer(chr)) LAi_SetHuberStayType(chr); //нефиг им стоять, все-равно мешаются ! пущай расходятся по палубе
+						if (!IsOfficer(chr)) LAi_SetHuberStayTypeNoGroup(chr); //нефиг им стоять, все-равно мешаются ! пущай расходятся по палубе
 					}
 				}
 				/*
