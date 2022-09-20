@@ -2643,6 +2643,9 @@ void CalculateInfoDataF55()
 {
 	totalInfo = descF55;
 
+	TakeNItems(PChar, "jewelry11", 50);
+	TakeNItems(PChar, "chest", 12);
+
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 
 	SetFormatedText("INFO_TEXT", totalInfo);
