@@ -4793,7 +4793,7 @@ void Convict_LocExit(string qName)
 		if(pchar.GenQuest.Convict == "FightInShore")
 		{
 			AddQuestRecord("Convict", "6");
-			AddQuestUserData("Convict", "sSex", GetSexPhrase("слово джентльмена","'держать свое слово'"));
+			AddQuestUserData("Convict", "sSex", GetSexPhrase("слово джентльмена","'держать своё слово'"));
 			AddQuestUserData("Convict", "sSex1", GetSexPhrase("","а"));
 			AddQuestUserData("Convict", "sShoreName", XI_ConvertString("Shore" + pchar.GenQuest.Convict.ShoreLocation + "Acc"));
 		}
@@ -4805,7 +4805,7 @@ void Convict_LocExit(string qName)
 		if(pchar.GenQuest.Convict == "MayakFight")
 		{
 			AddQuestRecord("Convict", "13");
-			AddQuestUserData("Convict", "sSex", GetSexPhrase("слово джентльмена","'держать свое слово'"));
+			AddQuestUserData("Convict", "sSex", GetSexPhrase("слово джентльмена","'держать своё слово'"));
 			AddQuestUserData("Convict", "sSex1", GetSexPhrase("","а"));
 			AddQuestUserData("Convict", "sMayak", XI_ConvertString(pchar.GenQuest.Convict.Mayak + "Abl"));
 		}

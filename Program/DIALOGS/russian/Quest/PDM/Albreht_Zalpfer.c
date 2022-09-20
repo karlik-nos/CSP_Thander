@@ -25,6 +25,7 @@ void ProcessDialogEvent()
 			link.l2.go = "Next_1";
 			LAi_CharacterPlaySound(NPChar, "GR_Kakovi_Merzavczi");
 			DeleteAttribute(npchar, "talker");
+			UnmarkCharacter(npchar);
 		break;
 
 		case "Next_1":

@@ -40,6 +40,7 @@ void ProcessDialogEvent()
 			link.l2 = "Нет, капитан, у меня полно своих дел. Выпутывайтесь без меня.";
 			link.l2.go = "2.5";
 			DeleteAttribute(npchar, "talker");
+			UnmarkCharacter(npchar);
 		break;
 		
 		case "2.5":
