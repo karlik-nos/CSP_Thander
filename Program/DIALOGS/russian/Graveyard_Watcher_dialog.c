@@ -76,10 +76,10 @@ void ProcessDialogEvent()
 				Link.l1.go = "Meeting";
 				if (pchar.sex == "Skeleton")	//Проверка на скелета
 				{
-					if	(GetCharacterEquipSuitID(pchar)== "suit_1")
+					if	(GetCharacterEquipSuitID(pchar) == "suit_1")
 					{
 						dialog.text = "Хоть ты и приоделся в эти лохмотья, но мои старые глаза не обманешь...";
-						link.l1 = "Не уже ли так плоха моя маскировка?",
+						link.l1 = "Неужели так плоха моя маскировка?",
 						link.l1.go = "UndeadObuchenie_2";
 					}
 					else

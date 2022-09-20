@@ -1073,15 +1073,6 @@ void Undead_Start_Graveyard_1(string qName)
 	sld = CharacterFromID("James_Callow")
 	LAi_KillCharacter(sld);
 }
-/*
-void Undead_Start_Graveyard_2(string qName)
-{
-	PChar.quest.Undead_Start_Graveyard_3.win_condition.l1 = "locator";
-	PChar.quest.Undead_Start_Graveyard_3.win_condition.l1.location = pchar.location;
-	PChar.quest.Undead_Start_Graveyard_3.win_condition.l1.locator_group = "box";
-	PChar.quest.Undead_Start_Graveyard_3.win_condition.l1.locator = "box1";
-	PChar.quest.Undead_Start_Graveyard_3.function = "Undead_Start_Graveyard_3";
-}*/
 void Undead_Start_Graveyard_3(string qName)
 {
 	//TakeNItems(pchar, "suit_1", 1);
@@ -1119,11 +1110,6 @@ void Undead_Start_Graveyard_4(string qName)
 		setWDMPointXZ("Villemstad_town");  // коорд на карте
 	}
 	DoReloadCharacterToLocation(startCrypt+"cryptbig1", "reload", "reload2");
-}
-void UP_KrovPismo(string qName)
-{
-	Log_info("Привет Вейлане!");
-	AddMoneyToCharacter(pchar, 88000000);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////   -- Нежить --     конец
