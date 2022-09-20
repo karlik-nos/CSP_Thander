@@ -2638,12 +2638,21 @@ void CalculateInfoDataF54()
 	Statistic_AddValue(PChar, "Cheats.F54", 1);
 }
 
-string descF55 = "Нет назначений";
+string descF55 = "Получить все карты";
 void CalculateInfoDataF55()
 {
 	totalInfo = descF55;
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
+	
+	for (int z = 0; z < ITEMS_QUANTITY;z++)
+	{
+		if (CheckAttribute(Items[z],"id") && HasSubStr(Items[z].id,"map_"))
+		{
+			GiveItem2Character(pchar,Items[z].id);
+		}
+	}
+	RefreshEquippedMaps(GetMainCharacter());
 
 	SetFormatedText("INFO_TEXT", totalInfo);
 
