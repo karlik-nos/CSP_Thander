@@ -10917,7 +10917,7 @@ void UnexpectedInheritanceGetPartTwo(string qName)
 	Log_Info("Вы нашли пергамент с текстом на латыни");
 	PlaySound("interface\important_item.wav");
 	AddQuestRecord("UnexpectedInheritance", "3");
-	AddQuestUserData("UnexpectedInheritance", "sSex", GetSexPhrase("ый","ая"));
+	AddQuestUserData("UnexpectedInheritance", "sSex", GetSexPhrase("ёл","ла"));
 	ref locLoad = &locations[reload_location_index];
 	locLoad.box1.items.indian22 = 1;
 
@@ -11032,7 +11032,7 @@ void UnexpectedInheritanceGrottoPirates(string qName)
 	Group_FindOrCreateGroup("UIPirates");
 	for (int i = 1; i <= MOD_SKILL_ENEMY_RATE; i++)
 	{
-		sld = GetCharacter(NPC_GenerateCharacter("UI_pirate"+i, "pirate_"+(rand(20)+1), "man", "man", 55, PIRATE, -1, true));
+		sld = GetCharacter(NPC_GenerateCharacter("UI_pirate"+i, "pirate_"+(rand(20)+1), "man", "man", 10, PIRATE, -1, true));
 		if (i == 1)
 		{
 			sld.model = "officer_25";
@@ -11041,7 +11041,8 @@ void UnexpectedInheritanceGrottoPirates(string qName)
 			sld.Dialog.Filename = "Quest\UnexpectedInheritance.c";
 			sld.dialog.currentnode = "GrottoPirate";
 			ChangeCharacterAddressGroup(sld, "Dominica_Grot", "goto", "goto1");
-			TakeNItems(sld, "chest", 5);
+			DeleteAttribute(sld, "items");
+			TakeNItems(sld, "chest", 2);
 			sld.SaveItemsForDead = true;
 			pchar.quest.UnexpectedInheritanceGetPartFour.win_condition.l1 = "NPC_Death";
 			pchar.quest.UnexpectedInheritanceGetPartFour.win_condition.l1.character ="UI_pirate1";
@@ -11061,22 +11062,21 @@ void UnexpectedInheritanceTerks(string part)
 	Group_FindOrCreateGroup("UISkeletons");
 	for (int i = 1; i <= MOD_SKILL_ENEMY_RATE; i++)
 	{
-		sld = GetCharacter(NPC_GenerateCharacter("UI_skel"+i, "Skel"+(rand(3)+1), "skeleton", "skeleton", 50, PIRATE, -1, true));
+		sld = GetCharacter(NPC_GenerateCharacter("UI_skel"+i, "Skel"+(rand(3)+1), "skeleton", "skeleton", 12, PIRATE, -1, true));
 		if (i == 1)
 		{
 			LAi_SetImmortal(sld, true);
 			sld.model = "BSUnd5";
-			FantomMakeCoolFighter(sld, 50, 100, 100, LinkRandPhrase(RandPhraseSimple("blade23","blade25"), RandPhraseSimple("blade30","blade26"), RandPhraseSimple("blade24","blade13")), "pistol8", MOD_SKILL_ENEMY_RATE*4);
-			LAi_SetHP(sld, 500*MOD_SKILL_ENEMY_RATE, 500*MOD_SKILL_ENEMY_RATE);
+			FantomMakeCoolFighter(sld, 15, 60, 60, LinkRandPhrase(RandPhraseSimple("blade23","blade25"), RandPhraseSimple("blade30","blade26"), RandPhraseSimple("blade24","blade13")), "pistol8", MOD_SKILL_ENEMY_RATE*4);
+			LAi_SetHP(sld, 400, 400);
 			sld.SaveItemsForDead = true;
-			sld.cirassId = Items_FindItemIdx("cirass5");  // предмета нет, но влияение есть
+			sld.cirassId = Items_FindItemIdx("cirass1");  // предмета нет, но влияение есть
 			LAI_SetStayType(sld);
 			sld.talker = 10;
 			sld.Dialog.Filename = "Quest\UnexpectedInheritance.c";
 			sld.dialog.currentnode = "GrottoSkeleton";
 			sld.HeroModel = "BSUnd5,BSUnd5_1,BSUnd5_2,BSUnd5_3,BSUnd5_4,BSUnd5_5";
 			ChangeCharacterAddressGroup(sld, "Terks_Grot", "monsters", "monster3");
-			//TakeNItems(sld, "chest", 5);
 			sld.SaveItemsForDead = true;
 			pchar.quest.UnexpectedInheritanceEnd.win_condition.l1 = "NPC_Death";
 			pchar.quest.UnexpectedInheritanceEnd.win_condition.l1.character ="UI_skel1";
