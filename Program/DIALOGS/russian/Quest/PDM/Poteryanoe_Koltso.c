@@ -320,85 +320,14 @@ void ProcessDialogEvent()
 		break;
 
 		case "Nagrada":
-			AddCharacterExpToSkill(pchar, "Sailing", 200);
+			AddCharacterExpToSkill(pchar, "Sailing", 100);
 			AddCharacterExpToSkill(pchar, "Leadership", 100);
 			ChangeCharacterReputation(pchar, 2);
 			sld = CharacterFromID("Josephine_Lodet")
-			//sld.dialog.filename   = "Common_citizen.c";
-			sld.dialog.currentnode = "Novaya_Babushka";
+			sld.dialog.filename   = "Common_citizen.c";
+			sld.dialog.currentnode = "First Time";
 
 			DialogExit();
 		break;
-		
-		case "Novaya_Babushka":
-			int Phrase;
-            Phrase = rand(7);
-            if (Phrase == 0)
-            {
-				dialog.text = ""+ GetSexPhrase("Внучёк","Внученька") +", ну сколько можно тебя искать, идём домой, ужин стынет.";
-				link.l1 = "";
-				link.l1.go = "exit";
-				NextDiag.TempNode = "Novaya_Babushka";
-			break;
-			}
-            if (Phrase == 1)
-            {
-				dialog.text = "Грядёт конец мира! Истину говорю! Голландца летающего матросы видели! Поднял его Господь и об твердь разбил. Так и надо, еретику проклятому! Тьфу!";
-				link.l1 = "";
-				link.l1.go = "exit";
-				NextDiag.TempNode = "Novaya_Babushka";
-			break;
-			}
-			if (Phrase == 2)
-            {
-				dialog.text = "Ваше Величество! Какая честь! Недостойна я вашего внимания.";
-				link.l1 = "";
-				link.l1.go = "exit";
-				NextDiag.TempNode = "Novaya_Babushka";
-			break;
-			}
-			if (Phrase == 3)
-            {
-				dialog.text = "Слыхала я, что демон из преисподней явился. Обликом прекрасен, глаза огнём горят дьявольским, волосы цвета невиданного. Разит всех громом из оружия неведомого, а по морю его несёт сам Пёс, страж врат адовых!";
-				link.l1 = "";
-				link.l1.go = "exit";
-				NextDiag.TempNode = "Novaya_Babushka";
-			break;
-			}
-			if (Phrase == 4)
-            {
-				dialog.text = "Жофрэ, любовь моя! Ты же в Руане похоронен!";
-				link.l1 = "";
-				link.l1.go = "exit";
-				NextDiag.TempNode = "Novaya_Babushka";
-			break;
-			}
-			if (Phrase == 5)
-            {
-				dialog.text = "Как же доброму человеку дом свой построить? Да на острове своём, чтоб никакие короли не дотянулись? На Невис плыть. Есть там старец, отмеченный Богом, с него всё начинается.";
-				link.l1 = "";
-				link.l1.go = "exit";
-				NextDiag.TempNode = "Novaya_Babushka";
-			break;
-			}
-			if (Phrase == 6)
-            {
-				dialog.text = "Порошок ищешь? Спроси ещё у кого-нибудь. Мои порошки мне доктор носит, а я его чаем пою.";
-				link.l1 = "";
-				link.l1.go = "exit";
-				NextDiag.TempNode = "Novaya_Babushka";
-			break;
-			}
-			if (Phrase == 7)
-            {
-				dialog.text = "Совсем странный сон я видела. Зверь пятнистый, на кота похож, но уж злющий очень, всю нашу жизнь в свою игру превратит, а за ним и другие с именами странными подтянутся. И будут они всё кроить и менять на свой вкус. И только старец одинокий, телом и умом немощный будет противостоять им. А чем закончится это – неведомо мне.";
-				link.l1 = "";
-				link.l1.go = "exit";
-				NextDiag.TempNode = "Novaya_Babushka";
-			break;
-			}
-		break;
-
-
 	}
 }
