@@ -101,7 +101,13 @@ float Cannon_GetFireHeight()
 	float Y,DY;
 	Y = stf(rEnemyShip.Height.(sBallName).Y);
 	DY = stf(rEnemyShip.Height.(sBallName).DY);
-	return (Y + (frnd()-0.5) * DY);
+	Y = (Y + (frnd()-0.5) * DY);
+	//временно - нужно перебрать все высоты в шипс.инит
+	if(sBallName != "Knippels")
+	{
+		Y = Y / 2;
+	}
+	return Y;
 }
 
 // calculate recharge time for cannon
