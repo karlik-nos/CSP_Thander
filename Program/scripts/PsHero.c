@@ -155,6 +155,15 @@ void DeleteCloneHeros(ref sld)
 				LAi_KillCharacter(sld);
 			}
 		}
+		if (startHeroType == 9 || startHeroType == 10)	//Нежить
+		{
+			if(sld.FaceId == 511 || sld.FaceId == 537)
+			{//Его мы позже наймем оффом, так что убираем из ПГГ
+				sld.willDie = true;
+				sld.DontCountDeath = true;
+				LAi_KillCharacter(sld);
+			}
+		}
 	}
 }
 

@@ -11172,7 +11172,7 @@ void LooserGenerator_sart_Magazin(string s)		//Украл владелец ма�
 	ref chr = CharacterFromID(pchar.HOTP_CasinoQuest.npcharID);
 	chr.dialog.filename = "Quest\PDM\looser.c";
 	chr.dialog.currentnode = "Jdet_1";
-	DeleteAttribute(chr, "lifeday");		// на всякий случай, чтобы не исчез
+	DeleteAttribute(chr, "lifeday");
 
 	ReOpenQuestHeader("LOOSER_GENERATOR");
 	AddQuestRecord("LOOSER_GENERATOR", "1.1");
@@ -11186,7 +11186,6 @@ void LooserGenerator_sart_Magazin(string s)		//Украл владелец ма�
 	// Таймер на провал квеста = 1 день
 	SetTimerFunction("LooserGenerator_TimeFailed", 0, 0, 1);
 }
-
 void LooserGenerator_sart_Verf(string s)	//Украл владелец верфи
 {
 	ChangeCharacterReputation(pchar, -5);
@@ -11194,7 +11193,7 @@ void LooserGenerator_sart_Verf(string s)	//Украл владелец верф�
 	ref chr = CharacterFromID(pchar.HOTP_CasinoQuest.npcharID);
 	chr.dialog.filename = "Quest\PDM\looser.c";
 	chr.dialog.currentnode = "Jdet_1";
-	DeleteAttribute(chr, "lifeday");		// на всякий случай, чтобы не исчез
+	DeleteAttribute(chr, "lifeday");
 
 	ReOpenQuestHeader("LOOSER_GENERATOR");
 	AddQuestRecord("LOOSER_GENERATOR", "1.2");
@@ -11208,10 +11207,7 @@ void LooserGenerator_sart_Verf(string s)	//Украл владелец верф�
 	// Таймер на провал квеста = 1 день
 	SetTimerFunction("LooserGenerator_TimeFailed", 0, 0, 1);
 }
-
-//--------------------------------------------------------------------------------------------------------------
-// Выставлялка прерывания на локации
-void LooserGenerator_SetStoreLocation(string s)
+void LooserGenerator_SetStoreLocation(string s)	// Выставлялка прерывания на локации
 {
 	pchar.quest.LooserGeneratorSart.win_condition.l1 = "location";
 	pchar.quest.LooserGeneratorSart.win_condition.l1.location = "CommonPackhouse_1";
@@ -11224,10 +11220,7 @@ void LooserGenerator_SetShipyardLocation(string s)
 	pchar.quest.LooserGeneratorSart2.win_condition.l1.location = "CommonPackhouse_2";
 	pchar.quest.LooserGeneratorSart2.function = "LooserGenerator_InShipyard";
 }
-
-//--------------------------------------------------------------------------------------------------------------
-// Заходим в магазин
-void LooserGenerator_InStore(string s)
+void LooserGenerator_InStore(string s)		// Заходим в магазин
 {
 	int n = FindLocation(pchar.location);
 	int i;
@@ -11273,16 +11266,12 @@ void LooserGenerator_InStore(string s)
 		return;
 	}
 
-	// Если вдруг решили зайти в другой город
-	if(CheckAttribute(pchar, "HOTP_CasinoQuest.store"))
+	if(CheckAttribute(pchar, "HOTP_CasinoQuest.store"))	// Если вдруг решили зайти в другой город
 	{
 		DoQuestFunctionDelay("LooserGenerator_SetStoreLocation", 3.0);
 	}
 }
-
-//--------------------------------------------------------------------------------------------------------------
-// Заходим на верфь
-void LooserGenerator_InShipyard(string s)
+void LooserGenerator_InShipyard(string s)		// Заходим на верфь
 {
 	int n = FindLocation(pchar.location);
 	int i;
@@ -11328,16 +11317,12 @@ void LooserGenerator_InShipyard(string s)
 		return;
 	}
 
-	// Если вдруг решили зайти в другой город
-	if(CheckAttribute(pchar, "HOTP_CasinoQuest.shipyard"))
+	if(CheckAttribute(pchar, "HOTP_CasinoQuest.shipyard"))	// Если вдруг решили зайти в другой город
 	{
 		DoQuestFunctionDelay("LooserGenerator_SetShipyardLocation", 3.0);
 	}
 }
-
-//--------------------------------------------------------------------------------------------------------------
-// Открываем локацию
-void LooserGenerator_OpenLocation(string s)
+void LooserGenerator_OpenLocation(string s)		// Открываем локацию
 {
 	chrDisableReloadTolocation = false;
 	InterfaceStates.Buttons.Save.enable = true;
@@ -11352,10 +11337,7 @@ void LooserGenerator_OpenLocation(string s)
 	DeleteQuestCheck("LooserGeneratorFailed");
 
 }
-
-//--------------------------------------------------------------------------------------------------------------
-// Успешное завершение квеста
-void LooserGenerator_Complette()
+void LooserGenerator_Complette()		// Успешное завершение квеста
 {
 	DeleteAttribute(pchar, "items.Bag_with_money");
 	DeleteAttribute(pchar, "KIP_PI_SleditZaNami");
@@ -11367,10 +11349,7 @@ void LooserGenerator_Complette()
 	//DeleteAttribute(pchar, "HOTP_CasinoQuest");
 	//SaveCurrentQuestDateParam("CasinoGenerator_timer");
 }
-
-//--------------------------------------------------------------------------------------------------------------
-// Провал квеста по времени
-void LooserGenerator_TimeFailed(string s)
+void LooserGenerator_TimeFailed(string s)		// Провал квеста по времени
 {
 	DeleteQuestCheck("LooserGeneratorSart");
 	DeleteQuestCheck("LooserGeneratorSart2");
@@ -11387,9 +11366,7 @@ void LooserGenerator_TimeFailed(string s)
 	chr.dialog.filename = "Quest\PDM\looser.c";
 	chr.dialog.currentnode = "first time";
 }
-//--------------------------------------------------------------------------------------------------------------
-// Поймали с поличным
-void LooserGenerator_FailedByEnc(string s)
+void LooserGenerator_FailedByEnc(string s)		// Поймали с поличным
 {
 	chrDisableReloadTolocation = false;
 	InterfaceStates.Buttons.Save.enable = true;
@@ -11421,8 +11398,7 @@ void LooserGenerator_FailedByEnc(string s)
 	DeleteAttribute(pchar, "KIP_PI_ZapisVSJ");
 	DeleteAttribute(pchar, "items.Bag_with_money");
 }*/
-// Дополнительная проверка на наличие 7+ кошельков
-void LooserGenerator_DopProverka(string s)
+void LooserGenerator_DopProverka(string s)		// Дополнительная проверка на наличие 7+ кошельков
 {
 	if (GetCharacterItem(pchar,"Bag_with_money") >= 7 && !CheckAttribute(pchar, "KIP_PI_ZapisVSJ"))
 	{

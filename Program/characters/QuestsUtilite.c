@@ -707,6 +707,18 @@ void FillAboardCabinBox(ref _location, ref _npchar)
 		_location.box1.items.PDM_SJ_Angl_Gal = 1);
         ok = false;
 	}
+	//Квест "Лиларкор", в корабле лежит Лиларкор
+	if (_npchar.id == "UP_Korabl_s_klinkom")
+	{
+        DeleteAttribute(_location, "box1");
+        _location.box1.money = 20000;
+		_location.box1.items.jewelry1 = 10+rand(10);
+        _location.box1.items.jewelry3 = 40+rand(30);
+        _location.box1.items.jewelry4 = 10+rand(10);
+		_location.box1.items.cirass1 = 1);
+		_location.box1.items.Lilarcor_Sword1 = 1);
+        ok = false;
+	}
 
     if (ok) // не квестовый
     {

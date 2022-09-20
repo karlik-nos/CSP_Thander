@@ -1094,6 +1094,7 @@ void Undead_StartGame(string qName)
 	WaitDate("",0,0,0,24 - sti(environment.time),5);
 
 	SetQuestsCharacters();
+	pchar.questTemp.UndeadPrologue = "UP";
 
 	LAi_LockFightMode(Pchar, false);
 	LAi_LocationFightDisable(loadedLocation, true);
@@ -1123,25 +1124,24 @@ void Undead_Start_Graveyard_1(string qName)
 	ChangeCharacterAddressGroup(sld, pchar.location, "goto", "goto2");
 	LAi_SetActorType(sld);
 	LAi_ActorDialog(sld, pchar, "", 5.0, 0);
+	sld.SaveItemsForDead = true;
+	DeleteAttribute(sld, "items");
+	sld.DontChangeBlade = true;
+	TakeNItems(sld, "suit_1", 1);
 
 	pchar.quest.Undead_Start_Graveyard_2.win_condition.l1 = "NPC_Death";
 	pchar.quest.Undead_Start_Graveyard_2.win_condition.l1.character ="Gravedigger";
 	PChar.quest.Undead_Start_Graveyard_2.function = "Undead_Start_Graveyard_3";
+	
+	//Квест "Проклятый идол" НЕ доступен для Нежити
+	sld = CharacterFromID("James_Callow")
+	LAi_KillCharacter(sld);
 }
-/*
-void Undead_Start_Graveyard_2(string qName)
-{
-	PChar.quest.Undead_Start_Graveyard_3.win_condition.l1 = "locator";
-	PChar.quest.Undead_Start_Graveyard_3.win_condition.l1.location = pchar.location;
-	PChar.quest.Undead_Start_Graveyard_3.win_condition.l1.locator_group = "box";
-	PChar.quest.Undead_Start_Graveyard_3.win_condition.l1.locator = "box1";
-	PChar.quest.Undead_Start_Graveyard_3.function = "Undead_Start_Graveyard_3";
-}*/
 void Undead_Start_Graveyard_3(string qName)
 {
-	TakeNItems(pchar, "suit_1", 1);
-	Log_Info("Вы получили обноски");
-	PlaySound("interface\important_item.wav");
+	//TakeNItems(pchar, "suit_1", 1);
+	//Log_Info("Вы получили обноски");
+	//PlaySound("interface\important_item.wav");
 	pchar.questTemp.Undead.Leave_Crypt = true;
 	DoQuestCheckDelay("TalkSelf_Quest", 1.0);
 	PChar.quest.Undead_Start_Graveyard_4.win_condition.l1 = "locator";

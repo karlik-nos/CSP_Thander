@@ -1481,6 +1481,16 @@ void QuestComplete(string sQuestName, string qname)
 					DoQuestReloadToLocation(pchar.location + "_upstairs", "goto", "goto1", "restore_hp");
 				}
 			}
+			if (CheckAttribute(pchar, "questTemp.UndeadPrologue2") && pchar.rank >= 5)	//Sinistra: Нежить, спим в таверне
+			{
+			    DeleteAttribute(pchar, "QuestTemp.UndeadPrologue2");
+			    DoQuestReloadToLocation(pchar.location + "_upstairs", "goto", "goto1", "UP_DrugPridet_2");
+			}
+			if (CheckAttribute(pchar, "questTemp.UndeadPrologue3") && pchar.rank >= 10)	//Sinistra: Нежить, спим в таверне
+			{
+			    DeleteAttribute(pchar, "QuestTemp.UndeadPrologue3");
+			    DoQuestReloadToLocation(pchar.location + "_upstairs", "goto", "goto1", "UP_DrugPridet_3");
+			}
 			else
 			{
 				DoQuestReloadToLocation(pchar.location + "_upstairs", "goto", "goto1", "restore_hp");
@@ -9885,7 +9895,7 @@ void QuestComplete(string sQuestName, string qname)
             LAi_SetFightMode(Pchar, true);
 			Log_SetStringToLog("Скелеты атакуют!!!");
 			//Скелеты
-            for (i=1; i<=6; i++)
+			for (i=1; i<=6; i++)
 			{
 				sTemp = "skel_"+(rand(3)+1);
 				sld = GetCharacter(NPC_GenerateCharacter("PDM_PI_skel_"+i, sTemp, "skeleton", "skeleton", sti(pchar.rank), PIRATE, -1, true));;
@@ -10940,6 +10950,128 @@ void QuestComplete(string sQuestName, string qname)
 			sld = CharacterFromID("Old Friend")
 			sld.Dialog.Filename = "Quest/SilencePrice/Luke.c";
 			sld.dialog.currentnode = "First Time";
+		break;
+		
+//========================  Sinistra "Нежить: Лиларкор"  =======================
+
+		case "UP_KrovPismo":
+			PChar.quest.UP_KrovPismo1.over = "yes";
+			PChar.quest.UP_KrovPismo2.over = "yes";
+			PChar.quest.UP_KrovPismo3.over = "yes";
+			PChar.quest.UP_KrovPismo4.over = "yes";
+			PChar.quest.UP_KrovPismo5.over = "yes";
+			PChar.quest.UP_KrovPismo6.over = "yes";
+			PChar.quest.UP_KrovPismo7.over = "yes";
+			Locations[FindLocation(pchar.location)].box1.items.UP_PismoZagadka = 1;
+		break;
+		
+		case "UP_DrugPridet":
+			pchar.questTemp.UndeadPrologue2 = "UP2";
+		break;
+		
+		case "UP_DrugPridet_2":
+			bDisableFastReload = true;
+			chrDisableReloadToLocation = true;
+			if (pchar.name == "Весёлый Роджер")
+			{
+				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Meriman_0", "skeleton", "man", 10, PIRATE, -1, true));
+				sld.name = "Ужасный";
+				sld.lastname = "";
+			}
+			if (pchar.name == "Ужасный")
+			{
+				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Skeletcap_0", "skeleton", "skeleton", 10, PIRATE, -1, true));
+				sld.name = "Весёлый";
+				sld.lastname = "Роджер";
+			}
+			ChangeCharacterAddressGroup(sld, pchar.location, "quest", "quest3");
+			LAi_SetActorType(sld);
+			LAi_ActorDialogDelay(sld, pchar, "", 1.0);
+			sld.dialog.filename = "Quest/MainheroPrologues/Prologue_Undead_dialog.c";
+			sld.dialog.currentnode = "PGG_Undead_1";
+			sld.lifeday = 0;
+			LAi_SetImmortal(sld, false);
+		break;
+		
+		case "UP_DrugPridet_3":
+			bDisableFastReload = true;
+			chrDisableReloadToLocation = true;
+			if (pchar.name == "Весёлый Роджер")
+			{
+				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Meriman_0", "skeleton", "man", 10, PIRATE, -1, true));
+				sld.name = "Ужасный";
+				sld.lastname = "";
+			}
+			if (pchar.name == "Ужасный")
+			{
+				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Skeletcap_0", "skeleton", "skeleton", 10, PIRATE, -1, true));
+				sld.name = "Весёлый";
+				sld.lastname = "Роджер";
+			}
+			ChangeCharacterAddressGroup(sld, pchar.location, "quest", "quest3");
+			LAi_SetActorType(sld);
+			LAi_ActorDialogDelay(sld, pchar, "", 1.0);
+			sld.dialog.filename = "Quest/MainheroPrologues/Prologue_Undead_dialog.c";
+			sld.dialog.currentnode = "PGG_Undead_5";
+			sld.lifeday = 0;
+		break;
+		
+		case "UD_DrugUshel":
+			pchar.questTemp.UndeadPrologue3 = "UP3";
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
+		break;
+		
+		case "UP_Skelet_Moryak_HoditPoPeshere":
+			sld = CharacterFromID("Skelet_Drug")
+			LAi_SetWarriorType(sld);
+			LAi_CharacterDisableDialog(sld);
+		break;
+		
+		case "UP_SkeletyVPeshere_NanyatSnova":
+			DeleteAttribute(pchar, "questTemp.UP_SkeletyVPeshere");
+		break;
+		
+		case "UD_DrugUshel_2":
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
+			
+			sld = GetCharacter(NPC_GenerateCharacter("UP_Korabl_s_klinkom", "officer_30", "man", "man", sti(PChar.rank)+2, PIRATE, 40, true));
+			FantomMakeCoolSailor(sld, SHIP_SCHOONER, "Везучий Тюльпан", CANNON_TYPE_CULVERINE_LBS12, 40, 40, 40);
+			
+			SetCaptanModelByEncType(sld, "war");
+			sld.AlwaysEnemy = true;
+			sld.DontRansackCaptain = true;
+			sld.mapEnc.type = "war";
+			sld.mapEnc.Name = "корабль, на котором находится 'Говорящий клинок'";
+			sld.hunter = "pirate";
+			Group_AddCharacter("UP_Ship", "UP_Korabl_s_klinkom");
+
+			Group_SetGroupCommander("UP_Ship", "UP_Korabl_s_klinkom");
+			Group_SetTaskAttackInMap("UP_Ship", PLAYER_GROUP);
+			Group_LockTask("UP_Ship");
+			Map_CreateFastWarrior("", "UP_Korabl_s_klinkom", 30);
+		break;
+		
+		case "UP_PGGUndead_Off":
+			if (pchar.name == "Весёлый Роджер")
+			{
+				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Meriman_0", "skeleton", "man", 10, PIRATE, -1, true));
+				sld.name = "Ужасный";
+				sld.lastname = "";
+				sld.FaceId = 537;
+				AddPassenger(pchar, sld, false);
+				SetCharacterRemovable(sld, false);
+			}
+			if (pchar.name == "Ужасный")
+			{
+				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Skeletcap_0", "skeleton", "skeleton", 10, PIRATE, -1, true));
+				sld.name = "Весёлый";
+				sld.lastname = "Роджер";
+				sld.FaceId = 511;
+				AddPassenger(pchar, sld, false);
+				SetCharacterRemovable(sld, false);
+			}
 		break;
 
 		// Тичингиту
