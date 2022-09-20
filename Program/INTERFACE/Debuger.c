@@ -2588,7 +2588,7 @@ string descF54 = "Нет назначений";
 void CalculateInfoDataF54()
 {
 	totalInfo = descF54;
-		
+	
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 
 	SetFormatedText("INFO_TEXT", totalInfo);
