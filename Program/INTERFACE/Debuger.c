@@ -2584,7 +2584,7 @@ void CalculateInfoDataF53()
 	Statistic_AddValue(PChar, "Cheats.F53", 1);
 }
 
-string descF54 = "Sinistra ТЕСТ";
+string descF54 = "Нет назначений";
 void CalculateInfoDataF54()
 {
 	totalInfo = descF54;
