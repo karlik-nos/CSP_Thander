@@ -2698,7 +2698,7 @@ void Ship_HullHitEvent()
 	ref rCannon = GetCannonByType(sti(rBallCharacter.Ship.Cannons.Type));
 	float fCannonDamageMultiply = stf(rCannon.DamageMultiply);
 
-	float fDistanceDamageMultiply = Bring2Range(1.2, 0.25, 0.0, stf(AIBalls.CurrentMaxBallDistance), stf(AIBalls.CurrentBallDistance));
+	//float fDistanceDamageMultiply = Bring2Range(1.2, 0.25, 0.0, stf(AIBalls.CurrentMaxBallDistance), stf(AIBalls.CurrentBallDistance));
 
     if (sti(rBallCharacter.TmpPerks.CriticalShoot) && rand(19)==10) { bSeriousBoom = true; }		// +5 процентов
 	if (sti(rBallCharacter.TmpPerks.CannonProfessional) && rand(9)==4) { bSeriousBoom = true; }		// +10 процентов
@@ -2740,7 +2740,7 @@ void Ship_HullHitEvent()
 	{
 		fCrewDamage = fCrewDamage * 7.0;
 		// fHP = fDistanceDamageMultiply * fCannonDamageMultiply * stf(rBall.DamageHull) * (8.0 + frnd() * 4.0); // LEO: Забекапил
-		fHP = fDistanceDamageMultiply * fCannonDamageMultiply * stf(rBall.DamageHull) * 4; // 4.0
+		fHP = fCannonDamageMultiply * stf(rBall.DamageHull) * 4; // 4.0
 		if (CheckAttribute(RealShips[sti(rOurCharacter.Ship.Type)],"Tuning.HighBort") && iBallType != GOOD_GRAPES) fHP *= 1.25;
 		Ship_ApplyHullHitpointsWithCannon(rOurCharacter, fHP, KILL_BY_BALL, iBallCharacterIndex);
 
@@ -2764,7 +2764,7 @@ void Ship_HullHitEvent()
 	}
 	else
 	{
-		fHP = fDistanceDamageMultiply * fCannonDamageMultiply * stf(rBall.DamageHull);
+		fHP = fCannonDamageMultiply * stf(rBall.DamageHull);
 		if (CheckAttribute(RealShips[sti(rOurCharacter.Ship.Type)],"Tuning.HighBort") && iBallType != GOOD_GRAPES) fHP *= 1.35; // LEO: (fHP *= 1.25;) - этого мало оказалось
 		Ship_ApplyHullHitpointsWithCannon(rOurCharacter, fHP, KILL_BY_BALL, iBallCharacterIndex);
 		// boal  check skill -->
@@ -2777,8 +2777,8 @@ void Ship_HullHitEvent()
         }
         // boal <--
 	}
-	fDistanceDamageMultiply = Bring2Range(1.0, 0.66, 0.0, stf(AIBalls.CurrentMaxBallDistance), stf(AIBalls.CurrentBallDistance));
-	fCrewDamage *= fDistanceDamageMultiply;//добавлено НЕБОЛЬШОЕ влияние дистанции для нормального урона
+	//fDistanceDamageMultiply = Bring2Range(1.0, 0.66, 0.0, stf(AIBalls.CurrentMaxBallDistance), stf(AIBalls.CurrentBallDistance));
+	//fCrewDamage *= fDistanceDamageMultiply;//добавлено НЕБОЛЬШОЕ влияние дистанции для нормального урона
 	//Log_Info("fDistanceDamageMultiply "+fDistanceDamageMultiply);
 	Ship_ApplyCrewHitpointsWithCannon(rOurCharacter, fCrewDamage, fCannonDamageMultiply, iBallType);
 
