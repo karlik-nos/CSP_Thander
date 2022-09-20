@@ -689,7 +689,7 @@ void FillSkillTables()
 		skillVal = GetSkillValue(xi_refCharacter, SKILL_TYPE, skillName);
 		GameInterface.TABLE_SKILL_2.(row).td5.str = skillVal;
 		// рассчет драйна
-		diff = GetSummonSkillFromNameSimple(xi_refCharacter, skillName) - skillVal;
+		diff = GetSummonSkillFromName(xi_refCharacter, skillName) - skillVal;
 		if (skillVal < SKILL_MAX)
 		{
 			GameInterface.TABLE_SKILL_2.(row).td3.str = makeint(GetSkillValueExp(xi_refCharacter, skillName) * 100.0 / makefloat(skillVal * GetCharacterExpRate(xi_refCharacter, skillName))) + "%";
