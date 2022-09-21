@@ -57,7 +57,8 @@ void Sea_CabinStartNow()
     	SetEventHandler("FaderEvent_StartFade", "Cabin_ReloadStartFade", 0);
     	SetEventHandler("FaderEvent_EndFade", "Cabin_ReloadEndFade", 0);
 
-    	SendMessage(&reload_fader, "ls", FADER_PICTURE0, Get_My_Cabin_Pic());//"loading\Cabin.tga");
+		pchar.loadscreen = Get_My_Cabin_Pic();
+    	SendMessage(&reload_fader, "ls", FADER_PICTURE0, pchar.loadscreen);
     	SendMessage(&reload_fader, "lfl", FADER_OUT, 1.0, false);
     	SendMessage(&reload_fader, "l", FADER_STARTFRAME);
 
@@ -190,7 +191,8 @@ void Return2SeaAfterCabin()
 	SetEventHandler("FaderEvent_EndFade", "Cabin_ReloadEndFadeAfter", 0);
 	//Создаём фейдер и запускаем
 	CreateEntity(&boarding_fader, "fader");
-	SendMessage(&boarding_fader, "ls", FADER_PICTURE0, "loading\sea_" + rand(31) + ".tga");
+	pchar.loadscreen = "loading\jonny_load\sea\sea_"+rand(3)+".tga";
+	SendMessage(&boarding_fader, "ls", FADER_PICTURE0, pchar.loadscreen);
 
 	float fadeOutTime = RELOAD_TIME_FADE_OUT;
 
@@ -245,7 +247,7 @@ void Cabin_ReloadEndFadeAfter()
 	mchr.location.group = boarding_adr[0].group;
 	mchr.location.locator = boarding_adr[0].locator;
 	// если бой, то ломаем корпус -->
-	if (bDisableMapEnter) //идет бой
+	if (bDisableMapEnter) //идёт бой
 	{
 	    mchr.Ship.HP = makefloat(stf(mchr.Ship.HP) - GetCharacterShipHP(mchr) * 0.01);
 	    if (stf(mchr.Ship.HP) < 0) mchr.Ship.HP = 0;
@@ -361,8 +363,8 @@ void Cabin_ReloadEndFadeAfter()
 /////////// диалог на палубе ////////////
 void Sea_DeckBoatStartNow(ref _iShipsCharacter)
 {
-	string boat_pic = "loading\boat_"+rand(2)+".tga";
-	if(CheckAttribute(pchar, "TownEscape")) boat_pic = "loading\StartGame.tga";
+	string boat_pic = "loading\jonny_load\load\Boat.tga";
+	if(CheckAttribute(pchar, "TownEscape")) boat_pic = "loading\jonny_load\load\load_0"+rand(8)+".tga";
 
 	if (!bAbordageStarted)
 	{
@@ -373,7 +375,8 @@ void Sea_DeckBoatStartNow(ref _iShipsCharacter)
 		SetEventHandler("FaderEvent_StartFade", "Cabin_ReloadStartFade", 0);  // одинаковый с каютой
 		SetEventHandler("FaderEvent_EndFade", "DeckBoat_ReloadEndFade", 0);
 
-		SendMessage(&reload_fader, "ls", FADER_PICTURE0, boat_pic);
+		pchar.loadscreen = boat_pic;
+		SendMessage(&reload_fader, "ls", FADER_PICTURE0, pchar.loadscreen);
 		SendMessage(&reload_fader, "lfl", FADER_OUT, 1.0, false);
 		SendMessage(&reload_fader, "l", FADER_STARTFRAME);
 
@@ -907,7 +910,7 @@ void SetOfficersInCampus()
 
 
 	//navy --> компаньоны
- 	if (!bDisableMapEnter) //не идет бой
+ 	if (!bDisableMapEnter) //не идёт бой
 	{
 		for (i = 1; i < GetCompanionQuantity(PChar); i++)
 		{

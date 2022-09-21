@@ -331,13 +331,13 @@ void CheckWoundedOfficers()
 
 					int healing_time = makeint(LAi_GetCharacterMaxHP(chr)/10);//время от хп
 
-					if (CheckOfficersPerk(pchar, "EmergentSurgeon")) healing_time -= makeint(healing_time/10*3);//снижения от перков врачей
+					if (CheckOfficersPerk(pchar, "EmergentSurgeon")) healing_time -= makeint(healing_time/10*6);//снижения от перков врачей
 					else
 					{
-						if (CheckOfficersPerk(pchar, "Doctor2")) healing_time -= makeint(healing_time/10*2);
+						if (CheckOfficersPerk(pchar, "Doctor2")) healing_time -= makeint(healing_time/10*4);
 						else
 						{
-							if (CheckOfficersPerk(pchar, "Doctor1")) healing_time -= makeint(healing_time/10);
+							if (CheckOfficersPerk(pchar, "Doctor1")) healing_time -= makeint(healing_time/5);
 						}
 					}
 
@@ -445,7 +445,7 @@ void CheckHighOnDrugs()
 void UniqueHeroEvents()
 {
 
-	if (startherotype == 7 && IsEquipCharactersByItem(pchar, "DHGlove") && rand (10) == 0)
+	if (pchar.name == "Тёмный Странник" && IsEquipCharactersByItem(pchar, "DHGlove") && rand (10) == 0)
 	{
 		Log_info("Обнаружено пять темпоральных червоточин.");
 		Log_info("Расчетное синхронизированное время:");
@@ -706,7 +706,7 @@ void GenerateSpySeeker(ref location)
 			{
 				chrDisableReloadToLocation = true;
 				if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) ref rChar = GetCharacter(NPC_GenerateCharacter("SpySeeker", "officer_"+ (1 + drand(63)), "man", "spy", pchar.rank, GetCityNation(location.fastreload), -1, false)); //LEO: Превозмогаторам страдание 08.12.2021
-				else rChar = GetCharacter(NPC_GenerateCharacter("SpySeeker", "officer_"+ (1 + drand(63)), "man", "man_fast", pchar.rank, GetCityNation(location.fastreload), -1, false));
+				else rChar = GetCharacter(NPC_GenerateCharacter("SpySeeker", "officer_"+ (1 + drand(63)), "man", "man", pchar.rank, GetCityNation(location.fastreload), -1, false));
 				rChar.Dialog.FileName = "Common_Seeker.c";
 				LAi_SetImmortal(rChar, true);
 				rChar.saveItemsForDead = true;

@@ -2,7 +2,8 @@ void ProcessDialogEvent()
 {
 	ref NPChar, sld;
 	aref Link, NextDiag;
-	int i, iRank, iMassive;
+	int i, iRank;
+	string attr;
 
 	DeleteAttribute(&Dialog,"Links");
 
@@ -28,9 +29,9 @@ void ProcessDialogEvent()
 		break;
 		case "Step_1":
 			dialog.text = LinkRandPhrase("Моя подруга - такая бесстрашная, она полезла в заброшенный колодец!",
-				"Моя подруга полезла в заброшенный колодец, и уже несколько часов ее нет!",
+				"Моя подруга полезла в заброшенный колодец, и уже несколько часов её нет!",
 				"Моя подруга исчезла в заброшенном колодце!");
-			Link.l1 = "Какого черта она полезла туда?!";
+			Link.l1 = "Какого чёрта она полезла туда?!";
 			Link.l1.go = "Step_2";
 		break;
 		case "Step_2":
@@ -54,39 +55,31 @@ void ProcessDialogEvent()
 				LAi_LocationDisableOffGenTimer(pchar.GenQuest.EncGirl.locationId, 1); //офицеров не пускать 1 день
 				LocatorReloadEnterDisable(pchar.GenQuest.EncGirl.locationId, "reload2", true);
 				pchar.GenQuest.OpenTheRopeExit = pchar.GenQuest.EncGirl.locationId; //флаг для открытия релоада
-				string model[10];
-				model[0] = "pirate_1";
-				model[1] = "pirate_2";
-				model[2] = "pirate_3";
-				model[3] = "pirate_4";
-				model[4] = "pirate_5";
-				model[5] = "pirate_6";
-				model[6] = "pirate_7";
-				model[7] = "pirate_8";
-				model[8] = "pirate_9";
-				model[9] = "pirate_10";
-				i = 0;
-				while(i < 3)
+				object models;
+				for (i = 0; i < 10; i++)
 				{
-					iMassive = rand(9);
-					if (model[iMassive] != "")
-					{
-						iRank = sti(pchar.rank) - rand(5) + rand(5);
-						if (iRank < 1) iRank = 1;
-						sld = GetCharacter(NPC_GenerateCharacter("CaveGandMan" + i, model[iMassive], "man", "man", iRank, PIRATE, 1, true));
-						SetFantomParamFromRank(sld, iRank, true);
-						sld.SaveItemsForDead = true;
-						sld.DontClearDead = true;
-						sld.money = iRank*200+1000+rand(500);
-						LAi_SetWarriorType(sld);
-						LAi_warrior_SetStay(sld, true);
-						//LAi_group_MoveCharacter(sld, LAI_GROUP_MONSTERS);
-						LAi_group_MoveCharacter(sld, LAI_GROUP_ENEMY);// лесник изменил группу чтобы ядом таино травить можно было
-						LAi_group_Attack(sld, Pchar);// лесник добавил атаку на пчара а то у некоторых баг что они не нападают.
-						ChangeCharacterAddressGroup(sld, pchar.GenQuest.EncGirl.locationId, "quest", "quest" + i);
-						i++;
-						model[iMassive] = "";
-					}
+					attr = "s" + i;
+					models.(attr) = "pirate_" + (i + 1);
+				}
+				RandomShuffle(&models);
+				for (i = 0; i < 3; i++)
+				{
+					iRank = sti(pchar.rank) - rand(5) + rand(5);
+					if (iRank < 1) iRank = 1;
+					attr = "s" + i;
+					sld = GetCharacter(NPC_GenerateCharacter("CaveGandMan" + i, models.(attr), "man", "man", iRank, PIRATE, 1, true));
+					SetFantomParamFromRank(sld, iRank, true);
+					sld.SaveItemsForDead = true;
+					sld.DontClearDead = true;
+					sld.money = iRank*200+1000+rand(500);
+					LAi_CharacterDisableDialog(sld);
+					LAi_SetWarriorType(sld);
+					LAi_warrior_SetStay(sld, true);
+					//LAi_group_MoveCharacter(sld, LAI_GROUP_MONSTERS);
+					ChangeCharacterAddressGroup(sld, pchar.GenQuest.EncGirl.locationId, "quest", "quest" + i);
+					LAi_group_MoveCharacter(sld, "CaveBandit");// лесник изменил группу чтобы ядом таино травить можно было
+					LAi_group_FightGroups("CaveBandit", LAI_GROUP_PLAYER, true);
+					i++;
 				}
 				pchar.quest.Enc_FriendGirl_afterGang.win_condition.l1 = "ExitFromLocation";
 				pchar.quest.Enc_FriendGirl_afterGang.win_condition.l1.location = pchar.location;
@@ -141,7 +134,7 @@ void ProcessDialogEvent()
 		break;
 		case "Underground0_1":
             dialog.text = "Я заблудилась здесь! Господи, как же мне было страшно!!!";
-			Link.l1 = "Ну, теперь-то все в порядке. Иди за мной, я выведу тебя. Как окажешься на поверхности - быстро домой, и чтобы больше я тебя не "+ GetSexPhrase("видел","видела") +"!";
+			Link.l1 = "Ну, теперь-то всё в порядке. Иди за мной, я выведу тебя. Как окажешься на поверхности - быстро домой, и чтобы больше я тебя не "+ GetSexPhrase("видел","видела") +"!";
 			Link.l1.go = "Underground0_2";
 		break;
 		case "Underground0_2":
@@ -156,23 +149,23 @@ void ProcessDialogEvent()
 		break;
 
 		case "Underground1": //крутая мочалка
-            dialog.text = "Надо же, еще кому-то дело есть до этого подземелья!";
+            dialog.text = "Надо же, ещё кому-то дело есть до этого подземелья!";
 			Link.l1 = "Красавица, ты что тут делаешь?";
 			Link.l1.go = "Underground1_1";
 		break;
 		case "Underground1_1":
-            dialog.text = "Не твое дело!";
+            dialog.text = "Не твоё дело!";
 			Link.l1 = "Ого, ответ на миллион пиастров...";
 			Link.l1.go = "Underground1_2";
 		break;
 		case "Underground1_2":
-            dialog.text = "На два миллиона... "+ GetSexPhrase("Шел","Шла") +" бы ты отсюда своей дорогой, до тебя мне дела нет.";
+            dialog.text = "На два миллиона... "+ GetSexPhrase("Шёл","Шла") +" бы ты отсюда своей дорогой, до тебя мне дела нет.";
 			Link.l1 = "Хех, и мне до тебя тоже, собственно, да вот только подруга твоя панику подняла наверху...";
 			Link.l1.go = "Underground1_3";
 		break;
 		case "Underground1_3":
-            dialog.text = "Вот ведь дуреха! Сама от страха обделаться готова, и думает, что я такая же.";
-			Link.l1 = "Да уж, ты явно не такая же. Черт в юбке!";
+            dialog.text = "Вот ведь дурёха! Сама от страха обделаться готова, и думает, что я такая же.";
+			Link.l1 = "Да уж, ты явно не такая же. Чёрт в юбке!";
 			Link.l1.go = "Underground1_4";
 		break;
 		case "Underground1_4":

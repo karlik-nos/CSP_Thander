@@ -250,7 +250,7 @@ void ProcessCommandExecute()
     		if(comName=="activate" || comName=="click")
     		{
                 if (openExit == true)
-                {   // еще одна игра
+                {   // ещё одна игра
                     if (bStartGame != 100)
                     {
                         dir_i = -dir_i_start;
@@ -268,7 +268,7 @@ void ProcessCommandExecute()
                 }
                 else
                 {   // ГГ берет карты
-                    if (bStartGame <2) break; // еще сдают
+                    if (bStartGame <2) break; // ещё сдают
                     if (bStartGame == 100) break; // открываемся
 
                     if (dir_i == 1 && (iMoneyP - iRate) < 0)
@@ -660,7 +660,7 @@ bool CheckGame()
 		{
 			if (CheckNextGame() && rand(10) < 10) // есть деньги на игру
 			{
-				sTemp += NewStr() + RandPhraseSimple("Повторим?","Еще разок?");
+				sTemp += NewStr() + RandPhraseSimple("Повторим?","Ещё разок?");
 			}
 			else
 			{
@@ -682,13 +682,15 @@ bool CheckGame()
 			zhuhlo = 33;
 			zhuhlo1 = 33
 		}
-        if (GetCharacterSkillToOld(pchar, SKILL_FORTUNE) < zhuhlo)
+		//if (GetCharacterSkillToOld(pchar, SKILL_FORTUNE) < zhuhlo)
+		if (GetCharacterSkillToOld(pchar, SKILL_FORTUNE) + makeint(isEquippedArtefactUse(pchar, "Joker", 0.0, 2.0)) < zhuhlo)
         {
             if (ok1 && (CountCardsN() + NextCardPack()) <= 21)
             {
                 ok1 = false;
             }
-            if (GetCharacterSkillToOld(pchar, SKILL_FORTUNE) < zhuhlo1 && CountCardsN() < 17 &&  (CountCardsN() + NextCardPack()) > 21)
+			//if (GetCharacterSkillToOld(pchar, SKILL_FORTUNE) < zhuhlo1 && CountCardsN() < 17 &&  (CountCardsN() + NextCardPack()) > 21)
+			if (GetCharacterSkillToOld(pchar, SKILL_FORTUNE) - makeint(isEquippedArtefactUse(pchar, "Joker", 0.0, 2.0)) < zhuhlo1 && CountCardsN() < 17 &&  (CountCardsN() + NextCardPack()) > 21)          
             {
                 ok1 = true;
             }
@@ -784,7 +786,7 @@ void OpenCards();
 	{
 		if (CheckNextGame() && rand(10) < 10) // есть деньги на игру
 		{
-			sTemp += NewStr() + RandPhraseSimple("Повторим?","Еще разок?");
+			sTemp += NewStr() + RandPhraseSimple("Повторим?","Ещё разок?");
 			bStartGame = 2;
 		}
 		else

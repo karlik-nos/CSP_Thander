@@ -26,6 +26,9 @@
 
 #define SHIP_FLAG      -2
 #define SHIP_SFLAG     -3
+
+#event_handler("BI_GetCmdListOrderPriority", "BI_GetCmdListOrderPriority");
+
 int bi_icons_ShowType;
 int bi_icons_CommandMode;
 
@@ -297,6 +300,7 @@ void StartBattleInterface()
 	CreateEntity(&objShipPointer,"shippointer");
 	LayerAddObject(SEA_EXECUTE,&objShipPointer,222222);
 	LayerAddObject(SEA_REALIZE,&objShipPointer,-1);
+	DoQuestFunctionDelay("ActiveShowAfterReload", 0.2);
 }
 
 void RefreshBattleInterface()
@@ -304,6 +308,36 @@ void RefreshBattleInterface()
 	BI_SetCommandMode(0,-1,-1,-1);
 	SendMessage(&BattleInterface,"l",BI_MSG_REFRESH);
 	BI_SetCommandMode(BI_COMMODE_MY_SHIP_SELECT,-1,-1,-1);
+}
+
+ref BI_GetCmdListOrderPriority()
+{
+  int curItem = GetEventData();
+  BI_intRetValue = 0;
+
+  if(curItem >= 0 && curItem < 14) {
+    int i = 0;
+    int cmdList[14];
+    cmdList[i] = BI_COMMODE_FRIEND_FORT_SELECT; i++;
+    cmdList[i] = BI_COMMODE_NEUTRAL_FORT_SELECT; i++;
+    cmdList[i] = BI_COMMODE_ENEMY_FORT_SELECT; i++;
+    cmdList[i] = BI_COMMODE_NOTDISEASED_TOWN; i++;
+    cmdList[i] = BI_COMMODE_DISEASED_TOWN; i++;
+    cmdList[i] = BI_COMMODE_ENEMY_TOWN; i++;
+    cmdList[i] = BI_COMMODE_LAND_SELECT; i++;
+    cmdList[i] = BI_COMMODE_MY_SHIP_SELECT; i++;
+    cmdList[i] = BI_COMMODE_NEUTRAL_SHIP_SELECT; i++;
+    cmdList[i] = BI_COMMODE_FRIEND_SHIP_SELECT; i++;
+    cmdList[i] = BI_COMMODE_ENEMY_SHIP_SELECT; i++;
+    cmdList[i] = BI_COMMODE_COMMAND_SELECT; i++;
+    cmdList[i] = BI_COMMODE_CANNON_CHARGE; i++;
+    cmdList[i] = BI_COMMODE_USER_ICONS; i++;
+
+    BI_intRetValue = cmdList[curItem];
+  }
+
+
+  return &BI_intRetValue;
 }
 
 void DeleteBattleInterface()
@@ -558,7 +592,7 @@ void BI_LaunchCommand()
         Sea_CabinStartNow();
 		break;
 	case "BI_Boat":
-		if (!CheckAttribute(Characters[targetNum], "LockBoat"))
+		if (!CheckAttribute(Characters[targetNum], "LockBoat") && !HasSubStr(Characters[targetNum].id, "_DriftCap_"))
 		{
 			// Warship 09.07.09 Мэри Селест
 			// Второй раз на нее выслать шлюпку низя
@@ -842,7 +876,6 @@ void BI_LaunchCommand()
 		break;
 	case "BI_Turn180":
 		ActivateCharacterPerk(GetCharacter(charIdx),"Turn180");
-		Ship_Turn180(GetCharacter(charIdx));
 		PlayVoice("INTERFACE\SignalCompanion.wav");
 		break;
 	case "BI_SandbankManeuver":
@@ -892,7 +925,7 @@ void BI_UpdateShip()
 void BI_CreateShip()
 {
 	int charIndex = GetEventData();
-	if(charIndex>=0) ClearActiveChrPerks(GetCharacter(charIndex));
+	//if(charIndex>=0) ClearActiveChrPerks(GetCharacter(charIndex)); //ломало таймеры для морских активных перков
 	if( IsEntity(&BattleInterface) ) {
 		AddShipToInterface(charIndex);
 	}
@@ -946,6 +979,7 @@ void AddShipToInterface(int charIndex)
 		}
 	}
 	int myShip = false;
+	int transferableShip = false;
 	int shipRelation = BI_RELATION_NEUTRAL;
 	switch( SeaAI_GetRelation(charIndex,nMainCharacterIndex) )
 	{
@@ -964,7 +998,8 @@ void AddShipToInterface(int charIndex)
 			myShip = true;
 		}
 	}
-
+	transferableShip = myShip;
+	if (HasSubStr(chRef.id, "_DriftCap_") && !LAi_IsDead(chRef)) transferableShip = true;
 
 	if( CharacterIsDead(chRef) )
 	{
@@ -972,18 +1007,7 @@ void AddShipToInterface(int charIndex)
 			return;
 	}
 
-	if (myShip != true)
-	{
-		bCanSpeak = true;
-	}
-	//заглушка, убирающая интерфейс разговоров в море.
-	//кому из аддонщиков будет интересно привести систему разговоров в норм - раскоментарьте
-	//а у нас поставили сроки жесткие, програмеры в отпуске, и я банально не успеваю все оттестить
-	//и поправить, ибо некоторые баги програмерские
-	//для изьятия заглушки удалите нах следующую строчку
-	//bCanSpeak = false;
-
-	SendMessage(&BattleInterface,"llaall",BI_IN_CREATE_SHIP,charIndex,chRef,shipRef,myShip,shipRelation);
+	SendMessage(&BattleInterface,"llaallll",BI_IN_CREATE_SHIP,charIndex,chRef,shipRef,myShip,shipRelation,0,transferableShip);
 }
 
 void BI_DeleteShip()
@@ -1435,6 +1459,10 @@ ref GetCurrentCharge()
 	BattleInterface.textinfo.CannonsNumR.text = GetBortIntactCannonsNum(pchar, "rcannon", sti(refBaseShip.rcannon)) + "/" + GetBortCannonsMaxQty(pchar, "rcannon");
 	BattleInterface.textinfo.CannonsNumB.text = GetBortIntactCannonsNum(pchar, "bcannon", sti(refBaseShip.bcannon)) + "/" + GetBortCannonsMaxQty(pchar, "bcannon");
 	BattleInterface.textinfo.CannonsNumF.text = GetBortIntactCannonsNum(pchar, "fcannon", sti(refBaseShip.fcannon)) + "/" + GetBortCannonsMaxQty(pchar, "fcannon");
+	/*if (CheckAttribute(pchar,"perks.list.Turn180.delay")) BattleInterface.textinfo.Turn180CD.text = "Откат Манёвр. разворота: "+sti(pchar.perks.list.Turn180.delay)+" c.";
+	else BattleInterface.textinfo.Turn180CD.text = "";
+	if (CheckAttribute(pchar,"perks.list.ImmediateReload.delay")) BattleInterface.textinfo.ImmediateReloadCD.text = "Откат Предв. перезарядки: "+sti(pchar.perks.list.ImmediateReload.delay)+" c.";
+	else BattleInterface.textinfo.ImmediateReloadCD.text = "";*/ //инфа по перезарядке перков
 	//<---
 	return &BI_intNRetValue;
 }
@@ -1619,8 +1647,9 @@ void SetShipPictureDataByShipTypeName(string sType)
 	case "frigatequeen":		BI_intNRetValue[0] = 10+8*32;	BI_intNRetValue[1] = 10+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Фрегат
 	case "Catherine":			BI_intNRetValue[0] = 12+8*32;	BI_intNRetValue[1] = 12+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Королева-Катрин
 	case "flyingdutchman":		BI_intNRetValue[0] = 14+8*32;	BI_intNRetValue[1] = 14+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Варшип
-	case "santisima":			BI_intNRetValue[0] = 16+8*32;	BI_intNRetValue[1] = 16+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Быстрый мановар
-	case "soleyru":				BI_intNRetValue[0] = 18+8*32;	BI_intNRetValue[1] = 18+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Сулей Руаяль
+	case "flyingdutchman_n":	BI_intNRetValue[0] = 16+8*32;	BI_intNRetValue[1] = 16+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Варшип
+	case "santisima":			BI_intNRetValue[0] = 18+8*32;	BI_intNRetValue[1] = 18+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Быстрый мановар
+	case "soleyru":				BI_intNRetValue[0] = 20+8*32;	BI_intNRetValue[1] = 20+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Сулей Руаяль
 	}
 	BI_intNRetValue[3] = false;
 }
@@ -1987,6 +2016,20 @@ void SetParameterData()
 	BattleInterface.textinfo.Planks.pos.y = RecalculateVIcon(makeint(388* fHtRatio));//RecalculateVIcon(402);
 	BattleInterface.textinfo.Planks.text = XI_convertString("Planks");
 	BattleInterface.textinfo.Planks.refreshable = true;
+	
+	/*BattleInterface.textinfo.Turn180CD.font = "interface_button";
+	BattleInterface.textinfo.Turn180CD.scale = 1.0 * fHtRatio;
+	BattleInterface.textinfo.Turn180CD.color = argb(255,255,255,255);
+	BattleInterface.textinfo.Turn180CD.pos.x = sti(showWindow.right) - RecalculateHIcon(makeint(144* fHtRatio));//sti(showWindow.right) - RecalculateHIcon(104);
+	BattleInterface.textinfo.Turn180CD.pos.y = RecalculateVIcon(makeint(598* fHtRatio));//RecalculateVIcon(402);
+	BattleInterface.textinfo.Turn180CD.refreshable = true;
+	
+	BattleInterface.textinfo.ImmediateReloadCD.font = "interface_button";
+	BattleInterface.textinfo.ImmediateReloadCD.scale = 1.0 * fHtRatio;
+	BattleInterface.textinfo.ImmediateReloadCD.color = argb(255,255,255,255);
+	BattleInterface.textinfo.ImmediateReloadCD.pos.x = sti(showWindow.right) - RecalculateHIcon(makeint(144* fHtRatio));//sti(showWindow.right) - RecalculateHIcon(104);
+	BattleInterface.textinfo.ImmediateReloadCD.pos.y = RecalculateVIcon(makeint(628* fHtRatio));//RecalculateVIcon(402);
+	BattleInterface.textinfo.ImmediateReloadCD.refreshable = true;*/ //инфа по перкам
 
 	// Парусина
 	BattleInterface.textinfo.Sailcloth.font = "bold_numbers";
@@ -2148,7 +2191,7 @@ void SetParameterData()
 		BattleInterface.ShipIcon.xsize = 32;
 		BattleInterface.ShipIcon.ysize = 32;
 
-		BattleInterface.ShipIcon.commandlistverticaloffset =  makeint(-40 * fHtRatio);
+		BattleInterface.ShipIcon.commandlistverticaloffset =  makeint(-33 * fHtRatio);
 
 		BattleInterface.ShipIcon.iconoffset1 = RecalculateHIcon(makeint(70* fHtRatio))+","+RecalculateVIcon(makeint(68* fHtRatio));
 		BattleInterface.ShipIcon.iconoffset2 = RecalculateHIcon(makeint(70* fHtRatio))+","+RecalculateVIcon(makeint(178* fHtRatio));
@@ -2159,11 +2202,20 @@ void SetParameterData()
 		BattleInterface.ShipIcon.iconoffset7 = RecalculateHIcon(makeint(70* fHtRatio))+","+RecalculateVIcon(makeint(728* fHtRatio));
 		BattleInterface.ShipIcon.iconoffset8 = RecalculateHIcon(makeint(70* fHtRatio))+","+RecalculateVIcon(makeint(838* fHtRatio));
 
-		BattleInterface.CommandList.CommandMaxIconQuantity = 15; //boal
+		// BattleInterface.ShipIcon.iconoffset1 = RecalculateHIcon(makeint(70* fHtRatio))+","+RecalculateVIcon(makeint(838* fHtRatio));
+		// BattleInterface.ShipIcon.iconoffset2 = RecalculateHIcon(makeint(170* fHtRatio))+","+RecalculateVIcon(makeint(838* fHtRatio));
+		// BattleInterface.ShipIcon.iconoffset3 = RecalculateHIcon(makeint(270* fHtRatio))+","+RecalculateVIcon(makeint(838* fHtRatio));
+		// BattleInterface.ShipIcon.iconoffset4 = RecalculateHIcon(makeint(370* fHtRatio))+","+RecalculateVIcon(makeint(838* fHtRatio));
+		// BattleInterface.ShipIcon.iconoffset5 = RecalculateHIcon(makeint(470* fHtRatio))+","+RecalculateVIcon(makeint(838* fHtRatio));
+		// BattleInterface.ShipIcon.iconoffset6 = RecalculateHIcon(makeint(570* fHtRatio))+","+RecalculateVIcon(makeint(838* fHtRatio));
+		// BattleInterface.ShipIcon.iconoffset7 = RecalculateHIcon(makeint(670* fHtRatio))+","+RecalculateVIcon(makeint(838* fHtRatio));
+		// BattleInterface.ShipIcon.iconoffset8 = RecalculateHIcon(makeint(770* fHtRatio))+","+RecalculateVIcon(makeint(838* fHtRatio));
+
+		BattleInterface.CommandList.CommandMaxIconQuantity = 12; //boal
 		BattleInterface.CommandList.CommandIconSpace = 1;
 		BattleInterface.CommandList.CommandIconLeft = makeint(150 * fHtRatio);//157;
-		BattleInterface.CommandList.CommandIconWidth = RecalculateHIcon(makeint(54 * fHtRatio));
-		BattleInterface.CommandList.CommandIconHeight = RecalculateVIcon(makeint(54* fHtRatio));
+		BattleInterface.CommandList.CommandIconWidth = RecalculateHIcon(makeint(64 * fHtRatio));
+		BattleInterface.CommandList.CommandIconHeight = RecalculateVIcon(makeint(64* fHtRatio));
 
 		BattleInterface.CommandList.CommandNoteFont = "interface_button";
 		BattleInterface.CommandList.CommandNoteColor = argb(255,255,255,255);
@@ -2236,11 +2288,11 @@ void SetParameterData()
 		BattleInterface.ShipIcon.iconoffset7 = RecalculateHIcon(makeint(70* fHtRatio))+","+RecalculateVIcon(makeint(738* fHtRatio));
 		BattleInterface.ShipIcon.iconoffset8 = RecalculateHIcon(makeint(70* fHtRatio))+","+RecalculateVIcon(makeint(850* fHtRatio));
 
-		BattleInterface.CommandList.CommandMaxIconQuantity = 15; //boal
+		BattleInterface.CommandList.CommandMaxIconQuantity = 12; //boal
 		BattleInterface.CommandList.CommandIconSpace = 1;
 		BattleInterface.CommandList.CommandIconLeft = makeint(150 * fHtRatio);//157;
-		BattleInterface.CommandList.CommandIconWidth = RecalculateHIcon(makeint(54 * fHtRatio));
-		BattleInterface.CommandList.CommandIconHeight = RecalculateVIcon(makeint(54 * fHtRatio));
+		BattleInterface.CommandList.CommandIconWidth = RecalculateHIcon(makeint(64 * fHtRatio));
+		BattleInterface.CommandList.CommandIconHeight = RecalculateVIcon(makeint(64 * fHtRatio));
 
 		BattleInterface.CommandList.CommandNoteFont = "interface_button";
 		BattleInterface.CommandList.CommandNoteColor = argb(255,255,255,255);
@@ -2321,29 +2373,38 @@ ref ProcessSailDamage()
 	float sailPower = GetEventData();
 
 	ref chref = GetCharacter(chrIdx);
-	if (CheckAttribute(&RealShips[sti(chref.Ship.Type)], "Tuning.SailsSpecial") && rand(2)<1)
-	{
-		BI_g_fRetVal = 0;
-		return &BI_g_fRetVal;
-	}
-
-	if (LAi_IsImmortal(chref))
-	{
-		BI_g_fRetVal = 0;
-		return &BI_g_fRetVal;
-	}
 
 	string groupName = ""+groupNum;
 	aref arSail;
 	makearef(arSail,chref.ship.sails.(reyName).(groupName));
+	
+	if (LAi_IsImmortal(chref))
+	{
+		arSail.hd = DeleteOneSailHole(sti(chref.index), groupName, reyName, holeData, 1);//имитирует защиту залатыванием дырки в месте попадания
+		BI_g_fRetVal = 0;
+		return &BI_g_fRetVal;
+	}
 
 	float sailDmg = 0.0;
 	float sailDmgMax = GetCharacterShipSP(chref) * sailPower;
+	if(!CheckAttribute(arSail, "oldhd"))
+	{
+		arSail.oldhd = 0;
+	}
+	if(!CheckAttribute(arSail, "olddmg"))
+	{
+		arSail.olddmg = 0;
+	}
+	if(!CheckAttribute(arSail, "oldhc")) 
+	{
+		arSail.oldhc = 0;
+	}
 	if( !CheckAttribute(arSail,"dmg") )	{ sailDmg = 0.0; }
-
+	
 	if(sMastName=="*")
 	{
-		sailDmg = sailDmg + GetRigDamage(shootIdx,sti(AIBalls.CurrentBallType),chref);
+		//sailDmg = sailDmg + GetRigDamage(shootIdx,sti(AIBalls.CurrentBallType),chref);
+		//RigDamage тут всегда 0
 		if(sailDmg>sailDmgMax)	{ sailDmg = sailDmgMax; }
 		int needHole = GetNeedHoleFromDmg(sailDmg,sailDmgMax,maxHoleCount);
 		if(holeCount!=needHole)
@@ -2358,6 +2419,7 @@ ref ProcessSailDamage()
 				sailDmg = GetNeedDmgFromHole(holeCount,sailDmgMax,maxHoleCount);
 			}
 		}
+		sailDmg = GetNeedDmgFromHole(holeCount,sailDmgMax,maxHoleCount);
 	}
 	else
 	{
@@ -2369,13 +2431,40 @@ ref ProcessSailDamage()
 	{
 		Log_SetStringtoLog("MUST DIE!!! " + sailDmg);
 	}*/
+	
+	if(CheckAttribute(&RealShips[sti(chref.Ship.Type)], "Tuning.SailsSpecial") && rand(5)<1 && holedata != sti(arSail.oldhd))
+	{
 
-	arSail.hc = holeCount;
-	arSail.hd = holeData;
+		if(sailDmg - stf(arSail.olddmg) >=1)
+		{
+			arSail.hd = DeleteOneSailHole(sti(chref.index), groupName, reyName, holeData, 1);
+			arSail.oldhd = sti(arSail.hd);
+			if(!CheckAttribute(arSail, "defended"))
+			{
+				arSail.defended = 1;
+			}	
+			arSail.defended = sti(arSail.defended)+1;
+			arSail.hc = sti(arSail.oldhc);
+			arSail.oldhc = sti(arSail.hc);
+			arSail.dmg = stf(arSail.olddmg);
+			arSail.olddmg = stf(arSail.dmg);
+			chref.ship.SP = CalculateShipSP(chref);
+			BI_g_fRetVal = 0.0;
+			return &BI_g_fRetVal;
+		}
+	}
+	else
+	{
+		arSail.dmg = sailDmg;
+		arSail.hd = holeData;
+		arSail.hc = holeCount;
+		arSail.oldhd = holeData;
+	}
+	
 	arSail.mhc = maxHoleCount;
 	arSail.sp = sailPower;
-	arSail.dmg = sailDmg;
 
+	
 	chref.ship.SP = CalculateShipSP(chref);
 	BI_g_fRetVal = sailDmg;
 	return &BI_g_fRetVal;
@@ -2840,7 +2929,7 @@ bool CheckInstantRepairCondition(ref chref)
 	float chrShipSP = GetSailPercent(chref);
 
 	bool bYesHPRepair = chrShipHP < InstantRepairRATE;// boal 23.01.2004
-	bool bYesSPRepair = chrShipSP < InstantRepairRATEsail; //bestreducer быстрая починка// boal 23.01.2004
+	bool bYesSPRepair = chrShipSP < InstantRepairRATE; // boal 23.01.2004
 
 	if( bYesHPRepair )	{ bYesHPRepair = GetCargoGoods(chref,GOOD_PLANKS)>0; }
 	if( bYesSPRepair )	{ bYesSPRepair = GetCargoGoods(chref,GOOD_SAILCLOTH)>0; }
@@ -3193,6 +3282,8 @@ ref procGetSRollSpeed()
 // скорость подъема паруса
 float GetRSRollSpeed(ref chref)
 {
+	if (HasSubStr(chref.id, "_DriftCap_")) return 3.0;
+
 	int iShip = sti(chref.ship.type);
 	if( iShip<0 || iShip>=REAL_SHIPS_QUANTITY ) {return 0.0;}
 

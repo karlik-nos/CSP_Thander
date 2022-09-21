@@ -59,7 +59,7 @@ void ProcessDialogEvent()
 		else
 		{
  	    	Dialog.CurrentNode = "RelationAny_Done";
- 	    	npchar.quest.relation.summ = CalculateRelationSum(sti(npchar.quest.relation));
+ 	    	npchar.quest.relation.summ = CalculateRelationSum(sti(npchar.quest.relation)) * MOD_SKILL_ENEMY_RATE;
  	    }
  	}
 
@@ -123,7 +123,7 @@ void ProcessDialogEvent()
 
 		//*************************** Линейка Виспер **************
 		case "WhisperDocuments":
-			dialog.text = "Все верно. Эта услуга обойдется вам в 1000 монет. Чье гражданство вы бы хотели получить?";
+			dialog.text = "Все верно. Эта услуга обойдётся вам в 1000 монет. Чьё гражданство вы бы хотели получить?";
 			DeleteAttribute(Pchar, "perks.list.FlagSpa");
 			DeleteAttribute(Pchar, "Whisper.BuyDocuments");
 			if(makeint(Pchar.money) >= 1000)
@@ -187,7 +187,7 @@ void ProcessDialogEvent()
 		//*************************** Генератор - "Найденные судовые документы" **************
 		case "D_ShipLetters_1":
 			dialog.text = "Излагайте условия.";
-			s1 = "У меня, по счастливой случайности, оказался абсолютно легальный пакет судовых документов, еще не заявленных в розыск.";
+			s1 = "У меня, по счастливой случайности, оказался абсолютно легальный пакет судовых документов, ещё не заявленных в розыск.";
 			s1 = s1 + "Судно на плаву и не исключено из реестра, не беспокойтесь. Просто разиня-владелец умудрился потерять эти бумаги...";
 			link.l1 = s1;
 			link.l1.go = "D_ShipLetters_2";
@@ -227,25 +227,16 @@ void ProcessDialogEvent()
 				link.l3 = "Я хочу помириться с Англией.";
 				link.l3.go = "RelationTo_0";
 			}
-
-
-
 			if (ChangeCharacterNationReputation(pchar, FRANCE, 0) < 0 || bCheck)
 			{
 				link.l1 = "Я хочу помириться с Францией.";
 				link.l1.go = "RelationTo_1";
 			}
-
-
-
 			if (ChangeCharacterNationReputation(pchar, SPAIN, 0) < 0 || bCheck)
 			{
 				link.l2 = "Я хочу помириться с Испанией.";
 				link.l2.go = "RelationTo_2";
 			}
-
-
-
 			if (ChangeCharacterNationReputation(pchar, HOLLAND, 0) < 0 || bCheck)
 			{
 				link.l4 = "Я хочу помириться с Голландией.";
@@ -268,7 +259,7 @@ void ProcessDialogEvent()
 				Link.l10.go = "City_Buy";
 			}
 
-			Link.l11 = "Я пере"+GetSexPhrase("шел","шла")+" дорогу одному корсару и хочу наладить наши отношения. Можете это устроить?";
+			Link.l11 = "Я пере"+GetSexPhrase("шёл","шла")+" дорогу одному корсару и хочу наладить наши отношения. Можете это устроить?";
 			Link.l11.go = "PGG_peace";
 
 			link.l99 = "Знаете, я думаю, что обойдусь своими силами.";
@@ -473,19 +464,19 @@ void ProcessDialogEvent()
                     link.l1 = "Неплохая перспектива. Я "+ GetSexPhrase("согласен","согласна") +" на ваши условия!";
                     break;
                 case HOLLAND :
-                    dialog.text = "Голландия почти мирная страна, у вас станет много друзей и мало врагов. А сам патент обойдется вам всего лишь в "+pchar.PatentPrice+" золотых.";
+                    dialog.text = "Голландия почти мирная страна, у вас станет много друзей и мало врагов. А сам патент обойдётся вам всего лишь в "+pchar.PatentPrice+" золотых.";
                     link.l1 = "Неплохая перспектива. Я "+ GetSexPhrase("согласен","согласна") +" на ваши условия!";
                     break;
                 case FRANCE :
-                    dialog.text = "Друзья и враги Франции станут вашими. Вы сможете топить корабли врагов. А сам патент обойдется вам всего лишь в "+pchar.PatentPrice+" золотых.";
+                    dialog.text = "Друзья и враги Франции станут вашими. Вы сможете топить корабли врагов. А сам патент обойдётся вам всего лишь в "+pchar.PatentPrice+" золотых.";
                     link.l1 = "Отличная перспектива! Мне плевать, кому служить! Послужу и французам!";
                     break;
                 case SPAIN :
-                    dialog.text = "У Испании много врагов и они тут же станут вашими! Испанцы - нация морских воинов. Патент обойдется вам всего лишь в "+pchar.PatentPrice+" золотых.";
+                    dialog.text = "У Испании много врагов и они тут же станут вашими! Испанцы - нация морских воинов. Патент обойдётся вам всего лишь в "+pchar.PatentPrice+" золотых.";
                     link.l1 = "Вы один предлагаете мне что-то стоящее! Получите эти жалкие гроши за романтику кровавого боя и новые задания высокопоставленных особ!";
                     break;
                 case ENGLAND :
-                    dialog.text = "Если честно, таким образом генерал-губернатор Англии набивает свой карман. А сам патент обойдется вам всего лишь в "+pchar.PatentPrice+" золотых. ";
+                    dialog.text = "Если честно, таким образом генерал-губернатор Англии набивает свой карман. А сам патент обойдётся вам всего лишь в "+pchar.PatentPrice+" золотых. ";
                     link.l1 = "Я "+ GetSexPhrase("согласен","согласна") +" отдать ему свои кровные деньги, которые добыл"+ GetSexPhrase("","а") +" контрабандой и абордажами!!";
                     break;
 			}
@@ -514,7 +505,7 @@ void ProcessDialogEvent()
 		case "Contraband":
 			if (IsCharacterPerkOn(pchar, "Agent")) Pchar.questTemp.Relations.sum = makeint(0.3 * stf(Pchar.rank)/stf(Pchar.reputation)*DIPLOMAT_SUM);
 			else Pchar.questTemp.Relations.sum = makeint(0.1 * stf(Pchar.rank)/stf(Pchar.reputation)*DIPLOMAT_SUM);
-			dialog.Text = "Хорошо. Это обойдется в " + Pchar.questTemp.Relations.sum + " золотых.";
+			dialog.Text = "Хорошо. Это обойдётся в " + Pchar.questTemp.Relations.sum + " золотых.";
 			Link.l1 = "Я соглас"+ GetSexPhrase("ен","на") +".";
 			if(makeint(Pchar.money) < makeint(Pchar.questTemp.Relations.sum))
 			{
@@ -529,7 +520,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Contraband_Agreed":
-			dialog.Text = "Замечательно, я все улажу. Они будут иметь с вами дело.";
+			dialog.Text = "Замечательно, я всё улажу. Они будут иметь с вами дело.";
 			Link.l99 = "Спасибо.";
 			Link.l99.go = "exit";
 			ChangeContrabandRelation(pchar, 25);
@@ -541,7 +532,7 @@ void ProcessDialogEvent()
 			dialog.text = "Хм-м... даже не знаю, что сказать. Я, конечно, смогу выполнить вашу просьбу о примирении с "+ XI_ConvertString(Nations[sti(npchar.quest.relation)].Name + "Abl") +", но это будет вам стоить " + FindRussianMoneyString(iSumm) + ".";
 			if(sti(pchar.money) >= iSumm)
 			{
-				link.l1 = "Думаю, у меня все равно нет выбора. Так что вот ваши деньги.";
+				link.l1 = "Думаю, у меня всё равно нет выбора. Так что вот ваши деньги.";
 				link.l1.go = "relation3";
 			}
 			link.l2 = "Нет, это слишком большая сумма. Прощайте.";
@@ -600,7 +591,7 @@ void ProcessDialogEvent()
 			dialog.Text = "Хорошо, информация о сделке пошла. Попыток захвата города " + GetCityName(colonies[i].id) + " больше не будет.";
 			Link.l2 = "Спасибо. Всего хорошего.";
 			Link.l2.go = "exit";
-			Link.l3 = "Еще один вопрос.";
+			Link.l3 = "Ещё один вопрос.";
 			Link.l3.go = "relation";
 		break;
 		//линейка ГПК
@@ -631,7 +622,7 @@ void ProcessDialogEvent()
 				AddQuestRecord("ISS_PoorsMurder", "10");
 				LocatorReloadEnterDisable("Marigo_town", "houseH2", false);
 				if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sld = GetCharacter(NPC_GenerateCharacter("PoorKillSponsor", "smuggler_boss", "man", "spy", 30, PIRATE, -1, true)); // LEO: Страдать превозмогаторам 07.12.2021
-				else sld = GetCharacter(NPC_GenerateCharacter("PoorKillSponsor", "smuggler_boss", "man", "man_fast", 30, PIRATE, -1, true));
+				else sld = GetCharacter(NPC_GenerateCharacter("PoorKillSponsor", "smuggler_boss", "man", "man", 30, PIRATE, -1, true));
 				sld.name = "Оливер";
 				sld.lastname = "Траст";
 				FantomMakeCoolFighter(sld, 40, 90, 90, "blade26", "pistol3", 100);
@@ -645,25 +636,19 @@ void ProcessDialogEvent()
 				sld.location.group = "sit";
 				sld.location.locator = "sit1";
 				sld.dialog.currentnode = "PKInMarigo";
+				sld.items.letter_LSC = 1;
 				LAi_CharacterEnableDialog(sld);
 				LAi_RemoveLoginTime(sld);
 				sld.standUp = true; //вставать и нападать на врага
 				LAi_SetHuberType(sld);
-				LAi_group_MoveCharacter(sld, "OlivaTrust");
-				//ложим второе письмо
 				ChangeItemName("letter_LSC", "itmname_letter_LSC_1");
 				ChangeItemDescribe("letter_LSC", "itmdescr_letter_LSC_1");
-				ref sldd = ItemsFromID("letter_LSC");
-				sldd.shown = true;
-				//Boyer change #20170418-01
                 pchar.restoreLSCTrustLetter = "letter_LSC";
-				sldd.startLocation = "Marigo_houseH2";
-				sldd.startLocator = "item1";
 			}
 			else
 			{
 				dialog.text = "Никого вы не знаете, так что убирайтесь!";
-				link.l1 = "Черт, вылетело из головы...";
+				link.l1 = "Чёрт, вылетело из головы...";
 				link.l1.go = "exit";
 				pchar.questTemp.LSC = "toLicencer_2";
 			}

@@ -11,6 +11,7 @@ bool bDisableFastReload = false;
 #event_handler("evntBattleCommandSound","procBattleCommandSound");
 
 bool bLandInterfaceStart = false;
+bool dead = false;
 
 void procBattleCommandSound()
 {
@@ -635,16 +636,16 @@ void BLI_SetObjectData()
 		fTmp 											= makeint(60.0 * fHtRatio);
 		fTmp2 											= makeint(85.0 * fHtRatio);
 
-		objLandInterface.ManSign.gunreloadtexturename	= "battle_interface\MORALE_bar.tga";
+		objLandInterface.ManSign.gunreloadtexturename	= "";
 		objLandInterface.ManSign.gunreloadcolor 		= ARGB(255, 0, 255, 62);
 		objLandInterface.ManSign.gunreloadbackcolor		= ARGB(255, 0, 255, 62);
 		objLandInterface.ManSign.gunreloadUV			= "0.0,0.0,1.0,1.0";
 		fTmp 											= makeint(-10.0 * fHtRatio);
 		fTmp2 											= makeint(26.0 * fHtRatio);
 		objLandInterface.ManSign.gunreloadoffset		= fTmp + "," + fTmp2;
-		fTmp 											= makeint(60.0 * fHtRatio);
-		fTmp2 											= makeint(85.0 * fHtRatio);
-		objLandInterface.ManSign.gunreloadiconsize		= "70.0,6.0"
+		fTmp 											= makeint(56.0 * fHtRatio);
+		fTmp2 											= makeint(5.0 * fHtRatio);
+		objLandInterface.ManSign.gunreloadiconsize		= fTmp + "," + fTmp2;
 	}
 	else
 	{
@@ -721,17 +722,20 @@ void BLI_SetObjectData()
 		fTmp 											= makeint(60.0 * fHtRatio);
 		fTmp2 											= makeint(85.0 * fHtRatio);
 
-		objLandInterface.ManSign.gunreloadtexturename	= "battle_interface\MORALE_bar.tga";
+		objLandInterface.ManSign.gunreloadtexturename	= "";
 		objLandInterface.ManSign.gunreloadcolor 		= ARGB(255, 0, 255, 62);
 		objLandInterface.ManSign.gunreloadbackcolor		= ARGB(255, 0, 255, 62);
 		objLandInterface.ManSign.gunreloadUV			= "0.0,0.0,1.0,1.0";
 		fTmp 											= makeint(0.0 * fHtRatio);
-		fTmp2 											= makeint(26.0 * fHtRatio);
+		fTmp2 											= makeint(25.0 * fHtRatio);
 		objLandInterface.ManSign.gunreloadoffset		= fTmp + "," + fTmp2;
-		fTmp 											= makeint(60.0 * fHtRatio);
-		fTmp2 											= makeint(85.0 * fHtRatio);
-		objLandInterface.ManSign.gunreloadiconsize		= "48.0,8.0";
+		fTmp 											= makeint(39.0 * fHtRatio);
+		fTmp2 											= makeint(10.0 * fHtRatio);
+		objLandInterface.ManSign.gunreloadiconsize		= fTmp + "," + fTmp2;
 	}
+
+	fTmp    = makeint(60.0 * fHtRatio);
+	fTmp2   = makeint(85.0 * fHtRatio);
 
 	for(i = 1; i<=MAX_NUM_FIGHTERS + 1; i++) {
 		string sOffsetIcon = "iconoffset" + i;
@@ -867,34 +871,34 @@ void BLI_SetObjectData()
 		objLandInterface.textinfo.AltInfo.font = "interface_normal";
 		objLandInterface.textinfo.AltInfo.color = argb(243,254,252,169);
 		objLandInterface.textinfo.AltInfo.scale = 1.1 * fHtRatio;
-		objLandInterface.textinfo.AltInfo.pos.x = sti(showWindow.left) + RecalculateHIcon(300 * fHtRatio); 
+		objLandInterface.textinfo.AltInfo.pos.x = sti(showWindow.left) + RecalculateHIcon(300 * fHtRatio);
 		objLandInterface.textinfo.AltInfo.pos.y = RecalculateVIcon(20 * fHtRatio);
 		objLandInterface.textinfo.AltInfo.refreshable = true;
-		
+
 		objLandInterface.textinfo.AltInfo1.font = "interface_normal";
 		objLandInterface.textinfo.AltInfo1.scale = 1.1 * fHtRatio;
-		objLandInterface.textinfo.AltInfo1.pos.x = sti(showWindow.left) + RecalculateHIcon(285 * fHtRatio); 
+		objLandInterface.textinfo.AltInfo1.pos.x = sti(showWindow.left) + RecalculateHIcon(285 * fHtRatio);
 		objLandInterface.textinfo.AltInfo1.pos.y = RecalculateVIcon(40 * fHtRatio);
 		objLandInterface.textinfo.AltInfo1.refreshable = true;
-		
+
 		objLandInterface.textinfo.AltInfo2.font = "interface_normal";
 		objLandInterface.textinfo.AltInfo2.scale = 1.1 * fHtRatio;
-		objLandInterface.textinfo.AltInfo2.pos.x = sti(showWindow.left) + RecalculateHIcon(285 * fHtRatio); 
+		objLandInterface.textinfo.AltInfo2.pos.x = sti(showWindow.left) + RecalculateHIcon(285 * fHtRatio);
 		objLandInterface.textinfo.AltInfo2.pos.y = RecalculateVIcon(60 * fHtRatio);
 		objLandInterface.textinfo.AltInfo2.refreshable = true;
 
 		objLandInterface.textinfo.AltInfo3.font = "interface_normal";
 		objLandInterface.textinfo.AltInfo3.scale = 1.1 * fHtRatio;
-		objLandInterface.textinfo.AltInfo3.pos.x = sti(showWindow.left) + RecalculateHIcon(306 * fHtRatio); 
+		objLandInterface.textinfo.AltInfo3.pos.x = sti(showWindow.left) + RecalculateHIcon(306 * fHtRatio);
 		objLandInterface.textinfo.AltInfo3.pos.y = RecalculateVIcon(80 * fHtRatio);
 		objLandInterface.textinfo.AltInfo3.refreshable = true;
 	}
 
-	objLandInterface.textinfo.deadboxinfo.font = "interface_button";
+	/* objLandInterface.textinfo.deadboxinfo.font = "interface_button";
 	objLandInterface.textinfo.deadboxinfo.scale = 1.3 * fHtRatio;
 	objLandInterface.textinfo.deadboxinfo.pos.x = sti(showWindow.right) - RecalculateHIcon(makeint(130 * fHtRatio));
 	objLandInterface.textinfo.deadboxinfo.pos.y = RecalculateVIcon(makeint(140 * fHtRatio));
-	objLandInterface.textinfo.deadboxinfo.refreshable = true;
+	objLandInterface.textinfo.deadboxinfo.refreshable = true; */
 
 	objLandInterface.CommandList.CommandMaxIconQuantity = 15;
 	objLandInterface.CommandList.CommandIconSpace = 1;
@@ -926,26 +930,26 @@ void ModifyTextInfo()
 		objLandInterface.textinfo.AltInfo4.text = "";
 		if(CheckAttribute(loadedLocation,"fastreload"))
 		{
-			objLandInterface.textinfo.AltInfo.text  = "Для быстрого перехода используйте кнопки:"; 
+			objLandInterface.textinfo.AltInfo.text  = "Для быстрого перехода используйте кнопки:";
 			objLandInterface.textinfo.AltInfo1.text = "1-Порт, 2-Магазин, 3-Верфь, 4-Таверна ";
 			objLandInterface.textinfo.AltInfo2.text = "5-Резиденция, 6-Ростовщик, 7-Церковь ";
-			objLandInterface.textinfo.AltInfo3.text = "8-Бордель, 9-Портовое управление, 0-Тюрьма"; 
+			objLandInterface.textinfo.AltInfo3.text = "8-Бордель, 9-Портовое управление, 0-Тюрьма";
 
 		}
 		else
 		{
-			objLandInterface.textinfo.AltInfo.text  = " "; 
+			objLandInterface.textinfo.AltInfo.text  = " ";
 			objLandInterface.textinfo.AltInfo1.text = " ";
 			objLandInterface.textinfo.AltInfo2.text = " ";
-			objLandInterface.textinfo.AltInfo3.text = " "; 
+			objLandInterface.textinfo.AltInfo3.text = " ";
 		}
 	}
 	else
 	{
-		objLandInterface.textinfo.AltInfo.text  =  " "; 
+		objLandInterface.textinfo.AltInfo.text  =  " ";
 		objLandInterface.textinfo.AltInfo1.text =  " ";
 		objLandInterface.textinfo.AltInfo2.text =  " ";
-		objLandInterface.textinfo.AltInfo3.text = " "; 
+		objLandInterface.textinfo.AltInfo3.text = " ";
 	}
 }
 
@@ -987,9 +991,19 @@ void RefreshChargeTime()
 		i = Dead_FindCloseBody();
 		if (i != -1)
 		{
-			objLandInterface.textinfo.deadboxinfo.text = "Есть труп для обыска";
+			//objLandInterface.textinfo.deadboxinfo.text = "Есть труп для обыска";
+			Log_SetActiveAction("DeadBox");
+			dead = true;
 		}
-		else objLandInterface.textinfo.deadboxinfo.text = "";
+		else 
+		{
+			if (dead)
+			{
+				//objLandInterface.textinfo.deadboxinfo.text = "";
+				Log_SetActiveAction("Nothing");
+				dead = false;
+			}
+		}
 	}
 }
 
@@ -1080,7 +1094,7 @@ void BLI_SetPossibleCommands()
 		// boal запрет всех переходов
 		if (chrDisableReloadToLocation) bTmpBool = false;
 		if (!CheckAttribute(loadedLocation,"fastreload")) bTmpBool = false;  // в каюте некуда переходить
-		if (bTmpBool) // все еще можно переходить, провер§ем город враг
+		if (bTmpBool) // все ещё можно переходить, провер§ем город враг
 		{
 		    string sNation = Colonies[FindColony(loadedLocation.fastreload)].nation;
 			if (sNation != "none")
@@ -1604,12 +1618,12 @@ void LI_ProcessControlPress()
 		break;
 
 		case "LICommandsActivate":
-			PlaySound("interface\ok.wav"); // boal даешь звуки! 
+			PlaySound("interface\ok.wav"); // boal даешь звуки!
 			if(bAltInfo)
 			{
 				bAltInfo = false;
 				ModifyTextInfo();
-			}				
+			}
 		break;
 	}
 }

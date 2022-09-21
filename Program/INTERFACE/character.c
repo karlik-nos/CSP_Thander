@@ -19,6 +19,7 @@ void InitInterface_R(string iniName, ref _char)
     {
     	bChangePIRATES = true;
     	DeleteAttribute(xi_refCharacter, "SystemInfo.ChangePIRATES");
+		_char.bchangepirates = 0;
 	}
 	GameInterface.StatusLine.LOYALITY.Max = 1;
     GameInterface.StatusLine.LOYALITY.Min = 0;
@@ -65,8 +66,8 @@ void IDoExit(int exitCode)
 	if (bChangePIRATES)
 	{
 		xi_refCharacter.skill.FreeSPECIAL = 0; // если не все распределил, сам дурак
-
-		if (startherotype > 11)//Для уникальных стартов даем другое начало
+		DeleteAttribute(xi_refCharacter,"bchangepirates");
+		if (startherotype > 10)//Для уникальных стартов даём другое начало
 		{
     		ref sld = characterFromID("Sailor_1");
     		LAi_SetActorTypeNoGroup(pchar);
@@ -201,12 +202,12 @@ void SetVariable()
     GameInterface.StatusLine.LOYALITY.Value = GetCharacterLoyality(xi_refCharacter);
     if (xi_refCharacter.id == pchar.id)
     {
-	    GameInterface.StatusLine.BAR_HEALTH.Max   = 54;
+	    GameInterface.StatusLine.BAR_HEALTH.Max   = 60;
 	    GameInterface.StatusLine.BAR_HEALTH.Min   = 1;
 	    GameInterface.StatusLine.BAR_HEALTH.Value = makeint(pchar.Health.HP);
-	    if (sti(pchar.Health.HP) > 54 )
+	    if (sti(pchar.Health.HP) > 60 )
 	    {
-	        GameInterface.StatusLine.BAR_HEALTH.Value = 54;
+	        GameInterface.StatusLine.BAR_HEALTH.Value = 60;
 	    }
     }
     else
