@@ -2643,6 +2643,9 @@ void CalculateInfoDataF55()
 {
 	totalInfo = descF55;
 
+	TakeNItems(PChar, "jewelry11", 50);
+	TakeNItems(PChar, "chest", 12);
+
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 	
 	for (int z = 0; z < ITEMS_QUANTITY;z++)

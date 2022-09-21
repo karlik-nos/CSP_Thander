@@ -1,3 +1,7 @@
+//0.HP.0.MAST.Speed.Turn.WAS.Capacity.Crew.Cannon
+string g_ShipBermudeTuningGoods[10] = {"","Mahogany","","Planks","Silk","Linen","Cotton","Sandal","Leather","Ebony"};
+string g_ShipBermudeTuningItems[10] = {"","jewelry17","","jewelry11","jewelry2","jewelry3","jewelry4","jewelry5","jewelry1","icollection"};
+
 void SetShipTuningF(ref chr, string sStat, float fBonus)
 {
 	ref rShip = &RealShips[sti(chr.ship.type)];

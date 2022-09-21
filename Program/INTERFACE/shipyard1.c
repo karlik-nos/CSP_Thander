@@ -17,12 +17,10 @@ string sMessageMode, index;
 
 int sundukSum;//на все апгрейды одинаковое колво сундуков	//chest
 int Tun_Mater1[10];//кол-во товар
-string Tun_Name1_Goods[10] = {"","Mahogany","","Planks","Silk","Linen","Cotton","Sandal","Leather","Ebony"};//0.HP.0.MAST.Speed.Turn.WAS.Capacity.Crew.Cannon
 int Tun_Mater2[10];//кол-во предмет
-string Tun_Name2_Items[10] = {"","jewelry17","","jewelry9","jewelry2","jewelry3","jewelry4","jewelry5","jewelry1","icollection"};
 int Tun_Mater3[10];//кол-во деньги	//gold
 string sAdd[10] = {"","\nкорпус: ","","\nмачты: ","\nскорость: ","\nманёвренность: ","\nбейдевинд: ","\nдэдвейт: ","\nкоманда: ","\nкалибр: "};
-//сменить крестики на жемчуг?? jewelry9
+
 int lastsort = 0;
 bool blastsort;
 
@@ -214,6 +212,7 @@ void FillShipParam()
 		ref rRealShip = &RealShips[iShip];
 		ref rBaseShip = GetShipByType(sti(rRealShip.BaseType));
 		DeleteAttribute(rRealShip, "Tuning");//просто затираем записи об апгрейдах
+		DeleteAttribute(rRealShip, "Untuned");
 
 		rRealShip.HP = stf(rBaseShip.HP) * (1 + Ship_Sheme[1]/10.0*SHIP_STAT_RANGE_REQUEST);
 		rRealShip.MastMultiplier = stf(rBaseShip.MastMultiplier) - (Ship_Sheme[3] * 0.03);
@@ -677,22 +676,22 @@ void DoBuyShip()
 		sTemp = "Кроме того, для особых усовершенствований корабля мне нужно будет доставить следующие материалы: ";
 		for (int i=1; i<10; i++)
 		{
-		if (i==2) continue;
-		if (Tune_Sheme[i])
+			if (i==2) continue;
+			if (Tune_Sheme[i])
 			{
-			sTemp2 = Tun_Name1_Goods[i];
-			refNPCShipyard.questTemp.(sTemp2) = Tun_Mater1[i];
-			sTemp += XI_ConvertString(sTemp2) + " - " + Tun_Mater1[i] + "шт., ";
-			sTemp2 = Tun_Name2_Items[i];
-			refNPCShipyard.questTemp.(sTemp2) = Tun_Mater2[i];
-			sTemp += LanguageConvertString(idLngFile, Items[FindItem(Tun_Name2_Items[i])].name) + " - " + Tun_Mater2[i] + "шт., ";
+				sTemp2 = g_ShipBermudeTuningGoods[i];
+				refNPCShipyard.questTemp.(sTemp2) = Tun_Mater1[i];
+				sTemp += XI_ConvertString(sTemp2) + " - " + Tun_Mater1[i] + "шт., ";
+				sTemp2 = g_ShipBermudeTuningItems[i];
+				refNPCShipyard.questTemp.(sTemp2) = Tun_Mater2[i];
+				sTemp += LanguageConvertString(idLngFile, Items[FindItem(g_ShipBermudeTuningItems[i])].name) + " - " + Tun_Mater2[i] + "шт., ";
 			}
-		else
+			else
 			{
-			sTemp2 = Tun_Name1_Goods[i];
-			refNPCShipyard.questTemp.(sTemp2) = 0;
-			sTemp2 = Tun_Name2_Items[i];
-			refNPCShipyard.questTemp.(sTemp2) = 0;
+				sTemp2 = g_ShipBermudeTuningGoods[i];
+				refNPCShipyard.questTemp.(sTemp2) = 0;
+				sTemp2 = g_ShipBermudeTuningItems[i];
+				refNPCShipyard.questTemp.(sTemp2) = 0;
 			}
 		}
 		refNPCShipyard.questTemp.chest = sundukSum*(iTunPoints-iFreeTP);
@@ -852,11 +851,11 @@ void FillPrice()
 			{
 				if(Tune_Sheme[k])
 				{
-				iTemp = Tun_Mater3[k];
-				iTemp += GetStoreGoodsPrice(refStore, FindGood(Tun_Name1_Goods[k]), PRICE_TYPE_BUY, pchar, Tun_Mater1[k]);
-				iTemp += Tun_Mater2[k] * GetTradeItemPrice(Tun_Name2_Items[k], PRICE_TYPE_BUY);
-				stextPRICE += sAdd[k] + MakeMoneyShow(iTemp, MONEY_SIGN, MONEY_DELIVER);
-				iPriceOrder += iTemp;
+					iTemp = Tun_Mater3[k];
+					iTemp += GetStoreGoodsPrice(refStore, FindGood(g_ShipBermudeTuningGoods[k]), PRICE_TYPE_BUY, pchar, Tun_Mater1[k]);
+					iTemp += Tun_Mater2[k] * GetTradeItemPrice(g_ShipBermudeTuningItems[k], PRICE_TYPE_BUY);
+					stextPRICE += sAdd[k] + MakeMoneyShow(iTemp, MONEY_SIGN, MONEY_DELIVER);
+					iPriceOrder += iTemp;
 				}
 			}
 		}
@@ -871,52 +870,52 @@ void FillPrice()
 			i = 1;
 			for (k=1;k<10;k++)
 			{
-			if (Tune_Sheme[k])
+				if (Tune_Sheme[k])
 				{
-				row = "tr" + i;
-		 		sGood = Tun_Name1_Goods[k];
-				GameInterface.TABLE_TUN.(row).td1.icon.group = "GOODS";
-				GameInterface.TABLE_TUN.(row).td1.icon.image = sGood;
-				GameInterface.TABLE_TUN.(row).td1.icon.offset = "-3, -1";
-				GameInterface.TABLE_TUN.(row).td1.icon.width = 20;
-				GameInterface.TABLE_TUN.(row).td1.icon.height = 20;
-				GameInterface.TABLE_TUN.(row).td1.textoffset = "17,0";
-				GameInterface.TABLE_TUN.(row).td1.str = XI_ConvertString(sGood);
-				GameInterface.TABLE_TUN.(row).td1.scale = 0.85;
-				GameInterface.TABLE_TUN.(row).td1.align = "left";
-				GameInterface.TABLE_TUN.(row).td2.str = Tun_Mater1[k];
-				GameInterface.TABLE_TUN.(row).td2.scale = 0.85;
-				i++;
-				row = "tr" + i;
-				m = FindItem(Tun_Name2_Items[k]);
-				GameInterface.TABLE_TUN.(row).td1.icon.group = Items[m].picTexture;
-				GameInterface.TABLE_TUN.(row).td1.icon.image = "itm" + Items[m].picIndex;
-				GameInterface.TABLE_TUN.(row).td1.icon.offset = "-2,0";
-				GameInterface.TABLE_TUN.(row).td1.icon.width = 18;
-				GameInterface.TABLE_TUN.(row).td1.icon.height = 18;
-				GameInterface.TABLE_TUN.(row).td1.textoffset = "17,0";
-				GameInterface.TABLE_TUN.(row).td1.scale = 0.70;
-				GameInterface.TABLE_TUN.(row).td1.align = "left";
-				GameInterface.TABLE_TUN.(row).td1.str = LanguageConvertString(idLngFile, Items[m].name);
-				GameInterface.TABLE_TUN.(row).td2.str = Tun_Mater2[k];
-				GameInterface.TABLE_TUN.(row).td2.scale = 0.85;
-				i++;
-				Tun_Mater3_sum += Tun_Mater3[k];
+					row = "tr" + i;
+					sGood = g_ShipBermudeTuningGoods[k];
+					GameInterface.TABLE_TUN.(row).td1.icon.group = "GOODS";
+					GameInterface.TABLE_TUN.(row).td1.icon.image = sGood;
+					GameInterface.TABLE_TUN.(row).td1.icon.offset = "-3, -1";
+					GameInterface.TABLE_TUN.(row).td1.icon.width = 20;
+					GameInterface.TABLE_TUN.(row).td1.icon.height = 20;
+					GameInterface.TABLE_TUN.(row).td1.textoffset = "17,0";
+					GameInterface.TABLE_TUN.(row).td1.str = XI_ConvertString(sGood);
+					GameInterface.TABLE_TUN.(row).td1.scale = 0.85;
+					GameInterface.TABLE_TUN.(row).td1.align = "left";
+					GameInterface.TABLE_TUN.(row).td2.str = Tun_Mater1[k];
+					GameInterface.TABLE_TUN.(row).td2.scale = 0.85;
+					i++;
+					row = "tr" + i;
+					m = FindItem(g_ShipBermudeTuningItems[k]);
+					GameInterface.TABLE_TUN.(row).td1.icon.group = Items[m].picTexture;
+					GameInterface.TABLE_TUN.(row).td1.icon.image = "itm" + Items[m].picIndex;
+					GameInterface.TABLE_TUN.(row).td1.icon.offset = "-2,0";
+					GameInterface.TABLE_TUN.(row).td1.icon.width = 18;
+					GameInterface.TABLE_TUN.(row).td1.icon.height = 18;
+					GameInterface.TABLE_TUN.(row).td1.textoffset = "17,0";
+					GameInterface.TABLE_TUN.(row).td1.scale = 0.65;
+					GameInterface.TABLE_TUN.(row).td1.align = "left";
+					GameInterface.TABLE_TUN.(row).td1.str = LanguageConvertString(idLngFile, Items[m].name);
+					GameInterface.TABLE_TUN.(row).td2.str = Tun_Mater2[k];
+					GameInterface.TABLE_TUN.(row).td2.scale = 0.85;
+					i++;
+					Tun_Mater3_sum += Tun_Mater3[k];
 				}
 			}
-				row = "tr" + i;
-				m = FindItem("Chest");
-				GameInterface.TABLE_TUN.(row).td1.icon.group = Items[m].picTexture;
-				GameInterface.TABLE_TUN.(row).td1.icon.image = "itm" + Items[m].picIndex;
-				GameInterface.TABLE_TUN.(row).td1.icon.offset = "-2, 0";
-				GameInterface.TABLE_TUN.(row).td1.icon.width = 18;
-				GameInterface.TABLE_TUN.(row).td1.icon.height = 18;
-				GameInterface.TABLE_TUN.(row).td1.textoffset = "17,0";
-				GameInterface.TABLE_TUN.(row).td1.scale = 0.85;
-				GameInterface.TABLE_TUN.(row).td1.align = "left";
-				GameInterface.TABLE_TUN.(row).td1.str = LanguageConvertString(idLngFile, Items[m].name);
-				GameInterface.TABLE_TUN.(row).td2.str = sundukSum*(iTunPoints - iFreeTP);
-				GameInterface.TABLE_TUN.(row).td2.scale = 0.85;
+			row = "tr" + i;
+			m = FindItem("Chest");
+			GameInterface.TABLE_TUN.(row).td1.icon.group = Items[m].picTexture;
+			GameInterface.TABLE_TUN.(row).td1.icon.image = "itm" + Items[m].picIndex;
+			GameInterface.TABLE_TUN.(row).td1.icon.offset = "-2, 0";
+			GameInterface.TABLE_TUN.(row).td1.icon.width = 18;
+			GameInterface.TABLE_TUN.(row).td1.icon.height = 18;
+			GameInterface.TABLE_TUN.(row).td1.textoffset = "17,0";
+			GameInterface.TABLE_TUN.(row).td1.scale = 0.85;
+			GameInterface.TABLE_TUN.(row).td1.align = "left";
+			GameInterface.TABLE_TUN.(row).td1.str = LanguageConvertString(idLngFile, Items[m].name);
+			GameInterface.TABLE_TUN.(row).td2.str = sundukSum*(iTunPoints - iFreeTP);
+			GameInterface.TABLE_TUN.(row).td2.scale = 0.85;
 
 			Table_UpdateWindow("TABLE_TUN");
 			SetFormatedText("Money_TEXT4", "Аванс за апгрейды: " + MakeMoneyShow(Tun_Mater3_sum, MONEY_SIGN, MONEY_DELIVER));
@@ -958,7 +957,7 @@ void CalcTuningPrice()
 	Tun_Mater3[i] = makeint((shipHP * MOD_SKILL_ENEMY_RATE + 4000 * ((7-shipClass) * MOD_SKILL_ENEMY_RATE)) * fQuestShip);
 	i = i + 2;//MAST
 	Tun_Mater1[i] = makeint((shipHP * 25/1000 + 70 * (7-shipClass)) * fQuestShip);
-	Tun_Mater2[i] = makeint(5 * (7-shipClass) * fQuestShip);
+	Tun_Mater2[i] = makeint(10 * (7-shipClass) * fQuestShip);
 	Tun_Mater3[i] = makeint((100 * MastMulti * MOD_SKILL_ENEMY_RATE + 4000 * ((7-shipClass) * MOD_SKILL_ENEMY_RATE)) * fQuestShip);
 	i++;//Speed
 	Tun_Mater1[i] = makeint((shipHP * 25/1000 + 70 * (7-shipClass)) * fQuestShip);

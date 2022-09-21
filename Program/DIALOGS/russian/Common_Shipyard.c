@@ -1,6 +1,4 @@
 // boal 08/04/06 общий диалог верфи
-string Tun_Name1_Goods[8] = {"Mahogany","Planks","Silk","Linen","Cotton","Sandal","Leather","Ebony"};
-string Tun_Name2_Items[8] = {"jewelry17","jewelry9","jewelry2","jewelry3","jewelry4","jewelry5","jewelry1","icollection"};
 string sProf;
 #include "DIALOGS\russian\Rumours\Common_rumours.c"  //homo 25/06/06
 void ProcessDialogEvent()
@@ -1490,7 +1488,7 @@ string checkOrderMatherial(ref NPChar)
 
 	for (int k=0;k<8;k++)
 	{
-		sGood1 = Tun_Name1_Goods[k];
+		sGood1 = g_ShipBermudeTuningGoods[k];
 		amount = GetSquadronGoods(Pchar, FindGood(sGood1)) - sti(NPChar.questtemp.(sGood1));
 		if (amount < 0) amount = amount + sti(NPChar.questtemp.(sGood1)); else amount = sti(NPChar.questtemp.(sGood1));
 		RemoveCharacterGoods(Pchar, FindGood(sGood1), amount);
@@ -1498,7 +1496,7 @@ string checkOrderMatherial(ref NPChar)
 		amount = sti(NPChar.questtemp.(sGood1));
 		if (amount > 0) sLeft += XI_ConvertString(sGood1) + " - " + amount + "шт., ";
 
-		sItem2 = Tun_Name2_Items[k];
+		sItem2 = g_ShipBermudeTuningItems[k];
 		amount = GetCharacterItem(pchar, sItem2) - sti(NPChar.questtemp.(sItem2));
 		if (amount < 0) amount = amount + sti(NPChar.questtemp.(sItem2)); else amount = sti(NPChar.questtemp.(sItem2));
 		TakeNItems(pchar, sItem2, -amount);
