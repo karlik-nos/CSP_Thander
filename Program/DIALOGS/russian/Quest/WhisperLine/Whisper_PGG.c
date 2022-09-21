@@ -55,8 +55,8 @@ void ProcessDialogEvent()
 		break;
 
 		case "Quest_Whisper_3":
-			dialog.text = "Никто не ждёт испанскую инквизицию!";
-			link.l1 = "Что?";
+			dialog.text = "Вот ты и попадась, Виспер!";
+			link.l1 = "...";
 			link.l1.go = "Quest_Whisper_3_exit";
 		break;
 
@@ -80,7 +80,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Quest_Whisper_5":
-			dialog.text = "Виспер! Наконец-то мы выследили тебя, ведьма! Теперь ты поплатишься за свои злодеяния!";
+			dialog.text = "Наконец-то мы выследили тебя, ведьма! Теперь ты поплатишься за свои злодеяния!";
 			link.l1.go = "Quest_Whisper_5_exit";
 		break;
 
@@ -338,15 +338,14 @@ void ProcessDialogEvent()
 
 			ref _location = &locations[reload_location_index];
 			//DeleteAttribute(_location, "box1");
-			_location.box2.money = 250000;
-			_location.box2.items.icollection = 5;
-			_location.box2.items.chest = 10;
+			_location.box2.money = 50000;
+			_location.box2.items.icollection = 1;
+			_location.box2.items.chest = 3;
 			_location.box2.items.jewelry1 = 20+rand(5);
 			_location.box2.items.jewelry2 = 20+rand(5);
 			_location.box2.items.jewelry3 = 20+rand(5);
 			_location.box2.items.jewelry4 = 11+rand(5);
-			_location.box2.items.BackPack5 = 1;
-			_location.box2.items.DeSouzaCross = 1;
+			_location.box2.items.BackPack3 = 1;
 			ChangeItemName("DeSouzaCross", "itmname_DeSouzaCross_DH");
 		break;
 
