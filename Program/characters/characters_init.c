@@ -100,7 +100,7 @@ void CreateCharacters()
 	ReloadProgressUpdate();
 	Trace("Barbados: " + n);
 	
-	n = CreateBarbadosCharacters(n);
+	n = CreateBahamesCharacters(n);
 	ReloadProgressUpdate();
 	Trace("Bahames: " + n);
 

@@ -1,5 +1,5 @@
 
-int CreateTrinidadCharacters(int n)
+int CreateBahamesCharacters(int n)
 {
 	ref ch;
 
@@ -66,9 +66,12 @@ int CreateTrinidadCharacters(int n)
 
 	makeref(ch,Characters[n]);			//Трактирщик
 	ch.id		= "Nassau_tavernkeeper";
-	ch.model	= "barmen_15";
-	ch.greeting = "Gr_Barmen";
-	ch.sex = "man";
+	ch.name		= "Инес";
+	ch.lastname = "Диаз";
+	ch.model	= "InesDias";
+	ch.model.animation	= "woman";
+	ch.greeting = "Gr_Barmen_woman";
+	ch.sex = "woman";
 	ch.City = "Nassau";
 	ch.location	= "Nassau_Tavern";
 	ch.location.group = "barmen";
