@@ -919,11 +919,6 @@ void SeaLogin(ref Login)
 
 		int iNumFantomShips = Fantom_GenerateEncounterExt(sGName, &oResult, iEncounterType, iNumWarShips, iNumMerchantShips, iNation);
 
-		//Lipsar 2 ряда кораблей
-		/*if(iEncounterType != ENCOUNTER_TYPE_ALONE && iNumFantomShips > SHIPS_NUM_DOUBLE)
-            SendMessage(&AISea, "lsl", AI_MESSAGE_GROUP_SET_LINES, sGName, 2);
-		//Lipsar*/
-
 		// Ugeen --> генерация параметров	для спецэнкаунтеров
 		if (iEncounterType == ENCOUNTER_TYPE_BARREL || iEncounterType == ENCOUNTER_TYPE_BOAT)
 		{
@@ -1043,6 +1038,8 @@ void SeaLogin(ref Login)
 
 				SetRandomNameToCharacter(rFantom);
 				SetRandomNameToShip(rFantom);
+
+				rFantom.GroupShipPos_event = "CalculateGroupShipPos";
 
 				SetSeaFantomParam(rFantom, rEncounter.Type); // все там
 
@@ -1269,6 +1266,8 @@ void Sea_LoginGroup(string sGroupID)
 		return;
 	}
 	Group_SetGroupCommander(sGroupID, rGroupCommander.id);  // странная проверка и назначение, но было и пусть будет
+
+	&Characters[GetCharacterIndex(rGroupCommander.id)].GroupShipPos_event = "CalculateGroupShipPos";
 
 	// set location near
 	if (CheckAttribute(rGroup, "location.neargroup"))
