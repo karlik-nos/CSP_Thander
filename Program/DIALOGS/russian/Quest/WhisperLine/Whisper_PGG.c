@@ -55,7 +55,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Quest_Whisper_3":
-			dialog.text = "Вот ты и попадась, Виспер!";
+			dialog.text = "Вот ты и попалась, Виспер!";
 			link.l1 = "...";
 			link.l1.go = "Quest_Whisper_3_exit";
 		break;
