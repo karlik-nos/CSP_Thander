@@ -162,6 +162,14 @@ void ProcessDialogEvent()
 					NPChar.quest.meeting = "1";
 					break;
 				}
+				if (npchar.city == "Nassau")
+				{
+					dialog.Text = "Чего вылупил"+ GetSexPhrase("ся","ась") +"? Не ожидал"+ GetSexPhrase("","а") +", что тут баба всем заправляет?! Ха! Старая "+GetFullName(NPChar)+" ещё покажет всем, что у неё есть порох в пороховницах!";
+					Link.l1 = "Эй, где ты научилась этим манерам?";
+					Link.l1.go = "Nassau_1";
+					NPChar.quest.meeting = "1";
+					break;
+				}
 				dialog.Text = "Добро пожаловать, " + GetAddress_Form(NPChar) + ". Еда, выпивка и развлечения - все по умеренным ценам!";
 				Link.l1 = "Посмотрим... Я " + GetFullName(pchar) + ".";
 				Link.l1.go = "meeting";
@@ -393,6 +401,34 @@ void ProcessDialogEvent()
 			if (npchar.city == "FortFrance")
 			{
 				dialog.Text = "Я же старый весёлый трактирщик, и я всегда рад поднять вам настроение, "+ GetSexPhrase("друг мой","моя дорогая") +". Желаете рому? Хи-хи-хи.";
+				Link.l1 = "Мне нужна команда, " + NPChar.name + ".";
+				Link.l1.go = "crew hire";
+				Link.l2 = NPChar.name + ", давай поговорим...";
+				Link.l2.go = "int_quests";
+
+				if (CheckAttribute(pchar, "GenQuest.LoanChest.TakeChest") && sti(pchar.GenQuest.LoanChest.TargetIdx) == sti(NPChar.index))
+				{
+					link.l21 = "Слушай, нам нужно поговорить о финансовых делах.";
+					link.l21.go = "LoanForAll";//(перессылка в кредитный генератор)
+				}
+				// Квестовый генератор священника. Квест №2. Warship -->
+				if(CheckAttribute(PChar, "GenQuest.ChurchQuest_2.AskBarmen") && PChar.location == PChar.GenQuest.ChurchQuest_2.QuestTown + "_tavern")
+				{
+					link.l10 = LinkRandPhrase("Ты что-нибудь можешь сказать об недавнем ограблении церкви?", "Что ты знаешь об недавнем ограблении местной церкви?", "Ты что-нибудь слышал об недавнем ограблении местной церкви?");
+					link.l10.go = "Tavern_GenQuest_Church_2_1";
+				}
+
+				// <-- Квестовый генератор священника. Квест №2.
+				link.l3 = pcharrepphrase("Есть ли в твоём клоповнике свободная конура?", "Нет ли у тебя свободной комнаты, я хотел"+ GetSexPhrase("","а") +" бы остановиться здесь на некоторое время.");
+				link.l3.go = "room";
+				Link.l4 = "Пожалуй, загляну к тебе попозже.";
+				Link.l4.go = "exit";
+				break;
+			}
+			
+			if (npchar.city == "Nassau")
+			{
+				dialog.Text = "Что тебе нужно, "+pchar.name+"? Забежал"+ GetSexPhrase("","а") +" горло промочить?";
 				Link.l1 = "Мне нужна команда, " + NPChar.name + ".";
 				Link.l1.go = "crew hire";
 				Link.l2 = NPChar.name + ", давай поговорим...";
@@ -1779,6 +1815,18 @@ void ProcessDialogEvent()
 		case "FortFrance_3":
 			dialog.text = "Ой, "+ GetSexPhrase("приятель","дорогая") +". Я абсолютно серьёзен. Хе-хе-хе-хе. Правда.";
 			link.l1 = "Ладно, "+npchar.name+". Посмеялись, теперь к делу.";
+			link.l1.go = "meeting";
+		break;
+		
+		case "Nassau_1":
+			dialog.text = "Ха, молодняк, не нюхавший жизни, как следует! Ну, попетушись, попетушись, построй из себя "+ GetSexPhrase("морского волка","морскую волчицу") +", только смотри поосторожнее - не нарвись на кого-нибудь, по-настоящему крутого!";
+			link.l1 = "Э... Я правильно понял"+ GetSexPhrase("","а") +"? Вас зовут "+npchar.name+".";
+			link.l1.go = "Nassau_2";
+		break;
+		
+		case "Nassau_2":
+			dialog.text = "Да, меня зовут именно так с той самой минуты, как я открыла глотку, возвещая о своём рождении, в какой-то грязной лачуге на окраинах Лиссабона.";
+			link.l1 = "Что же, а меня зовут "+GetFullName(pchar)+".";
 			link.l1.go = "meeting";
 		break;
 
