@@ -916,7 +916,7 @@ void spawnToughSkeleton(aref _location)
 			LAi_ActorDialog(sld, pchar, "", 20.0, 0);
 			SaveCurrentQuestDateParam("pchar.questTemp.Cursed");
 			ChangeCharacterAddressGroup(sld, _location.id, "monster", LAi_FindNearestFreeLocator2Pchar("monster"));
-			LAi_CharacterPlaySound(sld, "DeadmansGod");
+			//LAi_CharacterPlaySound(sld, "DeadmansGod");
 		}
 
 	}
