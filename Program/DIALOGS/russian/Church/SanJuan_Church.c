@@ -32,7 +32,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			}
 		break;
 
-		//Квест "Странные вещи творятся на архипелаге"		
+		//Квест "Странные вещи творятся на архипелаге" (Доставили письмо)
 		case "PKM_SvtvA_Ch1_1_Dobro":
 			dialog.text = "Дайте-ка его мне сюда. Так-так... хм... Так я и думал! Хм... Что же, вы хорошо потрудились, но позвольте задать вам несколько вопросов.";
 			link.l1 = "Да, что именно вы хотите узнать?";
@@ -125,13 +125,13 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 
 		case "PKM_SvtvA_Ch1_7":
-			dialog.text = "Из Европы должно прибыть судно, на котором плывут люди, важные для нашего дела. У меня есть все основания полагать, что этому судну угрожает опасность, и ваша задача встретить его у острова Сан Мартина и препроводить в наш порт.";
+			dialog.text = "Из Европы должно прибыть судно, на котором плывут мальтийские рыцари, важные для нашего дела. У меня есть все основания полагать, что этому судну угрожает опасность, и ваша задача встретить его у острова Сан Мартина и препроводить в наш порт.";
 			link.l1 = "Скажите мне название этого судна, и я сделаю всё, что в моих силах.";
 			link.l1.go = "PKM_SvtvA_Ch1_8";
 		break;
 
 		case "PKM_SvtvA_Ch1_8":
-			dialog.text = "Итак, вы должны встретить барк 'Маёнез', которым командует некто Мергильдо Хуртадо, испанский офицер.";
+			dialog.text = "Итак, вы должны встретить барк 'Маёнез', которым командует некто Мартин Гарсес, мальтийский офицер.";
 			link.l1 = "Отлично, этой информации достаточно. Думаю, я могу отплывать - чем быстрее я это сделаю, тем выше шансы на успех.";
 			link.l1.go = "PKM_SvtvA_Ch1_9";
 		break;
@@ -157,6 +157,71 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			//Group_SetTaskAttack("PKM_SvtvA_Malta", PLAYER_GROUP);
 			Group_SetAddress("PKM_SvtvA_Malta", "SentMartin", "quest_ships", "Quest_ship_1");
 			Group_LockTask("PKM_SvtvA_Malta");
+		break;
+		
+		//Квест "Странные вещи творятся на архипелаге" (После сопровождения корабля мальтийских рыцарей)
+		case "PKM_SvtvA_Ch2_1":
+			dialog.text = "Вы отлично справились с задачей! Но расскажите мне, не было ли каких-нибудь неожиданностей в вашем плавании?";
+			link.l1 = "Нет, за исключением того, что когда мне повстречался барк, на него насели пираты, пытавшиеся потопить его любыми средствами.";
+			link.l1.go = "PKM_SvtvA_Ch2_2";
+		break;
+
+		case "PKM_SvtvA_Ch2_2":
+			dialog.text = "Понятно. Ещё что-нибудь?";
+			link.l1 = "Да, ещё капитан судна высадил на Барбадосе какого-то пассажира...";
+			link.l1.go = "PKM_SvtvA_Ch2_3";
+		break;
+
+		case "PKM_SvtvA_Ch2_3":
+			dialog.text = "Да, я знаю это. По правде говоря, именно это и было главным во всей этой авантюре. Прибытие этого человека на архипелаг очень важно для церкви. думаю, что вы с ним еще встретитесь.";
+			link.l1 = "Что же, теперь мне все понятно.";
+			link.l1.go = "PKM_SvtvA_Ch2_4";
+		break;
+
+		case "PKM_SvtvA_Ch2_4":
+			dialog.text = "Теперь позвольте мне вручить вам вашу награду и предложить новое дело.";
+			link.l1 = "Благодарю вас, а что за задание вы хотите мне поручить?";
+			link.l1.go = "PKM_SvtvA_Ch2_5";
+			AddMoneyToCharacter(pchar, 3500);
+			//AddPartyExp(pchar, 2500);
+			AddQuestRecord("ANIMISTS", "19");
+		break;
+
+		case "PKM_SvtvA_Ch2_1_ploho":
+			dialog.text = "Господи... Это действительно плохая новость. Кто-то явно знает все наши планы и путает их...";
+			link.l1 = "Мне очень жаль...";
+			link.l1.go = "PKM_SvtvA_Ch2_2_ploho";
+		break;
+
+		case "PKM_SvtvA_Ch2_2_ploho":
+			dialog.text = "Да-да... Хм... Вы сделали всё, что от вас зависело, "+ GetSexPhrase("сын мой","дочь моя") +", думаю, что было бы неблагодарно не заплатить вам за вашу попытку помочь святой церкви.";
+			link.l1 = "Благодарю вас.";
+			link.l1.go = "PKM_SvtvA_Ch2_3_ploho";
+			AddMoneyToCharacter(pchar, 2500);
+			AddQuestRecord("ANIMISTS", "18");
+		break;
+
+		case "PKM_SvtvA_Ch2_3_ploho":
+			dialog.text = "Не откажитесь ли вы ещё раз выполнить задание для меня?";
+			link.l1 = "В чём оно будет заключаться?";
+			link.l1.go = "PKM_SvtvA_Ch2_5";
+		break;
+
+		case "PKM_SvtvA_Ch2_5":
+			dialog.text = "Ничего сверхординарного. Просто отвезите вот это письмо отцу Клермону на Мартинику. И смотрите, чтобы оно не попало ни к кому, кроме него!";
+			link.l1 = "Я сделаю это. Могу ли я покинуть вас?";
+			link.l1.go = "to_bernard_3";
+		break;
+
+		case "to_bernard_3":
+			dialog.text = "Можете, и да пребудет с вами Бог.";
+			link.l1 = "Аминь.";
+			link.l1.go = "exit";
+			pchar.quest.ANIMISTS = "letter_to_father_bernard";
+			AddDialogExitQuest("oops_ANIMISTS_want_letter_again");
+			//GiveItem2Character(pchar, LETTER_TO_BERNARD);
+			AddQuestRecord("ANIMISTS", "20");
+			bDisableFastReload = true; // закрыть переход
 		break;
 
 		//Квест "История прекрасной Изабеллы"
