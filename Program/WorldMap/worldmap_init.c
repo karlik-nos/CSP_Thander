@@ -241,10 +241,10 @@ void wdmInitWorldMap()
 	worldMap.labels.Bahames.locator = "Bahames";
 	worldMap.labels.Bahames.text = CheckingTranslate(idLngFile,"Bahames");
 	
-	worldMap.labels.StLucia.type = "Island";
+	/*worldMap.labels.StLucia.type = "Island";
 	worldMap.labels.StLucia.id = "StLucia";
 	worldMap.labels.StLucia.locator = "StLucia";
-	worldMap.labels.StLucia.text = CheckingTranslate(idLngFile,"StLucia");
+	worldMap.labels.StLucia.text = CheckingTranslate(idLngFile,"StLucia");*/
 
 	//-------  TOWN ----------------------------------------------------
 
@@ -744,7 +744,7 @@ void wdmInitWorldMap()
 	worldMap.labels.Shore63.locator = "Shore63";
 	worldMap.labels.Shore63.text = CheckingTranslate(idLngFile,"Shore63");
 	
-	worldMap.labels.Shore65.type = "Shore";
+	/*worldMap.labels.Shore65.type = "Shore";
 	worldMap.labels.Shore65.id = "Shore65";
 	worldMap.labels.Shore65.locator = "Shore65";
 	worldMap.labels.Shore65.text = CheckingTranslate(idLngFile,"Shore65");
@@ -752,7 +752,7 @@ void wdmInitWorldMap()
 	worldMap.labels.Shore66.type = "Shore";
 	worldMap.labels.Shore66.id = "Shore66";
 	worldMap.labels.Shore66.locator = "Shore66";
-	worldMap.labels.Shore66.text = CheckingTranslate(idLngFile,"Shore66");
+	worldMap.labels.Shore66.text = CheckingTranslate(idLngFile,"Shore66");*/
 	
 	worldMap.labels.Shore68.type = "Shore";
 	worldMap.labels.Shore68.id = "Shore68";
