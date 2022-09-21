@@ -3,6 +3,7 @@ aref craft, draw;
 
 int lngFileID;
 int qnt, qntMAX;
+int SelectedLine = 0;
 
 void InitInterface_gm(string iniName)
 {
@@ -128,11 +129,15 @@ void ProcessCommandExecute()
     switch(nodName)
 	{
 		case "QTY_REMOVE_BUTTON":
-			if (comName=="activate" || comName=="click")
+			if (comName == "activate" || comName == "click")
 			{
 				qnt = qnt - 1;
 				if(qntMAX != 0 && qnt < 1) qnt = 1;
-
+				SetFormatedText("CRAFT_QTY", ""+qnt);
+			}
+			if (comName == "rclick")
+			{
+				qnt = 1;
 				SetFormatedText("CRAFT_QTY", ""+qnt);
 			}
 		break;
@@ -141,9 +146,12 @@ void ProcessCommandExecute()
 			if (comName=="activate" || comName=="click")
 			{
 				qnt = qnt + 1;
-
 				if(qnt > qntMAX) qnt = qntMAX;
-
+				SetFormatedText("CRAFT_QTY", ""+qnt);
+			}
+			if (comName == "rclick")
+			{
+				qnt = qntMAX;
 				SetFormatedText("CRAFT_QTY", ""+qnt);
 			}
 		break;
@@ -205,7 +213,8 @@ void CreateItem()
 	if(sti(pchar.questTemp.craftcount) >= 500) UnlockAchievement("craft", 2);
 	if(sti(pchar.questTemp.craftcount) >= 1000) UnlockAchievement("craft", 3);
 
-	ProcessCancelExit();
+	SetCraftInfo(SelectedLine);
+	//ProcessCancelExit();
 }
 
 void SelectTable()
@@ -215,7 +224,7 @@ void SelectTable()
     string CurTable = sControl;
     string CurRow   =  "tr" + (iSelected);
 
-	int SelectedLine = iSelected - 1;
+	SelectedLine = iSelected - 1;
 
 	// Fill components table
 	SetCraftInfo(SelectedLine);
@@ -230,6 +239,7 @@ int GetCharacterItemWithCabin(ref _refCharacter,string itemName)
 	}
 
 	aref chests;
+	if (Get_My_Cabin() == "") return qty;
 	if (!CheckAttribute(locations[FindLocation(Get_My_Cabin())],"locators.box")) return qty;
 	makearef(chests,locations[FindLocation(Get_My_Cabin())].locators.box);
 	int chestsnum = GetAttributesNum(chests);
@@ -330,7 +340,7 @@ void SetCraftInfo(int idx)
 	SetNewGroupPicture("INFO_PIC", Items[craftable].picTexture, "itm" + Items[craftable].picIndex);
 	SetNodeUsing("INFO_PIC", true);
 
-	SetFormatedText("INFO_TEXT", GetItemDescribe(FindItem(Items[craftable].id)));
+	SetFormatedText("INFO_TEXT", GetItemDescribe(Items[craftable].id));
 
 	int qntCur;
 

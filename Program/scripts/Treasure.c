@@ -588,7 +588,7 @@ void FillBoxForTreasureSuper(ref item)
 	int     i;
 	string  itmName;
 
-    if (3*nLuck > rand(21))// еще поди найди 2 куска
+    if (3*nLuck > rand(21))// ещё поди найди 2 куска
     {
 		i = 0;
 		itmName = "";
@@ -808,7 +808,7 @@ void SetTreasureHunter(string temp)
 	ref    sld;
 	bool   ok;
 
-	if (chrDisableReloadToLocation) return; // идет некий другой квест с запретом выхода
+	if (chrDisableReloadToLocation) return; // идёт некий другой квест с запретом выхода
 
     Pchar.GenQuest.Hunter2Pause            = true;
 
@@ -821,7 +821,7 @@ void SetTreasureHunter(string temp)
     for (i = 1; i <= j; i++)
     {
         if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sld = GetCharacter(NPC_GenerateCharacter(sCapId + i, "Pirate_" + (rand(24) + 1), "man", "spy", sti(PChar.rank) + 5, PIRATE, 0, true));
-        else sld = GetCharacter(NPC_GenerateCharacter(sCapId + i, "Pirate_" + (rand(24) + 1), "man", "man_fast", sti(PChar.rank) + 5, PIRATE, 0, true));
+        else sld = GetCharacter(NPC_GenerateCharacter(sCapId + i, "Pirate_" + (rand(24) + 1), "man", "man", sti(PChar.rank) + 5, PIRATE, 0, true));
         SetFantomParamHunter(sld); //крутые парни
         sld.Dialog.CurrentNode = "TreasureHunter";
         sld.dialog.filename = "Hunter_dialog.c";
@@ -877,7 +877,7 @@ void SetPGGTreasureHunter(string temp)
 	ref    sld;
 	bool   ok;
 
-	if (chrDisableReloadToLocation) return; // идет некий другой квест с запретом выхода
+	if (chrDisableReloadToLocation) return; // идёт некий другой квест с запретом выхода
 
     Pchar.GenQuest.Hunter2Pause            = true;
 
@@ -898,7 +898,7 @@ void SetPGGTreasureHunter(string temp)
 		else
 		{
 			if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations)sld = GetCharacter(NPC_GenerateCharacter(sCapId + i, "Pirate_" + (rand(24) + 1), "man", "spy", sti(PChar.rank) + 5, PIRATE, 0, true));
-			else sld = GetCharacter(NPC_GenerateCharacter(sCapId + i, "Pirate_" + (rand(24) + 1), "man", "man_fast", sti(PChar.rank) + 5, PIRATE, 0, true));
+			else sld = GetCharacter(NPC_GenerateCharacter(sCapId + i, "Pirate_" + (rand(24) + 1), "man", "man", sti(PChar.rank) + 5, PIRATE, 0, true));
 			SetFantomParamHunter(sld); //крутые парни
 			sld.greeting = "Gr_HUNTER";
 			if (bHardBoss) sld.AlwaysReload = true;//перезарядка независимо от Дозарядки
@@ -1009,6 +1009,7 @@ void  GhostShipOnMap()
 
 		sld.Ship.Type = GenerateShipExt(SHIP_FLYINGDUTCHMAN, true, sld);
 		SetBaseShipData(sld);
+		sld.Ship.Name = "Летучий голландец";
 
         DeleteAttribute(rRealShip, "ShipSails.SailsColor");  // белый парус
 
@@ -1196,7 +1197,7 @@ void GhostShipInit()
 	ref sld;
 	//============> Капитан призрака
 	if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sld = GetCharacter(NPC_GenerateCharacter("GhostCapt", "PotCMobCap", "skeleton", "spy", 55, PIRATE, -1, true));
-	else sld = GetCharacter(NPC_GenerateCharacter("GhostCapt", "PotCMobCap", "skeleton", "man_fast", 55, PIRATE, -1, true));
+	else sld = GetCharacter(NPC_GenerateCharacter("GhostCapt", "PotCMobCap", "skeleton", "man", 55, PIRATE, -1, true));
 	sld.dialog.filename      = "Quest\GhostShip_dialog.c";
 	sld.dialog.currentnode   = "GhostCapt";
 	sld.name 	= "Дейви";

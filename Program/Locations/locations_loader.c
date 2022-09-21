@@ -96,16 +96,6 @@ bool LoadLocation(ref loc)
 	//trace("LoadLocation(ref loc) " + loc.id);
 	if (loc.id == "Bridgetown_Plantation") DeleteAttribute(loc,"fastreload");
 	if (loc.id == "Marigo_ExitTown") {loc.townsack = "Marigo"; loc.fastreload = "Marigo";}
-	if (loc.id == "Temple_h" && !CheckAttribute(pchar,"Janitor"))
-	{
-		pchar.quest.CleanUpGrandma.win_condition.l1 = "Location";
-		pchar.quest.CleanUpGrandma.win_condition.l1.location = "Temple_h";
-		pchar.quest.CleanUpGrandma.win_condition = "CleanUpGrandma";
-		pchar.quest.CleanGrandma.win_condition.l1 = "ExitFromLocation";
-		pchar.quest.CleanGrandma.win_condition.l1.location = pchar.location;
-		pchar.quest.CleanGrandma.win_condition = "CleanGrandma";
-		pchar.Janitor = true;
-	}
 	PostEvent(EVENT_LOCATION_LOAD,0);
 
 	int i;
@@ -227,9 +217,10 @@ bool LoadLocation(ref loc)
 		//#20190613-01
 		if(loc.environment.sea == "true")
 		{
-			Ship_Walk_Init();
-			LayerFreeze(SEA_EXECUTE,false);
-			LayerFreeze(SEA_REALIZE,false);
+			//Матросы на палубах
+			//Ship_Walk_Init();
+			//LayerFreeze(SEA_EXECUTE,false);
+			//LayerFreeze(SEA_REALIZE,false);
 			CreateSea(EXECUTE, REALIZE);
 			if (!CheckAttribute(loc, "notCrateFoam"))
 			{
@@ -917,7 +908,7 @@ bool LocLoadModel(aref loc, string sat, string addition)
     attr = sat + ".lights";
 
 	int dynamicLightsOn = 0;
-	
+
 	if (isDynamicLightsEnabled(loc.filespath.models)) {
 		dynamicLightsOn = 1
 	}
@@ -1540,13 +1531,13 @@ bool CheckFP(ref loc)
 bool isDynamicLightsEnabled(string modelPath)
 {
 	// Костылики из-за того, что движок не воспринимает иначе
-	bool isDisabled = HasSubstr(modelPath, "decks") || 
-		HasSubstr(modelPath, "EstateRooms") || 
-		HasSubstr(modelPath, "Fort_Inside") || 
-		HasSubstr(modelPath, "Incas Temple") || 
-		HasSubstr(modelPath, "Inside") || 
-		HasSubstr(modelPath, "LostShipsCityInsides") || 
-		HasSubstr(modelPath, "TenochtitlanInside") || 
+	bool isDisabled = HasSubstr(modelPath, "decks") ||
+		HasSubstr(modelPath, "EstateRooms") ||
+		HasSubstr(modelPath, "Fort_Inside") ||
+		HasSubstr(modelPath, "Incas Temple") ||
+		HasSubstr(modelPath, "Inside") ||
+		HasSubstr(modelPath, "LostShipsCityInsides") ||
+		HasSubstr(modelPath, "TenochtitlanInside") ||
 		HasSubstr(modelPath, "UnderWater");
 	return !isDisabled;
 }

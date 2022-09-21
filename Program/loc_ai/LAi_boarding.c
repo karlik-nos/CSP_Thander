@@ -75,7 +75,7 @@ string LAi_GetBoardingImage(ref echr, bool isMCAttack)
 			}
 		}
 	}
-	return "loading\battle_" + rand(24) + ".tga";
+	return "loading\jonny_load\abordage\abord_0"+rand(2)+".tga";
 }
 
 //Начать абордаж с главным персонажем
@@ -580,7 +580,8 @@ void LAi_ReloadBoarding()
 	{
 		if(CheckAttribute(&Locations[FindLocation(nextDeck)], "image"))
 		{
-			SendMessage(&boarding_fader, "ls", FADER_PICTURE0, Locations[FindLocation(nextDeck)].image);
+			pchar.loadscreen = Locations[FindLocation(nextDeck)].image;
+			SendMessage(&boarding_fader, "ls", FADER_PICTURE0, pchar.loadscreen);
 		}
 	}
 	float fadeOutTime = RELOAD_TIME_FADE_OUT;
@@ -726,13 +727,41 @@ void LAi_ReloadEndFade()
 			{  //растет, если потерь мало
 				AddCrewMorale(mchar, sti(leaderSkill));
 			}
-
-			// boal 22.01.2004 <--
-			//SetCrewQuantityOverMax(GetMainCharacter(), MakeInt(crew + 0.3)); // десант весь ГГ как перегруз команды
-			SetCrewQuantity(GetMainCharacter(), MakeInt(crew + 0.3)); // фикс после переделки оверкоманды БМС
 			Log_TestInfo("----- в конце стало " + crew +" матросов ---");
+			// boal 22.01.2004 <--
+
+			if(IsFort)
+			{
+				int cn;
+				ref officer;
+	    		for (int j=1; j<COMPANION_MAX; j++)
+	   	 		{
+	        		cn = GetCompanionIndex(pchar, j);
+	        		if (cn>0)
+	        	{
+		    	    officer = GetCharacter(cn);
+		    	    if (!GetRemovable(officer)) continue;
+
+            	    	if (GetMaxCrewQuantity(officer) <= crew)
+            	    	{
+            	        	SetCrewQuantity(officer, GetMaxCrewQuantity(officer));
+							crew -= GetMaxCrewQuantity(officer) + GetMinCrewQuantity(officer);
+            	    	}
+            	    	else
+            			{
+            	        	AddCharacterCrew(officer,crew);
+							crew = 0;
+            	    	}
+		    		}
+					if (crew == 0) break;
+				}
+			}
+			else
+			{
+				SetCrewQuantity(GetMainCharacter(),Makeint(crew + 0.3));
+			}
 			//Пересчитываем команду соперника
-			crew = 0;// какие еще люди? все трупы! boarding_enemy_base_crew*(0.1 + rand(20)*0.01);
+			crew = 0;// какие ещё люди? все трупы! boarding_enemy_base_crew*(0.1 + rand(20)*0.01);
 			if (boarding_echr_index >= 0)
 			{
 				SetCrewQuantity(&Characters[boarding_echr_index], MakeInt(crew + 0.3));
@@ -851,9 +880,9 @@ void LAi_EnableReload()
 					if(chr.chr_ai.group == LAI_GROUP_PLAYER)
 					{
 						boarding_player_crew = boarding_player_crew + 1;
-						//LAi_tmpl_stay_InitTemplate(chr);  // 05.02.08 требует локаторов ГОТО, что б не ходили за ГГ матросы толпой - нихрена это не работает, все равно ходят !
+						//LAi_tmpl_stay_InitTemplate(chr);  // 05.02.08 требует локаторов ГОТО, что б не ходили за ГГ матросы толпой - нихрена это не работает, всё равно ходят !
 						//LAi_SetStayType(chr); // а вот так не ходят !!  <-- ugeen
-						if (!IsOfficer(chr)) LAi_SetHuberStayType(chr); //нефиг им стоять, все-равно мешаются ! пущай расходятся по палубе
+						if (!IsOfficer(chr)) LAi_SetHuberStayTypeNoGroup(chr); //нефиг им стоять, все-равно мешаются ! пущай расходятся по палубе
 					}
 				}
 				/*
@@ -878,6 +907,7 @@ void LAi_EnableReload()
 			case 4: Locations[boarding_location].boarding.nextdeck = "Boarding_Campus"; break;
 			case 5: Locations[boarding_location].boarding.nextdeck = "Boarding_Cargohold"; break;
 			case 6: Locations[boarding_location].boarding.nextdeck = ""; break;
+			case 7: Locations[boarding_location].boarding.nextdeck = ""; break;
 		}
 	}
 	if (IsFort && Locations[boarding_location].boarding.nextdeck == "Boarding_bastion")
@@ -956,7 +986,7 @@ void LAi_SetBoardingActors(string locID)
 			model = LAi_GetBoardingModel(mchr, &ani);
 			// boal star with new loc always  -->
 			if (mchr.location.locator == (sLocType + i))
-			{ // искодим из того, что наша локация всегда < 4 офицеры пусть накладываются а матросик идет к противнику.
+			{ // искодим из того, что наша локация всегда < 4 офицеры пусть накладываются а матросик идёт к противнику.
 	           locMChar = rand(3);
 	           while (mchr.location.locator == (sLocType + locMChar))
 	           {
@@ -1097,7 +1127,7 @@ void LAi_SetBoardingActors(string locID)
 			ChangeAttributesFromCharacter(chr, boarding_enemy, true);
 			chr.CaptanId = boarding_enemy.id; // иначе у фантома свой ИД   // to_do поправить опечатку
 			boarding_enemy.CaptanId = boarding_enemy.id;
-			chr.SuperShooter = true; // супер стрелок (вероятность пальбы выше, от сложности, если еще и пистоль есть)
+			chr.SuperShooter = true; // супер стрелок (вероятность пальбы выше, от сложности, если ещё и пистоль есть)
 			if (boarding_enemy.sex == "man") chr.greeting = "CapSinkShip";
 			SetCharacterPerk(chr, "Energaiser"); // скрытый перк дает 1.5 к приросту энергии, дается ГГ и боссам уровней
 			if (CheckAttribute(chr,"Situation"))
@@ -1133,12 +1163,21 @@ void LAi_SetBoardingActors(string locID)
 				Log_TestInfo("На капитане кираса " + model);
 		    }
 			//}
+			if(CheckAttribute(pchar, "CabinHelp") && pchar.CabinHelp == true)	BSHangover_FlintFight_3("");
+			if(CheckAttribute(pchar, "MaryCabinHelp") && pchar.MaryCabinHelp == true)	Mary_Pomogaet_v_Kautah("");
 		}
 		SetNewModelToChar(chr); //иначе сабли не те, что реально
 		string weaponID = GetCharacterEquipByGroup(chr, BLADE_ITEM_TYPE);
 		aref weapon;
 		Items_FindItem(weaponID, &weapon);
 		chr.chr_ai.fencingtype = weapon.FencingType;
+		weaponID = GetCharacterEquipByGroup(chr, GUN_ITEM_TYPE);
+		if (weaponID != "")
+		{
+			EquipCharacterByItem(chr,weaponID);
+			Items_FindItem(weaponID, &weapon);
+			chr.chr_ai.charge = makefloat(weapon.chargeQ);
+		}
 		chr.AboardFantom = true;
 		AddCharHP(chr, boarding_enemy_hp); // влияение опыта и морали в НР
 		if (IsCharacterPerkOn(chr, "Ciras") && rand(4)==0)

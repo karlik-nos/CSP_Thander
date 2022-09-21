@@ -158,7 +158,7 @@ void wdmCreateWorldMap()
 	if(IsEntity(wdm_fader) == 0) Trace("Fader not created!!!");
 	float fadeInTime = 0.5;
 	SendMessage(&wdm_fader, "lfl", FADER_IN, fadeInTime, true);
-	SendMessage(&wdm_fader, "ls",FADER_PICTURE0,"loading\sea_" + rand(31) + ".tga");
+	SendMessage(&wdm_fader, "ls", FADER_PICTURE0, "jonny_load\sea\sea_"+rand(3)+".tga");
 	//Установим звуковую схему
 	SetSchemeForMap();
 	//Сообщим, что загрузились
@@ -168,7 +168,7 @@ void wdmCreateWorldMap()
 	//Создаём накопившиеся квестовые энкоунтеры
 	worldMap.addQuestEncounters = "updateQuest";
 	InitWmInterface();
-	SendMessage(&worldMap, "ll", MSG_WORLDMAP_SET_NATION_FLAG,  sti(pchar.nation)); 
+	SendMessage(&worldMap, "ll", MSG_WORLDMAP_SET_NATION_FLAG,  sti(pchar.nation));
 }
 
 void wdmLoadSavedMap()

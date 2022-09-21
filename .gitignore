@@ -54,7 +54,7 @@
 *.zap
 *.txx
 *.dds
-# *.png
+*.png
 
 # Видео
 *.mp4
@@ -76,12 +76,9 @@
 *.lnk
 
 # Папки
-*Betta_fix/
-*CSP_v2.2.0_fix/
-*Dev_fix/
-*Program/loc_ai/LAi_fightparams.c
+*Program/__cache__/
 *SAVE/
-*RESOURCE/animation/
+# *RESOURCE/animation/
 *RESOURCE/foam/
 *RESOURCE/MODELS/
 *RESOURCE/Particles/
@@ -89,7 +86,7 @@
 *RESOURCE/shared/
 *RESOURCE/Sounds/
 *RESOURCE/techniques/
-*RESOURCE/Textures/
+# *RESOURCE/Textures/
 *RESOURCE/VIDEOS/
 *RESOURCE_Copy/
 *modules/

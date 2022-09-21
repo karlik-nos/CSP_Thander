@@ -225,12 +225,13 @@ int Reload(aref reload_group, string locator_name, string current_location)
 	{
 		if(!CheckAttribute(mc, "todeck"))
 		{
-			SendMessage(&reload_fader, "ls",FADER_PICTURE0,"loading\seaStand_" + rand(13) + ".tga");
+			pchar.loadscreen = "loading\jonny_load\port\port_" + rand(4) + ".tga";
 		}
 		else
 		{
-			SendMessage(&reload_fader, "ls",FADER_PICTURE0,"loading\cabine.tga");
+			pchar.loadscreen = "loading\cabine.tga";
 		}
+		SendMessage(&reload_fader, "ls", FADER_PICTURE0, pchar.loadscreen);
 	}
 	else
 	{
@@ -243,15 +244,15 @@ int Reload(aref reload_group, string locator_name, string current_location)
 				if (sGlobalTemp == "afterFDsink")
 				{
 				    //Boyer add #20170401-02
-                    pchar.loadscreen = "loading\rescue.tga";
-					SendMessage(&reload_fader, "ls",FADER_PICTURE0,"loading\rescue.tga");
+                    pchar.loadscreen = "loading\jonny_load\load\lifeboat.tga";
 					sGlobalTemp = "";
 				}
-				else {
+				else
+				{
                     //Boyer add #20170401-02
                     pchar.loadscreen = Locations[loc_pict_index].image;
-					SendMessage(&reload_fader, "ls", FADER_PICTURE0, Locations[loc_pict_index].image);
 				}
+				SendMessage(&reload_fader, "ls", FADER_PICTURE0, pchar.loadscreen);
 			}
 		}
 	}
@@ -299,6 +300,7 @@ void ReloadStartFade()
     //#20191123-01 Fix
     DialogExit();
 	ApplayNewSkill(pchar, "", 0);
+	if (CheckAttribute(pchar,"activelocator")) Item_OnExitLocator(loadedLocation, pchar.activelocator);
 	// ResetSoundScheme();
 	ResetSound(); // new
 	PauseAllSounds();
@@ -607,6 +609,8 @@ int ReloadToSea(int island_index, aref reload_data)
 
 	ref rPlayer = GetMainCharacter();
 	rPlayer.lastFightMode = 0;
+	
+	if (HasSubStr(rPlayer.location,"town") || HasSubStr(rPlayer.location,"shore") || HasSubStr(rPlayer.location,"mayak")) rPlayer.Do180Turn = true;
 
 	ref rIsland = GetIslandByIndex(island_index);
 

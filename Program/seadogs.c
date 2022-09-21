@@ -491,12 +491,9 @@ void LoadGame()
 	SetTimeScale(1.0);
 	TimeScaleCounter = 0;
 
-    string loadScr="";
-	loadScr = "loading\StartGame.tga";
-
 	CreateEntity(&LanguageObject,"obj_strservice");
 	CreateEntity(&reload_fader, "fader");
-	SendMessage(&reload_fader, "ls",FADER_PICTURE0, loadScr);
+	SendMessage(&reload_fader, "ls",FADER_PICTURE0, "loading\jonny_load\load\load_03.tga");
 	SendMessage(&reload_fader, "lfl", FADER_IN, RELOAD_TIME_FADE_IN, true);
 	ReloadProgressStart();
 	pchar.savegamename = saveName;
@@ -887,7 +884,7 @@ void NewGame()
 
 	CreateEntity(&LanguageObject,"obj_strservice");
 	CreateEntity(&reload_fader, "fader");
-	SendMessage(&reload_fader, "ls",FADER_PICTURE0, "loading\StartGame.tga");
+	SendMessage(&reload_fader, "ls",FADER_PICTURE0, "loading\jonny_load\load\load_03.tga");
 	SendMessage(&reload_fader, "lfl", FADER_IN, RELOAD_TIME_FADE_IN, true);
 
 	bYesBoardStatus=false;
@@ -1017,8 +1014,6 @@ void InitGame()
 		InitItems();
 		UnloadSegment("items\initItems.c");
 	}
-	ReloadProgressUpdate();
-	GenerateGenerableItems(); // <-- ugeen генерация предметов
 	ReloadProgressUpdate();
 	//Boyer change #20170301-6...CharactersInit assigns RealShips, and after a bunch of 'New' games in a
 	//session, RealShips array overflows, so call new function to reset
@@ -1158,7 +1153,7 @@ void ProcessControls()
 				}
 			}
 			break;
-		    // boal -->
+/*		    // boal -->
             case "ChrBackward": //ChrStrafeLeft ChrStrafeRight
                 if (bLandInterfaceStart && LAi_IsFightMode(pchar))
                 {
@@ -1180,9 +1175,9 @@ void ProcessControls()
                 {
                     pchar.chr_ai.energy = stf(pchar.chr_ai.energy) - 3;
                     if (stf(pchar.chr_ai.energy) < 0) pchar.chr_ai.energy = 0;
-                }
+                }	
             return;
-            break;
+            break; */
             case "BOAL_UsePotion": // boal KEY_X
                 if (bLandInterfaceStart)
 				{
@@ -1241,15 +1236,15 @@ void ProcessControls()
 				csmLootCollector();
 			break;
             case "BOAL_ActivateRush":  // boal KEY_F
-				if (bLandInterfaceStart && GetCharacterPerkUsing(pchar, "Rush") && PChar.location != "FencingTown_Arena" && PChar.location != "FencingTown_ExitTown")
+				if (bLandInterfaceStart)
 				{
-					ActivateCharacterPerk(pchar, "Rush");
-					PlayVoice(GetSexPhrase("interface\Bers_"+rand(5)+".wav","interface\Bersf_"+rand(4)+".wav"));
-					pchar.chr_ai.energy    = pchar.chr_ai.energyMax;
-				}
-                else
-                {
-                    if (bLandInterfaceStart && curKeyGroupName == "FightModeControls")
+					if (GetCharacterPerkUsing(pchar, "Rush") && LAi_IsFightMode(pchar) && PChar.location != "FencingTown_Arena" && PChar.location != "FencingTown_ExitTown")
+					{
+						ActivateCharacterPerk(pchar, "Rush");
+						PlayVoice(GetSexPhrase("interface\Bers_"+rand(5)+".wav","interface\Bersf_"+rand(4)+".wav"));
+						pchar.chr_ai.energy    = pchar.chr_ai.energyMax;
+					}
+					else
                     {
                         PlaySound("knock");
                     }
@@ -1263,56 +1258,56 @@ void ProcessControls()
 				bAltInfo = false;
 				ModifyTextInfo();
 			break;
-			
+
 			case "AltModificator":
 				if (!IsEntity(&ILogAndActions)) return;
 				if(loadedLocation.type == "Underwater") return;
 				bAltInfo = true;
 				SendMessage(&ILogAndActions,"l",LI_CLEAR_STRINGS);
 				ModifyTextInfo();
-			break; 
+			break;
 
 			case "Fast_port":
-				if(bAltInfo)  HKT_Button(ControlName); 
+				if(bAltInfo)  HKT_Button(ControlName);
 			break;
-			
+
 			case "Fast_store":
 				if(bAltInfo) HKT_Button(ControlName);
-					
+
 			break;
-			
+
 			case "Fast_Shipyard":
 				 if(bAltInfo) HKT_Button(ControlName);
 			break;
-			
+
 			case "Fast_tavern":
 				if(bAltInfo) HKT_Button(ControlName);
 			break;
-			
+
 			case "Fast_townhall":
 				if(bAltInfo) HKT_Button(ControlName);
 			break;
-			
+
 			case "Fast_bank":
 				if(bAltInfo) HKT_Button(ControlName);
 			break;
-			
+
 			case "Fast_church":
 				if(bAltInfo) HKT_Button(ControlName);
 			break;
-			
+
 			case "Fast_Brothel":
 				if(bAltInfo) HKT_Button(ControlName);
 			break;
-			
+
 			case "Fast_PortOffice":
 				if(bAltInfo) HKT_Button(ControlName);
 			break;
-			
+
 			case "Fast_prison":
 				if(bAltInfo) HKT_Button(ControlName);
 			break;
-			
+
             case "OfficersCharge":
                 pchar.OfficerAttRange = 35.0;
                 OfficersFollow();
@@ -1358,7 +1353,7 @@ void ProcessControls()
         //Boyer change #20170318-38
         // if (CheckAttribute(&loadedLocation, "type") && loadedLocation.type == "underwater") return; //запрет ускорения под водой.
 		//if (bAltBalance && !bSeaActive && ControlName == "TimeScaleSlower" && TimeScaleCounter == 0)
-		if (bAltBalance && TimeScaleCounter == 0)
+		if (bAltBalanceTimeSlow && TimeScaleCounter == 0)
 		{
 			if (ControlName == "TimeScaleSlower" || ControlName == "TimeScaleSlowerBA")
 			{
@@ -1371,6 +1366,29 @@ void ProcessControls()
 		{
 			if (InterfaceStates.Buttons.Save.enable == false)
 			{
+				if (CheckAttribute(pchar,"SkipBattle") && pchar.SkipBattle == true)
+				{
+					float EffHp1,EffHp2, ASkill1, ASkill2;
+					ASkill1 = LAi_GetCharacterFightLevel(CharacterFromID(pchar.ArenaAttack));
+					ASkill2 = LAi_GetCharacterFightLevel(CharacterFromID(pchar.ArenaEnemy));
+					if (ASkill1 > ASkill2)
+					{
+						EffHp1 = GetCharacterEffectiveHp(CharacterFromID(pchar.ArenaAttack)) / (1.0 + 0.7 * (ASkill2 - ASkill1));
+						EffHp2 = GetCharacterEffectiveHp(CharacterFromID(pchar.ArenaEnemy));
+					}
+					else
+					{
+						EffHp1 = GetCharacterEffectiveHp(CharacterFromID(pchar.ArenaAttack));
+						EffHp2 = GetCharacterEffectiveHp(CharacterFromID(pchar.ArenaEnemy)) / (1.0 + 0.7 * (ASkill1 - ASkill2));
+					}
+					Log_TestInfo("Effhp1:" + sti(effhp1) + " Effhp2:" + sti(effhp2));
+					if (EffHp1 > EffHp2) 
+						LAi_KillCharacter(CharacterFromID(pchar.ArenaEnemy));
+					else
+						LAi_KillCharacter(CharacterFromID(pchar.ArenaAttack));
+					pchar.SkipBattle = false;
+					return;
+				}
 				Log_SetStringToLog("В данный момент запрещены манипуляции временным потоком.");
 				return;
 			}
@@ -1586,7 +1604,7 @@ void ProcessControls()
 			}
 		break;
 		// <-- ugeen
-		// boal -->
+	/*	// boal -->
 		case "ChrBackward": //ChrStrafeLeft ChrStrafeRight
             if (bLandInterfaceStart && LAi_IsFightMode(pchar))
             {
@@ -1610,7 +1628,7 @@ void ProcessControls()
  				if (stf(pchar.chr_ai.energy) < 0) pchar.chr_ai.energy = 0;
 	        }
 		break;
-
+*/
 		case "BOAL_UsePotion": // boal KEY_C
             if (bLandInterfaceStart)
             {
@@ -1669,15 +1687,15 @@ void ProcessControls()
 		break;
 
         case "BOAL_ActivateRush":  // boal KEY_F
-			if (bLandInterfaceStart && GetCharacterPerkUsing(pchar, "Rush"))
+			if (bLandInterfaceStart)
             {
-		        ActivateCharacterPerk(pchar, "Rush");
-				PlayVoice(GetSexPhrase("interface\Bers_"+rand(5)+".wav","interface\Bersf_"+rand(4)+".wav"));
-				pchar.chr_ai.energy    = pchar.chr_ai.energyMax;
-		    }
-            else
-            {
-                if (bLandInterfaceStart && curKeyGroupName == "FightModeControls")
+				if (GetCharacterPerkUsing(pchar, "Rush") && LAi_IsFightMode(pchar))
+				{
+					ActivateCharacterPerk(pchar, "Rush");
+					PlayVoice(GetSexPhrase("interface\Bers_"+rand(5)+".wav","interface\Bersf_"+rand(4)+".wav"));
+					pchar.chr_ai.energy    = pchar.chr_ai.energyMax;
+				}
+				else
                 {
                     PlaySound("interface\knock.wav");
                 }
@@ -1689,7 +1707,6 @@ void ProcessControls()
 		if (!CheckOfficersPerk(pchar, "Turn180") && GetOfficersPerkUsing(pchar, "Turn180"))
 		{
 			ActivateCharacterPerk(pchar,"Turn180");
-			Ship_Turn180(pchar);
 		}
 		else
 		{
@@ -1770,6 +1787,7 @@ void ProcessControls()
             		UnloadSegment("Debuger.c");
             	}
 		    }
+			else LaunchPsHeroScreen();
 		break;
         case "BOAL_Control":
 		    // по F11 вызывает окно отладчика
@@ -1983,31 +2001,27 @@ void GameOver(string sName)
 	switch(sName)
 	{
 		case "sea":
-			StartPictureAsVideo( "loading\seadeath_"+rand(3)+".tga", 4 );
+			StartPictureAsVideo( "loading\jonny_load\death\end_game_sea_"+rand(1)+".tga", 4 );
 			PlayStereoOGG("music_ship_dead");
 		break;
 		case "boarding":
-			StartPictureAsVideo( "loading\seadeath_"+rand(3)+".tga", 4 );
+			StartPictureAsVideo( "loading\jonny_load\death\end_game_sea_"+rand(1)+".tga", 4 );
 			PlayStereoOGG("music_ship_dead");
 		break;
 		case "land":
-			if (mc.sex != "woman") StartPictureAsVideo( "loading\DeathMan_"+rand(1)+".tga", 4 );
-			else StartPictureAsVideo( "loading\DeathWoman_"+rand(1)+".tga", 4 );
+			StartPictureAsVideo( "loading\jonny_load\death\end_game_"+rand(1)+".tga", 4 );
 			PlayStereoOGG("music_death");
 		break;
 		case "mutiny":
-			if (mc.sex != "woman") StartPictureAsVideo( "loading\DeathMan_"+rand(1)+".tga", 4 );
-			else StartPictureAsVideo( "loading\DeathWoman_"+rand(1)+".tga", 4 );
+			StartPictureAsVideo( "loading\jonny_load\death\end_game_"+rand(1)+".tga", 4 );
 			PlayStereoOGG("music_death");
 		break;
 		case "town":
-			if (mc.sex != "woman") StartPictureAsVideo( "loading\DeathMan_"+rand(1)+".tga", 4 );
-			else StartPictureAsVideo( "loading\DeathWoman_"+rand(1)+".tga", 4 );
+			StartPictureAsVideo( "loading\jonny_load\death\end_game_"+rand(1)+".tga", 4 );
 			PlayStereoOGG("music_death");
 		break;
 		case "blood":
-			if (mc.sex != "woman") StartPictureAsVideo( "loading\DeathMan_"+rand(1)+".tga", 4 );
-			else StartPictureAsVideo( "loading\DeathWoman_"+rand(1)+".tga", 4 );
+			StartPictureAsVideo( "loading\jonny_load\death\end_game_"+rand(1)+".tga", 4 );
 			PlayStereoOGG("music_death");
 		break;
 	}
@@ -2137,10 +2151,6 @@ void restoreQuestItems()
         //From RelationAgent_dialog.c
         ChangeItemName(pchar.restoreLSCTrustLetter, "itmname_letter_LSC_1");
         ChangeItemDescribe(pchar.restoreLSCTrustLetter, "itmdescr_letter_LSC_1");
-        rItemRef =  ItemsFromID(pchar.restoreLSCTrustLetter);
-        rItemRef.shown = true;
-        rItemRef.startLocation = "Marigo_houseH2";
-        rItemRef.startLocator = "item1";
     }
 	if(CheckAttribute(pchar, "HugtorpQuestStart") && !CheckAttribute(pchar, "HugtorpQuestFinish"))
 	{
