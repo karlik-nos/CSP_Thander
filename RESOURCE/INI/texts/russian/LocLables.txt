@@ -391,4 +391,3 @@ TempleUnderwater	{Лабиринт}
 DeckWithReefs		{Бухта проклятых}
 Reefs_Chapter		{Капитул}
 MountainPath		{Ущелье дьявола}
-WreckedShip			{Разбитый корабль}

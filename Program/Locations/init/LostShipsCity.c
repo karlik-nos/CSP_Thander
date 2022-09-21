@@ -14,7 +14,7 @@ int LocationInitLostShipsCity(int n)
  	locations[n].islandId = "LostShipsCity";
 
 	locations[n].filespath.models = "locations\LostShipsCity\";
-	locations[n].image = "loading\jonny_load\quest\LostShipsCity_"+(1+rand(1))+".tga";
+	locations[n].image = "loading\OutsideLSC.tga";
 	//Sound
 	locations[n].type = "LostShipsCity";
 	//locations[n].houseEnc = true; //для энкаунтеров в домах
@@ -57,7 +57,7 @@ int LocationInitLostShipsCity(int n)
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-	locations[n].alwaysStorm = true; //живём в штормах
+	locations[n].alwaysStorm = true; //живем в штормах
 	locations[n].alwaysStorm.WaveHeigh = true; //поднять уровень воды до 2.5 для низкого волнения
 	locations[n].storm = true;
 	locations[n].tornado = true;
@@ -716,7 +716,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].id = "AvaShipInside3";
 	locations[n].id.label = "Ava Cabin";
 	locations[n].filespath.models = "locations\LostShipsCityInsides\AvaShipInside3";
-	locations[n].image = "loading\jonny_load\quest\AvaShipInside3.tga";
+	locations[n].image = "loading\SantaLuci\AvaShipInside3.tga";
 	//Town sack
 	locations[n].townsack = "LostShipsCity";
 	locations[n].lockWeather = "Inside";
@@ -761,7 +761,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 	//locations[n].environment.weather.rain = false;
-	locations[n].alwaysStorm = true; //живём в штормах
+	locations[n].alwaysStorm = true; //живем в штормах
 	locations[n].storm = true;
 	//Reload map
 	locations[n].reload.l1.name = "reload1";
@@ -817,7 +817,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].id = "CarolineBank";
 	locations[n].id.label = "Caroline cabin";
 	locations[n].filespath.models = "locations\LostShipsCityInsides\CarolineBank";
-	locations[n].image = "loading\jonny_load\quest\CarolineBank.tga";
+	locations[n].image = "loading\SantaLuci\CarolineBank.tga";
 	//Town sack
 	locations[n].townsack = "LostShipsCity";
 	locations[n].lockWeather = "Inside";
@@ -861,7 +861,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 	//locations[n].environment.weather.rain = false;
-	locations[n].alwaysStorm = true; //живём в штормах
+	locations[n].alwaysStorm = true; //живем в штормах
 	locations[n].storm = true;
 	//Reload map
 	locations[n].reload.l1.name = "reload1";
@@ -901,7 +901,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].id = "CeresSmithy";
 	locations[n].id.label = "CeresSmithy cabin";
 	locations[n].filespath.models = "locations\LostShipsCityInsides\CeresSmithy";
-	locations[n].image = "loading\jonny_load\quest\CeresSmithy.tga";
+	locations[n].image = "loading\SantaLuci\CeresSmithy.tga";
 	//Town sack
 	locations[n].townsack = "LostShipsCity";
 	locations[n].lockWeather = "Inside";
@@ -946,7 +946,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 	//locations[n].environment.weather.rain = false;
-	locations[n].alwaysStorm = true; //живём в штормах
+	locations[n].alwaysStorm = true; //живем в штормах
 	locations[n].storm = true;
 	//Reload map
 	locations[n].reload.l1.name = "reload1";
@@ -1021,7 +1021,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].id = "EsmeraldaStoreBig";
 	locations[n].id.label = "EsmeraldaStoreBig cabin";
 	locations[n].filespath.models = "locations\LostShipsCityInsides\EsmeraldaStoreBig";
-	locations[n].image = "loading\jonny_load\quest\EsmeraldaStoreBig.tga";
+	locations[n].image = "loading\SantaLuci\EsmeraldaStoreBig.tga";
 	//Town sack
 	locations[n].townsack = "LostShipsCity";
 	locations[n].lockWeather = "Inside";
@@ -1066,7 +1066,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 	//locations[n].environment.weather.rain = false;
-	locations[n].alwaysStorm = true; //живём в штормах
+	locations[n].alwaysStorm = true; //живем в штормах
 	locations[n].storm = true;
 	//Reload map
 	locations[n].reload.l1.name = "reload1";
@@ -1138,7 +1138,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].id = "FenixPlatform";
 	locations[n].id.label = "FenixPlatform cabin";
 	locations[n].filespath.models = "locations\LostShipsCityInsides\FenixPlatform";
-	locations[n].image = "loading\jonny_load\quest\FenixPlatform.tga";
+	locations[n].image = "loading\SantaLuci\FenixPlatform.tga";
 	//Town sack
 	locations[n].townsack = "LostShipsCity";
 	locations[n].lockWeather = "Inside";
@@ -1182,7 +1182,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 	//locations[n].environment.weather.rain = false;
-	locations[n].alwaysStorm = true; //живём в штормах
+	locations[n].alwaysStorm = true; //живем в штормах
 	locations[n].storm = true;
 	//Reload map
 	locations[n].reload.l1.name = "reload1";
@@ -1210,7 +1210,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].id = "FernandaDiffIndoor";
 	locations[n].id.label = "FernandaDiffIndoor cabin";
 	locations[n].filespath.models = "locations\LostShipsCityInsides\FernandaDiffIndoor";
-	locations[n].image = "loading\jonny_load\quest\FernandaDiffIndoor.tga";
+	locations[n].image = "loading\SantaLuci\FernandaDiffIndoor.tga";
 	//Town sack
 	locations[n].townsack = "LostShipsCity";
 	locations[n].lockWeather = "Inside";
@@ -1255,7 +1255,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 	//locations[n].environment.weather.rain = false;
-	locations[n].alwaysStorm = true; //живём в штормах
+	locations[n].alwaysStorm = true; //живем в штормах
 	locations[n].storm = true;
 	//Reload map
 	locations[n].reload.l1.name = "reload1";
@@ -1285,7 +1285,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].id = "FleuronTavern";
 	locations[n].id.label = "FleuronTavern cabin";
 	locations[n].filespath.models = "locations\LostShipsCityInsides\FleuronTavern";
-	locations[n].image = "loading\jonny_load\quest\FleuronTavern.tga";
+	locations[n].image = "loading\SantaLuci\FleuronTavern.tga";
 	//Town sack
 	locations[n].townsack = "LostShipsCity";
 	locations[n].lockWeather = "Inside";
@@ -1329,7 +1329,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 	//locations[n].environment.weather.rain = false;
-	locations[n].alwaysStorm = true; //живём в штормах
+	locations[n].alwaysStorm = true; //живем в штормах
 	locations[n].storm = true;
 	LAi_LocationFightDisable(&locations[n], true);
 	//Reload map
@@ -1385,6 +1385,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].private1.items.rabble = 1;
 	locations[n].private1.items.topor3 = 1;
 	locations[n].private1.items.mineral9 = 26;
+	locations[n].private1.items.topor10 = 1;
 	locations[n].private1.items.mineral3 = 2;
 
 	locations[n].private2.key = "key2";
@@ -1415,7 +1416,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].id = "FurieShipInside2";
 	locations[n].id.label = "FurieShipInside2 cabin";
 	locations[n].filespath.models = "locations\LostShipsCityInsides\FurieShipInside2";
-	locations[n].image = "loading\jonny_load\quest\FurieShipInside2.tga";
+	locations[n].image = "loading\SantaLuci\FurieShipInside2.tga";
 	//Town sack
 	locations[n].townsack = "LostShipsCity";
 	locations[n].lockWeather = "Inside";
@@ -1460,7 +1461,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 	//locations[n].environment.weather.rain = false;
-	locations[n].alwaysStorm = true; //живём в штормах
+	locations[n].alwaysStorm = true; //живем в штормах
 	locations[n].storm = true;
 	//Reload map
 	locations[n].reload.l1.name = "reload1";
@@ -1525,7 +1526,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].id = "GloriaChurch";
 	locations[n].id.label = "GloriaChurch cabin";
 	locations[n].filespath.models = "locations\LostShipsCityInsides\GloriaChurch";
-	locations[n].image = "loading\jonny_load\quest\GloriaChurch.tga";
+	locations[n].image = "loading\SantaLuci\GloriaChurch.tga";
 	//Town sack
 	locations[n].townsack = "LostShipsCity";
 	locations[n].lockWeather = "Inside";
@@ -1570,7 +1571,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 	//locations[n].environment.weather.rain = false;
-	locations[n].alwaysStorm = true; //живём в штормах
+	locations[n].alwaysStorm = true; //живем в штормах
 	locations[n].storm = true;
 	//Reload map
 	locations[n].reload.l1.name = "reload4";
@@ -1618,7 +1619,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].id = "PlutoStoreSmall";
 	locations[n].id.label = "PlutoStoreSmall cabin";
 	locations[n].filespath.models = "locations\LostShipsCityInsides\PlutoStoreSmall";
-	locations[n].image = "loading\jonny_load\quest\PlutoStoreSmall.tga";
+	locations[n].image = "loading\SantaLuci\PlutoStoreSmall.tga";
 	//Town sack
 	locations[n].townsack = "LostShipsCity";
 	locations[n].lockWeather = "Inside";
@@ -1663,7 +1664,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 	//locations[n].environment.weather.rain = false;
-	locations[n].alwaysStorm = true; //живём в штормах
+	locations[n].alwaysStorm = true; //живем в штормах
 	locations[n].storm = true;
 	//Reload map
 	locations[n].reload.l1.name = "reload1";
@@ -1725,7 +1726,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].id = "ProtectorFisher";
 	locations[n].id.label = "ProtectorFisher cabin";
 	locations[n].filespath.models = "locations\LostShipsCityInsides\ProtectorFisher";
-	locations[n].image = "loading\jonny_load\quest\ProtectorFisher.tga";
+	locations[n].image = "loading\SantaLuci\ProtectorFisher.tga";
 	//Town sack
 	locations[n].townsack = "LostShipsCity";
 	locations[n].lockWeather = "Inside";
@@ -1769,7 +1770,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 	//locations[n].environment.weather.rain = false;
-	locations[n].alwaysStorm = true; //живём в штормах
+	locations[n].alwaysStorm = true; //живем в штормах
 	locations[n].storm = true;
 	//Reload map
 	locations[n].reload.l1.name = "reload1";
@@ -1797,7 +1798,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].id = "SanAugustineResidence";
 	locations[n].id.label = "SanAugustineResidence cabin";
 	locations[n].filespath.models = "locations\LostShipsCityInsides\SanAugustineResidence";
-	locations[n].image = "loading\jonny_load\quest\SanAugustineResidence.tga";
+	locations[n].image = "loading\SantaLuci\San_Augustin.tga";
 	//Town sack
 	locations[n].townsack = "LostShipsCity";
 	locations[n].lockWeather = "Inside";
@@ -1841,7 +1842,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 	//locations[n].environment.weather.rain = false;
-	locations[n].alwaysStorm = true; //живём в штормах
+	locations[n].alwaysStorm = true; //живем в штормах
 	locations[n].storm = true;
 	//Reload map
 	locations[n].reload.l1.name = "reload1";
@@ -1960,7 +1961,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].id = "SanGabrielMechanic";
 	locations[n].id.label = "SanGabrielMechanic cabin";
 	locations[n].filespath.models = "locations\LostShipsCityInsides\SanGabrielMechanic";
-	locations[n].image = "loading\jonny_load\quest\SanGabrielMechanic.tga";
+	locations[n].image = "loading\SantaLuci\SanGabrielMechanic.tga";
 	//Town sack
 	locations[n].townsack = "LostShipsCity";
 	locations[n].lockWeather = "Inside";
@@ -2008,7 +2009,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 	//locations[n].environment.weather.rain = false;
-	locations[n].alwaysStorm = true; //живём в штормах
+	locations[n].alwaysStorm = true; //живем в штормах
 	locations[n].storm = true;
 	//Reload map
 	locations[n].reload.l1.name = "reload1";
@@ -2075,7 +2076,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].id = "SantaFlorentinaShipInside4";
 	locations[n].id.label = "SantaFlorentinaShipInside4 cabin";
 	locations[n].filespath.models = "locations\LostShipsCityInsides\SantaFlorentinaShipInside4";
-	locations[n].image = "loading\jonny_load\quest\SantaFlorentinaShipInside4.tga";
+	locations[n].image = "loading\SantaLuci\SantaFlorentinaShipInside4.tga";
 	//Town sack
 	locations[n].townsack = "LostShipsCity";
 	locations[n].lockWeather = "Inside";
@@ -2120,7 +2121,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 	//locations[n].environment.weather.rain = false;
-	locations[n].alwaysStorm = true; //живём в штормах
+	locations[n].alwaysStorm = true; //живем в штормах
 	locations[n].storm = true;
 	//Reload map
 	locations[n].reload.l1.name = "reload1";
@@ -2193,7 +2194,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].id = "TartarusPrison";
 	locations[n].id.label = "TartarusPrison cabin";
 	locations[n].filespath.models = "locations\LostShipsCityInsides\TartarusPrison";
-	locations[n].image = "loading\jonny_load\quest\TartarusPrison.tga";
+	locations[n].image = "loading\SantaLuci\TartarusPrison.tga";
 	//Town sack
 	locations[n].townsack = "LostShipsCity";
 	locations[n].lockWeather = "Inside";
@@ -2241,7 +2242,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 	//locations[n].environment.weather.rain = false;
-	locations[n].alwaysStorm = true; //живём в штормах
+	locations[n].alwaysStorm = true; //живем в штормах
 	locations[n].storm = true;
 	//Reload map
 	locations[n].reload.l1.name = "reload1";
@@ -2283,7 +2284,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].id = "VelascoShipInside1";
 	locations[n].id.label = "VelascoShipInside1 cabin";
 	locations[n].filespath.models = "locations\LostShipsCityInsides\VelascoShipInside1";
-	locations[n].image = "loading\jonny_load\quest\VelascoShipInside1.tga";
+	locations[n].image = "loading\SantaLuci\VelascoShipInside1.tga";
 	//Town sack
 	locations[n].townsack = "LostShipsCity";
 	locations[n].lockWeather = "Inside";
@@ -2331,7 +2332,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 	//locations[n].environment.weather.rain = false;
-	locations[n].alwaysStorm = true; //живём в штормах
+	locations[n].alwaysStorm = true; //живем в штормах
 	locations[n].storm = true;
 	//Reload map
 	locations[n].reload.l1.name = "reload1";
@@ -2362,11 +2363,11 @@ int LocationInitLostShipsCity(int n)
 
 	//ключи для сундуков и предметы внутри
 	locations[n].private1.key = "key1";
-	locations[n].private1.items.mineral2 = 1;
-	locations[n].private1.items.mineral3 = 1; 
-	locations[n].private1.items.mineral9 = 10;
-	locations[n].private1.items.mineral7 = 3;
-	locations[n].private1.items.mineral10 = 1;
+	locations[n].private1.items.mineral = 1;
+	locations[n].private1.items.mineral = 1;
+	locations[n].private1.items.mineral = 10;
+	locations[n].private1.items.mineral = 3;
+	locations[n].private1.items.mineral = 1;
 	locations[n].private1.items.potion5 = 21;
 
 	locations[n].private2.key = "key2";
@@ -2389,8 +2390,8 @@ int LocationInitLostShipsCity(int n)
 	locations[n].private3.items.jewelry14 = 9;
 	locations[n].private3.items.jewelry15 = 15;
 	locations[n].private3.items.jewelry5 = 35;
-	locations[n].private3.items.map_hisp = 1;
-	locations[n].private3.items.CompCraft_Lead = 22;
+	locations[n].private2.items.map_hisp = 1;
+	locations[n].private1.items.CompCraft_Lead = 22;
 	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////
@@ -2399,7 +2400,7 @@ int LocationInitLostShipsCity(int n)
 
 	Locations[n].id = "ExternalRingDeck";
 	Locations[n].id.label = "Boarding deck";
-	Locations[n].image = "loading\jonny_load\inside ship\deck03.tga";
+	Locations[n].image = "loading\SantaLuci\ExternalRingDeck.tga";
 	//Sound
 	Locations[n].type = "LostShipsCity";
 	Locations[n].lockCamAngle = 0.4;
@@ -2457,7 +2458,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].id = "ExternalRingInside";
 	locations[n].id.label = "";
 	locations[n].filespath.models = "locations\LostShipsCityInsides\PlutoStoreSmall";
-	locations[n].image = "loading\jonny_load\quest\externalringinside.tga";
+	locations[n].image = "loading\SantaLuci\ExternalRingInside.tga";
 	//Town sack
 	locations[n].townsack = "LostShipsCity";
 	locations[n].lockWeather = "Inside";
@@ -2516,7 +2517,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].private1.items.food1 = 10;
 	locations[n].private1.items.food2 = 30;
 
-	locations[n].private2.items.Mineral10 = 1;
+	locations[n].private2.items.Mineral11 = 1;
 
 	locations[n].private4.items.potionrum = 40; // 40 бутылок рома
 
@@ -2528,7 +2529,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].private9.items.blade21 = 1;
 
 	locations[n].private10.items.jewelry15 = 30;
-	locations[n].private10.items.jewelry18 = 10;
+	locations[n].private10.items.jewelry19 = 10;
 
 	locations[n].private11.items.jewelry1 = 20;
 
@@ -2540,7 +2541,7 @@ int LocationInitLostShipsCity(int n)
   	Locations[n].id = "ExternalRingCabin1";
     locations[n].id.label = "cabine";
 	locations[n].filespath.models = "locations\inside\cabinFDM\";
-	locations[n].image = "loading\jonny_load\inside\cabinFDM.tga";
+	locations[n].image = "loading\SantaLuci\ExternalRingCabin1.tga";
 	//Sound
 	locations[n].type = "LSC_inside";
 	locations[n].islandId = "LostShipsCity";

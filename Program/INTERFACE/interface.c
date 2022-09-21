@@ -759,18 +759,13 @@ void LaunchShipStateNPC(ref _chr)
 
 void LaunchStore(int storeNum)
 {
-	if (storeNum < 0) return;
-	if (storeNum > STORE_QUANTITY - 1) return;
-	gStoreNum = storeNum;
-
-	int storeInterfaceId = INTERFACE_STORE;
-	if (CheckAttribute(InterfaceStates, "EnabledOldStore") && sti(InterfaceStates.EnabledOldStore) == 1)
-		storeInterfaceId = INTERFACE_STORE_GOOD_OLD;
-
-	if(procInterfacePrepare(storeInterfaceId))
+  if(storeNum<0)	return;
+  if(storeNum>STORE_QUANTITY-1)	return;
+	gStoreNum=storeNum;
+	if(procInterfacePrepare(INTERFACE_STORE))
 	{
 		nPrevInterface = -1;
-		CurrentInterface = storeInterfaceId;
+		CurrentInterface = INTERFACE_STORE;
 		InitInterface_R(Interfaces[CurrentInterface].IniFile,&stores[storeNum]);
 	}
 }
@@ -1012,18 +1007,18 @@ void LaunchRansackMain(ref _refMy,ref _refEnemy,string captureState)
 	{
 		nPrevInterface = -1;
 		CurrentInterface = INTERFACE_RANSACK_MAIN;
-		InitInterface_RRS(Interfaces[CurrentInterface].IniFile,_refMy,_refEnemy,captureState); // что характерно, _refMy не при делах вообще :) Забавно, право слово. Ну да, совместимости для.
+		InitInterface_RS(Interfaces[CurrentInterface].IniFile,_refEnemy,captureState); // что характерно, _refMy не при делах вообще :) Забавно, право слово. Ну да, совместимости для.
 	}
 	// Это по сути вызов LaunchTransferMain(_refMy, _refEnemy, captureState); , но нужна проверка на	INTERFACE_RANSACK_MAIN
 }
 
-void LaunchTransferMain(ref _refMy, ref _refEnemy, string newCurNod)
+void LaunchTransferMain(ref _refMy,ref _refEnemy, string newCurNod)
 {
 	if(procInterfacePrepare(INTERFACE_TRANSFER_MAIN))
 	{
 		nPrevInterface = -1;
 		CurrentInterface = INTERFACE_TRANSFER_MAIN;
-		InitInterface_RRS(Interfaces[CurrentInterface].IniFile,_refMy,_refEnemy,newCurNod);
+		InitInterface_RS(Interfaces[CurrentInterface].IniFile,_refEnemy,newCurNod);
 	}
 }
 
@@ -1464,7 +1459,7 @@ bool procInterfacePrepare(int interfaceCode)
 	if(g_ibVideoExecuting) return false;
 	//if(IsEntity(wdm_fader)!=0) return false;
 
-	if(interfaceCode != INTERFACE_FORTCAPTURE && interfaceCode != INTERFACE_RANSACK_MAIN && interfaceCode != INTERFACE_ARENA)
+	if(interfaceCode != INTERFACE_FORTCAPTURE && interfaceCode != INTERFACE_RANSACK_MAIN)
 	{
 		aref arFader;
 		if( GetEntity(arFader,"fader") ) {return false;}
@@ -1690,7 +1685,7 @@ void procInfoShow()
 			break;
 
 			case "game prepare":
-				objInfoList[nInfoIdx].picbackfilename = "loading\jonny_load\load\load_0"+rand(8)+".tga";
+				objInfoList[nInfoIdx].picbackfilename = "loading\StartLoading_"+rand(29)+".tga";
 			break;
 
 			case "MainMenuLaunch":
@@ -2120,23 +2115,14 @@ void MakeQuickLoad()
 	// boal лишнее if( InterfaceStates.Launched != 0 ) {return;}
 	if( bPlayVideoNow ) {return;}
 	// ugeen 2017 -->
-	/*int QuickSaveIndex = 1;
+	int QuickSaveIndex = 1;
 	if( CheckAttribute(&PlayerProfile,"QuickSaveIndex") ) {
 		QuickSaveIndex = sti(PlayerProfile.QuickSaveIndex);
 	}
 	string curSave = PlayerProfile.name + " QuickSave " + QuickSaveIndex;
 	// <-- ugeen 2017
-	
 	SetEventHandler("evntLoad","LoadGame",0);
-	PostEvent("evntLoad",0,"s", "SAVE\" + PlayerProfile.name+"\"+curSave);*/
-	GameInterface.SavePath = "SAVE\" + PlayerProfile.name;
-    string saveName;
-    int nSaveSize;
-    SendMessage(&GameInterface,"llee",MSG_INTERFACE_SAVE_FILE_FIND,0,&saveName,&nSaveSize);
-    string curSave = saveName;
-	
-	SetEventHandler("evntLoad","LoadGame",0);
-	PostEvent("evntLoad",0,"s", GameInterface.SavePath+"\"+saveName);
+	PostEvent("evntLoad",0,"s", "SAVE\" + PlayerProfile.name+"\"+curSave);
 }
 
 void MakeQuickSave()

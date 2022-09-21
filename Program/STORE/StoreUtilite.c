@@ -102,7 +102,7 @@ int GetStoreGoodsPrice(ref _refStore, int _Goods, int _PriceType, ref chref, int
 		return 0;
 	}
 	//if (CheckAttribute(pchar,"ContraInter")) Log_TestInfo(pchar.ContraInter);
-    // else Log_TestInfo("Нет атрибута ContraInter");
+    //else Log_TestInfo("Нет атрибута ContraInter");
 	float _TradeSkill = GetSummonSkillFromNameToOld(pchar,SKILL_COMMERCE); // 0..10.0
 	aref refGoods;
 	string tmpstr = Goods[_Goods].name;
@@ -112,42 +112,29 @@ int GetStoreGoodsPrice(ref _refStore, int _Goods, int _PriceType, ref chref, int
  	int tradeType = MakeInt(refGoods.TradeType);
 	float tradeModify = 1.0;
 
-	bool isPirateColony = false;
-	bool isPCharOwner = false;
-	if (_refStore.Colony != "none")
-	{
-		if (sti(Colonies[FindColony(_refStore.Colony)].Nation) == PIRATE) isPirateColony = true;
-		if (sti(Colonies[FindColony(_refStore.Colony)].HeroOwn) == true) isPCharOwner = true;
-	}
-
 	switch (tradeType)
 	{
 		case TRADE_TYPE_EXPORT:
-			tradeModify = 0.55 + stf(refGoods.RndPriceModify);		//0.55	+r0.1
+			tradeModify = 0.55 + stf(refGoods.RndPriceModify); //0.55	+r0.1
 			break;
 		case TRADE_TYPE_NORMAL:
-			tradeModify = 0.85 + stf(refGoods.RndPriceModify);		//0.85	+r0.15
+			tradeModify = 0.85 + stf(refGoods.RndPriceModify); //0.85	+r0.15
 			break;
 		case TRADE_TYPE_IMPORT:
-			tradeModify = 1.2 + stf(refGoods.RndPriceModify);		//1.2		+r0.2	//1.2 + r0.15
+			tradeModify = 1.2 + stf(refGoods.RndPriceModify); //1.2		+r0.2	//1.2 + r0.15
 			break;
 		case TRADE_TYPE_AGGRESSIVE:
-			tradeModify = 1.5 + stf(refGoods.RndPriceModify);		//1.8		+r0.25	//1.5 + r0.2
+			tradeModify = 1.5 + stf(refGoods.RndPriceModify); //1.8		+r0.25	//1.5 + r0.2
 			break;
 		case TRADE_TYPE_CONTRABAND:
-			if (!isPirateColony || isPCharOwner || (_PriceType == PRICE_TYPE_BUY))
-				tradeModify = 1.8 + stf(refGoods.RndPriceModify);	//2.4		+r0.35	//1.8 + r0.2
-			else
-				// В пиратских поселениях, которые не принадлежат игроку - цена продажи небольшая,
-				// потому что много желающих продать, а покупают только пираты.
-				tradeModify = 0.75 + stf(refGoods.RndPriceModify);	//0.6		+r0.35	//1.8 + r0.2
+			tradeModify = 1.8 + stf(refGoods.RndPriceModify); //2.4		+r0.35	//1.8 + r0.2
 			break;
 		case TRADE_TYPE_AMMUNITION:
-			//return basePrice; делаю всё тоже, что и длz нормального товара, а тип нужен, чтоб на корабле не скупали лишнее.
+			//return basePrice; делаю все тоже, что и длz нормального товара, а тип нужен, чтоб на корабле не скупали лишнее.
 			tradeModify = 0.85 + stf(refGoods.RndPriceModify);
 			break;
 		case TRADE_TYPE_CANNONS:
-			tradeModify = 0.85 + stf(refGoods.RndPriceModify);		//0.8
+			tradeModify = 0.85 + stf(refGoods.RndPriceModify); //0.8
 			break;
 	}
 
@@ -897,13 +884,10 @@ void ChangeImport()
 												pRef.Goods.(goodName).TradeType = 2;
 												//iImport--;
 											}
-											else 
+											else
 											{
-												if(pRef.Colony != "Caiman")//неконтрабандность Каймана
-												{
-													pRef.Goods.(goodName).TradeType = 3;
-													contraband++;
-												}
+												pRef.Goods.(goodName).TradeType = 3;
+												contraband++;
 											}
 										}
 									}
@@ -924,11 +908,8 @@ void ChangeImport()
 										}
 										else
 										{
-											if(pRef.Colony != "Caiman")//неконтрабандность Каймана
-											{
-												pRef.Goods.(goodName).TradeType = 3;
-												contraband++;
-											}
+											pRef.Goods.(goodName).TradeType = 3;
+											contraband++;
 										}
 									}
 									pRef.Goods.(goodName).Quantity = sti(sti(pRef.Goods.(goodName).Quantity)*0.3);

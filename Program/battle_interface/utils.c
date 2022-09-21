@@ -16,6 +16,7 @@ native int ShipSailState(int chrIdx);
 #define BI_FAST_REPAIR_PERCENT	1.0
 #define BI_FAST_REPAIR_SAIL		3.0
 #define BI_FAST_REPAIR_PERIOD	50
+#define InstantRepairRATESAIL	78.0
 
 #event_handler("evntActionRepair","procActionRepair");
 
@@ -43,8 +44,6 @@ void procActionRepair()
 	if(chrIdx<0) return;
 	if(!bSeaActive)	return;
 	ref chref = GetCharacter(chrIdx);
-	ref rBaseShip = &ShipsTypes[sti(RealShips[sti(chref.Ship.Type)])];
-	
 	// boal 29.02.2004 -->
 	if (!IsCompanion(chref)) return;
 	// boal 29.02.2004 <--
@@ -106,9 +105,13 @@ void procActionRepair()
 			iRepair++;
 		if(chref.Fellows.Passengers.carpenter > 0)
 			iRepair++;
-		if(hpp < InstantRepairRATE && nMaterialH > 0)// boal 23.01.2004
+		//ftmp1 = GetCharacterShipHP(chref);
+		//ftmp2 = stf(chref.Ship.HP)*InstantRepairRATE*0.01;//макс хп * InstantRepairRATE из _mod_on_off.c
+		if(hpp < InstantRepairRATE && nMaterialH > 0)//if(hpp < InstantRepairRATE && nMaterialH>0) // boal 23.01.2004
 		{
-
+			//Log_Info(" carpenter "+chref.Fellows.Passengers.carpenter);
+			//Log_Info("Скорость ремонта "+iRepair);
+			//iRepair = MakeInt(iRepair);
 			fRepairH = makefloat(iRepair*BI_FAST_REPAIR_PERCENT);
 			if(CheckOfficersPerk(chref, "Carpenter"))
 				fRepairH *= 1.1;
@@ -121,6 +124,7 @@ void procActionRepair()
 				if(ftmp1 >= 1)
 				{
 					nMatDeltaH = ftmp1;
+					//Log_Info("nMatDeltaH "+nMatDeltaH+" ftmp1 "+ftmp1);
 					ftmp1 -= nMatDeltaH;
 				}
 				chref.ship.MatDelta = ftmp1;
@@ -151,8 +155,14 @@ void procActionRepair()
 			}*/
 			ProcessHullRepairDigital(chref,fRepairH);
 		}
-		if(spp < InstantRepairRATE && nMaterialS>0) // boal 23.01.2004
+		if(spp < InstantRepairRATESAIL && nMaterialS>0) // boal 23.01.2004
 		{
+			//fRepairS = ProcessSailRepairFast(chref,fRepairS);
+			//Log_Info("fRepairS "+chref.ship.Repair+"GetSailPercent(chref) "+chref.ship.SP);
+			//else{chref.ship.Repair = 1;}
+			//Log_Info("fRepairS "+chref.ship.Repair);
+			//bool allow = CalculateShipSP(chref) >= GetSailPercent(chref);
+			//Log_Info("chref.ship.scriptsp "+chref.ship.scriptsp+" chref.ship.sp "+chref.ship.sp);
 			ftmp1 = GetCharacterShipClass(chref);//замедление починки парусов от класса выше 5
 			if(ftmp1 < 5)
 				ftmp1 = (6 - ftmp1);//первоклассник в 5 раз
@@ -161,38 +171,34 @@ void procActionRepair()
 			if(!CheckAttribute(chref, "chref.ship.RepairS"))
 				chref.ship.RepairS = 0.01;
 			fRepairS = stf(chref.ship.RepairS);
-			fRepairS += (BI_FAST_REPAIR_PERCENT*iRepair*BI_FAST_REPAIR_SAIL*(1+0.1*CheckOfficersPerk(chref, "Carpenter"))) / (stf(rBaseShip.SP) * ftmp1);//расчет ремонта - доп.модификатор скорости ремонта * бонус навыка * опорное число * бонус перка плотник / макс состояние парусов * модификатор класса
+			fRepairS += (BI_FAST_REPAIR_PERCENT*iRepair*BI_FAST_REPAIR_SAIL*(1+1.1*CheckOfficersPerk(chref, "Carpenter"))) / (CalculateShipHoles(chref)*ftmp1);//тут происходит основной расчет ремонта - доп.модификатор * бонус навыка * опорное число * бонус перка плотник / количество дырок * модификатор класса
 			chref.ship.RepairS = fRepairS;
+			//Log_Info("chref.ship.sp "+chref.ship.sp+" chref.ship.RepairS "+chref.ship.RepairS);
 			if(fRepairS > 0)
-			{
 				chref.ship.RepairS = ProcessSailRepairFast(chref, fRepairS);
-			}
-			if((fRepairS - 0.000003) > stf(chref.ship.RepairS))//при операциях с движком переменные получают 0.000000003
+				//Log_Info("chref.ship.RepairS "+chref.ship.RepairS);
+			if(CheckOfficersPerk(chref, "Builder"))
 			{
-				if(CheckOfficersPerk(chref, "Builder"))
+				ftmp2 = BI_FAST_REPAIR_PERCENT*0.9;
+				if(!CheckAttribute(chref, "ship.MatDeltaS"))
+					chref.ship.MatDeltaS = 0.01;
+				ftmp2 += stf(chref.ship.MatDeltaS);
+				if(ftmp2 >= 1)
 				{
-					ftmp2 = BI_FAST_REPAIR_PERCENT*0.9;
-					if(!CheckAttribute(chref, "ship.MatDeltaS"))
-						chref.ship.MatDeltaS = 0.01;
-					ftmp2 += stf(chref.ship.MatDeltaS);
-					if(ftmp2 >= 1)
-					{
-						nMatDeltaS = ftmp2;
-						ftmp2 -= nMatDeltaS;
-					}
-					chref.ship.MatDeltaS = ftmp2;
+					nMatDeltaS = ftmp2;
+					//Log_Info("nMatDeltaS "+nMatDeltaS+" ftmp1 "+ftmp1);
+					ftmp2 -= nMatDeltaS;
 				}
-				else
-				{
-					nMatDeltaS = BI_FAST_REPAIR_PERCENT;
-				}
+				chref.ship.MatDeltaS = ftmp2;
 			}
 			else
-			{
-				nMatDeltaS = 0;
-			}
+				nMatDeltaS = BI_FAST_REPAIR_PERCENT;
+			//Log_Info("nMatDeltaS "+nMatDeltaS);
+			//if(fRepairS>BI_FAST_REPAIR_PERCENT)
+			//	{fRepairS=BI_FAST_REPAIR_PERCENT;}
+			//Log_Info("ремонт "+ fRepairS + " nMatDeltaS " + nMatDeltaS + "fMaterialS" + fMaterialS);
 			/*старое
-			fRepairS = InstantRepairRATE -spp; // boal 23.01.2004
+			fRepairS = InstantRepairRATESAIL -spp; // boal 23.01.2004
 			if(fRepairS>BI_FAST_REPAIR_PERCENT)	{fRepairS=BI_FAST_REPAIR_PERCENT;}
 			ftmp1 = GetSailSPP(chref)*5; //*1
 			ftmp2 = fMaterialS + ftmp1*fRepairS;
@@ -229,6 +235,14 @@ void procActionRepair()
 			chref.Ship.Cargo.Goods.(goodsName) = nMaterialS;
 			chref.Ship.Cargo.Load = sti(chref.Ship.Cargo.Load) - sti(Goods[GOOD_SAILCLOTH].Weight)*nMatDeltaS;
 		}
+		/*if(GetOfficersPerkUsingIdx(chref, "InstantRepair") > 0)
+			{repairAllow = true;}
+		else
+		{
+			if(!bAltBalance && chref.perks.list.InstantRepair.active > 0)
+			{repairAllow = true}
+		}*/
+		//Log_Info("CheckOfficersPerk "+CheckOfficersPerk(chref, "InstantRepair"));
 		if (CheckOfficersPerk(chref, "InstantRepair"))
 		{
 			if((hpp < InstantRepairRATE)) // boal 23.01.2004
@@ -236,7 +250,7 @@ void procActionRepair()
 			}
 			else
 			{
-				if(spp < InstantRepairRATE) // boal 23.01.2004
+				if(spp < InstantRepairRATESAIL) // boal 23.01.2004
 				{	PostEvent("evntActionRepair",BI_FAST_REPAIR_PERIOD,"llff",chrIdx,1, fMaterialH,fMaterialS);
 				}
 				else
@@ -275,11 +289,16 @@ float ProcessHullRepair(ref chref,float repPercent)
 float ProcessHullRepairDigital(ref chref,float Digit)
 {
 	int baseHP = GetCharacterShipHP(chref);
+	//Log_Info("baseHP " + baseHP);
+	//Log_Info("Digit " + Digit);
 	int dmg = baseHP - sti(chref.ship.HP);
+	//Log_Info("dmg " + dmg);
+	//Log_Info("chref.ship.HP " + chref.ship.HP);
 	if(dmg==0.0) return 0.0;
 	if(Digit>dmg) Digit=dmg;
 	int blotsQuantity = GetBlotsQuantity(chref);
 	int repBlots = makeint(blotsQuantity*Digit/dmg);
+	//Log_Info("repBlots "+repBlots);
 	DeleteBlots(chref,repBlots);
 	chref.ship.HP = makefloat(baseHP+Digit-dmg);
 	return Digit;
@@ -341,6 +360,8 @@ float ProcessSailRepair(ref chref, float repPercent)
 float ProcessSailRepairFast(ref chref, float fMakeRepair)
 {
 	float dmg = 100.0-GetSailPercent(chref);
+	//if(dmg==0.0) return 0.0;
+	//if(repPercent>dmg) repPercent=dmg;
 	int i,j,rq,gq;
 	aref arRoot,arGroup,arSail;
 	string tmpstr;
@@ -353,28 +374,31 @@ float ProcessSailRepairFast(ref chref, float fMakeRepair)
 		for(j=0; j<gq; j++)
 		{
 			arSail = GetAttributeN(arGroup, j);
+
 			if( CheckAttribute(arSail,"mastFall") )
-			{
+				continue;
+			/*{
 				tmpstr = "ship.masts."+arSail.mastFall;
 				if( CheckAttribute(chref,tmpstr) && stf(chref.(tmpstr))>=1.0 )
 					{continue;}
-			}
+			}*/
 			//fMakeRepair -= OneSailDmgRepair(chref,arGroup,arSail,fMakeRepair);
-				if (!CheckAttribute(arSail, "dmg") || !CheckAttribute(arSail, "sp"))
-				{
+				if (!CheckAttribute(arSail, "dmg"))
 					continue; // fix boal 18.08.06
-				}
 				float fSailDmg = stf(arSail.dmg);
 				float sailDmgMax = GetCharacterShipSP(chref) * stf(arSail.sp);
 				if(fMakeRepair<=0.0)
 					break;
+				//Log_Info("ремонт: " + fMakeRepair + " повреждение " + fSailDmg);
 				if (fSailDmg <= 0.0 || !CheckAttribute(arSail, "hd"))
 					continue;  // fix boal 14.09.06
 
 				if (fMakeRepair>=fSailDmg)
 				{
-					DeleteOneSailHole( sti(chref.index), GetAttributeName(arSail), GetAttributeName(arGroup), sti(arSail.hd), sti(arSail.hc) );
-					DeleteAttribute(arSail, "dmg");
+						DeleteOneSailHole( sti(chref.index), GetAttributeName(arSail), GetAttributeName(arGroup), sti(arSail.hd), sti(arSail.hc) );
+						DeleteAttribute(arGroup,GetAttributeName(arSail));
+						if( GetAttributesNum(arGroup)==0 )
+							{DeleteAttribute(chref,"ship.sails."+GetAttributeName(arGroup));}
 					fMakeRepair -= fSailDmg;
 					continue;
 				}
@@ -382,6 +406,7 @@ float ProcessSailRepairFast(ref chref, float fMakeRepair)
 				fSailDmg -= fMakeRepair;
 				int iAfterHole = GetNeedHoleFromDmg( fSailDmg, sailDmgMax, sti(arSail.mhc) );
 				fMakeRepair += (MakeFloat(iAfterHole)/stf(arSail.mhc))*sailDmgMax - fSailDmg/stf(arSail.sp);//получение значения починки после починки движком
+				//Log_Info("fMakeRepair "+fMakeRepair+" fAfterHole "+fAfterHole+" fSailDmg "+fSailDmg);
 				if( sti(arSail.hc) > iAfterHole )
 				{
 					arSail.hd = DeleteOneSailHole( sti(chref.index), GetAttributeName(arSail), GetAttributeName(arGroup), sti(arSail.hd), sti(arSail.hc)-iAfterHole );
@@ -406,6 +431,7 @@ float ProcessSailRepairFast(ref chref, float fMakeRepair)
 			i--;
 		}
 	}
+	//chref.ship.RepairS = fMakeRepair;
 	chref.ship.sp = CalculateShipSP(chref);
 	return fMakeRepair;
 }
@@ -546,7 +572,7 @@ int CalculateShipHoles(ref chref)
 		for(j=0; j<n; j++)
 		{
 			arSail = GetAttributeN(arGroup,j);
-			Holes += 12;//sti(arSail.mhc); - mhc не сохраняется
+			Holes += sti(arSail.mhc);
 		}
 	}
 	return Holes;

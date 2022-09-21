@@ -203,7 +203,7 @@ void LAi_type_merchant_Ask(aref chr)
 	LAi_tmpl_ani_PlayAnimation(chr, animation, 2.0 + frand(2.0));
 	//Выбираем проигрываемый звук
 	// LAi_CharacterPlaySound(chr, "merchant");
-	if(sti(InterfaceStates.CharVoice)==1) // LEO
+	if(bCharVoice) // LEO
 	{
 		if (chr.sex == "man") LAi_CharacterPlaySound(chr, "tra_common");
 		else LAi_CharacterPlaySound(chr, "tra_woman_common");

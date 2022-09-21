@@ -21,7 +21,7 @@ void CreateCitizens(aref loc)
 	int iColony = -1;
 	int iNation = -1;
 
-	if (isLocationHasCitizens(loc.id)) return; // boal  если есть ещё с того раза, но не нужно
+	if (isLocationHasCitizens(loc.id)) return; // boal  если есть еще с того раза, но не нужно
 
 	if(CheckAttribute(loc, "fastreload"))
 	{
@@ -528,7 +528,7 @@ void CreateHabitues(aref loc)
 
 	OfficersReactionResult(); // уход офов в местах, где есть пьянь и др офы - пока это таверна
 
-	if (!isLocationHasCitizens(loc.id))  // boal  если есть ещё с того раза, но не нужно
+	if (!isLocationHasCitizens(loc.id))  // boal  если есть еще с того раза, но не нужно
 	{
 		if (CheckAttribute(loc, "fastreload"))
 		{
@@ -606,7 +606,7 @@ void CreateHabitues(aref loc)
 		            chr.City = Colonies[iColony].id;  // это можно прописать в статике, но мне лениво по 20 городам лазить.
 		            chr.nation = iNation; // нация его нужна, тк она будет нацией патруля на берегу, он не пират
 					CreateModel(iChar, "pirate", MAN);
-					sTemp = LAi_FindFreeRandomLocator("sit");
+					sTemp = PlaceCharacter(chr, "sit", "random_free");
 					FreeSitLocator(loc.id, sTemp);
 					ChangeCharacterAddressGroup(chr, loc.id, "sit", sTemp);
 					LAi_group_MoveCharacter(chr, slai_group);
@@ -1168,7 +1168,7 @@ void CreatePearlVillage(aref loc)
 		pchar.GenQuestBox.(sTemp) = true;
         pchar.GenQuestBox.(sTemp).box1.items.jewelry11 = rand(150) + rand(150);
         pchar.GenQuestBox.(sTemp).box2.items.jewelry12 = rand(250) + rand(250);
-		// ==> защитники, повоевать таки придётся
+		// ==> защитники, повоевать таки придется
 		model[0] = "pirate_1";
 		model[1] = "pirate_2";
 		model[2] = "pirate_3";
@@ -1194,20 +1194,27 @@ void CreatePearlVillage(aref loc)
 		model[22] = "pirate_23";
 		model[23] = "pirate_24";
 		model[24] = "pirate_25";
+		//i = 0;
 		num = rand(3) + 2;
-		for (i = 0; i < num; i++)
+		//while(i < num)
+		for(i=0; i < num; i++)
 		{
 			iMassive = rand(25);
-			chr = GetCharacter(NPC_GenerateCharacter("FightMan"+iPrefix+"_"+i, model[iMassive], "man", "man", 15, iPearNation, 30, true));
-			SetFantomParamFromRank(chr, 15, true);
-			chr.dialog.Filename = "Pearl_dialog.c";
-			chr.dialog.currentnode = "PearlMan";
-			chr.greeting = "cit_common";
-			chr.city = "SantaCatalina"; //НЗГ Санта-Каталины
-			PlaceCharacter(chr, "goto", "random");
-			LAi_SetWarriorType(chr);
-			LAi_group_MoveCharacter(chr, "PearlGroup_"+iPrefix);
-			SetFoodToCharacter(chr, 3, 20);
+			//if (model[iMassive] != "")
+			//{
+				chr = GetCharacter(NPC_GenerateCharacter("FightMan"+iPrefix+"_"+i, model[iMassive], "man", "man", 15, iPearNation, 30, true));
+				SetFantomParamFromRank(chr, 15, true);
+				chr.dialog.Filename = "Pearl_dialog.c";
+				chr.dialog.currentnode = "PearlMan";
+				chr.greeting = "cit_common";
+				chr.city = "SantaCatalina"; //НЗГ Санта-Каталины
+				PlaceCharacter(chr, "goto", "random");
+				LAi_SetWarriorType(chr);
+				LAi_group_MoveCharacter(chr, "PearlGroup_"+iPrefix);
+			//	i++;
+			//	model[iMassive] = "";
+			//}
+				SetFoodToCharacter(chr, 3, 20);
 		}
 		// ==> просто работники
 		model[0] = "indsair2";
@@ -1221,33 +1228,40 @@ void CreatePearlVillage(aref loc)
 		model[8] = "trader_4";
 		model[9] = "barmen_9";
 		//Boyer change
+		//i = 0;
 		num = rand(3) + 2;
-		for (i = 0; i < num; i++)
+		//while(i < num)
+		for(i=0; i < num; i++)
 		{
 			iMassive = rand(9);
-			sAnime = "man"
-			if (model[iMassive] == "indsair2" || model[iMassive] == "indsar1") sAnime = "man";
-			chr = GetCharacter(NPC_GenerateCharacter("WorkMan"+iPrefix+"_"+i, model[iMassive], "man", sAnime, 7, iPearNation, 30, false));
-			chr.dialog.Filename = "Pearl_dialog.c";
-			chr.dialog.currentnode = "PearlMan";
-			if (model[iMassive] == "indsair2" || model[iMassive] == "indsar1")
-			{
-				chr.name = LinkRandPhrase("Венету", "Соколиный глаз", "Гойко Митич");
-				chr.lastname = "";
-				chr.dialog.currentnode = "IndPearlMan";
-				chr.greeting = "Gr_PearlIndian";
-			}
-			else
-			{
-				chr.greeting = "cit_common";
-			}
-			chr.CityType = "citizen";
-			chr.city = "SantaCatalina"; //НЗГ Санта-Каталины
+			//if (model[iMassive] != "")
+			//{
+				sAnime = "man"
+				if (model[iMassive] == "indsair2" || model[iMassive] == "indsar1") sAnime = "man";
+				chr = GetCharacter(NPC_GenerateCharacter("WorkMan"+iPrefix+"_"+i, model[iMassive], "man", sAnime, 7, iPearNation, 30, false));
+				chr.dialog.Filename = "Pearl_dialog.c";
+				chr.dialog.currentnode = "PearlMan";
+				if (model[iMassive] == "indsair2" || model[iMassive] == "indsar1")
+				{
+					chr.name = LinkRandPhrase("Венету", "Соколиный глаз", "Гойко Митич");
+					chr.lastname = "";
+					chr.dialog.currentnode = "IndPearlMan";
+					chr.greeting = "Gr_PearlIndian";
+				}
+				else
+				{
+				    chr.greeting = "cit_common";
+				}
+				chr.CityType = "citizen";
+				chr.city = "SantaCatalina"; //НЗГ Санта-Каталины
 
-			PlaceCharacter(chr, "goto", "random");
-			LAi_SetCitizenType(chr);
-			LAi_group_MoveCharacter(chr, "PearlGroup_"+iPrefix);
-			SetFoodToCharacter(chr, 3, 20);
+				PlaceCharacter(chr, "goto", "random");
+				LAi_SetCitizenType(chr);
+				LAi_group_MoveCharacter(chr, "PearlGroup_"+iPrefix);
+			//	i++;
+			//	model[iMassive] = "";
+			//}
+				SetFoodToCharacter(chr, 3, 20);
 		}
 		//=========================== квесты в поселениях ================================
 		//--> перс Алекса
@@ -1267,6 +1281,18 @@ void CreatePearlVillage(aref loc)
 			SetFoodToCharacter(chr, 3, 20);
 		}
 		//<-- перс Алекса
+		//--> главарь грабителей
+		if (loc.id == "Pearl_town_2" && sti(pchar.questTemp.tugs.berglarState) > 6)
+		{
+			pchar.quest.Berglars_Ostin.win_condition.l1 = "location";
+			pchar.quest.Berglars_Ostin.win_condition.l1.location = "PearlTown2_House6";
+			pchar.quest.Berglars_Ostin.win_condition = "Berglars_Ostin";
+			//==> трем базу по квесту
+			DeleteAttribute(pchar, "questTemp.tugs");
+			//==> ставим счетчик, чтобы не глючило по коду
+			pchar.questTemp.tugs.berglarState = 0;
+		}
+		//<-- главарь грабителей
 		//=========================== квесты в поселениях ================================
 		LAi_group_SetLookRadius("PearlGroup_"+iPrefix, 16);
 		LAi_group_SetHearRadius("PearlGroup_"+iPrefix, 10);

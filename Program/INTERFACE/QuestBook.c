@@ -934,17 +934,17 @@ void ShowPGGInfo()
 		SetFormatedText("SHIP_RANK", refBaseShip.Class);
 		SetFormatedText("CLASS_ARMOR", refBaseShip.HullArmor);
 		SetNewGroupPicture("CLASS_ARMOR_ICON", "ICONS_CHAR", "Reputation");
-		//if (!CheckAttribute(refBaseShip,"QuestShip"))
-		//{
+		if (!CheckAttribute(refBaseShip,"QuestShip"))
+		{
 			SetNodeUsing("SHIP_BIG_PICTURE_VIDEO",false);
 			SetNewPicture("SHIP_BIG_PICTURE", "interfaces\ships\" + shipTexture + ".tga.tx");
-		/*}
+		}
 		else
 		{
 			SetNewPicture("SHIP_BIG_PICTURE", "");
 			SetNodeUsing("SHIP_BIG_PICTURE_VIDEO",true);
 			SetNewVideoPicture("SHIP_BIG_PICTURE_VIDEO","SHIP_"+shipTexture);
-		}*/
+		}
 		opened = true;
 		SetNewPicture("SHIP_FRAME_PICTURE", "interfaces\Frame1.tga");
 		string texturedata;
@@ -1115,9 +1115,6 @@ void FillATableInfo() // Заполним таблицу достижений и
 	int num = GetAttributesNum(aroot);
 	int z = num;
 
-	string attrname;
-	int i;
-
     for(n = 1; n < z+1; n++)
     {
     	row = "tr" + n;
@@ -1132,10 +1129,14 @@ void FillATableInfo() // Заполним таблицу достижений и
 		GameInterface.TABLE_ACHIEVEMENTS.(row).td1.str = "-";
 	}
 
+	string attrname;
+	int i;
+
 	// Сортировка по уровню выполненных достижений
 	for(i=0; i<z; i++)
 	{
 		arcur = GetAttributeN(aroot,i);
+
 		attrname = GetAttributeName(arcur);
 		if(sti(pchar.achievements.(attrname)) == 3) SetTableRowByAchievement(attrname, sti(pchar.achievements.(attrname)));
 	}
@@ -1171,7 +1172,7 @@ void SetTableRowByAchievement(string ach_id, int level)
 {
 	string row;
 
-	rownumberach++;
+	rownumberach++
 	row = "tr" + rownumberach;
 
 	GameInterface.TABLE_ACHIEVEMENTS.(row).td1.icon.width = 64;
@@ -1215,7 +1216,7 @@ void SetTableRowByAchievement(string ach_id, int level)
 		if(ach_id == "Nation_quest_E" || ach_id == "Nation_quest_F" || ach_id == "Nation_quest_H" || ach_id == "Nation_quest_S" || ach_id == "Nation_quest_P" || ach_id == "Isabella_quest" || ach_id == "LSC_quest" || ach_id == "Teno_quest" || ach_id == "Killbeggars_quest"
 		|| ach_id == "Ghostship_quest" || ach_id == "Bluebird_quest" || ach_id == "Berglarsgang_quest" || ach_id == "Mummydust_quest" || ach_id == "Enchantcity_quest"
 		|| ach_id == "ships" || ach_id == "bank_money" || ach_id == "CapBladLine" || ach_id == "WhisperLine" || ach_id == "AchShipSearch" || ach_id == "AchOrion" || ach_id == "AchRabotorg" || ach_id == "AchKondotier"
-		|| ach_id == "AchTich" || ach_id == "AchRagnar" || ach_id == "AchSalazar" || ach_id == "AchKaskos" || ach_id == "AchUmSamil" || ach_id == "AchMapMaker")
+		|| ach_id == "AchTich" || ach_id == "AchRagnar" || ach_id == "AchSalazar" || ach_id == "AchKaskos" || ach_id == "AchUmSamil")
 		{
 			// GameInterface.TABLE_ACHIEVEMENTS.(row).td1.str = "1 ур.";
 			GameInterface.TABLE_ACHIEVEMENTS.(row).td1.str = "1";
@@ -1292,7 +1293,6 @@ void SetTableRowByAchievement(string ach_id, int level)
 			if(ach_id == "AchShipSearch") strprogress = "Исследовано кораблей:";
 			if(ach_id == "AchGoldFleet") strprogress = "Золотых флотов потоплено:";
 			if(ach_id == "AchSityRobbery") strprogress = "Городов разграблено:";
-			if(ach_id == "AchMapMaker") strprogress = "Собрано карт:";
 
 			strprogress = strprogress + "\n";
 		}
@@ -1431,7 +1431,6 @@ void SetTableRowByAchievement(string ach_id, int level)
 			 Statistic_AddValue(PChar, "spa_GrabbingTown", 0) +
 			 Statistic_AddValue(PChar, "hol_GrabbingTown", 0)) + " / 5";
 			GameInterface.TABLE_ACHIEVEMENTS.(row).td4.str = strprogress;
-			if(ach_id == "AchMapMaker") strprogress = strprogress + sti(pchar.MapsAtlasCount) + " / "+MAPS_IN_ATLAS;
 		}
 
 		GameInterface.TABLE_ACHIEVEMENTS.(row).td4.str = strprogress;
@@ -1498,7 +1497,7 @@ void ShowInfoWindow()
 			makeref(refBaseShip,ShipsTypes[Last_Left_Ship]);
 			sShip = refBaseShip.Name;
 			sPicture = "interfaces\ships\" + sShip + ".tga.tx";
-			/*if (Last_Left_Ship < 125) {*/SetNewPicture("SHIP_PICTURE_L", sPicture);/* SetNodeUsing("SHIP_PICTURE_VL", false);}
+			if (Last_Left_Ship < 125) {SetNewPicture("SHIP_PICTURE_L", sPicture); SetNodeUsing("SHIP_PICTURE_VL", false);}
 			else
 			{
 				if (curselectedshipl != Last_Left_Ship)
@@ -1508,13 +1507,13 @@ void ShowInfoWindow()
 					SetNewVideoPicture("SHIP_PICTURE_VL","SHIP_"+sShip);
 					curselectedshipl = Last_Left_Ship;
 				}
-			}*/
+			}
 		break;
 		case "SHIP_TABLE_LIST_RIGHT":
 			makeref(refBaseShip,ShipsTypes[Last_Right_Ship]);
 			sShip = refBaseShip.Name;
 			sPicture = "interfaces\ships\" + sShip + ".tga.tx";
-			/*if (Last_Right_Ship < 125) {*/SetNewPicture("SHIP_PICTURE_R", sPicture);/* SetNodeUsing("SHIP_PICTURE_VR", false);}
+			if (Last_Right_Ship < 125) {SetNewPicture("SHIP_PICTURE_R", sPicture); SetNodeUsing("SHIP_PICTURE_VR", false);}
 			else
 			{
 				if (curselectedshipr != Last_Right_Ship)
@@ -1524,7 +1523,7 @@ void ShowInfoWindow()
 					SetNewVideoPicture("SHIP_PICTURE_VR","SHIP_"+sShip);
 					curselectedshipr = Last_Right_Ship;
 				}
-			}*/
+			}
 		break;
 	}
 	// CreateTooltip("#" + sHeader, sText1, argb(255,255,255,255), "", argb(255,255,255,255), "", argb(255,192,255,192), "", argb(255,255,255,255), sPicture, "NATIONS", sGroupPicture, 64, 64);
@@ -2269,14 +2268,14 @@ void FillPriceList(string _tabName, string  attr1, string attr2)
 			for (i = 0; i < GetAttributesNum(rootItems); i++)
 			{
 				curItem = GetAttributeN(rootItems, i);
-				sGood = GetAttributeName(curItem);
 
-				if (Items_FindItem(sGood, &arItem)>=0 )
+				if (Items_FindItem(GetAttributeName(curItem), &arItem)>=0 )
 				{
 					row = "tr" + n;
+					sGood = arItem.id;
 					if (GetCharacterItem(usurer, sGood) > 0)
 					{
-						GameInterface.(_tabName).(row).id = sGood;
+						GameInterface.(_tabName).(row).index = GetItemIndex(arItem.id);
 						GameInterface.(_tabName).(row).td1.icon.group = arItem.picTexture;
 						GameInterface.(_tabName).(row).td1.icon.image = "itm" + arItem.picIndex;
 						GameInterface.(_tabName).(row).td1.icon.offset = "-2, 0";
@@ -2285,11 +2284,11 @@ void FillPriceList(string _tabName, string  attr1, string attr2)
 						GameInterface.(_tabName).(row).td1.textoffset = "31,0";
 						GameInterface.(_tabName).(row).td1.str = LanguageConvertString(idLngFile, arItem.name);
 						GameInterface.(_tabName).(row).td1.scale = 0.85;
-						GameInterface.(_tabName).(row).td2.str   = FloatToString(GetItemWeight(sGood), 1);
+						GameInterface.(_tabName).(row).td2.str   = FloatToString(stf(arItem.Weight), 1);
 						GameInterface.(_tabName).(row).td2.scale = 0.9;
 						GameInterface.(_tabName).(row).td3.str   = GetCharacterItem(usurer, sGood);
 						GameInterface.(_tabName).(row).td3.scale = 0.9;
-						GameInterface.(_tabName).(row).td4.str   = FloatToString(GetItemWeight(sGood) * sti(GetCharacterItem(usurer, sGood)), 1);
+						GameInterface.(_tabName).(row).td4.str   = FloatToString(stf(arItem.Weight) * sti(GameInterface.(_tabName).(row).td3.str), 1);
 						GameInterface.(_tabName).(row).td4.scale = 0.9;
 						n++;
 					}
@@ -2300,7 +2299,7 @@ void FillPriceList(string _tabName, string  attr1, string attr2)
 		else
 		{
 			if (attr2 == "1") StoreNum = GetCharacterIndex(attr1); else StoreNum = GetStorage(attr1);
-			if(StoreNum > -1)
+			if(StoreNum > 0)
 			{
 
 				if (attr2 == "1") refStorage = &characters[StoreNum]; else refStorage = &stores[StoreNum];
@@ -2685,7 +2684,7 @@ void AddToTable(string _tabName, string type)
 
 		if (leftQty > 0)
 		{
-			if (type == "blade" && FState_BLADE && Items[i].FencingType != BladeType[FState_BLADE-1]) continue;//фильтрация типа легкое тяжёлое
+			if (type == "blade" && FState_BLADE && Items[i].FencingType != BladeType[FState_BLADE-1]) continue;//фильтрация типа легкое тяжелое
 
 			if (type == "blade" && !checkattribute(&Items[i],"quality")) continue;//отфильтровываю "безоружный" и всякие посторонние предметы, у которых нет "качества"
 			if (type == "blade" && FState_BLADEQ && Items[i].quality != BladeTypeQ[FState_BLADEQ-1]) continue;//фильтрация клинков по качеству
@@ -2716,8 +2715,7 @@ void AddToTable(string _tabName, string type)
 				GameInterface.(_tabName).(row).td5.str = GetSpecialStrings(Items[i]);
 				break;
 				case "gun":
-				if (HasSubStr(Items[i].id,"mushket")) GameInterface.(_tabName).(row).td2.str = GetGunDamage(Items[i])+"\n"+"приклад "+sti(Items[i].melee_dmg_min)+"/"+sti(Items[i].melee_dmg_max);
-				else GameInterface.(_tabName).(row).td2.str = GetGunDamage(Items[i]);
+				GameInterface.(_tabName).(row).td2.str = GetGunDamage(Items[i]);
 				GameInterface.(_tabName).(row).td3.scale = 0.9;
 				GameInterface.(_tabName).(row).td3.str = GetAmmoTypes(Items[i])+"\n"+GetPerkInfo(Items[i]);
 				GameInterface.(_tabName).(row).td4.str = GetAccuracy(Items[i]);
@@ -2735,7 +2733,7 @@ void AddToTable(string _tabName, string type)
 				GameInterface.(_tabName).(row).td1.icon.width = 80;
 				GameInterface.(_tabName).(row).td1.icon.height = 80;
 				GameInterface.(_tabName).(row).td1.textoffset = "80,0";
-				GameInterface.(_tabName).(row).td2.str = GetItemDescribe(Items[i].id);
+				GameInterface.(_tabName).(row).td2.str = GetItemDescribe(FindItem(Items[i].id));
 				GameInterface.(_tabName).(row).td2.scale = 0.8;
 				break;
 			}

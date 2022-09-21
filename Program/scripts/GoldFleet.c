@@ -13,8 +13,8 @@ void GoldFleet()
     makeref(chref, Characters[iChar]);
     chref.ship.type = GenerateShipExt(SHIP_SP_SANFELIPE, 1, chref);
 	SetBaseShipData(chref);
-	SetShipBermudeTuningMaxCrew(chref);
-	SetShipBermudeTuningHP(chref);
+	UpgradeShipParameter(chref, "MaxCrew");
+	UpgradeShipParameter(chref, "HP");
     SetCrewQuantityFull(chref);
     Fantom_SetCannons(chref, "war"); //fix
     Fantom_SetBalls(chref, "pirate");
@@ -75,8 +75,8 @@ void GoldFleet()
 			{
 				SetSelfSkill(sld, 100, 100, 100, 100, 90);
 				SetShipSkill(sld, 90, 90, 100, 100, 100, 100, 100, 100, 90);
-				SetShipBermudeTuningMaxCrew(sld);
-				SetShipBermudeTuningHP(sld);
+				UpgradeShipParameter(sld, "MaxCrew");
+				UpgradeShipParameter(sld, "HP");
 			}
             SetCrewQuantityFull(sld);
             Fantom_SetCannons(sld, "war"); //fix

@@ -215,7 +215,7 @@ void ProcessCommandExecute()
     		if(comName=="activate" || comName=="click")
     		{
                 if (openExit == true)
-                {   // ещё одна игра
+                {   // еще одна игра
                 	dir_i = -dir_i_start;
                 	dir_i_start = dir_i;
                     ClearDiceOnTable();
@@ -1169,7 +1169,7 @@ void NewNextGame()
 	{
 		if (CheckNextGame() && rand(10) < 10) // есть деньги на игру
 		{
-			ResultStr += NewStr() + "Ещё разок?";
+			ResultStr += NewStr() + "Еще разок?";
 			bLockClick = false;
 		}
 		else

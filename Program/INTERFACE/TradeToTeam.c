@@ -16,8 +16,7 @@ int  BuyOrSell = 0; // 1-buy -1 sell
 ref refCharacter, refHeroChar;
 int iCharQty, iStoreQty;
 float fWeight;
-int iCurGoodsIdx;
-string sCurItem;
+int  iCurGoodsIdx;
 
 //// {*} BUHO-FIST - ADDED CODE - Fist state variable
 #define FIT_ALL			0		// Normal
@@ -260,105 +259,53 @@ void DoPostExit()
 void CalculateInfoData()
 {
     AddToTable();
-	ShowGoodsInfo(GameInterface.TABLE_LIST.tr1.id);
+	ShowGoodsInfo(sti(GameInterface.TABLE_LIST.tr1.index));
 }
 
 void AddToTable()
 {
 	int n, i;
-	string row, sItem;
-	int idLngFile;
+	string row, sShipGroup;
+	string sGood;
+	int  idLngFile;
 	int leftQty, rightQty;
+	n = 1;
 	idLngFile = LanguageOpenFile("ItemsDescribe.txt");
 	Table_Clear("TABLE_LIST", false, true, false);
-
-	object allItems;
-	aref arInventory, arItem;
-	ref rItem;
-
-	if (FIT_FilterState != FIT_HERO)
+    for (i = 0; i< ITEMS_QUANTITY; i++)
 	{
-		makearef(arInventory, refCharacter.Items);
-		n = GetAttributesNum(arInventory);
-		for (i = 0; i < n; i++)
-		{
-			arItem = GetAttributeN(arInventory, i);
-			sItem = GetAttributeName(arItem);
-			row = DigitsToString(FindItem(sItem), 4);
-
-			if (IsGenerableItem(sItem))
-			{
-				// Сначала уникальные предметы
-				row = "a" + row + sItem;
-			}
-			else
-			{
-				row = "b" + row;
-			}
-
-			allItems.(row) = sItem;
-		}
-	}
-
-	if (FIT_FilterState != FIT_OFFICER)
-	{
-		makearef(arInventory, refHeroChar.Items);
-		n = GetAttributesNum(arInventory);
-		for (i = 0; i < n; i++)
-		{
-			arItem = GetAttributeN(arInventory, i);
-			sItem = GetAttributeName(arItem);
-			row = DigitsToString(FindItem(sItem), 4);
-
-			if (IsGenerableItem(sItem))
-			{
-				row = "a" + row + sItem;
-			}
-			else
-			{
-				row = "b" + row;
-			}
-
-			allItems.(row) = sItem;
-		}
-	}
-
-	makearef(arInventory, allItems);
-	sort(arInventory);
-
-	n = 1;
-	for (i = 0; i < GetAttributesNum(arInventory); i++)
-	{
-		arItem = GetAttributeN(arInventory, i);
-		sItem = GetAttributeValue(arItem);
-		rItem = ItemsFromID(sItem);
-
         row = "tr" + n;
-		leftQty  = GetCharacterFreeItem(refCharacter, sItem);
-		rightQty = GetCharacterFreeItem(refHeroChar, sItem);
+		sGood = Items[i].id;
+		leftQty  = GetCharacterFreeItem(refCharacter, sGood);
+		rightQty = GetCharacterFreeItem(refHeroChar, sGood);
 
-		if ((leftQty == 0) && (rightQty == 0)) continue;
+		if (leftQty > 0 || rightQty > 0)
+		{
+			//// {*} BUHO-FIST - ADDED CODE - Filters at work.
+			if (leftQty == 0 && FIT_FilterState == FIT_OFFICER) continue;
+			if (rightQty == 0 && FIT_FilterState == FIT_HERO) continue;
+			//// {*} BUHO END ADDITION
 
-		//// {*} BUHO-FIST - ADDED CODE - Filters at work.
-		if (leftQty == 0 && FIT_FilterState == FIT_OFFICER) continue;
-		if (rightQty == 0 && FIT_FilterState == FIT_HERO) continue;
-		//// {*} BUHO END ADDITION
+			GameInterface.TABLE_LIST.(row).td1.str = leftQty ;
+			GameInterface.TABLE_LIST.(row).td2.str = FloatToString(stf(Items[i].Weight) * sti(GameInterface.TABLE_LIST.(row).td1.str), 1);
+			GameInterface.TABLE_LIST.(row).td7.str = FloatToString(stf(Items[i].Weight), 1);
 
-		GameInterface.TABLE_LIST.(row).id = sItem;
-		GameInterface.TABLE_LIST.(row).td1.str = leftQty;
-		GameInterface.TABLE_LIST.(row).td2.str = FloatToString(GetItemWeight(sItem) * sti(GameInterface.TABLE_LIST.(row).td1.str), 1);
-		GameInterface.TABLE_LIST.(row).td4.icon.group = rItem.picTexture;
-		GameInterface.TABLE_LIST.(row).td4.icon.image = "itm" + rItem.picIndex;
-		GameInterface.TABLE_LIST.(row).td4.icon.offset = "3, 0";
-		GameInterface.TABLE_LIST.(row).td4.icon.width = 32;
-		GameInterface.TABLE_LIST.(row).td4.icon.height = 32;
-		GameInterface.TABLE_LIST.(row).td4.textoffset = "31,0";
-		GameInterface.TABLE_LIST.(row).td4.str = LanguageConvertString(idLngFile, rItem.name);
-		GameInterface.TABLE_LIST.(row).td4.scale = 0.9;
-		GameInterface.TABLE_LIST.(row).td6.str = rightQty;
-		GameInterface.TABLE_LIST.(row).td7.str = FloatToString(GetItemWeight(sItem), 1);
+			GameInterface.TABLE_LIST.(row).td6.str = rightQty;
 
-		n++;
+	        GameInterface.TABLE_LIST.(row).td4.icon.group = Items[i].picTexture;
+			GameInterface.TABLE_LIST.(row).td4.icon.image = "itm" + Items[i].picIndex;
+			GameInterface.TABLE_LIST.(row).td4.icon.offset = "3, 0";
+			GameInterface.TABLE_LIST.(row).td4.icon.width = 32;
+			GameInterface.TABLE_LIST.(row).td4.icon.height = 32;
+			GameInterface.TABLE_LIST.(row).td4.textoffset = "31,0";
+			GameInterface.TABLE_LIST.(row).td4.str = LanguageConvertString(idLngFile, Items[i].name);
+			GameInterface.TABLE_LIST.(row).index = i;
+			GameInterface.TABLE_LIST.(row).td4.scale = 0.9;
+			//GameInterface.TABLE_LIST.(row).td4.color = iColor;
+            //GameInterface.TABLE_LIST.(row).td3.str = GetTradeItemPrice(i, PRICE_TYPE_BUY);
+			//GameInterface.TABLE_LIST.(row).td5.str = GetTradeItemPrice(i, PRICE_TYPE_SELL);
+			n++;
+		}
 	}
 	NextFrameRefreshTable();
 	LanguageCloseFile(idLngFile);
@@ -467,7 +414,7 @@ void CS_TableSelectChange()
     string sRow = "tr" + (iSelected);
 	SetCharWeight();
 	SetVariable();
-    ShowGoodsInfo(GameInterface.TABLE_LIST.(sRow).id);
+    ShowGoodsInfo(sti(GameInterface.TABLE_LIST.(sRow).index));
 }
 
 bool isExist(int checkThis)
@@ -657,37 +604,38 @@ void SetCharWeight()
     fStoreWeight = 0;
 }
 
-void ShowGoodsInfo(string sItemID)
+void ShowGoodsInfo(int iGoodIndex)
 {
-	sCurItem = sItemID;
-	int iGoodIndex = FindItem(sCurItem);
+	string GoodName = Items[iGoodIndex].name;
 	ref    arItm = &Items[iGoodIndex];
-	string GoodName = arItm.name;
 	int    lngFileID = LanguageOpenFile("ItemsDescribe.txt");
 	string sHeader = LanguageConvertString(lngFileID, GoodName);
+
+    iCurGoodsIdx = iGoodIndex;
 
     string describeStr = "";
 
     if (bBettaTestMode)
 	{
-	    describeStr += " id = " + sCurItem + NewStr();
+	    describeStr += " id = " + Items[iGoodIndex].id + NewStr();
 	}
 	describeStr += GetItemDescribe(iGoodIndex);
 
-	fWeight = GetItemWeight(sCurItem);
+	fWeight = stf(Items[iGoodIndex].weight);
 
     BuyOrSell = 0;
     SetFormatedText("QTY_TypeOperation", "");
     SetFormatedText("QTY_Result", "");
     GameInterface.qty_edit.str = "0";
 
-	SetNewGroupPicture("QTY_GOODS_PICTURE", arItm.picTexture, "itm" + arItm.picIndex);
+	SetNewGroupPicture("QTY_GOODS_PICTURE", Items[iCurGoodsIdx].picTexture, "itm" + Items[iCurGoodsIdx].picIndex);
     SetFormatedText("QTY_CAPTION", sHeader);
     SetFormatedText("QTY_GOODS_INFO", describeStr);
 	LanguageCloseFile(lngFileID);
 
-	iCharQty = GetCharacterFreeItem(refCharacter, sCurItem);
-	iStoreQty = GetCharacterFreeItem(refHeroChar, sCurItem);
+	iCharQty = GetCharacterFreeItem(refCharacter, Items[iGoodIndex].id);
+
+	iStoreQty = GetCharacterFreeItem(refHeroChar, Items[iGoodIndex].id);
 
 	SetFormatedText("QTY_INFO_STORE_QTY", its(iStoreQty));
 	SetFormatedText("QTY_INFO_SHIP_QTY", its(iCharQty));
@@ -752,20 +700,20 @@ void TransactionOK()
 	}
  	if (BuyOrSell == 1) // BUY
 	{
-		TakeNItems(refHeroChar, sCurItem, -nTradeQuantity);
-		TakeNItems(refCharacter, sCurItem, nTradeQuantity);
+		TakeNItems(refHeroChar, Items[iCurGoodsIdx].id, -nTradeQuantity);
+		TakeNItems(refCharacter, Items[iCurGoodsIdx].id, nTradeQuantity);
 	}
  	else
 	{ // SELL
-	    TakeNItems(refHeroChar, sCurItem, nTradeQuantity);
-	    TakeNItems(refCharacter, sCurItem, -nTradeQuantity);
+	    TakeNItems(refHeroChar, Items[iCurGoodsIdx].id, nTradeQuantity);
+	    TakeNItems(refCharacter, Items[iCurGoodsIdx].id, -nTradeQuantity);
 	}
 	//#20200218-01
-    if(CheckAttribute(&Items[FindItem(sCurItem)], "shown"))
-        Items[FindItem(sCurItem)].shown = false;
+    if(CheckAttribute(&Items[iCurGoodsIdx], "shown"))
+        Items[iCurGoodsIdx].shown = false;
 	AddToTable();
 	EndTooltip();
-	ShowGoodsInfo(sCurItem);
+	ShowGoodsInfo(iCurGoodsIdx);
 }
 
 void confirmChangeQTY_EDIT()
@@ -776,7 +724,7 @@ void confirmChangeQTY_EDIT()
 
 void ChangeQTY_EDIT()
 {
-	float iWeight;
+	float  iWeight;
 	SetCharWeight();
 	GameInterface.qty_edit.str = sti(GameInterface.qty_edit.str);
 	if (sti(GameInterface.qty_edit.str) == 0)
@@ -806,7 +754,7 @@ void ChangeQTY_EDIT()
 		        iWeight = fWeight * sti(GameInterface.qty_edit.str);
 		        GameInterface.qty_edit.str = makeint(iWeight / fWeight );
 		    }
-		    if (IsQuestUsedItem(sCurItem))
+		    if (IsQuestUsedItem(Items[iCurGoodsIdx].id))
 		    {
 		        GameInterface.qty_edit.str = 0;
 		    }
@@ -830,7 +778,7 @@ void ChangeQTY_EDIT()
 		        iWeight = fWeight * sti(GameInterface.qty_edit.str);
 		        GameInterface.qty_edit.str = makeint(iWeight / fWeight );
 		    }
-            if (IsQuestUsedItem(sCurItem))
+            if (IsQuestUsedItem(Items[iCurGoodsIdx].id))
 		    {
 		        GameInterface.qty_edit.str = 0;
 		    }
@@ -859,7 +807,7 @@ void REMOVE_ALL_BUTTON()
 	{
 	    ShowItemInfo();
 	}
-	ShowGoodsInfo(sCurItem);
+	ShowGoodsInfo(iCurGoodsIdx);
 	GameInterface.qty_edit.str = -iCharQty;
 	BuyOrSell = 0;
 	ChangeQTY_EDIT();
@@ -871,7 +819,7 @@ void ADD_ALL_BUTTON()
 	{
 	    ShowItemInfo();
 	}
-	ShowGoodsInfo(sCurItem);
+	ShowGoodsInfo(iCurGoodsIdx);
 	GameInterface.qty_edit.str = iStoreQty;
 	BuyOrSell = 0;
 	ChangeQTY_EDIT();

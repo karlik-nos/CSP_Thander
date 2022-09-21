@@ -400,7 +400,10 @@ void FillShipsScroll()
 				ref rBaseShip = GetRealShip(iShipType);
 				iShipType = rBaseShip.basetype;
                 //#20170430-03 Companion ships are appended with a "1"
-				shipName = rBaseShip.BaseName;
+                if(strlen(rBaseShip.Name)>2)
+                    shipName = strcut(rBaseShip.Name, 0, strlen(rBaseShip.Name)-2);
+                else
+                    shipName = "";
 				string shipClass = rBaseShip.Class;
 
 				GameInterface.SHIPS_SCROLL.(attributeName).character = cn;
@@ -1123,6 +1126,7 @@ void DropGoodsToSeaFromInterface(int iGoodIndex, int iQuantity)
 			}
 
 			RecalculateCargoLoad(xi_refCharacter);
+	        xi_refCharacter.Tmp.SpeedRecall = 0; // чтоб пересчитались скорость и маневр
 
 			if (CheckAttribute(&Goods[iGoodIndex], "Swim"))
 			{
@@ -1258,7 +1262,7 @@ void ShowCannonsMenu()
     bool bOk  = !bSeaActive && LAi_grp_alarmactive;
     bool bOk2 = bAbordageStarted && !bCabinStarted; // в абордаже не жать пушки
 	if (bDisableMapEnter || bOk || bOk2)
-    { // идёт бой, запрет смены орудий
+    { // идет бой, запрет смены орудий
     	SetSelectable("CANNONS_OK", false);
 	}
 	else
@@ -1355,8 +1359,8 @@ void SetCannonsToBort(ref chr, string sBort, int iQty)
 	for (i = 0; i < maxQty; i++)
 	{
 		attr = "c" + i;
-		chr.Ship.Cannons.borts.(sBort).damages.(attr) = 1.0; // поломана на 100 процентов, не палит, те нет её
-		chr.Ship.Cannons.borts.(sBort_real).damages.(attr) = 1.0; // поломана на 100 процентов, не палит, те нет её
+		chr.Ship.Cannons.borts.(sBort).damages.(attr) = 1.0; // поломана на 100 процентов, не палит, те нет ее
+		chr.Ship.Cannons.borts.(sBort_real).damages.(attr) = 1.0; // поломана на 100 процентов, не палит, те нет ее
 	}
 	// распределяем
 	if (iQty > 0)

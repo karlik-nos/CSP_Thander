@@ -7,7 +7,7 @@ int LocationInitReefs(int n)
 
 	locations[n].id = "MountainPath";
 	locations[n].id.label = "MountainPath";
-	locations[n].image = "loading\jonny_load\shores\MountainPathDMChest.tga";
+	locations[n].image = "loading\outside\MountainPath.tga";
 	locations[n].worldmap = "MountainPath";
 	locations[n].parent_colony = "MountainPath";
 	//Sound
@@ -39,7 +39,7 @@ int LocationInitReefs(int n)
     Locations[n].models.always.Waterfall2.uvslide.v1 = 0.0;
 	Locations[n].models.always.Waterfall2.tech = "LocationWaterFall";
 	Locations[n].models.always.Waterfall2.level = 49;
-	locations[n].alwaysStorm = true; //живём в штормах
+	locations[n].alwaysStorm = true; //живем в штормах
 	locations[n].storm = true;
 	locations[n].tornado = true;
 
@@ -72,7 +72,7 @@ int LocationInitReefs(int n)
 	locations[n].id = "DeckWithReefs";
 	locations[n].id.label = "DeckWithReefs";
 	locations[n].filespath.models = "locations\Outside\Shores\GuardGrot";
-	locations[n].image = "loading\jonny_load\shores\GuardGrot.tga";
+	locations[n].image = "loading\outside\DeckWithReefs.tga";
 	//Sound
 	locations[n].type = "DeckWithReefs";
  	locations[n].islandId = "Reefs";
@@ -108,7 +108,7 @@ int LocationInitReefs(int n)
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-	locations[n].alwaysStorm = true; //живём в штормах
+	locations[n].alwaysStorm = true; //живем в штормах
 	locations[n].storm = true;
 	locations[n].tornado = true;
 
@@ -142,57 +142,13 @@ int LocationInitReefs(int n)
 	}
 	Locations[n].locators_radius.item.item1 = 1.5;
 	n = n + 1;
-	
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Разбитый корабль
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	locations[n].id = "WreckedShip";
-	locations[n].id.label = "WreckedShip";
-	locations[n].image = "loading\jonny_load\shores\WreckedShisReefs.tga";
-	locations[n].worldmap = "MountainPath";
-	locations[n].parent_colony = "WreckedShip";
-	//Sound
-	locations[n].type = "MountainPath";
-	locations[n].islandId = "Reefs";
-	locations[n].onUninhabitedIsland = true;
-	locations[n].DisableEncounters = true;
-	locations[n].questflower = 1;
-	locations[n].Chestgennot = true; // не генерить сундуки
-	//Models
-	//Always
-	locations[n].filespath.models = "locations\Outside\WreckedShisReefs";
-	Locations[n].models.always.shore = "deck03";
-	locations[n].models.always.shore.sea_reflection = 1;
-	Locations[n].models.always.seabed = "deck03_alpha";
-	Locations[n].models.always.locators = "deck03_locators";
-	locations[n].models.always.L1 = "deck03_fonars";
-	locations[n].models.always.L2 = "deck03_sd";
-
-	//Day
-	locations[n].models.day.charactersPatch = "deck03_patch";
-	//Night
-	locations[n].models.night.charactersPatch = "deck03_patch";
-	//Environment
-	locations[n].environment.weather = "true";
-	locations[n].environment.sea = "true";
-	//Reload map
-
-	Locations[n].reload.l1.name = "reload1_back";
-        Locations[n].reload.l1.go = "Reefs";
-        Locations[n].reload.l1.emerge = "reload_3";
-        Locations[n].reload.l1.autoreload = "0";
-        Locations[n].reload.l1.label = "Sea";
-	Locations[n].locators_radius.reload.reload1_back = 2.5;
-
-	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////	Капитул		//////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Reefs_Chapter";
 	locations[n].id.label = "";
-	locations[n].image = "loading\jonny_load\inside\Maltains.tga";
+	locations[n].image = "Loading\inside\Reefs_Chapter_0.tga";
 	//Town sack
 	locations[n].type = "Reefs_Chapter";
 	// locations[n].townsack = "FortFrance";

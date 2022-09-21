@@ -73,7 +73,7 @@ bool IsCompanion(ref _refCharacter)
 {
 	int findIdx = 0;
 
-	if (CheckAttribute(_refCharacter,"index"))
+	if (CheckAttribute(_refCharacter,"index")) 
 	{
    		findIdx = sti(_refCharacter.index);
 	}
@@ -144,7 +144,7 @@ int RecalculateCargoLoad(ref _refCharacter)
 {
 	int loadSpace = 0;
 	// boal 27/07/06 учет орудий на борту -->
-	if (CheckAttribute(_refCharacter,"Ship.Cannons") && sti(_refCharacter.Ship.Cannons.Type) != CANNON_TYPE_NONECANNON)
+	if (CheckAttribute(_refCharacter,"Ship.Cannons.Type") && sti(_refCharacter.Ship.Cannons.Type) != CANNON_TYPE_NONECANNON)
 	{
 		ref Cannon = GetCannonByType(sti(_refCharacter.Ship.Cannons.Type));
 		loadSpace = GetCannonsNum(_refCharacter) * sti(Cannon.Weight);
@@ -535,8 +535,7 @@ int RemoveCharacterCrew(ref _refCharacter,int num)
 		SetCrewQuantity(_refCharacter,0);
 		return false;
 	}
-	//SetCrewQuantityOverMax(_refCharacter,curCrew-num);//fix
-	SetCrewQuantity(_refCharacter,curCrew-num);//фикс фикса - Gregg
+	SetCrewQuantityOverMax(_refCharacter,curCrew-num);//fix
 	return true;
 }
 float GetSailPercent(ref _refCharacter)
@@ -1039,8 +1038,8 @@ int SetCompanionIndex(ref _refCharacter,int _CompanionNum, int _CompanionIdx)
 			}
 		}
 	}
-	if(_CompanionNum < 1) return -1;
-	if(_CompanionNum > COMPANION_MAX - 1) return -1;
+	if(_CompanionNum < 1) return _CompanionIdx;
+	if(_CompanionNum > COMPANION_MAX - 1) return _CompanionIdx;
 
 	if(_CompanionIdx!=-1)
 	{
@@ -1068,32 +1067,6 @@ int SetCompanionIndex(ref _refCharacter,int _CompanionNum, int _CompanionIdx)
 
 	// to_do CheckCompanionSkillsUp(_CompanionIdx);
 	Event(EVENT_CHANGE_COMPANIONS,"");
-	return _CompanionIdx;
-}
-// работа с компаньонами
-int CheckCompanionIndex(ref _refCharacter,int _CompanionNum, int _CompanionIdx)
-{
-  if(_CompanionNum == -1)
-	{
-		for(int i = 1; i < COMPANION_MAX; i++)
-		{
-			if (GetCompanionIndex(_refCharacter, i) == -1)
-			{
-				_CompanionNum = i;
-				break;
-			}
-		}
-	}
-	if(_CompanionNum < 1) return -1;
-	if(_CompanionNum > COMPANION_MAX - 1) return -1;
-
-	if(_CompanionIdx!=-1)
-	{
-		for(i=0;i<COMPANION_MAX;i++)
-		{
-			if(GetCompanionIndex(_refCharacter,i)==_CompanionIdx) return -1;
-		}
-	}
 	return _CompanionIdx;
 }
 int RemoveCharacterCompanion(ref _refCharacter, ref refCompanion)
@@ -1361,16 +1334,6 @@ void UnlockAchievement(string ach_name, int level) // Открываем дос�
 	Log_Info("Открыто достижение '" + achievement + "' (+" + points + " очков)");
     PlaySound("interface\AchievementComplite.wav");
 
-	if (ach_name == "Nation_quest_E" || ach_name == "Nation_quest_F" || ach_name == "Nation_quest_H" || ach_name == "Nation_quest_S" || ach_name == "Nation_quest_P" )
-	{//какую-то из линеек только что выполнили
-		if (CheckAttribute(pchar, "achievements.Nation_quest_P") && sti(pchar.achievements.Nation_quest_P)!=3) DeleteAttribute(pchar, "achievements.Nation_quest_P");
-		if (CheckAttribute(pchar, "achievements.Nation_quest_E") && sti(pchar.achievements.Nation_quest_E)!=3) DeleteAttribute(pchar, "achievements.Nation_quest_E");
-		if (CheckAttribute(pchar, "achievements.Nation_quest_F") && sti(pchar.achievements.Nation_quest_F)!=3) DeleteAttribute(pchar, "achievements.Nation_quest_F");
-		if (CheckAttribute(pchar, "achievements.Nation_quest_H") && sti(pchar.achievements.Nation_quest_H)!=3) DeleteAttribute(pchar, "achievements.Nation_quest_H");
-		if (CheckAttribute(pchar, "achievements.Nation_quest_S") && sti(pchar.achievements.Nation_quest_S)!=3) DeleteAttribute(pchar, "achievements.Nation_quest_S");
-		pchar.Nation_q_achiev_fixed = true;
-	}//<--Qwerry, St. - скрытие других национальных линеек из таблицы достижений
-
 	pchar.achievements.(ach_name) = level;
 	AddAchievementPoints(points);
 }
@@ -1420,186 +1383,178 @@ void SetBaseShipData(ref refCharacter)
 		if (CheckAttribute(refShip, "Cannons.Borts.cannonl.damages")) { DeleteAttribute(refShip, "Cannons.Borts.cannonl.damages"); }
 		if (CheckAttribute(refShip, "Cannons.Borts.cannonr.damages")) { DeleteAttribute(refShip, "Cannons.Borts.cannonr.damages"); } */
 
-		if (!CheckAttribute(refCharacter,"DontRefresh"))
+		refShip.Cannons.Charge.Type = GOOD_BALLS;
+
+		if (!CheckAttribute(refShip,"Cannons.Type"))
 		{
-			refShip.Cannons.Charge.Type = GOOD_BALLS;
+			refShip.Cannons.Type = GetCannonByTypeAndCaliber("cannon", sti(refBaseShip.MaxCaliber)); // MakeInt(refBaseShip.Cannon);
+		}
 
-			if (!CheckAttribute(refShip,"Cannons.Type"))
-			{
-				refShip.Cannons.Type = GetCannonByTypeAndCaliber("cannon", sti(refBaseShip.MaxCaliber)); // MakeInt(refBaseShip.Cannon);
-			}
+		if (!CheckAttribute(refShip,"Crew.Morale"))
+		{
+			refShip.Crew.Morale = 20 + rand(79);
+		}
+		if (!CheckAttribute(refShip,"Crew.Quantity"))
+		{
+			refShip.Crew.Quantity = refBaseShip.OptCrew; // оптимальная команда
+		}
 
-			if (!CheckAttribute(refShip,"Crew.Morale"))
-			{
-				refShip.Crew.Morale = 20 + rand(79);
-			}
-			if (!CheckAttribute(refShip,"Crew.Quantity"))
-			{
-				refShip.Crew.Quantity = refBaseShip.OptCrew; // оптимальная команда
-			}
+		SetGoodsInitNull(refCharacter); // boal пееренс в метод
+		// новый опыт
+        if(!CheckAttribute(refCharacter, "ship.crew.Exp"))
+		{
+			refCharacter.Ship.Crew.Exp.Sailors   = 1 + rand(80);
+			refCharacter.Ship.Crew.Exp.Cannoners = 1 + rand(80);
+			refCharacter.Ship.Crew.Exp.Soldiers  = 1 + rand(80);
+		}
+		int iGoodN = 0;
+		int iGoodR = 0;
 
-			SetGoodsInitNull(refCharacter); // boal пееренс в метод
-			// новый опыт
-			if(!CheckAttribute(refCharacter, "ship.crew.Exp"))
-			{
-				refCharacter.Ship.Crew.Exp.Sailors   = 1 + rand(80);
-				refCharacter.Ship.Crew.Exp.Cannoners = 1 + rand(80);
-				refCharacter.Ship.Crew.Exp.Soldiers  = 1 + rand(80);
-			}
-			int iGoodN = 0;
-			int iGoodR = 0;
-
-			// boal -->
-			i = GetCharacterFreeSpace(refCharacter,GOOD_POWDER) / 40;
-			if(i>0)
-			{
-				if(i>=500)
-				{
-					SetCharacterGoods(refCharacter,GOOD_POWDER, 500 - rand(50));
-				} else
-				{
-					SetCharacterGoods(refCharacter,GOOD_POWDER,i);
-				}
-			}
-			// boal <--
-			// bombs
-			i = GetCharacterFreeSpace(refCharacter,GOOD_BOMBS) / 42;
-			if(i>0)
-			{
-				if(i > 600)
-				{
-					i = 600;
-				}
-				iGoodN = 20;
-				iGoodR = rand(i - iGoodN);
-				if(iGoodR < 0)
-				{
-					iGoodR = 0;
-				}
-				iGoodN = iGoodN + iGoodR;
-				SetCharacterGoods(refCharacter,GOOD_BOMBS,iGoodN);
-			}
-
-			// grapes
-			i = GetCharacterFreeSpace(refCharacter,GOOD_GRAPES) / 60;
-			if(i>0)
-			{
-				if(i > 200)
-				{
-					i = 200;
-				}
-				iGoodN = 20;
-				iGoodR = rand(i - iGoodN);
-				if(iGoodR < 0)
-				{
-					iGoodR = 0;
-				}
-				iGoodN = iGoodN + iGoodR;
-				SetCharacterGoods(refCharacter,GOOD_GRAPES,iGoodN);
-			}
-
-			// knippels
-			i = GetCharacterFreeSpace(refCharacter,GOOD_KNIPPELS) / 60;
-			if(i>0)
-			{
-				if(i > 200)
-				{
-					i = 200;
-				}
-				iGoodN = 20;
-				iGoodR = rand(i - iGoodN);
-				if(iGoodR < 0)
-				{
-					iGoodR = 0;
-				}
-				iGoodN = iGoodN + iGoodR;
-				SetCharacterGoods(refCharacter,GOOD_KNIPPELS,iGoodN);
-			}
-
-			// cannonballs
-			i = GetCharacterFreeSpace(refCharacter,GOOD_BALLS) / 42;
-			if(i>0)
-			{
-				if(i > 800)
-				{
-					i = 800;
-				}
-				iGoodN = 20;
-				iGoodR = rand(i - iGoodN);
-				if(iGoodR < 0)
-				{
-					iGoodR = 0;
-				}
-				iGoodN = iGoodN + iGoodR;
-				SetCharacterGoods(refCharacter,GOOD_BALLS,iGoodN);
-			}
-
-			//food
-			i = GetCharacterFreeSpace(refCharacter,GOOD_FOOD) / 20;
-			if(i>0)
-			{
-				if(i > 300)
-				{
-					i = 300;
-				}
-				iGoodN = 5;
-				iGoodR = rand(i - iGoodN);
-				if(iGoodR < 0)
-				{
-					iGoodR = 0;
-				}
-				iGoodN = iGoodN + iGoodR;
-				SetCharacterGoods(refCharacter,GOOD_FOOD,iGoodN);
-			}
-			//GOOD_WEAPON
-			i = GetCharacterFreeSpace(refCharacter,GOOD_WEAPON) / 60;
-			if(i>0)
-			{
-				if(i > 300)
-				{
-					i = 300;
-				}
-				iGoodN = 5;
-				iGoodR = rand(i - iGoodN);
-				if(iGoodR < 0)
-				{
-					iGoodR = 0;
-				}
-				iGoodN = iGoodN + iGoodR;
-				SetCharacterGoods(refCharacter,GOOD_WEAPON,iGoodN);
-			}
-			//
-			i = GetCharacterFreeSpace(refCharacter,GOOD_MEDICAMENT) / 100;
-			if(i>0)
-			{
-				if(i > 300)
-				{
-					i = 300;
-				}
-				iGoodN = 5;
-				iGoodR = rand(i - iGoodN);
-				if(iGoodR < 0)
-				{
-					iGoodR = 0;
-				}
-				iGoodN = iGoodN + iGoodR;
-				SetCharacterGoods(refCharacter,GOOD_MEDICAMENT,iGoodN);
+		// boal -->
+		i = GetCharacterFreeSpace(refCharacter,GOOD_POWDER) / 40;
+        if(i>0)
+        {
+			if(i>=500)
+            {
+				SetCharacterGoods(refCharacter,GOOD_POWDER, 500 - rand(50));
+			} else
+            {
+				SetCharacterGoods(refCharacter,GOOD_POWDER,i);
 			}
 		}
+		// boal <--
+		// bombs
+		i = GetCharacterFreeSpace(refCharacter,GOOD_BOMBS) / 42;
+		if(i>0)
+		{
+			if(i > 600)
+			{
+				i = 600;
+			}
+			iGoodN = 20;
+			iGoodR = rand(i - iGoodN);
+			if(iGoodR < 0)
+			{
+				iGoodR = 0;
+			}
+			iGoodN = iGoodN + iGoodR;
+			SetCharacterGoods(refCharacter,GOOD_BOMBS,iGoodN);
+		}
+
+		// grapes
+		i = GetCharacterFreeSpace(refCharacter,GOOD_GRAPES) / 60;
+		if(i>0)
+		{
+			if(i > 200)
+			{
+				i = 200;
+			}
+			iGoodN = 20;
+			iGoodR = rand(i - iGoodN);
+			if(iGoodR < 0)
+			{
+				iGoodR = 0;
+			}
+			iGoodN = iGoodN + iGoodR;
+			SetCharacterGoods(refCharacter,GOOD_GRAPES,iGoodN);
+		}
+
+		// knippels
+		i = GetCharacterFreeSpace(refCharacter,GOOD_KNIPPELS) / 60;
+		if(i>0)
+		{
+			if(i > 200)
+			{
+				i = 200;
+			}
+			iGoodN = 20;
+			iGoodR = rand(i - iGoodN);
+			if(iGoodR < 0)
+			{
+				iGoodR = 0;
+			}
+			iGoodN = iGoodN + iGoodR;
+			SetCharacterGoods(refCharacter,GOOD_KNIPPELS,iGoodN);
+		}
+
+		// cannonballs
+		i = GetCharacterFreeSpace(refCharacter,GOOD_BALLS) / 42;
+		if(i>0)
+		{
+			if(i > 800)
+			{
+				i = 800;
+			}
+			iGoodN = 20;
+			iGoodR = rand(i - iGoodN);
+			if(iGoodR < 0)
+			{
+				iGoodR = 0;
+			}
+			iGoodN = iGoodN + iGoodR;
+			SetCharacterGoods(refCharacter,GOOD_BALLS,iGoodN);
+		}
+
+		//food
+		i = GetCharacterFreeSpace(refCharacter,GOOD_FOOD) / 20;
+		if(i>0)
+		{
+            if(i > 300)
+			{
+				i = 300;
+			}
+			iGoodN = 5;
+			iGoodR = rand(i - iGoodN);
+			if(iGoodR < 0)
+			{
+				iGoodR = 0;
+			}
+			iGoodN = iGoodN + iGoodR;
+			SetCharacterGoods(refCharacter,GOOD_FOOD,iGoodN);
+		}
+		//GOOD_WEAPON
+		i = GetCharacterFreeSpace(refCharacter,GOOD_WEAPON) / 60;
+		if(i>0)
+		{
+            if(i > 300)
+			{
+				i = 300;
+			}
+			iGoodN = 5;
+			iGoodR = rand(i - iGoodN);
+			if(iGoodR < 0)
+			{
+				iGoodR = 0;
+			}
+			iGoodN = iGoodN + iGoodR;
+			SetCharacterGoods(refCharacter,GOOD_WEAPON,iGoodN);
+		}
+		//
+		i = GetCharacterFreeSpace(refCharacter,GOOD_MEDICAMENT) / 100;
+		if(i>0)
+		{
+            if(i > 300)
+			{
+				i = 300;
+			}
+			iGoodN = 5;
+			iGoodR = rand(i - iGoodN);
+			if(iGoodR < 0)
+			{
+				iGoodR = 0;
+			}
+			iGoodN = iGoodN + iGoodR;
+			SetCharacterGoods(refCharacter,GOOD_MEDICAMENT,iGoodN);
+		}
 	}
-	
-	if (!CheckAttribute(refCharacter,"DontRefresh"))
+	refCharacter.ship.crew.disease = 0;
+	SetTuningShipStates(refCharacter);
+	//Mett: nation sails —->
+	if(sti(refCharacter.nation) == PIRATE)
 	{
-		refCharacter.ship.crew.disease = 0;
-		SetBermudeTuningShipStates(refCharacter);
-		//Mett: nation sails —->
-		if(sti(refCharacter.nation) == PIRATE)
-		{
-			refBaseShip.ship.upgrades.sails = 38 + rand(50); // LEO: пиратские паруса
-		}
-		else refBaseShip.ship.upgrades.sails = 1 + rand(22); // LEO: все остальные
+		refBaseShip.ship.upgrades.sails = 38 + rand(50); // LEO: пиратские паруса
 	}
-	if (CheckAttribute(refCharacter,"DontRefresh")) DeleteAttribute(refCharacter,"DontRefresh");
+		else refBaseShip.ship.upgrades.sails = 1 + rand(22); // LEO: все остальные
 	// <-—
 
 	//Debug —->
@@ -1693,12 +1648,7 @@ int GetChrItemQuantity(ref _refCharacter)
 }
 bool GiveItem2Character(ref _refCharacter,string itemName)
 {
-	bool result = TakeNItems(_refCharacter,itemName,1);
-	if (!result)
-	{
-		trace("Can't give item to character: " + itemName);
-	}
-	return result;
+	return TakeNItems(_refCharacter,itemName,1);
 }
 void TakeItemFromCharacter(ref _refCharacter,string itemName)
 {
@@ -1730,29 +1680,24 @@ void GenerateAndAddItems(ref _chr, string _itemID, int _qty)
 }
 bool CheckCharacterItem(ref _refCharacter,string itemName)
 {
-	return CheckAttribute(_refCharacter, "Items." + itemName) && (sti(_refCharacter.Items.(itemName)) > 0);
-}
-
-string CheckCharacterGeneratedItem(ref _refCharacter, string sItemBaseName)
-{
-	if (!CheckAttribute(_refCharacter, "Items")) { return ""; }
-
-	aref arInventory, arItem;
-	string sItem;
-	makearef(arInventory, _refCharacter.Items);
-
-	int n = GetAttributesNum(arInventory);
-	for (int i = 0; i < n; i++)
+	ref tmpRef;
+	if(!IsGenerableItem(itemName))
 	{
-		arItem = GetAttributeN(arInventory, i);
-		sItem = GetAttributeName(arItem);
-		if (HasSubStr(sItem, sItemBaseName))
-		{
-			return sItem;
-		}
+		if( CheckAttribute(_refCharacter,"Items."+itemName) && sti(_refCharacter.Items.(itemName))>0 )	return true;
+		else return false;
 	}
-
-	return "";
+	else
+	{
+		for(int i = ITEMS_QUANTITY; i < TOTAL_ITEMS; i++)
+		{
+			tmpRef = &Items[i];
+			if(CheckAttribute(tmpRef, "ID"))
+			{
+				if(tmpRef.DefItemID == itemName) return true;
+			}
+		}
+		return false;
+	}
 }
 
 int GetCharacterItem(ref _refCharacter,string itemName)
@@ -1790,7 +1735,7 @@ bool TakeNItems(ref _refCharacter, string itemName, int n)
 	int q;
 	aref arItm;
 
-	if (Items_FindItem(itemName, &arItm) < 0)
+	if(Items_FindItem(itemName, &arItm) < 0)
 	{
 		trace("TakeNItems warning - can't find " + itemName + " item");
 		return false;
@@ -1838,10 +1783,9 @@ bool TakeNItems(ref _refCharacter, string itemName, int n)
 	}
 	//<-
 
-	int price = GetItemPrice(itemName);
-	if(price == 0)
+	if(CheckAttribute(arItm, "price") && sti(arItm.price) == 0)
 	{
-		if(itemName != "Gold") // Warship. Для нового интерфейса обмена - проверка на золото
+		if(arItm.ID != "Gold") // Warship. Для нового интерфейса обмена - проверка на золото
 		{
 			if(CheckAttribute(_refCharacter, "index"))
 			{
@@ -2127,128 +2071,124 @@ string GenerateRandomName_Generator(int iNation, string sSex)
 //=============================================================================
 string FindCharacterItemByGroup(ref chref, string groupID)
 {
- 	int i, n;
+ 	int i,n;
 	ref refItm;
-    float maxValue, curValue;
-    string resultItemId, itemId;
-	float dmg_min, dmg_max, weight;
-
-	// мушкеты не выбираем
-    if (CheckAttribute(chref, "CanTakeMushket") && CheckAttribute(chref, "IsMushketer")) return "";
-
+    float  maxBladeValue, curBladeValue;
+    string resultItemId;
+   if (CheckAttribute(chref, "CanTakeMushket") && CheckAttribute(chref, "IsMushketer")) return ""; // мушкеты не выбираем
     // boal 17.06.05 офицерам даем кулаки -->
 	if (groupID == BLADE_ITEM_TYPE && IsOfficer(chref) && IsEquipCharacterByItem(chref, "unarmed") && !CheckAttribute(chref, "isMusketer"))
 	{
         RemoveCharacterEquip(chref, BLADE_ITEM_TYPE);
         TakeItemFromCharacter(chref, "unarmed");
 	}
-
 	// boal 17.06.05 офицерам даем кулаки <--
-	maxValue = 0;
+	maxBladeValue = 0;
 	resultItemId  = "";
-
-	aref arInventory, arItem;
-	makearef(arInventory, chref.Items);
-	int inventorySize = GetAttributesNum(arInventory);
-
-	for (i = 0; i < inventorySize; i++)
+	for(i=TOTAL_ITEMS-1; i>=0; i--)
 	{
-		arItem = GetAttributeN(arInventory, i);
-		itemId = GetAttributeName(arItem);
-		refItm = ItemsFromID(itemId);
-
-		if (!CheckAttribute(refItm, "groupID")) continue;
-		if (refItm.groupID != groupID) continue;
-
-		if (groupID == GUN_ITEM_TYPE)
+		refItm = &Items[i];
+		if( !CheckAttribute(refItm,"groupID") ) continue;
+		if(refItm.groupID!=groupID) continue;
+		if( !CheckAttribute(chref,"items."+refItm.id) ) continue;
+		if(groupID==GUN_ITEM_TYPE)
 		{
-			if (!CheckAttribute(refItm, "chargeQ")) continue;
+			if( !CheckAttribute(refItm,"chargeQ") ) continue;
 			n = sti(refItm.chargeQ);
-
-			if ((n >= 2) && !IsCharacterPerkOn(chref, "Gunman")) continue;
-			if ((n >= 4) && !IsCharacterPerkOn(chref, "GunProfessional")) continue;
-
-			curValue = GetItemPrice(itemId);
-			if (curValue > maxValue)
+			if(n<2) {return refItm.id;}
+			if(n<4)
 			{
-			    maxValue = curValue;
-			    resultItemId = itemId;
+				if( IsCharacterPerkOn(chref,"Gunman") ) {return refItm.id;}
+				else continue;
 			}
-
+            //boal -->
+            if( IsCharacterPerkOn(chref,"GunProfessional") )	{return refItm.id;}
+            // boal <--
 			continue;
 		}
-
 		// boal 08.10.04 броню офицерам -->
 		if (groupID == CIRASS_ITEM_TYPE)
 		{
-			if (!IsCharacterPerkOn(chref, "Ciras")) continue;
-
-			if (!CheckAttribute(refItm, "CirassLevel"))
-			{
-				continue;
-			}
-
-			curValue = sti(refItm.CirassLevel);
-			if (curValue > maxValue)
-			{
-			    maxValue = curValue;
-			    resultItemId = refItm.id;
-			}
-
-			continue;
+           if( IsCharacterPerkOn(chref, "Ciras") )	{return refItm.id;}
+           continue;
 		}
 		// boal 08.10.04 броню офицерам <--
 
 		// Lugger -->
 		if (groupID == BACKPACK_ITEM_TYPE)
 		{
-			if (!CheckAttribute(refItm, "BackPackWeight"))
+			if(!CheckAttribute(refItm, "BackPackWeight"))
 			{
 				continue;
 			}
 
-			curValue = sti(refItm.BackPackWeight);
-			if (curValue > maxValue)
+			if(sti(refItm.BackPackWeight) >= 75)
 			{
-			    maxValue = curValue;
-			    resultItemId = refItm.id;
+				return refItm.id;
+			}
+			else
+			{
+				if(sti(refItm.BackPackWeight) >= 50)
+				{
+					return refItm.id;
+				}
+				else
+				{
+					if(sti(refItm.BackPackWeight) >= 36)
+					{
+						return refItm.id;
+					}
+					else
+					{
+						if(sti(refItm.BackPackWeight) >= 20)
+						{
+							return refItm.id;
+						}
+						else
+						{
+							if(sti(refItm.BackPackWeight) >= 10)
+							{
+								return refItm.id;
+							}
+							else
+							{
+								continue;
+							}
+						}
+					}
+				}
 			}
 
-			continue;
+           		continue;
 		}
 		// Lugger <--
 
 		// перебор на лучшую саблю
 		if (groupID == BLADE_ITEM_TYPE)
 		{
-			GetBladeParams(itemId, &dmg_min, &dmg_max, &weight);
-
 			// формула лучшего выбора
-			curValue = (dmg_min * 3 + (dmg_max * GetCharacterSkill(chref, refItm.FencingType)) / SKILL_MAX) / GetEnergyBladeDrain(weight);// + stf(refItm.piercing) + stf(refItm.block);
-			if (curValue > maxValue)
+			curBladeValue = (stf(refItm.dmg_min)*3 + (stf(refItm.dmg_max)*GetCharacterSkill(chref, refItm.FencingType)) / SKILL_MAX) / GetEnergyBladeDrain(stf(refItm.Weight));// + stf(refItm.piercing) + stf(refItm.block);
+			if (curBladeValue > maxBladeValue)
 			{
-			    maxValue = curValue;
-			    resultItemId = itemId;
+			    maxBladeValue = curBladeValue;
+			    resultItemId  = refItm.id;
 			}
-
-			continue;
 		}
-
-		return refItm.id;
+		else
+		{
+		    return refItm.id;
+		}
 	}
-
 	if (resultItemId != "")
 	{
         return resultItemId;
 	}
-
 	// boal 17.06.05 офицерам даем кулаки -->
 	if (groupID == BLADE_ITEM_TYPE && IsOfficer(chref) && sti(chref.index) != GetMainCharacterIndex() && !CheckAttribute(chref, "isMusketer"))
 	{
         GiveItem2Character(chref, "unarmed");
         EquipCharacterByItem(chref, "unarmed");
 	}
-
 	// boal 17.06.05 офицерам даем кулаки <--
 	return "";  //ничего не делать далее
 }
@@ -2336,34 +2276,32 @@ bool IsEquipCharacterByMap(ref chref, string itemID)
 // получить суммарный вес экипированных предметов в зависимости от группы -> нужно для атласа карт
 float GetEquippedItemsWeight(ref chref, string groupID)
 {
+	int 	j;
 	string  itemID;
     ref     itm;
 	float 	fEquipWeight = 0.0;
 
-	aref arInventory, arItem;
-	makearef(arInventory, chref.Items);
-	int inventorySize = GetAttributesNum(arInventory);
-
-	for (int i = 0; i < inventorySize; i++)
+	for (j=0; j<TOTAL_ITEMS; j++)
 	{
-		arItem = GetAttributeN(arInventory, i);
-		itemID = GetAttributeName(arItem);
-		itm = ItemsFromID(itemID);
-
-		if (CheckAttribute(itm, "ID"))
+		makeref(itm,Items[j]);
+		if(CheckAttribute(itm, "ID"))
 		{
-			if (groupID == MAPS_ITEM_TYPE)
+			itemID = itm.id;
+			if(groupID == MAPS_ITEM_TYPE)
 			{
-				if (!CheckAttribute(itm, "mapSpecial") && IsEquipCharacterByMap(chref, itemID))
+				if (!CheckAttribute(itm,"mapSpecial"))
 				{
-					fEquipWeight += GetItemWeight(itemID);
+					if (CheckAttribute(chref, "items."+itemID) && IsEquipCharacterByMap(chref, itemID))
+					{
+						fEquipWeight += stf(itm.Weight);
+					}
 				}
 			}
 			else
 			{
-				if (IsEquipCharacterByItem(chref, itemID))
+				if (CheckAttribute(chref, "items."+itemID) && IsEquipCharacterByItem(chref, itemID))
 				{
-					fEquipWeight += GetItemWeight(itemID);
+					fEquipWeight += stf(itm.Weight);
 				}
 			}
 		}
@@ -2381,37 +2319,22 @@ string GetCharacterEquipByGroup(ref chref, string groupID)
 string GetCharacterEquipPictureByGroup(ref chref, string groupID)
 {
 	string sItem = GetCharacterEquipByGroup(chref, groupID);
-	int index = FindItem(sItem);
-	if (index < 0)
+	for(int i = TOTAL_ITEMS-1; i >= 0; i--)
 	{
-		return "";
+		if(CheckAttribute(&items[i], "ID") && items[i].id == sItem)
+		{
+			if(Items[i].id == "spyglass5")
+			{
+				Items[i].picIndex = 4;
+			}
+			return groupID + items[i].picIndex;
+		}
 	}
-
-	if (sItem == "spyglass5")
-	{
-		Items[index].picIndex = 4;
-	}
-	return groupID + Items[index].picIndex;
+	return "";
 }
 
 void RemoveCharacterEquip(ref chref, string groupID)
 {
-	if (groupID == BOOK_ITEM_TYPE && IsMainCharacter(chref)) //Qwerry - запоминаем, какую книгу читал ГГ
-	{
-		string sBookname = chref.bookname;
-		chref.halfreadbook.(sBookname) = 1;
-		chref.halfreadbook.(sBookname).bookname = chref.bookname;
-		chref.halfreadbook.(sBookname).booktime = chref.booktime;
-		chref.halfreadbook.(sBookname).booktime.full = chref.booktime.full;
-		chref.halfreadbook.(sBookname).bookbonus = chref.bookbonus;
-		chref.halfreadbook.(sBookname).booktype = chref.booktype;
-		DeleteAttribute(chref,"booktime");
-		DeleteAttribute(chref,"booktime.full");
-		DeleteAttribute(chref,"bookbonus");
-		DeleteAttribute(chref,"booktime");
-		DeleteAttribute(chref,"booktype");
-		Log_Info("Прервано чтение книги.");
-	}
 	DeleteAttribute(chref,"equip."+groupID);
 	SetEquipedItemToCharacter(chref,groupID,"");
 	SetNewModelToChar(chref);
@@ -2527,21 +2450,16 @@ void SetEquipedItemToCharacter(ref chref, string groupID, string itemID)
 			UnsetSpecialAttributes(chref);
 		}
 
-		if (itemID != "")
-		{
-			float dmg_min, dmg_max, weight;
-			GetBladeParams(itemID, &dmg_min, &dmg_max, &weight);
-
-			LAi_BladeSetDamageMin(chref, dmg_min);
-			LAi_BladeSetDamageMax(chref, dmg_max);
-			LAi_BladeEnergyType(chref, GetEnergyBladeDrain(weight));  // энергоемкость от веса
+		if(CheckAttribute(arItm,"dmg_min"))
+		{	LAi_BladeSetDamageMin(chref,stf(arItm.dmg_min));
+		} else
+		{	LAi_BladeSetDamageMin(chref,0.0);
 		}
-		else
-		{
-			LAi_BladeSetDamageMin(chref, 0.0);
-			LAi_BladeSetDamageMax(chref, 0.0);
+		if(CheckAttribute(arItm,"dmg_max"))
+		{	LAi_BladeSetDamageMax(chref,stf(arItm.dmg_max));
+		} else
+		{	LAi_BladeSetDamageMax(chref,0.0);
 		}
-
 		if(CheckAttribute(arItm,"piercing"))
 		{	LAi_BladeSetPiercing(chref,stf(arItm.piercing)*0.01);
 		} else
@@ -2558,6 +2476,10 @@ void SetEquipedItemToCharacter(ref chref, string groupID, string itemID)
 		} else
 		{	LAi_BladeFencingType(chref, "Fencing");
 		}
+		if(CheckAttribute(arItm,"Weight")) //eddy.при загрузки локации если у ГГ нет оружия - ошибка
+		{
+			LAi_BladeEnergyType(chref, GetEnergyBladeDrain(stf(arItm.Weight)) );  // энергоемкость от веса
+		}
 		// boal <--
 	break;
 	// --> ugeen 18.06.09   - увеличиваем счетчик карт в атласе
@@ -2570,7 +2492,6 @@ void SetEquipedItemToCharacter(ref chref, string groupID, string itemID)
 				if(sti(chref.MapsAtlasCount) == MAPS_IN_ATLAS && !CheckCharacterPerk(chref, "MapMaker"))  // даем скрытый перк если собрали все карты островов
 				{
 					SetCharacterPerk(chref, "MapMaker");
-					UnlockAchievement("AchMapMaker", 3);
 				}
 			}
 		}
@@ -2592,7 +2513,6 @@ void UnsetSpecialAttributes(ref chr)
 	chr.chr_ai.special.valueT = 0;
 	chr.chr_ai.special.valueB = 0;
 	chr.chr_ai.special.valueP = 0;
-	chr.chr_ai.special.valueV = 0;
 }
 
 void SetWeaponsSpecials(ref chr, ref arItm)
@@ -2629,10 +2549,6 @@ void SetWeaponsSpecials(ref chr, ref arItm)
 	if (CheckAttribute(arItm,"special.valueP"))
 	{
 		chr.chr_ai.special.valueP = sti(arItm.special.valueP);
-	}
-	if (CheckAttribute(arItm,"special.valueV"))
-	{
-		chr.chr_ai.special.valueV = sti(arItm.special.valueV);
 	}
 }
 
@@ -2723,53 +2639,6 @@ void EquipCharacterByItem(ref chref, string itemID)
 		FillISpyGlassParameters();
 	}*/
 	// boal <--
-
-	if (groupName == BOOK_ITEM_TYPE && IsMainCharacter(chref)) // Книги, экипировка - Gregg
-	{
-		string sBookname = arItm.name;
-		if (checkattribute(chref, "halfreadbook."+sBookname)) //Qwerry - продолжение чтения книги
-		{
-			chref.booktime = chref.halfreadbook.(sBookname).booktime;
-			chref.booktime.full = chref.halfreadbook.(sBookname).booktime.full;
-			chref.bookname = chref.halfreadbook.(sBookname).bookname;
-			chref.bookbonus = chref.halfreadbook.(sBookname).bookbonus;
-			chref.booktype = chref.halfreadbook.(sBookname).booktype;
-			DeleteAttribute(chref,"halfreadbook."+sBookname);//сразу стираем запомненное
-		}
-		else
-		{
-			chref.booktype = arItm.skill;
-			if(HasSubStr(arItm.id, "book1_"))
-			{
-				chref.booktime = BookTime(chref,1);//таймер
-				chref.booktime.full = sti(chref.booktime);//полное время
-				chref.bookname = arItm.name;//название книги
-				chref.bookbonus = 800;//экспа
-			}
-			if(HasSubStr(arItm.id, "book2_"))
-			{
-				chref.booktime = BookTime(chref,2);
-				chref.booktime.full = sti(chref.booktime);
-				chref.bookname = arItm.name;
-				chref.bookbonus = 1500;
-			}
-			if(HasSubStr(arItm.id, "book3_"))
-			{
-				chref.booktime = BookTime(chref,3);
-				chref.booktime.full = sti(chref.booktime);
-				chref.bookname = arItm.name;
-				chref.bookbonus = 3500;
-			}
-			if(HasSubStr(arItm.id, "book4_"))
-			{
-				chref.booktime = BookTime(chref,4);
-				chref.booktime.full = sti(chref.booktime);
-				chref.bookname = arItm.name;
-				chref.bookbonus = 7500;
-			}
-		}
-		Log_Info("Начато чтение книги. Ориентировочно, это займёт "+chref.booktime+" дней.");
-	}
 }
  // to_do
 void EquipOfficerByItem(ref chref, string itemID)
@@ -3009,7 +2878,6 @@ float isEquippedArtefactUse(ref rChar, string sItem, float fOff, float fOn)
 
 int ChangeCharacterReputationABS(ref chref, float incr)
 {
-	if (chref != Pchar) return 0;
 	int curVal = REPUTATION_NEUTRAL;
 	if (CheckAttribute(chref,"reputation") ) curVal = stf(chref.reputation);
 
@@ -3020,7 +2888,6 @@ int ChangeCharacterReputationABS(ref chref, float incr)
 // репутация стремится к нейтральной
 int ChangeCharacterReputationToNeutral(ref chref, float incr)
 {
-	if (chref != Pchar) return 0;
 	int curVal = REPUTATION_NEUTRAL;
 	if (CheckAttribute(chref,"reputation") ) curVal = stf(chref.reputation);
 
@@ -3030,7 +2897,6 @@ int ChangeCharacterReputationToNeutral(ref chref, float incr)
 
 int ChangeCharacterReputation(ref chref, float incr)
 {
-	if (chref != Pchar) return 0;
 	if (CheckAttribute(chref, "GenQuest.ReputationNotChange")) return sti(chref.reputation); //eddy. нужен флаг
 	float prevVal = REPUTATION_NEUTRAL;
 	if (CheckAttribute(chref,"reputation") )	prevVal = stf(chref.reputation);
@@ -3719,7 +3585,6 @@ bool IsPCharHaveMushketerModel()
 
 	if(HasSubStr(sModel, "Blad") ||
 	HasSubStr(sModel, "Whisper") ||
-	HasSubStr(sModel, "PGG_Barhard") ||
 	HasSubStr(sModel, "PGG_Anamaria") ||
 	HasSubStr(sModel, "PGG_Victori") ||
 	HasSubStr(sModel, "PGG_Angellica") ||
@@ -3833,7 +3698,7 @@ bool StoreOfficers_Ascold(ref refCh)
 	int i, idx;
 	// сохраним офицеров
 	makearef( arTmp, refCh.Fellows.Old.Officers );
-	for(i = 1; i <= MAX_NUM_FIGHTERS; i++ )
+	for(i = 1; i < MAX_NUM_FIGHTERS; i++ )
 	{
 		idx = GetOfficersIndex(refCh,i);
 		if( idx == -1 ) continue;
@@ -3908,7 +3773,7 @@ void RefreshEquippedMaps(ref chref)
 	string  itemID, groupID;
     ref     itm;
 
-	for (i=0; i<ITEMS_QUANTITY; i++)
+	for (i=0; i<TOTAL_ITEMS; i++)
 	{
 		makeref(itm,Items[i]);
 		if(CheckAttribute(itm, "ID") && CheckAttribute(itm, "groupID"))
@@ -4020,7 +3885,7 @@ void OfficersFree()
         {
             ref offchar = GetCharacter(idx);
             if(bAbordageStarted) SetCharacterTask_GotoPoint(offchar, "rld", LAi_FindFreeRandomLocator("rld"));
-            else LAi_tmpl_walk_InitTemplate(offchar);
+            else LAi_tmpl_walk_go(offchar);
         }
     }
 }

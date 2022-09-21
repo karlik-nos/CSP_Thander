@@ -308,6 +308,13 @@ float Fort_CannonDamage()
 	rBallCharacter = GetCharacter(iBallCharacterIndex);
 	rFortCharacter = GetCharacter(iFortCharacterIndex);
 
+	//--->Lipsar для ИИ сторожей
+	if(!CheckAttribute(rFortCharacter,"Ship.LastBallCharacter"))
+	{
+		rFortCharacter.Ship.LastBallCharacter = rBallCharacter.id;
+	}
+	//<---Lipsar для ИИ сторожей
+
 	aFortLabel = GetEventData();
 
 	iNumAllCannons = GetEventData();

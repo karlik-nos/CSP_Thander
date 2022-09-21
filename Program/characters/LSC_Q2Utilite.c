@@ -550,7 +550,7 @@ void initStartState2Character(ref ch)
 	ch.CameraShipNPC = 0;// номер компаньона для камеры 0 - ГГ
 	ch.GenQuestFort.FarLocator = true; // для методов пихания фантомов в город
 
-	// Чёрная жемчужина
+	// Черная жемчужина
 	ch.GenQuest.GhostShip.DeadByMe       = 0;
 	ch.GenQuest.GhostShip.KillMe         = 0;
 	ch.GenQuest.GhostShip.AskAbout       = 0; // в таверне три раза спросить до появления
@@ -566,7 +566,7 @@ void initStartState2Character(ref ch)
 	ch.questTemp.Waiting_time = "2";
 	// ==> номер текущего квеста, присваиваем сразу второй, т.к. первый берется на момент первого обращения к губеру.
 	ch.questTemp.CurQuestNumber = "2";
-	//параметры островов и бухт для корсарского метро, ПГГ, и много ещё чего :)
+	//параметры островов и бухт для корсарского метро, ПГГ, и много еще чего :)
 	InitTravelMap();
 	// ==> проверка не посещение борделей после свадьбы
 	pchar.RomanticQuest.HorseCheck = -1;
@@ -590,10 +590,6 @@ void initStartState2Character(ref ch)
 	SilencePriceInit();
 	// ==> Квесты Проклятие Дальних Морей Sinistra
 	PDMQuestsInit();
-	// ==> Квесты Корсары: Сундук Мертвеца
-	KSMQuestsInit();
-	// ==> Все остальные НПС
-	VSEnpcInit()
 	// ==>  флаги и иниты бергларов
 	BerglarsInit();
 	// ==>  нищие
@@ -666,7 +662,7 @@ void QuestActions()
 			TakeNationLicence(i);
 		}
 	}
-	//Если идёт линейка ГПК, то шмаляем открытые сундуки. Все, кроме Диффиндура.
+	//Если идет линейка ГПК, то шмаляем открытые сундуки. Все, кроме Диффиндура.
 	if (sti(pchar.questTemp.LSC.checkBoxes))
 	{
 		LSC_checkBoxes();
@@ -789,7 +785,7 @@ void QuestActions()
 	//************** линейка ГПК, завал первого каспера с помощь Армо *******************
 	if (CheckAttribute (pchar, "questTemp.LSC.Armo"))
 	{
-		//первый каспер пошёл
+		//первый каспер пошел
 		if (sti(pchar.questTemp.LSC.Armo) == 1 || sti(pchar.questTemp.LSC.Armo) == 3 || sti(pchar.questTemp.LSC.Armo) == 5)
 		{
 			if (pchar.location == "LostShipsCity_town" && GetHour() < 2)
@@ -825,14 +821,14 @@ void QuestActions()
 	//************** генератор "Продажный патруль" *********************************
 	if(CheckAttribute(pchar, "questTemp.ReasonToFast"))
 	{
-		if(pchar.questTemp.ReasonToFast == "SpeakHorse") // не пришёл в бухту
+		if(pchar.questTemp.ReasonToFast == "SpeakHorse") // не пришел в бухту
 		{
 			AddQuestRecord("ReasonToFast", "2");
 			AddQuestUserData("ReasonToFast", "sSex", GetSexPhrase("","а"));
 			CloseQuestHeader("ReasonToFast");
 			pchar.questTemp.ReasonToFast.end = true;
 		}
-		if(pchar.questTemp.ReasonToFast == "MeetPatrolFail") // в бухту пришёл не один или удачи не хватило
+		if(pchar.questTemp.ReasonToFast == "MeetPatrolFail") // в бухту пришел не один или удачи не хватило
 		{
 			AddQuestRecord("ReasonToFast", "3");
 			AddQuestUserData("ReasonToFast", "sSex", GetSexPhrase("ся","ась"));
@@ -874,7 +870,7 @@ void QuestActions()
     			//---------- мертв ------------
     			if (capIndex == -1)
     			{
-					//страховка. если квест ещё открыт - закрываем его
+					//страховка. если квест еще открыт - закрываем его
 					/*if (CheckActiveQuest(arCapBase.Tilte1))
 					{
 						CitizCapIsDead_CloseQuest(arCapBase, sName);
@@ -1009,7 +1005,7 @@ void BerglarsInit()
 	pchar.questTemp.tugs.berglarSentJons = "SentJons_TownCave"; //указание где забивать стрелу
 	pchar.questTemp.tugs.berglarSentJons.hp = 160; //сколько HP
 	pchar.questTemp.tugs.berglarSentJons.locator = "basement1"; //выходной локатор
-	sld = GetCharacter(NPC_GenerateCharacter("BerglarSentJons", "citiz_12", "man", "man", 22, ENGLAND, -1, false));
+	sld = GetCharacter(NPC_GenerateCharacter("BerglarSentJons", "citiz_12", "man", "spy", 22, ENGLAND, -1, false));
 	sld.name 	= "Альберт";
 	sld.lastname = "Грин";
 	sld.rank = 25;
@@ -1744,7 +1740,7 @@ void PoormansInit()
 	LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
 	//заказчик нищих
 	if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sld = GetCharacter(NPC_GenerateCharacter("PoorKillSponsor", "smuggler_boss", "man", "spy", 30, PIRATE, -1, false)); // LEO: Страдать превозмогаторам 07.12.2021
-	else sld = GetCharacter(NPC_GenerateCharacter("PoorKillSponsor", "smuggler_boss", "man", "man", 30, PIRATE, -1, false));
+	else sld = GetCharacter(NPC_GenerateCharacter("PoorKillSponsor", "smuggler_boss", "man", "man_fast", 30, PIRATE, -1, false));
 	sld.name = "Оливер";
 	sld.lastname = "Траст";
 	sld.talker = 8; //начать диалог
@@ -1788,11 +1784,11 @@ string Sharp_choiceAction()
 {
 	string sBack;
 	ref sld;
-	//удалим Шарпа с карты, если он плывет ещё где-то
+	//удалим Шарпа с карты, если он плывет еще где-то
 	Map_ReleaseQuestEncounter("Sharp");
 	group_DeleteGroup("Sharp_Group");
 	if (rand(3) != 2 && sti(pchar.questTemp.Sharp.count) < 5)
-	{	//ещё динамим, отправляем ГГ в другой город
+	{	//еще динамим, отправляем ГГ в другой город
 		string sCity = pchar.questTemp.Sharp.City; //предыдущая цель, запомним для СЖ
 		pchar.questTemp.Sharp.City.rumour = true; //флаг дать слух в городе
 		pchar.questTemp.Sharp.City = GetSharpCity(); //новый город
@@ -1895,9 +1891,9 @@ string GetSharpRumour_default()
 	string sRumour;
 	switch (rand(2))
     {
-        case 0: sRumour = "Капитан Шарп был здесь, я его видел. Но сейчас его в городе нет, а куда ушёл - не знаю."; break;
+        case 0: sRumour = "Капитан Шарп был здесь, я его видел. Но сейчас его в городе нет, а куда ушел - не знаю."; break;
         case 1: sRumour = "Капитан Шарп заходил в наш город. Где он сейчас я не знаю, у нас его точно нет."; break;
-        case 2:	sRumour = "Капитан Барталомью Шарп ушёл из города буквально на днях..."; break;
+        case 2:	sRumour = "Капитан Барталомью Шарп ушел из города буквально на днях..."; break;
     }
 	return sRumour;
 }
@@ -1907,9 +1903,9 @@ string GetSharpRumour_toCityTarget()
 	string sRumour;
 	switch (rand(2))
     {
-        case 0: sRumour = "Капитан Бартоломью Шарп был у нас в городе и, как всегда, умудрился 'отметиться'... Но сейчас его здесь нет. По слухам он ушёл в " + XI_ConvertString("Colony" + pchar.questTemp.Sharp.City + "Acc") + "."; break;
-        case 1: sRumour = "Знаете, капитан Шарп был в городе недавно. Веселый пират, этот Барталомью... Хорошо, однако, что он покинул наш город. Кажется он ушёл в " + XI_ConvertString("Colony" + pchar.questTemp.Sharp.City + "Acc") + "."; break;
-        case 2:	sRumour = "Вы знаете, недавно нас почтил своим присутствием капитан Шарп. Но, к нашему большому разочарованию, нового карибского анекдота 'от Шарпа' не случилось. Жаль... А сейчас его нет у нас в городе. Говорят, он ушёл в " + XI_ConvertString("Colony" + pchar.questTemp.Sharp.City + "Acc") + ". Может им повезет..."; break;
+        case 0: sRumour = "Капитан Бартоломью Шарп был у нас в городе и, как всегда, умудрился 'отметиться'... Но сейчас его здесь нет. По слухам он ушел в " + XI_ConvertString("Colony" + pchar.questTemp.Sharp.City + "Acc") + "."; break;
+        case 1: sRumour = "Знаете, капитан Шарп был в городе недавно. Веселый пират, этот Барталомью... Хорошо, однако, что он покинул наш город. Кажется он ушел в " + XI_ConvertString("Colony" + pchar.questTemp.Sharp.City + "Acc") + "."; break;
+        case 2:	sRumour = "Вы знаете, недавно нас почтил своим присутствием капитан Шарп. Но, к нашему большому разочарованию, нового карибского анекдота 'от Шарпа' не случилось. Жаль... А сейчас его нет у нас в городе. Говорят, он ушел в " + XI_ConvertString("Colony" + pchar.questTemp.Sharp.City + "Acc") + ". Может им повезет..."; break;
     }
 	return sRumour;
 }
@@ -1920,7 +1916,7 @@ string GetSharpRumour_inIsland()
 	switch (rand(2))
     {
         case 0: sRumour = "Вы знаете, капитан Шарп только что вышел из города на своем бриге. Если бы вы прибыли с пол часа назад, то увидели бы его прямо в порту."; break;
-        case 1: sRumour = "Капитан Шарп... Да уже, тот ещё капитан. Знаете, он только что покинул наш город. Если вы поторопитесь, то сможете его застать в окрестных водах."; break;
+        case 1: sRumour = "Капитан Шарп... Да уже, тот еще капитан. Знаете, он только что покинул наш город. Если вы поторопитесь, то сможете его застать в окрестных водах."; break;
         case 2:	sRumour = "Бартоломью Шарп буквально с час назад вышел из нашего порта в море."; break;
     }
 	return sRumour;
@@ -1966,7 +1962,7 @@ string GetBlueBirdRumour_Ship()
     {
         case 0: sRumour = "Вы знаете, местный торговец, " + GetFullName(characterFromId(pchar.questTemp.BlueBird.City + "_trader")) + ", опять отправляет собственный флейт '" + pchar.questTemp.BlueBird.Ship.Name + "' в Старый Свет за товаром. Недавно флейт вышел из порта."; break;
 		case 1: sRumour = "Хм, а дела у нашего негоцианта доморощенного идут неплохо! " + GetFullName(characterFromId(pchar.questTemp.BlueBird.City + "_trader")) + " вновь отправил собственный флейт '" + pchar.questTemp.BlueBird.Ship.Name + "' за товаром, тот только что вышел из нашего порта."; break;
-        case 2:	sRumour = "М-да, а " + GetFullName(characterFromId(pchar.questTemp.BlueBird.City + "_trader")) + " все богатеет и богатеет. Только вчера его парусник стоял под разгрузкой в порту, а сегодня порт уже попрощался с ним. Флейт '" + pchar.questTemp.BlueBird.Ship.Name + "' ушёл опять за товаром, так то!"; break;
+        case 2:	sRumour = "М-да, а " + GetFullName(characterFromId(pchar.questTemp.BlueBird.City + "_trader")) + " все богатеет и богатеет. Только вчера его парусник стоял под разгрузкой в порту, а сегодня порт уже попрощался с ним. Флейт '" + pchar.questTemp.BlueBird.Ship.Name + "' ушел опять за товаром, так то!"; break;
     }
 	return sRumour;
 }
@@ -2047,7 +2043,7 @@ string SelectNotEnemyColony(ref NPChar)
 
 	for(n=0; n<MAX_COLONIES; n++)
 	{
-
+		
 		/* if (nation != RELATION_ENEMY && colonies[n].id != "Panama" && colonies[n].id != "FortOrange" && colonies[n].id != "Caiman" && colonies[n].nation != "none" && sti(colonies[n].nation) != PIRATE && GetIslandByCityName(npchar.city) != colonies[n].islandLable) //не на свой остров */
 		if (colonies[n].id != "Panama" && colonies[n].id != "FortOrange" && colonies[n].id != "Caiman" && colonies[n].nation != "none"  && GetIslandByCityName(npchar.city) != colonies[n].islandLable) //не на свой остров
 		{
@@ -2315,7 +2311,7 @@ void PortmansSeekShip_writeQuestBook(ref rid)
 		AddQuestUserData(sTitle, "sShipName", sld.Ship.name);
 		AddQuestUserData(sTitle, "sCity", XI_ConvertString("Colony" + rid.city + "Gen"));
 		iTemp = RealShips[sti(sld.Ship.Type)].basetype;
-		AddQuestUserData(sTitle, "sSexWord", GetShipSexWord(ShipsTypes[iTemp].name, "ушёл", "ушла"));
+		AddQuestUserData(sTitle, "sSexWord", GetShipSexWord(ShipsTypes[iTemp].name, "ушел", "ушла"));
 		AddQuestUserData(sTitle, "sTargetCity", XI_ConvertString("Colony" + sld.quest.targetCity + "Acc"));
 		if (GetIslandByCityName(sld.quest.targetCity) != sld.quest.targetCity)
 		{
@@ -2599,7 +2595,7 @@ void LSC_CasperIsHelp()
 	Log_SetStringToLog("Звуки борьбы были услышаны на барке 'Сан Габриэль'.");
 	chrDisableReloadToLocation = true;
 	pchar.questTemp.LSC = "toSeekMechanikCasperOff";
-	//если пошёл навал, то чистим квест Армо
+	//если пошел навал, то чистим квест Армо
 	pchar.questTemp.LSC.Armo = 15; //завязываем с дачей квестов от Армо
 	pchar.quest.LSC_KillOneCasper.over = "yes";
 	pchar.quest.LSC_checkCasperDead.over = "yes";
@@ -2857,7 +2853,7 @@ void LoginDeadmansGod()
 	LAi_LockFightMode(pchar, false);
 	LAi_LocationFightDisable(loadedLocation, true);
 	if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) ref sld = GetCharacter(NPC_GenerateCharacter("DeadmansGod", "mictlantecuhtli", "skeleton", "spy", 100, PIRATE, 0, true));
-	else sld = GetCharacter(NPC_GenerateCharacter("DeadmansGod", "mictlantecuhtli", "skeleton", "man", 100, PIRATE, 0, true));
+	else sld = GetCharacter(NPC_GenerateCharacter("DeadmansGod", "mictlantecuhtli", "skeleton", "man_fast", 100, PIRATE, 0, true));
     FantomMakeCoolFighter(sld, 100, 100, 100, "toporAZ", "pistol5", 3000);
 	sld.name = "Миктлантекутли";
 	sld.lastname = "";
@@ -2866,48 +2862,14 @@ void LoginDeadmansGod()
 	if (bHardBoss) sld.AlwaysReload = true;//перезарядка независимо от Дозарядки
 	ChangeCharacterAddressGroup(sld, "Temple_great", "goto", "goto1");
 	LAi_SetActorType(sld);
-	LAi_group_MoveCharacter(sld, "EnemyFight");
 	LAi_ActorDialog(sld, pchar, "", 0.0, 0);
 	LAi_CharacterPlaySound(sld, "DeadmansGod");
-}
-
-void TenoRoundTempleChestOpen()
-{
-	ref sld;
-	if (pchar.questTemp.Teno != "YouWinGod")
-	{
-		// Если квест Тено не закончен, генерируем охрану револьвера
-		LAi_group_Delete("EnemyFight");
-		chrDisableReloadToLocation = true;
-		for (i=1; i<=8; i++)
-		{
-			sld = GetCharacter(NPC_GenerateCharacter("AztecWarrior_"+i, "AztecWarrior"+(rand(4)+1), "skeleton", "man", 30, PIRATE, 0, true));
-			FantomMakeCoolFighter(sld, 30, 90, 90, "toporAZ", "", 100);
-			LAi_SetWarriorType(sld);
-			LAi_group_MoveCharacter(sld, "EnemyFight");
-			ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto"+i);
-			LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
-			LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, true);
-			LAi_group_SetCheck("EnemyFight", "OpenTheDoors");
-		}
-	}
-	else
-	{
-		if (!CheckAttribute(PChar, "questTemp.Uicilopochtli"))
-		{
-			sld = GetCharacter(GetCharacterIndex("Uicilopochtli"));
-			ChangeCharacterAddressGroup(sld, "Temple_round", "goto", "goto1");
-			LAi_ActorDialog(sld, pchar, "", 0.0, 0);
-
-			PChar.questTemp.Uicilopochtli = 0;
-		}
-	}
 }
 
 void LoginDeadmansGod2()
 {
 	if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) ref sld = GetCharacter(NPC_GenerateCharacter("DeadmansGod2", "mictlantumsamil", "skeleton", "spy", 60, PIRATE, 0, true)); // LEO: Превозмогаторам - страдать 01.12.2021
-	else sld = GetCharacter(NPC_GenerateCharacter("DeadmansGod2", "mictlantumsamil", "skeleton", "man", 60, PIRATE, 0, true));
+	else sld = GetCharacter(NPC_GenerateCharacter("DeadmansGod2", "mictlantumsamil", "skeleton", "man_fast", 60, PIRATE, 0, true));
     FantomMakeCoolFighter(sld, 60, 100, 100, "blade201", "", 2500);
 	sld.name = "Юм";
 	sld.lastname = "Самиль";
@@ -2929,7 +2891,7 @@ void LoginUmSamilGuards()
 	for(int i = 0; i < 3; i++)
 	{
 		if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) ref sld = GetCharacter(NPC_GenerateCharacter("UmSamilGuard"+i, "Chavinavi_1", "skeleton", "spy", 55, PIRATE, 0, true)); // LEO: Превозмогаторам - страдать 01.12.2021
-		else sld = GetCharacter(NPC_GenerateCharacter("UmSamilGuard"+i, "Chavinavi_1", "skeleton", "man", 55, PIRATE, 0, true));
+		else sld = GetCharacter(NPC_GenerateCharacter("UmSamilGuard"+i, "Chavinavi_1", "skeleton", "man_fast", 55, PIRATE, 0, true));
 		if (i == 0) FantomMakeCoolFighter(sld, 55, 90, 90, "blade37", "", 750);
 		if (i == 1) FantomMakeCoolFighter(sld, 55, 90, 90, "blade39", "", 750);
 		if (i == 2) FantomMakeCoolFighter(sld, 55, 90, 90, "blade42", "", 750);
@@ -3050,6 +3012,27 @@ bool CheckMainHeroMap(string itemName)
 		return true;
 	}
 	return false;
+}
+// <-- ugeen
+void LoginShotgunGuards()
+{
+	ref sld;
+	if (pchar.questTemp.Teno != "YouWinGod")
+	{
+		LAi_group_Delete("EnemyFight");
+		chrDisableReloadToLocation = true;
+		for (i=1; i<=8; i++)
+		{
+			sld = GetCharacter(NPC_GenerateCharacter("AztecWarrior_"+i, "AztecWarrior"+(rand(4)+1), "skeleton", "man", 30, PIRATE, 0, true));
+			FantomMakeCoolFighter(sld, 30, 90, 90, "toporAZ", "", 100);
+			LAi_SetWarriorType(sld);
+			LAi_group_MoveCharacter(sld, "EnemyFight");
+			ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto"+i);
+			LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+			LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, true);
+			LAi_group_SetCheck("EnemyFight", "OpenTheDoors");
+		}
+	}
 }
 
 // Инициализация прочих квестов. Warship

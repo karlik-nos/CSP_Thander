@@ -168,7 +168,7 @@ void extrnInitPerks()
 	ChrPerksList.list.SeaDogProfessional.condition.SailingProfessional = true;
 	ChrPerksList.list.SeaDogProfessional.BaseType = "ship";
 	ChrPerksList.list.SeaDogProfessional.OfficerType = "navigator";
-	if (!bAltBalanceOffTopPerk) ChrPerksList.list.SeaDogProfessional.PlayerOnly = true;
+	if (!bAltBalance) ChrPerksList.list.SeaDogProfessional.PlayerOnly = true;
 
 	/////////////////////////////////////////////////////////////
 	/// Перки для боцман

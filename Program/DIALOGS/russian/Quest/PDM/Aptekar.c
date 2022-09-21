@@ -114,8 +114,10 @@ void ProcessDialogEvent()
 			dialog.text = "Ах, вы должно быть, капитан "+pchar.name+"! Я должен поблагодарить вас за моё исцеление. "+sld.name+" рассказал мне обо всём, что вы для меня сделали.";
 			link.l1 = "Я рад"+ GetSexPhrase("","а") +", что ты поправился, и теперь ты расскажешь, что же с тобой случилось. "+sld.name+" сказал, что Ропфлейк захватил твой корабль.";
 			link.l1.go = "Markus_Vizdorovel_2";
-			AddCharacterExpToSkill(pchar, "Leadership", 150);
-			AddCharacterExpToSkill(pchar, "Defence", 150);
+			AddCharacterSkillDontClearExp(pchar, "Leadership", 1);
+			AddCharacterSkillDontClearExp(pchar, "Defence", 1);
+			Log_SetStringToLog("Авторитет + 1");
+			Log_SetStringToLog("Защита + 1");
 			DeleteAttribute(pchar, "questTemp.PDM_Apt_Vizdorovel");
 		break;
 
@@ -235,7 +237,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Pablo_Loco_ER_2":
-			dialog.text = "Жадность делает твоё сердце тяжёлым, как само золото. Ты долж"+ GetSexPhrase("ен","на") +" выбросить её в море, чтобы очиститься.";
+			dialog.text = "Жадность делает твоё сердце тяжелым, как само золото. Ты долж"+ GetSexPhrase("ен","на") +" выбросить её в море, чтобы очиститься.";
 			link.l1 = "Расскажи мне свою историю.";
 			link.l1.go = "Pablo_Loco_2";
 		break;
@@ -262,7 +264,7 @@ void ProcessDialogEvent()
 
 		case "Pablo_Loco_4":
 			dialog.text = "";
-			link.l1 = "Расскажи мне ещё о своём народе.";
+			link.l1 = "Расскажи мне ещё о своем народе.";
 			link.l1.go = "Pablo_Loco_Plemya_Ushlo";
 			link.l2 = "Это ты Пабло, травник?";
 			link.l2.go = "Pablo_Loco_Trava";
@@ -378,8 +380,10 @@ void ProcessDialogEvent()
 			LAi_CharacterDisableDialog(npchar);
 			npchar.lifeday = 0;
 
-			AddCharacterExpToSkill(pchar, "Sailing", 150);
-			AddCharacterExpToSkill(pchar, "Repair", 150);
+			AddCharacterSkill(pchar, "Sailing", 1);
+			AddCharacterSkill(pchar, "Repair", 1);
+			Log_SetStringToLog("Навигация + 1");
+			Log_SetStringToLog("Ремонт + 1");
 
 			GiveItem2Character(PChar, "PDM_Trava_Tzes_Umrat");
 			AddQuestRecord("PDM_Aptekar", "11");
@@ -462,7 +466,7 @@ void ProcessDialogEvent()
 				iOfficer = GetPassenger(pchar, i);
 				sld = GetCharacter(iOfficer);
 				if (!GetRemovable(sld)) continue;
-				if (!CheckAttribute(sld, "HPminusDaysNeedtoRestore")) continue;
+				if (!CheckAttribute(sld, "HPminusDaysNeedtoRestore") || CheckAttribute(sld, "Doctored")) continue;
 				attrL = "l"+i;
 				Link.(attrL)	= "Офицер " + GetFullName(sld) + ".";
 				Link.(attrL).go = "OfficerConfusedSel_" + i;
@@ -502,10 +506,21 @@ void ProcessDialogEvent()
 			AddMoneyToCharacter(pchar,-sti(npchar.HealPrice));
 			LAi_Fade("", "");
 			WaitDate("",0,0,0, 0, 60);
-			DeleteAttribute(chref, "HPminusDays");
-			DeleteAttribute(chref, "HPminusDaysNeedtoRestore");
-			Log_Info("Офицер " + GetFullName(chref) + " выздоровел.");
-			dialog.Text = "Мне удалось полностью исцелить " + GetFullName(chref) + ". Хотя надо признать, что это было весьма непросто...  У вас всё или кому-то ещё требуется моя помощь?";
+			int plusdays = makeint(sti(chref.HPminusDaysNeedtoRestore)/4*3);
+			if (plusdays > 30) plusdays = 39;
+			chref.HPminusDays = sti(chref.HPminusDays) + plusdays;
+			if(sti(chref.HPminusDays) >= sti(chref.HPminusDaysNeedtoRestore))
+			{
+				DeleteAttribute(chref, "HPminusDays");
+				DeleteAttribute(chref, "HPminusDaysNeedtoRestore");
+				Log_Info("Офицер " + GetFullName(chref) + " выздоровел.");
+				dialog.Text = "Мне удалось полностью исцелить " + GetFullName(chref) + ". Хотя надо признать, что это было весьма непросто...  У вас всё или кому-то ещё требуется моя помощь?";
+			}
+			else
+			{
+				chref.Doctored = true;
+				dialog.Text = "Я сделал всё, на что я способен. Скорее всего уже в ближайшие дни " + GetFullName(chref) + " будет в полном порядке. У вас всё или кому-то ещё требуется моя помощь?";
+			}
 			Link.l1 = "Нет, есть ещё нуждающиеся.";
 			Link.l1.go = "CheckForConfuse";
 			Link.l99 = "Пока всё. Благодарю вас за помощь.";

@@ -18,165 +18,86 @@
 
 void CheckIslandChange()
 {
-	float 		RTplayerShipX;
-    float 		RTplayerShipZ;
-    int 		scale;
-    bool 		isStorm, isTornado;
-	
+	//#20190624-01
+    float RTplayerShipX;
+    float RTplayerShipZ;
+    int scale;
     getRTplayerShipXZ(&RTplayerShipX, &RTplayerShipZ, &scale);
+    //#20190628-01
+    float distToClosestIsland;
+    bool bScaleDiff;
+	int nextisland = getRTclosestIsland(RTplayerShipX, RTplayerShipZ, scale, &distToClosestIsland, &bScaleDiff);
 
-    float 		distToClosestIsland, distStorm;
-    bool 		bScaleDiff;
-    bool 		bCheckEnc = true;
-	
-	int 		nextisland = getRTclosestIsland(RTplayerShipX, RTplayerShipZ, scale, &distToClosestIsland, &bScaleDiff);
-	
+	//if (DIRECTSAILDEBUG) trace("CheckIslandChange: nextisland=" + nextisland);
+
 	while(nextisland > -1 && nextisland != FindIsland(worldMap.island))
 	{
-		ref rIsland 		= GetIslandByIndex(nextisland);
+		//only switch if pretty close
+		ref rIsland = GetIslandByIndex(nextisland);//makeref(rIsland, Islands[inum]);
 		string sNewIslandId = rIsland.id;
-		string sIslandNow 	= worldMap.island;
+		string sIslandNow = worldMap.island;
 
 		float distToCurIsland;
-		
-		if (worldMap.island == WDM_NONE_ISLAND) 
-		{	
-			distToCurIsland = 2500000000.0;
-		}	
-		else
-		{		
-			distToCurIsland = GetDistance2DRel(RTplayerShipX, RTplayerShipZ, stf(worldMap.islands.(sIslandNow).position.x), stf(worldMap.islands.(sIslandNow).position.z));
-		}	
-		
-		if (bScaleDiff) 
-		{
-            if(distToClosestIsland * 1.12 > distToCurIsland)
-                break;
-        }
-        else 
-		{
-            if(distToClosestIsland * 1.85 > distToCurIsland)
-                break;
-		}
+		if (worldMap.island == WDM_NONE_ISLAND) distToCurIsland = 2500000000.0; //50000.0;
+		else distToCurIsland = GetDistance2DRel(RTplayerShipX, RTplayerShipZ, stf(worldMap.islands.(sIslandNow).position.x), stf(worldMap.islands.(sIslandNow).position.z));
+		//#20190628-01
+		//float distToClosestIsland = GetDistance2DRel(RTplayerShipX, RTplayerShipZ, stf(worldMap.islands.(sNewIslandId).position.x), stf(worldMap.islands.(sNewIslandId).position.z));
 
-		bCheckEnc = false;
-		
+		//if (DIRECTSAILDEBUG) trace("CheckIslandChange: distToCurIsland=" + distToCurIsland + ", distToClosestIsland=" + distToClosestIsland);
+
+		//only change if getting close
+		if (bScaleDiff) {
+            if(distToClosestIsland * 1.12 > distToCurIsland)
+                return;
+        }
+        else {
+            if(distToClosestIsland * 2.0 > distToCurIsland)
+                return;
+		}
+		// aborts function if enemyships near, so that you aren't teleported out of an engagement
+		//#20190703-01
 		aref rSituation;
 		makearef(rSituation, pchar.SeaAI.Update.Situation);
-/*
+		float enemydist = 0.0;
+		int nextenemy = 0;
+		float enemyDistLimit   = 1000.0;
+		float neutralDistLimit = 1000.0;
+
 		nextenemy = sti(rSituation.MinEnemyIndex);
 		enemydist = stf(rSituation.MinEnemyDistance);
 		//if (DIRECTSAILDEBUG) trace("DirectsailCheck; next enemy: "+nextenemy + " dist: "+enemydist);
 		if(nextenemy!= -1 && enemydist<enemyDistLimit )
 		{
-			//if (DIRECTSAILDEBUG) trace("Directsail aborted due to hostile ship, dist = " + enemydist);	
-			break;
+			//if (DIRECTSAILDEBUG) trace("Directsail aborted due to hostile ship, dist = " + enemydist);	// LDH - 07Jan09
+			return;
 		}
-		
+		// Jan 07, same for neutral ships
 		nextenemy = sti(rSituation.MinNeutralIndex);
 		enemydist = stf(rSituation.MinNeutralDistance);
 
 		//if (DIRECTSAILDEBUG) trace("DirectsailCheck; next neutral ship: "+nextenemy + " dist: "+enemydist);
-		if(nextenemy!= -1 && enemydist<neutralDistLimit && sti(Characters[nextenemy].ship.type) != SHIP_FORT ) 
+		if(nextenemy!= -1 && enemydist<neutralDistLimit && sti(Characters[nextenemy].ship.type) != SHIP_FORT ) // LDH added fort check 08Jan09
 		{
-		  //if (DIRECTSAILDEBUG) trace("Directsail aborted due to neutral ship, dist = " + enemydist);	
-		  break;
+		  //if (DIRECTSAILDEBUG) trace("Directsail aborted due to neutral ship, dist = " + enemydist);	// LDH added logit to trace - 07Jan09
+		  return;
 		}
-*/		
-		if(!bMapEnter) 
-		{
-			if (DIRECTSAILDEBUG) trace("Directsail aborted in battle");
-			break;
-		}		
-		
-		// mitrokosta проверка перегруза итд
-		if(!CheckMapEnterConditions()) 
-		{
-			break;
-		}
-		
-		sIslandID = sNewIslandId;
-		
+		// looks like this doesn't always work, so I added another check for being in battle
+		if(!bMapEnter) {
+			//if (DIRECTSAILDEBUG) trace("Directsail aborted in battle");
+			return;
+		}		// LDH added logit to trace 07Jan09
+        //#20180813-02
 		SetEventHandler("FaderEvent_StartFade", "ChangeSeaMapNew", 0);
         SetEventHandler("FaderEvent_EndFade", "Sea2Sea_Reload", 0);
-		
         CreateEntity(&wdm_fader, "fader");
-		if(IsEntity(wdm_fader) == 0) Trace("Fader not created!!!");
-		
         float fadeOutTime = 0.5;
-		
         SendMessage(&wdm_fader, "lfl", FADER_OUT, fadeOutTime, true);
         SendMessage(&wdm_fader, "l", FADER_STARTFRAME);
-		
-		string imageName = "Loading\jonny_load\sea\sea_" + rand(3) + ".tga";
-		SendMessage(&wdm_fader, "ls", FADER_PICTURE0, imageName);
-	
+        pchar.loadscreen = "loading\sea_" + rand(31) + ".tga";
+        SendMessage(&wdm_fader, "ls",FADER_PICTURE0, pchar.loadscreen);
 		break;
 	}
 }
-
-bool CheckMapEnterConditions() 
-{
-    int cn;
-    ref chref;
-	bool canEnter = true;
-	bool bLog = false;
-
-    for (int i = 0; i<COMPANION_MAX; i++) 
-	{
-		cn = GetCompanionIndex(pchar, i);
-		if (cn >= 0) 
-		{
-			chref = GetCharacter(cn);
-
-			if (!GetRemovable(chref)) 
-			{
-				continue;
-			}
-			
-            if (GetCargoLoad(chref) > GetCargoMaxSpace(chref)) 
-			{
-				Log_SetStringToLog("Корабль '" +  chref.Ship.Name + "' перегружен.");
-				bLog = true;
-				canEnter = false;
-				break;
-            }
-
-            if (MOD_SKILL_ENEMY_RATE > 2) { // халява и юнга - послабление
-	            if (i > 0 && GetMinCrewQuantity(chref) > GetCrewQuantity(chref)) 
-				{
-					Log_SetStringToLog("На корабле '" +  chref.Ship.Name + "' нет минимального экипажа.");
-					bLog = true;
-					canEnter = false;
-					break;
-	            }
-			}
-			
-            if (GetMaxCrewQuantity(chref) < GetCrewQuantity(chref)) 
-			{
-				Log_SetStringToLog("На корабле '" +  chref.Ship.Name + "' перегруз экипажа больше допустимого.");
-				bLog = true;
-				canEnter = false;
-				break;
-			}
-		}
-    }
-
-	if (canEnter && !CheckEnemyCompanionDistance2GoAway(false)) 
-	{
-		CheckEnemyCompanionDistance2GoAway(true); // получается по-дурацки - двойной вызов одной функции, но это нужно чтобы не было спама табличками
-		canEnter = false;
-	}
-	
-	if (bLog) 
-	{
-		Log_Info("Дальнейшее путешествие невозможно.");
-		PlaySound("interface\knock.wav");
-	}
-	
-	return canEnter;
-}
-
 //#20190624-01
 void getRTplayerShipXZ(ref RTplayerShipX, ref RTplayerShipZ, ref scale)
 {
@@ -206,30 +127,31 @@ float getRTplayerShipAY()
 //#20190628-01
 int getRTclosestIsland(float RTplayerShipX, float RTplayerShipZ, int curScale, ref iDistanceNow, ref scaleDiff)
 {
-	bool 			tempDiff;
-	float 			distance, iBearing, offShip, shipAY, iX, iZ;
-	iDistanceNow 	= 2500000000.0; 
-    scaleDiff 		= false;
-	int nextisland 	= -1;
-	ref 			rIsland;
-	string 			islandTemp;
-    shipAY 			= stf(pchar.Ship.Ang.y);
-	
-	for (int inum = 0; inum <= iNumIslands; inum++ )
+	//if(DIRECTSAILDEBUG) trace("getRTclosestIsland. curr island: " + worldMap.island);
+
+	//#20190624-01
+    bool tempDiff;
+	float distance, iBearing, offShip, shipAY, iX, iZ;
+	bool isStar;
+	iDistanceNow = 2500000000.0; //50000.0;
+    scaleDiff = false;
+	int nextisland = -1;
+	ref rIsland;
+	string islandTemp;
+    shipAY = stf(pchar.Ship.Ang.y);
+	for (int inum=0; inum<=iNumIslands; inum++)
 	{
-		rIsland = GetIslandByIndex(inum);
+		rIsland = GetIslandByIndex(inum);//makeref(rIsland, Islands[inum]);
 		islandTemp = rIsland.id;
-		
-		if(Islands[inum].visible == false) continue;
-		
 		iX = stf(worldMap.islands.(islandTemp).position.x);
 		iZ = stf(worldMap.islands.(islandTemp).position.z);
 
 		iBearing = GetAngleY(iX - RTplayerShipX, iZ - RTplayerShipZ);
         offShip = iBearing - shipAY;
         int nBear = ClosestDirFA(offShip);
-        if(nBear != DIR_FORWARD) continue; 
+        if(nBear != DIR_FORWARD) continue; //Skip islands not heading toward
 
+		//#20190628-01
 		tempDiff = false;
 		if(curScale == WDM_MAP_TO_SEA_SCALE) {
             if (islandTemp == "Cuba1" || islandTemp == "Cuba2" || islandTemp == "Beliz" || islandTemp == "SantaCatalina"
@@ -239,8 +161,10 @@ int getRTclosestIsland(float RTplayerShipX, float RTplayerShipZ, int curScale, r
                 tempDiff = true;
             }
 		}
-
+        //#20190628-01
 		distance = GetDistance2DRel(RTplayerShipX, RTplayerShipZ, iX, iZ);
+
+		//if(DIRECTSAILDEBUG) trace("getRTclosestIsland. islandTemp=" + islandTemp + ", distance=" + distance + ", iDistanceNow=" + iDistanceNow);
 
 		if (distance < iDistanceNow)
 		{
@@ -249,6 +173,7 @@ int getRTclosestIsland(float RTplayerShipX, float RTplayerShipZ, int curScale, r
 			scaleDiff = tempDiff;
 		}
 	}
+	//if(DIRECTSAILDEBUG) trace("getRTclosestIsland. closest island: " + Islands[nextisland].id + ", idx=" + nextisland);
 
 	return nextisland;
 }
@@ -258,7 +183,7 @@ void ChangeSeaMapNew() //string sNewIslandId)
 {
 	//ShipsInit();
 	DelEventHandler("FaderEvent_StartFade", "ChangeSeaMapNew");
-    //PauseAllSounds();
+    PauseAllSounds();
 	DeleteSeaEnvironment();
 	//SetEventHandler("Sea2Sea_Reload", "Sea2Sea_Reload", 0);
 	//PostEvent("Sea2Sea_Reload", 0);
@@ -302,6 +227,7 @@ void Sea2Sea_Reload()
 	seaLoginToSea.playerGroup.ay = CAY;
 	seaLoginToSea.island = CIsland;
 
+	seaLoginToSea.imageName = pchar.loadscreen;
     //musicName = "";
     DeleteAttribute(pchar, "pirateFriendly");
 	SeaLogin(&seaLoginToSea);

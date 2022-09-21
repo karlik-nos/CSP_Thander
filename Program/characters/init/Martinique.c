@@ -68,10 +68,7 @@ int CreateMartiniqueCharacters(int n)
 
 	makeref(ch,Characters[n]);			//Трактирщик
 	ch.id		= "FortFrance_tavernkeeper";
-	ch.name		= "Весельчак Жером";
-	ch.lastname = "";
-	ch.model	= "Fatman2_1";
-	ch.model.animation = "man1";
+	ch.model	= "barmen_8";
 	ch.greeting = "Gr_Barmen";
 	ch.sex = "man";
 	ch.City = "FortFrance";

@@ -150,11 +150,7 @@ bool CreateCharacter(ref character)
 		int VisCir = sti(InterfaceStates.VISUAL_CIRASS);
 		if (VisCir==0) //всем хуй
 		{
-			if (CheckAttribute(character,"cirassId") && sti(Items[sti(character.cirassId)].model) > 5)
-			{
-				character.model = GetSubStringByNum(character.HeroModel,sti(Items[sti(character.cirassId)].model));
-			}
-			else character.model = GetSubStringByNum(character.HeroModel,0);
+			character.model = GetSubStringByNum(character.HeroModel,0);
 			Characters_RefreshModel(character);
 		}
 		else
@@ -229,11 +225,7 @@ bool CreateCharacter(ref character)
 			}
 			else
 			{
-				if (CheckAttribute(character,"cirassId") && sti(Items[sti(character.cirassId)].model) > 5)
-				{
-					character.model = GetSubStringByNum(character.HeroModel,sti(Items[sti(character.cirassId)].model));
-				}
-				else character.model = GetSubStringByNum(character.HeroModel,0);
+				character.model = GetSubStringByNum(character.HeroModel,0);
 				Characters_RefreshModel(character);
 			}
 		}

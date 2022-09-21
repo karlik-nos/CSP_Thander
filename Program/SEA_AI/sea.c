@@ -322,7 +322,7 @@ void Sea_LandLoad()
 		if (sti(pchar.money) < sbormoney)
 		{
 			Log_Info("Недостаточно денег на оплату портового сбора. Вход невозможен.");
-			Log_Info("Вам необходимо ещё "+ (sbormoney - sti(pchar.money)) +" пиастров.");
+			Log_Info("Вам необходимо еще "+ (sbormoney - sti(pchar.money)) +" пиастров.");
 			return;
 		}
 	}
@@ -524,8 +524,7 @@ void Sea_MapLoad()
 	CreateEntity(&SeaFader, "fader");
 	SendMessage(&SeaFader, "lfl", FADER_OUT, 0.7, true);
 	SendMessage(&SeaFader, "l", FADER_STARTFRAME);
-	pchar.loadscreen = "loading\jonny_load\sea\sea_"+rand(3)+".tga";
-	SendMessage(&SeaFader, "ls", FADER_PICTURE0, pchar.loadscreen);
+	SendMessage(&SeaFader, "ls", FADER_PICTURE0, "loading\sea_" + rand(31) + ".tga");
 
 	bSkipSeaLogin = true;
 
@@ -550,8 +549,7 @@ void Land_MapLoad()
 	CreateEntity(&SeaFader, "fader");
 	SendMessage(&SeaFader, "lfl", FADER_OUT, 0.7, true);
 	SendMessage(&SeaFader, "l", FADER_STARTFRAME);
-	pchar.loadscreen = "loading\jonny_load\sea\sea_"+rand(3)+".tga";
-	SendMessage(&SeaFader, "ls", FADER_PICTURE0, pchar.loadscreen);
+	SendMessage(&SeaFader, "ls", FADER_PICTURE0, "loading\sea_" + rand(31) + ".tga");
 
 	bSkipSeaLogin = true;
 
@@ -665,9 +663,14 @@ void SeaLogin(ref Login)
 	Event(EVENT_SEA_LOGIN, "");
 	if (bSkipSeaLogin) return;
 
+	// Sea Fader start
+	//Boyer add #20170401-02
+	pchar.loadscreen = "loading\sea_" + rand(31) + ".tga";
+	if (!CheckAttribute(&Login,"ImageName")) { Login.ImageName = "loading\sea_" + rand(31) + ".tga"; }
+
 	CreateEntity(&SeaFader, "fader");
 	SendMessage(&SeaFader, "lfl", FADER_IN, 0.5, true);
-	SendMessage(&SeaFader, "ls", FADER_PICTURE0, pchar.loadscreen);
+	SendMessage(&SeaFader, "ls", FADER_PICTURE0, Login.ImageName);
 
 	// create all sea modules
 	CreateSeaEnvironment();
@@ -939,7 +942,7 @@ void SeaLogin(ref Login)
 			SetCaptanModelByEncType(rFantom, rFantom.EncType);
 			SetRandomNameToCharacter(rFantom);
 			SetSeaFantomParam(rFantom, rEncounter.Type);
-			int iRank = sti(pchar.rank) - 3;
+			int iRank = sti(pchar.rank) - rand(5) + rand(5);
 			if (iRank < 1) iRank = 1;
 			SetFantomParamFromRank(rFantom, iRank, false);
 			rFantom.SeaAI.Group.Name = sGName;
@@ -1005,7 +1008,7 @@ void SeaLogin(ref Login)
 			{
 				iFantomIndex = FANTOM_CHARACTERS + iNumFantoms - iNumFantomShips + j;
 				rFantom = &Characters[iFantomIndex];
-                DeleteAttribute(rFantom, "items"); // boal 28.07.04 фикс кучи сабель, когда идёт в плен
+                DeleteAttribute(rFantom, "items"); // boal 28.07.04 фикс кучи сабель, когда идет в плен
 				rFantom.id = "fenc_" + iFantomIndex;
                 // boal 26.02.2004 -->
 				rFantom.location = sIslandID;
@@ -1459,7 +1462,7 @@ void Sea_LoadIsland(string sIslandID)
 	{
 		// boal -->
 		float  fMaxViewDist;
-        Sea.MaxSeaHeight = SetMaxSeaHeight(iIslandIndex); // тут нужно для загрузки игры из сайва, для нормального перехода не работает, тк ГГ ещё не в море, нет коорд
+        Sea.MaxSeaHeight = SetMaxSeaHeight(iIslandIndex); // тут нужно для загрузки игры из сайва, для нормального перехода не работает, тк ГГ еще не в море, нет коорд
         Log_TestInfo("Sea_LoadIsland Sea.MaxSeaHeight " + Sea.MaxSeaHeight);
 		// boal <--
 		CreateEntity(&Island, "Island");
@@ -1629,7 +1632,7 @@ void Sea_Load()
 	for (i = 0; i < MAX_SHIPS_ON_SEA; i++) iTemp[i] = ShipModelrList[i];
 
 	//принципиальный момент !!!  двигаем  массив номеров моделек шипов вправо !! - иначе для флагмана ГГ приписывается неправильный номер модельки
-	// два дня понять не мог в чём дело - почему неправильно выставляются флаги при загрузке игры в режиме "море"
+	// два дня понять не мог в чем дело - почему неправильно выставляются флаги при загрузке игры в режиме "море"
 	for (i = 0; i < MAX_SHIPS_ON_SEA - 1; i++) { ShipModelrList[i + 1] = iTemp[i]; }
 	ShipModelrList[0] = ShipOnLoadModelrList;
 
@@ -1706,47 +1709,4 @@ void ReconnectShips()
             }
         }
 	}*/
-}
-
-#event_handler("CalculateGroupShipPos", "CalculateGroupShipPos")
-ref CalculateGroupShipPos()
-{
-	int shipIndex = GetEventData();
-	float centerPosX = GetEventData();
-	float rotation = GetEventData();
-	float centerPosZ = GetEventData();
-	int shipCount = GetCompanionQuantity(PChar);
-
-	float distanceBetweenShips = 200.0;
-
-	float result[3];
-	result[0] = centerPosX;
-	result[1] = rotation;
-	result[2] = centerPosZ;
-
-	if (shipIndex == 0)
-	{
-		if (CheckAttribute(pchar,"Do180Turn") && pchar.Do180Turn == true)
-		{
-			result[1] = rotation-180.0;
-			pchar.Do180Turn = false;
-		}
-		return &result;
-	}
-
-	if ((shipIndex == 1) && (shipCount == 2))
-	{
-		result[0] -= distanceBetweenShips * sin(rotation);
-		result[2] -= distanceBetweenShips * cos(rotation);
-		return &result;
-	}
-
-	float offset_sign = -0.4;
-	if ((shipIndex % 2) == 0) offset_sign = 0.4;
-
-	int offset_in_line = makeint((shipCount - shipIndex - 1) / 2) + 1;
-
-	result[0] -= distanceBetweenShips * (offset_in_line * sin(rotation) + offset_sign * cos(rotation));
-	result[2] -= distanceBetweenShips * (offset_in_line * cos(rotation) - offset_sign * sin(rotation));
-	return &result;
 }

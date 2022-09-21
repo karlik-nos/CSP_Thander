@@ -137,7 +137,7 @@ void CreateWeatherEnvironment()
 	if (CheckAttribute(&WeatherParams,"Rain")) { bRain = sti(WeatherParams.Rain); }
 	if (!CheckAttribute(&WeatherParams, "Rain.ThisDay")) WeatherParams.Rain.ThisDay = false;
 
-    //Время проверяется, т.к. нет ночной погоды для дождя!!! Её в ГПК дорисовали??
+    //Время проверяется, т.к. нет ночной погоды для дождя!!! Ее в ГПК дорисовали??
 	if (iHour >= 5 && iHour <= 15 && !sti(WeatherParams.Rain.ThisDay))
 	{
 		//шанс.
@@ -530,7 +530,7 @@ void CreateWeatherEnvironment()
 	WhrCreateSkyEnvironment();
 
 	string sPreset = WhrGetSeaPresetFromWind(fWeatherSpeed);
-    //WhrSetSeaPreset(iCurWeatherNum, sPreset);
+    WhrSetSeaPreset(iCurWeatherNum, sPreset);
 	WhrCreateSeaEnvironment();
 
 	if(iLocation != -1)
@@ -562,7 +562,6 @@ void CreateWeatherEnvironment()
 void Whr_UpdateWeather()
 {
 	if (!isEntity(&Weather)) { return; }
-	if (HasSubStr(loadedLocation.id,"Cabin")) return;
 
 //слишком много инитов
 //	WeatherInit();
@@ -703,7 +702,7 @@ void Whr_TimeUpdate()
 	{
 		AddDataToCurrent(0,0,1);
 		Weather.Time.time = GetTime();
-	} // to_do время идёт в CalcLocalTime
+	} // to_do время идет в CalcLocalTime
 	if( iBlendWeatherNum < 0 ) {return;}
 	//navy --> Rain
 	string sTmp;
@@ -947,7 +946,7 @@ void Whr_UpdateWeatherHour()
                 if(stf(Sea.MaxSeaHeight) != SetMaxSeaHeight(i))
 
 					string sPreset = WhrGetSeaPresetFromWind(fWeatherSpeed);
-					//WhrSetSeaPreset(iCurWeatherNum, sPreset);
+					WhrSetSeaPreset(iCurWeatherNum, sPreset);
                     WhrCreateSeaEnvironment(); // boal смена волн на лету
 	 		}
  		}
@@ -964,7 +963,7 @@ void doShipLightChange(ref aCurWeather)
 
     ref rChar;
     Sea.Lights = aCurWeather.Lights;
-    for(j = 0; j < iNumShips; j++)
+    for(j = 0; j < iNumShips; j++) 
 	{
         iCharIdx = Ships[j];
         if (iCharIdx < 0 || iCharIdx >= TOTAL_CHARACTERS) continue;

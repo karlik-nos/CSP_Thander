@@ -1239,8 +1239,8 @@ void InitIslands()
 
 		Islands[n].reload.l6.label = "LaVega Port";
 		Islands[n].reload.l6.name = "reload_4";
-		Islands[n].reload.l6.go = "LaVega_town";
-		Islands[n].reload.l6.emerge = "reload1";
+		Islands[n].reload.l6.go = "LaVega_port";
+		Islands[n].reload.l6.emerge = "sea";
 		Islands[n].reload.l6.radius = 600.0;
 		Islands[n].reload.l6.pic = 0;
 		Islands[n].reload.l6.tex = "t1";
@@ -1532,14 +1532,6 @@ void InitIslands()
         Islands[n].reload.l2.radius = 600.0;
         Islands[n].reload.l2.pic = 0;
         Islands[n].reload.l2.tex = "t1";
-		
-		Islands[n].reload.l3.label = "WreckedShip";
-        Islands[n].reload.l3.name = "reload_3";
-        Islands[n].reload.l3.go = "WreckedShip";
-        Islands[n].reload.l3.emerge = "reload1";
-        Islands[n].reload.l3.radius = 400.0;
-        Islands[n].reload.l3.pic = 0;
-        Islands[n].reload.l3.tex = "t1";
 
         SendMessage(&locator,"le",LM_LOCATE_I,&Islands[n]);
 

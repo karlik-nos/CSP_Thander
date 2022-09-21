@@ -1580,7 +1580,7 @@ int NPC_FindOrCreateCharacter(string _id)
 }
 // _ani нужно для двух рас пкм + к3
 // _LifeDay - сколько дней живет, если -1, то вечный, если 0, то трется при выходе из локации
-// _equip - экипировка саблями, перки всё равно раздадутся
+// _equip - экипировка саблями, перки все равно раздадутся
 int NPC_GenerateCharacter(string _id, string _model, string _sex, string _ani, int _rank, int _nation, int _LifeDay, bool _equip)
 {
     int iChar = NPC_FindOrCreateCharacter(_id);

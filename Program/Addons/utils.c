@@ -365,7 +365,7 @@ void WayBeginning(string _tmp)
 		DoQuestReloadToLocation("Bermudes_Dungeon", "reload", "reload2_back", "");
 		return;
     }
-	if (startHeroType == 3 || startHeroType == 4)	//Дети Николаса Шарпа
+	if (startHeroType == 3 || startHeroType == 4)
     {
     	pchar.quest.Tut_start.win_condition.l1          = "location";
     	pchar.quest.Tut_start.win_condition.l1.location = "Shore57";
@@ -375,7 +375,7 @@ void WayBeginning(string _tmp)
 		DoQuestReloadToLocation("Shore57", "item", "item11", "");
 		return;
     }
-	if (startHeroType == 5 || startHeroType == 6)	//Шарль и Мэри
+	if (startHeroType == 5 || startHeroType == 6)
     {
     	pchar.quest.Tut_start.win_condition.l1          = "location";
     	pchar.quest.Tut_start.win_condition.l1.location = "Shore_ship2";
@@ -385,17 +385,7 @@ void WayBeginning(string _tmp)
 		DoQuestReloadToLocation("Shore_ship2", "goto", "goto4", "");
 		return;
     }
-	if (startHeroType == 7)	//Анжелика Тич
-    {
-    	pchar.quest.Tut_start.win_condition.l1          = "location";
-    	pchar.quest.Tut_start.win_condition.l1.location = "LaVega_MH12";
-    	pchar.quest.Tut_start.function                  = "AnjelikaTich_StartGame";
-        Pchar.questTemp.CapBloodLine = false;
-		Pchar.questTemp.WhisperLine = false;
-		DoQuestReloadToLocation("LaVega_MH12", "reload", "reload3", "");
-		return;
-    }
-	if (startHeroType == 8)
+	if (startHeroType == 7)
     {
     	pchar.quest.Tut_start.win_condition.l1          = "location";
     	pchar.quest.Tut_start.win_condition.l1.location = "My_Campus";
@@ -405,7 +395,7 @@ void WayBeginning(string _tmp)
 		DoQuestReloadToLocation("My_Campus", "goto", "goto5", "");
 		return;
     }
-	if (startHeroType == 9 || startHeroType == 10)	//Нежить
+	if (startHeroType > 7 && startHeroType <= 11)
     {
     	pchar.quest.Tut_start.win_condition.l1          = "location";
     	pchar.quest.Tut_start.win_condition.l1.location = "Temple_skulls";
@@ -415,7 +405,7 @@ void WayBeginning(string _tmp)
 		DoQuestReloadToLocation("Temple_skulls", "goto", "goto2", "");
 		return;
     }
-	if (startHeroType > 10)		//Все остальные
+	if (startHeroType > 11)
     {
     	pchar.quest.Tut_start.win_condition.l1          = "location";
     	pchar.quest.Tut_start.win_condition.l1.location = "Ship_deck_Low";
@@ -478,7 +468,7 @@ void GetBoardModeToLocation(ref loc)
 	switch(loc.id)
 	{
 		case "BOARDING_SMALL_DECK":
-			if(sti(InterfaceStates.ShowBoardMode) == 1)
+			if(bBoardMode)
 			{
 				sFile = "DeckLowVSMedium_locators_lugger";
 			}
@@ -489,7 +479,7 @@ void GetBoardModeToLocation(ref loc)
 		break;
 
 		case "BOARDING_MEDIUM_DECK":
-			if(sti(InterfaceStates.ShowBoardMode) == 1)
+			if(bBoardMode)
 			{
 				sFile = "deckLowVSBig_locators_lugger";
 			}
@@ -500,7 +490,7 @@ void GetBoardModeToLocation(ref loc)
 		break;
 
 		case "BOARDING_BIG_DECK":
-			if(sti(InterfaceStates.ShowBoardMode) == 1)
+			if(bBoardMode)
 			{
 				sFile = "deckMediumVSBig_locators_lugger";
 			}
@@ -511,7 +501,7 @@ void GetBoardModeToLocation(ref loc)
 		break;
 
 		case "BOARDING_LNSHP_FRGT_DECK":
-			if(sti(InterfaceStates.ShowBoardMode) == 1)
+			if(bBoardMode)
 			{
 				sFile = "deckLineshipVSFrigate_locators_lugger";
 			}

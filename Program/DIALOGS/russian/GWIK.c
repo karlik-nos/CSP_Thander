@@ -9,8 +9,6 @@ void ProcessDialogEvent()
 	makeref(NPChar,CharacterRef);
 	makearef(Link, Dialog.Links);
 	makearef(NextDiag, NPChar.Dialog);
-	int price = 50000;
-	if (CheckOfficersPerk(pchar,"Trader")) price = 10000;
 
 	switch(Dialog.CurrentNode)
 	{
@@ -40,8 +38,8 @@ void ProcessDialogEvent()
 		break;
 
 		case "trade_info":
-			dialog.text = "Да, я располагаю такой информацией и могу ей поделиться. С вас "+price+" пиастров.";
-			if (sti(pchar.money) >= price)
+			dialog.text = "Да, я располагаю такой информацией и могу её поделиться. С вас 50000 пиастров.";
+			if (sti(pchar.money) >= 50000)
 			{
 				Link.l1 = "Хорошо, вот ваши деньги.";
 				link.l1.go = "trade_info_2";
@@ -58,7 +56,7 @@ void ProcessDialogEvent()
             }
 			log_info("Получен список цен во всех магазинах Карибского архипелага.");
 			PlayStereoSound("notebook");
-			AddMoneyToCharacter(pchar,-price);
+			AddMoneyToCharacter(pchar,-50000);
 
 			dialog.text = "...Держите, здесь вся нужная вам информация. Желаю успехов!";
 			Link.l1 = "Благодарю вас. До свидания!";

@@ -241,12 +241,12 @@ void SetVariable()
 	SetFormatedText("LOYALITY_STR", XI_ConvertString("Loyality")+" ("+GetCharacterLoyality(xi_refCharacter)+"/35)");
     if (xi_refCharacter.id == pchar.id)
     {
-	    GameInterface.StatusLine.BAR_HEALTH.Max   = 60;
+	    GameInterface.StatusLine.BAR_HEALTH.Max   = 54;
 	    GameInterface.StatusLine.BAR_HEALTH.Min   = 1;
 	    GameInterface.StatusLine.BAR_HEALTH.Value = makeint(pchar.Health.HP);
-	    if (sti(pchar.Health.HP) > 60 )
+	    if (sti(pchar.Health.HP) > 54 )
 	    {
-	        GameInterface.StatusLine.BAR_HEALTH.Value = 60;
+	        GameInterface.StatusLine.BAR_HEALTH.Value = 54;
 	    }
     }
     else
@@ -318,6 +318,7 @@ void SetButtonsState()
 			xi_refCharacter = pchar;
 			SetVariable();
 		}
+        
 	}
 }
 
@@ -689,7 +690,7 @@ void FillSkillTables()
 		skillVal = GetSkillValue(xi_refCharacter, SKILL_TYPE, skillName);
 		GameInterface.TABLE_SKILL_2.(row).td5.str = skillVal;
 		// рассчет драйна
-		diff = GetSummonSkillFromName(xi_refCharacter, skillName) - skillVal;
+		diff = GetSummonSkillFromNameSimple(xi_refCharacter, skillName) - skillVal;
 		if (skillVal < SKILL_MAX)
 		{
 			GameInterface.TABLE_SKILL_2.(row).td3.str = makeint(GetSkillValueExp(xi_refCharacter, skillName) * 100.0 / makefloat(skillVal * GetCharacterExpRate(xi_refCharacter, skillName))) + "%";
@@ -2218,7 +2219,7 @@ void ChoosePerk()
 				ok = false;
 			}
 		}
-		if (bAltBalanceOffTopPerk && xi_refCharacter.id == pchar.id)
+		if (bAltBalance && xi_refCharacter.id == pchar.id)
 		{
 			if (perkName == "SeaDogProfessional" || perkName == "GrapplingProfessional" || perkName == "CannonProfessional" || perkName == "Builder" || perkName == "InstantRepair" || perkName == "ShipDefenseProfessional" || perkName == "SailingProfessional" || perkName == "EmergentSurgeon") ok = false;
 		}

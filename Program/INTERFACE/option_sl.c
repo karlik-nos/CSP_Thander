@@ -124,18 +124,6 @@ void GetRealOptions(ref optref)
 		optref.cameramode.EnabledCMControls = true;
 	}
 
-	if( CheckAttribute(&InterfaceStates,"EnabledOldStore") ) {
-		optref.cameramode.EnabledOldStore = sti(InterfaceStates.EnabledOldStore);
-	} else {
-		optref.cameramode.EnabledOldStore = false;
-	}
-
-	if( CheckAttribute(&InterfaceStates,"EnabledAltSoundsGun") ) {
-		optref.cameramode.EnabledAltSoundsGun = sti(InterfaceStates.EnabledAltSoundsGun);
-	} else {
-		optref.cameramode.EnabledAltSoundsGun = false;
-	}
-
 	if( CheckAttribute(&InterfaceStates,"EnabledShipMarks") ) {
 		optref.cameramode.EnabledShipMarks = sti(InterfaceStates.EnabledShipMarks);
 	} else {
@@ -183,12 +171,6 @@ void GetRealOptions(ref optref)
 	} else {
 		optref.cameramode.AltFont = 0;
 	}
-	
-	if( CheckAttribute(&InterfaceStates,"BombsParticles") ) {
-		optref.cameramode.BombsParticles = sti(InterfaceStates.BombsParticles);
-	} else {
-		optref.cameramode.BombsParticles = 0;
-	}
 
 	if( CheckAttribute(&InterfaceStates,"NoInt") ) {
 		optref.cameramode.NoInt = sti(InterfaceStates.NoInt);
@@ -206,18 +188,6 @@ void GetRealOptions(ref optref)
 		optref.cameramode.AltIntIcons = sti(InterfaceStates.AltIntIcons);
 	} else {
 		optref.cameramode.AltIntIcons = true;
-	}
-	
-	if( CheckAttribute(&InterfaceStates,"ShowBoardMode") ) {
-		optref.cameramode.ShowBoardMode = sti(InterfaceStates.ShowBoardMode);
-	} else {
-		optref.cameramode.ShowBoardMode = true;
-	}
-	
-	if( CheckAttribute(&InterfaceStates,"CharVoice") ) {
-		optref.cameramode.CharVoice = sti(InterfaceStates.CharVoice);
-	} else {
-		optref.cameramode.CharVoice = true;
 	}
 
 	GetControlsOptions(optref);
@@ -317,18 +287,6 @@ void SetCurentOptions(ref optref)
 		InterfaceStates.EnabledCMControls = false;
 	}
 
-	if( CheckAttribute(optref,"cameramode.EnabledOldStore") ) {
-		InterfaceStates.EnabledOldStore = optref.cameramode.EnabledOldStore;
-	} else {
-		InterfaceStates.EnabledOldStore = false;
-	}
-
-	if( CheckAttribute(optref,"cameramode.EnabledAltSoundsGun") ) {
-		InterfaceStates.EnabledAltSoundsGun = optref.cameramode.EnabledAltSoundsGun;
-	} else {
-		InterfaceStates.EnabledAltSoundsGun = false;
-	}
-
 	if( CheckAttribute(optref,"cameramode.EnabledShipMarks") ) {
 		InterfaceStates.EnabledShipMarks = optref.cameramode.EnabledShipMarks;
 	} else {
@@ -376,11 +334,6 @@ void SetCurentOptions(ref optref)
 	} else {
 		InterfaceStates.AltFont = 0;
 	}
-	if( CheckAttribute(optref,"cameramode.BombsParticles") ) {
-		InterfaceStates.BombsParticles = optref.cameramode.BombsParticles;
-	} else {
-		InterfaceStates.BombsParticles = 0;
-	}
 	if( CheckAttribute(optref,"cameramode.NoInt") ) {
 		InterfaceStates.NoInt = optref.cameramode.NoInt;
 	} else {
@@ -396,18 +349,6 @@ void SetCurentOptions(ref optref)
 		InterfaceStates.AltIntIcons = optref.cameramode.AltIntIcons;
 	} else {
 		InterfaceStates.AltIntIcons = false;
-	}
-	
-	if( CheckAttribute(optref,"cameramode.ShowBoardMode") ) {
-		InterfaceStates.ShowBoardMode = optref.cameramode.ShowBoardMode;
-	} else {
-		InterfaceStates.ShowBoardMode = false;
-	}
-	
-	if( CheckAttribute(optref,"cameramode.CharVoice") ) {
-		InterfaceStates.CharVoice = optref.cameramode.CharVoice;
-	} else {
-		InterfaceStates.CharVoice = false;
 	}
 
 
@@ -476,24 +417,23 @@ void SetCurentOptions(ref optref)
 
 	ControlsMakeInvert();
 	SetRealMouseSensitivity();
-	SetPerspectiveSettings();
 }
 
 void ReadSavedOptions(ref gopt)
 {
 	string sFileName = "options";
-	/*if( CheckAttribute(&PlayerProfile,"name") && PlayerProfile.name!="" ) {
+	if( CheckAttribute(&PlayerProfile,"name") && PlayerProfile.name!="" ) {
 		sFileName = "SAVE\" + PlayerProfile.name+"\options\options";
-	}*/
+	}
 	SendMessage(&GameInterface, "lsa", MSG_INTERFACE_LOADOPTIONS, sFileName, gopt);
 }
 
 void SaveSavedOptions(ref gopt)
 {
 	string sFileName = "options";
-	/* if( CheckAttribute(&PlayerProfile,"name") && PlayerProfile.name!="" ) {
+	if( CheckAttribute(&PlayerProfile,"name") && PlayerProfile.name!="" ) {
 		sFileName = "SAVE\" + PlayerProfile.name+"\options\options";
-	} */
+	}
 	SendMessage(&GameInterface, "lsa", MSG_INTERFACE_SAVEOPTIONS, sFileName, gopt);
 }
 

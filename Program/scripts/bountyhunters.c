@@ -116,9 +116,9 @@ void LandHunterReactionResult(ref loc)  // отработает после вх�
 	ref    sld;
 	bool   ok, order;
 
-	//if (actLoadFlag) return; // идёт лоад
+	//if (actLoadFlag) return; // идет лоад
 	if (LAi_IsCapturedLocation) return;
-	if (chrDisableReloadToLocation) return; // идёт некий другой квест с запретом выхода
+	if (chrDisableReloadToLocation) return; // идет некий другой квест с запретом выхода
 	if (loc.type != "town" && loc.type != "seashore" && loc.type != "port") return;
 	if (CheckAttribute(Pchar, "GenQuest.Hunter2Pause"))
 	{
@@ -141,7 +141,7 @@ void LandHunterReactionResult(ref loc)  // отработает после вх�
 			order = false;
 			if (j == SPAIN)
 			{
-				if (pchar.name == "Виспер" || pchar.name == "Тёмный Странник" || CheckAttribute(pchar, "PGGWhisperComplete"))
+				if (startHeroType == 2 || startHeroType == 7 || CheckAttribute(pchar, "PGGWhisperComplete"))
 				{
 					if (!CheckAttribute(pchar,"OrderDestroyed"))
 					{
@@ -149,7 +149,7 @@ void LandHunterReactionResult(ref loc)  // отработает после вх�
 						{
 							order = true;
 						}
-						if (pchar.name != "Виспер" && sti(pchar.rank) >= 15)
+						if (startHeroType != 2 && sti(pchar.rank) >= 15)
 						{
 							order = true;
 						}
@@ -174,7 +174,7 @@ void LandHunterReactionResult(ref loc)  // отработает после вх�
 	            for (i = 1; i <= k; i++)
 	            {
 	                if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sld = GetCharacter(NPC_GenerateCharacter(sCapId + i, "OZG_" + (rand(9) + 1), "man", "spy", 30+rand(10), j, 0, true));
-	                else sld = GetCharacter(NPC_GenerateCharacter(sCapId + i, "OZG_" + (rand(9) + 1), "man", "man", 30+rand(10), j, 0, true));
+	                else sld = GetCharacter(NPC_GenerateCharacter(sCapId + i, "OZG_" + (rand(9) + 1), "man", "man_fast", 30+rand(10), j, 0, true));
 					log_info(sld.id + " " + i);
 	                SetFantomParamHunter(sld); //крутые парни
 	                sld.name 	= "Охотник за головами";

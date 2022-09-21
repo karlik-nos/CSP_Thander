@@ -16,7 +16,6 @@ int iFOODQty, iRUMQty;
 float fWeight;
 int  iCurGoodsIdx;
 string sCurRow;
-bool bIsColony, bIsPirateColony;
 bool ok;
 
 // BUHO - Fist state variable
@@ -112,18 +111,10 @@ void InitInterface_R(string iniName, ref pStore)
 		SetNewPicture("OTHER_PICTURE", "interfaces\portraits\256\face_" + its(refShipChar.FaceId) + ".tga");
 		SetNodeUsing("AUTOTRADE_ALL", false);//убираем автозакупку в море
 		SetNodeUsing("Autotrade_This", false);//убираем автозакупку в море
-		bIsColony = false;
-		bIsPirateColony = false;
 	}
 	else
 	{
 		SetFormatedText("STORECAPTION1", XI_ConvertString("Colony" + refStore.Colony) + ": " + XI_ConvertString("titleStore"));
-		bIsColony = true;
-		bIsPirateColony = false;
-		if (sti(Colonies[FindColony(refStore.Colony)].Nation) == PIRATE)
-		{
-			bIsPirateColony = true;
-		}
 	}
 
 	if (bSeaActive || !IsPCharHaveTreasurer()) {SetNodeUsing("Autotrade_All",  false); SetNodeUsing("Autotrade_This",  false);}//скрываем автозакупку без казначея и в море
@@ -284,7 +275,7 @@ void AddToTable()
 		tradeType = MakeInt(refGoods.TradeType);
 		if (tradeType == TRADE_TYPE_CANNONS) continue; // не пушки
 
-		if(bIsColony)
+		if(refStore.Colony != "none")
 		{
 			sStoreQ = GetStoreGoodsQuantity(refStore, i);
 		}
@@ -319,7 +310,7 @@ void AddToTable()
 				iColor = argb(255,255,115,115);
 			break;
 			case TRADE_TYPE_AMMUNITION:
-				if (!bIsColony)
+				if (refStore.Colony == "none")
 				{
 					iColor = argb(255,196,196,196);
 					GameInterface.TABLE_LIST.(row).td3.str = "-"; // нельзя купить в море
@@ -333,10 +324,9 @@ void AddToTable()
 				iColor = argb(255,255,173,51);
 			break;
 		}
-		if ((tradeType == TRADE_TYPE_AMMUNITION) && !bIsColony)
-			GameInterface.TABLE_LIST.(row).td3.str = "-"; // нельзя купить в море
-		else
-			GameInterface.TABLE_LIST.(row).td3.str = GetStoreGoodsPrice(refStore, i, PRICE_TYPE_BUY, pchar, 1);
+		if ((tradeType == TRADE_TYPE_AMMUNITION) && (refStore.Colony == "none"))
+				GameInterface.TABLE_LIST.(row).td3.str = "-"; // нельзя купить в море
+			else GameInterface.TABLE_LIST.(row).td3.str = GetStoreGoodsPrice(refStore, i, PRICE_TYPE_BUY, pchar, 1);
 
 		GameInterface.TABLE_LIST.(row).td4.icon.group = "GOODS";
 		GameInterface.TABLE_LIST.(row).td4.icon.image = sGood;
@@ -367,14 +357,14 @@ void AddToTable()
 		GameInterface.TABLE_LIST.(row).td1.str = sShipQ;
 		GameInterface.TABLE_LIST.(row).td2.str = GetGoodWeightByType(i, sti(sShipQ));
 
-		if ((tradeType == TRADE_TYPE_CONTRABAND) && !bIsPirateColony)
+		if (tradeType == TRADE_TYPE_CONTRABAND)
 		{
 			GameInterface.TABLE_LIST.(row).td5.str = "---";
 		}
 		else
 		{
 			GameInterface.TABLE_LIST.(row).td5.str = GetStoreGoodsPrice(refStore, i, PRICE_TYPE_SELL, refCharacter, 1);
-			if (!bIsColony) GameInterface.TABLE_LIST.(row).td5.str = makeint( (sti(GameInterface.TABLE_LIST.(row).td5.str) + 1) / 2);//в море половинная цена продажи???
+			if (refStore.Colony == "none") GameInterface.TABLE_LIST.(row).td5.str = makeint( (sti(GameInterface.TABLE_LIST.(row).td5.str) + 1) / 2);//в море половинная цена продажи???
 		}
 		n++;
 	}
@@ -557,7 +547,7 @@ void SetVariable()
 
 	iTotalSpace = iMaxGoodsStore;
 	string sMaxGoodsStore;
-	if(!bIsColony)
+	if(refStore.Colony == "none")
 	{
 		iTotalSpace = sti(RealShips[sti(refShipChar.ship.type)].capacity);
 		sMaxGoodsStore = makeint(fStoreWeight) + " / " + iTotalSpace;
@@ -645,7 +635,7 @@ void SetShipWeight()
 	}
 	fShipWeight  = makeint(GetCargoLoad(refCharacter)+ 0.4);
 
-	if(!bIsColony)
+	if(refStore.Colony == "none")
 	{
 		fStoreWeight = makeint(GetCargoLoad(refShipChar)+ 0.4);
 	}
@@ -704,7 +694,7 @@ void ShowGoodsInfo(int iGoodIndex)
 	iFOODQty = GetCargoGoods(refCharacter, GOOD_FOOD);
 	iRUMQty = GetCargoGoods(refCharacter, GOOD_RUM);
 
-	if(bIsColony)
+	if(refStore.Colony != "none")
 	{
 		iStoreQty = GetStoreGoodsQuantity(refStore, iGoodIndex);
 	}
@@ -716,7 +706,7 @@ void ShowGoodsInfo(int iGoodIndex)
 	SetFormatedText("QTY_INFO_STORE_QTY", its(iStoreQty));
 	SetFormatedText("QTY_INFO_SHIP_QTY", its(iShipQty));
 	BuyOrSell = 0;
-	if ((MakeInt(refStore.Goods.(GoodName).TradeType) == TRADE_TYPE_CONTRABAND) && !bIsPirateColony)
+	if (MakeInt(refStore.Goods.(GoodName).TradeType) == TRADE_TYPE_CONTRABAND)
 	{
 		iStorePrice = 0;
 		SetFormatedText("QTY_INFO_STORE_PRICE",XI_ConvertString("Price buy") + NewStr() + "-");
@@ -725,14 +715,14 @@ void ShowGoodsInfo(int iGoodIndex)
 	{
 		iStorePrice = GetStoreGoodsPrice(refStore, iGoodIndex, PRICE_TYPE_SELL, pchar, 1);
 		// для моря, чтоб было не выгодно
-	 	if(!bIsColony)
+	 	if(refStore.Colony == "none")
 		{
 		    iStorePrice /= 2;
 		    if (iStorePrice < 1) iStorePrice = 1;
 		}
 		SetFormatedText("QTY_INFO_STORE_PRICE",XI_ConvertString("Price buy") + NewStr() + iStorePrice);
 	}
-	if ((MakeInt(refStore.Goods.(GoodName).TradeType) == TRADE_TYPE_AMMUNITION) && !bIsColony)
+	if ((MakeInt(refStore.Goods.(GoodName).TradeType) == TRADE_TYPE_AMMUNITION) && (refStore.Colony == "none"))
 	{
 		iShipPrice = 0;
 		SetFormatedText("QTY_INFO_SHIP_PRICE", XI_ConvertString("Price sell") + NewStr() + "-");
@@ -834,7 +824,7 @@ void TransactionOK()
 
  	if (BuyOrSell == 1) // BUY
 	{
-		if(bIsColony)
+		if(refStore.Colony != "none")
 		{
    			SetStoreGoods(refStore, iCurGoodsIdx, iStoreQty - nTradeQuantity);
 		}
@@ -854,7 +844,7 @@ void TransactionOK()
 	}
  	else
 	{ // SELL
-		if(bIsColony)
+		if(refStore.Colony != "none")
 		{
 	  		SetStoreGoods(refStore, iCurGoodsIdx, iStoreQty + nTradeQuantity);
 		}
@@ -912,7 +902,7 @@ void ChangeQTY_EDIT()
 				GameInterface.qty_edit.str = -sti(GameInterface.qty_edit.str);
 			}
 			BuyOrSell = -1;
-			if ((MakeInt(refStore.Goods.(GoodName).TradeType) == TRADE_TYPE_CONTRABAND) && !bIsPirateColony)
+			if (MakeInt(refStore.Goods.(GoodName).TradeType) == TRADE_TYPE_CONTRABAND)
 			{  // контрабанду нельзя продать
 				GameInterface.qty_edit.str = 0;
 			}
@@ -943,7 +933,7 @@ void ChangeQTY_EDIT()
 		else
 		{
 			// не нужно у кэпов в море пукупать порох и ядра, а то потом они беззащитны
-			if ((MakeInt(refStore.Goods.(GoodName).TradeType) == TRADE_TYPE_AMMUNITION) && !bIsColony)
+			if ((MakeInt(refStore.Goods.(GoodName).TradeType) == TRADE_TYPE_AMMUNITION) && (refStore.Colony == "none"))
 			{
 				GameInterface.qty_edit.str = 0;
 			}
@@ -1198,12 +1188,11 @@ void Autotrade_Goods(ref rChar)
 			{
 				if(CheckAttribute(refStore, "goods." + sGood + ".tradetype"))
 				{
-					if ((refStore.goods.(sGood).tradetype == TRADE_TYPE_CONTRABAND) && !bIsPirateColony) continue;
-					if (refStore.goods.(sGood).tradetype == TRADE_TYPE_CANNONS) continue;
+					if(refStore.goods.(sGood).tradetype == TRADE_TYPE_CONTRABAND || refStore.goods.(sGood).tradetype == TRADE_TYPE_CANNONS) continue;
 				}
 				iNeedGood = iCurGoodQty - iNeedGoodsQty; // Столько нужно продать
 
-				/*if(!bIsColony)//если продаём на корабль в море
+				/*if(refStore.Colony == "none")//если продаём на корабль в море
 				//Отключаю кнопку торговли в море, этот фрагмент пока не нужен
 				{
 					iFreeCargo = GetCargoFreeSpace(refShipChar);

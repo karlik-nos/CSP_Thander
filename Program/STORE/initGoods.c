@@ -7,7 +7,7 @@ void InitGoods()
 	Goods[GOOD_BALLS].Weight		= 1;
 	Goods[GOOD_BALLS].Units			= 20;
 	Goods[GOOD_BALLS].SpeedV0		= 1.0;
-	Goods[GOOD_BALLS].DamageHull	= 2.0;
+	Goods[GOOD_BALLS].DamageHull	= 1.5;
 	Goods[GOOD_BALLS].DamageRig		= 0.0;
 	Goods[GOOD_BALLS].DamageCrew	= 0.025;
 	Goods[GOOD_BALLS].AfraidWater = 0;    // рудимент от к3
@@ -19,8 +19,8 @@ void InitGoods()
 	Goods[GOOD_GRAPES].Cost			= 12;
 	Goods[GOOD_GRAPES].Weight		= 1;
 	Goods[GOOD_GRAPES].Units		= 20;
-	Goods[GOOD_GRAPES].SpeedV0		= 0.5; // boal
-	Goods[GOOD_GRAPES].DamageHull	= 0.01;
+	Goods[GOOD_GRAPES].SpeedV0		= 0.6; // boal
+	Goods[GOOD_GRAPES].DamageHull	= 0.125;
 	Goods[GOOD_GRAPES].DamageRig	= 0.0;
 	Goods[GOOD_GRAPES].DamageCrew	= 0.2;
 	Goods[GOOD_GRAPES].AfraidWater	= 0;
@@ -32,7 +32,7 @@ void InitGoods()
 	Goods[GOOD_KNIPPELS].Weight		= 2;
 	Goods[GOOD_KNIPPELS].Units		= 20;
 	Goods[GOOD_KNIPPELS].SpeedV0	= 0.9;
-	Goods[GOOD_KNIPPELS].DamageHull = 0.01;
+	Goods[GOOD_KNIPPELS].DamageHull = 0.2;
 	Goods[GOOD_KNIPPELS].DamageRig	= 1.0;
 	Goods[GOOD_KNIPPELS].DamageCrew = 0.04;
 	Goods[GOOD_KNIPPELS].AfraidWater = 0;
