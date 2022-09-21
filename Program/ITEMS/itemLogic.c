@@ -874,7 +874,7 @@ object g_TmpModelVariable; // код от к3, в скриптах нет воо
 
 void spawnToughSkeleton(aref _location)
 {
-	if (drand(100) < 50 && CheckAttribute(_location, "locators.monsters") && !bMonstersGen && _location.type == "cave" && !CheckAttribute(pchar, "cursed.waitingSkull") && !CheckAttribute(pchar, "DisableToughSkeleton"))
+	if (drand(100) < 6 && CheckAttribute(_location, "locators.monsters") && !bMonstersGen && _location.type == "cave" && !CheckAttribute(pchar, "cursed.waitingSkull") && !CheckAttribute(pchar, "DisableToughSkeleton"))
 	{
 		if (!CheckAttribute(pchar, "cursed.quest") || GetQuestPastDayParam("pchar.questTemp.Cursed") >= 90)
 		{
@@ -916,7 +916,7 @@ void spawnToughSkeleton(aref _location)
 			LAi_ActorDialog(sld, pchar, "", 20.0, 0);
 			SaveCurrentQuestDateParam("pchar.questTemp.Cursed");
 			ChangeCharacterAddressGroup(sld, _location.id, "monster", LAi_FindNearestFreeLocator2Pchar("monster"));
-			LAi_CharacterPlaySound(sld, "DeadmansGod");
+			//LAi_CharacterPlaySound(sld, "DeadmansGod");
 		}
 
 	}
