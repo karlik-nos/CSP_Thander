@@ -244,7 +244,7 @@ float Ship_GetBortFireDelta()//смещение от центра цели пр�
 	float z = GetEventData();
 	float fDistance = GetDistance2D(x, z, stf(aCharacter.Ship.Pos.x), stf(aCharacter.Ship.Pos.z));
 
-	float fAccuracy = frand(0.1) + (1 - stf(aCharacter.TmpSkill.Accuracy))/3;
+	float fAccuracy = frand(0.05) + (1 - stf(aCharacter.TmpSkill.Accuracy))/4;
 	
 	if (iArcadeSails == 0){fAccuracy += 0.2;}
 
