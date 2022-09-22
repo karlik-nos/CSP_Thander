@@ -1719,12 +1719,19 @@ void SetQuestGoodsToStore(ref refStore)
 			refStore.Goods.(goodName).RndPriceModify = GetStoreGoodsRndPriceModify(refStore, GOOD_SANDAL, PRICE_TYPE_BUY, pchar, sti(pchar.questTemp.HL2Save.SandalPrice));
             DeleteAttribute(pchar, "questTemp.HL2Save");
         }
-		if (CheckAttribute(pchar, "GenQuest.StoreGoods.HL5_ThreeFleutes")) //Голл.линейка, квест №5, добавляем количества.
+		if (CheckAttribute(pchar, "GenQuest.StoreGoods.HL5_ThreeFleutes")) //Голл.линейка, квест №5, добавляем количества, снижаем цену
 		{
-            DeleteAttribute(pchar, "GenQuest.StoreGoods"); // одноразовая операция, трем обе ветки
             goodName = Goods[GOOD_FOOD].Name;
-		    refStore.Goods.(goodName).Quantity       = 100000;
+		    refStore.Goods.(goodName).Quantity       = sti(refStore.Goods.(goodName).Quantity) + 75000;
+			pchar.questTemp.HL5Save.FoodPrice 		 = GetStoreGoodsPrice(refStore, GOOD_FOOD, PRICE_TYPE_BUY, pchar, refStore.Goods.(goodName).RndPriceModify);
 			refStore.Goods.(goodName).RndPriceModify = GetStoreGoodsRndPriceModify(refStore, GOOD_FOOD, PRICE_TYPE_BUY, pchar, 10);
+        }
+		if (CheckAttribute(pchar, "GenQuest.StoreGoods.HL5_QtyPriceIsBack")) //Голл.линейка, квест №5, возврат цен после квеста.
+		{
+			DeleteAttribute(pchar, "GenQuest.StoreGoods"); // одноразовая операция, трем обе ветки
+			goodName = Goods[GOOD_FOOD].Name;
+			refStore.Goods.(goodName).RndPriceModify = GetStoreGoodsRndPriceModify(refStore, GOOD_FOOD, PRICE_TYPE_BUY, pchar, sti(pchar.questTemp.HL5Save.FoodPrice));
+            DeleteAttribute(pchar, "questTemp.HL5Save");
         }
 	}
 }
