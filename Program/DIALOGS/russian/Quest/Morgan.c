@@ -1901,12 +1901,12 @@ void ProcessDialogEvent()
 			sld = &locations[sti(npchar.quest.locInd)];
 			if (CheckAttribute(sld, "private1.money")) sld.private1.money = 0;
 			if (CheckAttribute(sld, "private2.money")) sld.private2.money = 0;
-			dialog.text = "Я вижу, ты справил"+ GetSexPhrase("ся","ась") +" с задачей. Наш"+ GetSexPhrase("ел","ла") +" всё-таки ключ!";
-			link.l1 = "Наш"+ GetSexPhrase("ел","ла") +"! А где губернатор?";
+			dialog.text = "Я вижу, ты справил"+ GetSexPhrase("ся","ась") +" с задачей. Наш"+ GetSexPhrase("ёл","ла") +" всё-таки ключ!";
+			link.l1 = "Наш"+ GetSexPhrase("ёл","ла") +"! А где губернатор?";
 			link.l1.go = "PL_Q8_Panama2_1";
 		break;
 		case "PL_Q8_Panama2_1":
-			dialog.text = "Отправился на тот свет. Мне показалось, что он тебе не все сказал, и я допросил его с пристрастием. Но здоровье его подвело...";
+			dialog.text = "Отправился на тот свет. Мне показалось, что он тебе не всё сказал, и я допросил его с пристрастием. Но здоровье его подвело...";
 			link.l1 = "Хм, удалось узнать что-то важное?";
 			link.l1.go = "PL_Q8_Panama2_2";
 		break;

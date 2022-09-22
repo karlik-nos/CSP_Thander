@@ -10330,7 +10330,6 @@ void QuestComplete(string sQuestName, string qname)
 			LAi_SetLoginTime(sld, 0.0, 24.0);
 			
 			StartQuestMovie(true, true, true);
-			ChangeShowIntarface();
 			locCameraFromToPos(-35.50, 7.00, 25.00, true, -20.00, 0.00, 15.00);
 		break;
 
@@ -10364,11 +10363,12 @@ void QuestComplete(string sQuestName, string qname)
 			LAi_ActorGoToLocator(sld, "reload", "reload6_back", "", -1);
 			sld = CharacterFromID("PDM_PJ_Strajnik_4")
 			LAi_ActorGoToLocator(sld, "officers", "reload6_3", "", -1);
-			DoQuestCheckDelay("PDM_PJ_Arest_4", 5.0);
+			DoQuestCheckDelay("PDM_PJ_Arest_4", 6.0);
 		break;
 		
 		case "PDM_PJ_Arest_4":
 			DoQuestReloadToLocation("FortFrance_prison", "reload", "reload1", "PDM_PJ_Arest_5");
+			EndQuestMovie();
 		break;
 		
 		case "PDM_PJ_Arest_5":
@@ -10385,7 +10385,6 @@ void QuestComplete(string sQuestName, string qname)
 			sld = CharacterFromID("PDM_PJ_Strajnik_2")
 			LAi_SetLoginTime(sld, 6.0, 21.99);
 			
-			EndQuestMovie();
 			LAi_SetPlayerType(pchar);
 			bDisableFastReload = false;
 			chrDisableReloadToLocation = false;
@@ -10609,6 +10608,7 @@ void QuestComplete(string sQuestName, string qname)
 			sld = CharacterFromID("KSM_Alloka")
 			AddPassenger(pchar, sld, false);
 			SetCharacterRemovable(sld, false);
+			LAi_RemoveLoginTime(sld);
 			LAi_SetActorType(sld);
 			LAi_ActorRunToLocation(sld, "reload", "reload1", "none", "", "", "KSM_Snr_EndloosTraider_2", 0.5);
 			
@@ -10629,7 +10629,7 @@ void QuestComplete(string sQuestName, string qname)
 			LAi_SetPlayerType(pchar);
 			LAi_SetFightMode(pchar, true);
 			sld = CharacterFromID("KSM_Alloka")
-			LAi_SetWarriorType(sld);
+			LAi_SetStayType(sld);
 			LAi_SetImmortal(sld, false);
 			LAi_group_MoveCharacter(sld, "EnemyFight");
 			//Враги
@@ -10664,6 +10664,8 @@ void QuestComplete(string sQuestName, string qname)
 				sld = GetCharacter(NPC_GenerateCharacter("KSM_Snr_Matrosiki_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
 				LAi_SetWarriorType(sld);
 				LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
+				LAi_CharacterDisableDialog(sld);
+				sld.lifeday = 0;
 				ChangeCharacterAddressGroup(sld, pchar.location, "rld",  "loc0");
 			}
 			for (i=1; i<=3; i++)
@@ -10671,14 +10673,31 @@ void QuestComplete(string sQuestName, string qname)
 				sld = CharacterFromID("KSM_Snr_Matrosiki_"+i)
 				LAi_SetWarriorType(sld);
 				LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
+				LAi_CharacterDisableDialog(sld);
+				sld.lifeday = 0;
 			}
 			LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);		//стравливаем
 			LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);
 			LAi_group_SetCheck("EnemyFight", "KSM_Snr_Pobeda");
 			LAi_SetFightMode(pchar, true);
+			DoQuestCheckDelay("KSM_Snr_MushketyPodhodyt", 8.0);			//Мушкетёры включаются в бой
+			DoQuestCheckDelay("KSM_Snr_GlavnyZlodey", 22.0);
 			EndQuestMovie();
-			ChangeShowIntarface();
 			DialogExit();
+		break;
+		
+		case "KSM_Snr_MushketyPodhodyt":
+			for (i=1; i<=3; i++)
+			{
+				sld = CharacterFromID("KSM_Snr_Mushkety_"+i);
+				sld.MusketerDistance = 10;
+			}
+		break;
+		
+		case "KSM_Snr_GlavnyZlodey":
+			sld = CharacterFromID("KSM_Alloka");
+			LAi_SetWarriorType(sld);
+			LAi_group_MoveCharacter(sld, "EnemyFight");
 		break;
 		
 		case "KSM_Snr_Pobeda":
