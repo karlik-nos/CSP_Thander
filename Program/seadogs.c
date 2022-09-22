@@ -1441,11 +1441,11 @@ void ProcessControls()
         {   // без боя
             if (bSeaActive && !bAbordageStarted )
             {
-            	if (TimeScaleCounter > 48) TimeScaleCounter = 48; // море
+            	if (TimeScaleCounter > 32) TimeScaleCounter = 32; // море
             }
             else
             {
-            	if (TimeScaleCounter > 48) TimeScaleCounter = 48; // суша
+            	if (TimeScaleCounter > 32) TimeScaleCounter = 32; // суша
             }
         }
         if (IsEntity(worldMap))
