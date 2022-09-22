@@ -588,7 +588,7 @@ void FillBoxForTreasureSuper(ref item)
 	int     i;
 	string  itmName;
 
-    if (3*nLuck > rand(21))// еще поди найди 2 куска
+    if (3*nLuck > rand(21))// ещё поди найди 2 куска
     {
 		i = 0;
 		itmName = "";
@@ -808,7 +808,7 @@ void SetTreasureHunter(string temp)
 	ref    sld;
 	bool   ok;
 
-	if (chrDisableReloadToLocation) return; // идет некий другой квест с запретом выхода
+	if (chrDisableReloadToLocation) return; // идёт некий другой квест с запретом выхода
 
     Pchar.GenQuest.Hunter2Pause            = true;
 
@@ -877,7 +877,7 @@ void SetPGGTreasureHunter(string temp)
 	ref    sld;
 	bool   ok;
 
-	if (chrDisableReloadToLocation) return; // идет некий другой квест с запретом выхода
+	if (chrDisableReloadToLocation) return; // идёт некий другой квест с запретом выхода
 
     Pchar.GenQuest.Hunter2Pause            = true;
 
@@ -1009,6 +1009,7 @@ void  GhostShipOnMap()
 
 		sld.Ship.Type = GenerateShipExt(SHIP_FLYINGDUTCHMAN, true, sld);
 		SetBaseShipData(sld);
+		sld.Ship.Name = "Летучий голландец";
 
         DeleteAttribute(rRealShip, "ShipSails.SailsColor");  // белый парус
 

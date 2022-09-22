@@ -300,6 +300,7 @@ void ReloadStartFade()
     //#20191123-01 Fix
     DialogExit();
 	ApplayNewSkill(pchar, "", 0);
+	if (CheckAttribute(pchar,"activelocator")) Item_OnExitLocator(loadedLocation, pchar.activelocator);
 	// ResetSoundScheme();
 	ResetSound(); // new
 	PauseAllSounds();
@@ -608,6 +609,8 @@ int ReloadToSea(int island_index, aref reload_data)
 
 	ref rPlayer = GetMainCharacter();
 	rPlayer.lastFightMode = 0;
+	
+	if (HasSubStr(rPlayer.location,"town") || HasSubStr(rPlayer.location,"shore") || HasSubStr(rPlayer.location,"mayak")) rPlayer.Do180Turn = true;
 
 	ref rIsland = GetIslandByIndex(island_index);
 

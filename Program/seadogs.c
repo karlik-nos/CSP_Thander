@@ -1153,7 +1153,7 @@ void ProcessControls()
 				}
 			}
 			break;
-		    // boal -->
+/*		    // boal -->
             case "ChrBackward": //ChrStrafeLeft ChrStrafeRight
                 if (bLandInterfaceStart && LAi_IsFightMode(pchar))
                 {
@@ -1175,9 +1175,9 @@ void ProcessControls()
                 {
                     pchar.chr_ai.energy = stf(pchar.chr_ai.energy) - 3;
                     if (stf(pchar.chr_ai.energy) < 0) pchar.chr_ai.energy = 0;
-                }
+                }	
             return;
-            break;
+            break; */
             case "BOAL_UsePotion": // boal KEY_X
                 if (bLandInterfaceStart)
 				{
@@ -1353,7 +1353,7 @@ void ProcessControls()
         //Boyer change #20170318-38
         // if (CheckAttribute(&loadedLocation, "type") && loadedLocation.type == "underwater") return; //запрет ускорения под водой.
 		//if (bAltBalance && !bSeaActive && ControlName == "TimeScaleSlower" && TimeScaleCounter == 0)
-		if (bAltBalance && TimeScaleCounter == 0)
+		if (bAltBalanceTimeSlow && TimeScaleCounter == 0)
 		{
 			if (ControlName == "TimeScaleSlower" || ControlName == "TimeScaleSlowerBA")
 			{
@@ -1366,6 +1366,29 @@ void ProcessControls()
 		{
 			if (InterfaceStates.Buttons.Save.enable == false)
 			{
+				if (CheckAttribute(pchar,"SkipBattle") && pchar.SkipBattle == true)
+				{
+					float EffHp1,EffHp2, ASkill1, ASkill2;
+					ASkill1 = LAi_GetCharacterFightLevel(CharacterFromID(pchar.ArenaAttack));
+					ASkill2 = LAi_GetCharacterFightLevel(CharacterFromID(pchar.ArenaEnemy));
+					if (ASkill1 > ASkill2)
+					{
+						EffHp1 = GetCharacterEffectiveHp(CharacterFromID(pchar.ArenaAttack)) / (1.0 + 0.7 * (ASkill2 - ASkill1));
+						EffHp2 = GetCharacterEffectiveHp(CharacterFromID(pchar.ArenaEnemy));
+					}
+					else
+					{
+						EffHp1 = GetCharacterEffectiveHp(CharacterFromID(pchar.ArenaAttack));
+						EffHp2 = GetCharacterEffectiveHp(CharacterFromID(pchar.ArenaEnemy)) / (1.0 + 0.7 * (ASkill1 - ASkill2));
+					}
+					Log_TestInfo("Effhp1:" + sti(effhp1) + " Effhp2:" + sti(effhp2));
+					if (EffHp1 > EffHp2) 
+						LAi_KillCharacter(CharacterFromID(pchar.ArenaEnemy));
+					else
+						LAi_KillCharacter(CharacterFromID(pchar.ArenaAttack));
+					pchar.SkipBattle = false;
+					return;
+				}
 				Log_SetStringToLog("В данный момент запрещены манипуляции временным потоком.");
 				return;
 			}
@@ -1579,7 +1602,7 @@ void ProcessControls()
 			}
 		break;
 		// <-- ugeen
-		// boal -->
+	/*	// boal -->
 		case "ChrBackward": //ChrStrafeLeft ChrStrafeRight
             if (bLandInterfaceStart && LAi_IsFightMode(pchar))
             {
@@ -1603,7 +1626,7 @@ void ProcessControls()
  				if (stf(pchar.chr_ai.energy) < 0) pchar.chr_ai.energy = 0;
 	        }
 		break;
-
+*/
 		case "BOAL_UsePotion": // boal KEY_C
             if (bLandInterfaceStart)
             {
@@ -1682,7 +1705,6 @@ void ProcessControls()
 		if (!CheckOfficersPerk(pchar, "Turn180") && GetOfficersPerkUsing(pchar, "Turn180"))
 		{
 			ActivateCharacterPerk(pchar,"Turn180");
-			Ship_Turn180(pchar);
 		}
 		else
 		{

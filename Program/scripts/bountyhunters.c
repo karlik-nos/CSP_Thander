@@ -116,9 +116,9 @@ void LandHunterReactionResult(ref loc)  // отработает после вх�
 	ref    sld;
 	bool   ok, order;
 
-	//if (actLoadFlag) return; // идет лоад
+	//if (actLoadFlag) return; // идёт лоад
 	if (LAi_IsCapturedLocation) return;
-	if (chrDisableReloadToLocation) return; // идет некий другой квест с запретом выхода
+	if (chrDisableReloadToLocation) return; // идёт некий другой квест с запретом выхода
 	if (loc.type != "town" && loc.type != "seashore" && loc.type != "port") return;
 	if (CheckAttribute(Pchar, "GenQuest.Hunter2Pause"))
 	{
@@ -141,7 +141,7 @@ void LandHunterReactionResult(ref loc)  // отработает после вх�
 			order = false;
 			if (j == SPAIN)
 			{
-				if (startHeroType == 2 || startHeroType == 7 || CheckAttribute(pchar, "PGGWhisperComplete"))
+				if (pchar.name == "Виспер" || pchar.name == "Тёмный Странник" || CheckAttribute(pchar, "PGGWhisperComplete"))
 				{
 					if (!CheckAttribute(pchar,"OrderDestroyed"))
 					{
@@ -149,7 +149,7 @@ void LandHunterReactionResult(ref loc)  // отработает после вх�
 						{
 							order = true;
 						}
-						if (startHeroType != 2 && sti(pchar.rank) >= 15)
+						if (pchar.name != "Виспер" && sti(pchar.rank) >= 15)
 						{
 							order = true;
 						}
