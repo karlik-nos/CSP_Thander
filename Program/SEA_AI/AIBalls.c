@@ -36,7 +36,7 @@ void CreateBallsEnvironment()
 
 	Bombs.SubTexIndex = 0;		Bombs.Size = 0.3;		Bombs.GoodIndex = GOOD_BOMBS;
 	Balls.SubTexIndex = 2;		Balls.Size = 0.2;		Balls.GoodIndex = GOOD_BALLS;
-	
+	Knippels.SubTexIndex = 3;	Knippels.Size = 0.2;	Knippels.GoodIndex = GOOD_KNIPPELS;
 	switch (sti(InterfaceStates.BombsParticles))
 	{
 		case 0:
@@ -46,16 +46,16 @@ void CreateBallsEnvironment()
 		case 1:
 			Bombs.Particle = "bomb_smoke_low";
 			Balls.Particle = "ball_smoke_low";
+			Knippels.Particle = "ball_smoke_low";
 		break;
 		case 2:
 			Bombs.Particle = "bomb_smoke_high";
 			Balls.Particle = "ball_smoke_high";
+			Knippels.Particle = "ball_smoke_low";
 		break;
 	}
 
 	Grapes.SubTexIndex = 1;		Grapes.Size = 0.2;		Grapes.GoodIndex = GOOD_GRAPES;
-
-	Knippels.SubTexIndex = 3;	Knippels.Size = 0.2;	Knippels.GoodIndex = GOOD_KNIPPELS;
 
 	AIBalls.isDone = 1;
 
