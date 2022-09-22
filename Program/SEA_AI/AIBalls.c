@@ -126,7 +126,7 @@ void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0,
 		}
 	}
 
-	float fK = Bring2Range(0.4, 0.8, 0.25, 0.75, fAccuracy);
+	float fK = Bring2Range(0.33, 0.75, 0.25, 0.75, fAccuracy);
 	
 	AIBalls.Dir = fDirAng + fK * fTempDispersionY * (frnd() +frnd() - 1);//горизонтальная_наводка + разброс
 	AIBalls.SpdV0 = fSpeedV0 + fAccuracy * (10.0 * fTempDispersionY) * (frnd() - 0.5);//скорость_снаряда + разброс_скорости
