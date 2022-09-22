@@ -234,7 +234,7 @@ void IReadVariableAfterInit()
 	}
 	SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"FXMARK_CHECKBOX", 2, 1, nEnabledFXMarks );
 
-	int nEnabledCMControls = 1;
+	int nEnabledCMControls = 0;
 	if( CheckAttribute(&InterfaceStates,"EnabledCMControls") ) {
 		nEnabledCMControls = sti(InterfaceStates.EnabledCMControls);
 	}
