@@ -51,6 +51,7 @@ void CreateBallsEnvironment()
 		case 2:
 			Bombs.Particle = "bomb_smoke_high";
 			Balls.Particle = "ball_smoke_high";
+			Knippels.Particle = "ball_smoke_low";
 		break;
 	}
 
