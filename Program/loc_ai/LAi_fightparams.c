@@ -1982,16 +1982,16 @@ bool LAi_Chr_CheckEnergy()
 
 // EvgAnat - уклонение от выстрела -->
 #event_handler("Check_ChrHitFire", "LAi_Chr_CheckHitFire")
-int LAi_Chr_CheckHitFire() // 1 - не попал, 2 - попал
+int LAi_Chr_CheckHitFire() // 0 - не попал, 1 - попал
 {
 	aref shooter = GetEventData(); // стрелок
 	aref target = GetEventData(); // цель
 	bool isRecoil = GetEventData(); // находится ли цель в окне уклонения 
 	float kDist = GetEventData(); // коэффициент дальности, равный 1-d/25; k(0)=1; k(10)=0.6; k(25)=0
-	int res = 2;
+	int res = 1;
 	if(isRecoil)
 	{
-		res = 1;
+		res = 0;
 		if (shooter.index == GetMainCharacterIndex())
 			Log_SetStringToLog("Мазила!");
 	}
