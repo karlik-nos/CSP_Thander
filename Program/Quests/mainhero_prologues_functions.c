@@ -349,7 +349,7 @@ void AnjelikaTich_StartGame(string qName)
 	LAi_SetActorType(pchar);
 	DoQuestFunctionDelay("AnjelikaTich_Razgovor_1", 2.0);
 	DoQuestFunctionDelay("AnjelikaTich_SprInt", 0.1);
-	StartQuestMovie(true, true, true);
+	StartQuestMovie(true, false, true);
 }
 void AnjelikaTich_SprInt(string qName)
 {
@@ -931,7 +931,6 @@ void ATpr_OboronaSD_13(string qName)
 void ATpr_OboronaSD_14(string qName)
 {
 	EndQuestMovie();
-	ChangeShowIntarface();
 	locCameraTarget(PChar)
 	locCameraFollow();
 	DoQuestFunctionDelay("ATpr_OboronaSD_15", 1.0);

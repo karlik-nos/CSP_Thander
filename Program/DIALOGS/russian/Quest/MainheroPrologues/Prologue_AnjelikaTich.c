@@ -78,7 +78,6 @@ void ProcessDialogEvent()
 			bDisableCharacterMenu = false;
 			pchar.SystemInfo.ChangePIRATES = true;
 			LaunchCharacter(pchar);
-			ChangeShowIntarface();
 			
 			sld = CharacterFromID("AT_pr_Rebekka")
 			LAi_SetActorType(sld);
@@ -240,7 +239,6 @@ void ProcessDialogEvent()
 			LAi_SetActorType(sld);
 			LAi_ActorTurnToCharacter(sld, CharacterFromID("AT_pr_devushka_na_rynke"));
 			locCameraToPos(-38.00, 7.00, 20.00, true);
-			ChangeShowIntarface();
 		break;
 		
 		case "Torgovets_2":
@@ -323,7 +321,6 @@ void ProcessDialogEvent()
 			DialogExit();
 			
 			LAi_SetActorType(pchar);
-			ChangeShowIntarface();
 			
 			sld = CharacterFromID("Gasten_Kotes")
 			LAi_SetActorType(sld);
@@ -361,6 +358,7 @@ void ProcessDialogEvent()
 		
 		case "Rebekka_posle_draki_3":
 			chrDisableReloadToLocation = false;
+			bDisableFastReload = true;
 			pchar.questTemp.AnjelikaTichPrologue2 = "ATP2";
 			
 			PChar.quest.AT_pr_Oba_ischezaut.win_condition.l1 = "ExitFromLocation";
@@ -549,7 +547,6 @@ void ProcessDialogEvent()
 		case "Pirate_v_grote_3":
 			DialogExit();
 			EndQuestMovie();
-			ChangeShowIntarface();
 			
 			sld = characterFromId("AT_pr_Rebekka");
 			LAi_SetActorType(sld);

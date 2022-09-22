@@ -11415,7 +11415,7 @@ void KSM_Snr_Nashli_Ship(string qName)
 {
 	bDisableFastReload = true;
 	chrDisableReloadToLocation = true;
-	StartQuestMovie(true, true, true);
+	StartQuestMovie(true, false, true);
 	DoQuestFunctionDelay("KSM_Snr_Nashli_Ship_2", 3.0);
 	DoQuestFunctionDelay("KSM_Snr_Nashli_Ship_Cam", 0.1);
 	ChangeCharacterAddressGroup(pchar, "WreckedShip", "rld", "loc2");
@@ -11457,7 +11457,6 @@ void KSM_Snr_Nashli_Ship(string qName)
 	sld.MusketerDistance = 0;
 	ChangeCharacterAddressGroup(sld, "WreckedShip", "rld", "aloc12");
 	LAi_SetWarriorType(sld);
-	LAi_warrior_SetStay(sld, true);
 	LAi_group_MoveCharacter(sld, "EnemyFight");
 	
 	sTemp = "Mushketer_"+(rand(24)+1);
@@ -11465,7 +11464,6 @@ void KSM_Snr_Nashli_Ship(string qName)
 	sld.MusketerDistance = 0;
 	ChangeCharacterAddressGroup(sld, "WreckedShip", "rld", "aloc13");
 	LAi_SetWarriorType(sld);
-	LAi_warrior_SetStay(sld, true);
 	LAi_group_MoveCharacter(sld, "EnemyFight");
 	
 	sTemp = "Mushketer_"+(rand(24)+1);
@@ -11473,7 +11471,6 @@ void KSM_Snr_Nashli_Ship(string qName)
 	sld.MusketerDistance = 0;
 	ChangeCharacterAddressGroup(sld, "WreckedShip", "rld", "aloc15");
 	LAi_SetWarriorType(sld);
-	LAi_warrior_SetStay(sld, true);
 	LAi_group_MoveCharacter(sld, "EnemyFight");
 	
 }
