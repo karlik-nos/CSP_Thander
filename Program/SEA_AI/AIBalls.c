@@ -110,10 +110,11 @@ void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0,
 	}
 	//float fDamage2Cannons = 100.0;
 
-    float fAccuracy = (1.5 - stf(aCharacter.TmpSkill.Accuracy))/2;
-
 	float fCannons = stf(aCharacter.TmpSkill.Cannons)*10;
 
+	int iCaliberPenalty = (GetCannonCaliber(iCannonType) - 8 - fCannons*2)/160;//-0.08...0.2
+    float fAccuracy = (1.6 - stf(aCharacter.TmpSkill.Accuracy))/2 + iCaliberPenalty;
+	
 	fCannons = 15.0 + MOD_SKILL_ENEMY_RATE - fCannons;
 
 	if (fCannons > 0.0 && RealShips[sti(aCharacter.ship.type)].BaseName != "fort") // fix
@@ -125,7 +126,7 @@ void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0,
 		}
 	}
 
-	float fK = Bring2Range(0.35, 0.9, 0.25, 0.75, fAccuracy);
+	float fK = Bring2Range(0.4, 0.8, 0.25, 0.75, fAccuracy);
 	
 	AIBalls.Dir = fDirAng + fK * fTempDispersionY * (frnd() +frnd() - 1);//горизонтальная_наводка + разброс
 	AIBalls.SpdV0 = fSpeedV0 + fAccuracy * (10.0 * fTempDispersionY) * (frnd() - 0.5);//скорость_снаряда + разброс_скорости
