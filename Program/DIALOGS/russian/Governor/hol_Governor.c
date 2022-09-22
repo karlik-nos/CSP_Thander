@@ -902,6 +902,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
             link.l1 = "Да, минхер. Он был хорошим человеком... За сим разрешите откланяться.";
             link.l1.go = "exit";
             CloseQuestHeader("Hol_Line_5_ThreeFleutes");
+            pchar.GenQuest.StoreGoods.HL5_QtyPriceIsBack = true;
             pchar.questTemp.State = "empty";
             SaveCurrentQuestDateParam("questTemp");
             pchar.questTemp.CurQuestNumber = "6";
@@ -973,7 +974,8 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
             dialog.text = "Черт возьми, мало мне на сегодня неприятных известий! Тем не менее, спасибо за информацию. Мэнсфилда жаль...";
             link.l1 = "Да, минхер. Он был хорошим человеком. За сим разрешите откланяться.";
             link.l1.go = "exit";
-			CloseQuestHeader("Hol_Line_5_ThreeFleutes");
+            CloseQuestHeader("Hol_Line_5_ThreeFleutes");
+            pchar.GenQuest.StoreGoods.HL5_QtyPriceIsBack = true;
             pchar.questTemp.State = "empty";
             SaveCurrentQuestDateParam("questTemp");
             pchar.questTemp.CurQuestNumber = "6";
