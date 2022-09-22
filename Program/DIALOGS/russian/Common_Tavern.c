@@ -1508,7 +1508,7 @@ void ProcessDialogEvent()
 
 		//==> homo линейка Блада
 		case "TStep_0":
-			dialog.text = "Вверх по лестнице. Я с тобой не разговаривал.";
+			dialog.text = "Направо и прямо до конца. Я с тобой не разговаривал.";
 			link.l1 = "Благодарю.";
 			link.l1.go = "Exit";
 			int n= FindLocation("Bridgetown_tavern");
