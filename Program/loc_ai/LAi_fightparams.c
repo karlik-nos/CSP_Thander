@@ -2025,3 +2025,23 @@ bool LAi_NPC_IsDodge() // true - уклоняется, false - не уклоня
 	return res;
 }
 // EvgAnat - вероятность желания уклониться от выстрела у нпс <--
+
+// EvgAnat - дальность отскока и стрейфа -->
+#event_handler("GetCharacterRecoilDistance", "LAi_GetRecoilDistance");
+float LAi_GetRecoilDistance()
+{
+	aref chr = GetEventData();
+	string aType = GetEventData();
+	float res = 2.0;
+	switch(aType)
+	{
+		case "recoil":
+			res = 3.0; // по умолчанию 2.0
+		break;
+		case "strafe":
+			res = 10.0; // по умолчанию 15.0
+		break;
+	}
+	return res;
+}
+// EvgAnat - дальность отскока и стрейфа <--
