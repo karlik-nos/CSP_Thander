@@ -10737,7 +10737,7 @@ void QuestComplete(string sQuestName, string qname)
 			for (i=4; i<=14; i++)
 			{
 				sTemp = "shipowner_"+(rand(24)+1);
-				sld = GetCharacter(NPC_GenerateCharacter("KSM_Snr_Matrosiki_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				sld = GetCharacter(NPC_GenerateCharacter("KSM_Snr_Matrosiki_"+i, sTemp, "man", "man", sti(pchar.rank), sti(pchar.nation), -1, true));
 				LAi_SetWarriorType(sld);
 				LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
 				LAi_CharacterDisableDialog(sld);
