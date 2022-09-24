@@ -98,7 +98,7 @@ void ProcessDialogEvent()
 				NPChar.quest.meeting = "1";
 				break;
 			}
-			if (!CheckAttribute(pchar, "questTemp.Headhunter"))
+			if (!CheckAttribute(pchar, "questTemp.Headhunter") && pchar.rank >= 6)
 			{
 				dialog.text = "Капитан, я бы хотел поговорить с вами об одном деле. Вы, как я вижу, человек на Архипелаге новый, и пока не известны в Береговом братстве... Возможно, вы именно т"+ GetSexPhrase("от","а") +", кто нуж"+ GetSexPhrase("ен","на") +".";
 				link.l1 = "Хм... Интересно. Излагайте, что у вас за дело.";
@@ -196,13 +196,13 @@ void ProcessDialogEvent()
 				{
 					if (pchar.contratrade.time != GetDataDay() && ChangeContrabandRelation(pchar, 0) > 5)
 					{
-						Link.l17 = "(Негромко) Я слышал"+ GetSexPhrase("","а") +", что у вас можно купить кое-то интересное.";
+						Link.l17 = "(негромко) Я слышал"+ GetSexPhrase("","а") +", что у вас можно купить кое-то интересное.";
 						Link.l17.go = "Trade";
 					}
 				}
 				if (!CheckAttribute(pchar,"contratrade.time") && ChangeContrabandRelation(pchar, 0) > 5)
 				{
-					Link.l17 = "(Негромко) Я слышал"+ GetSexPhrase("","а") +", что у вас можно купить кое-то интересное.";
+					Link.l17 = "(негромко) Я слышал"+ GetSexPhrase("","а") +", что у вас можно купить кое-то интересное.";
 					Link.l17.go = "Trade";
 				}
 				if (CheckAttribute(pchar,"RimalieGood") && ChangeContrabandRelation(pchar, 0) > 5)

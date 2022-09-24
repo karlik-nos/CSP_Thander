@@ -846,13 +846,6 @@ void ApplayNewSkill(ref _chref, string _skill, int _addValue)
                 Log_Info(""+ _chref.name + " "+_chref.lastname + " получает новый уровень!");
             }
         }
-		if (sti(_chref.index) == GetMainCharacterIndex())
-		{
-			if(sti(_chref.rank) == 10)
-			{
-				UnexpectedInheritance();
-			}
-		}
     }
 }
 
