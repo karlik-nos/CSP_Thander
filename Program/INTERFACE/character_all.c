@@ -324,7 +324,7 @@ void SetButtonsState()
 void ShowInfoWindow()
 {
 	string sCurrentNode = GetCurrentNode();
-	string sHeader, sText1, sText2, sText3, sPicture;
+	string sHeader, sText1, sText2, sText3, sText4, sPicture;
 	string sGroup, sGroupPicture;
 	int iItem;
 
@@ -521,7 +521,42 @@ void ShowInfoWindow()
 		break;
 		//<--navy
 	}
-	CreateTooltip("#" + sHeader, sText1, argb(255,255,255,255), sText2, argb(255,255,192,192), sText3, argb(255,192,255,192), "", argb(255,255,255,255), sPicture, sGroup, sGroupPicture, 64, 64);
+	if (sCurrentNode == "TABLE_SKILL_1" || sCurrentNode == "TABLE_SKILL_2")
+	{
+		sText4 = "";
+		if (CheckAttribute(xi_refCharacter,"chr_ai.Trauma") && HasSubStr("LeadershipFencingLightFencingHeavyPistolFortuneSneak",GameInterface.(CurTable).(CurRow).UserData.ID))
+		{
+			sText4 += "\nНа показатель данного умения действует штраф от травмы в -20 единиц.";
+		}
+		if (CheckAttribute(xi_refCharacter,"chr_ai.HeavyTrauma") && HasSubStr("LeadershipFencingLightFencingHeavyPistolFortuneSneak",GameInterface.(CurTable).(CurRow).UserData.ID))
+		{
+			sText4 += "\nНа показатель данного умения действует штраф от тяжёлой травмы в -30 единиц.";
+		}
+		if (CheckAttribute(xi_refCharacter,"HPminusDays"))
+		{
+			sText4 += "\nНа показатель данного умения действует штраф от ранения в -50 единиц.";
+		}
+		if (GetItemsWeight(xi_refCharacter)>GetMaxItemsWeight(xi_refCharacter))
+		{
+			sText4 += "\nНа показатель данного умения действует штраф от перегрузки.";
+		}
+		int sailSkill;
+        sailSkill = GetSummonSkillFromNameSimple(xi_refCharacter, SKILL_SAILING);
+        int shipClass = GetCharacterShipClass(xi_refCharacter);
+        int needSkill = GetShipClassNavySkill(shipClass);
+		if (bRankRequirement)
+		{
+			int needRank = (ChecKSufficientRankForClass(shipClass) - sti(xi_refCharacter.rank))*2;
+			if (needRank < 0) needRank = 0;
+			needSkill += needRank;
+		}
+
+        if (sailSkill < needSkill)
+        {
+			sText4 += "\nНа показатель данного умения действует штраф от недостатка навигации.";
+        }
+	}
+	CreateTooltip("#" + sHeader, sText1, argb(255,255,255,255), sText2, argb(255,255,192,192), sText3, argb(255,192,255,192), sText4, argb(255,255,196,196), sPicture, sGroup, sGroupPicture, 64, 64);
 
 }
 
