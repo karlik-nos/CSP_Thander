@@ -967,7 +967,7 @@ void ProcessDialogEvent()
 
                 case 5:
 					if(Pchar.chr_ai.type != LAI_TYPE_SIT) LAi_SetSitType(pchar);
-                    if (!CheckAttribute(pchar , "GenQuest.GhostShip.LastBattleEnd") && !checkAttribute(npchar, "GhostShip_Speak_Yet") && pchar.GenQuest.GhostShip.lastspeak_date != LastSpeakDate() && pchar.rank >= 13)
+                    if (!CheckAttribute(pchar , "GenQuest.GhostShip.LastBattleEnd") && !checkAttribute(npchar, "GhostShip_Speak_Yet") && pchar.GenQuest.GhostShip.lastspeak_date != LastSpeakDate() && pchar.rank >= 10)
 					{
                         dialog.text = "Давай ещё по одной кружечке.";
                         link.l1 = "Эх, забористый ром. Ладно, мне уже пора, удачно посидеть.";

@@ -2580,7 +2580,7 @@ void PDMQuestsInit()
 	//******Аптекарь Sinistra******
 	//Маркус
 	pchar.quest.PDM_Apt_Markus_Spawn.win_condition.l1 = "Rank";
-	pchar.quest.PDM_Apt_Markus_Spawn.win_condition.l1.value = 12;
+	pchar.quest.PDM_Apt_Markus_Spawn.win_condition.l1.value = 8;
 	pchar.quest.PDM_Apt_Markus_Spawn.win_condition.l1.operation = ">=";
 	PChar.quest.PDM_Apt_Markus_Spawn.win_condition = "PDM_Apt_Markus_Spawn";
 }
@@ -2590,7 +2590,7 @@ void KSMQuestsInit()
 	//******Спасение на рифах******
 	//Джеймс Аллока
 	pchar.quest.KSM_Snr_Alloka_Spawn.win_condition.l1 = "Rank";
-	pchar.quest.KSM_Snr_Alloka_Spawn.win_condition.l1.value = 8;
+	pchar.quest.KSM_Snr_Alloka_Spawn.win_condition.l1.value = 5;
 	pchar.quest.KSM_Snr_Alloka_Spawn.win_condition.l1.operation = ">=";
 	PChar.quest.KSM_Snr_Alloka_Spawn.win_condition = "KSM_Snr_Alloka_Spawn";
 }

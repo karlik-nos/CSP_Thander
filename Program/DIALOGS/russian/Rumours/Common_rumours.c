@@ -256,7 +256,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 			break;
 		}
 
-		if(!CheckAttribute(pchar,"SalasarEventKnow") && rand(30)==0 && pchar.rank >= 20)
+		if(!CheckAttribute(pchar,"SalasarEventKnow") && rand(20)==0 && pchar.rank >= 20)
 		{
 			dialog.text = "Ходят слухи, что каждый год 3 марта в 3 часа ночи на рифе Скелета в ущелье Дьявола на руинах домика смотрителя кладбища разгорается особенно яркое и пугающее сияние, от которого веет ужасом и безнадёжностью. Хотелось бы самому посмотреть, да слишком уж боязно...";
 			Log_Info("Это стоит запомнить. Значит... 3 марта, 3 часа ночи и каждый год.");

@@ -98,7 +98,7 @@ void ProcessDialogEvent()
 				NPChar.quest.meeting = "1";
 				break;
 			}
-			if (!CheckAttribute(pchar, "questTemp.Headhunter") && pchar.rank >= 6)
+			if (!CheckAttribute(pchar, "questTemp.Headhunter") && pchar.rank >= 5)
 			{
 				dialog.text = "Капитан, я бы хотел поговорить с вами об одном деле. Вы, как я вижу, человек на Архипелаге новый, и пока не известны в Береговом братстве... Возможно, вы именно т"+ GetSexPhrase("от","а") +", кто нуж"+ GetSexPhrase("ен","на") +".";
 				link.l1 = "Хм... Интересно. Излагайте, что у вас за дело.";
