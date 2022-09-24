@@ -482,7 +482,7 @@ void CreateCitizens(aref loc)
 	}
 	// грузчики <--
 	//--> возможная генерация квестодателя на розыск капитанов
-	if (CheckAttribute(loc, "questSeekCap") && GetCharacterIndex("QuestCitiz_" + loc.fastreload) == -1)
+	/*if (CheckAttribute(loc, "questSeekCap") && GetCharacterIndex("QuestCitiz_" + loc.fastreload) == -1)
 	{
 		string sModel, sSex, sAnimation, sGr;
 		if (rand(1))
@@ -514,7 +514,7 @@ void CreateCitizens(aref loc)
         chr.chr_ai.type.checkFight = 999999.0;
 		LAi_group_MoveCharacter(chr, slai_group);
 		PlaceCharacter(chr, "goto", "random_free");
-	}
+	}*/
 }
 
 // плодим завсегдатеев в таверну, тоже фантомы-многоджневки (24ч) переработка boal 13.05.06
