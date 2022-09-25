@@ -2,12 +2,12 @@ void InitGoods()
 {
 	int i;
 
-	Goods[GOOD_BALLS].Name			= "Balls";
+	Goods[GOOD_BALLS].Name			= "Balls"; // Ядра
 	Goods[GOOD_BALLS].Cost			= 4;
 	Goods[GOOD_BALLS].Weight		= 1;
 	Goods[GOOD_BALLS].Units			= 20;
 	Goods[GOOD_BALLS].SpeedV0		= 1.0;
-	Goods[GOOD_BALLS].DamageHull	= 2.0;
+	Goods[GOOD_BALLS].DamageHull	= 1.5;
 	Goods[GOOD_BALLS].DamageRig		= 0.0;
 	Goods[GOOD_BALLS].DamageCrew	= 0.025;
 	Goods[GOOD_BALLS].AfraidWater = 0;    // рудимент от к3
@@ -15,11 +15,11 @@ void InitGoods()
 	Goods[GOOD_BALLS].canbecontraband	= 0;  // рудимент от к3
 
 
-	Goods[GOOD_GRAPES].Name			= "Grapes";
+	Goods[GOOD_GRAPES].Name			= "Grapes"; // Картечь
 	Goods[GOOD_GRAPES].Cost			= 12;
 	Goods[GOOD_GRAPES].Weight		= 1;
 	Goods[GOOD_GRAPES].Units		= 20;
-	Goods[GOOD_GRAPES].SpeedV0		= 0.5; // boal
+	Goods[GOOD_GRAPES].SpeedV0		= 0.5;
 	Goods[GOOD_GRAPES].DamageHull	= 0.01;
 	Goods[GOOD_GRAPES].DamageRig	= 0.0;
 	Goods[GOOD_GRAPES].DamageCrew	= 0.2;
@@ -27,7 +27,7 @@ void InitGoods()
 	Goods[GOOD_GRAPES].type				= TRADE_TYPE_AMMUNITION;
 	Goods[GOOD_GRAPES].canbecontraband	= 0;
 
-	Goods[GOOD_KNIPPELS].Name		= "Knippels";
+	Goods[GOOD_KNIPPELS].Name		= "Knippels"; // Книпели
 	Goods[GOOD_KNIPPELS].Cost		= 26;
 	Goods[GOOD_KNIPPELS].Weight		= 2;
 	Goods[GOOD_KNIPPELS].Units		= 20;
@@ -39,12 +39,12 @@ void InitGoods()
 	Goods[GOOD_KNIPPELS].type				= TRADE_TYPE_AMMUNITION;
 	Goods[GOOD_KNIPPELS].canbecontraband	= 0;
 
-	Goods[GOOD_BOMBS].Name			= "Bombs";
+	Goods[GOOD_BOMBS].Name			= "Bombs"; // Бомбы
 	Goods[GOOD_BOMBS].Cost			= 60;
 	Goods[GOOD_BOMBS].Weight		= 2;
 	Goods[GOOD_BOMBS].Units			= 20;
-	Goods[GOOD_BOMBS].SpeedV0		= 0.8;
-	Goods[GOOD_BOMBS].DamageHull	= 3.0;
+	Goods[GOOD_BOMBS].SpeedV0		= 0.6;
+	Goods[GOOD_BOMBS].DamageHull	= 2.0;
 	Goods[GOOD_BOMBS].DamageRig		= 0.0;
 	Goods[GOOD_BOMBS].DamageCrew	= 0.06;
 	Goods[GOOD_BOMBS].AfraidWater = 0;
