@@ -11168,6 +11168,40 @@ void QuestComplete(string sQuestName, string qname)
 				SetCharacterRemovable(sld, false);
 			}
 		break;
+		
+//========================  "Игра в прятки"  =======================		
+		
+		case "SCQ_Prytki_VremyPoshlo":
+			Log_info("Вам нужно найти девушку за 120 секунд");
+			SetShowTimer(120.0);
+			DoQuestCheckDelay("SCQ_Prytki_VremyVishlo", 119.3);
+			
+			PChar.quest.SCQ_Prytki_PokinuliZonu.win_condition.l1 = "ExitFromLocation";
+			PChar.quest.SCQ_Prytki_PokinuliZonu.win_condition.l1.location = PChar.location;
+			PChar.quest.SCQ_Prytki_PokinuliZonu.win_condition = "SCQ_Prytki_PokinuliZonu";
+			
+			sld = CharacterFromID(pchar.DevushkaVPrytki);
+			sld.dialog.currentnode = "SCQ_Prytki_Dengi";
+		break;
+		
+		case "SCQ_Prytki_VremyVishlo":
+			DeleteAttribute(pchar, "showTimer");
+			ClearAllLogStrings();
+			sld = CharacterFromID(pchar.DevushkaVPrytki);
+			sld.lifeday = 0;
+			ChangeCharacterAddressGroup(sld, "none", "", "");
+			InterfaceStates.Buttons.Save.enable = true;
+		break;
+		
+		case "SCQ_Prytki_PokinuliZonu":
+			DeleteAttribute(pchar, "showTimer");
+			ClearAllLogStrings();
+			sld = CharacterFromID(pchar.DevushkaVPrytki);
+			sld.lifeday = 0;
+			ChangeCharacterAddressGroup(sld, "none", "", "");
+			InterfaceStates.Buttons.Save.enable = true;
+		break;
+		
 
 		// Тичингиту
 		case "TichingituFree":
