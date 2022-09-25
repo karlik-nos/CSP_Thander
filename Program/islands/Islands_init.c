@@ -2237,9 +2237,9 @@ void InitIslands()
 		Islands[n].hidden = true;
 		Islands[n].colonyquantity = 1;
 		Islands[n].LoadGroup.g1 = "IslandShips1";
-		Islands[n].jungle.patch = "Bahames_jungle";
-		Islands[n].jungle.texture = "junglesprites";
-		Islands[n].jungle.scale = 12.5;
+		// Islands[n].jungle.patch = "Bahames_jungle";
+		// Islands[n].jungle.texture = "junglesprites";
+		// Islands[n].jungle.scale = 12.5;
 		Islands[n].TexturePath = "Bahames";
 
 		Islands[n].reload.l1.label = "Nassau Port";
