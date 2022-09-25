@@ -4946,6 +4946,22 @@ int InitItems()
 	n++;
 
 	makeref(itm,Items[n]);
+	itm.id = "map_Bahames";
+	itm.groupID = MAPS_ITEM_TYPE;
+	itm.name = "itmname_map_Bahames";
+	itm.describe = "itmdescr_map_Bahames";
+	itm.model = "";
+	itm.picIndex = 12;
+	itm.picTexture = "ITEMS_20";
+	itm.price = (rand(8)+9)*1250;
+	itm.Weight = 0.2;
+	itm.imageTga = "Bahames";
+	itm.imageType = "";
+	itm.MapIsland = "";
+	itm.ItemType = "MAP";
+	n++;
+
+	makeref(itm,Items[n]);
 	itm.id = "map_maracaibo";
 	itm.groupID = MAPS_ITEM_TYPE;
 	itm.name = "itmname_map_maracaibo";

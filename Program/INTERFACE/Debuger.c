@@ -1076,12 +1076,12 @@ void CalculateInfoDataF6()
 	// Квестовые
 	// mc.Ship.Type = GenerateShipExt(SHIP_LUGGERQUEST, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_XEBEKVML, true, mc);
-	// mc.Ship.Type = GenerateShipExt(SHIP_BRIGQEEN, true, mc);
+	mc.Ship.Type = GenerateShipExt(SHIP_BRIGQEEN, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_BRIGSW, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_CLIPPER, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_CORVETTE_QUEST, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_WH_CORVETTE_QUEST, true, mc);
-	mc.Ship.Type = GenerateShipExt(SHIP_ARABELLA, true, mc);
+	// mc.Ship.Type = GenerateShipExt(SHIP_ARABELLA, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_FRIGATEQUEEN, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_CATHERINE, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_FLYINGDUTCHMAN, true, mc);
@@ -1095,10 +1095,18 @@ void CalculateInfoDataF6()
     VeryRealShip.ship.upgrades.sails = 3;
 
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS8;
+	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS12;
+	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS16;
+	mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS20;
+	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS24;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS32;
-	mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS42;
+	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS42;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS48;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS8;
+	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS12;
+	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS16;
+	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS20;
+	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS24;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS32;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS36;
 	SetCrewQuantityFull(mc);
@@ -1127,7 +1135,7 @@ void CalculateInfoDataF6()
 	RemoveItems(mc, sEquipItem, 1);
 
 	AddMoneyToCharacter(mc, 1000000);
-	AddItems(mc, "spyglass4", 1);
+	AddItems(mc, "spyglass5", 1);
 	AddItems(mc, "pistol7", 1);
 	AddItems(mc, "Map_Best", 1);
 
@@ -1142,7 +1150,7 @@ void CalculateInfoDataF6()
 
 	AddItems(mc, "cirass5", 1);
 
-	EquipCharacterbyItem(mc, "spyglass4");
+	EquipCharacterbyItem(mc, "spyglass5");
 	EquipCharacterbyItem(mc, "pistol7");
 	GiveGunAmmunition(mc,"pistol7");
  	EquipCharacterbyItem(mc, sEquipItem);

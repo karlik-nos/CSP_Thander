@@ -303,11 +303,11 @@ int LocationInitBoarding(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
     //Reload map
-	locations[n].reload.l1.name = "reload1_back";
-	locations[n].reload.l1.go = "Nassau_exitTown";
-	locations[n].reload.l1.emerge = "reload1";
-	locations[n].reload.l1.autoreload = "1";
-	locations[n].locators_radius.reload.reload1_back = 2.0;
+    locations[n].reload.l1.name = "reload1_back";
+    locations[n].reload.l1.go = "Bahames_jungle_05";
+    locations[n].reload.l1.emerge = "reload2";
+    locations[n].reload.l1.autoreload = "1";
+    locations[n].locators_radius.reload.reload1_back = 2.0;
 
 	locations[n].reload.l2.name = "reload2";
 	locations[n].reload.l2.go = "Nassau_prison";

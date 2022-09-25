@@ -394,6 +394,12 @@ itmdescr_map_maracaibo
 Карта участка Мэйна с городами Картахена, Маракайбо и Каракас.
 }
 
+itmname_map_Bahames{Карта Багам}
+itmdescr_map_Bahames
+{
+Карта Багамских островов с городом Нассау
+}
+
 itmname_map_cumana{Карта Куманы}
 itmdescr_map_cumana
 {
