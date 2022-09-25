@@ -876,7 +876,7 @@ void spawnToughSkeleton(aref _location)
 {
 	if (drand(100) < 16 && CheckAttribute(_location, "locators.monsters") && !bMonstersGen && _location.type == "cave" && !CheckAttribute(pchar, "cursed.waitingSkull") && !CheckAttribute(pchar, "DisableToughSkeleton") && pchar.rank >= 3)
 	{
-		if (!CheckAttribute(pchar, "cursed.quest") || GetQuestPastDayParam("pchar.questTemp.Cursed") >= 270))
+		if (!CheckAttribute(pchar, "cursed.quest") || GetQuestPastDayParam("pchar.questTemp.Cursed") >= 270)
 		{
 			pchar.cursed.quest = true;
 			ref sld;
