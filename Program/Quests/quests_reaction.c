@@ -6914,6 +6914,40 @@ void QuestComplete(string sQuestName, string qname)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////   Изабелла начало   //////////////////////////////////////////
+		case "Romantic_Pirat_Spawn":
+			//Атилла
+			sld = GetCharacter(NPC_GenerateCharacter("Atilla", "pirate_1", "man", "man", 22, PIRATE, -1, false));
+			sld.name 	= "Атилла";
+			sld.lastname 	= "";
+			GiveItem2Character(sld, GUN_COMMON);
+			sld.equip.gun = GUN_COMMON;
+			GiveItem2Character(sld, BLADE_LONG);
+			sld.equip.blade = BLADE_LONG;
+			sld.location	= "Pirates_town";
+			sld.location.group = "goto";
+			sld.location.locator = "goto1";
+			sld.Dialog.Filename = "Quest\Isabella\Atilla.c";
+			sld.greeting = "Gr_Smuggler Agent";
+			sld.rank 	= 25;
+			sld.reputation = "30";
+			sld.talker = 5; //начать диалог
+			sld.TiedItems.itm1.model = "HandsItems\meet";
+			sld.TiedItems.itm1.locator = "Saber_hand";
+			sld.TiedItems.itm2.model = "HandsItems\cup";
+			sld.TiedItems.itm2.locator = "Saber_hand";
+			SetRandSPECIAL(sld);
+			SetSelfSkill(sld, 80, 70, 90, 60, 50);
+			SetShipSkill(sld, 50, 10, 60, 60, 40, 70, 70, 40, 50);
+			sld.money = "200";
+			LAi_SetCitizenType(sld);
+			LAi_group_MoveCharacter(sld, "PIRATE_CITIZENS");
+			LAi_SetLoginTime(sld, 0.0, 24.0);
+			LAi_SetHP(sld, 200.0, 200.0);
+			LAi_NoRebirthEnable(sld);
+			sld.DontClearDead = true;  // не убирать труп
+			sld.greeting = "Gr_Atilla";
+        break;
+
         case "Romantic_Pirat_toTavern":
 			chrDisableReloadToLocation = true;
 			bDisableFastReload = true;
@@ -9737,6 +9771,7 @@ void QuestComplete(string sQuestName, string qname)
 		DeleteAttribute(PChar,"Luke.BadPoison");
 		AddCharacterHealth(pchar, 50);
 		AddQuestRecord("Silence_Price", "6_1");
+		CloseQuestHeader("Silence_Price");
 		/*bDisableFastReload = true;		БЛОКИРОВКА ПОСЫЛЬНОГО ПО ИСТОРИИ ДАВНЕЙ ЖРАЖБЫ
 		Pchar.quest.IDD_Pochta_1.win_condition.l1 = "ExitFromLocation";
 		Pchar.quest.IDD_Pochta_1.win_condition.l1.location = Pchar.location;
@@ -9792,6 +9827,20 @@ void QuestComplete(string sQuestName, string qname)
         break;
 
 //========================  Квест "Проклятый идол".  =======================
+
+		case "PDM_CI_SpawnJC":
+			sld = GetCharacter(NPC_GenerateCharacter("James_Callow", "ozg_green", "man", "man", 15, PIRATE, -1, false));
+			sld.name	= "Джеймс";												//Джеймс Кэллоу
+			sld.lastname	= "Кэллоу";
+			sld.model	= "ozg_green";
+			GiveItem2Character(sld, "blade34");
+			EquipCharacterByItem(sld, "blade34");
+			sld.Dialog.Filename = "Quest/PDM/Cursed_Idol.c";
+			LAi_SetSitType(sld);
+			LAi_SetImmortal(sld, true);
+			FreeSitLocator("LaVega_tavern", "sit_base3");
+			ChangeCharacterAddressGroup(sld,"LaVega_tavern","sit","sit_base3");
+		break;
 
 		case "PDM_Callow_sadis_na_stul":
 			ChangeCharacterAddressGroup(pchar, "LaVega_tavern", "sit", "sit_front3");
@@ -10544,6 +10593,19 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 
 //========================  Квест "Аптекарь".  =======================
+		case "PDM_Apt_Markus_Spawn":
+			//Маркус
+			sld = GetCharacter(NPC_GenerateCharacter("PDM_Markus", "prison_3", "man", "man", 10, ENGLAND, -1, false));
+			sld.name	= "Маркус";
+			sld.lastname	= "";
+			sld.City = "SentJons";
+			sld.Dialog.Filename = "Quest/PDM/Aptekar.c";
+			LAi_SetGroundSitType(sld);
+			LAi_SetImmortal(sld, true);
+			LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
+			ChangeCharacterAddressGroup(sld,"SentJons_tavern","goto","goto1");
+		break;
+
 		case "PDM_Apt_Markus_Vizdorovel":
 			sld = CharacterFromID("PDM_Markus")
 			sld.model = "shipowner_8";
@@ -10602,6 +10664,20 @@ void QuestComplete(string sQuestName, string qname)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //========================  Квест "Спасение на рифах".  =======================
+		case "KSM_Snr_Alloka_Spawn":
+			//Джеймс Аллока
+			sld = GetCharacter(NPC_GenerateCharacter("KSM_Alloka", "trader_1", "man", "man", 10, ENGLAND, -1, false));
+			sld.name	= "Джеймс";
+			sld.lastname	= "Аллока";
+			sld.Dialog.Filename = "Quest/KSM/Spasenie_na_rifah.c";
+			LAi_SetCitizenType(sld);
+			LAi_SetLoginTime(sld, 6.0, 21.99);
+			sld.talker = 7;
+			LAi_SetImmortal(sld, true);
+			LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
+			ChangeCharacterAddressGroup(sld,"PortRoyal_town","goto","goto12");
+		break;
+
 		case "KSM_Snr_EndloosTraider":
 			bDisableFastReload = true;
 			chrDisableReloadToLocation = true;
@@ -10661,7 +10737,7 @@ void QuestComplete(string sQuestName, string qname)
 			for (i=4; i<=14; i++)
 			{
 				sTemp = "shipowner_"+(rand(24)+1);
-				sld = GetCharacter(NPC_GenerateCharacter("KSM_Snr_Matrosiki_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				sld = GetCharacter(NPC_GenerateCharacter("KSM_Snr_Matrosiki_"+i, sTemp, "man", "man", sti(pchar.rank), sti(pchar.nation), -1, true));
 				LAi_SetWarriorType(sld);
 				LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
 				LAi_CharacterDisableDialog(sld);
@@ -11092,6 +11168,40 @@ void QuestComplete(string sQuestName, string qname)
 				SetCharacterRemovable(sld, false);
 			}
 		break;
+		
+//========================  "Игра в прятки"  =======================		
+		
+		case "SCQ_Prytki_VremyPoshlo":
+			Log_info("Вам нужно найти девушку за 120 секунд");
+			SetShowTimer(120.0);
+			DoQuestCheckDelay("SCQ_Prytki_VremyVishlo", 119.3);
+			
+			PChar.quest.SCQ_Prytki_PokinuliZonu.win_condition.l1 = "ExitFromLocation";
+			PChar.quest.SCQ_Prytki_PokinuliZonu.win_condition.l1.location = PChar.location;
+			PChar.quest.SCQ_Prytki_PokinuliZonu.win_condition = "SCQ_Prytki_PokinuliZonu";
+			
+			sld = CharacterFromID(pchar.DevushkaVPrytki);
+			sld.dialog.currentnode = "SCQ_Prytki_Dengi";
+		break;
+		
+		case "SCQ_Prytki_VremyVishlo":
+			DeleteAttribute(pchar, "showTimer");
+			ClearAllLogStrings();
+			sld = CharacterFromID(pchar.DevushkaVPrytki);
+			sld.lifeday = 0;
+			ChangeCharacterAddressGroup(sld, "none", "", "");
+			InterfaceStates.Buttons.Save.enable = true;
+		break;
+		
+		case "SCQ_Prytki_PokinuliZonu":
+			DeleteAttribute(pchar, "showTimer");
+			ClearAllLogStrings();
+			sld = CharacterFromID(pchar.DevushkaVPrytki);
+			sld.lifeday = 0;
+			ChangeCharacterAddressGroup(sld, "none", "", "");
+			InterfaceStates.Buttons.Save.enable = true;
+		break;
+		
 
 		// Тичингиту
 		case "TichingituFree":

@@ -583,14 +583,16 @@ void ProcessDuelDialog(ref NPChar, aref Link, aref NextDiag)
 // Квест ПГГ Виспер
 	case "Quest_Whisper":
 		npchar.QuestWhisper = true;
-		chrDisableReloadToLocation = true;
 
 		Dialog.Text = "Дело серьёзное, я не стану обсуждать его при всех. Продолжим у меня в комнате?";
 		link.l1 = "Ну пойдём.";
 		link.l1.go = "Quest_Whisper_Room";
+		link.l2 = "Я наслышан"+GetSexPhrase("","а")+", что ты приносишь неудачу в любом деле, лучше буду держаться от тебя подальше.";
+		link.l2.go = "exit";
 	break;
 
 	case "Quest_Whisper_Room":
+		chrDisableReloadToLocation = true;
 		DoReloadCharacterToLocation(npchar.PGGAi.location.town + "_tavern_upstairs","goto","goto1");
 		ChangeCharacterAddressGroup(npchar, npchar.PGGAi.location.town + "_tavern_upstairs", "goto", "goto1");
 		pchar.InstantDialog = npchar.id;

@@ -11,6 +11,17 @@ void ProcessDialogEvent()
 	makeref(NPChar,CharacterRef);
 	makearef(Link, Dialog.Links);
 	makearef(NextDiag, NPChar.Dialog);
+	
+	int iRang = sti(PChar.rank);
+	float fRandom = FRAND(1) + 1;
+
+	float fLuck = GetCharacterSkillToOld(PChar, SKILL_FORTUNE);
+	if(fLuck < 1.1) { fLuck = 1.1; }
+	fLuck /= 10;
+
+	int iMoney = iRang * 1000 * fLuck * fRandom + drand(100);
+	if(iMoney < 1000) { iMoney = 1000 + drand1(500); }
+	if(iMoney > 20000) { iMoney = 20000 + drand2(100); }
 
 	switch(Dialog.CurrentNode)
 	{
@@ -1451,12 +1462,17 @@ void ProcessDialogEvent()
 		//--------------------------- поиск кэпов, дача квеста горожанином --------------------------------
 		//========= квесты мужиков ===========
 		case "SCQ_man":
-			dialog.text = LinkRandPhrase("Здравствуйте, капитан. Хочу просить вас помочь мне.",
+			/*dialog.text = LinkRandPhrase("Здравствуйте, капитан. Хочу просить вас помочь мне.",
 				"Капитан! Не окажете мне услугу? Дело в том, что я нуждаюсь в помощи.",
 				"Капитан, я прошу вас о помощи!");
 			link.l1 = RandPhraseSimple("Я занят"+ GetSexPhrase("","а") +", не сегодня!", "В данный момент у меня нет времени вас выслушивать.");
 			link.l1.go = "SCQ_exit";
 			link.l2 = RandPhraseSimple("Что у вас стряслось?", "Излагайте суть проблемы. Возможно, я сумею помочь.");
+			link.l2.go = "SCQ_man_1";*/
+			dialog.text = "Здравствуйте, капитан. Можно к вам обратиться?";
+			link.l1 = RandPhraseSimple("Я занят"+ GetSexPhrase("","а") +", не сегодня!", "В данный момент у меня нет времени вас выслушивать.");
+			link.l1.go = "SCQ_exit";
+			link.l2 = "Что у вас стряслось?";
 			link.l2.go = "SCQ_man_1";
 		break;
 		case "SCQ_exit":
@@ -1487,7 +1503,7 @@ void ProcessDialogEvent()
 		break;
 		//выбираем квест
 		case "SCQ_man_1":
-			switch (npchar.quest.SeekCap.numQuest)
+			/*switch (npchar.quest.SeekCap.numQuest)
 			{
 				case "0":
 					dialog.text = "Год назад один капитан взялся доставить меня " + XI_ConvertString("Colony" + SelectNotEnemyColony(NPChar) + "Acc") + ". Но на борту его корабля я был брошен в трюм, а потом продан в рабство. Из этой переделки я выбрался с огромным трудом, несколько раз находился на грани жизни и смерти... В общем, я хочу напомнить моему 'другу', что я ещё жив.";
@@ -1504,8 +1520,46 @@ void ProcessDialogEvent()
 					link.l1 = "Почему? Множество капитанов, включая меня, могут доставить вас куда угодно.";
 					link.l1.go = "SCQ_Friend";
 				break;
+			}*/
+			switch (npchar.quest.SeekCap.numQuest)
+			{
+				case "0":
+					dialog.text = "Дело в том, что в местной церкви меня обучают латинскому языку, но в свободное время мне не с кем попрактиковаться...";
+					link.l1 = "Изучение латыни - это похвально, но а я здесь при чём?";
+					link.l1.go = "SCQ_ProverkaZnaniy";
+				break;
+				case "1":
+					dialog.text = "Дело в том, что у меня похитили жену. Один капитан, пират по слухам, ухлёстывал тут за ней, как только мог. Жена одно время даже не выходила из дома, настолько он был назойлив. Я пытался привлечь городские власти к этой проблеме - безрезультатно. И вот дождались, называется...";
+					link.l1 = "Чего дождались?";
+					link.l1.go = "SCQ_RapeWife";
+				break;
+				case "2":
+					dialog.text = "Вы знаете, я ищу своего земляка, с которым три года назад мы отправились сюда из Старого света в поисках новой жизни. Так случилось, что в дороге мы потеряли друг друга. Но недавно я узнал, что мой земляк стал торговым капитаном! Я пытался его найти, но сам с этим справиться не могу.";
+					link.l1 = "Почему? Множество капитанов, включая меня, могут доставить вас куда угодно.";
+					link.l1.go = "SCQ_Friend";
+				break;
 			}
 		break;
+		// Проверка знаний
+		case "SCQ_ProverkaZnaniy":
+			dialog.text = "Скоро мне сдавать зачёт, а я даже не уверен в своих знаниях. Поможете мне?";
+			link.l1 = "Делать мне больше нечего...";
+			link.l1.go = "SCQ_exit";
+			link.l2 = "Э-э... А что делать-то надо?";
+			link.l2.go = "SCQ_ProverkaZnaniy_2";
+		break;
+		
+		case "SCQ_ProverkaZnaniy_2":
+			dialog.text = "Я назову вам предложение на латыни, а вы должны без ошибок повторить за мной. На это я дам вам 10 секунд. Готовы?";
+			link.l1 = "Давай попробуем. Начинай!";
+			link.l1.go = "SCQ_ProverkaZnaniy_3";
+			link.l2 = "Я капитан, а не полиглот. Прошу меня простить.";
+			link.l2.go = "SCQ_exit";
+		break;
+		
+		
+		break;
+		
 		// квест бывшего раба, которого негодяй-кэп взял в плен
 		case "SCQ_Slave":
 			dialog.text = "Я хочу, чтобы вы нашли его и отправили на тот свет. Я настолько хочу отомстить, что просто кушать не могу...";
@@ -1756,7 +1810,7 @@ void ProcessDialogEvent()
 			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
 		break;
 		//========= квесты баб ===========
-		case "SCQ_woman":
+		/*case "SCQ_woman":
 			dialog.text = LinkRandPhrase("Здравствуйте, капитан. Я хотела попросить вас об одном одолжении.",
 				"Капитан! Помогите женщине, будьте так добры...",
 				"Капитан, не откажите "+ GetSexPhrase("даме","мне") +" в помощи.");
@@ -1764,10 +1818,17 @@ void ProcessDialogEvent()
 			link.l1.go = "SCQ_exit";
 			link.l2 = RandPhraseSimple("Что у вас стряслось, " + GetAddress_FormToNPC(NPChar) + "?", "Излагайте суть проблемы, " + GetAddress_FormToNPC(NPChar) + ". Я постараюсь вам помочь.");
 			link.l2.go = "SCQ_woman_1";
+		break;*/
+		case "SCQ_woman":
+			dialog.text = "Здравствуйте, капитан. Можно к вам обратиться?";
+			link.l1 = RandPhraseSimple("Я занят"+ GetSexPhrase("","а") +", красавица, не сегодня!", "Прошу прощения, " + GetAddress_FormToNPC(NPChar) + ", но в данный момент я не имею времени...");
+			link.l1.go = "SCQ_exit";
+			link.l2 = "Что у вас стряслось, " + GetAddress_FormToNPC(NPChar) + "?";
+			link.l2.go = "SCQ_woman_1";
 		break;
 		//выбираем квест
 		case "SCQ_woman_1":
-			switch (npchar.quest.SeekCap.numQuest)
+			/*switch (npchar.quest.SeekCap.numQuest)
 			{
 				case "0":
 					dialog.text = "Мой муж занимается коммерцией - доставляет грузы торговцам по всей округе. Так вот, он ушёл в море уже больше трёх месяцев назад, и до сих пор не вернулся!";
@@ -1784,8 +1845,105 @@ void ProcessDialogEvent()
 					link.l1 = "Подождите, что-то я не очень понимаю, кто к кому попал...";
 					link.l1.go = "SCQ_Pirates";
 				break;
+			}*/
+			switch (npchar.quest.SeekCap.numQuest)
+			{
+				case "0":
+					dialog.text = "Дело в том, что мне очень скучно, и мне не с кем поразвлечься. Может... Сыграете со мной в прятки?";
+					link.l1 = "Прятки? И какие правила игры?";
+					link.l1.go = "SCQ_Prytki";
+				break;
+				case "1":
+					dialog.text = "Дело в том, что мне очень скучно, и мне не с кем поразвлечься. Может... Сыграете со мной в прятки?";
+					link.l1 = "Прятки? И какие правила игры?";
+					link.l1.go = "SCQ_Prytki";
+				break;
+				case "2":
+					dialog.text = "Дело в том, что мне очень скучно, и мне не с кем поразвлечься. Может... Сыграете со мной в прятки?";
+					link.l1 = "Прятки? И какие правила игры?";
+					link.l1.go = "SCQ_Prytki";
+				break;
 			}
 		break;
+		
+		//девушка играет с нами в прятки
+		case "SCQ_Prytki":
+			dialog.text = "Вы закрываете глаза и считаете до пяти, а я прячусь в пределах городах, и нельзя заходить в дома. Если найдёте меня, то я обещаю, что вы не уйдёте без награды.";
+			link.l1 = "Нет, я не собираюсь играть в эти детские игры... Найди лучше кого-нибудь другого.";
+			link.l1.go = "SCQ_Prytki_Net";
+			link.l2 = "Ну давай поиграем, хе-хе.";
+			link.l2.go = "SCQ_Prytki_1";
+		break;
+		
+		case "SCQ_Prytki_Net":
+			DialogExit();
+			
+			npchar.lifeday = 0;
+			LAi_CharacterDisableDialog(npchar);
+		break;
+		
+		case "SCQ_Prytki_1":
+			dialog.text = "Отлично, а теперь закрывайте ваши прекрасные глаза, и начинайте считать.";
+			link.l1 = "Раз... Два... Три...";
+			link.l1.go = "SCQ_Prytki_2";
+			pchar.DevushkaVPrytki = npchar.id;
+		break;
+		
+		case "SCQ_Prytki_2":
+			DialogExit();
+			
+			SetLaunchFrameFormParam("На мгновение закрываем глаза...", "SCQ_Prytki_VremyPoshlo", 0, 2.5);
+			LaunchFrameForm();
+			InterfaceStates.Buttons.Save.enable = false;
+			
+			sld = CharacterFromID(pchar.DevushkaVPrytki);
+			if (rand(1) == 0)
+			{
+				PlaceCharacter(sld, RandPhraseSimple("goto", "patrol"), "random_must_be");
+			}
+			else
+			{
+				PlaceCharacter(sld, "reload", "random_must_be");
+			}
+			LAi_SetStayType(sld);
+		break;
+		
+		case "SCQ_Prytki_Dengi":		
+			dialog.text = "Ой, хи-хи-хи. А вы хорош"+GetSexPhrase("ий","ая")+" сыщи"+GetSexPhrase("к","ца")+", капитан, так уж и быть, вот ваши "+ sti(iMoney) +" пиастров.";
+			link.l1 = "Благодарю, красавица, был рад"+GetSexPhrase("","а")+" провести с вами время. До свидания.";
+			link.l1.go = "SCQ_Prytki_Dengi_Final";
+			DeleteAttribute(pchar, "showTimer");
+			ClearAllLogStrings();
+			DoQuestDelayExit();
+			InterfaceStates.Buttons.Save.enable = true;
+			
+			AddMoneyToCharacter(pchar, sti(iMoney));
+			AddCharacterExpToSkill(pchar, "Sneak", 30);
+			AddCharacterExpToSkill(pchar, "Fortune", 30);
+		break;
+		
+		case "SCQ_Prytki_Dengi_Final":
+			DialogExit();
+			npchar.lifeday = 0;
+			LAi_CharacterDisableDialog(npchar);
+			LAi_SetCitizenType(npchar);
+		break;
+		
+		/*case "SCQ_Prytki_Trah":
+			dialog.text = "Ой, хи-хи-хи. А вы хорош"+GetSexPhrase("ий","ая")+" сыщи"+GetSexPhrase("к","ца")+", капитан. Давай снимем комнату в таверне, я вознагражу тебя по достоинству.";
+			link.l1 = "Ну пойдём.";
+			link.l1.go = "SCQ_Prytki_Trah_2";
+			DeleteAttribute(pchar, "showTimer");
+			ClearAllLogStrings();
+			DoQuestDelayExit();
+			InterfaceStates.Buttons.Save.enable = true;
+		break;
+		
+		case "SCQ_Prytki_Trah_2":
+			DialogExit();
+			sld = CharacterFromID(pchar.DevushkaVPrytki);
+			LAi_SetActorType(sld);
+		break;*/
 
 		//жещина разыскивает мужа-торговца
 		case "SCQ_Hasband":
