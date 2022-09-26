@@ -105,7 +105,7 @@ float Cannon_GetFireHeight()
 	//временно - нужно перебрать все высоты в шипс.инит
 	if(sBallName != "Knippels")
 	{
-		Y = Y / 2;
+		Y = Y * 0.66;
 	}
 	return Y;
 }
