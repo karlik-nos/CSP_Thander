@@ -257,6 +257,10 @@ void SetByDefault()
 	{
 		CheckButton_SetState("CHECK_DIFFICULTY_WEIGHT",1,true);
 	}
+	if(bModDamage)
+	{
+		CheckButton_SetState("CHECK_MOD_DAMAGE",1,true);
+	}
 	else
 	{
 		CheckButton_SetState("CHECK_DIFFICULTY_WEIGHT",1,false);
@@ -486,6 +490,14 @@ void IProcessFrame()
 	else
 	{
 		bDifficultyWeight = false;
+	}
+	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_MOD_DAMAGE", 3, 1))
+	{
+		bModDamage = true;
+	}
+	else
+	{
+		bModDamage = false;
 	}
 }
 
@@ -1205,6 +1217,11 @@ void ShowInfo()
 		case "CHECK_DIFFICULTY_WEIGHT":
 			sHeader = XI_ConvertString("DifficultyWeight");
 			sText1 = GetRPGText("DifficultyWeight_hint");
+		break;
+
+		case "CHECK_MOD_DAMAGE":
+			sHeader = XI_ConvertString("CHECK_MOD_DAMAGE");
+			sText1 = XI_ConvertString("CHECK_MOD_DAMAGE_descr");
 		break;
 
 		case "CHECK_LOWERSHIP":
