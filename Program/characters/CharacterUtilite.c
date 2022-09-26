@@ -4072,3 +4072,17 @@ void SwapWeaponFight2()
 {
 	pchar.mushket.timer = false;
 }
+
+#event_handler("Lilarcor_Talks", "Lilarcor_Talks");
+void Lilarcor_Talks()
+{
+	switch (pchar.equip.blade)
+	{
+		case "Lilarcor_Sword1": PlayVoice("Types\warrior03.wav"); break;
+		case "Lilarcor_Sword2": PlayVoice("Types\warrior03.wav"); break;
+		case "Lilarcor_Sword3": PlayVoice("Types\warrior03.wav"); break;
+	}
+	ActivateCharacterPerk(pchar, "Rush");
+	pchar.perks.list.Rush.active = 3600;
+	pchar.chr_ai.energy    = pchar.chr_ai.energyMax;
+}
