@@ -86,7 +86,7 @@ bool 	bHigherSelfRate 			= true;
 // Требование ранга для навигации
 bool 	bRankRequirement 			= false;
 // влияние сложности на переносимый вес
-bool 	bDifficultyWeight 			= true;
+bool 	bDifficultyWeight 			= false;
 // Найм полубессмертного ПГГ
 bool 	bHalfImmortalPGG 			= false;
 // Сбор денег за швартовку
