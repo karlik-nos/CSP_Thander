@@ -1551,6 +1551,9 @@ void DisableEnable_CheckProcess() // ugeen 2016
 {
 	if (MOD_SKILL_ENEMY_RATE == 10)
 	{
+		SetClickable("CHECK_MOD_DAMAGE", false);
+		Button_SetEnable("CHECK_MOD_DAMAGE", false);
+		SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_MOD_DAMAGE", 5, 1, 1);
 		SetClickable("CHECK_HARD_ANIMATIONS", true);
 		Button_SetEnable("CHECK_HARD_ANIMATIONS", true);
 		SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_HARD_ANIMATIONS", 5, 1, 0);
@@ -1562,6 +1565,9 @@ void DisableEnable_CheckProcess() // ugeen 2016
 			SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"CHECK_HARD_ANIMATIONS", 2, 1, 0 ); // отключаем
 		}
 
+		SetClickable("CHECK_MOD_DAMAGE", true);
+		Button_SetEnable("CHECK_MOD_DAMAGE", true);
+		SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_MOD_DAMAGE", 5, 1, 0);
 		SetClickable("CHECK_HARD_ANIMATIONS", false);
 		Button_SetEnable("CHECK_HARD_ANIMATIONS", false);
 		SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_HARD_ANIMATIONS", 5, 1, 1);
