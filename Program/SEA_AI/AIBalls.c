@@ -115,7 +115,7 @@ void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0,
 	float fCannonsNumPenalty = (MakeFloat(GetCannonsNumMax(aCharacter))/35 - 1)/(10);//-0.06...0.2
 	float fCaliberPenalty = (GetCannonCaliber(iCannonType) - 6 - fCannons*2)/160;//-0.05...0.15
     float fAccuracy = (1.5 - stf(aCharacter.TmpSkill.Accuracy))/2 + fCaliberPenalty + fCannonsNumPenalty;
-	Log_Info("fAccuracy "+fAccuracy);
+	
 	fCannons = 15.0 + MOD_SKILL_ENEMY_RATE - fCannons;
 
 	if (fCannons > 0.0 && RealShips[sti(aCharacter.ship.type)].BaseName != "fort") // fix
