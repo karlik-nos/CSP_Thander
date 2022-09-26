@@ -4078,11 +4078,18 @@ void Lilarcor_Talks()
 {
 	switch (pchar.equip.blade)
 	{
-		case "Lilarcor_Sword1": PlayVoice("Types\warrior03.wav"); break;
-		case "Lilarcor_Sword2": PlayVoice("Types\warrior03.wav"); break;
-		case "Lilarcor_Sword3": PlayVoice("Types\warrior03.wav"); break;
+		case "Lilarcor_Sword1": PlayVoice("Kopcapkz\Voices\Lilarcor\Lilarcor_Bers_"+rand(7)+".mp3"); break;
+		case "Lilarcor_Sword2": PlayVoice("Kopcapkz\Voices\Lilarcor\Lilarcor_Bers_"+rand(15)+".mp3"); break;
+		case "Lilarcor_Sword3": PlayVoice("Kopcapkz\Voices\Lilarcor\Lilarcor_Bers_"+rand(22)+".mp3"); break;
 	}
-	ActivateCharacterPerk(pchar, "Rush");
 	pchar.perks.list.Rush.active = 3600;
-	pchar.chr_ai.energy    = pchar.chr_ai.energyMax;
+	pchar.perks.list.Rush.delay = 3600;
+	pchar.chr_ai.energy = pchar.chr_ai.energyMax;
+	log_info("Лиларкор вызвал в вас приступ неудержимой ярости!");
+}
+
+#event_handler("Lilarcor_Talks2", "Lilarcor_Talks2");
+void Lilarcor_Talks2()
+{
+	PlayVoice("Kopcapkz\Voices\Lilarcor\Lilarcor_rnd_"+rand(10)+".mp3");
 }
