@@ -773,6 +773,7 @@ void SaveStartGameParam()
 	optref.StartGameParam.bAltBalanceProHits     = bAltBalanceProHits;
 	optref.StartGameParam.bFillEncyShips         = bFillEncyShips;
 	optref.StartGameParam.bDifficultyWeight      = bDifficultyWeight;
+	optref.StartGameParam.bModDamage      		 = bModDamage;
 	optref.StartGameParam.iStealthSystem         = iStealthSystem;
     // иначе сброс галки может быть optref.StartGameParam.bWorldAlivePause       = bWorldAlivePause;
 
@@ -933,6 +934,10 @@ void LoadStartGameParam()
 	if (CheckAttribute(optref, "StartGameParam.bDifficultyWeight"))
 	{
     	bDifficultyWeight = sti(optref.StartGameParam.bDifficultyWeight);
+    }
+	if (CheckAttribute(optref, "StartGameParam.bModDamage"))
+	{
+    	bModDamage = sti(optref.StartGameParam.bModDamage);
     }
 	if (CheckAttribute(optref, "StartGameParam.iStealthSystem"))
 	{
