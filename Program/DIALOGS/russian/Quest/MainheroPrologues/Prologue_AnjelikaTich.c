@@ -78,7 +78,6 @@ void ProcessDialogEvent()
 			bDisableCharacterMenu = false;
 			pchar.SystemInfo.ChangePIRATES = true;
 			LaunchCharacter(pchar);
-			ChangeShowIntarface();
 			
 			sld = CharacterFromID("AT_pr_Rebekka")
 			LAi_SetActorType(sld);
@@ -240,7 +239,6 @@ void ProcessDialogEvent()
 			LAi_SetActorType(sld);
 			LAi_ActorTurnToCharacter(sld, CharacterFromID("AT_pr_devushka_na_rynke"));
 			locCameraToPos(-38.00, 7.00, 20.00, true);
-			ChangeShowIntarface();
 		break;
 		
 		case "Torgovets_2":
@@ -323,7 +321,6 @@ void ProcessDialogEvent()
 			DialogExit();
 			
 			LAi_SetActorType(pchar);
-			ChangeShowIntarface();
 			
 			sld = CharacterFromID("Gasten_Kotes")
 			LAi_SetActorType(sld);
@@ -361,6 +358,7 @@ void ProcessDialogEvent()
 		
 		case "Rebekka_posle_draki_3":
 			chrDisableReloadToLocation = false;
+			bDisableFastReload = true;
 			pchar.questTemp.AnjelikaTichPrologue2 = "ATP2";
 			
 			PChar.quest.AT_pr_Oba_ischezaut.win_condition.l1 = "ExitFromLocation";
@@ -463,7 +461,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Rebekka_v_grote_3":
-			dialog.text = "Понимаю. Но дело же не только в этом так? Смотри\n"+
+			dialog.text = "Понимаю. Но дело же не только в этом, так? Смотри\n"+
 							"Похоже, это вещи Аркадио? Того солдата, который вломился к нам в дом, требуя моей руки, и кольцо - то самое, которое он пытался вручить мне, до того, как ты его вытолкала.";
 			link.l1 = "Похоже. Да.";
 			link.l1.go = "Rebekka_v_grote_4";
@@ -549,7 +547,6 @@ void ProcessDialogEvent()
 		case "Pirate_v_grote_3":
 			DialogExit();
 			EndQuestMovie();
-			ChangeShowIntarface();
 			
 			sld = characterFromId("AT_pr_Rebekka");
 			LAi_SetActorType(sld);

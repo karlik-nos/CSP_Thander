@@ -515,11 +515,11 @@ void ProcessDialogEvent()
 
 		if (npchar.name == "Виспер" && !CheckAttribute(npchar, "PGGWhisperQuestStart") && !CheckAttribute(pchar,"GiantEvilSkeleton"))
 		{
-			if (GetCharacterShipClass(PChar) <= 4 && sti(npchar.Ship.Type) != SHIP_NOTUSED)
+			if (GetCharacterShipClass(PChar) <= 4 && sti(npchar.Ship.Type) != SHIP_NOTUSED && pchar.rank >= 30)
 			{
 				NPChar.PGGWhisperQuestStart = true;
 				Dialog.Text = "Знаешь? Ты как нельзя вовремя, есть одно дело.";
-				link.l1 = "Хм. Ты о чем?";
+				link.l1 = "Хм. Ты о чём?";
 				link.l1.go = "Quest_Whisper";
 				break;
 			}
@@ -545,7 +545,7 @@ void ProcessDialogEvent()
 			if (rand(100) > 60 && !CheckAttribute(pchar, "GenQuest.PGG_Quest") && GetCharacterShipClass(PChar) <= 4 && iDays > 7)
 			{
 				Dialog.Text = "Что за разговор? Хотя.. Почему бы и нет. Дело или дельце - это мы завсегда!";
-				link.l1 = "Хм. Ты о чем?";
+				link.l1 = "Хм. Ты о чём?";
 				link.l1.go = "Quest_1_Ship";
 				NPChar.PGGAi.ActiveQuest = 1; // чтоб говорил от своего имени
 				PChar.GenQuest.PGG_Quest = 1; // чтоб не достовали другие ПГГ
