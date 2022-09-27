@@ -940,7 +940,7 @@ void LoadStartGameParam()
     }
 	if (CheckAttribute(optref, "StartGameParam.bModDamage"))
 	{
-    	bModDamage = sti(optref.StartGameParam.bModDamage);
+    	bModDamage = stf(optref.StartGameParam.bModDamage);
     }
 	if (CheckAttribute(optref, "StartGameParam.iStealthSystem"))
 	{

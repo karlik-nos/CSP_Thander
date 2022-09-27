@@ -1293,6 +1293,11 @@ void ShowInfo()
 			sHeader = GetRPGText("DEAD_SLIDE");
 			sText1 = GetRPGText("DEAD_SLIDE_desc");
 		break;
+		
+		case "DAMAGE_SLIDE":
+			sHeader = GetRPGText("DAMAGE_SLIDE");
+			sText1 = GetRPGText("DAMAGE_SLIDE_desc");
+		break;
 
 		case "DEFENDERS_SLIDE":
 			sHeader = GetRPGText("DEFENDERS_SLIDE");
