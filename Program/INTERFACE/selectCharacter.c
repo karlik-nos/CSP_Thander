@@ -1559,7 +1559,7 @@ void TmpI_ShowDeadAmount()
 }
 void TmpI_ShowDamageAmount()
 {
-    SetFormatedText("DAMAGE_COUNT", "x" + FloatToString((3.0 - 2.67 * (1.0 - stf(GameInterface.nodes.DAMAGE_SLIDE.value))),2));
+    SetFormatedText("DAMAGE_COUNT", "x" + FloatToString((makefloat(4+MOD_SKILL_ENEMY_RATE)/10)*makefloat(FloatToString((3.0 - 2.67 * (1.0 - stf(GameInterface.nodes.DAMAGE_SLIDE.value))),2)),2));
 }
 void TmpI_ShowDefendersAmount()
 {
