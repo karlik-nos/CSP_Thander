@@ -88,7 +88,7 @@ bool 	bRankRequirement 			= false;
 // влияние сложности на переносимый вес
 bool 	bDifficultyWeight 			= false;
 // Упрощённое фехтование
-bool 	bModDamage 					= false;
+float 	bModDamage 					= 1.0;
 // Найм полубессмертного ПГГ
 bool 	bHalfImmortalPGG 			= false;
 // Сбор денег за швартовку
