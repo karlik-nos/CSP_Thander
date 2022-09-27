@@ -3,7 +3,7 @@ void InitInterface_gm(string iniName)
 {
 	GameInterface.title = "titleGameMenu";
 
-	// SetTimeScale(0.0);
+	SetTimeScale(0.0);
 	locCameraSleep(true);
 
 	EngineLayersOffOn(true);
