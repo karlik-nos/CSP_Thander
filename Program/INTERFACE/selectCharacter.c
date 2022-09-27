@@ -47,6 +47,9 @@ void InitInterface(string iniName)
 
 	GameInterface.nodes.DEAD_SLIDE.value = makefloat(MOD_DEAD_CLEAR_TIME-500+400)/400.0;
     SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"DEAD_SLIDE", 0, stf(GameInterface.nodes.DEAD_SLIDE.value));
+	
+	GameInterface.nodes.DAMAGE_SLIDE.value = makefloat(FloatToString(((bModDamage-3.0+2.67)/2.67),2));
+    SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"DAMAGE_SLIDE", 0, stf(GameInterface.nodes.DAMAGE_SLIDE.value));
 
 	GameInterface.nodes.DEFENDERS_SLIDE.value = makefloat(MOD_DEFENDERS_RATE)/5.0;
     SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"DEFENDERS_SLIDE", 0, stf(GameInterface.nodes.DEFENDERS_SLIDE.value));
@@ -257,20 +260,25 @@ void SetByDefault()
 	{
 		CheckButton_SetState("CHECK_DIFFICULTY_WEIGHT",1,true);
 	}
-	if(bModDamage)
+	else
+	{
+		CheckButton_SetState("CHECK_DIFFICULTY_WEIGHT",1,false);
+	}
+	/*if(bModDamage)
 	{
 		CheckButton_SetState("CHECK_MOD_DAMAGE",1,true);
 	}
 	else
 	{
-		CheckButton_SetState("CHECK_DIFFICULTY_WEIGHT",1,false);
-	}
+		CheckButton_SetState("CHECK_MOD_DAMAGE",1,false);
+	}*/
 }
 
 void IProcessFrame()
 {
 	TmpI_ShowOffAmount();
 	TmpI_ShowDeadAmount();
+	TmpI_ShowDamageAmount();
 	TmpI_ShowDefendersAmount();
 	if(GetCurrentNode() == "PROFILE_NAME")
 	{
@@ -491,14 +499,14 @@ void IProcessFrame()
 	{
 		bDifficultyWeight = false;
 	}
-	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_MOD_DAMAGE", 3, 1))
+	/*if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_MOD_DAMAGE", 3, 1))
 	{
 		bModDamage = true;
 	}
 	else
 	{
 		bModDamage = false;
-	}
+	}*/
 }
 
 void exitCancel()
@@ -671,6 +679,13 @@ void ProcessCommandExecute()
 			if(comName=="click" || comName=="leftstep" || comName=="speedleft" || comName=="rightstep" || comName=="speedright" || comName=="deactivate" || comName=="rclick")
 			{
 				TmpI_ShowDeadAmount();
+			}
+		break;
+		
+		case "DAMAGE_SLIDE":
+			if(comName=="click" || comName=="leftstep" || comName=="speedleft" || comName=="rightstep" || comName=="speedright" || comName=="deactivate" || comName=="rclick")
+			{
+				TmpI_ShowDamageAmount();
 			}
 		break;
 
@@ -1052,8 +1067,8 @@ void IDoExit(int exitCode, bool bCode)
 		MOD_DEAD_CLEAR_TIME = makeint(500 - 400.0 * (1.0 - stf(GameInterface.nodes.DEAD_SLIDE.value)));  // 0т 100 до 500
 		trace("MOD_DEAD_CLEAR_TIME = " + MOD_DEAD_CLEAR_TIME);
 
-		MOD_DEFENDERS_RATE = makeint(5 - 5.0 * (1.0 - stf(GameInterface.nodes.DEFENDERS_SLIDE.value)));  // 0т 0 до 5
-		trace("MOD_DEFENDERS_RATE_RATE = " + MOD_DEFENDERS_RATE);
+		bModDamage = makefloat(3.0 - 2.67 * (1.0 - stf(GameInterface.nodes.DAMAGE_SLIDE.value)));  // 0т 0 до 5
+		trace("bModDamage = " + bModDamage);
 		
 		if (bAltBalance == false)
 		{
@@ -1536,6 +1551,10 @@ void TmpI_ShowOffAmount()
 void TmpI_ShowDeadAmount()
 {
     SetFormatedText("DEAD_COUNT", "" + makeint(500 - 400.0 * (1.0 - stf(GameInterface.nodes.DEAD_SLIDE.value))));
+}
+void TmpI_ShowDamageAmount()
+{
+    SetFormatedText("DAMAGE_COUNT", "x" + FloatToString((3.0 - 2.67 * (1.0 - stf(GameInterface.nodes.DAMAGE_SLIDE.value))),2));
 }
 void TmpI_ShowDefendersAmount()
 {

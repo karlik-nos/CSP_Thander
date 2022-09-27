@@ -930,7 +930,10 @@ void LoadStartGameParam()
 	{
     	bAltBalanceProHits = sti(optref.StartGameParam.bAltBalanceProHits);
     }
-	
+	if (CheckAttribute(optref, "StartGameParam.bFillEncyShips"))
+	{
+    	bFillEncyShips = sti(optref.StartGameParam.bFillEncyShips);
+    }
 	if (CheckAttribute(optref, "StartGameParam.bDifficultyWeight"))
 	{
     	bDifficultyWeight = sti(optref.StartGameParam.bDifficultyWeight);
