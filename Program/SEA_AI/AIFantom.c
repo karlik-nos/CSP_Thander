@@ -414,8 +414,11 @@ void Fantom_SetSails(ref rFantom, string sFantomType)
 void Fantom_SetBalls(ref rFantom, string sFantomType)
 {
 	int iKClass = 7 - GetCharacterShipClass(rFantom);
-	float fK = 1;
-	int iCannons = GetCannonsNumMax(rFantom);
+	float fK = 1;	
+	
+	int nShipType = sti(rFantom.ship.type);
+	ref refBaseShip = GetRealShip(nShipType);
+	int iCannons = sti(refBaseShip.CannonsQuantity);
 	int iCrew, iPlanks;
 	
 	if (iKClass <= 0) fK = 0.7; // баркас

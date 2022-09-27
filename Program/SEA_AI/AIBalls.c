@@ -112,7 +112,11 @@ void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0,
 
 	float fCannons = stf(aCharacter.TmpSkill.Cannons)*10;
 
-	float fCannonsNumPenalty = (MakeFloat(GetCannonsNumMax(aCharacter))/35 - 1)/(10);//-0.06...0.2
+	int nShipType = sti(aCharacter.ship.type);
+	ref refBaseShip = GetRealShip(nShipType);
+	int iCannonsNum = sti(refBaseShip.CannonsQuantity);
+	
+	float fCannonsNumPenalty = (MakeFloat(iCannonsNum)/35 - 1)/(10);//-0.06...0.2
 	float fCaliberPenalty = (GetCannonCaliber(iCannonType) - 6 - fCannons*2)/160;//-0.05...0.15
     float fAccuracy = (1.5 - stf(aCharacter.TmpSkill.Accuracy))/2 + fCaliberPenalty + fCannonsNumPenalty;
 	
