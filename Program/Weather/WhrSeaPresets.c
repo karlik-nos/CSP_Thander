@@ -43,7 +43,7 @@ void WhrSetSeaPreset(string sPreset)
 	float fFoamK, fFoamV, fFoamUV, fFoamTexDisturb;
 	float fReflection, fTransparency, fFrenel, fAttenuation;
 	int iWaterColor;
-	int iSkyColor = argb(0,95,95,95);
+	int iSkyColor = argb(0,255,255,255);
 
 	switch(sPreset)
 	{
