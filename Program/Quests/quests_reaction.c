@@ -10976,11 +10976,12 @@ void QuestComplete(string sQuestName, string qname)
 		break;*/
 		
 		case "ATpr_OboronaSD":
-			StartQuestMovie(true, true, true);
+			StartQuestMovie(true, false, true);
 			LAi_SetActorType(pchar);
 			DoQuestFunctionDelay("ATpr_OboronaSD_2", 0.1);
 			ChangeCharacterAddressGroup(pchar, "SantoDomingo_ExitTown", "rld", "aloc15");
 			chrDisableReloadToLocation = true;
+			bDisableCharacterMenu = true;
 		break;
 		
 		case "ATpr_3Volna":
@@ -10992,6 +10993,8 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 		
 		case "ATpr_3Volna_3":
+			SetMusic("none");
+			PlaySound("CSR\Music\Main-menu-09.ogg");
 			sld = CharacterFromID("Gasten_Kotes")
 			LAi_SetCurHPMax(sld);
 			LAi_SetStayType(sld);
