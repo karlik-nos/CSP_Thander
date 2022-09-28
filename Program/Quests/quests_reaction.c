@@ -11140,6 +11140,8 @@ void QuestComplete(string sQuestName, string qname)
 			
 			sld = GetCharacter(NPC_GenerateCharacter("UP_Korabl_s_klinkom", "officer_30", "man", "man", sti(PChar.rank)+2, PIRATE, 40, true));
 			FantomMakeCoolSailor(sld, SHIP_SCHOONER, "Везучий Тюльпан", CANNON_TYPE_CULVERINE_LBS12, 40, 40, 40);
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
 			
 			SetCaptanModelByEncType(sld, "war");
 			sld.AlwaysEnemy = true;
@@ -11183,7 +11185,7 @@ void QuestComplete(string sQuestName, string qname)
 			sld = GetCharacter(NPC_GenerateCharacter("Undead_Indeech", "skel_5", "skeleton", "skeleton", 10, PIRATE, -1, false));
 			sld.name = "Безумные Штаны";
 			sld.lastname = "";
-			sld.FaceId = 231;
+			sld.FaceId = 353;
 			SetCharacterPerk(sld, "SeaWolf");		//Морской волк
 			GiveItem2Character(sld, "toporAZ");
 			EquipCharacterByItem(sld, "toporAZ");
@@ -11204,7 +11206,7 @@ void QuestComplete(string sQuestName, string qname)
 			sld = GetCharacter(NPC_GenerateCharacter("Undead_Blue", "skelt", "skeleton", "skeleton", 10, PIRATE, -1, false));
 			sld.name = "Ледяной демон";
 			sld.lastname = "";
-			sld.FaceId = 231;
+			sld.FaceId = 354;
 			SetCharacterPerk(sld, "Grunt");		//Рубака
 			GiveItem2Character(sld, "topor2");
 			EquipCharacterByItem(sld, "topor2");
@@ -11223,7 +11225,7 @@ void QuestComplete(string sQuestName, string qname)
 			sld = GetCharacter(NPC_GenerateCharacter("Undead_Red", "skel_4", "skeleton", "skeleton", 10, PIRATE, -1, false));
 			sld.name = "Агделес";
 			sld.lastname = "";
-			sld.FaceId = 231;
+			sld.FaceId = 352;
 			SetCharacterPerk(sld, "Adventurer");	//Авантюрист
 			GiveItem2Character(sld, "blade39");
 			EquipCharacterByItem(sld, "blade39");
@@ -11242,7 +11244,7 @@ void QuestComplete(string sQuestName, string qname)
 			sld = GetCharacter(NPC_GenerateCharacter("Undead_Green", "skel_2", "skeleton", "skeleton", 10, PIRATE, -1, false));
 			sld.name = "Кактус";
 			sld.lastname = "";
-			sld.FaceId = 231;
+			sld.FaceId = 351;
 			SetCharacterPerk(sld, "SeaWolf");		//Подводная лодка
 			SetShipSkill(sld, 10, 40, 15, 20, 50, 38, 32, 60, 30);	//Умения морские (лидер, торг, точн, пушки, навиг, ремонт, аборд, защита, скрыт)
 			GiveItem2Character(sld, "blade18");
