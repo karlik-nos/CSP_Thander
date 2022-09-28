@@ -725,6 +725,9 @@ string GetIslandByCityName(string city) // имена острова по гор
 		case "Tenotchitlan":
             return "Mein";
 		break;
+		case "Nassau":
+            return "Bahames";
+		break;
 	}
 	return "";
 }
