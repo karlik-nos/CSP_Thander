@@ -9903,7 +9903,7 @@ void QuestComplete(string sQuestName, string qname)
             pchar.GenQuest.MunityStart = true;
 			
 			StartQuestMovie(true, true, true);
-			ChangeShowIntarface();
+			//ChangeShowIntarface();
 			locCameraFromToPos(-3.20, 7.00, -3.40, false, 20.00, -4.00, -25.00);
 			
 			sTemp = "shipowner_"+(rand(28)+1);
@@ -9937,7 +9937,6 @@ void QuestComplete(string sQuestName, string qname)
 		
 		case "PDM_PI_Skelety_on_Ship_3":
 			EndQuestMovie();
-			ChangeShowIntarface();
 		
 			DoQuestFunctionDelay("PDM_PI_Vykl_Music", 1.0);
             InterfaceStates.Buttons.Save.enable = 1;

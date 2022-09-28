@@ -334,7 +334,8 @@ void AnjelikaTich_StartGame(string qName)
 	LAi_SetImmortal(sld, true);
 	ChangeCharacterAddressGroup(sld,"LaVega_MH12","goto","goto8");
 
-	DeleteAttribute(Pchar, "items");
+	RemoveAllCharacterItems(pchar, true);
+	DeleteAttribute(pchar, "items");
 	GiveItem2Character(pchar, "blade9");
 	EquipCharacterbyItem(pchar, "blade9");
 	GiveItem2Character(pchar, "suit_2");
