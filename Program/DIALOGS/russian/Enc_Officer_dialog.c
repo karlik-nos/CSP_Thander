@@ -52,6 +52,14 @@ void ProcessDialogEvent()
 			}
 			Link.l2 = "Нет, у меня полный комплект.";
 			Link.l2.go = "Exit";
+			if (pchar.sex == "Skeleton")
+			{
+				dialog.text = LinkRandPhrase("Ик... А, чего?", "Я отдыхаю, не мешай!", RandSwear()+ "У меня муха в кружке!");
+				Link.l1 = "...";
+    			Link.l1.go = "exit";
+				DeleteAttribute(link, "l2");
+				NextDiag.TempNode = "First time";
+			}
 		break;
 
 		case "CitizenNotBlade":

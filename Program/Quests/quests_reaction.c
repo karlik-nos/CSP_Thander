@@ -11047,7 +11047,7 @@ void QuestComplete(string sQuestName, string qname)
 			sld.dialog.currentnode = "First Time";
 		break;
 		
-//========================  Sinistra "Нежить: Лиларкор"  =======================
+//========================  "Нежить: Лиларкор"  =======================
 
 		case "UP_KrovPismo":
 			PChar.quest.UP_KrovPismo1.over = "yes";
@@ -11069,16 +11069,18 @@ void QuestComplete(string sQuestName, string qname)
 			chrDisableReloadToLocation = true;
 			if (pchar.name == "Весёлый Роджер")
 			{
-				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Meriman_0", "skeleton", "man", 10, PIRATE, -1, true));
+				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Meriman_0", "skeleton", "man", 10, PIRATE, -1, false));
 				sld.name = "Ужасный";
 				sld.lastname = "";
 			}
 			if (pchar.name == "Ужасный")
 			{
-				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Skeletcap_0", "skeleton", "skeleton", 10, PIRATE, -1, true));
+				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Skeletcap_0", "skeleton", "skeleton", 10, PIRATE, -1, false));
 				sld.name = "Весёлый";
 				sld.lastname = "Роджер";
 			}
+			GiveItem2Character(sld, "blade6");
+			EquipCharacterByItem(sld, "blade6");
 			ChangeCharacterAddressGroup(sld, pchar.location, "quest", "quest3");
 			LAi_SetActorType(sld);
 			LAi_ActorDialogDelay(sld, pchar, "", 1.0);
@@ -11093,16 +11095,18 @@ void QuestComplete(string sQuestName, string qname)
 			chrDisableReloadToLocation = true;
 			if (pchar.name == "Весёлый Роджер")
 			{
-				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Meriman_0", "skeleton", "man", 10, PIRATE, -1, true));
+				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Meriman_0", "skeleton", "man", 10, PIRATE, -1, false));
 				sld.name = "Ужасный";
 				sld.lastname = "";
 			}
 			if (pchar.name == "Ужасный")
 			{
-				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Skeletcap_0", "skeleton", "skeleton", 10, PIRATE, -1, true));
+				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Skeletcap_0", "skeleton", "skeleton", 10, PIRATE, -1, false));
 				sld.name = "Весёлый";
 				sld.lastname = "Роджер";
 			}
+			GiveItem2Character(sld, "blade6");
+			EquipCharacterByItem(sld, "blade6");
 			ChangeCharacterAddressGroup(sld, pchar.location, "quest", "quest3");
 			LAi_SetActorType(sld);
 			LAi_ActorDialogDelay(sld, pchar, "", 1.0);
@@ -11131,6 +11135,9 @@ void QuestComplete(string sQuestName, string qname)
 			bDisableFastReload = false;
 			chrDisableReloadToLocation = false;
 			
+			sld = CharacterFromID("PGG_Undead");
+			ChangeCharacterAddressGroup(sld, "none", "", "");
+			
 			sld = GetCharacter(NPC_GenerateCharacter("UP_Korabl_s_klinkom", "officer_30", "man", "man", sti(PChar.rank)+2, PIRATE, 40, true));
 			FantomMakeCoolSailor(sld, SHIP_SCHOONER, "Везучий Тюльпан", CANNON_TYPE_CULVERINE_LBS12, 40, 40, 40);
 			
@@ -11146,27 +11153,110 @@ void QuestComplete(string sQuestName, string qname)
 			Group_SetTaskAttackInMap("UP_Ship", PLAYER_GROUP);
 			Group_LockTask("UP_Ship");
 			Map_CreateFastWarrior("", "UP_Korabl_s_klinkom", 30);
+			
+			PChar.quest.UD_Novye_Officery.win_condition.l1 = "item";
+			PChar.quest.UD_Novye_Officery.win_condition.l1.item = "Lilarcor_Sword1";
+			PChar.quest.UD_Novye_Officery.win_condition = "UD_Novye_Officery";
 		break;
 		
-		case "UP_PGGUndead_Off":
-			if (pchar.name == "Весёлый Роджер")
-			{
-				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Meriman_0", "skeleton", "man", 10, PIRATE, -1, true));
-				sld.name = "Ужасный";
-				sld.lastname = "";
-				sld.FaceId = 537;
-				AddPassenger(pchar, sld, false);
-				SetCharacterRemovable(sld, false);
-			}
-			if (pchar.name == "Ужасный")
-			{
-				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Skeletcap_0", "skeleton", "skeleton", 10, PIRATE, -1, true));
-				sld.name = "Весёлый";
-				sld.lastname = "Роджер";
-				sld.FaceId = 511;
-				AddPassenger(pchar, sld, false);
-				SetCharacterRemovable(sld, false);
-			}
+		case "UD_Novye_Officery":
+			//Привидение
+			sld = GetCharacter(NPC_GenerateCharacter("Undead_Jessika", "PGG_Ghost_0", "skeleton", "Jessika", 10, PIRATE, -1, false));
+			sld.name = "Джессика";
+			sld.lastname = "";
+			sld.FaceId = 527;
+			SetCharacterPerk(sld, "Fencer");		//Фехтовальщица
+			GiveItem2Character(sld, "blade36");
+			EquipCharacterByItem(sld, "blade36");
+			sld.Dialog.Filename = "Enc_Officer_dialog.c";
+			sld.quest.meeting = true;
+			Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(sld.id);
+			sld.OfficerWantToGo.DontGo = true;
+			sld.loyality = MAX_LOYALITY;
+			sld.HalfImmortal = true;
+			AddPassenger(pchar, sld, false);
+			sld.location = "None";
+			sld.Dialog.CurrentNode = "hired";
+			sld.Payment = true;
+			
+			//Скелет индеец
+			sld = GetCharacter(NPC_GenerateCharacter("Undead_Indeech", "skel_5", "skeleton", "skeleton", 10, PIRATE, -1, false));
+			sld.name = "Безумные Штаны";
+			sld.lastname = "";
+			sld.FaceId = 231;
+			SetCharacterPerk(sld, "SeaWolf");		//Морской волк
+			GiveItem2Character(sld, "toporAZ");
+			EquipCharacterByItem(sld, "toporAZ");
+			GiveItem2Character(sld, "Totem_11");
+			SetShipSkill(sld, 15, 25, 30, 30, 45, 30, 25, 20, 5);	//Умения морские (лидер, торг, точн, пушки, навиг, ремонт, аборд, защита, скрыт)
+			sld.Dialog.Filename = "Enc_Officer_dialog.c";
+			sld.quest.meeting = true;
+			Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(sld.id);
+			sld.OfficerWantToGo.DontGo = true;
+			sld.loyality = MAX_LOYALITY;
+			sld.HalfImmortal = true;
+			AddPassenger(pchar, sld, false);
+			sld.location = "None";
+			sld.Dialog.CurrentNode = "hired";
+			sld.Payment = true;
+			
+			//Синий скелет
+			sld = GetCharacter(NPC_GenerateCharacter("Undead_Blue", "skelt", "skeleton", "skeleton", 10, PIRATE, -1, false));
+			sld.name = "Ледяной демон";
+			sld.lastname = "";
+			sld.FaceId = 231;
+			SetCharacterPerk(sld, "Grunt");		//Рубака
+			GiveItem2Character(sld, "topor2");
+			EquipCharacterByItem(sld, "topor2");
+			sld.Dialog.Filename = "Enc_Officer_dialog.c";
+			sld.quest.meeting = true;
+			Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(sld.id);
+			sld.OfficerWantToGo.DontGo = true;
+			sld.loyality = MAX_LOYALITY;
+			sld.HalfImmortal = true;
+			AddPassenger(pchar, sld, false);
+			sld.location = "None";
+			sld.Dialog.CurrentNode = "hired";
+			sld.Payment = true;
+			
+			//Скелет с красной повязкой
+			sld = GetCharacter(NPC_GenerateCharacter("Undead_Red", "skel_4", "skeleton", "skeleton", 10, PIRATE, -1, false));
+			sld.name = "Агделес";
+			sld.lastname = "";
+			sld.FaceId = 231;
+			SetCharacterPerk(sld, "Adventurer");	//Авантюрист
+			GiveItem2Character(sld, "blade39");
+			EquipCharacterByItem(sld, "blade39");
+			sld.Dialog.Filename = "Enc_Officer_dialog.c";
+			sld.quest.meeting = true;
+			Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(sld.id);
+			sld.OfficerWantToGo.DontGo = true;
+			sld.loyality = MAX_LOYALITY;
+			sld.HalfImmortal = true;
+			AddPassenger(pchar, sld, false);
+			sld.location = "None";
+			sld.Dialog.CurrentNode = "hired";
+			sld.Payment = true;
+			
+			//Скелет с зелёными штанами
+			sld = GetCharacter(NPC_GenerateCharacter("Undead_Green", "skel_2", "skeleton", "skeleton", 10, PIRATE, -1, false));
+			sld.name = "Кактус";
+			sld.lastname = "";
+			sld.FaceId = 231;
+			SetCharacterPerk(sld, "SeaWolf");		//Подводная лодка
+			SetShipSkill(sld, 10, 40, 15, 20, 50, 38, 32, 60, 30);	//Умения морские (лидер, торг, точн, пушки, навиг, ремонт, аборд, защита, скрыт)
+			GiveItem2Character(sld, "blade18");
+			EquipCharacterByItem(sld, "blade18");
+			sld.Dialog.Filename = "Enc_Officer_dialog.c";
+			sld.quest.meeting = true;
+			Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(sld.id);
+			sld.OfficerWantToGo.DontGo = true;
+			sld.loyality = MAX_LOYALITY;
+			sld.HalfImmortal = true;
+			AddPassenger(pchar, sld, false);
+			sld.location = "None";
+			sld.Dialog.CurrentNode = "hired";
+			sld.Payment = true;
 		break;
 		
 //========================  "Игра в прятки"  =======================		

@@ -1133,8 +1133,7 @@ void Undead_Start_Graveyard_1(string qName)
 	PChar.quest.Undead_Start_Graveyard_2.function = "Undead_Start_Graveyard_3";
 	
 	//Квест "Проклятый идол" НЕ доступен для Нежити
-	sld = CharacterFromID("James_Callow")
-	LAi_KillCharacter(sld);
+	PChar.quest.PDM_CI_SpawnJC.over = "yes";
 }
 void Undead_Start_Graveyard_3(string qName)
 {
