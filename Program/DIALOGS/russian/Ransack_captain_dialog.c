@@ -28,6 +28,10 @@ void ProcessDialogEvent()
 				{
 					link.l2 = "Слушай, ты неплохой боец, а мне как раз нужны отчаянные головорезы. Не желаешь послужить у меня офицером?";
 					link.l2.go = "free_to_officer";
+					if (pchar.sex == "Skeleton")
+					{
+						DeleteAttribute(link, "l2");
+					}
 				}
 			}
 			else
@@ -37,6 +41,10 @@ void ProcessDialogEvent()
 				{
 					link.l1 = "Послушайте, в морском деле вы дока, а мне нужны опытные моряки. Не желаете послужить под моим началом?";
 					link.l1.go = "free_to_officer_trader";
+					if (pchar.sex == "Skeleton")
+					{
+						DeleteAttribute(link, "l1");
+					}
 				}
 			}
 			attrLoc = Sea_FindNearColony();
@@ -111,6 +119,10 @@ void ProcessDialogEvent()
 					{
 						link.l2 = "Слушай, ты неплохой боец, а мне как раз нужны отчаянные головорезы. Не желаешь послужить у меня офицером?";
 						link.l2.go = "free_to_officer";
+						if (pchar.sex == "Skeleton")
+						{
+							DeleteAttribute(link, "l2");
+						}
 					}
 					link.l3 = LinkRandPhrase("Пощады не ждите. Много вас таких по морю рыщет, теперь на одного меньше будет.",
 						"Что запричитал, 'гроза морей'? Сиди, раз попался.",
@@ -126,6 +138,10 @@ void ProcessDialogEvent()
 						{
 							link.l2 = "Послушайте, в морском деле вы дока, а мне нужны опытные моряки. Не желаете послужить под моим началом?";
 							link.l2.go = "free_to_officer_trader";
+							if (pchar.sex == "Skeleton")
+							{
+								DeleteAttribute(link, "l2");
+							}
 						}
 						link.l3 = LinkRandPhrase("У меня насчёт вас другие планы.","Я думаю, что вы мне ещё пригодитесь.","Вы мой пленник, и я поступлю с вами так, как сочту нужным.");
 						link.l3.go = "exit";

@@ -11182,8 +11182,8 @@ void QuestComplete(string sQuestName, string qname)
 			
 			//Скелет индеец
 			sld = GetCharacter(NPC_GenerateCharacter("Undead_Indeech", "skel_5", "skeleton", "skeleton", 10, PIRATE, -1, false));
-			sld.name = "Безумные Штаны";
-			sld.lastname = "";
+			sld.name = "Безумные";
+			sld.lastname = "Штаны";
 			sld.FaceId = 353;
 			SetCharacterPerk(sld, "SeaWolf");		//Морской волк
 			GiveItem2Character(sld, "toporAZ");
@@ -11203,8 +11203,8 @@ void QuestComplete(string sQuestName, string qname)
 			
 			//Синий скелет
 			sld = GetCharacter(NPC_GenerateCharacter("Undead_Blue", "skelt", "skeleton", "skeleton", 10, PIRATE, -1, false));
-			sld.name = "Ледяной демон";
-			sld.lastname = "";
+			sld.name = "Ледяной";
+			sld.lastname = "демон";
 			sld.FaceId = 354;
 			SetCharacterPerk(sld, "Grunt");		//Рубака
 			GiveItem2Character(sld, "topor2");
