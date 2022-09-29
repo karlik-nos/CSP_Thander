@@ -2677,6 +2677,7 @@ void CalculateInfoDataF56()
 	totalInfo = descF56;
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
+	pchar.LilarcorKills = 1799;
 
 	SetFormatedText("INFO_TEXT", totalInfo);
 

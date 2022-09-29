@@ -1438,7 +1438,7 @@ void WhisperWarDogSeaBattle()
 	sld.Ship.Type = GenerateShipExt(SHIP_WH_CORVETTE_QUEST, true, sld);
 	sld.Ship.name = "Пёс Войны";
 	//SetBaseShipData(sld);
-	sld.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS32;
+	sld.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS24;
 
 	ChangeCharacterAddressGroup(sld, "My_Deck", "reload", "reload1");
 	EquipCharacterByItem(sld, "blade_15");

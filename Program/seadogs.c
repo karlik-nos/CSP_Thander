@@ -1410,7 +1410,7 @@ void ProcessControls()
 						else {TimeScaleCounter++;}
 					}
 				}
-			}			
+			}
 		}
      	else
      	{
@@ -1427,7 +1427,7 @@ void ProcessControls()
 						else {TimeScaleCounter--;}
 					}
 				}
-			}	
+			}
 		}
 		if (true) // MOD_SKILL_ENEMY_RATE > 1) // запрет 0.25 скорости
         {
@@ -1441,7 +1441,7 @@ void ProcessControls()
         {   // без боя
             if (bSeaActive && !bAbordageStarted )
             {
-            	if (TimeScaleCounter > 32) TimeScaleCounter = 32; // море
+            	if (TimeScaleCounter > 48) TimeScaleCounter = 48; // море
             }
             else
             {
@@ -1506,7 +1506,7 @@ void ProcessControls()
 			else
 			{
 				SetTimeScale(GetSeaTimeScale());
-				TimeScaleCounter = 4
+				TimeScaleCounter = 4;
                 Log_SetStringToLog("Time x2");
 				AddPerkToActiveList("TimeSpeed");
 			}

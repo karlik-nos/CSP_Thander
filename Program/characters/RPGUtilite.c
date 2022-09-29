@@ -519,14 +519,14 @@ string GetSkillNameByIdx(int idx)
         case 4:    ret = SKILL_PISTOL;    break;
         case 5:    ret = SKILL_FORTUNE;   break;
         case 6:    ret = SKILL_LEADERSHIP; break;
-        case 7:    ret = SKILL_COMMERCE;   break;
+        case 7:    ret = SKILL_SNEAK;      break;
         case 8:    ret = SKILL_ACCURACY;   break;
         case 9:    ret = SKILL_CANNONS;    break;
         case 10:   ret = SKILL_SAILING;    break;
         case 11:   ret = SKILL_REPAIR;     break;
         case 12:   ret = SKILL_GRAPPLING;  break;
         case 13:   ret = SKILL_DEFENCE;    break;
-        case 14:   ret = SKILL_SNEAK;      break;
+        case 14:   ret = SKILL_COMMERCE;   break;
         case 15:   ret = SPECIAL_S;   break;
         case 16:   ret = SPECIAL_P;   break;
         case 17:   ret = SPECIAL_A;   break;

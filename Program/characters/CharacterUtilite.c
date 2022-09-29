@@ -4072,8 +4072,6 @@ void SwapWeaponFight2()
 {
 	pchar.mushket.timer = false;
 }
-<<<<<<< Updated upstream
-=======
 
 #event_handler("Lilarcor_Talks", "Lilarcor_Talks");
 void Lilarcor_Talks()
@@ -4095,4 +4093,3 @@ void Lilarcor_Talks2()
 {
 	LAi_CharacterPlaySound(PChar, "Lilarcor_rnd");
 }
->>>>>>> Stashed changes

@@ -303,19 +303,19 @@ float LAi_CalcDamageForBlade(aref attack, aref enemy, string attackType, bool is
 			}
 		}
 		// упрощение игры новичкам
-		if (MOD_SKILL_ENEMY_RATE == 1 && CheckAttribute(enemy, "chr_ai.group"))
+		/*if (MOD_SKILL_ENEMY_RATE == 1 && CheckAttribute(enemy, "chr_ai.group"))
 		{
 			if (enemy.chr_ai.group == LAI_GROUP_PLAYER)
 			{
 				dmg = dmg / MOD_Complexity_1_DMG;
 			}
-		}
-
+		}*/
+		
 		//Boyer mod #20170318-33 difficulty level rebalancing
 		//if (MOD_SKILL_ENEMY_RATE < 5 && sti(enemy.index) == GetMainCharacterIndex())
-		if (MOD_SKILL_ENEMY_RATE < 11 && sti(enemy.index) == GetMainCharacterIndex())
+		if (sti(enemy.index) == GetMainCharacterIndex())
 		{
-			dmg = dmg * (4.0 + MOD_SKILL_ENEMY_RATE) / 10.0;
+			dmg = (dmg * (4.0 + MOD_SKILL_ENEMY_RATE) / 10.0) * bModDamage;
 		}
 		return dmg;
 	}
@@ -537,18 +537,18 @@ float LAi_GunCalcDamage(aref attack, aref enemy)
 		dmg = dmg * (1.0 + 0.7 * (aSkill - eSkill));
 	}
 	// упрощение игры новичкам
-	if (MOD_SKILL_ENEMY_RATE == 1 && CheckAttribute(enemy, "chr_ai.group"))
+	/*if (MOD_SKILL_ENEMY_RATE == 1 && CheckAttribute(enemy, "chr_ai.group"))
 	{
 		if (enemy.chr_ai.group == LAI_GROUP_PLAYER)
 		{
-			dmg = dmg * MOD_Complexity_1_DMG;
+			dmg = dmg / MOD_Complexity_1_DMG;
 		}
-	}
+	}*/
 	//Boyer mod #20170318-33 Fight/difficulty level rebalancing
 	//if (MOD_SKILL_ENEMY_RATE < 5 && sti(enemy.index) == GetMainCharacterIndex())
-	if (MOD_SKILL_ENEMY_RATE < 11 && sti(enemy.index) == GetMainCharacterIndex())
+	if (sti(enemy.index) == GetMainCharacterIndex())
 	{
-		dmg = dmg * (4.0 + MOD_SKILL_ENEMY_RATE) / 10.0;
+		dmg = (dmg * (4.0 + MOD_SKILL_ENEMY_RATE) / 10.0) * bModDamage;
 	}
 	if(CheckCharacterPerk(attack, "Buccaneer"))
 	{
@@ -1392,8 +1392,6 @@ void LAi_SetResultOfDeath(ref attack, ref enemy, bool isSetBlade)
 			    SetNationRelation2MainCharacter(sti(enemy.nation), RELATION_ENEMY);
 		    }
 		}
-<<<<<<< Updated upstream
-=======
 		if (startherotype == 9 || startherotype == 10)
 		{
 			if (CheckAttribute(pchar,"equip.blade") && HasSubStr(pchar.equip.blade, "Lilarcor"))
@@ -1424,7 +1422,6 @@ void LAi_SetResultOfDeath(ref attack, ref enemy, bool isSetBlade)
 				}
 			}
 		}
->>>>>>> Stashed changes
 	}
 }
 // boal <--

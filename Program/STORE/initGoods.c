@@ -19,7 +19,7 @@ void InitGoods()
 	Goods[GOOD_GRAPES].Cost			= 12;
 	Goods[GOOD_GRAPES].Weight		= 1;
 	Goods[GOOD_GRAPES].Units		= 20;
-	Goods[GOOD_GRAPES].SpeedV0		= 0.5;
+	Goods[GOOD_GRAPES].SpeedV0		= 0.6;
 	Goods[GOOD_GRAPES].DamageHull	= 0.01;
 	Goods[GOOD_GRAPES].DamageRig	= 0.0;
 	Goods[GOOD_GRAPES].DamageCrew	= 0.2;
@@ -44,7 +44,7 @@ void InitGoods()
 	Goods[GOOD_BOMBS].Weight		= 2;
 	Goods[GOOD_BOMBS].Units			= 20;
 	Goods[GOOD_BOMBS].SpeedV0		= 0.6;
-	Goods[GOOD_BOMBS].DamageHull	= 2.0;
+	Goods[GOOD_BOMBS].DamageHull	= 2.5;
 	Goods[GOOD_BOMBS].DamageRig		= 0.0;
 	Goods[GOOD_BOMBS].DamageCrew	= 0.06;
 	Goods[GOOD_BOMBS].AfraidWater = 0;

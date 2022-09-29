@@ -773,7 +773,7 @@ void ProcessDialogEvent()
 			link.l1.go = "exit";
 			sld = GetCharacter(NPC_GenerateCharacter("EdwardLoy", "officer_10", "man", "man", 30, PIRATE, -1, true));
 			FantomMakeCoolFighter(sld, 30, 90, 50, "blade25", "pistol3", 100);
-			FantomMakeCoolSailor(sld, SHIP_BRIGSW, "Морской волк", CANNON_TYPE_CANNON_LBS24, 90, 90, 90);
+			FantomMakeCoolSailor(sld, SHIP_BRIGSW, "Морской волк", CANNON_TYPE_CANNON_LBS20, 90, 90, 90);
 			sld.name = "Эдвард";
 			sld.lastname = "Лоу";
 			sld.rank = 30;
