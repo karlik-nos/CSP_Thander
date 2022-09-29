@@ -1980,8 +1980,16 @@ bool LAi_Chr_CheckEnergy()
 }
 // EvgAnat - требование энергии для отскока <--
 
+// EvgAnat - включено ли уклонение от выстрела для нпс -->
+#event_handler("NPC_IsDodgeEnabled", "LAi_Chr_IsDodgeEnabled");
+bool LAi_Chr_IsDodgeEnabled()
+{
+	return true;
+}
+// EvgAnat - включено ли уклонение от выстрела для нпс <--
+
 // EvgAnat - уклонение от выстрела -->
-#event_handler("Check_ChrHitFire", "LAi_Chr_CheckHitFire")
+#event_handler("Check_ChrHitFire", "LAi_Chr_CheckHitFire");
 int LAi_Chr_CheckHitFire() // 0 - не попал, 1 - попал
 {
 	aref shooter = GetEventData(); // стрелок
