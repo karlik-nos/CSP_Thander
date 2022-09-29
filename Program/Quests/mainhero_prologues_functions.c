@@ -851,7 +851,7 @@ void ATpr_OboronaSD_9(string qName)
 	CreateLocationParticles("shipfire", "rld", "loc6", -3.0, 0, 0, "");
 	CreateLocationParticles("ShipExplode", "rld", "loc6", 0, 0, 0, "boom");
 	CreateLocationParticles("Ship_cannon_fire", "rld", "loc21", 0, -90, 0, "cannon_fire_2");
-	//CreateLocationParticles("Bombard", "rld", "loc21", 0, -90, 0, "cannon_fire_2");
+	CreateLocationParticles("Bombard", "rld", "loc21", 0, -90, 0, "cannon_fire_2");
 	PlayVoice("Sea Battles\sdavl_kriki_002.wav");
 	PlaySound("Sea Battles\vistrel_orudiya_004.wav");
 	
