@@ -705,7 +705,6 @@ void AT_pr_Bejim_ot_piratov_4(string qName)
 }
 void ATpr_OboronaSD_2(string qName)
 {	
-	//locCameraToPos(-14.50, 7.00, 0.00, false);
 	locCameraFromToPos(-14.50, 7.00, 0.00, false, 0.22, 2.60, 0.00);
 	ChangeShowIntarface();
 	DoQuestFunctionDelay("ATpr_OboronaSD_3", 1.5);
@@ -816,9 +815,6 @@ void ATpr_OboronaSD_7(string qName)
 void ATpr_OboronaSD_8(string qName)
 {
 	DoQuestFunctionDelay("ATpr_OboronaSD_8_1", 0.8);
-	//locCameraTarget(PChar)
-	//locCameraFollow();
-	//locCameraToPos(1.00, 11.00, -28.00, false);
 	locCameraFromToPos(-3.00, 11.30, -26.00, false, 0.27, -0.36, 0.00);
 	
 	//Пираты 1 волна (#1)
@@ -847,11 +843,10 @@ void ATpr_OboronaSD_8_2(string qName)
 }
 void ATpr_OboronaSD_9(string qName)
 {
-	//ChangeCharacterAddressGroup(pchar, "SantoDomingo_ExitTown", "rld", "aloc15");
 	CreateLocationParticles("shipfire", "rld", "loc6", -3.0, 0, 0, "");
 	CreateLocationParticles("ShipExplode", "rld", "loc6", 0, 0, 0, "boom");
-	CreateLocationParticles("Ship_cannon_fire", "rld", "loc21", 0, -90, 0, "cannon_fire_2");
-	CreateLocationParticles("Bombard", "rld", "loc21", 0, -90, 0, "cannon_fire_2");
+	CreateLocationParticles("Ship_cannon_fire", "rld", "loc21", 0, -90, 0, "");
+	CreateLocationParticles("cancloud_fire_big", "rld", "loc21", 0, -90, 0, "");
 	PlayVoice("Sea Battles\sdavl_kriki_002.wav");
 	PlaySound("Sea Battles\vistrel_orudiya_004.wav");
 	
@@ -880,8 +875,8 @@ void ATpr_OboronaSD_11(string qName)
 {
 	CreateLocationParticles("shipfire", "rld", "loc9", -3.0, 0, 0, "");
 	CreateLocationParticles("ShipExplode", "rld", "loc9", 0, 0, 0, "boom");
-	CreateLocationParticles("Ship_cannon_fire", "rld", "loc22", 0, -90, 0, "cannon_fire_2");
-	CreateLocationParticles("Bombard", "rld", "loc22", 0, -90, 0, "cannon_fire_2");
+	CreateLocationParticles("Ship_cannon_fire", "rld", "loc22", 0, -90, 0, "");
+	CreateLocationParticles("cancloud_fire_big", "rld", "loc22", 0, -90, 0, "");
 	PlayVoice("Sea Battles\sdavl_kriki_004.wav");
 	PlaySound("Sea Battles\vistrel_orudiya_005.wav");
 	
