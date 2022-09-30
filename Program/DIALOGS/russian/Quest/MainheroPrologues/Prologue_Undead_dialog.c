@@ -175,12 +175,12 @@ void ProcessDialogEvent()
 				sld.name = "Ужасный";
 				sld.lastname = "";
 				sld.FaceId = 537;
-				SetCharacterPerk(sld, "Buccaneer");
 				GiveItem2Character(sld, "mushket_SeaCarbine");
 				SetCharacterPerk(sld, "Gunman");
 				SetCharacterPerk(sld, "GunProfessional");
 				AddItems(sld, "bullet", 20);
 				AddItems(sld, "GunPowder", 20);
+				LAi_SetHP(sld, 180.0, 180.0);
 				AddPassenger(pchar, sld, false);
 				SetCharacterRemovable(sld, true);
 				sld.HalfImmortal = true;
@@ -196,12 +196,12 @@ void ProcessDialogEvent()
 				sld.name = "Весёлый";
 				sld.lastname = "Роджер";
 				sld.FaceId = 511;
-				SetCharacterPerk(sld, "Buccaneer");
 				GiveItem2Character(sld, "mushket_SeaCarbine");
 				SetCharacterPerk(sld, "Gunman");
 				SetCharacterPerk(sld, "GunProfessional");
 				AddItems(sld, "bullet", 20);
 				AddItems(sld, "GunPowder", 20);
+				LAi_SetHP(sld, 180.0, 180.0);
 				AddPassenger(pchar, sld, false);
 				SetCharacterRemovable(sld, true);
 				sld.HalfImmortal = true;

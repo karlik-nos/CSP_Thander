@@ -11169,7 +11169,6 @@ void QuestComplete(string sQuestName, string qname)
 			sld.name = "Джессика";
 			sld.lastname = "";
 			sld.FaceId = 527;
-			SetCharacterPerk(sld, "Fencer");		//Фехтовальщица
 			GiveItem2Character(sld, "blade36");
 			EquipCharacterByItem(sld, "blade36");
 			sld.Dialog.Filename = "Enc_Officer_dialog.c";
@@ -11182,13 +11181,14 @@ void QuestComplete(string sQuestName, string qname)
 			sld.location = "None";
 			sld.Dialog.CurrentNode = "hired";
 			sld.Payment = true;
+			LAi_SetHP(sld, 260.0, 260.0);
+			AddBonusEnergyToCharacter(sld, 30);
 			
 			//Скелет индеец
 			sld = GetCharacter(NPC_GenerateCharacter("Undead_Indeech", "skel_5", "skeleton", "skeleton", 10, PIRATE, -1, false));
 			sld.name = "Безумные";
 			sld.lastname = "Штаны";
 			sld.FaceId = 353;
-			SetCharacterPerk(sld, "SeaWolf");		//Морской волк
 			GiveItem2Character(sld, "toporAZ");
 			EquipCharacterByItem(sld, "toporAZ");
 			GiveItem2Character(sld, "Totem_11");
@@ -11203,13 +11203,13 @@ void QuestComplete(string sQuestName, string qname)
 			sld.location = "None";
 			sld.Dialog.CurrentNode = "hired";
 			sld.Payment = true;
+			LAi_SetHP(sld, 150.0, 150.0);
 			
 			//Синий скелет
 			sld = GetCharacter(NPC_GenerateCharacter("Undead_Blue", "skelt", "skeleton", "skeleton", 10, PIRATE, -1, false));
 			sld.name = "Ледяной";
 			sld.lastname = "демон";
 			sld.FaceId = 354;
-			SetCharacterPerk(sld, "Grunt");		//Рубака
 			GiveItem2Character(sld, "topor2");
 			EquipCharacterByItem(sld, "topor2");
 			sld.Dialog.Filename = "Enc_Officer_dialog.c";
@@ -11222,13 +11222,13 @@ void QuestComplete(string sQuestName, string qname)
 			sld.location = "None";
 			sld.Dialog.CurrentNode = "hired";
 			sld.Payment = true;
+			LAi_SetHP(sld, 350.0, 350.0);
 			
 			//Скелет с красной повязкой
 			sld = GetCharacter(NPC_GenerateCharacter("Undead_Red", "skel_4", "skeleton", "skeleton", 10, PIRATE, -1, false));
 			sld.name = "Агделес";
 			sld.lastname = "";
 			sld.FaceId = 352;
-			SetCharacterPerk(sld, "Adventurer");	//Авантюрист
 			GiveItem2Character(sld, "blade39");
 			EquipCharacterByItem(sld, "blade39");
 			sld.Dialog.Filename = "Enc_Officer_dialog.c";
@@ -11241,13 +11241,13 @@ void QuestComplete(string sQuestName, string qname)
 			sld.location = "None";
 			sld.Dialog.CurrentNode = "hired";
 			sld.Payment = true;
+			LAi_SetHP(sld, 200.0, 200.0);
 			
 			//Скелет с зелёными штанами
 			sld = GetCharacter(NPC_GenerateCharacter("Undead_Green", "skel_2", "skeleton", "skeleton", 10, PIRATE, -1, false));
 			sld.name = "Кактус";
 			sld.lastname = "";
 			sld.FaceId = 351;
-			SetCharacterPerk(sld, "SeaWolf");		//Подводная лодка
 			SetShipSkill(sld, 10, 40, 15, 20, 50, 38, 32, 60, 30);	//Умения морские (лидер, торг, точн, пушки, навиг, ремонт, аборд, защита, скрыт)
 			GiveItem2Character(sld, "blade18");
 			EquipCharacterByItem(sld, "blade18");
@@ -11261,6 +11261,7 @@ void QuestComplete(string sQuestName, string qname)
 			sld.location = "None";
 			sld.Dialog.CurrentNode = "hired";
 			sld.Payment = true;
+			LAi_SetHP(sld, 150.0, 150.0);
 		break;
 		
 //========================  "Игра в прятки"  =======================		

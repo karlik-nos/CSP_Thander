@@ -59,6 +59,12 @@ void SetFantomParamFromRank(ref NPchar, int  rank, bool setEquip)
 			case "SharleMary": SetCharacterPerk(NPchar, "Fencer"); break;
 			case "Sharp_Sibling": SetCharacterPerk(NPchar, "Fencer"); break;
 			case "James_Callow": SetCharacterPerk(NPchar, "Fencer"); break;
+			case "PGG_Undead": SetCharacterPerk(NPchar, "Buccaneer"); break;
+			case "Undead_Jessika": SetCharacterPerk(NPchar, "Fencer"); break;
+			case "Undead_Indeech": SetCharacterPerk(NPchar, "SeaWolf"); break;
+			case "Undead_Blue": SetCharacterPerk(NPchar, "Grunt"); break;
+			case "Undead_Red": SetCharacterPerk(NPchar, "Adventurer"); break;
+			case "Undead_Green": SetCharacterPerk(NPchar, "SeaWolf"); break;
 			else {SetSpeciality(NPchar, PerksChars()); break;}
 		}
 
