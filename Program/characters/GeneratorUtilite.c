@@ -252,7 +252,7 @@ void CalculateSkillsForRank (ref npchar, int rank)
 		TempStr = GetSkillNameByTRIdx("SPECIALType", i);
 		CorrectionCoeff += sti(npchar.SPECIAL.(TempStr));
 	}
-	CorrectionCoeff = 70 / (70 - (70 - CorrectionCoeff)); // магия, уменьшает количество итераций требуемых для расчета
+	CorrectionCoeff = 70 / (70 - (70 - CorrectionCoeff)) / GetExpAcceleration(10 - (70 - CorrectionCoeff) / 7); // магия, уменьшает количество итераций требуемых для расчета
 	Log_TestInfo("Coeff:" + FloatToString(CorrectionCoeff,3));
 	
 	Log_TestInfo("ControlSum:" + ControlSum);
@@ -272,19 +272,34 @@ void CalculateSkillsForRank (ref npchar, int rank)
                     sti(Npchar.skill.Commerce) + sti(Npchar.skill.Sneak);
 	Log_TestInfo("CorrectionSum:" + CorrectionSum);
 	Correction = ControlSum - CorrectionSum;
-	if(Correction < 0) {Log_TestInfo("Exception"); return;}
 	Log_TestInfo("Correction2:" + Correction);
 	if (Correction == 0) {return; Log_TestInfo("Finalized after first calculation");}
 	while (Correction != 0)
 	{
-		for (i = 1; i < 15; i++) 
-		{	
-			if (Correction == 0) {Log_TestInfo("Finalized after correction"); return;}
-			TempStr = GetSkillNameByIdx(i);
-			if (npchar.skill.(TempStr) != SKILL_MAX)
-			{
-				npchar.skill.(TempStr) = sti(npchar.skill.(TempStr)) + 1;
-				Correction -= 1;
+		if (Correction > 0)
+		{
+			for (i = 1; i < 15; i++) 
+			{	
+				if (Correction == 0) {Log_TestInfo("Finalized after correction"); return;}
+				TempStr = GetSkillNameByIdx(i);
+				if (npchar.skill.(TempStr) != SKILL_MAX)
+				{
+					npchar.skill.(TempStr) = sti(npchar.skill.(TempStr)) + 1;
+					Correction -= 1;
+				}
+			}
+		}
+		else
+		{
+			for (i = 1; i < 15; i++) 
+			{	
+				if (Correction == 0) {Log_TestInfo("Finalized after correction"); return;}
+				TempStr = GetSkillNameByIdx(i);
+				if (npchar.skill.(TempStr) != SKILL_MAX)
+				{
+					npchar.skill.(TempStr) = sti(npchar.skill.(TempStr)) - 1;
+					Correction += 1;
+				}
 			}
 		}
 	}
@@ -322,7 +337,7 @@ void CalculateTypeSkillsForRank (ref npchar, int rank, string type, float coeff)
 		TempStr = GetSkillNameByTRIdx("SPECIALType", i);
 		CorrectionCoeff += sti(npchar.SPECIAL.(TempStr));
 	}
-	CorrectionCoeff = 70 / (70 - (70 - CorrectionCoeff)); // магия, уменьшает количество итераций требуемых для расчета
+	CorrectionCoeff = 70 / (70 - (70 - CorrectionCoeff)) / GetExpAcceleration(10 - (70 - CorrectionCoeff) / 7); // магия, уменьшает количество итераций требуемых для расчета
 	//Log_TestInfo("Coeff:" + FloatToString(CorrectionCoeff,3));
 	//Log_TestInfo("ControlSum:" + ControlSum);
 	Deviation = 1 - coeff + frand(coeff * 2); // коэффициент динамики
@@ -331,7 +346,6 @@ void CalculateTypeSkillsForRank (ref npchar, int rank, string type, float coeff)
 	BaseSidePriority = makeint(5 * Deviation); // для базового усиления дополнительного навыка
 	Priority3 = 1.5 * Deviation; // для упора на определенный основной навык
 	Priority4 = 1.4 * Deviation; // для упора на определенный дополнительный навык
-	TypeSidePriority = "unknown";
 	switch(type)
 	{
 		case "boatswain":		
@@ -406,8 +420,10 @@ void CalculateTypeSkillsForRank (ref npchar, int rank, string type, float coeff)
 		//Log_TestInfo(TempStr + ":" + FloatToString(TempF,1));
 		npchar.skill.(TempStr) = makeint(makeint(TempF) +  CorrectionCoeff * TempF / 10 * (rank - 1) * GetCharacterRankRate(npchar) / 14 * Priority2); 
 	}
-	npchar.skill.(TypeMainPriority) = makeint(makeint(MOD_EXP_RATE / GetCharacterExpRate(npchar,TypeMainPriority)) +  CorrectionCoeff * TempF / 10 * (rank - 1) * GetCharacterRankRate(npchar) / 14 * Priority3); 
-	npchar.skill.(TypeSidePriority) = makeint(makeint(MOD_EXP_RATE / GetCharacterExpRate(npchar,TypeSidePriority)) +  CorrectionCoeff * TempF / 10 * (rank - 1) * GetCharacterRankRate(npchar) / 14 * Priority4); 
+	TempF = MOD_EXP_RATE / GetCharacterExpRate(npchar,TypeMainPriority);
+	npchar.skill.(TypeMainPriority) = makeint(makeint(TempF) +  CorrectionCoeff * TempF / 10 * (rank - 1) * GetCharacterRankRate(npchar) / 14 * Priority3); 
+	TempF = MOD_EXP_RATE / GetCharacterExpRate(npchar,TypeSidePriority);
+	npchar.skill.(TypeSidePriority) = makeint(makeint(TempF) +  CorrectionCoeff * TempF / 10 * (rank - 1) * GetCharacterRankRate(npchar) / 14 * Priority4); 
 	if(sti(npchar.skill.(TypeMainPriority)) + BasePriority <= SKILL_MAX)
 	{
 		npchar.skill.(TypeMainPriority) = sti(npchar.skill.(TypeMainPriority)) + BasePriority;
@@ -420,20 +436,17 @@ void CalculateTypeSkillsForRank (ref npchar, int rank, string type, float coeff)
 		npchar.rank_exp = SKILL_MAX - sti(npchar.skill.(TypeMainPriority));
 		ControlSum += sti(npchar.rank_exp);
 	}
-	if(TypeSidePriority != "unknown")
+	if(sti(npchar.skill.(TypeSidePriority)) + BaseSidePriority <= SKILL_MAX)
 	{
-		if(sti(npchar.skill.(TypeSidePriority)) + BaseSidePriority <= SKILL_MAX)
-		{
-			npchar.skill.(TypeSidePriority) = sti(npchar.skill.(TypeSidePriority)) + BaseSidePriority;
-			npchar.rank_exp = sti(npchar.rank_exp) + BaseSidePriority;
-			ControlSum += BaseSidePriority;
-		}
-		else
-		{
-			npchar.skill.(TypeSidePriority) = SKILL_MAX;
-			npchar.rank_exp = sti(npchar.rank_exp) + SKILL_MAX - sti(npchar.skill.(TypeSidePriority));
-			ControlSum += SKILL_MAX - sti(npchar.skill.(TypeSidePriority));
-		}
+		npchar.skill.(TypeSidePriority) = sti(npchar.skill.(TypeSidePriority)) + BaseSidePriority;
+		npchar.rank_exp = sti(npchar.rank_exp) + BaseSidePriority;
+		ControlSum += BaseSidePriority;
+	}
+	else
+	{
+		npchar.skill.(TypeSidePriority) = SKILL_MAX;
+		npchar.rank_exp = sti(npchar.rank_exp) + SKILL_MAX - sti(npchar.skill.(TypeSidePriority));
+		ControlSum += SKILL_MAX - sti(npchar.skill.(TypeSidePriority));
 	}
 	//Log_TestInfo("Total amount of skills on 1 rank:" + Correction);
 	CorrectSkillParam(npchar);
@@ -444,19 +457,34 @@ void CalculateTypeSkillsForRank (ref npchar, int rank, string type, float coeff)
                     sti(Npchar.skill.Commerce) + sti(Npchar.skill.Sneak);
 	//Log_TestInfo("CorrectionSum:" + CorrectionSum);
 	Correction = ControlSum - CorrectionSum;
-	if(Correction < 0) {Log_TestInfo("Exception"); return;}
 	//Log_TestInfo("Correction2:" + Correction);
 	if (Correction == 0) {return; Log_TestInfo("Finalized after first calculation");}
 	while (Correction != 0)
 	{
-		for (i = 1; i < 15; i++) 
-		{	
-			if (Correction == 0) {Log_TestInfo("Finalized after correction"); return;}
-			TempStr = GetSkillNameByIdx(i);
-			if (npchar.skill.(TempStr) != SKILL_MAX)
-			{
-				npchar.skill.(TempStr) = sti(npchar.skill.(TempStr)) + 1;
-				Correction -= 1;
+		if (Correction > 0)
+		{
+			for (i = 1; i < 15; i++) 
+			{	
+				if (Correction == 0) {Log_TestInfo("Finalized after correction"); return;}
+				TempStr = GetSkillNameByIdx(i);
+				if (npchar.skill.(TempStr) != SKILL_MAX)
+				{
+					npchar.skill.(TempStr) = sti(npchar.skill.(TempStr)) + 1;
+					Correction -= 1;
+				}
+			}
+		}
+		else
+		{
+			for (i = 1; i < 15; i++) 
+			{	
+				if (Correction == 0) {Log_TestInfo("Finalized after correction"); return;}
+				TempStr = GetSkillNameByIdx(i);
+				if (npchar.skill.(TempStr) != SKILL_MAX)
+				{
+					npchar.skill.(TempStr) = sti(npchar.skill.(TempStr)) - 1;
+					Correction += 1;
+				}
 			}
 		}
 	}

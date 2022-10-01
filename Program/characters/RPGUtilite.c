@@ -962,7 +962,7 @@ float GetCharacterExpRate(ref _chref, string _skill)
                 divBy = GetCharacterSPECIAL(_chref, SPECIAL_P)*0.5 + GetCharacterSPECIAL(_chref, SPECIAL_L)*0.5;
             break;
         }
-        _chref.skill.(skill_rate) = makefloat(MOD_EXP_RATE / (divBy * 2.8696 * pow(divBy,-0.457)));
+        _chref.skill.(skill_rate) = makefloat(MOD_EXP_RATE / (divBy * GetExpAcceleration(divBy));
     }
     return  stf(_chref.skill.(skill_rate));
 }
@@ -1380,6 +1380,12 @@ void DelBakSkillAttr(ref _refCharacter) // boal оптимизация скил�
 {
     DeleteAttribute(_refCharacter, "BakSkill");
     DeleteAttribute(_refCharacter, "BakSkillCount");
+}
+// для коэффициента ускорения набора опыта (если ускорение не нужно ставим 1)
+float GetExpAcceleration(float modif)
+{
+	float curve = 2.864178 * pow(modif,-0.457);
+	return curve;
 }
 // сброс всех порогов (буфер расчета, пересчитывается от вещей +1)
 void ClearCharacterExpRate(ref _chref)
