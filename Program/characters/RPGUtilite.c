@@ -312,11 +312,11 @@ int ChecKSufficientRankForClass(int shipClass)
 {
 	switch (shipClass)
     {
-		case 1 : return 30; break;
-		case 2 : return 25; break;
-		case 3 : return 18; break;
-		case 4 : return 10; break;
-		case 5 : return 5; break;
+		case 1 : return 33; break;
+		case 2 : return 26; break;
+		case 3 : return 20; break;
+		case 4 : return 12; break;
+		case 5 : return 6; break;
 		case 6 : return 1; break;
 		case 7 : return 1; break;
 		else return 0;
