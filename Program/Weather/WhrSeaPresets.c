@@ -15,13 +15,13 @@ string WhrGetSeaPresetFromWind(float fWind)
 	ref mchr = GetMainCharacter();
 	string sLocation = mchr.location;
 	string sPreset = "calm";
-	if(fWind > 1.6) sPreset = "light_breeze";
-	if(fWind > 3.4) sPreset = "gentle_breeze";
-	if(fWind > 5.5) sPreset = "moderate_breeze";
-	if(fWind > 8.0) sPreset = "fresh_breeze";
-	if(fWind > 10.8) sPreset = "strong_breeze";
-	if(fWind > 13.9) sPreset = "near_gale";
-	if(fWind > 17.2) sPreset = "gale";
+	if(fWind > 1.5) sPreset = "light_breeze";
+	if(fWind > 3.3) sPreset = "gentle_breeze";
+	if(fWind > 5.4) sPreset = "moderate_breeze";
+	if(fWind > 7.9) sPreset = "fresh_breeze";
+	if(fWind > 10.7) sPreset = "strong_breeze";
+	if(fWind > 13.8) sPreset = "near_gale";
+	if(fWind > 17.1) sPreset = "gale";
 	if(CheckAttribute(&WeatherParams, "Storm") && sti(WeatherParams.Storm) == 1) sPreset = "storm";
 	if(FindLocation(sLocation) != -1){
 		if (fWind > 10.0) sPreset = "strong_breeze_land";
@@ -43,7 +43,7 @@ void WhrSetSeaPreset(string sPreset)
 	float fFoamK, fFoamV, fFoamUV, fFoamTexDisturb;
 	float fReflection, fTransparency, fFrenel, fAttenuation;
 	int iWaterColor;
-	int iSkyColor = argb(0,255,255,255);
+	int iSkyColor = argb(0,125,125,125);
 
 	switch(sPreset)
 	{
@@ -206,8 +206,8 @@ void WhrSetSeaPreset(string sPreset)
 			fPosShift = 1.75;
 
 			fFoamV = 4.5;
-			fFoamUV = 0.75;
-			fFoamTexDisturb = 0.7;
+			fFoamUV = 0.45;
+			fFoamTexDisturb = 0.5;
 			fFrenel = 0.3;
 			fAttenuation = 0.3;
 			if (GetTime() < 6.0 || GetTime() >= 21.0) {
@@ -265,13 +265,13 @@ void WhrSetSeaPreset(string sPreset)
 				iWaterColor = argb(0,5,10,20);
 			} else {
 			if( GetTime() >= 6.0 && GetTime() < 10.0 ) {
-				fFoamK = 0.3;
+				fFoamK = 0.2;
 				fReflection = 0.6;
 				fTransparency = 0.1;
 				iWaterColor = argb(0,5,30,50);
 			} else {
 			if( GetTime() >= 10.0 && GetTime() < 19.0 )	{
-				fFoamK = 0.5;
+				fFoamK = 0.2;
 				fReflection = 0.8;
 				fTransparency = 0.3;
 				iWaterColor = argb(0,0,80,120);
@@ -280,7 +280,7 @@ void WhrSetSeaPreset(string sPreset)
 				}
 			} else {
 			if( GetTime() >= 19.0 && GetTime() < 21.0 )	{
-				fFoamK = 0.5;
+				fFoamK = 0.3;
 				fReflection = 0.6;
 				fTransparency = 0.3;
 				iWaterColor = argb(0,0,55,80);
@@ -298,11 +298,11 @@ void WhrSetSeaPreset(string sPreset)
 			fScale2 = 1.0;
 			sMoveSpeed2 = "0.0, 0.0, -1.0";
 
-			fBumpScale = 0.08;
-			fPosShift = 1.0;
+			fBumpScale = 0.075;
+			fPosShift = 0.95;
 
 			fFoamV = 8.0;
-			fFoamUV = 0.2;
+			fFoamUV = 0.3;
 			fFoamTexDisturb = 0.7;
 			fFrenel = 0.3;
 			fAttenuation = 0.3;
@@ -313,13 +313,13 @@ void WhrSetSeaPreset(string sPreset)
 				iWaterColor = argb(0,5,10,20);
 			} else {
 			if( GetTime() >= 6.0 && GetTime() < 10.0 ) {
-				fFoamK = 0.2;
+				fFoamK = 0.1;
 				fReflection = 0.6;
 				fTransparency = 0.1;
 				iWaterColor = argb(0,5,30,50);
 			} else {
 			if( GetTime() >= 10.0 && GetTime() < 19.0 )	{
-				fFoamK = 0.3;
+				fFoamK = 0.2;
 				fReflection = 0.8;
 				fTransparency = 0.3;
 				iWaterColor = argb(0,0,80,120);
@@ -328,7 +328,7 @@ void WhrSetSeaPreset(string sPreset)
 				}
 			} else {
 			if( GetTime() >= 19.0 && GetTime() < 21.0 )	{
-				fFoamK = 0.3;
+				fFoamK = 0.2;
 				fReflection = 0.6;
 				fTransparency = 0.3;
 				iWaterColor = argb(0,0,55,80);
@@ -367,7 +367,7 @@ void WhrSetSeaPreset(string sPreset)
 				iWaterColor = argb(0,5,30,50);
 			} else {
 			if( GetTime() >= 10.0 && GetTime() < 19.0 )	{
-				fFoamK = 0.3;
+				fFoamK = 0.2;
 				fReflection = 0.5;
 				fTransparency = 0.1;
 				iWaterColor = argb(0,0,80,120);
@@ -376,7 +376,7 @@ void WhrSetSeaPreset(string sPreset)
 				}
 			} else {
 			if( GetTime() >= 19.0 && GetTime() < 21.0 )	{
-				fFoamK = 0.3;
+				fFoamK = 0.2;
 				fReflection = 0.5;
 				fTransparency = 0.1;
 				iWaterColor = argb(0,0,55,80);
