@@ -163,6 +163,11 @@ void ProcessDialogEvent()
 			{
 				Link.l4 = "Офицер, я более не нуждаюсь в ваших услугах.";
 				Link.l4.go = "AsYouWish";
+				if (NPChar.sex == "skeleton" && PChar.sex == "skeleton")
+				{
+					Link.l4 = "Ты подвёл меня, сородич! Убирайся с глаз моих!";
+					Link.l4.go = "exit_fire_1";
+				}
 			}
 
 			for(iTemp=1; iTemp<=3; iTemp++) // Нужно, чтоб была свободная группа
