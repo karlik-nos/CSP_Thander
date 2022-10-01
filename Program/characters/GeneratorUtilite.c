@@ -438,17 +438,19 @@ void CalculateTypeSkillsForRank (ref npchar, int rank, string type, float coeff)
 		ControlSum += sti(npchar.rank_exp);
 	}
 	if(TypeSidePriority != "unknown")
-	if(sti(npchar.skill.(TypeSidePriority)) + BaseSidePriority <= SKILL_MAX)
 	{
-		npchar.skill.(TypeSidePriority) = sti(npchar.skill.(TypeSidePriority)) + BaseSidePriority;
-		npchar.rank_exp = sti(npchar.rank_exp) + BaseSidePriority;
-		ControlSum += BaseSidePriority;
-	}
-	else
-	{
-		npchar.skill.(TypeSidePriority) = SKILL_MAX;
-		npchar.rank_exp = sti(npchar.rank_exp) + SKILL_MAX - sti(npchar.skill.(TypeSidePriority));
-		ControlSum += SKILL_MAX - sti(npchar.skill.(TypeSidePriority));
+		if(sti(npchar.skill.(TypeSidePriority)) + BaseSidePriority <= SKILL_MAX)
+		{
+			npchar.skill.(TypeSidePriority) = sti(npchar.skill.(TypeSidePriority)) + BaseSidePriority;
+			npchar.rank_exp = sti(npchar.rank_exp) + BaseSidePriority;
+			ControlSum += BaseSidePriority;
+		}
+		else
+		{
+			npchar.skill.(TypeSidePriority) = SKILL_MAX;
+			npchar.rank_exp = sti(npchar.rank_exp) + SKILL_MAX - sti(npchar.skill.(TypeSidePriority));
+			ControlSum += SKILL_MAX - sti(npchar.skill.(TypeSidePriority));
+		}
 	}
 	//Log_TestInfo("Total amount of skills on 1 rank:" + Correction);
 	CorrectSkillParam(npchar);
