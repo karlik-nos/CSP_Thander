@@ -9,6 +9,15 @@ void ProcessDialogEvent()
 	makeref(NPChar,CharacterRef);
 	makearef(Link, Dialog.Links);
 	makearef(NextDiag, NPChar.Dialog);
+	
+	int Bonus = sti(pchar.rank);
+	if (Bonus <= 6) Bonus = 1;
+	if (Bonus >= 7 && Bonus <= 12) Bonus = 1.2;
+	if (Bonus >= 13) Bonus = 1.5;
+	int Plata1 = 3000 + 200 * sti(pchar.rank) * Bonus;
+	int Plata2 = 15000 + 500 * sti(pchar.rank) * Bonus;
+	pchar.PDM_Apt_Plata1.Money = 3000 + 200 * sti(pchar.rank) * Bonus;
+	pchar.PDM_Apt_Plata2.Money = 15000 + 500 * sti(pchar.rank) * Bonus;
 
 	int i, iOfficer;
 	string attrL, offtype;
@@ -31,22 +40,91 @@ void ProcessDialogEvent()
 		break;
 
 		case "First time":							//Автор Sinistra
-			dialog.text = "(мужчина лежит, весь испачканный в крови с полуоткрытыми глазами, и стонет) М-м-м... А-а-х... У-у-у...";
-			link.l1 = "...";
-			link.l1.go = "exit";
-			pchar.questTemp.PDM_Apt_Markus_v_krovi = "PDM_Apt_Markus_v_krovi";
-			NextDiag.TempNode = "Markus_v_krovi";
-
+			dialog.text = "Приветствую вас, я доктор алхимии и медицины. Моё имя Алюмнус. А как зовут вас, "+ GetSexPhrase("молодой человек","девушка") +"?";
+			link.l1 = "Можете звать меня "+pchar.name+".";
+			link.l1.go = "Alumnus_PervoeZadanie_1";
+		break;
+		
+		case "Alumnus_PervoeZadanie_1":
+			dialog.text = "Как хорошо, что вы зашли, "+pchar.name+"! Послушайте, не могли бы вы мне оказать небольшую помощь, а то сам я отлучиться надолго не могу...";
+			link.l1 = "А что нужно делать?";
+			link.l1.go = "Alumnus_PervoeZadanie_2";
+		break;
+		
+		case "Alumnus_PervoeZadanie_2":
+			dialog.text = "В одном из домов лежит один из моих пациентов. Вам нужно отнести ему лекарство, и он вам сам заплатит за доставку.";
+			link.l1 = "Вроде бы ничего сложного. Я отнесу ему лекарство.";
+			link.l1.go = "Alumnus_PervoeZadanie_3";
+			link.l2 = "Доктор Алюмнус, наймите себе курьера, а у меня есть более серьёзные дела.";
+			link.l2.go = "Alumnus_PervoeZadanie_Net";
+		break;
+		
+		case "Alumnus_PervoeZadanie_3":
+			dialog.text = "О, я знал, что вы не откажете, "+pchar.name+", спасибо! Вот, держите лекарство. Заходите ко мне ещё, у меня найдётся для вас работа.";
+			link.l1 = "Зайду обязательно. До свидания!";
+			link.l1.go = "Alumnus_PervoeZadanie_4";
+		break;
+		
+		case "Alumnus_PervoeZadanie_4":
+			DialogExit();
 			SetQuestHeader("PDM_Aptekar");
 			AddQuestRecord("PDM_Aptekar", "1");
+			GiveItem2Character(PChar, "PDM_Heal_Poroshok");
+			
+			sld = GetCharacter(NPC_GenerateCharacter("PDM_Markus", "prison_3", "man", "man", 10, HOLLAND, -1, false));
+			sld.name	= "Маркус";
+			sld.lastname	= "";
+			sld.Dialog.Filename = "Quest/PDM/Aptekar.c";
+			sld.dialog.currentnode   = "Markus_1";
+			LAi_SetGroundSitType(sld);
+			LAi_SetImmortal(sld, true);
+			LAi_group_MoveCharacter(sld, "HOLLAND_CITIZENS");
+			ChangeCharacterAddressGroup(sld,"Smallhome_K2","quest","quest1");
 		break;
-
-		case "Markus_v_krovi":
-			dialog.text = LinkRandPhrase("М-м-м...", "О-о-о-х...", "А-а-х...");
-			link.l1 = "...";
+		
+		case "Alumnus_PervoeZadanie_Net":
+			dialog.text = "Очень жаль, "+pchar.name+". Сейчас я кое-чем занят, поэтому не могу вас осмотреть.";
+			link.l1 = "Ну что же, тогда я пойду.";
 			link.l1.go = "exit";
+			NextDiag.TempNode = "Alumnus_Obijen";
 		break;
-
+		
+		case "Alumnus_Obijen":
+			dialog.text = "Здравствуйте, "+pchar.name+", чем я могу быть вам полезен?";
+			link.l1 = "Да так, мимо проходил"+GetSexPhrase("","а")+".";
+			link.l1.go = "exit";
+			NextDiag.TempNode = "Alumnus_Obijen";
+		break;
+		
+		case "Markus_1":
+			dialog.text = "(кашляет)... Да, что вы хотели?";
+			link.l1 = "Я от доктора Алюмнуса, он просил передать вам это лекарство.";
+			link.l1.go = "Markus_2";
+			locCameraFromToPos(1.00, 2.00, 0.00, false, -4.00, -1.20, -4.00);
+		break;
+		
+		case "Markus_2":
+			dialog.text = "О, "+GetAddress_Form(NPChar)+", как же вы вовремя, эта боль невыносима... Этой ночью на меня напали какие-то бандиты. Забрали у меня всё ценное, но слава богу, живой я остался. Стража всё ещё их ищет, но надеюсь, негодяи получат по заслугам.";
+			link.l1 = "Да, неприятная ситуация с вами приключилась. Доктор Алюмнус говорил, что вы заплатите за доставку.";
+			link.l1.go = "Markus_3";
+			TakeItemFromCharacter(pchar, "PDM_Heal_Poroshok");
+		break;
+		
+		case "Markus_3":
+			dialog.text = "Ах да, конечно. Держите, "+Plata1+" пиастров ваши. Сейчас бы мне поспать...";
+			link.l1 = "Выздоравливайте, "+GetAddress_Form(NPChar)+", а теперь я покину вас.";
+			link.l1.go = "exit";
+			AddMoneyToCharacter(pchar, sti(Plata1));
+			npchar.lifeday = 0;
+			LAi_CharacterDisableDialog(npchar);
+			AddQuestRecord("PDM_Aptekar", "2");
+			AddQuestUserData("PDM_Aptekar", "sSex", GetSexPhrase("ёс","есла"));
+			AddQuestUserData("PDM_Aptekar", "sSex2", GetSexPhrase("","а"));
+		break;
+		
+//
+//
+//
 		case "Alumnus_FT":
 			dialog.text = "Приветствую вас, я доктор алхимии и медицины. Моё имя Алюмнус. А как зовут вас, "+ GetSexPhrase("молодой человек","девушка") +"?";
 			link.l1 = "Можете звать меня "+pchar.name+", капитан "+pchar.name+". Доктор Алюмнус, я слышал"+ GetSexPhrase("","а") +", что вам удалось излечить дочь губернатора, когда все другие доктора отказались лечить её. Так ли это?";
@@ -91,72 +169,6 @@ void ProcessDialogEvent()
 			dialog.text = "";
 			link.l1 = "(вы растворяете порошок в воде и даёте Маркусу выпить из кружки)";
 			link.l1.go = "Markus_Dat_Lekarstvo_2";
-		break;
-
-		case "Markus_Dat_Lekarstvo_2":
-			dialog.text = "(осушив содержимое, Маркус на несколько секунд сделался бодрее... а затем улёгся на кровать и заснул)";
-			link.l1 = "(следует рассказать тавернщику о том, что вы только что увидели)";
-			link.l1.go = "exit";
-			DeleteAttribute(pchar, "questTemp.PDM_Apt_Markus_lekarstvo");
-			pchar.questTemp.PDM_Apt_Rasskazat_Tavern = "PDM_Apt_Rasskazat_Tavern";
-			NextDiag.TempNode = "Markus_Dat_Lekarstvo_3";
-		break;
-
-		case "Markus_Dat_Lekarstvo_3":
-			dialog.text = "(спит)";
-			link.l1 = "";
-			link.l1.go = "exit";
-			NextDiag.TempNode = "Markus_Dat_Lekarstvo_3";
-		break;
-
-		case "Markus_Vizdorovel":
-			sld = CharacterFromID("SentJons_tavernkeeper")
-			dialog.text = "Ах, вы должно быть, капитан "+pchar.name+"! Я должен поблагодарить вас за моё исцеление. "+sld.name+" рассказал мне обо всём, что вы для меня сделали.";
-			link.l1 = "Я рад"+ GetSexPhrase("","а") +", что ты поправился, и теперь ты расскажешь, что же с тобой случилось. "+sld.name+" сказал, что Ропфлейк захватил твой корабль.";
-			link.l1.go = "Markus_Vizdorovel_2";
-			AddCharacterExpToSkill(pchar, "Leadership", 150);
-			AddCharacterExpToSkill(pchar, "Defence", 150);
-			DeleteAttribute(pchar, "questTemp.PDM_Apt_Vizdorovel");
-		break;
-
-		case "Markus_Vizdorovel_2":
-			dialog.text = "Да, это правда. Ропфлейк действительно очень опасен, недаром его так боятся торговцы. У этого негодяя хороший, манёвренный корабль и неплохие канониры. Когда я напоролся на этих ублюдков, первым же залпом, первым же! Они снесли мой бушприт ко всем чертям. В основном Ропфлейк ловит корабли при выходе из Сент-Джонса, так что будьте осторожны, капитан.";
-			link.l1 = "Спасибо за предостережение, Маркус, я буду осторож"+ GetSexPhrase("ен","на") +".";
-			link.l1.go = "Markus_Vizdorovel_3";
-		break;
-
-		case "Markus_Vizdorovel_3":
-			dialog.text = "И вот ещё что. Возьмите эти деньги и передайте их доктору, поблагодарите его от меня.";
-			link.l1 = "Хорошо, я как раз собирал"+ GetSexPhrase("ся","ась") +" навестить Алюмнуса.";
-			link.l1.go = "exit";
-			LAi_CharacterDisableDialog(npchar);
-			npchar.lifeday = 0;
-			AddMoneyToCharacter(pchar, 5000);
-
-			sld = GetCharacter(NPC_GenerateCharacter("Ropfleik", "officer_58", "man", "man", sti(PChar.rank) + 6, PIRATE, 15, false));
-			SetShipHunter(sld);
-			sld.name = "Ропфлейк";
-			sld.lastname = "";
-			SetFantomParamHunter(sld);
-			SetCaptanModelByEncType(sld, "war");
-			sld.AlwaysEnemy = true;
-			sld.DontRansackCaptain = true;
-			sld.mapEnc.type = "war";
-			sld.mapEnc.Name = "тот самый Ропфлейк";
-			sld.hunter = "pirate";
-			Group_AddCharacter("Ropf_Ship", "Ropfleik");
-
-			Group_SetGroupCommander("Ropf_Ship", "Ropfleik");
-			Group_SetTaskAttackInMap("Ropf_Ship", PLAYER_GROUP);
-			Group_LockTask("Ropf_Ship");
-			Map_CreateFastWarrior("", "Ropfleik", 30);
-
-			sld = CharacterFromID("Doktor_Alumnus")
-			sld.dialog.filename   = "Quest/PDM/Aptekar.c";
-			sld.dialog.currentnode   = "Alumnus_Novoe_Zadanie";
-
-			AddQuestRecord("PDM_Aptekar", "5");
-			AddQuestUserData("PDM_Aptekar", "sSex", GetSexPhrase("ёс","есла"));
 		break;
 
 		case "Alumnus_Novoe_Zadanie":
@@ -503,6 +515,20 @@ void ProcessDialogEvent()
 			link.l1 = "";
 			link.l1.go = "exit";
 			AddDialogExitQuest("HealingPoison");
+		break;
+		
+		//обнаружение ГГ в сундуках
+		case "Man_FackYou":
+			dialog.text = LinkRandPhrase("Грабёж среди бела дня!!! Это что же такое делается?! Ну, погоди, "+ GetSexPhrase("приятель","подруга") +"...", "Эй, ты чего это там копаешься?! Никак, вздумал"+ GetSexPhrase("","а") +" ограбить меня? Ну, тогда тебе конец...", "Постой, ты куда это полез"+ GetSexPhrase("","ла") +"? Да ты вор"+ GetSexPhrase("","овка") +", оказывается! Ну, считай, что ты приплыл"+ GetSexPhrase("","а") +", родн"+ GetSexPhrase("ой","ая") +"...");
+			link.l1 = LinkRandPhrase("Дьявол!!", "Каррамба!!", "А-ать, чёрт!");
+			link.l1.go = "fight_owner";
+		break;
+		case "fight_owner":
+			LAi_SetOwnerTypeNoGroup(NPChar);
+			LAi_group_Attack(NPChar, Pchar);
+			if (rand(3) != 1) SetNationRelation2MainCharacter(sti(npchar.nation), RELATION_ENEMY);
+			NextDiag.CurrentNode = "First time";
+			DialogExit();
 		break;
 	}
 }
