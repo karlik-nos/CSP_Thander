@@ -4078,9 +4078,9 @@ void Lilarcor_Talks()
 {
 	switch (pchar.equip.blade)
 	{
-		case "Lilarcor_Sword1": PlayVoice("Kopcapkz\Voices\Lilarcor\Lilarcor_Bers_"+rand(7)+".mp3"); break;
-		case "Lilarcor_Sword2": PlayVoice("Kopcapkz\Voices\Lilarcor\Lilarcor_Bers_"+rand(15)+".mp3"); break;
-		case "Lilarcor_Sword3": PlayVoice("Kopcapkz\Voices\Lilarcor\Lilarcor_Bers_"+rand(22)+".mp3"); break;
+		case "Lilarcor_Sword1": LAi_CharacterPlaySound(PChar, "Lilarcor_Bers_Sword1"); break;
+		case "Lilarcor_Sword2": LAi_CharacterPlaySound(PChar, "Lilarcor_Bers_Sword2"); break;
+		case "Lilarcor_Sword3": LAi_CharacterPlaySound(PChar, "Lilarcor_Bers_Sword3"); break;
 	}
 	pchar.perks.list.Rush.active = 3600;
 	pchar.perks.list.Rush.delay = 3600;
@@ -4091,5 +4091,5 @@ void Lilarcor_Talks()
 #event_handler("Lilarcor_Talks2", "Lilarcor_Talks2");
 void Lilarcor_Talks2()
 {
-	PlayVoice("Kopcapkz\Voices\Lilarcor\Lilarcor_rnd_"+rand(10)+".mp3");
+	LAi_CharacterPlaySound(PChar, "Lilarcor_rnd");
 }

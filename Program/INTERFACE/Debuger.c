@@ -1115,12 +1115,12 @@ void CalculateInfoDataF6()
 	ChangeCrewExp(mc, "Cannoners", 100);
 	ChangeCrewExp(mc, "Soldiers", 100);
 
-	SetCharacterGoods(mc, GOOD_BALLS, 2000);
-	SetCharacterGoods(mc, GOOD_GRAPES, 2000);
-	SetCharacterGoods(mc, GOOD_KNIPPELS, 2000);
-	SetCharacterGoods(mc, GOOD_BOMBS, 2000);;
+	SetCharacterGoods(mc, GOOD_BALLS, 1500);
+	SetCharacterGoods(mc, GOOD_GRAPES, 1500);
+	SetCharacterGoods(mc, GOOD_KNIPPELS, 1500);
+	SetCharacterGoods(mc, GOOD_BOMBS, 1500);;
 	//SetCharacterGoods(mc, GOOD_FOOD, 2000);
-	SetCharacterGoods(mc, GOOD_FOOD, 10000);
+	SetCharacterGoods(mc, GOOD_FOOD, 7000);
 	SetCharacterGoods(mc, GOOD_MEDICAMENT, 1000);
 	SetCharacterGoods(mc, GOOD_POWDER, 3000);
 	SetCharacterGoods(mc, GOOD_WEAPON, 1500);

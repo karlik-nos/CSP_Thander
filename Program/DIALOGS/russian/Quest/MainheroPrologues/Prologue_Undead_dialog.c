@@ -130,6 +130,7 @@ void ProcessDialogEvent()
 			dialog.text = "Вот я тебя и нашёл.";
 			link.l1 = "Снова ты?";
 			link.l1.go = "PGG_Undead_6";
+			TakeItemFromCharacter(pchar, "UP_PismoZagadka");
 		break;
 		
 		case "PGG_Undead_6":
@@ -164,13 +165,52 @@ void ProcessDialogEvent()
 		
 		case "PGG_Undead_10":
 			DialogExit();
-			sld = CharacterFromID("PGG_Undead")
-			LAi_SetActorType(sld);
-			LAi_ActorGoToLocation(sld, "reload", "reload1", "none", "", "", "UD_DrugUshel_2", -1);
 			
-			PChar.quest.UP_PGGUndead_Off.win_condition.l1 = "ExitFromLocation";
-			PChar.quest.UP_PGGUndead_Off.win_condition.l1.location = PChar.location;
-			PChar.quest.UP_PGGUndead_Off.win_condition = "UP_PGGUndead_Off";
+			LAi_SetActorType(npchar);
+			LAi_ActorRunToLocation(npchar, "reload", "reload1_back", "", "", "", "", -1);
+			DoQuestCheckDelay("UD_DrugUshel_2", 1.5);
+			if (pchar.name == "Весёлый Роджер")
+			{
+				sld = CharacterFromID("PGG_Undead");
+				sld.name = "Ужасный";
+				sld.lastname = "";
+				sld.FaceId = 537;
+				GiveItem2Character(sld, "mushket_SeaCarbine");
+				SetCharacterPerk(sld, "Gunman");
+				SetCharacterPerk(sld, "GunProfessional");
+				AddItems(sld, "bullet", 20);
+				AddItems(sld, "GunPowder", 20);
+				LAi_SetHP(sld, 180.0, 180.0);
+				AddPassenger(pchar, sld, false);
+				SetCharacterRemovable(sld, true);
+				sld.HalfImmortal = true;
+				sld.loyality = MAX_LOYALITY;
+				sld.Dialog.Filename = "Enc_Officer_dialog.c";
+				Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(sld.id);
+				AddDialogExitQuestFunction("LandEnc_OfficerHired");
+				sld.OfficerWantToGo.DontGo = true;
+			}
+			if (pchar.name == "Ужасный")
+			{
+				sld = CharacterFromID("PGG_Undead");
+				sld.name = "Весёлый";
+				sld.lastname = "Роджер";
+				sld.FaceId = 511;
+				GiveItem2Character(sld, "mushket_SeaCarbine");
+				SetCharacterPerk(sld, "Gunman");
+				SetCharacterPerk(sld, "GunProfessional");
+				AddItems(sld, "bullet", 20);
+				AddItems(sld, "GunPowder", 20);
+				LAi_SetHP(sld, 180.0, 180.0);
+				AddPassenger(pchar, sld, false);
+				SetCharacterRemovable(sld, true);
+				sld.HalfImmortal = true;
+				sld.loyality = MAX_LOYALITY;
+				sld.Dialog.Filename = "Enc_Officer_dialog.c";
+				Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(sld.id);
+				AddDialogExitQuestFunction("LandEnc_OfficerHired");
+				sld.OfficerWantToGo.DontGo = true;
+			}
 		break;
 	}
 }

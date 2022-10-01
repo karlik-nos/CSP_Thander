@@ -1400,21 +1400,21 @@ void LAi_SetResultOfDeath(ref attack, ref enemy, bool isSetBlade)
 				pchar.LilarcorKills = sti(pchar.LilarcorKills)+1;
 				if (sti(pchar.LilarcorKills) == 300)
 				{
-					PlayVoice("Kopcapkz\Voices\Lilarcor\Lilarcor_Up1.mp3");
+					LAi_CharacterPlaySound(PChar, "Lilarcor_Up1");
 					DeleteAttribute(pchar,"items.Lilarcor_Sword1");
 					AddItems(pchar, "Lilarcor_Sword2", 1);
 					EquipCharacterbyItem(pchar, "Lilarcor_Sword2");
 				}
 				if (sti(pchar.LilarcorKills) == 800)
 				{
-					PlayVoice("Kopcapkz\Voices\Lilarcor\Lilarcor_Up2.mp3");
+					LAi_CharacterPlaySound(PChar, "Lilarcor_Up2");
 					DeleteAttribute(pchar,"items.Lilarcor_Sword2");
 					AddItems(pchar, "Lilarcor_Sword3", 1);
 					EquipCharacterbyItem(pchar, "Lilarcor_Sword3");
 				}
 				if (sti(pchar.LilarcorKills) == 1800)
 				{
-					PlayVoice("Kopcapkz\Voices\Lilarcor\Lilarcor_Victory.mp3");
+					LAi_CharacterPlaySound(PChar, "Lilarcor_Victory");
 					string sEquipItem = GetGeneratedItem("blade201");
 					AddItems(pchar, sEquipItem, 1);
 					EquipCharacterbyItem(pchar, sEquipItem);

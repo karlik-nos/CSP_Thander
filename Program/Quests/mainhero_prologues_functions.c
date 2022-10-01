@@ -334,7 +334,8 @@ void AnjelikaTich_StartGame(string qName)
 	LAi_SetImmortal(sld, true);
 	ChangeCharacterAddressGroup(sld,"LaVega_MH12","goto","goto8");
 
-	DeleteAttribute(Pchar, "items");
+	RemoveAllCharacterItems(pchar, true);
+	DeleteAttribute(pchar, "items");
 	GiveItem2Character(pchar, "blade9");
 	EquipCharacterbyItem(pchar, "blade9");
 	GiveItem2Character(pchar, "suit_2");
@@ -468,12 +469,12 @@ void AT_pr_Grot_3(string qName)
 }
 void AT_pr_Strelba_is_pushki(string qName)
 {
-	PlayVoice("CSR\GUNSFIRE\Cannon_36_1.wav");
+	PlaySound("CSR\GUNSFIRE\Cannon_36_1.wav");
 	DoQuestFunctionDelay("AT_pr_Strelba_is_pushki_2", 1.4);
 }
 void AT_pr_Strelba_is_pushki_2(string qName)
 {
-	PlayVoice("CSR\GUNSFIRE\Cannon_24_3.wav");
+	PlaySound("CSR\GUNSFIRE\Cannon_24_3.wav");
 	DoQuestFunctionDelay("AT_pr_Strelba_is_pushki_3", 1.0);
 }
 void AT_pr_Strelba_is_pushki_3(string qName)
@@ -487,17 +488,17 @@ void AT_pr_Strelba_is_pushki_3(string qName)
 }
 void AT_pr_Strelba_is_pushki_4(string qName)
 {
-	PlayVoice("CSR\GUNSFIRE\Fort_cannon_02.wav");
+	PlaySound("CSR\GUNSFIRE\Fort_cannon_02.wav");
 	DoQuestFunctionDelay("AT_pr_Strelba_is_pushki_5", 1.4);
 }
 void AT_pr_Strelba_is_pushki_5(string qName)
 {
-	PlayVoice("CSR\GUNSFIRE\Fort_cannon_03.wav");
+	PlaySound("CSR\GUNSFIRE\Fort_cannon_03.wav");
 	DoQuestFunctionDelay("AT_pr_Strelba_is_pushki_5_5", 1.4);
 }
 void AT_pr_Strelba_is_pushki_5_5(string qName)
 {
-	PlayVoice("CSR\GUNSFIRE\Fort_cannon_04.wav");
+	PlaySound("CSR\GUNSFIRE\Fort_cannon_04.wav");
 	DoQuestFunctionDelay("AT_pr_Strelba_is_pushki_6", 1.0);
 }
 void AT_pr_Strelba_is_pushki_6(string qName)
@@ -704,13 +705,15 @@ void AT_pr_Bejim_ot_piratov_4(string qName)
 }
 void ATpr_OboronaSD_2(string qName)
 {	
-	//locCameraToPos(-14.50, 7.00, 0.00, false);
 	locCameraFromToPos(-14.50, 7.00, 0.00, false, 0.22, 2.60, 0.00);
 	ChangeShowIntarface();
 	DoQuestFunctionDelay("ATpr_OboronaSD_3", 1.5);
 }
 void ATpr_OboronaSD_3(string qName)
 {
+	SetMusic("none");
+	SetMusicAlarm("music_bitva");
+	
 	DoQuestFunctionDelay("ATpr_OboronaSD_4", 1.5);
 	
 	sld = GetCharacter(NPC_GenerateCharacter("AT_SpaMush_1", "spa_mush_"+(rand(2)+1), "man", "mushketer", 3, SPAIN, -1, false));
@@ -812,9 +815,6 @@ void ATpr_OboronaSD_7(string qName)
 void ATpr_OboronaSD_8(string qName)
 {
 	DoQuestFunctionDelay("ATpr_OboronaSD_8_1", 0.8);
-	//locCameraTarget(PChar)
-	//locCameraFollow();
-	//locCameraToPos(1.00, 11.00, -28.00, false);
 	locCameraFromToPos(-3.00, 11.30, -26.00, false, 0.27, -0.36, 0.00);
 	
 	//Пираты 1 волна (#1)
@@ -843,13 +843,12 @@ void ATpr_OboronaSD_8_2(string qName)
 }
 void ATpr_OboronaSD_9(string qName)
 {
-	//ChangeCharacterAddressGroup(pchar, "SantoDomingo_ExitTown", "rld", "aloc15");
 	CreateLocationParticles("shipfire", "rld", "loc6", -3.0, 0, 0, "");
 	CreateLocationParticles("ShipExplode", "rld", "loc6", 0, 0, 0, "boom");
-	CreateLocationParticles("Ship_cannon_fire", "rld", "loc21", 0, -90, 0, "cannon_fire_2");
-	//CreateLocationParticles("Bombard", "rld", "loc21", 0, -90, 0, "cannon_fire_2");
+	CreateLocationParticles("Ship_cannon_fire", "rld", "loc21", 0, -90, 0, "");
+	CreateLocationParticles("cancloud_fire_big", "rld", "loc21", 0, -90, 0, "");
 	PlayVoice("Sea Battles\sdavl_kriki_002.wav");
-	PlayVoice("Sea Battles\vistrel_orudiya_004.wav");
+	PlaySound("Sea Battles\vistrel_orudiya_004.wav");
 	
 	for (i=1; i<=7; i++)
     {
@@ -876,10 +875,10 @@ void ATpr_OboronaSD_11(string qName)
 {
 	CreateLocationParticles("shipfire", "rld", "loc9", -3.0, 0, 0, "");
 	CreateLocationParticles("ShipExplode", "rld", "loc9", 0, 0, 0, "boom");
-	CreateLocationParticles("Ship_cannon_fire", "rld", "loc22", 0, -90, 0, "cannon_fire_2");
-	CreateLocationParticles("Bombard", "rld", "loc22", 0, -90, 0, "cannon_fire_2");
+	CreateLocationParticles("Ship_cannon_fire", "rld", "loc22", 0, -90, 0, "");
+	CreateLocationParticles("cancloud_fire_big", "rld", "loc22", 0, -90, 0, "");
 	PlayVoice("Sea Battles\sdavl_kriki_004.wav");
-	PlayVoice("Sea Battles\vistrel_orudiya_005.wav");
+	PlaySound("Sea Battles\vistrel_orudiya_005.wav");
 	
 	for (i=1; i<=7; i++)
     {
@@ -938,6 +937,7 @@ void ATpr_OboronaSD_14(string qName)
 void ATpr_OboronaSD_15(string qName)
 {
 	LAi_SetPlayerType(pchar);
+	bDisableCharacterMenu = false;
 	LAi_SetFightMode(pchar, true);
 	Log_info("ВПЕРЁД! В АТАКУ!");
 	PlayVoice("Interface\_GTMutiny_1.wav");
@@ -979,7 +979,7 @@ void ATpr_OboronaSD_17(string qName)
 }
 void ATpr_OboronaSD_18(string qName)
 {	
-	PlayVoice("Interface\_musketshot_4.wav");
+	PlaySound("Interface\_musketshot_4.wav");
 	//Испанцы подкрепление (#2)
 	for (i=7; i<=16; i++)
     {
@@ -995,7 +995,7 @@ void ATpr_OboronaSD_18(string qName)
 void ATpr_OboronaSD_19(string qName)
 {	
 	DoQuestFunctionDelay("ATpr_OboronaSD_22", 5.0);
-	PlayVoice("Interface\_musketshot_0.wav");
+	PlaySound("Interface\_musketshot_0.wav");
 	//ПИРАТ БОСС
 	sld = GetCharacter(NPC_GenerateCharacter("TA_Pirate_4", "BS_Vein", "man", "man", 1, PIRATE, -1, false));
 	FantomMakeCoolFighter(sld, 1, 10, 10, "blade12", "pistol6", 60);
@@ -1029,7 +1029,7 @@ void ATpr_OboronaSD_20(string qName)
 	CreateLocationParticles("Ship_cannon_fire", "rld", "loc22", 0, -90, 0, "cannon_fire_2");
 	CreateLocationParticles("Bombard", "rld", "loc22", 0, -90, 0, "cannon_fire_2");
 	//PlayVoice("Sea Battles\sdavl_kriki_004.wav");
-	PlayVoice("Sea Battles\vistrel_orudiya_004.wav");	
+	PlaySound("Sea Battles\vistrel_orudiya_004.wav");	
 	
 	DoQuestFunctionDelay("ATpr_OboronaSD_21", 8.0);
 }
@@ -1039,7 +1039,7 @@ void ATpr_OboronaSD_21(string qName)
 	CreateLocationParticles("Ship_cannon_fire", "rld", "loc23", 0, -90, 0, "cannon_fire_2");
 	CreateLocationParticles("Bombard", "rld", "loc23", 0, -90, 0, "cannon_fire_2");
 	//PlayVoice("Sea Battles\sdavl_kriki_004.wav");
-	PlayVoice("Sea Battles\vistrel_orudiya_005.wav");
+	PlaySound("Sea Battles\vistrel_orudiya_005.wav");
 }
 void ATpr_OboronaSD_22(string qName)
 {
@@ -1048,7 +1048,7 @@ void ATpr_OboronaSD_22(string qName)
 	CreateLocationParticles("Bombard", "rld", "loc22", 0, -90, 0, "cannon_fire_2");
 	CreateLocationParticles("Ship_cannon_fire", "rld", "loc22", 0, -90, 0, "cannon_fire_2");
 	//PlayVoice("Sea Battles\sdavl_kriki_004.wav");
-	PlayVoice("Sea Battles\vistrel_orudiya_004.wav");
+	PlaySound("Sea Battles\vistrel_orudiya_004.wav");
 }
 void ATpr_SvobodaIgry(string qName)
 {
@@ -1133,8 +1133,7 @@ void Undead_Start_Graveyard_1(string qName)
 	PChar.quest.Undead_Start_Graveyard_2.function = "Undead_Start_Graveyard_3";
 	
 	//Квест "Проклятый идол" НЕ доступен для Нежити
-	sld = CharacterFromID("James_Callow")
-	LAi_KillCharacter(sld);
+	PChar.quest.PDM_CI_SpawnJC.over = "yes";
 }
 void Undead_Start_Graveyard_3(string qName)
 {
