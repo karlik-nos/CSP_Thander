@@ -469,6 +469,12 @@ void FillTable()
 			setWDMPointXZ("LostShipsCity_town");
 			ssColony = "LostShipsCity";
 		}
+		if (fMouseX >= 680.0 && fMouseX <= 718.0 && fMouseY >= 27.0 && fMouseY <= 89.0)
+		{
+			setCharacterShipLocation(pchar, "Nassau_town");
+			setWDMPointXZ("Nassau_town");
+			ssColony = "Bahames";
+		}
 		if (ssColony == "") return;
 		XI_WindowShow("TP_WINDOW", true);
 		XI_WindowDisable("TP_WINDOW", false);
@@ -624,6 +630,12 @@ void SelectRColony()
 			setCharacterShipLocation(pchar, "LostShipsCity_town");
 			setWDMPointXZ("LostShipsCity_town");
 			DoQuestReloadToLocation("LostShipsCity_town", "reload", "reload1", "");
+		}
+		if (fMouseX >= 680.0 && fMouseX <= 718.0 && fMouseY >= 27.0 && fMouseY <= 89.0)
+		{
+			setCharacterShipLocation(pchar, "Nassau_town");
+			setWDMPointXZ("Nassau_town");
+			DoQuestReloadToLocation("Nassau_town", "reload", "reload1", "");
 		}
 	}
 }
