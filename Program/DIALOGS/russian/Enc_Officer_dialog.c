@@ -99,6 +99,10 @@ void ProcessDialogEvent()
 			{
 				dialog.text = "Что в-в-вы хотите, к-к-капитан "+pchar.name+"!";
 			}
+			if (NPChar.sex == "skeleton" && PChar.sex == "skeleton")
+			{
+				dialog.text = "Что вы хотите, мой повелитель?";
+			}
 			// диалог компаньона на корабле.
 			if (CheckAttribute(NPChar, "IsCompanionClone"))
 			{
@@ -1758,24 +1762,32 @@ void ProcessDialogEvent()
 			Link.l1.go = "Exit";
 		break;
         // boal 05.09.03 offecer need to go to abordage -->
-	      case "Boal_Stay":
-             //SetCharacterTask_Stay(Characters[Npchar.index]); // it's a mistic but here doesn't work :(
-             //Log_SetStringToLog(Npchar.id +" "+Npchar.index);
-              Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(Npchar.id);
-              AddDialogExitQuestFunction("LandEnc_OfficerStay");
-		      Diag.TempNode = "Hired";
-		      dialog.text = "Есть изменить дислокацию!";
-		      Link.l1 = "Вольно.";
-		      Link.l1.go = "Exit";
-		      Npchar.chr_ai.tmpl = LAI_TMPL_STAY;
-	      break;
-	      case "Boal_Follow":
-		      SetCharacterTask_FollowCharacter(Npchar, PChar); // it works here!!!
-		      Diag.TempNode = "Hired";
-		      dialog.text = "Есть изменить дислокацию!";
-		      Link.l1 = "Вольно.";
-		      Link.l1.go = "Exit";
-	      break;
+	    case "Boal_Stay":
+            //SetCharacterTask_Stay(Characters[Npchar.index]); // it's a mistic but here doesn't work :(
+            //Log_SetStringToLog(Npchar.id +" "+Npchar.index);
+            Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(Npchar.id);
+            AddDialogExitQuestFunction("LandEnc_OfficerStay");
+		    Diag.TempNode = "Hired";
+		    dialog.text = "Есть изменить дислокацию!";
+		    Link.l1 = "Вольно.";
+		    Link.l1.go = "Exit";
+		    Npchar.chr_ai.tmpl = LAI_TMPL_STAY;
+			if (NPChar.sex == "skeleton" && PChar.sex == "skeleton")
+			{
+				dialog.text = "Слушаюсь и повинуюсь, мой повелитель!";
+			}
+	    break;
+	    case "Boal_Follow":
+		    SetCharacterTask_FollowCharacter(Npchar, PChar); // it works here!!!
+		    Diag.TempNode = "Hired";
+		    dialog.text = "Есть изменить дислокацию!";
+		    Link.l1 = "Вольно.";
+		    Link.l1.go = "Exit";
+			if (NPChar.sex == "skeleton" && PChar.sex == "skeleton")
+			{
+				dialog.text = "Слушаюсь и повинуюсь, мой повелитель!";
+			}
+	    break;
         // boal 05.09.03 offecer need to go to abordage <--
 
 		//////////////////////////////    офицер-наместник -->
