@@ -344,6 +344,7 @@ void CalculateTypeSkillsForRank (ref npchar, int rank, string type, float coeff)
 	//Log_TestInfo("Deviation:" + FloatToString(Deviation,2));
 	BasePriority = makeint(15 * Deviation); // для базового усиления профильного навыка
 	BaseSidePriority = makeint(5 * Deviation); // для базового усиления дополнительного навыка
+	TypeSidePriority = "unknown";
 	Priority3 = 1.5 * Deviation; // для упора на определенный основной навык
 	Priority4 = 1.4 * Deviation; // для упора на определенный дополнительный навык
 	switch(type)
@@ -436,6 +437,7 @@ void CalculateTypeSkillsForRank (ref npchar, int rank, string type, float coeff)
 		npchar.rank_exp = SKILL_MAX - sti(npchar.skill.(TypeMainPriority));
 		ControlSum += sti(npchar.rank_exp);
 	}
+	if(TypeSidePriority != "unknown")
 	if(sti(npchar.skill.(TypeSidePriority)) + BaseSidePriority <= SKILL_MAX)
 	{
 		npchar.skill.(TypeSidePriority) = sti(npchar.skill.(TypeSidePriority)) + BaseSidePriority;

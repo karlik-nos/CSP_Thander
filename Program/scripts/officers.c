@@ -346,7 +346,7 @@ void SetOfficerParam(ref Npchar, int _type)
 			Npchar.quest.officertype = "fighter";
 		break;
 	}
-	CalculateTypeSkillsForRank(npchar, sti(pchar.rank) + rand(4), npchar.quest.officertype, 0.1);
+	CalculateTypeSkillsForRank(npchar, sti(pchar.rank) + rand(2), npchar.quest.officertype, 0.1);
     Npchar.reputation = rand(84) + 5;
     // пристрастие офицера -->
     Npchar.loyality = 5 + rand(10);
