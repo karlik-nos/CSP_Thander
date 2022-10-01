@@ -962,7 +962,7 @@ float GetCharacterExpRate(ref _chref, string _skill)
                 divBy = GetCharacterSPECIAL(_chref, SPECIAL_P)*0.5 + GetCharacterSPECIAL(_chref, SPECIAL_L)*0.5;
             break;
         }
-        _chref.skill.(skill_rate) = makefloat(MOD_EXP_RATE / (divBy * GetExpAcceleration(divBy));
+        _chref.skill.(skill_rate) = makefloat(MOD_EXP_RATE / (divBy * GetExpAcceleration(divBy)));
     }
     return  stf(_chref.skill.(skill_rate));
 }
