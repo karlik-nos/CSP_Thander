@@ -24,7 +24,10 @@ bool SetCharacterPerk(ref chref, string perkName)
 {
 	//Boyer mod to continue
 	bool bReturn = false;
-	chref.perks.list.(perkName) = true;
+	if (perkName == "Grunt" || perkName == "Trader" || perkName == "Fencer" || perkName == "Adventurer" || perkName == "Buccaneer" || perkName == "Agent" || perkName == "SeaWolf")
+		{SetSpeciality(chref, perkName);}
+	else
+		{chref.perks.list.(perkName) = true;}
 	// разовые применения при назначении -->
 	switch (perkName)
 	{
