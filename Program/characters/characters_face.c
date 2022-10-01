@@ -422,6 +422,7 @@ void FaceMaker(aref rCharacter)
 		// ГПК 1.2.5 -->
 		case "PGG_Angellica":	rCharacter.FaceId = 242; break;
 		case "PGG_Rumba":		rCharacter.FaceId = 488; break;
+		case "PGG_Rumba_0":     rCharacter.FaceId = 488; break;
 
 		case "YokoDias":		rCharacter.FaceId = 243; break;
 		case "PGG_YokoDias_0":	rCharacter.FaceId = 243; break;
