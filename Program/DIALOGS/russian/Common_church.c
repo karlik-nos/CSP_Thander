@@ -1003,7 +1003,7 @@ void ProcessDialogEvent()
 
 		case "prihod":
 			//упокоение нечисти
-			if (rand(2)==1 && pchar.questTemp.different == "free" && !CheckAttribute(npchar, "quest.DestroyGhost") && GetNpcQuestPastDayWOInit(npchar, "Ghost") > 7)
+			if (rand(2)==1 && pchar.questTemp.different == "free" && !CheckAttribute(npchar, "quest.DestroyGhost") && GetNpcQuestPastDayWOInit(npchar, "Ghost") > 7 && npchar.id != "Caiman_Priest")
 			{
                 dialog.text = "Мне не совсем удобно об этом говорить, но у меня нет другого выхода. В жизни нет случайных вещей. И на всем лежит воля Всевышнего. Может быть, ты и есть то оружие Господне, которое необходимо нам для истребления нечисти, оскверняющей нашу землю.";
         		link.l1 = RandPhraseSimple("Мне не совсем понятно, святой отец, что вас так напугало? Чем вызван этот страх?",
