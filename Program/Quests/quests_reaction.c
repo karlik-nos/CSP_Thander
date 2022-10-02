@@ -10651,7 +10651,43 @@ void QuestComplete(string sQuestName, string qname)
 			PChar.quest.PDM_Apt_Derevo_2.over = "yes";
 			PChar.quest.PDM_Apt_Derevo_3.over = "yes";
 			
-			
+			chrDisableReloadToLocation = true;
+			DoQuestCheckDelay("PDM_Apt_Canibaly_Attack", 3.5);
+		break;
+		
+		case "PDM_Apt_Canibaly_Attack":
+			Log_info("Кажется, индейцы разгневались!");
+			for (i=1; i<=3; i++)
+			{
+				sTemp = "Canib_"+(rand(5)+1);					
+				sld = GetCharacter(NPC_GenerateCharacter("PDM_Apt_Canib_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+				ChangeCharacterAddressGroup(sld, pchar.location, "reload",  "reload1");
+			}
+			for (i=6; i<=7; i++)
+			{
+				sTemp = "Canib_"+(rand(5)+1);					
+				sld = GetCharacter(NPC_GenerateCharacter("PDM_Apt_Canib_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+				ChangeCharacterAddressGroup(sld, pchar.location, "randitem",  "randitem5");
+			}
+			for (i=8; i<=9; i++)
+			{
+				sTemp = "Canib_"+(rand(5)+1);					
+				sld = GetCharacter(NPC_GenerateCharacter("PDM_Apt_Canib_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+				ChangeCharacterAddressGroup(sld, pchar.location, "randitem",  "randitem10");
+			}
+			LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+			LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);			//true - если помирить
+			LAi_group_SetCheck("EnemyFight", "PDM_Apt_Canibaly_Pobeda");
+		break;
+		
+		case "PDM_Apt_Canibaly_Pobeda":
+			chrDisableReloadToLocation = false;
 		break;
 
 		case "PDM_Apt_Lodka_Postroena":
