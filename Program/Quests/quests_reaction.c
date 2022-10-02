@@ -10651,8 +10651,6 @@ void QuestComplete(string sQuestName, string qname)
 			PChar.quest.PDM_Apt_Derevo_1.over = "yes";
 			PChar.quest.PDM_Apt_Derevo_2.over = "yes";
 			PChar.quest.PDM_Apt_Derevo_3.over = "yes";
-<<<<<<< Updated upstream
-=======
 			
 			chrDisableReloadToLocation = true;
 			DoQuestCheckDelay("PDM_Apt_Canibaly_Attack", 3.5);
@@ -10691,7 +10689,6 @@ void QuestComplete(string sQuestName, string qname)
 		
 		case "PDM_Apt_Canibaly_Pobeda":
 			chrDisableReloadToLocation = false;
->>>>>>> Stashed changes
 		break;
 
 		case "PDM_Apt_Lodka_Postroena":
