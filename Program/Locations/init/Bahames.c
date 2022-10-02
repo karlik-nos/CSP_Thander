@@ -112,6 +112,12 @@ int LocationInitBahames(int n)
 	locations[n].reload.l9.autoreload = "0";
 	locations[n].reload.l9.label = "Brothel";
 
+	locations[n].reload.l10.name = "reload10_back";
+	locations[n].reload.l10.go = "Nassau_PortOffice";
+	locations[n].reload.l10.emerge = "reload1";
+	locations[n].reload.l10.autoreload = "0";
+	locations[n].reload.l10.label = "PortOffice";
+
 	locations[n].reload.lgate.name = "gate_back";
 	locations[n].reload.lgate.go = "Nassau_ExitTown";
 	locations[n].reload.lgate.emerge = "reload2";
@@ -438,7 +444,6 @@ int LocationInitBahames(int n)
 	locations[n].locators_radius.item.item1 = 1.0;
 	n = n + 1;
 
-
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ÷≈– Œ¬‹
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -645,6 +650,44 @@ int LocationInitBahames(int n)
 	locations[n].reload.l1.emerge = "reload3";
 	locations[n].reload.l1.autoreload = "0";
 	locations[n].reload.l1.label = "Brothel";
+	n = n + 1;
+
+ 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// œŒ–“Œ¬€… Œ‘»—
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	locations[n].id = "Nassau_PortOffice";
+	locations[n].id.label = "PortOffice";
+	locations[n].image = "loading\jonny_load\inside\PortOfficeNassau.tga";
+	//Town sack
+	locations[n].townsack = "Nassau";
+	locations[n].lockWeather = "Inside";
+	//Sound
+	locations[n].type = "house";
+	locations[n].fastreload = "Nassau";
+	locations[n].islandId = "Bahames";
+	//Models
+	//Always
+	locations[n].filespath.models = "locations\inside\PortOfficeNasao\";
+	locations[n].models.always.housePortOffice = "PortOfficeNasao";
+	locations[n].models.always.housePortOffice.level = 65538;
+	locations[n].models.always.locators = "PortOfficeNasao_locators";
+	//Day
+	locations[n].models.day.charactersPatch = "PortOfficeNasao_patch";
+	//Night
+	locations[n].models.night.charactersPatch = "PortOfficeNasao_patch";
+	//Environment
+	locations[n].environment.weather = "true";
+	Locations[n].lockWeather = "Inside";
+	Locations[n].QuestlockWeather = "23 Hour";
+	locations[n].environment.sea = "true";
+	locations[n].environment.weather.rain = false;
+	//Reload map
+	locations[n].reload.l1.name = "reload1";
+	locations[n].reload.l1.go = "Nassau_town";
+	locations[n].reload.l1.emerge = "reload10";
+	locations[n].reload.l1.autoreload = "0";
+        locations[n].reload.l1.label = "Street";
+	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
  	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1223,7 +1266,7 @@ int LocationInitBahames(int n)
 
 	locations[n].reload.l3.name = "reload3_back";
 	locations[n].reload.l3.go = "Shore68";
-	locations[n].reload.l3.emerge = "reload2";
+	locations[n].reload.l3.emerge = "reload1";
 	locations[n].reload.l3.autoreload = "1";
 	locations[n].reload.l3.label = "Shore";
 	locations[n].locators_radius.reload.reload3_back = 2;
@@ -1403,19 +1446,19 @@ int LocationInitBahames(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 	//Reload map
-	locations[n].reload.l1.name = "reload2_back";
+	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Bahames_Jungle_04";
 	locations[n].reload.l1.emerge = "reload3";
 	locations[n].reload.l1.autoreload = "1";
 	locations[n].reload.l1.label = "Jungle";
-	locations[n].locators_radius.reload.reload1_back = 2;
+	locations[n].locators_radius.reload.reload1_back = 1.5;
 
 	locations[n].reload.l2.name = "boat";
 	locations[n].reload.l2.go = "Bahames";
 	locations[n].reload.l2.emerge = "reload_2";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-	locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 7.0;
 	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
