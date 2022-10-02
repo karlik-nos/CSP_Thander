@@ -2594,6 +2594,7 @@ void PDMQuestsInit()
 	sld.greeting = "GR_Doctor_Alumnus";
 	sld.dialog.filename   = "Quest/PDM/Aptekar.c";
 	sld.dialog.currentnode   = "First time";
+	sld.City = "Marigo";
 	ChangeCharacterAddressGroup(sld,"Farmacia","barmen","stay");
 }
 //Сундук Мертвеца

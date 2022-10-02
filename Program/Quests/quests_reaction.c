@@ -10635,7 +10635,7 @@ void QuestComplete(string sQuestName, string qname)
 			PChar.quest.PDM_Apt_Derevo_3.win_condition.l1.locator = "randitem3";
 			PChar.quest.PDM_Apt_Derevo_3.win_condition = "PDM_Apt_Nashel_Derevo";
 
-			AddQuestRecord("PDM_Aptekar", "8");
+			AddQuestRecord("PDM_Aptekar", "5");
 		break;
 
 		case "PDM_Apt_Nashel_Derevo":
@@ -10645,11 +10645,13 @@ void QuestComplete(string sQuestName, string qname)
 			sld.dialog.filename   = "Quest/PDM/Aptekar.c";
 			sld.dialog.currentnode   = "Nashel_Derevo";
 
-			AddQuestRecord("PDM_Aptekar", "9");
+			AddQuestRecord("PDM_Aptekar", "6");
 
 			PChar.quest.PDM_Apt_Derevo_1.over = "yes";
 			PChar.quest.PDM_Apt_Derevo_2.over = "yes";
 			PChar.quest.PDM_Apt_Derevo_3.over = "yes";
+			
+			
 		break;
 
 		case "PDM_Apt_Lodka_Postroena":

@@ -52,7 +52,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Alumnus_PervoeZadanie_2":
-			dialog.text = "В одном из домов лежит один из моих пациентов. Вам нужно отнести ему лекарство, и он вам сам заплатит за доставку.";
+			dialog.text = "Здесь в Мариго лежит один из моих пациентов, его зовут Будевин. Вам нужно отнести ему лекарство, и он вам сам заплатит за доставку.";
 			link.l1 = "Вроде бы ничего сложного. Я отнесу ему лекарство.";
 			link.l1.go = "Alumnus_PervoeZadanie_3";
 			link.l2 = "Доктор Алюмнус, наймите себе курьера, а у меня есть более серьёзные дела.";
@@ -60,19 +60,28 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Alumnus_PervoeZadanie_3":
-			dialog.text = "О, я знал, что вы не откажете, "+pchar.name+", спасибо! Вот, держите лекарство. Заходите ко мне ещё, у меня найдётся для вас работа.";
+			dialog.text = "О, я знал, что вы не откажете, "+pchar.name+", спасибо! Чтобы найти его дом, вам нужно подняться вверх по горе, он стоит рядом с выходом в джунгли.\nВот, держите лекарство. Заходите ко мне ещё, у меня найдётся для вас работа.";
 			link.l1 = "Зайду обязательно. До свидания!";
 			link.l1.go = "Alumnus_PervoeZadanie_4";
+			NextDiag.TempNode = "Alumnus_PervoeZadanie_3_EsheRaz";
+		break;
+		
+		case "Alumnus_PervoeZadanie_3_EsheRaz":
+			dialog.text = "Вы отнесли лекарство Будевину?";
+			link.l1 = "Ещё нет, но я скоро буду у него.";
+			link.l1.go = "exit";
+			NextDiag.TempNode = "Alumnus_PervoeZadanie_3_EsheRaz";
 		break;
 		
 		case "Alumnus_PervoeZadanie_4":
 			DialogExit();
+			NextDiag.CurrentNode = NextDiag.TempNode;
 			SetQuestHeader("PDM_Aptekar");
 			AddQuestRecord("PDM_Aptekar", "1");
 			GiveItem2Character(PChar, "PDM_Heal_Poroshok");
 			
 			sld = GetCharacter(NPC_GenerateCharacter("PDM_Markus", "prison_3", "man", "man", 10, HOLLAND, -1, false));
-			sld.name	= "Маркус";
+			sld.name	= "Будевин";
 			sld.lastname	= "";
 			sld.Dialog.Filename = "Quest/PDM/Aptekar.c";
 			sld.dialog.currentnode   = "Markus_1";
@@ -115,128 +124,82 @@ void ProcessDialogEvent()
 			link.l1 = "Выздоравливайте, "+GetAddress_Form(NPChar)+", а теперь я покину вас.";
 			link.l1.go = "exit";
 			AddMoneyToCharacter(pchar, sti(Plata1));
+			AddCharacterExpToSkill(pchar, "Leadership", 60);
 			npchar.lifeday = 0;
 			LAi_CharacterDisableDialog(npchar);
 			AddQuestRecord("PDM_Aptekar", "2");
 			AddQuestUserData("PDM_Aptekar", "sSex", GetSexPhrase("ёс","есла"));
 			AddQuestUserData("PDM_Aptekar", "sSex2", GetSexPhrase("","а"));
-		break;
-		
-//
-//
-//
-		case "Alumnus_FT":
-			dialog.text = "Приветствую вас, я доктор алхимии и медицины. Моё имя Алюмнус. А как зовут вас, "+ GetSexPhrase("молодой человек","девушка") +"?";
-			link.l1 = "Можете звать меня "+pchar.name+", капитан "+pchar.name+". Доктор Алюмнус, я слышал"+ GetSexPhrase("","а") +", что вам удалось излечить дочь губернатора, когда все другие доктора отказались лечить её. Так ли это?";
-			link.l1.go = "Alumnus_1";
-		break;
-
-		case "Alumnus_1":
-			dialog.text = "О, да. Поистине невероятный случай. Бедная девочка страдала анемией. Теперь из трудов Главка и Эфистиуса нам известно, что причиной анемии является подавление элементов воздуха и земли элементами огня и воды. С другой стороны Хоррок утверждает, что анемия происходит не от дисбаланса элементов, а от зарождения злокачественного гомункула в желчном пузыре больного. В то же время древние считали, что анемия происходит от влияния Плутона на созвездие, под которым был рождён пациент...";
-			link.l1 = "Гм. Прошу прощения, доктор, но у меня нет времени выслушивать ваши, несомненно, высоконаучные рассуждения. Человек при смерти. Ему пришлось провести две недели в маленькой лодке почти без воды и пищи. Он не приходит в сознание и его кожа жёлтого цвета. Что я долж"+ GetSexPhrase("ен","на") +" сделать с ним?";
-			link.l1.go = "Alumnus_2";
-		break;
-
-		case "Alumnus_2":
-			dialog.text = "О, интересный случай. Этот человек просто страдает от глобального дисбаланса своих составляющих. Ему не хватает воды и земли - еда, несомненно, это субстанция, имеющая земное происхождение - пациента лихорадит, что указывает на присутствие в крови слишком большого количества элемента огня. Цвет его кожи происходит от скопившейся под ней желчи. Полкес отмечает, что в Праге он наблюдал пациента с кожей, цветом подобной жёлтому нарциссу. Поразительно!";
-			link.l1 = "У меня нет времени на научные объяснения. Скажешь ты мне, что я долж"+ GetSexPhrase("ен","на") +" сделать, чтобы спасти этого человека, или мне придётся вытрясти это из тебя?";
-			link.l1.go = "Alumnus_3";
-		break;
-
-		case "Alumnus_3":
-			dialog.text = "Фу, как вы грубы, "+ GetSexPhrase("молодой человек","девушка") +"! Вам следует уважать тех, кто старше и учёнее вас. Вам стоит кое-чему поучиться, хотя я сомневаюсь, что вы на это способны. Вот, возьмите это средство. Растворите порошок в воде и давайте вашему пациенту три раза в день. Если он не в состоянии пить, то вы должны смазывать ему губы этой микстурой. В течение недели или около того, с Божьего благословения, он должен прийти в себя. Теперь, до свидания, "+ GetSexPhrase("молодой человек","девушка") +".";
-			link.l1 = "До свидания, доктор Алюмнус. И спасибо вам.";
-			link.l1.go = "exit";
-			NextDiag.TempNode = "Alumnus_4";
-
-			sld = CharacterFromID("PDM_Markus")
+			
+			sld = CharacterFromID("Doktor_Alumnus");
 			sld.dialog.filename   = "Quest/PDM/Aptekar.c";
-			sld.dialog.currentnode   = "Markus_Dat_Lekarstvo";
-			pchar.questTemp.PDM_Apt_Markus_lekarstvo = "PDM_Apt_Markus_lekarstvo";
-
-			GiveItem2Character(PChar, "PDM_Heal_Poroshok");
-			AddQuestRecord("PDM_Aptekar", "3");
-			AddQuestUserData("PDM_Aptekar", "sSex", GetSexPhrase("ся","ась"));
+			sld.dialog.currentnode   = "Alumnus_VtoroeZadanie";
 		break;
 
-		case "Alumnus_4":
-			dialog.text = LinkRandPhrase("Я ведь дал вам всё, что вам было необходимо! Попрошу больше не отвлекать меня от моих размышлений.", "...но здесь элемент огня представлен ароматом корицы, чьё доминирование уравновешивается запахом... Нет, пожалуйста, не мешайте мне! Я нахожусь на самом важном этапе своей работы.", "Я ведь дал вам всё, что вам было необходимо! Попрошу больше не отвлекать меня от моих размышлений.", "...но здесь элемент огня представлен ароматом корицы, чьё доминирование уравновешивается запахом... Нет, пожалуйста, не мешайте мне! Я нахожусь на самом важном этапе своей работы.");
-			link.l1 = "Извините, доктор. Я ухожу.";
-			link.l1.go = "exit";
-		break;
-
-		case "Markus_Dat_Lekarstvo":
-			dialog.text = "";
-			link.l1 = "(вы растворяете порошок в воде и даёте Маркусу выпить из кружки)";
-			link.l1.go = "Markus_Dat_Lekarstvo_2";
-		break;
-
-		case "Alumnus_Novoe_Zadanie":
+		case "Alumnus_VtoroeZadanie":
 			dialog.text = "А-а, это вы, "+ GetSexPhrase("мой юный и нетерпеливый капитан","моя юная и нетерпеливая знакомая") +"! Что вам угодно от меня?";
-			link.l1 = "Хотел"+ GetSexPhrase("","а") +" поблагодарить вас, доктор. Вы и вправду творите чудеса. Тот порошок, что вы мне дали, поставил на ноги моего друга. И я вернул"+ GetSexPhrase("ся","ась") +", чтобы выразить вам свою глубочайшую признательность.";
-			link.l1.go = "Alumnus_Novoe_Zadanie_2";
-			AddMoneyToCharacter(pchar, -5000);
+			link.l1 = "Захотел"+GetSexPhrase("","а")+" проведать вас и узнать, не требуется ли вам какая-то помощь?";
+			link.l1.go = "Alumnus_VtoroeZadanie_2";
 		break;
 
-		case "Alumnus_Novoe_Zadanie_2":
-			dialog.text = "Великолепно, я очень рад, что я помог человеку в нужде. Спасибо, капитан, вы не так уж неотесанны, как мне показалось в первый раз\nНо скажите мне, достаточно ли далеко простирается ваша благодарность, чтобы я мог попросить вас об одной услуге? Мне необходимо небольшое количество одной редкой травы, что произрастает на карибских островах. Без неё я не могу готовить свои чудодейственные целебные отвары. Если бы вы достали для меня эту траву, я бы мог лечить вас и ваших офицеров от любых ранений и болезней. Однажды я приобрёл немного этой травы у одного индейца... Как же его звали? Ах да, у Туантуха.";
-			link.l1 = "Я в долгу у вас, доктор. Расскажите мне об этом Туантухе.";
-			link.l1.go = "Alumnus_Novoe_Zadanie_3";
+		case "Alumnus_VtoroeZadanie_2":
+			dialog.text = "Да, действительно, мне сейчас нужна помощь. Мне необходимо небольшое количество одной редкой травы, что произрастает на карибских островах. Без неё я не могу готовить свои чудодейственные целебные отвары. Если бы вы достали для меня эту траву, я бы мог лечить вас и ваших офицеров от любых ранений и болезней. Однажды я приобрёл немного этой травы у одного индейца... Как же его звали? Ах да, у Туантуха.";
+			link.l1 = "Расскажите мне об этом Туантухе.";
+			link.l1.go = "Alumnus_VtoroeZadanie_3";
 		break;
 
-		case "Alumnus_Novoe_Zadanie_3":
+		case "Alumnus_VtoroeZadanie_3":
 			dialog.text = "Он довольно странный... Даже его соплеменники сторонятся его. На своей лодочке он плавает от одного острова к другому, собирая разные редкие травы и снадобья, и потом продаёт их докторам, аптекарям и повивальным бабкам. Но мне кажется, что он умный человек, несмотря на его привычки - он дал мне пару очень полезных советов насчёт местных болезней и психологии индейцев. Он живёт обособленно от людей, и в последний раз его видели где-то на Багамах. Так как у него есть лодка, то живёт он рядом с морем, на скалах.";
 			link.l1 = "Я привезу вам эту травку. А как она называется?";
-			link.l1.go = "Alumnus_Novoe_Zadanie_4";
+			link.l1.go = "Alumnus_VtoroeZadanie_4";
 		break;
 
-		case "Alumnus_Novoe_Zadanie_4":
+		case "Alumnus_VtoroeZadanie_4":
 			dialog.text = "А-а. Вот здесь небольшая проблема. Я не могу в точности припомнить её название. Я уверен, что Туантух называл мне эту траву при продаже, но я просто забыл название, оно звучит крайне странно для слуха европейца, знаете ли.";
 			link.l1 = "И как же я долж"+ GetSexPhrase("ен","на") +" искать эту траву, когда не знаю, как она называется?";
-			link.l1.go = "Alumnus_Novoe_Zadanie_5";
+			link.l1.go = "Alumnus_VtoroeZadanie_5";
 		break;
 
-		case "Alumnus_Novoe_Zadanie_5":
+		case "Alumnus_VtoroeZadanie_5":
 			dialog.text = "Ну, я скажу вам, как опознать эту траву. Её запах напоминает одновременно запахи корицы и аниса. Достаточно пахучая смесь, надо сказать. Я думаю, что это происходит из-за влияния Нептуна и Европы на процесс созревания этой травы. Гинденбург написал целый труд о влиянии внешних планет на созревание трав в период весеннего равноденствия. Впрочем, я отвлекаюсь.";
 			link.l1 = "Да, вы отвлекаетесь. Спасибо за лекцию. Я постараюсь найти для вас эту траву. До встречи.";
 			link.l1.go = "exit";
-			NextDiag.TempNode = "Alumnus_Novoe_Zadanie_6";
+			NextDiag.TempNode = "Alumnus_VtoroeZadanie_6";
 
 			sld = GetCharacter(NPC_GenerateCharacter("Pablo_Loco", "indsar1", "man", "man", 10, PIRATE, -1, false));
 			sld.name = "Туантух";
 			sld.lastname = "";
 			sld.greeting = "GR_Pablo_Loco";
 			LAi_group_MoveCharacter(sld, "PIRATE_CITIZENS");
-			LAi_SetCitizenType(sld);
+			LAi_SetStayType(sld);
 			sld.dialog.filename   = "Quest/PDM/Aptekar.c";
 			sld.dialog.currentnode   = "Pablo_Loco_FT";
-			ChangeCharacterAddressGroup(sld,"Shore34","goto","goto1");
+			ChangeCharacterAddressGroup(sld,"Shore68","quest","quest18");
 
-			AddQuestRecord("PDM_Aptekar", "6");
+			AddQuestRecord("PDM_Aptekar", "3");
 			AddQuestUserData("PDM_Aptekar", "sSex", GetSexPhrase("","а"));
 		break;
 
-		case "Alumnus_Novoe_Zadanie_6":
+		case "Alumnus_VtoroeZadanie_6":
 			dialog.text = "Добро пожаловать назад! Удалось ли вам найти необходимое мне растение?";
 			link.l1 = "Ещё нет, доктор. Продолжаю поиски.";
 			link.l1.go = "exit";
 			link.l2 = "Доктор, напомните мне, как опознать эту траву.";
 			link.l2.go = "Alumnus_Novoe_Kak_Opoznat";
-			NextDiag.TempNode = "Alumnus_Novoe_Zadanie_6";
+			NextDiag.TempNode = "Alumnus_VtoroeZadanie_6";
 		break;
 
 		case "Alumnus_Novoe_Kak_Opoznat":
 			dialog.text = "Запоминайте: эта редкая трава произрастает на карибских островах, её запах напоминает одновременно корицы и аниса. Я думаю, что это происходит из-за влияния Нептуна и Европы на процесс созревания этой травы. Гинденбург написал целый труд о влиянии внешних планет на созревание трав в период весеннего равноденствия...";
 			link.l1 = "Ладно, доктор, этого достаточно, я побежал"+ GetSexPhrase("","а") +".";
 			link.l1.go = "exit";
-			NextDiag.TempNode = "Alumnus_Novoe_Zadanie_6";
+			NextDiag.TempNode = "Alumnus_VtoroeZadanie_6";
 		break;
 
 		case "Pablo_Loco_FT":
 			dialog.text = "А! Твоя желать золота, да? Твоя желать много золота. Слеп"+ GetSexPhrase("ой дурак","ая дура") +"! Неужели твоя не заботиться о состоянии своя душа?";
 			link.l1 = "О чём ты говоришь? Кто ты?";
 			link.l1.go = "Pablo_Loco_1";
-			//link.l1.go = "Pablo_Loco_8";
 			NextDiag.TempNode = "Pablo_Loco_ER_1";
 		break;
 
@@ -328,7 +291,7 @@ void ProcessDialogEvent()
 			PChar.quest.PDM_Apt_Prihov_v_buhtu.win_condition.l1.location = "Shore10";
 			PChar.quest.PDM_Apt_Prihov_v_buhtu.win_condition = "PDM_Apt_Prihov_v_buhtu";
 
-			AddQuestRecord("PDM_Aptekar", "7");
+			AddQuestRecord("PDM_Aptekar", "4");
 		break;
 
 		case "Pablo_Loco_9":
@@ -359,7 +322,7 @@ void ProcessDialogEvent()
 
 			SetTimerCondition("PDM_Apt_Lodka_Postroena", 0, 0, 7, false);
 
-			AddQuestRecord("PDM_Aptekar", "10");
+			AddQuestRecord("PDM_Aptekar", "7");
 		break;
 
 		case "Pablo_Loco_Stroit_lodku":
@@ -371,7 +334,7 @@ void ProcessDialogEvent()
 
 		case "Pablo_Loco_Lodka_Postroena":
 			dialog.text = "Белый человек, моя найти твоя трава.";
-			link.l1 = "Благодарю, Туантух. Твоя не должна волноваться, эта трава не приносить смерть, а приносить пользу медицине. Моя прощаться.";
+			link.l1 = "Моя благодарить, Туантух. Твоя не должна волноваться, эта трава не приносить смерть, а приносить пользу медицине. Моя прощаться с твоя.";
 			link.l1.go = "exit";
 			LAi_CharacterDisableDialog(npchar);
 			npchar.lifeday = 0;
@@ -380,7 +343,7 @@ void ProcessDialogEvent()
 			AddCharacterExpToSkill(pchar, "Repair", 150);
 
 			GiveItem2Character(PChar, "PDM_Trava_Tzes_Umrat");
-			AddQuestRecord("PDM_Aptekar", "11");
+			AddQuestRecord("PDM_Aptekar", "8");
 
 			sld = CharacterFromID("Doktor_Alumnus")
 			sld.dialog.filename   = "Quest/PDM/Aptekar.c";
