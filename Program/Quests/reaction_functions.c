@@ -294,7 +294,7 @@ void BlueBird_seaBattle(string qName)
 	sld.HeroModel = "PGG_DeLuck_0,PGG_DeLuck_1,PGG_DeLuck_2,PGG_DeLuck_3,PGG_DeLuck_4,PGG_DeLuck_5";
 	// Прописка всех моделей для кирас. <--
 	FantomMakeCoolFighter(sld, 30, 70, 70, "blade34", "pistol6", 100);
-	FantomMakeCoolSailor(sld, SHIP_XebekVML, "Синяя Птица", CANNON_TYPE_CULVERINE_LBS24, 70, 70, 70);
+	FantomMakeCoolSailor(sld, SHIP_XebekVML, "Синяя Птица", CANNON_TYPE_CANNON_LBS20, 70, 70, 70);
 	DeleteAttribute(sld, "SinkTenPercent");
 	DeleteAttribute(sld, "AboardToFinalDeck");
 	DeleteAttribute(sld, "SinkTenPercent");
@@ -9023,7 +9023,7 @@ void zpq_seaBattle(string qName)
 	if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sld = GetCharacter(NPC_GenerateCharacter("zpqCaptain", "Lil_Jim_0", "man", "spy", 40, PIRATE, 1, true));
 	else sld = GetCharacter(NPC_GenerateCharacter("zpqCaptain", "Lil_Jim_0", "man", "man", 40, PIRATE, 1, true));
 	FantomMakeCoolFighter(sld, 40, 105, 105, "blade23", "pistol3", 200);
-	FantomMakeCoolSailor(sld, SHIP_LUGGERQUEST, "Нормандия", CANNON_TYPE_CANNON_LBS24, 105, 105, 105);
+	FantomMakeCoolSailor(sld, SHIP_LUGGERQUEST, "Нормандия", CANNON_TYPE_CANNON_LBS16, 105, 105, 105);
     sld.name 	= "Маленький";
     sld.lastname = "Джимми";
 	sld.id		= "zpqCaptain";
@@ -9961,7 +9961,7 @@ void Create_Ja(string qName)//cоздаем Фрегат "Ахерон" с Дж�
 	sld.HeroModel = "QuestCaptain,QuestCaptain_1,QuestCaptain_2,QuestCaptain_3,QuestCaptain_4,QuestCaptain_5,QuestCaptain,QuestCaptain,QuestCaptain";
 	// Прописка всех моделей для кирас. <--
 	FantomMakeCoolFighter(sld, 35, 75, 75, "blade14", "pistol6", 100);
-	FantomMakeCoolestSailor(sld, SHIP_CONSTITUTION, "Ахерон", CANNON_TYPE_CANNON_LBS36, 80, 80, 80);
+	FantomMakeCoolestSailor(sld, SHIP_CONSTITUTION, "Ахерон", CANNON_TYPE_CANNON_LBS32, 80, 80, 80); // LEO: убрал оверапы калибров
 	DeleteAttribute(sld, "SinkTenPercent");
 	DeleteAttribute(sld, "AboardToFinalDeck");
 	sld.AlwaysSandbankManeuver = true;

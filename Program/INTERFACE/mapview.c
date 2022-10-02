@@ -228,7 +228,7 @@ void SelectRColony()
 
 void DoTeleport(float x, float y, string mapid)
 {
-	//log_info(FloatToString(x,1)+" "+FloatToString(y,1)+" "+mapid+" "+loadedLocation.islandId);
+	log_info(FloatToString(x,1)+" "+FloatToString(y,1)+" "+mapid+" "+loadedLocation.islandId);
 	
 	aref mapname,shorename,shorenum;
 	string shore_name,shore_numname;
@@ -462,6 +462,18 @@ void InitMapTeleport()
 	oMapTeleport.map_jam.Shore35.Pos0.Y = 275;
 	oMapTeleport.map_jam.FortOrange_ExitTown.Pos0.X = 190;
 	oMapTeleport.map_jam.FortOrange_ExitTown.Pos0.Y = 230;
+	
+	oMapTeleport.map_Bahames.island = "Bahames";
+	oMapTeleport.map_Bahames.Nassau_ExitTown.Pos0.X = 360;
+	oMapTeleport.map_Bahames.Nassau_ExitTown.Pos0.Y = 155;
+	oMapTeleport.map_Bahames.Nassau_ExitTown.Pos1.X = 375;
+	oMapTeleport.map_Bahames.Nassau_ExitTown.Pos1.Y = 190;
+	oMapTeleport.map_Bahames.Bahames_CaveEntrance.Pos1.X = 375;
+	oMapTeleport.map_Bahames.Bahames_CaveEntrance.Pos1.Y = 310;
+	oMapTeleport.map_Bahames.Shore68.Pos1.X = 235;
+	oMapTeleport.map_Bahames.Shore68.Pos1.Y = 290;
+	oMapTeleport.map_Bahames.Shore69.Pos1.X = 435;
+	oMapTeleport.map_Bahames.Shore69.Pos1.Y = 305;
 	
 	oMapTeleport.map_cayman.island = "Caiman";
 	if (PChar.ColonyBuilding.Stage == "0" || PChar.ColonyBuilding.Stage == "1")

@@ -1159,42 +1159,42 @@ void ProcessDialogEvent()
 						dialog.text = "Да, этот чертёж имеет определённую ценность. Я готов заплатить вам за него " + FindRussianMoneyString(1500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ". Оплату произведу серебряными слитками. Не возражаете?";
 						link.l1 = "Нет, конечно! Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
-						NPChar.reputation = sti(NPChar.reputation) + 1;
+						NPChar.reputation = sti(NPChar.reputation) + 2;
 						TakeNItems(pchar, "jewelry17", makeint(1500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)/100));
 					break;
 					case 2:
 						dialog.text = "Да, этот чертёж имеет определённую ценность. Я готов заплатить вам за него " + FindRussianMoneyString(3000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ". Оплату произведу золотыми слитками. Не возражаете?";
 						link.l1 = "Нет, конечно! Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
-						NPChar.reputation = sti(NPChar.reputation) + 1;
+						NPChar.reputation = sti(NPChar.reputation) + 2;
 						TakeNItems(pchar, "jewelry5", makeint(3000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)/200));
 					break;
 					case 3:
 						dialog.text = "Да, этот чертёж имеет определённую ценность. Я готов заплатить вам за него " + FindRussianMoneyString(4500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ".";
 						link.l1 = "Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
-						NPChar.reputation = sti(NPChar.reputation) + 1;
+						NPChar.reputation = sti(NPChar.reputation) + 2;
 						AddMoneyToCharacter(pchar, 4500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L));
 					break;
 					case 4:
 						dialog.text = "Да, этот чертёж имеет значительную ценность. Я готов заплатить вам за него " + FindRussianMoneyString(6000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ".";
 						link.l1 = "Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
-						NPChar.reputation = sti(NPChar.reputation) + 1;
+						NPChar.reputation = sti(NPChar.reputation) + 2;
 						AddMoneyToCharacter(pchar, 6000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L));
 					break;
 					case 5:
 						dialog.text = "О! Это очень, очень ценный чертёж! Я готов заплатить вам за него 60 000 золотом. Оплату произведу кредитными сундуками. Не возражаете?";
 						link.l1 = "Нет, конечно! Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
-						NPChar.reputation = sti(NPChar.reputation) + 2;
+						NPChar.reputation = sti(NPChar.reputation) + 5;
 						TakeNItems(pchar, "chest", 4);
 					break;
 					case 6:
 						dialog.text = "Да, этот чертёж имеет определённую ценность. Правда, денег в наличии у меня сейчас нет, поэтому я могу отдать вам один из сундуков с ремесленными материалами.";
 						link.l1 = "Ну, раз нет ничего другого, то давайте.";
 						link.l1.go = "ShipyardsMapOk_5";
-						NPChar.reputation = sti(NPChar.reputation) + 1;
+						NPChar.reputation = sti(NPChar.reputation) + 2;
 						TakeNItems(pchar, "Chest_Craftsmans", 1);
 						Log_info("Вы получили сундук ремесленника.")
 					break;

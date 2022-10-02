@@ -83,6 +83,24 @@ void InitInterface_RRS(string iniName, ref rLeftChar, ref rRightChar, string _ty
 		DeleteParticles();
 		CreateParticleEntity();
 	}
+	
+	bool bOk = !bSeaActive && LAi_grp_alarmactive;
+	if (bTransferMode && !bDisableMapEnter && !bOk && !chrDisableReloadToLocation && !bIsDriftCap)
+	{
+		FillShipsScroll();
+		for(int i= 1; i< COMPANION_MAX; i++)
+		{
+			int cn = GetCompanionIndex(pchar, i);
+			if(cn!= -1)
+			{
+				if (sti(xi_refCharacter.index) == cn) 
+				{
+					GameInterface.SHIPS_SCROLL.current = (i-1); 
+					break;
+				}
+			}
+		}
+	}
 
 	SendMessage(&GameInterface,"ls",MSG_INTERFACE_INIT,iniName);
 
@@ -235,10 +253,8 @@ void InitInterface_RRS(string iniName, ref rLeftChar, ref rRightChar, string _ty
 		RealShips[stolenShip].Stolen = true;
 	}
 
-	bool bOk = !bSeaActive && LAi_grp_alarmactive;
 	if (bTransferMode && !bDisableMapEnter && !bOk && !chrDisableReloadToLocation && !bIsDriftCap)
 	{
-		FillShipsScroll();
 		bShipScrollEnabled = true;
 		SetCurrentNode("SHIPS_SCROLL");
 	}

@@ -1801,6 +1801,13 @@ string PerksChars()
 
 void SetSpeciality(ref chref, string perkName)
 {
+	if (IsCharacterPerkOn(chref, "Adventurer")) return; //уже есть характер, новый не ставим
+	if (IsCharacterPerkOn(chref, "SeaWolf")) return;
+	if (IsCharacterPerkOn(chref, "Agent")) return;
+	if (IsCharacterPerkOn(chref, "Grunt")) return;
+	if (IsCharacterPerkOn(chref, "Fencer")) return;
+	if (IsCharacterPerkOn(chref, "Trader")) return;
+	if (IsCharacterPerkOn(chref, "Buccaneer")) return;
 	chref.perks.list.(perkName) = true;
 }
 
