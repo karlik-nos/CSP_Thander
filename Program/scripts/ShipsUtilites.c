@@ -2201,11 +2201,11 @@ int GetShootDistance(ref chref, string ball)
 	distance = stf(rCannon.FireRange);
 	if (CheckAttribute(chref, "perks.list.LongRangeShoot"))
 	{
-		distance = distance * (1.15+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
+		distance = distance * (1.15+(GetCharacterSPECIALSimple(chref, SPECIAL_P)-4)*0.03);
 	}
 	else
 	{
-		distance = distance * (1.0+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
+		distance = distance * (1.0+(GetCharacterSPECIALSimple(chref, SPECIAL_P)-4)*0.03);
 	}
 	switch(ball)
 	{
