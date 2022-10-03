@@ -11155,12 +11155,6 @@ void QuestComplete(string sQuestName, string qname)
 			chrDisableReloadToLocation = false;
 		break;
 		
-		case "UP_Skelet_Moryak_HoditPoPeshere":
-			sld = CharacterFromID("Skelet_Drug")
-			LAi_SetWarriorType(sld);
-			LAi_CharacterDisableDialog(sld);
-		break;
-		
 		case "UP_SkeletyVPeshere_NanyatSnova":
 			DeleteAttribute(pchar, "questTemp.UP_SkeletyVPeshere");
 		break;
