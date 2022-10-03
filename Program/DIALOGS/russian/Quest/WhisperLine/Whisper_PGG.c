@@ -55,8 +55,8 @@ void ProcessDialogEvent()
 		break;
 
 		case "Quest_Whisper_3":
-			dialog.text = "Никто не ждёт испанскую инквизицию!";
-			link.l1 = "Что?";
+			dialog.text = "Вот ты и попалась, Виспер!";
+			link.l1 = "...";
 			link.l1.go = "Quest_Whisper_3_exit";
 		break;
 
@@ -80,7 +80,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Quest_Whisper_5":
-			dialog.text = "Виспер! Наконец-то мы выследили тебя, ведьма! Теперь ты поплатишься за свои злодеяния!";
+			dialog.text = "Наконец-то мы выследили тебя, ведьма! Теперь ты поплатишься за свои злодеяния!";
 			link.l1.go = "Quest_Whisper_5_exit";
 		break;
 
@@ -316,7 +316,7 @@ void ProcessDialogEvent()
 
 		case "Quest_Whisper_Incq_fall":
 			dialog.text = "Ох, голова раскалывается\nВижу, мы всё-таки победили?";
-			link.l1 = "Ты выжила? Когда я увидел"+ GetSexPhrase("","а")+", что ты упала, я опасалась худшего.";
+			link.l1 = "Ты выжила? Когда я увидел"+ GetSexPhrase("","а")+", что ты упала, я "+ GetSexPhrase("опасался","опасалась")+" худшего.";
 			link.l1.go = "Quest_Whisper_Incq";
 		break;
 
@@ -338,32 +338,31 @@ void ProcessDialogEvent()
 
 			ref _location = &locations[reload_location_index];
 			//DeleteAttribute(_location, "box1");
-			_location.box2.money = 250000;
-			_location.box2.items.icollection = 5;
-			_location.box2.items.chest = 10;
+			_location.box2.money = 50000;
+			_location.box2.items.icollection = 1;
+			_location.box2.items.chest = 3;
 			_location.box2.items.jewelry1 = 20+rand(5);
 			_location.box2.items.jewelry2 = 20+rand(5);
 			_location.box2.items.jewelry3 = 20+rand(5);
 			_location.box2.items.jewelry4 = 11+rand(5);
-			_location.box2.items.BackPack5 = 1;
-			_location.box2.items.DeSouzaCross = 1;
+			_location.box2.items.BackPack3 = 1;
 			ChangeItemName("DeSouzaCross", "itmname_DeSouzaCross_DH");
 		break;
 
 		case "Quest_Whisper_Incq_1":
-			dialog.text = "И это всё? ";
-			link.l1 = "Ну, куча выглядит довольно внушительно.";
+			dialog.text = "Чёрт!! Где мой дробовик?! Он должен был быть здесь!";
+			link.l1 = "Дробовик? Не знаю, мне ничего такого не попадалось. Зато посмотри, какая куча ценностей!";
 			link.l1.go = "Quest_Whisper_Incq_2";
 		break;
 
 		case "Quest_Whisper_Incq_2":
-			dialog.text = "Должно быть гораздо больше. Инквизиторов здесь тоже оказалось маловато. А из тех, что были - никого из влиятельных\nПроклятье, я что-то упустила! Должно быть, у инквизиции появилась другая резиденция, о которой я не слышала.";
+			dialog.text = "Плевать на них, меня интересует оружие, которое у меня отобрали здесь во время моего предыдущего 'визита'. К тому же, ценностей должно быть гораздо больше. Инквизиторов здесь тоже оказалось маловато. А из тех, что были - никого из влиятельных\nПроклятье, я что-то упустила! Должно быть, у инквизиции появилась другая резиденция, о которой я не слышала.";
 			link.l1 = "Может и так, но добыча меня устраивает. Как будем делить?";
 			link.l1.go = "Quest_Whisper_Incq_3";
 		break;
 
 		case "Quest_Whisper_Incq_3":
-			dialog.text = "Я заберу только свой дробовик, что у меня отобрали здесь во время моего предыдущего 'визита'\nМожешь оставить всё остальное себе. И добычу за разграбление города тоже. Я пришла сюда чтоб избавиться от старого и назойливого врага, а не ради этой горстки кровавых монет.";
+			dialog.text = "Можешь оставить всё себе, в конце концов, ты сделал" + GetSexPhrase("","а") + " всю работу. И добычу за разграбление города тоже. Я пришла сюда чтоб избавиться от старого назойливого врага и забрать свой дробовик, а не ради этой горстки кровавых монет.";
 			link.l1 = "Ты это всерьёз? Горстка довольно большая, знаешь ли.";
 			link.l1.go = "Quest_Whisper_Incq_4";
 		break;

@@ -944,7 +944,7 @@ void SeaLogin(ref Login)
 			SetCaptanModelByEncType(rFantom, rFantom.EncType);
 			SetRandomNameToCharacter(rFantom);
 			SetSeaFantomParam(rFantom, rEncounter.Type);
-			int iRank = sti(pchar.rank) - rand(5) + rand(5);
+			int iRank = sti(pchar.rank) - 3;
 			if (iRank < 1) iRank = 1;
 			SetFantomParamFromRank(rFantom, iRank, false);
 			rFantom.SeaAI.Group.Name = sGName;

@@ -412,7 +412,7 @@ void ProcessDialogEvent()
 		//Линейка Виспер
 		case "buy_skull":
 			dialog.text = GetConvertStr("itmname_"+pchar.questTemp.Cursed.Item, "ItemsDescribe.txt") +"? Извините, но это семейная реликвия, она не продаётся. Много лет назад дед приобрёл его у одного пирата, и с тех пор череп ни разу не покидал стен этого магазина.";
-			link.l1 = "Не лгите. Для вас, торгашей, все имеет цену, даже родная мать. Сколько хотите за этот череп?";
+			link.l1 = "Не лгите. Для вас, торгашей, всё имеет цену, даже родная мать. Сколько хотите за этот череп?";
 			link.l1.go = "buy_skull_1";
 		break;
 
@@ -708,7 +708,7 @@ void ProcessDialogEvent()
 		case "business":
 			iTest = 0;
     		//квест Синей Птицы, начальный диалог
-			if (pchar.questTemp.BlueBird == "begin" && sti(npchar.nation) != PIRATE && npchar.city != "Panama")
+			if (pchar.questTemp.BlueBird == "begin" && sti(npchar.nation) != PIRATE && npchar.city != "Panama" && pchar.rank >= 10)
 			{
 				dialog.text = RandPhraseSimple("Капитан, прошу вас, помогите нам!!!", "Капитан, я прошу у вас помощи от имени всех торговцев!");
 				link.l1 = "Что случилось? Чем я могу вам помочь?";

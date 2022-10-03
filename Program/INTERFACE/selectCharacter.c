@@ -36,22 +36,20 @@ void InitInterface(string iniName)
 	GameInterface.PROFILE_NAME.str = DEFAULT_NAME;
 	GameInterface.PROFILE_PASS.str = DEFAULT_PASS;
 
-    LoadStartGameParam(); // boal
-    MOD_EXP_RATE =  10; // задаем в начале игры (выбор, от 5 до 15, 10 - середина по умолчанию, 15 - медлено)
-    GameInterface.nodes.EXP_SLIDE.value = 0.5;
-    SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"EXP_SLIDE", 0, 0.5);
+    //LoadStartGameParam(); // boal
+    GameInterface.nodes.EXP_SLIDE.value = makefloat(MOD_EXP_RATE-15)/10.0;
+	if (stf(GameInterface.nodes.EXP_SLIDE.value) < 0) GameInterface.nodes.EXP_SLIDE.value = stf(GameInterface.nodes.EXP_SLIDE.value)*(-1);
+    SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"EXP_SLIDE", 0, stf(GameInterface.nodes.EXP_SLIDE.value));
 
 	MOD_OFFICERS_RATE = 3;
 	GameInterface.nodes.OFF_SLIDE.value = 0.5;
     SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"OFF_SLIDE", 0, 0.5);
 
-	MOD_DEAD_CLEAR_TIME = 100;
-	GameInterface.nodes.DEAD_SLIDE.value = 0.5;
-    SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"DEAD_SLIDE", 0, 0.5);
+	GameInterface.nodes.DEAD_SLIDE.value = makefloat(MOD_DEAD_CLEAR_TIME-500+400)/400.0;
+    SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"DEAD_SLIDE", 0, stf(GameInterface.nodes.DEAD_SLIDE.value));
 
-	MOD_DEFENDERS_RATE = 4;
-	GameInterface.nodes.DEFENDERS_SLIDE.value = 0.5;
-    SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"DEFENDERS_SLIDE", 0, 0.5);
+	GameInterface.nodes.DEFENDERS_SLIDE.value = makefloat(MOD_DEFENDERS_RATE)/5.0;
+    SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"DEFENDERS_SLIDE", 0, stf(GameInterface.nodes.DEFENDERS_SLIDE.value));
 
 	startHeroType = sti(pchar.starttype);
     if (startHeroType < 1) startHeroType = 1; // fix
@@ -77,8 +75,8 @@ void InitInterface(string iniName)
 	SetFormatedText("EXP_SLIDE_MIN", "Min");
 	SetFormatedText("EXP_SLIDE_MAX", "Max");
 
-	SetFormatedText("DESC_TITLE", "Дополнительное соглашение");
-	SetFormatedText("DESC_TEXT", "Привет, бравый корсар! \nКоманда CSP приветствует тебя! Наверняка, ты уже опытный, отважный, знаешь всю игру вдоль и поперёк. Но не всё так просто, как кажется. \nДело в том, что этот аддон очень сильно отличается от оригинала ГПК и последней активно разрабатываемой версией ККС. \nМногие, уже привычные элементы геймплея, а так же, казалось бы очевидные вещи, тут работают иначе. Если ты не следил за этапами разработки и тестирования аддона в Дискорде, очень многое тут, будет непонятным или вообще будет казаться багом. \nСпециально для пояснения некоторых аспектов, связанных с началом Новой Игры, мы подготовили это соглашение. Начало Новой Игры - это важный этап, это не просто выбор Героя и Йо-хо-хо, на абордаж! Это тонкая и гибкая настройка многих элементов геймплея. Поставив не ту 'галочку' или наоборот, не включив - можно серьёзно усложнить себе игру. Для каждой такой опции есть описание, достаточно просто нажать на опции ПРАВОЙ кнопкой мыши.  Теперь ВНИМАНИЕ! Чтобы начать игру, тебе просто нужно нажать Правой кнопкой мыши по кнопке 'Соглашаюсь!' или 'Давай, поехали уже!'. По любой из них. После всего прочитанного, надеемся, у тебя не возникнет вопросов: ''почему у меня не работают те или эти элементы геймплея''. \nА теперь, можешь продолжить создавать своего героя и покорять архипелаг. Не забыл, что нужно и чем нажать? \nУдачи, корсар, попутного ветра!");
+	//SetFormatedText("DESC_TITLE", "Внимание!");
+	SetFormatedText("DESC_TEXT", "Начало новой игры - это важный этап, в котором Вам предстоит настроить игру под себя. \n\nВсе стартовые параметры, которые Вы сейчас укажете в данном меню, будут действовать до конца партии! Поставив не ту 'галочку' или, наоборот, не включив - можно серьёзно усложнить себе игру. Для каждой опции есть описание, которое выводится при зажатии правой клавиши мыши на ней. \nТеперь внимание! Чтобы начать игру, Вам просто нужно нажать правой кнопкой мыши по кнопке 'Соглашаюсь!' или 'Давай, поехали уже!'. \n\nУдачи, корсар, попутного ветра!");
 	if (!CheckAttribute(&GameInterface, "SavePath"))
 		GameInterface.SavePath = "SAVE";
 
@@ -191,6 +189,14 @@ void SetByDefault()
     {
         CheckButton_SetState("CHECK_LOWERSELF", 1, false);
     }
+	if (bRankRequirement)// 1 0
+    {
+    	CheckButton_SetState("CHECK_RANK_REQUIREMENT", 1, true);
+    }
+    else
+    {
+        CheckButton_SetState("CHECK_RANK_REQUIREMENT", 1, false);
+    }
 	if (bHalfImmortalPGG)// 1 0
     {
     	CheckButton_SetState("CHECK_HALFIMMORTALPGG", 1, true);
@@ -222,6 +228,30 @@ void SetByDefault()
 	else
 	{
 		CheckButton_SetState("CHECK_ALTERNATIVE_BALANCE",1,false);
+	}
+	if(bAltBalanceTimeSlow)
+	{
+		CheckButton_SetState("CHECK_AB_TIMESLOW",1,true);
+	}
+	else
+	{
+		CheckButton_SetState("CHECK_AB_TIMESLOW",1,false);
+	}
+	if(bAltBalanceOffTopPerk)
+	{
+		CheckButton_SetState("CHECK_AB_OFFTOPPERK",1,true);
+	}
+	else
+	{
+		CheckButton_SetState("CHECK_AB_OFFTOPPERK",1,false);
+	}
+	if(bAltBalanceProHits)
+	{
+		CheckButton_SetState("CHECK_AB_PROHITS",1,true);
+	}
+	else
+	{
+		CheckButton_SetState("CHECK_AB_PROHITS",1,false);
 	}
 	if(bDifficultyWeight)
 	{
@@ -385,6 +415,14 @@ void IProcessFrame()
 	{
 		bHigherSelfRate = false;
 	}
+	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_RANK_REQUIREMENT", 3, 1))
+	{
+		bRankRequirement = true;
+	}
+	else
+	{
+		bRankRequirement = false;
+	}
 	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_NOBONUS_SKILL_OFF", 3, 1))
 	{
 		bNoBonusSkillOff = true;
@@ -416,6 +454,30 @@ void IProcessFrame()
 	else
 	{
 		bAltBalance = false;
+	}
+	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_AB_TIMESLOW", 3, 1))
+	{
+		bAltBalanceTimeSlow = true;
+	}
+	else
+	{
+		bAltBalanceTimeSlow = false;
+	}
+	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_AB_OFFTOPPERK", 3, 1))
+	{
+		bAltBalanceOffTopPerk = true;
+	}
+	else
+	{
+		bAltBalanceOffTopPerk = false;
+	}
+	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_AB_PROHITS", 3, 1))
+	{
+		bAltBalanceProHits = true;
+	}
+	else
+	{
+		bAltBalanceProHits = false;
 	}
 	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_DIFFICULTY_WEIGHT", 3, 1))
 	{
@@ -614,7 +676,6 @@ void ProcessCommandExecute()
 				//DeleteProfile();
 				//exitOk();
 				isOkExit = true;
-				SaveStartGameParam(); // boal
 				IDoExit(RC_INTERFACE_CHARACTER_SELECT_EXIT, true);
 			}
 
@@ -737,6 +798,18 @@ void ProcessCommandExecute()
 				XI_WindowDisable("DESCRIPTION",true);
     		}
     	break;
+		case "CHECK_ALTERNATIVE_BALANCE":
+		if(comName=="click" && bAltBalance == 0)
+		{
+			ShowAltBalanceWindow(true);
+		}
+    	break;
+		case "ALTBALANCE_WINDOW_CLOSE":
+		if(comName=="click")
+		{
+			ShowAltBalanceWindow(false);
+		}
+    	break;
 	}
 
 }
@@ -776,6 +849,27 @@ void ShowConfirmWindow(bool show)
 	{
 		XI_WindowDisable("CONFIRM_WINDOW", true);
 		XI_WindowShow("CONFIRM_WINDOW", false);
+		XI_WindowDisable("MAIN_WINDOW", false);
+		SetCurrentNode("OK_BUTTON");
+	}
+}
+
+void ShowAltBalanceWindow(bool show)
+{
+	if (show)
+	{
+		SetCurrentNode("ALTBALANCE_WINDOW_CLOSE");
+
+		XI_WindowDisable("MAIN_WINDOW", true);
+		XI_WindowDisable("ALTBALANCE_WINDOW", false);
+		XI_WindowShow("ALTBALANCE_WINDOW", true);
+		EI_CreateFrame("ALTBALANCE_WINDOW_BORDERS",190,190,610,360);
+
+	}
+	else
+	{
+		XI_WindowDisable("ALTBALANCE_WINDOW", true);
+		XI_WindowShow("ALTBALANCE_WINDOW", false);
 		XI_WindowDisable("MAIN_WINDOW", false);
 		SetCurrentNode("OK_BUTTON");
 	}
@@ -851,72 +945,65 @@ void SelectNation(int iNation)
 
 void selectEngland()
 {
-	if (startHeroType == 2) SelectNation(PIRATE);
-	else SelectNation(ENGLAND);
-
+	if (startHeroType == 1) SelectNation(ENGLAND);	//Питер Блад
+	if (startHeroType == 2) SelectNation(PIRATE);	//Виспер
+	if (startHeroType == 3) SelectNation(PIRATE);	//Беатрис Шарп
+	if (startHeroType == 4) SelectNation(PIRATE);	//Блэйз Шарп
+	if (startHeroType == 5) SelectNation(FRANCE);	//Шарль де Мор
+	if (startHeroType == 6) SelectNation(FRANCE);	//Мэри Каспер
 	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
-	
-	if (startHeroType == 9) SelectNation(ENGLAND);
-	if (startHeroType == 10) SelectNation(FRANCE);
-	if (startHeroType == 11) SelectNation(SPAIN);
-	if (startHeroType == 12) SelectNation(HOLLAND);
+	if (startHeroType > 7) SelectNation(ENGLAND);
 }
 
 void selectFrance()
 {
-    //homo блокировка нации для Питера Блада
-    if (startHeroType == 1) SelectNation(ENGLAND);
-	if (startHeroType == 2) SelectNation(PIRATE);
-	if (startHeroType > 2) SelectNation(FRANCE);
-	
+    if (startHeroType == 1) SelectNation(ENGLAND);	//Питер Блад
+	if (startHeroType == 2) SelectNation(PIRATE);	//Виспер
+	if (startHeroType == 3) SelectNation(PIRATE);	//Беатрис Шарп
+	if (startHeroType == 4) SelectNation(PIRATE);	//Блэйз Шарп
+	if (startHeroType == 5) SelectNation(FRANCE);	//Шарль де Мор
+	if (startHeroType == 6) SelectNation(FRANCE);	//Мэри Каспер
 	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
-
-	if (startHeroType == 9) SelectNation(ENGLAND);
-	if (startHeroType == 10) SelectNation(FRANCE);
-	if (startHeroType == 11) SelectNation(SPAIN);
-	if (startHeroType == 12) SelectNation(HOLLAND);
+	if (startHeroType > 7) SelectNation(FRANCE);
 }
 
 void selectSpain()
 {
-    //homo блокировка нации для Питера Блада
-    if (startHeroType == 1) SelectNation(ENGLAND);
-	if (startHeroType == 2) SelectNation(PIRATE);
-	if (startHeroType > 2) SelectNation(SPAIN);
-
-	if (startHeroType == 9) SelectNation(ENGLAND);
-	if (startHeroType == 10) SelectNation(FRANCE);
-	if (startHeroType == 11) SelectNation(SPAIN);
-	if (startHeroType == 12) SelectNation(HOLLAND);
+    if (startHeroType == 1) SelectNation(ENGLAND);	//Питер Блад
+	if (startHeroType == 2) SelectNation(PIRATE);	//Виспер
+	if (startHeroType == 3) SelectNation(PIRATE);	//Беатрис Шарп
+	if (startHeroType == 4) SelectNation(PIRATE);	//Блэйз Шарп
+	if (startHeroType == 5) SelectNation(FRANCE);	//Шарль де Мор
+	if (startHeroType == 6) SelectNation(FRANCE);	//Мэри Каспер
+	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
+	if (startHeroType > 7) SelectNation(SPAIN);
 }
 
 void selectHolland()
 {
-    //homo блокировка нации для Питера Блада
-    if (startHeroType == 1) SelectNation(ENGLAND);
-	if (startHeroType == 2) SelectNation(PIRATE);
-	if (startHeroType > 2) SelectNation(HOLLAND);
-	
+    if (startHeroType == 1) SelectNation(ENGLAND);	//Питер Блад
+	if (startHeroType == 2) SelectNation(PIRATE);	//Виспер
+	if (startHeroType == 3) SelectNation(PIRATE);	//Беатрис Шарп
+	if (startHeroType == 4) SelectNation(PIRATE);	//Блэйз Шарп
+	if (startHeroType == 5) SelectNation(FRANCE);	//Шарль де Мор
+	if (startHeroType == 6) SelectNation(FRANCE);	//Мэри Каспер
 	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
-
-	if (startHeroType == 9) SelectNation(ENGLAND);
-	if (startHeroType == 10) SelectNation(FRANCE);
-	if (startHeroType == 11) SelectNation(SPAIN);
-	if (startHeroType == 12) SelectNation(HOLLAND);
+	if (startHeroType > 7) SelectNation(HOLLAND);
 }
 
 void selectPirate()
 {
-    	//homo блокировка нации для Питера Блада
-	if (startHeroType == 1) SelectNation(ENGLAND);
-	else SelectNation(PIRATE);
-	
+	if (startHeroType == 1) SelectNation(ENGLAND);	//Питер Блад
+	if (startHeroType == 2) SelectNation(PIRATE);	//Виспер
+	if (startHeroType == 3) SelectNation(PIRATE);	//Беатрис Шарп
+	if (startHeroType == 4) SelectNation(PIRATE);	//Блэйз Шарп
+	if (startHeroType == 5) SelectNation(FRANCE);	//Шарль де Мор
+	if (startHeroType == 6) SelectNation(FRANCE);	//Мэри Каспер
 	if (startHeroType == 7) SelectNation(SPAIN);	//Анжелика Тич
-
-	if (startHeroType == 9) SelectNation(ENGLAND);
-	if (startHeroType == 10) SelectNation(FRANCE);
-	if (startHeroType == 11) SelectNation(SPAIN);
-	if (startHeroType == 12) SelectNation(HOLLAND);
+	if (startHeroType == 8) SelectNation(PIRATE);	//Тёмный Странник
+	if (startHeroType == 9) SelectNation(FRANCE);	//Нежить
+	if (startHeroType == 10) SelectNation(HOLLAND);	//Нежить
+	if (startHeroType > 10) SelectNation(PIRATE);
 }
 
 void IDoExit(int exitCode, bool bCode)
@@ -955,6 +1042,15 @@ void IDoExit(int exitCode, bool bCode)
 
 		MOD_DEFENDERS_RATE = makeint(5 - 5.0 * (1.0 - stf(GameInterface.nodes.DEFENDERS_SLIDE.value)));  // 0т 0 до 5
 		trace("MOD_DEFENDERS_RATE_RATE = " + MOD_DEFENDERS_RATE);
+		
+		if (bAltBalance == false)
+		{
+			bAltBalanceTimeSlow = false;
+			bAltBalanceOffTopPerk = false;
+			bAltBalanceProHits = false;
+		}
+		
+		SaveStartGameParam(); // boal
 
 		interfaceResultCommand = exitCode;
 		EndCancelInterface(bCode);
@@ -1090,6 +1186,21 @@ void ShowInfo()
 			sHeader = XI_ConvertString("CHECK_ALTERNATIVE_BALANCE");
 			sText1 = GetRPGText("CHECK_ALTERNATIVE_BALANCE_hint");
 		break;
+		
+		case "CHECK_AB_TIMESLOW":
+			sHeader = XI_ConvertString("CHECK_AB_TIMESLOW");
+			sText1 = GetRPGText("CHECK_AB_TIMESLOW_hint");
+		break;
+		
+		case "CHECK_AB_OFFTOPPERK":
+			sHeader = XI_ConvertString("CHECK_AB_OFFTOPPERK");
+			sText1 = GetRPGText("CHECK_AB_OFFTOPPERK_hint");
+		break;
+		
+		case "CHECK_AB_PROHITS":
+			sHeader = XI_ConvertString("CHECK_AB_PROHITS");
+			sText1 = GetRPGText("CHECK_AB_PROHITS_hint");
+		break;
 
 		case "CHECK_DIFFICULTY_WEIGHT":
 			sHeader = XI_ConvertString("DifficultyWeight");
@@ -1120,6 +1231,12 @@ void ShowInfo()
 			sHeader = XI_ConvertString("LowerSelf");
 			sText1 = GetRPGText("LowerSelf_hint");
 		break;
+		
+		case "CHECK_RANK_REQUIREMENT":
+			sHeader = XI_ConvertString("CHECK_RANK_REQUIREMENT");
+			sText1 = XI_ConvertString("CHECK_RANK_REQUIREMENT_descr");
+		break;
+		
 		case "CHECK_HALFIMMORTALPGG":
 			sHeader = XI_ConvertString("HalfImmortalPGG");
 			sText1 = GetRPGText("HalfImmortalPGG_hint");
@@ -1199,8 +1316,7 @@ void SetVariable(bool _init)
 	pchar.lastname = GetNewMainCharacterParam("heroLastname_" + startHeroType);
 	pchar.sex = GetNewMainCharacterParam("sex_" + startHeroType);
 	pchar.FaceID = GetNewMainCharacterFace();
-	bool bRandCharNation = startHeroType > 8 && startHeroType < 13;
-	if (bRandCharNation || startHeroType < 3)	SetSelectable("RANDCHARNATION",false);
+	if (startHeroType < 11)	SetSelectable("RANDCHARNATION",false);	//Отключение у сюжетных ГГ функции "Случайные нация и характер"
 	else	SetSelectable("RANDCHARNATION",true);
 
     if (_init)

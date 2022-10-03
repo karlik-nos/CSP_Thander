@@ -230,7 +230,7 @@ void ProcessDialogEvent()
 			//Старт за нежить
 			if (CheckAttribute(pchar, "questTemp.Undead.Leave_Crypt"))
 			{
-				dialog.Text = "Микту... Мекетлу... М... Что со мной? Я чувствую, что "+GetSexPhrase("должен","должна")+" покинуть это место. Мне нужен корабль. Я слышу зов. Другие. Они ждут взаперти. Нет сил противиться. Я иду, бог мёртвых. Я иду.";
+				dialog.Text = "Микту... Мекетлу... М... Что со мной? Я чувствую, что "+GetSexPhrase("должен","должна")+" покинуть это место. Я слышу зов. Другие. Они ждут взаперти. Нет сил противиться. Я иду, бог мёртвых. Я иду.";
 				DeleteAttribute(pchar, "questTemp.Undead.Leave_Crypt");
 				Link.l1 = "Стоит переодеться в эту неприметную одежду, прежде чем посещать мир живых.";
 				Link.l1.go = "Exit_Special";
@@ -853,14 +853,14 @@ void ProcessDialogEvent()
 
 		case "autofood_finished":
 			dialog.text = "Приоритет для еды установлен.";
-			DeleteAttribute(pchar, "autofood_betterfood");
+			DeleteAttribute(pchar, "betterfood");
 			link.l1 = "Славно!";
 			link.l1.go = "exit";
 		break;
 
 		case "autofood_finished_betterfood":
 			dialog.text = "Приоритет для еды установлен.";
-			PChar.autofood_betterfood = true;
+			PChar.betterfood = true;
 			link.l1 = "Славно!";
 			link.l1.go = "exit";
 		break;

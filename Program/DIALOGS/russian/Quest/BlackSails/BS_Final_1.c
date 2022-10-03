@@ -131,7 +131,7 @@ void ProcessDialogEvent()
 			LAi_SetStayTypeNoGroup(sld);
 			sld.dialog.filename = "Quest\BlackSails\BS_Final_1.c";
 			sld.dialog.currentnode = "BS_F1_10";
-			if(jackman.dialog.currentnode == "Jackman_Defeated")
+			if (jackman.dialog.currentnode == "Jackman_Defeated")
 			{
 				sld.location.locator = "goto4";
 			}

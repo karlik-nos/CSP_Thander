@@ -91,14 +91,22 @@ void ProcessDialogEvent()
 			ChangeCharacterAddressGroup(sld, "LaVega_town", "none", "");
 			
 			//Испанский губернатор
-			sld = GetCharacter(NPC_GenerateCharacter("AT_pr_LaVegaIspanski_Gubernator", "SpaOfficer1", "man", "man", 15, SPAIN, -1, false));
+			sld = GetCharacter(NPC_GenerateCharacter("AT_pr_LaVegaIspanski_Gubernator", "SpaOfficer1", "man", "man", 15, SPAIN, -1, true));
 			FantomMakeCoolFighter(sld, 100, 100, 100, "blade20", "howdah", 500);
 			sld.name	= "Аурелио";
 			sld.lastname	= "Серрано";
+			sld.SaveItemsForDead = true;
 			sld.Dialog.Filename = "Quest/MainheroPrologues/Prologue_AnjelikaTich.c";
 			sld.dialog.currentnode = "LaVegaIspanski_Gubernator";
 			LAi_SetHuberType(sld);
 			LAi_SetImmortal(sld, true);
+			DeleteAttribute(sld, "items");
+			AddMoneyToCharacter(sld, 12345);
+			GiveItem2Character(sld, "blade19");
+			EquipCharacterByItem(sld, "blade19");
+			GiveItem2Character(sld, "BackPack2");
+			GiveItem2Character(sld, "talisman6");
+			AddItems(sld, "jewelry4", 30);
 			ChangeCharacterAddressGroup(sld,"LaVega_townhall","sit","sit1");
 			
 			//Торговец на улице (продолжение квеста)
@@ -216,10 +224,10 @@ void ProcessDialogEvent()
 		break;
 		
 		case "man_shlyapa":
-        dialog.text = "Добрый день! Чем могу я быть вам любезен?";
-		link.l1 = "Здравствуйте! У вас чудная шляпа.";
-		link.l1.go = "exit";
-		NextDiag.TempNode = "man_shlyapa";
+			dialog.text = "Добрый день! Чем могу я быть вам любезен?";
+			link.l1 = "Здравствуйте! У вас чудная шляпа.";
+			link.l1.go = "exit";
+			NextDiag.TempNode = "man_shlyapa";
 		break;
 		
 		case "Torgovets_1":
@@ -244,7 +252,7 @@ void ProcessDialogEvent()
 			link.l1.go = "Torgovets_4";
 			sld = CharacterFromID("AT_pr_devushka_na_rynke")
 			LAi_SetActorType(sld);
-			LAi_ActorTurnToCharacter(sld, CharacterFromID("Gasten_Kotes"));		
+			LAi_ActorTurnToCharacter(sld, CharacterFromID("Gasten_Kotes"));
 			sld = CharacterFromID("AT_pr_Rebekka")
 			LAi_SetActorType(sld);
 			LAi_ActorTurnToCharacter(sld, CharacterFromID("Gasten_Kotes"));
@@ -350,6 +358,7 @@ void ProcessDialogEvent()
 		
 		case "Rebekka_posle_draki_3":
 			chrDisableReloadToLocation = false;
+			bDisableFastReload = true;
 			pchar.questTemp.AnjelikaTichPrologue2 = "ATP2";
 			
 			PChar.quest.AT_pr_Oba_ischezaut.win_condition.l1 = "ExitFromLocation";
@@ -441,16 +450,18 @@ void ProcessDialogEvent()
 			dialog.text = "Ой, Анжелика!";
 			link.l1 = "Бекки? Ты что здесь делаешь? ";
 			link.l1.go = "Rebekka_v_grote_2";
+			locCameraToPos(3.80, 2.70, -4.00, true);
 		break;
 		
 		case "Rebekka_v_grote_2":
 			dialog.text = "Вынюхиваю, чем ты здесь занимаешься. Последнее время ведёшь себя странно, всех задираешь, постоянно убегаешь то в лес, то сюда на побережье.";
 			link.l1 = "Значит ты время от времени за мной приглядываешь. Послушай, я не могу, следуя твоему примеру, торчать целый день взаперти, а от нашего форта меня тошнит. Я устала ловить на себе взгляды местных солдафонов, выслушивать их примитивные комплименты и шуточки.";
 			link.l1.go = "Rebekka_v_grote_3";
+			locCameraSleep(true);
 		break;
 		
 		case "Rebekka_v_grote_3":
-			dialog.text = "Понимаю. Но дело же не только в этом так? Смотри\n"+
+			dialog.text = "Понимаю. Но дело же не только в этом, так? Смотри\n"+
 							"Похоже, это вещи Аркадио? Того солдата, который вломился к нам в дом, требуя моей руки, и кольцо - то самое, которое он пытался вручить мне, до того, как ты его вытолкала.";
 			link.l1 = "Похоже. Да.";
 			link.l1.go = "Rebekka_v_grote_4";
@@ -477,6 +488,7 @@ void ProcessDialogEvent()
 		case "Rebekka_v_grote_7":
 			DialogExit();
 			
+			LAi_SetActorType(pchar);
 			DoQuestFunctionDelay("AT_pr_Strelba_is_pushki", 1.3);
 		break;
 		
@@ -495,6 +507,7 @@ void ProcessDialogEvent()
 		case "Rebekka_v_grote_10":
 			DialogExit();
 			
+			LAi_SetActorType(pchar);
 			DoQuestFunctionDelay("AT_pr_Strelba_is_pushki_4", 1.3);
 		break;
 		
@@ -512,9 +525,11 @@ void ProcessDialogEvent()
 		
 		case "Rebekka_v_grote_13":
 			DialogExit();
-			SetLaunchFrameFormParam("Прошло несколько часов...", "", 0, 4.0);
+			LAi_SetActorType(pchar);
+			locCameraSleep(false);
+			SetLaunchFrameFormParam("Наступил вечер...", "", 0, 2.3);
 			LaunchFrameForm();
-			DoQuestFunctionDelay("AT_pr_Piraty_v_grote", 4.0);
+			DoQuestFunctionDelay("AT_pr_Piraty_v_grote", 2.3);
 		break;
 		
 		case "Pirate_v_grote_1":
@@ -780,10 +795,29 @@ void ProcessDialogEvent()
 		
 		case "ATpr_SD_Koten_6_1":
 			dialog.text = "Вот, примерь.";
-			link.l1 = "Вау, а он неплохо смотрится на мне. Спасибо тебе, Гастен.";
-			link.l1.go = "ATpr_SD_Koten_7";
+			link.l1 = "Отвернись, переоденусь...";
+			link.l1.go = "ATpr_SD_Koten_6_2";
 			PlaySound("Interface\important_item.wav");
 			Log_info("Вы получили новый костюм");
+		break;
+		
+		case "ATpr_SD_Koten_6_2":
+			DialogExit();
+			SetLaunchFrameFormParam("Минута переодеваний...", "ATpr_Pereodevaemsya", 0, 2.0);
+			LaunchFrameForm();
+			WaitDate("", 0, 0, 0, 0, 1);
+			LAi_SetActorType(pchar);
+			sld = CharacterFromID("Gasten_Kotes")
+			LAi_SetActorType(sld);
+		break;
+		
+		case "ATpr_SD_Koten_6_3":
+			dialog.text = "";
+			link.l1 = "Неплохо, неплохо. Пойдёт на первое время. Спасибо тебе, Гастен.";
+			link.l1.go = "ATpr_SD_Koten_7";
+			SetLaunchFrameFormParam("Минута переодеваний", "", 0, 2.0);
+			LaunchFrameForm();
+			WaitDate("", 0, 0, 0, 0, 1);
 		break;
 		
 		case "ATpr_SD_Koten_7":

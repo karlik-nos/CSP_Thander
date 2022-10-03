@@ -393,7 +393,7 @@ void FillAboardCabinBox(ref _location, ref _npchar)
 			if(rand(1) == 0) { _location.box1.items.mineral4 = rand(118) + 85; }
 			_location.box1.items.mineral5 = rand(78) + 115;
 			if(rand(1) == 0) { _location.box1.items.mineral8 = rand(86) + 44; }
-			_location.box1.items.mineral11 = rand(146) + 131;
+			_location.box1.items.indian2 = rand(146) + 131;
 		}
 		_location.box1.money = 12560 + rand(1000);
 		ok = false;
@@ -705,6 +705,18 @@ void FillAboardCabinBox(ref _location, ref _npchar)
         _location.box1.items.jewelry4 = 30+rand(10);
         _location.box1.items.jewelry5 = rand(80);
 		_location.box1.items.PDM_SJ_Angl_Gal = 1);
+        ok = false;
+	}
+	//Квест "Лиларкор", в корабле лежит Лиларкор
+	if (_npchar.id == "UP_Korabl_s_klinkom")
+	{
+        DeleteAttribute(_location, "box1");
+        _location.box1.money = 12000;
+		_location.box1.items.jewelry1 = 5+rand(10);
+        _location.box1.items.jewelry3 = 5+rand(10);
+        _location.box1.items.jewelry4 = 5+rand(10);
+		_location.box1.items.cirass1 = 1);
+		_location.box1.items.Lilarcor_Sword1 = 1);
         ok = false;
 	}
 
@@ -2390,40 +2402,15 @@ void SelectSlavetraderRendom() // работорговец, выбор горо�
 // квест Изабеллы
 void IsabellaInit()
 {
+	//Атилла
+	pchar.quest.Romantic_Pirat_Spawn.win_condition.l1 = "Rank";
+	pchar.quest.Romantic_Pirat_Spawn.win_condition.l1.value = 20;
+	pchar.quest.Romantic_Pirat_Spawn.win_condition.l1.operation = ">=";
+	PChar.quest.Romantic_Pirat_Spawn.win_condition = "Romantic_Pirat_Spawn";
+	
 	ref ch;
 	// ==> состояние квеста Изабеллы, если равен "" - то квест Атилла не даст.
 	pchar.RomanticQuest = "canTakeQuest";
-	//Атилла
-	ch = GetCharacter(NPC_GenerateCharacter("Atilla", "pirate_1", "man", "man", 22, PIRATE, -1, false));
-	ch.name 	= "Атилла";
-	ch.lastname 	= "";
-	GiveItem2Character(ch, GUN_COMMON);
-	ch.equip.gun = GUN_COMMON;
-	GiveItem2Character(ch, BLADE_LONG);
-	ch.equip.blade = BLADE_LONG;
-	ch.location	= "Pirates_town";
-	ch.location.group = "goto";
-	ch.location.locator = "goto1";
-	ch.Dialog.Filename = "Quest\Isabella\Atilla.c";
-	ch.greeting = "Gr_Smuggler Agent";
-	ch.rank 	= 25;
-	ch.reputation = "30";
-	ch.talker = 5; //начать диалог
-	ch.TiedItems.itm1.model = "HandsItems\meet";
-	ch.TiedItems.itm1.locator = "Saber_hand";
-	ch.TiedItems.itm2.model = "HandsItems\cup";
-	ch.TiedItems.itm2.locator = "Saber_hand";
-    SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 80, 70, 90, 60, 50);
-    SetShipSkill(ch, 50, 10, 60, 60, 40, 70, 70, 40, 50);
-	ch.money = "200";
-	LAi_SetCitizenType(ch);
-	LAi_group_MoveCharacter(ch, "PIRATE_CITIZENS");
-	LAi_SetLoginTime(ch, 0.0, 24.0);
-	LAi_SetHP(ch, 200.0, 200.0);
-	LAi_NoRebirthEnable(ch);
-	ch.DontClearDead = true;  // не убирать труп
-	ch.greeting = "Gr_Atilla";
 	// Злой муж :)
 	ch = GetCharacter(NPC_GenerateCharacter("Husband", "Usurer_7", "man", "man", 22, PIRATE, -1, false));
 	ch.name 	= "Сальватор";
@@ -2513,16 +2500,10 @@ void PDMQuestsInit()
 
 	//******Проклятый идол Sinistra******
 	//Джеймс Кэллоу
-	sld = GetCharacter(NPC_GenerateCharacter("James_Callow", "ozg_green", "man", "man", 15, PIRATE, -1, false));
-	sld.name	= "Джеймс";
-	sld.lastname	= "Кэллоу";
-	sld.model	= "ozg_green";
-	GiveItem2Character(sld, "blade12");
-	EquipCharacterByItem(sld, "blade12");
-	sld.Dialog.Filename = "Quest/PDM/Cursed_Idol.c";
-	LAi_SetSitType(sld);
-	LAi_SetImmortal(sld, true);
-	ChangeCharacterAddressGroup(sld,"LaVega_tavern","sit","sit_base3");
+	pchar.quest.PDM_CI_SpawnJC.win_condition.l1 = "Rank";
+	pchar.quest.PDM_CI_SpawnJC.win_condition.l1.value = 5;
+	pchar.quest.PDM_CI_SpawnJC.win_condition.l1.operation = ">=";
+	PChar.quest.PDM_CI_SpawnJC.win_condition = "PDM_CI_SpawnJC";
 
 	//******Новая Родина Sinistra******
 	//Хьюго Лесопилка
@@ -2575,7 +2556,7 @@ void PDMQuestsInit()
 	ChangeCharacterAddressGroup(sld,"PortSpein_tavern","sit","sit_front2");
 	//******Проклятая жара Sinistra******
 	//Стражники
-	sld = GetCharacter(NPC_GenerateCharacter("PDM_PJ_Strajnik_1", "sold_fra_5", "man", "man", 10, FRANCE, -1, false));
+	sld = GetCharacter(NPC_GenerateCharacter("PDM_PJ_Strajnik_1", "sold_fra_5KSM", "man", "manKSM", 10, FRANCE, -1, false));
 	sld.name	= "Джори";
 	sld.lastname	= "";
 	sld.Dialog.Filename = "Quest/PDM/Proklyataya_Jara.c";
@@ -2598,32 +2579,20 @@ void PDMQuestsInit()
 
 	//******Аптекарь Sinistra******
 	//Маркус
-	sld = GetCharacter(NPC_GenerateCharacter("PDM_Markus", "prison_3", "man", "man", 10, ENGLAND, -1, false));
-	sld.name	= "Маркус";
-	sld.lastname	= "";
-	sld.City = "SentJons";
-	sld.Dialog.Filename = "Quest/PDM/Aptekar.c";
-	LAi_SetGroundSitType(sld);
-	LAi_SetImmortal(sld, true);
-	LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
-	ChangeCharacterAddressGroup(sld,"SentJons_tavern","goto","goto1");
+	pchar.quest.PDM_Apt_Markus_Spawn.win_condition.l1 = "Rank";
+	pchar.quest.PDM_Apt_Markus_Spawn.win_condition.l1.value = 8;
+	pchar.quest.PDM_Apt_Markus_Spawn.win_condition.l1.operation = ">=";
+	PChar.quest.PDM_Apt_Markus_Spawn.win_condition = "PDM_Apt_Markus_Spawn";
 }
 //Сундук Мертвеца
 void KSMQuestsInit()
 {
-	ref sld;
 	//******Спасение на рифах******
 	//Джеймс Аллока
-	sld = GetCharacter(NPC_GenerateCharacter("KSM_Alloka", "trader_1", "man", "man", 10, ENGLAND, -1, false));
-	sld.name	= "Джеймс";
-	sld.lastname	= "Аллока";
-	sld.Dialog.Filename = "Quest/KSM/Spasenie_na_rifah.c";
-	LAi_SetCitizenType(sld);
-	LAi_SetLoginTime(sld, 6.0, 21.99);
-	sld.talker = 7;
-	LAi_SetImmortal(sld, true);
-	LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
-	ChangeCharacterAddressGroup(sld,"PortRoyal_town","goto","goto12");
+	pchar.quest.KSM_Snr_Alloka_Spawn.win_condition.l1 = "Rank";
+	pchar.quest.KSM_Snr_Alloka_Spawn.win_condition.l1.value = 5;
+	pchar.quest.KSM_Snr_Alloka_Spawn.win_condition.l1.operation = ">=";
+	PChar.quest.KSM_Snr_Alloka_Spawn.win_condition = "KSM_Snr_Alloka_Spawn";
 }
 //Все остальные НПС
 void VSEnpcInit()
@@ -2653,6 +2622,21 @@ void VSEnpcInit()
 	LAi_SetImmortal(sld, true);
 	LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
 	ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","goto","goto2");
+	//Глаша уборщица в резиденции Мариго
+	sld = GetCharacter(NPC_GenerateCharacter("CleanUpGrandmatha", "BaynesWife", "woman", "towngirl", 1, Holland, 1, false));
+	ChangeCharacterAddressGroup(sld, "Marigo_hall", "goto", "goto11");
+	LAi_SetCitizenType(sld);
+	sld.name = "уборщица Глаша";
+	sld.lastname = "";
+	LAi_SetLoginTime(sld, 11.0, 16.99);
+	LAi_group_MoveCharacter(sld, "HOLLAND_CITIZENS");
+	sld.dialog.filename = "Janitor.c";
+	sld.dialog.currentnode = "First";
+	//Девушка с нежданным наследством
+	pchar.quest.CSP_NN_SpawnGirl.win_condition.l1 = "Rank";
+	pchar.quest.CSP_NN_SpawnGirl.win_condition.l1.value = 10;
+	pchar.quest.CSP_NN_SpawnGirl.win_condition.l1.operation = ">=";
+	PChar.quest.CSP_NN_SpawnGirl.function = "UnexpectedInheritance";
 }
 void OfficerGirlInit()
 {

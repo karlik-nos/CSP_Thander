@@ -64,17 +64,17 @@ void ProcessDialogEvent()
 			{
     			if (pchar.nation == npchar.nation)
 				{
-					dialog.text = RandPhraseSimple("А-а-а, кажется, "+ GetSexPhrase("этот мерзавец поднял","эта мерзавка подняла") +" тревогу в " + XI_ConvertString("Colony" + npchar.city + "Dat") + "! Схватить е"+ GetSexPhrase("го","е") +"!!", "Хех, вы только полюбуйтесь! Некоторые " + NationNamePeople(sti(pchar.nation))+ " умудряются быть во вражде с " + NationNameAblative(sti(npchar.nation)) + "! Схватить негодя"+ GetSexPhrase("я","йку") +"!!!");
+					dialog.text = RandPhraseSimple("А-а-а, кажется, "+ GetSexPhrase("этот мерзавец поднял","эта мерзавка подняла") +" тревогу в " + XI_ConvertString("Colony" + npchar.city + "Dat") + "! Схватить е"+ GetSexPhrase("го","ё") +"!!", "Хех, вы только полюбуйтесь! Некоторые " + NationNamePeople(sti(pchar.nation))+ " умудряются быть во вражде с " + NationNameAblative(sti(npchar.nation)) + "! Схватить негодя"+ GetSexPhrase("я","йку") +"!!!");
 				}
 				else
 				{
-					dialog.text = RandPhraseSimple("Вражеский агент близ " + XI_ConvertString("Colony" + npchar.city + "Gen") + "! Взять е"+ GetSexPhrase("го","е") +"!!", "Смотрите-ка, " + NationNamePeople(sti(pchar.nation))+ " разгуливают чуть ли не в " + XI_ConvertString("Colony" + npchar.city + "Dat") + "! Немедленно схватить!!!");
+					dialog.text = RandPhraseSimple("Вражеский агент близ " + XI_ConvertString("Colony" + npchar.city + "Gen") + "! Взять е"+ GetSexPhrase("го","ё") +"!!", "Смотрите-ка, " + NationNamePeople(sti(pchar.nation))+ " разгуливают чуть ли не в " + XI_ConvertString("Colony" + npchar.city + "Dat") + "! Немедленно схватить!!!");
 				}
 				link.l2 = RandPhraseSimple("Попробуйте, здесь мы в одиночестве...", "Хех, здесь вам помощи ждать неоткуда.");
 				link.l2.go = "exit_fight";
 				if (IsCharacterPerkOn(pchar, "Adventurer") || IsCharacterPerkOn(pchar, "Agent"))
 				{
-					link.l1 = RandPhraseSimple("Вы обознались, сэр! Я законопослуш"+ GetSexPhrase("ный","ная") +" граждан"+ GetSexPhrase("ин","ка") +".", "С чего такая агрессия? Может я просто прогуляться выш"+ GetSexPhrase("ел","ла") +"?");
+					link.l1 = RandPhraseSimple("Вы обознались, "+GetAddress_Form(NPChar)+"! Я законопослуш"+ GetSexPhrase("ный","ная") +" граждан"+ GetSexPhrase("ин","ка") +".", "С чего такая агрессия? Может я просто прогуляться выш"+ GetSexPhrase("ел","ла") +"?");
 					link.l1.go = "CheckPeg";
 				}
 			}
@@ -94,7 +94,7 @@ void ProcessDialogEvent()
 		switch (rand(1))
 		{
 			case 0:
-				dialog.text = RandPhraseSimple("А-а-а, вижу... Всё в порядке, вы можете идти, " + GetAddress_Form(pchar) + ".", "Что-то я немного подустал в патруле... Всё в порядке, " + GetAddress_Form(pchar) + ", прошу прощения.");
+				dialog.text = RandPhraseSimple("А-а-а, вижу... Всё в порядке, вы можете идти, " + GetAddress_Form(pchar) + ".", "Что-то я немного подустал в патруле... Всё в порядке, "+GetAddress_Form(NPChar)+", прошу прощения.");
 				link.l1 = "Так-то!";
 				link.l1.go = "exit_noFight";
 				if (sti(pchar.questTemp.stels.landSolder) != GetDataDay())

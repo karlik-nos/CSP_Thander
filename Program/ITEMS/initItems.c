@@ -9,6 +9,7 @@
 	itm.special.valueT = 100; 	// Травмы
 	itm.special.valueB = 100; 	// Кровоток
 	itm.special.valueP = 100; 	// Отравление
+	itm.special.valueV = 1; 	// Вампиризм
 
 	itm.points_shop = 1; // Атрибут для магазина ачивок
 */
@@ -1796,6 +1797,96 @@ int InitItems()
 	itm.Generation.dmg_max.max = 55.0;
 	itm.Generation.Weight.min = 4.5;
 	itm.Generation.Weight.max = 6.0;
+	n++;
+
+	// CSP Лиларкор1
+	makeref(itm,Items[n]);
+	itm.id = "Lilarcor_Sword1";
+	itm.groupID = BLADE_ITEM_TYPE;
+	itm.name = "itmname_Lilarcor_Sword1";
+	itm.describe = "itmdescr_Lilarcor_Sword1";
+	itm.folder = "items";
+	itm.model = "Lilarcor_Sword";
+	itm.picIndex = 8;
+	itm.picTexture = "ITEMS_20";
+	itm.minlevel = 1;
+	itm.rare = 0.01;
+	itm.block = 12;
+	itm.param.time = 0.1;
+	itm.param.colorstart = argb(64, 64, 64, 64);
+	itm.param.colorend = argb(0, 32, 32, 32);
+	itm.FencingType = "Fencing";
+	itm.ItemType = "WEAPON";
+	itm.quality = "excellent";
+	itm.price = 5000;
+	itm.Weight = 4.2;
+	itm.dmg_min = 22.0;
+	itm.dmg_max = 70.0;
+	itm.piercing = 90.0;
+	itm.special.valueCrB = 12; // Буст крита
+	itm.special.valueSS = 7; // Резкий удар
+	itm.special.valueStS = 5; // Стан
+	itm.special.valueV = 1; // Вампиризм
+	n++;
+
+	// CSP Лиларкор2
+	makeref(itm,Items[n]);
+	itm.id = "Lilarcor_Sword2";
+	itm.groupID = BLADE_ITEM_TYPE;
+	itm.name = "itmname_Lilarcor_Sword2";
+	itm.describe = "itmdescr_Lilarcor_Sword2";
+	itm.folder = "items";
+	itm.model = "Lilarcor_Sword";
+	itm.picIndex = 9;
+	itm.picTexture = "ITEMS_20";
+	itm.minlevel = 1;
+	itm.rare = 0.01;
+	itm.block = 12;
+	itm.param.time = 0.1;
+	itm.param.colorstart = argb(64, 64, 64, 64);
+	itm.param.colorend = argb(0, 32, 32, 32);
+	itm.FencingType = "Fencing";
+	itm.ItemType = "WEAPON";
+	itm.quality = "excellent";
+	itm.price = 25000;
+	itm.Weight = 4.6;
+	itm.dmg_min = 28.0;
+	itm.dmg_max = 80.0;
+	itm.piercing = 90.0;
+	itm.special.valueCrB = 10; // Буст крита
+	itm.special.valueT = 10; // Травмы
+	itm.special.valueB = 4; // Кровоток
+	itm.special.valueV = 1; // Вампиризм
+	n++;
+
+	// CSP Лиларкор3
+	makeref(itm,Items[n]);
+	itm.id = "Lilarcor_Sword3";
+	itm.groupID = BLADE_ITEM_TYPE;
+	itm.name = "itmname_Lilarcor_Sword3";
+	itm.describe = "itmdescr_Lilarcor_Sword3";
+	itm.folder = "items";
+	itm.model = "Lilarcor_Sword";
+	itm.picIndex = 10;
+	itm.picTexture = "ITEMS_20";
+	itm.minlevel = 1;
+	itm.rare = 0.01;
+	itm.block = 12;
+	itm.param.time = 0.1;
+	itm.param.colorstart = argb(64, 64, 64, 64);
+	itm.param.colorend = argb(0, 32, 32, 32);
+	itm.FencingType = "Fencing";
+	itm.ItemType = "WEAPON";
+	itm.quality = "excellent";
+	itm.price = 100000;
+	itm.Weight = 5.0;
+	itm.dmg_min = 33.0;
+	itm.dmg_max = 95.0;
+	itm.piercing = 90.0;
+	itm.special.valueCB = 20; // Пролом кирасы
+	itm.special.valueStS = 10; // Стан
+	itm.special.valueB = 4; // Кровоток
+	itm.special.valueV = 1; // Вампиризм
 	n++;
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -9123,6 +9214,17 @@ int InitItems()
 	itm.name = "itmname_ATpr_pismo";
 	itm.describe = "itmdescr_ATpr_pismo";
 	itm.picIndex = 7;
+	itm.picTexture = "ITEMS_12";
+	itm.price = 0;
+	itm.weight = 0.1;
+	itm.ItemType = "QUESTITEMS";
+	n++;
+	
+	makeref(itm,Items[n]);	//Нежить "Говорящий клинок"
+	itm.id = "UP_PismoZagadka";	//Загадочная записка
+	itm.name = "itmname_UP_PismoZagadka";
+	itm.describe = "itmdescr_UP_PismoZagadka";
+	itm.picIndex = 10;
 	itm.picTexture = "ITEMS_12";
 	itm.price = 0;
 	itm.weight = 0.1;

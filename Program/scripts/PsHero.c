@@ -126,7 +126,7 @@ void InitPsHeros()
 
 void DeleteCloneHeros(ref sld)
 {
-	if (startHeroType > 1 && startHeroType < 8)
+	if (startHeroType > 1 && startHeroType < 11)
 	{
 		if (startHeroType == 2)
 		{
@@ -149,6 +149,15 @@ void DeleteCloneHeros(ref sld)
 		if (startHeroType == 5 || startHeroType == 6)
 		{
 			if(sld.FaceId == 508 || sld.FaceId == 517)
+			{//Его мы позже наймем оффом, так что убираем из ПГГ
+				sld.willDie = true;
+				sld.DontCountDeath = true;
+				LAi_KillCharacter(sld);
+			}
+		}
+		if (startHeroType == 9 || startHeroType == 10)	//Нежить
+		{
+			if(sld.FaceId == 511 || sld.FaceId == 537)
 			{//Его мы позже наймем оффом, так что убираем из ПГГ
 				sld.willDie = true;
 				sld.DontCountDeath = true;

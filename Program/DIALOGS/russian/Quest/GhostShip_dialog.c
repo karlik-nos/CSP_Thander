@@ -181,7 +181,7 @@ void ProcessDialogEvent()
 			link.l1.go = "GhostCapt_Prize5";
 			shTo = &RealShips[sti(pchar.Ship.Type)];
 			shTo.Tuning.GhostShip = true;
-			GetBaseShipParam_ToUpgrade(shTo, "SpeedRate");
+			SetShipTuningF(pchar, "SpeedRate", SHIP_STAT_UPGRADE_FLYING_DUTCHMAN);
 		break;
 
 		case "GhostCapt_upgrade2":
@@ -190,7 +190,7 @@ void ProcessDialogEvent()
 			link.l1.go = "GhostCapt_Prize5";
 			shTo = &RealShips[sti(pchar.Ship.Type)];
 			shTo.Tuning.GhostShip = true;
-			GetBaseShipParam_ToUpgrade(shTo, "TurnRate");
+			SetShipTuningF(pchar, "TurnRate", SHIP_STAT_UPGRADE_FLYING_DUTCHMAN);
 		break;
 
 		case "GhostCapt_upgrade3":
@@ -199,7 +199,7 @@ void ProcessDialogEvent()
 			link.l1.go = "GhostCapt_Prize5";
 			shTo = &RealShips[sti(pchar.Ship.Type)];
 			shTo.Tuning.GhostShip = true;
-			GetBaseShipParam_ToUpgrade(shTo, "WindAgainstSpeed");
+			SetShipTuningF(pchar, "WindAgainstSpeed", SHIP_STAT_UPGRADE_FLYING_DUTCHMAN);
 		break;
 
 		case "GhostCapt_noupgrade":
@@ -251,24 +251,5 @@ void ProcessDialogEvent()
 			DialogExit();
 			AddDialogExitQuest("MainHeroFightModeOn");
 		break;
-	}
-}
-
-void GetBaseShipParam_ToUpgrade(ref shTo, string param)
-{
-	string sAttr = "Bonus_"+param;
-	int iRealShipType = sti(shTo.basetype);
-	string sParam =	GetBaseShipParamFromType(iRealShipType, param);
-	float paramValue = stf(sParam)/10*3;
-	if(CheckAttribute(shTo, sAttr))
-	{
-		shTo.(param) = stf(shTo.(param)) - stf(shTo.(sAttr));
-		shTo.(sAttr) = stf(shTo.(sAttr)) + paramValue;
-		shTo.(param) = stf(shTo.(param)) + stf(shTo.(sAttr));
-	}
-	else
-	{
-		shTo.(sAttr) = paramValue;
-		shTo.(param) = stf(shTo.(param)) + stf(shTo.(sAttr));
 	}
 }

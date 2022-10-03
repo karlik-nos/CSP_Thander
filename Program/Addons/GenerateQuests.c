@@ -1106,7 +1106,7 @@ void ShipWreckLoginToWorldMap(string qName)
 
 	chr.mapEnc.type = "warrior";
 	chr.mapEnc.worldMapShip = "ranger";
-	chr.mapEnc.Name = "сильно потрепавшийся неизвестный корабль прямо по курсу";
+	chr.mapEnc.Name = "сильно потрёпанный неизвестный корабль прямо по курсу";
 
 	//Map_CreateWarrior("", sGroup, 30);
 	Map_CreateSlowMerch("",sGroup, 30);
@@ -1412,7 +1412,7 @@ void ShipWreckBandInit()
 	SetCharacterGoods(chr, GOOD_COFFEE, 0);
 	SetCharacterGoods(chr, GOOD_TOBACCO, 0);
 
-	int iRank = GetRank(PChar, 0) + MOD_SKILL_ENEMY_RATE;
+	int iRank = sti(pchar.rank);
 	chr = GetCharacter(NPC_GenerateCharacter("ShipWreckValodya_" + rand(30000), "citiz_" + (rand(11)+1), "man", "man", iRank, PIRATE, -1, true));
 	chr.greeting = "Gr_AllowToDump";
 	chr.Dialog.Filename = "DamnedDestiny\ShipWreck_dialog.c";
@@ -1726,7 +1726,7 @@ void ShipWreckBanditsBattleWinner(string qName)
 	LAi_Fade("", "");
 
 	string sModel = PChar.GenerateShipWreck.CapModel;
-	int iRank = GetRank(PChar, 3) + rand(3);
+	int iRank = sti(pchar.rank) + rand(3);
 	int iNation = sti(PChar.GenerateShipWreck.CapNation);
 
 	chr = GetCharacter(NPC_GenerateCharacter("ShipWreckBadCaptain_" + rand(30000), sModel, "man", "man", iRank, iNation, -1, true));

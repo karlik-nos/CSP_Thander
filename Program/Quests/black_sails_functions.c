@@ -946,7 +946,6 @@ void BSChaseBegun_townhall(string q)
 	ref chr;
 	sld = CharacterFromID("Jackman");
 	SaveOldDialog(sld);
-	sld.dialog.filename = "Quest\BlackSails\Neulovimaya_Urka.c";
 	sld.dialog.currentnode = "Jackman_Defeated";
 	ChangeCharacterAddressGroup(sld, Get_My_Cabin(), "", "");
 

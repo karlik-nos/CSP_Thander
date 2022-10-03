@@ -2316,7 +2316,7 @@ void CaptureCapitol_ShoreBattle(string q)
 	iNation = SPAIN;
 
 	perSailor = 50;
-	iRnd = GetCrewQuantity(pchar)/perSailor - GetOfficersQuantity(pchar);
+	iRnd = (GetCrewQuantity(pchar) + GetTroopersCrewQuantity(pchar))/perSailor - GetOfficersQuantity(pchar);
 
 	pchar.CaptureCapitolSailors = iRnd;
 	pchar.CaptureCapitolPerSailor = perSailor;
@@ -2534,8 +2534,9 @@ void QuestWhisper_Siege(string q)
 	LAi_SetStayTypeNoGroup(chr);
 	chr.talker = 10;
 
-	GiveItem2Character(chr, "blade_whisper");
-	EquipCharacterByItem(chr, "blade_whisper");
+	string sBlade = GetGeneratedItem("blade22");
+	GiveItem2Character(chr, sBlade);
+	EquipCharacterByItem(chr, sBlade);
 	GiveItem2Character(chr, "pistol_grapebok");
 	EquipCharacterByItem(chr, "pistol_grapebok");
 	GiveItem2Character(chr, "cirass5");
@@ -2656,11 +2657,6 @@ void QuestWhisper_Incq_4(string q)
 	LAi_ActorDialog(sld, pchar, "", -1, 0);
 
 	sld.HasNoFear = true;
-	GiveItem2Character(sld, "pistol7shotgun");
-	EquipCharacterByItem(sld, "pistol7shotgun");
-	sld.DontChangeGun = true;
-	TakeNItems(sld, "12_gauge", 50);
-    TakeNItems(sld, "grapeshot", 50);
 	DeleteAttribute(pchar, "PGGWhisperLetterSent");
 }
 

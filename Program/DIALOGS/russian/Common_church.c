@@ -132,7 +132,7 @@ void ProcessDialogEvent()
 			{
 				if(Pchar.questTemp.CapBloodLine == false)
 				{
-					if(!CheckAttribute(PChar, "GenQuest.ChurchQuest_2.StartQuest") && !CheckAttribute(PChar, "GenQuest.ChurchQuest_1.StartQuest") && NPChar.GenQuest.ChurchQuest_2.GiveQuestDateParam != iMonth && NPChar.GenQuest.ChurchQuest_2.GiveQuestDay != lastspeak_date && NPChar.location != "Panama_church" && rand(5) == 1)
+					if(!CheckAttribute(PChar, "GenQuest.ChurchQuest_2.StartQuest") && !CheckAttribute(PChar, "GenQuest.ChurchQuest_1.StartQuest") && NPChar.GenQuest.ChurchQuest_2.GiveQuestDateParam != iMonth && NPChar.GenQuest.ChurchQuest_2.GiveQuestDay != lastspeak_date && NPChar.location != "Panama_church" && NPChar.location != "Caiman_church" && rand(5) == 1)
 					{
 						dialog.text = "...вечно гореть им в геенне огненной! Не видать им...";
 						link.l1 = RandPhraseSimple("Гм! Не помешал"+ GetSexPhrase("","а") +", падре?", "Вот это спич!");
@@ -187,7 +187,7 @@ void ProcessDialogEvent()
 
 		case "DHreaction":
 			dialog.text = "Убирайся! Мне не о чем с тобой говорить!";
-			link.l1 = "Мда... ты же просто дурачок.";
+			link.l1 = "Не очень-то и хотелось.";
 			link.l1.go = "exit";
 			ChangeCharacterNationReputation(pchar, sti(NPChar.nation), -5);
 			npchar.quest.BadMeeting = lastspeak_date;
@@ -1003,7 +1003,7 @@ void ProcessDialogEvent()
 
 		case "prihod":
 			//упокоение нечисти
-			if (rand(2)==1 && pchar.questTemp.different == "free" && !CheckAttribute(npchar, "quest.DestroyGhost") && GetNpcQuestPastDayWOInit(npchar, "Ghost") > 7)
+			if (rand(2)==1 && pchar.questTemp.different == "free" && !CheckAttribute(npchar, "quest.DestroyGhost") && GetNpcQuestPastDayWOInit(npchar, "Ghost") > 7 && NPChar.location != "Caiman_church")
 			{
                 dialog.text = "Мне не совсем удобно об этом говорить, но у меня нет другого выхода. В жизни нет случайных вещей. И на всем лежит воля Всевышнего. Может быть, ты и есть то оружие Господне, которое необходимо нам для истребления нечисти, оскверняющей нашу землю.";
         		link.l1 = RandPhraseSimple("Мне не совсем понятно, святой отец, что вас так напугало? Чем вызван этот страх?",
