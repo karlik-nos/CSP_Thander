@@ -1113,7 +1113,7 @@ int RemoveCharacterCompanion(ref _refCharacter, ref refCompanion)
 			refCompanion.location.group = _refCharacter.location.group;
 			refCompanion.location.locator = _refCharacter.location.locator;
 			Event(EVENT_CHANGE_COMPANIONS,"");
-
+			SortCompanionId();
 			return i;
 		}
 	}
@@ -1171,6 +1171,36 @@ int GetCompanionQuantity(ref _refCharacter)
 	}
 	if(qn >= COMPANION_MAX) UnlockAchievement("ships", 3);
 	return qn;
+}
+void SortCompanionId()
+{
+	string correctorder[COMPANION_MAX];
+	string compname;
+	aref cgroup;
+	makearef(cgroup,pchar.fellows.companions);
+	int a = 0;
+	int b = COMPANION_MAX - 1;
+	for(int i=0; i<COMPANION_MAX; i++)
+	{
+		compname = "id" + sti(i+1);
+		//Log_TestInfo("" + cgroup.(compname));
+		if(sti(cgroup.(compname)) == -1)
+		{
+			correctorder[b] = -1;
+			b--;
+		}
+		else
+		{
+			correctorder[a] = cgroup.(compname);
+			a++;
+		}
+	}
+	Log_TestInfo("1:" + correctorder[0] + " 2:" + correctorder[1] + " 3:" + correctorder[2] + " 4:" + correctorder[3]);
+	for(i=0; i<COMPANION_MAX; i++)
+	{
+		compname = "id" + sti(i+1);
+		cgroup.(compname) = correctorder[i];
+	}
 }
 // нигде не юзается
 int GetRemovableCompanionsNumber(ref _refCharacter)
