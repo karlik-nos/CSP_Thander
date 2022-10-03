@@ -1431,7 +1431,10 @@ void SetBaseShipData(ref refCharacter)
 
 			if (!CheckAttribute(refShip,"Crew.Morale"))
 			{
-				refShip.Crew.Morale = 20 + rand(79);
+				if (!HasSubStr(refCharacter.id, "FortDefender"))
+					refShip.Crew.Morale = 20 + rand(79);
+				else
+					refShip.Crew.Morale = 100;
 			}
 			if (!CheckAttribute(refShip,"Crew.Quantity"))
 			{
@@ -1442,9 +1445,18 @@ void SetBaseShipData(ref refCharacter)
 			// новый опыт
 			if(!CheckAttribute(refCharacter, "ship.crew.Exp"))
 			{
-				refCharacter.Ship.Crew.Exp.Sailors   = 1 + rand(80);
-				refCharacter.Ship.Crew.Exp.Cannoners = 1 + rand(80);
-				refCharacter.Ship.Crew.Exp.Soldiers  = 1 + rand(80);
+				if (!HasSubStr(refCharacter.id, "FortDefender"))
+				{
+					refCharacter.Ship.Crew.Exp.Sailors   = 1 + rand(80);
+					refCharacter.Ship.Crew.Exp.Cannoners = 1 + rand(80);
+					refCharacter.Ship.Crew.Exp.Soldiers  = 1 + rand(80);
+				}
+				else
+				{
+					refCharacter.Ship.Crew.Exp.Sailors   = 100;
+					refCharacter.Ship.Crew.Exp.Cannoners = 100;
+					refCharacter.Ship.Crew.Exp.Soldiers  = 100;
+				}
 			}
 			int iGoodN = 0;
 			int iGoodR = 0;
