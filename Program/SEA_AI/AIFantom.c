@@ -413,37 +413,48 @@ void Fantom_SetSails(ref rFantom, string sFantomType)
 
 void Fantom_SetBalls(ref rFantom, string sFantomType)
 {
-	float fKBalls = 7 - GetCharacterShipClass(rFantom);
-
-	if (fKBalls <= 0) fKBalls = 0.7; // баркас
+	int iKClass = 7 - GetCharacterShipClass(rFantom);
+	float fK = 1;	
+	
+	int nShipType = sti(rFantom.ship.type);
+	ref refBaseShip = GetRealShip(nShipType);
+	int iCannons = sti(refBaseShip.CannonsQuantity);
+	int iCrew, iPlanks;
+	
+	if (iKClass <= 0) fK = 0.7; // баркас
 	switch (sFantomType)
 	{
 		case "war":
-			fKBalls = fKBalls * 1.5;
+			iCrew = GetMaxCrewQuantity(rFantom);
+			iPlanks = 130;
+			fK = fK * 1.5;
 		break;
 		case "trade":
-			fKBalls = fKBalls * 0.7;
+			iCrew = GetOptCrewQuantity(rFantom);
+			fK = fK * 0.7;
+			iPlanks = 20;
 		break;
 		case "pirate":
-			fKBalls = fKBalls * 1.0;
+			iCrew = GetMaxCrewQuantity(rFantom);
+			fK = fK * 1.0;
+			iPlanks = 70;
 		break;
 	}
-	if (GetCharacterShipClass(rFantom) == 1) fKBalls = fKBalls * 1.6;	//много пушек, большой расход
-
+	iKClass = iKClass * fK;
     // boal 20.01.2004 -->
-	Fantom_SetCharacterGoods(rFantom, GOOD_BALLS,    MakeInt(195 * fKBalls + rand(MakeInt(10 * fKBalls))), 0);
-	Fantom_SetCharacterGoods(rFantom, GOOD_BOMBS,    MakeInt(180 * fKBalls + rand(MakeInt(20 * fKBalls))), 0);
-	Fantom_SetCharacterGoods(rFantom, GOOD_KNIPPELS, MakeInt(90 * fKBalls + rand(MakeInt(10 * fKBalls))), 0);
-	Fantom_SetCharacterGoods(rFantom, GOOD_GRAPES,   MakeInt(70 * fKBalls + rand(MakeInt(10 * fKBalls))), 0);
-	Fantom_SetCharacterGoods(rFantom, GOOD_POWDER,   MakeInt(350 * fKBalls + rand(MakeInt(30 * fKBalls))), 0);
+	Fantom_SetCharacterGoods(rFantom, GOOD_BALLS,    MakeInt(19 * iCannons * fK + rand(MakeInt(10 * iKClass))), 0);
+	Fantom_SetCharacterGoods(rFantom, GOOD_BOMBS,    MakeInt(18 * iCannons * fK + rand(MakeInt(20 * iKClass))), 0);
+	Fantom_SetCharacterGoods(rFantom, GOOD_KNIPPELS, MakeInt(9 * iCannons * fK + rand(MakeInt(10 * iKClass))), 0);
+	Fantom_SetCharacterGoods(rFantom, GOOD_GRAPES,   MakeInt(7 * iCannons * fK + rand(MakeInt(10 * iKClass))), 0);
+	Fantom_SetCharacterGoods(rFantom, GOOD_POWDER,   MakeInt(35 * iCannons * fK + rand(MakeInt(30 * iKClass))), 0);
 
-	Fantom_SetCharacterGoods(rFantom, GOOD_SAILCLOTH, 	MakeInt(4 * fKBalls + rand(MakeInt(10 * fKBalls))), 0);
-	Fantom_SetCharacterGoods(rFantom, GOOD_PLANKS, 		MakeInt(3 * fKBalls + rand(MakeInt(20 * fKBalls))), 0);
+	Fantom_SetCharacterGoods(rFantom, GOOD_SAILCLOTH, 	MakeInt(50 * iKClass + rand(MakeInt(10 * iKClass))), 0);
+	Fantom_SetCharacterGoods(rFantom, GOOD_PLANKS, 		MakeInt(iPlanks * iKClass + rand(MakeInt(20 * iKClass))), 0);
 
-    Fantom_SetCharacterGoods(rFantom, GOOD_FOOD, 		MakeInt(60 + 20 * fKBalls  + rand(MakeInt(8 * fKBalls))), 0);  //WW
-    Fantom_SetCharacterGoods(rFantom, GOOD_WEAPON, 		MakeInt(20 + 12 * fKBalls + rand(MakeInt(8 * fKBalls))), 0);   //WW
-    Fantom_SetCharacterGoods(rFantom, GOOD_RUM, 		MakeInt(60 + 12 * fKBalls  + rand(MakeInt(8 * fKBalls))), 0);  //WW
-    Fantom_SetCharacterGoods(rFantom, GOOD_MEDICAMENT, 	MakeInt(20 + 8 * fKBalls + rand(MakeInt(10 * fKBalls))), 0);   //WW
+    Fantom_SetCharacterGoods(rFantom, GOOD_FOOD, 		MakeInt(60 + 20 * iKClass + rand(MakeInt(8 * iKClass))), 0);  //WW
+    Fantom_SetCharacterGoods(rFantom, GOOD_WEAPON, 		MakeInt(iCrew + rand(MakeInt(8 * iKClass))), 0);   //WW
+    Fantom_SetCharacterGoods(rFantom, GOOD_RUM, 		MakeInt(60 + 12 * iKClass + rand(MakeInt(8 * iKClass))), 0);  //WW
+    Fantom_SetCharacterGoods(rFantom, GOOD_MEDICAMENT, 	MakeInt(iCrew + rand(MakeInt(10 * iKClass))), 0);   //WW
     // boal 20.01.2004 <--
 }
 

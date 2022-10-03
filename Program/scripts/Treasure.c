@@ -123,6 +123,7 @@ void GenerateMapsTreasure(ref item, int iProbability1, int iProbability2)
 	if(rand(iProbability2) == 1 && !CheckMainHeroMap("map_maine_2")) item.BoxTreasure.map_maine_2 = 1;
 	if(rand(iProbability1) == 1 && !CheckMainHeroMap("map_panama")) item.BoxTreasure.map_panama = 1;
 	if(rand(iProbability1) == 1 && !CheckMainHeroMap("map_maracaibo")) item.BoxTreasure.map_maracaibo = 1;
+	if(rand(iProbability1) == 1 && !CheckMainHeroMap("map_Bahames")) item.BoxTreasure.map_Bahames = 1;
 	if(rand(iProbability1) == 1 && !CheckMainHeroMap("map_cumana")) item.BoxTreasure.map_cumana = 1;
 }
 
@@ -1013,7 +1014,7 @@ void  GhostShipOnMap()
 
         DeleteAttribute(rRealShip, "ShipSails.SailsColor");  // белый парус
 
-        sld.ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS36;
+        sld.ship.Cannons.Type = CANNON_TYPE_CANNON_LBS42;
 
         Character_SetAbordageEnable(sld, true);
     }
@@ -1241,7 +1242,7 @@ void GhostShipInit()
 	rRealShip.EmblemedSails.normalTex =  "ships\parus_common_torn.tga";
 	rRealShip.ShipSails.SailsColor = argb(255,60,60,60);
 	rRealShip.MaxCaliber = 48;
-    rRealShip.Cannon     = CANNON_TYPE_CANNON_LBS48;
+    rRealShip.Cannon     = CANNON_TYPE_CANNON_LBS42;
     rRealShip.MaxCrew    = 525;
     rRealShip.OptCrew    = 400;
     rRealShip.Capacity   = 5000;

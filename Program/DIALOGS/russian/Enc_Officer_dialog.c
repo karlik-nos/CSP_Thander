@@ -52,6 +52,14 @@ void ProcessDialogEvent()
 			}
 			Link.l2 = "Нет, у меня полный комплект.";
 			Link.l2.go = "Exit";
+			if (pchar.sex == "Skeleton")
+			{
+				dialog.text = LinkRandPhrase("Ик... А, чего?", "Я отдыхаю, не мешай!", RandSwear()+ "У меня муха в кружке!");
+				Link.l1 = "...";
+    			Link.l1.go = "exit";
+				DeleteAttribute(link, "l2");
+				NextDiag.TempNode = "First time";
+			}
 		break;
 
 		case "CitizenNotBlade":
@@ -90,6 +98,10 @@ void ProcessDialogEvent()
 			if (NPChar.id == "Andreas_Fickler")
 			{
 				dialog.text = "Что в-в-вы хотите, к-к-капитан "+pchar.name+"!";
+			}
+			if (NPChar.sex == "skeleton" && PChar.sex == "skeleton")
+			{
+				dialog.text = "Что вы хотите, мой повелитель?";
 			}
 			// диалог компаньона на корабле.
 			if (CheckAttribute(NPChar, "IsCompanionClone"))
@@ -151,6 +163,11 @@ void ProcessDialogEvent()
 			{
 				Link.l4 = "Офицер, я более не нуждаюсь в ваших услугах.";
 				Link.l4.go = "AsYouWish";
+				if (NPChar.sex == "skeleton" && PChar.sex == "skeleton")
+				{
+					Link.l4 = "Ты подвёл меня, сородич! Убирайся с глаз моих!";
+					Link.l4.go = "exit_fire_1";
+				}
 			}
 
 			for(iTemp=1; iTemp<=3; iTemp++) // Нужно, чтоб была свободная группа
@@ -1750,24 +1767,32 @@ void ProcessDialogEvent()
 			Link.l1.go = "Exit";
 		break;
         // boal 05.09.03 offecer need to go to abordage -->
-	      case "Boal_Stay":
-             //SetCharacterTask_Stay(Characters[Npchar.index]); // it's a mistic but here doesn't work :(
-             //Log_SetStringToLog(Npchar.id +" "+Npchar.index);
-              Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(Npchar.id);
-              AddDialogExitQuestFunction("LandEnc_OfficerStay");
-		      Diag.TempNode = "Hired";
-		      dialog.text = "Есть изменить дислокацию!";
-		      Link.l1 = "Вольно.";
-		      Link.l1.go = "Exit";
-		      Npchar.chr_ai.tmpl = LAI_TMPL_STAY;
-	      break;
-	      case "Boal_Follow":
-		      SetCharacterTask_FollowCharacter(Npchar, PChar); // it works here!!!
-		      Diag.TempNode = "Hired";
-		      dialog.text = "Есть изменить дислокацию!";
-		      Link.l1 = "Вольно.";
-		      Link.l1.go = "Exit";
-	      break;
+	    case "Boal_Stay":
+            //SetCharacterTask_Stay(Characters[Npchar.index]); // it's a mistic but here doesn't work :(
+            //Log_SetStringToLog(Npchar.id +" "+Npchar.index);
+            Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(Npchar.id);
+            AddDialogExitQuestFunction("LandEnc_OfficerStay");
+		    Diag.TempNode = "Hired";
+		    dialog.text = "Есть изменить дислокацию!";
+		    Link.l1 = "Вольно.";
+		    Link.l1.go = "Exit";
+		    Npchar.chr_ai.tmpl = LAI_TMPL_STAY;
+			if (NPChar.sex == "skeleton" && PChar.sex == "skeleton")
+			{
+				dialog.text = "Слушаюсь и повинуюсь, мой повелитель!";
+			}
+	    break;
+	    case "Boal_Follow":
+		    SetCharacterTask_FollowCharacter(Npchar, PChar); // it works here!!!
+		    Diag.TempNode = "Hired";
+		    dialog.text = "Есть изменить дислокацию!";
+		    Link.l1 = "Вольно.";
+		    Link.l1.go = "Exit";
+			if (NPChar.sex == "skeleton" && PChar.sex == "skeleton")
+			{
+				dialog.text = "Слушаюсь и повинуюсь, мой повелитель!";
+			}
+	    break;
         // boal 05.09.03 offecer need to go to abordage <--
 
 		//////////////////////////////    офицер-наместник -->

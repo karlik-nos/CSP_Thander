@@ -4072,3 +4072,24 @@ void SwapWeaponFight2()
 {
 	pchar.mushket.timer = false;
 }
+
+#event_handler("Lilarcor_Talks", "Lilarcor_Talks");
+void Lilarcor_Talks()
+{
+	switch (pchar.equip.blade)
+	{
+		case "Lilarcor_Sword1": LAi_CharacterPlaySound(PChar, "Lilarcor_Bers_Sword1"); break;
+		case "Lilarcor_Sword2": LAi_CharacterPlaySound(PChar, "Lilarcor_Bers_Sword2"); break;
+		case "Lilarcor_Sword3": LAi_CharacterPlaySound(PChar, "Lilarcor_Bers_Sword3"); break;
+	}
+	pchar.perks.list.Rush.active = 3600;
+	pchar.perks.list.Rush.delay = 3600;
+	pchar.chr_ai.energy = pchar.chr_ai.energyMax;
+	log_info("Лиларкор вызвал в вас приступ неудержимой ярости!");
+}
+
+#event_handler("Lilarcor_Talks2", "Lilarcor_Talks2");
+void Lilarcor_Talks2()
+{
+	LAi_CharacterPlaySound(PChar, "Lilarcor_rnd");
+}

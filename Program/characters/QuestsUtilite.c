@@ -1719,12 +1719,19 @@ void SetQuestGoodsToStore(ref refStore)
 			refStore.Goods.(goodName).RndPriceModify = GetStoreGoodsRndPriceModify(refStore, GOOD_SANDAL, PRICE_TYPE_BUY, pchar, sti(pchar.questTemp.HL2Save.SandalPrice));
             DeleteAttribute(pchar, "questTemp.HL2Save");
         }
-		if (CheckAttribute(pchar, "GenQuest.StoreGoods.HL5_ThreeFleutes")) //Голл.линейка, квест №5, добавляем количества.
+		if (CheckAttribute(pchar, "GenQuest.StoreGoods.HL5_ThreeFleutes")) //Голл.линейка, квест №5, добавляем количества, снижаем цену
 		{
-            DeleteAttribute(pchar, "GenQuest.StoreGoods"); // одноразовая операция, трем обе ветки
             goodName = Goods[GOOD_FOOD].Name;
-		    refStore.Goods.(goodName).Quantity       = 100000;
+		    refStore.Goods.(goodName).Quantity       = sti(refStore.Goods.(goodName).Quantity) + 75000;
+			pchar.questTemp.HL5Save.FoodPrice 		 = GetStoreGoodsPrice(refStore, GOOD_FOOD, PRICE_TYPE_BUY, pchar, refStore.Goods.(goodName).RndPriceModify);
 			refStore.Goods.(goodName).RndPriceModify = GetStoreGoodsRndPriceModify(refStore, GOOD_FOOD, PRICE_TYPE_BUY, pchar, 10);
+        }
+		if (CheckAttribute(pchar, "GenQuest.StoreGoods.HL5_QtyPriceIsBack")) //Голл.линейка, квест №5, возврат цен после квеста.
+		{
+			DeleteAttribute(pchar, "GenQuest.StoreGoods"); // одноразовая операция, трем обе ветки
+			goodName = Goods[GOOD_FOOD].Name;
+			refStore.Goods.(goodName).RndPriceModify = GetStoreGoodsRndPriceModify(refStore, GOOD_FOOD, PRICE_TYPE_BUY, pchar, sti(pchar.questTemp.HL5Save.FoodPrice));
+            DeleteAttribute(pchar, "questTemp.HL5Save");
         }
 	}
 }
@@ -2576,6 +2583,19 @@ void PDMQuestsInit()
 	FantomMakeCoolFighter(sld, 25, 25, 25, "blade10", "", 40);
 	LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
 	ChangeCharacterAddressGroup(sld,"FortFrance_town","officers","soldier_uniq1");
+
+	//******Аптекарь Sinistra******
+	//Аптекарь
+	sld = GetCharacter(NPC_GenerateCharacter("Doktor_Alumnus", "Alumnus", "man", "man", 10, HOLLAND, -1, false));
+	sld.name = "Алюмнус";
+	sld.lastname = "";
+	LAi_group_MoveCharacter(sld, "HOLLAND_CITIZENS");
+	LAi_SetBarmanType(sld);
+	sld.greeting = "GR_Doctor_Alumnus";
+	sld.dialog.filename   = "Quest/PDM/Aptekar.c";
+	sld.dialog.currentnode   = "First time";
+	sld.City = "Marigo";
+	ChangeCharacterAddressGroup(sld,"Farmacia","barmen","stay");
 }
 //Сундук Мертвеца
 void KSMQuestsInit()

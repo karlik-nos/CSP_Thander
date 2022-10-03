@@ -141,6 +141,13 @@ void FaceMaker(aref rCharacter)
 		case "PKM_rab_4":		rCharacter.FaceId = 478; break;
 		// <-- ПКМ рабы
 
+		// --> Нежить-офицеры
+		case "skel_2":		rCharacter.FaceId = 351; break;
+		case "skel_4":		rCharacter.FaceId = 352; break;
+		case "skel_5":		rCharacter.FaceId = 353; break;
+		case "skelt":		rCharacter.FaceId = 354; break;
+		// <-- Нежить-офицеры
+
 		// --> ОЗГи
 		case "OZG_1":		rCharacter.FaceId = 461; break;
 		case "OZG_2":		rCharacter.FaceId = 462; break;
@@ -415,12 +422,14 @@ void FaceMaker(aref rCharacter)
 		// ГПК 1.2.5 -->
 		case "PGG_Angellica":	rCharacter.FaceId = 242; break;
 		case "PGG_Rumba":		rCharacter.FaceId = 488; break;
+		case "PGG_Rumba_0":     rCharacter.FaceId = 488; break;
 
 		case "YokoDias":		rCharacter.FaceId = 243; break;
 		case "PGG_YokoDias_0":	rCharacter.FaceId = 243; break;
 
 		case "Jessika":			rCharacter.FaceId = 244; break;
 		// <-- ГПК 1.2.3
+		
 		//ОЗГи
 		case "ozg_carlos":		rCharacter.FaceId = 281; break; //Карлос Кассир
 		case "ozg_horn":		rCharacter.FaceId = 282; break; //Ганнибал Холм

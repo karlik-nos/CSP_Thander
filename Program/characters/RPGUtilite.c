@@ -312,11 +312,11 @@ int ChecKSufficientRankForClass(int shipClass)
 {
 	switch (shipClass)
     {
-		case 1 : return 30; break;
-		case 2 : return 25; break;
-		case 3 : return 18; break;
-		case 4 : return 10; break;
-		case 5 : return 5; break;
+		case 1 : return 33; break;
+		case 2 : return 26; break;
+		case 3 : return 20; break;
+		case 4 : return 12; break;
+		case 5 : return 6; break;
 		case 6 : return 1; break;
 		case 7 : return 1; break;
 		else return 0;
@@ -519,14 +519,14 @@ string GetSkillNameByIdx(int idx)
         case 4:    ret = SKILL_PISTOL;    break;
         case 5:    ret = SKILL_FORTUNE;   break;
         case 6:    ret = SKILL_LEADERSHIP; break;
-        case 7:    ret = SKILL_COMMERCE;   break;
+        case 7:    ret = SKILL_SNEAK;      break;
         case 8:    ret = SKILL_ACCURACY;   break;
         case 9:    ret = SKILL_CANNONS;    break;
         case 10:   ret = SKILL_SAILING;    break;
         case 11:   ret = SKILL_REPAIR;     break;
         case 12:   ret = SKILL_GRAPPLING;  break;
         case 13:   ret = SKILL_DEFENCE;    break;
-        case 14:   ret = SKILL_SNEAK;      break;
+        case 14:   ret = SKILL_COMMERCE;   break;
         case 15:   ret = SPECIAL_S;   break;
         case 16:   ret = SPECIAL_P;   break;
         case 17:   ret = SPECIAL_A;   break;
@@ -962,7 +962,7 @@ float GetCharacterExpRate(ref _chref, string _skill)
                 divBy = GetCharacterSPECIAL(_chref, SPECIAL_P)*0.5 + GetCharacterSPECIAL(_chref, SPECIAL_L)*0.5;
             break;
         }
-        _chref.skill.(skill_rate) = makefloat(MOD_EXP_RATE / (divBy * 2.8696 * pow(divBy,-0.457)));
+        _chref.skill.(skill_rate) = makefloat(MOD_EXP_RATE / (divBy * GetExpAcceleration(divBy)));
     }
     return  stf(_chref.skill.(skill_rate));
 }
@@ -1380,6 +1380,12 @@ void DelBakSkillAttr(ref _refCharacter) // boal оптимизация скил�
 {
     DeleteAttribute(_refCharacter, "BakSkill");
     DeleteAttribute(_refCharacter, "BakSkillCount");
+}
+// для коэффициента ускорения набора опыта (если ускорение не нужно ставим 1)
+float GetExpAcceleration(float modif)
+{
+	float curve = 2.864178 * pow(modif,-0.457);
+	return curve;
 }
 // сброс всех порогов (буфер расчета, пересчитывается от вещей +1)
 void ClearCharacterExpRate(ref _chref)

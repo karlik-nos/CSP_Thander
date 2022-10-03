@@ -36,7 +36,7 @@ void CreateBallsEnvironment()
 
 	Bombs.SubTexIndex = 0;		Bombs.Size = 0.3;		Bombs.GoodIndex = GOOD_BOMBS;
 	Balls.SubTexIndex = 2;		Balls.Size = 0.2;		Balls.GoodIndex = GOOD_BALLS;
-	
+	Knippels.SubTexIndex = 3;	Knippels.Size = 0.2;	Knippels.GoodIndex = GOOD_KNIPPELS;
 	switch (sti(InterfaceStates.BombsParticles))
 	{
 		case 0:
@@ -46,16 +46,16 @@ void CreateBallsEnvironment()
 		case 1:
 			Bombs.Particle = "bomb_smoke_low";
 			Balls.Particle = "ball_smoke_low";
+			Knippels.Particle = "ball_smoke_low";
 		break;
 		case 2:
 			Bombs.Particle = "bomb_smoke_high";
 			Balls.Particle = "ball_smoke_high";
+			Knippels.Particle = "ball_smoke_low";
 		break;
 	}
 
 	Grapes.SubTexIndex = 1;		Grapes.Size = 0.2;		Grapes.GoodIndex = GOOD_GRAPES;
-
-	Knippels.SubTexIndex = 3;	Knippels.Size = 0.2;	Knippels.GoodIndex = GOOD_KNIPPELS;
 
 	AIBalls.isDone = 1;
 
@@ -93,9 +93,9 @@ void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0,
 	AIBalls.z = fZ;
 	AIBalls.CharacterIndex    = aCharacter.Index;
 	AIBalls.Type = Goods[sti(aCharacter.Ship.Cannons.Charge.Type)].Name;
-	if((AIBalls.Type != GOOD_KNIPPELS) && (SeaCameras.Camera != "SeaDeckCamera"))
+	if(SeaCameras.Camera != "SeaDeckCamera")
 	{
-		fCannonHeightMultiply *= 0.33;//высота траектории
+		fCannonHeightMultiply *= 0.3;//высота траектории
 	}
 	AIBalls.HeightMultiply    = fCannonHeightMultiply;
 	AIBalls.SizeMultiply      = rCannon.SizeMultiply;
@@ -104,14 +104,22 @@ void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0,
 	AIBalls.RawAng = fCannonDirAng;
 	float fTempDispersionY = Degree2Radian(5.0); // LEO: Важные параметры разброса снарядов - (15.0)
 	float fTempDispersionX = Degree2Radian(6.5); // (5.0)
-
-	
+	if(AIBalls.Type == GOOD_KNIPPELS)
+	{
+		fTempDispersionX *= 3; 
+	}
 	//float fDamage2Cannons = 100.0;
-
-    float fAccuracy = (1.5 - stf(aCharacter.TmpSkill.Accuracy))/2;
 
 	float fCannons = stf(aCharacter.TmpSkill.Cannons)*10;
 
+	int nShipType = sti(aCharacter.ship.type);
+	ref refBaseShip = GetRealShip(nShipType);
+	int iCannonsNum = sti(refBaseShip.CannonsQuantity);
+	
+	float fCannonsNumPenalty = (MakeFloat(iCannonsNum)/35 - 1)/(10);//-0.06...0.2
+	float fCaliberPenalty = (GetCannonCaliber(iCannonType) - 6 - fCannons*2)/160;//-0.05...0.15
+    float fAccuracy = (1.5 - stf(aCharacter.TmpSkill.Accuracy))/2 + fCaliberPenalty + fCannonsNumPenalty;
+	
 	fCannons = 15.0 + MOD_SKILL_ENEMY_RATE - fCannons;
 
 	if (fCannons > 0.0 && RealShips[sti(aCharacter.ship.type)].BaseName != "fort") // fix
@@ -123,7 +131,7 @@ void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0,
 		}
 	}
 
-	float fK = Bring2Range(0.35, 0.9, 0.25, 0.75, fAccuracy);
+	float fK = Bring2Range(0.33, 0.75, 0.25, 0.75, fAccuracy);
 	
 	AIBalls.Dir = fDirAng + fK * fTempDispersionY * (frnd() +frnd() - 1);//горизонтальная_наводка + разброс
 	AIBalls.SpdV0 = fSpeedV0 + fAccuracy * (10.0 * fTempDispersionY) * (frnd() - 0.5);//скорость_снаряда + разброс_скорости

@@ -160,7 +160,7 @@ void GenerateMaps(aref ch, int iProbability1, int iProbability2)
 	if(rand(iProbability2) == 1 && !CheckMainHeroMap("map_maine_1")) AddItems(ch, "map_maine_1", 1);
 	if(rand(iProbability2) == 1 && !CheckMainHeroMap("map_maine_2")) AddItems(ch, "map_maine_2", 1);
 	if(rand(iProbability1) == 1 && !CheckMainHeroMap("map_panama")) AddItems(ch, "map_panama", 1);
-	if(rand(iProbability1) == 1 && !CheckMainHeroMap("map_maracaibo")) AddItems(ch, "map_maracaibo", 1);
+	if(rand(iProbability1) == 1 && !CheckMainHeroMap("map_Bahames")) AddItems(ch, "map_Bahames", 1);
 	if(rand(iProbability1) == 1 && !CheckMainHeroMap("map_cumana")) AddItems(ch, "map_cumana", 1);
 }
 
@@ -1801,6 +1801,13 @@ string PerksChars()
 
 void SetSpeciality(ref chref, string perkName)
 {
+	if (IsCharacterPerkOn(chref, "Adventurer")) return; //уже есть характер, новый не ставим
+	if (IsCharacterPerkOn(chref, "SeaWolf")) return;
+	if (IsCharacterPerkOn(chref, "Agent")) return;
+	if (IsCharacterPerkOn(chref, "Grunt")) return;
+	if (IsCharacterPerkOn(chref, "Fencer")) return;
+	if (IsCharacterPerkOn(chref, "Trader")) return;
+	if (IsCharacterPerkOn(chref, "Buccaneer")) return;
 	chref.perks.list.(perkName) = true;
 }
 

@@ -105,7 +105,7 @@ float Cannon_GetFireHeight()
 	//временно - нужно перебрать все высоты в шипс.инит
 	if(sBallName != "Knippels")
 	{
-		Y = Y / 2;
+		Y = Y * 0.66;
 	}
 	return Y;
 }
@@ -272,7 +272,7 @@ int GetBortIntactCannonsNum(ref rCharacter, string sBort, int iNumCannonsOnBort)
 	if(sBort == "fcannon") sBort_real = "cannonf";
 	if(sBort == "bcannon") sBort_real = "cannonb";
 
-	if (!CheckAttribute(rCharacter, "Ship.Cannons.Borts." + sBort_real + ".damages") ||
+	if (!CheckAttribute(rCharacter, "Ship.Cannons.Borts." + sBort_real + ".damages") &&
 	    !CheckAttribute(rCharacter, "Ship.Cannons.Borts." + sBort + ".damages")) return iNumCannonsOnBort;
 
 	aref arDamages;

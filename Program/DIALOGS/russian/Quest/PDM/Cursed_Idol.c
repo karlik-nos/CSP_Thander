@@ -306,8 +306,8 @@ void ProcessDialogEvent()
 			bDisableFastReload = true;
 
 			sld = GetCharacter(NPC_GenerateCharacter("Pablo_Loco_Idol", "indsar1", "man", "man", 10, PIRATE, -1, false));
-			sld.name = "Пабло";
-			sld.lastname = "Локо";
+			sld.name = "Туантух";
+			sld.lastname = "";
 			sld.talker = 7;
 			LAi_group_MoveCharacter(sld, "PIRATE_CITIZENS");
 			LAi_SetStayType(sld);
