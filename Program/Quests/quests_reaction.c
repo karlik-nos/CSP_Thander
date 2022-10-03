@@ -10592,30 +10592,7 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 
 //========================  Квест "Аптекарь".  =======================
-		case "PDM_Apt_Markus_Spawn":
-			//Маркус
-			sld = GetCharacter(NPC_GenerateCharacter("PDM_Markus", "prison_3", "man", "man", 10, ENGLAND, -1, false));
-			sld.name	= "Маркус";
-			sld.lastname	= "";
-			sld.City = "SentJons";
-			sld.Dialog.Filename = "Quest/PDM/Aptekar.c";
-			LAi_SetGroundSitType(sld);
-			LAi_SetImmortal(sld, true);
-			LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
-			ChangeCharacterAddressGroup(sld,"SentJons_tavern","goto","goto1");
-		break;
-
-		case "PDM_Apt_Markus_Vizdorovel":
-			sld = CharacterFromID("PDM_Markus")
-			sld.model = "shipowner_8";
-			DeleteAttribute(sld,"heromodel");
-			LAi_SetStayType(sld);
-			ChangeCharacterAddressGroup(sld,"CommonRoom_MH3","goto","goto1");
-			sld.dialog.filename   = "Quest/PDM/Aptekar.c";
-			sld.dialog.currentnode   = "Markus_Vizdorovel";
-			pchar.questTemp.PDM_Apt_Vizdorovel = "PDM_Apt_Vizdorovel";
-		break;
-
+		
 		case "PDM_Apt_Prihov_v_buhtu":
 			PChar.quest.PDM_Apt_Derevo_1.win_condition.l1 = "locator";
 			PChar.quest.PDM_Apt_Derevo_1.win_condition.l1.location = "Common_jungle_01";
@@ -10665,7 +10642,7 @@ void QuestComplete(string sQuestName, string qname)
 				LAi_group_MoveCharacter(sld, "EnemyFight");
 				ChangeCharacterAddressGroup(sld, pchar.location, "reload",  "reload1");
 			}
-			for (i=6; i<=7; i++)
+			for (i=4; i<=5; i++)
 			{
 				sTemp = "Canib_"+(rand(5)+1);					
 				sld = GetCharacter(NPC_GenerateCharacter("PDM_Apt_Canib_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
@@ -10673,7 +10650,7 @@ void QuestComplete(string sQuestName, string qname)
 				LAi_group_MoveCharacter(sld, "EnemyFight");
 				ChangeCharacterAddressGroup(sld, pchar.location, "randitem",  "randitem5");
 			}
-			for (i=8; i<=9; i++)
+			for (i=6; i<=7; i++)
 			{
 				sTemp = "Canib_"+(rand(5)+1);					
 				sld = GetCharacter(NPC_GenerateCharacter("PDM_Apt_Canib_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
@@ -11159,12 +11136,6 @@ void QuestComplete(string sQuestName, string qname)
 			pchar.questTemp.UndeadPrologue3 = "UP3";
 			bDisableFastReload = false;
 			chrDisableReloadToLocation = false;
-		break;
-		
-		case "UP_Skelet_Moryak_HoditPoPeshere":
-			sld = CharacterFromID("Skelet_Drug")
-			LAi_SetWarriorType(sld);
-			LAi_CharacterDisableDialog(sld);
 		break;
 		
 		case "UP_SkeletyVPeshere_NanyatSnova":

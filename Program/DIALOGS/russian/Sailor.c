@@ -257,7 +257,7 @@ void ProcessDialogEvent()
 			link.l1.go = "crew_comp2";
 			if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
 			{
-				dialog.text = "Слушаемся и повинуемся, "RandPhraseSimple("о повелитель!", "тёмный господин!");
+				dialog.text = "Слушаемся и повинуемся, " + RandPhraseSimple("о повелитель!", "тёмный господин!");
 				link.l1 = "Так-то лучше!";
 				link.l1.go = "crew_comp2";
 			}
@@ -324,11 +324,11 @@ void ProcessDialogEvent()
 			iTemp = sti(npchar.quest.crew.money)*sti(npchar.quest.crew.qty);
 			AddMoneyToCharacter(pchar, -iTemp);
 			dialog.text = "Уже идём, капитан! Я соберу ребят, и мы отправимся на борт немедленно!";
-			link.l1 = "Давайтие, поторапливайтесь, я долго задерживаться тут не планирую.";
+			link.l1 = "Давайте, поторапливайтесь, я долго задерживаться тут не планирую.";
 			link.l1.go = "crew_4";
 			if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
 			{
-				dialog.text = "Слушаемся и повинуемся, "RandPhraseSimple("о повелитель!", "тёмный господин!");
+				dialog.text = "Слушаемся и повинуемся, " + RandPhraseSimple("о повелитель!", "тёмный господин!");
 				link.l1 = "Так-то лучше!";
 				link.l1.go = "crew_4";
 			}
@@ -401,6 +401,7 @@ void ProcessDialogEvent()
 			sld = CharacterFromID("Skelet_Drug")
 			LAi_SetWarriorType(sld);
 			LAi_CharacterDisableDialog(sld);
+			LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
 		break;
 	}
 }

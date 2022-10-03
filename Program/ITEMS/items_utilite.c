@@ -870,7 +870,7 @@ void QuestCheckEnterLocItem(aref _location, string _locator) /// <<<провер
 			if (pchar.sex == "Skeleton" && GetCharacterEquipSuitID(pchar)!= "suit_1")
 			{
 				sTemp = "skel_"+(rand(3)+1);
-				sld = GetCharacter(NPC_GenerateCharacter("Skelet_Drug", sTemp, "skeleton", "skeleton", 3, PIRATE, -1, true));
+				sld = GetCharacter(NPC_GenerateCharacter("Skelet_Drug", sTemp, "skeleton", "skeleton", sti(pchar.rank), PIRATE, -1, true));
 				LAi_SetActorType(sld);
 				PlaceCharacter(sld, "monsters", PChar.location);
 				LAi_ActorDialog(sld, pchar, "", -1, 0);
@@ -884,13 +884,13 @@ void QuestCheckEnterLocItem(aref _location, string _locator) /// <<<провер
 					sld.quest.crew = "true";
 					sld.quest.crew.qty = 10+rand(14)+(GetSummonSkillFromNameToOld(GetMainCharacter(),SKILL_LEADERSHIP) * 8); // WW 10-24 + 6-60 = 16-84 от авторитета
 					sld.quest.crew.type = rand(2);
-					sld.quest.crew.money = (30+rand(2)*10+rand(50))*(1+(sti(Pchar.rank)/4))+rand(100);	//Для нежити дешевле
+					sld.quest.crew.money = ((rand(4)+1))*(1+(sti(Pchar.rank)/4))+rand(100);	//Для нежити дешевле
 				}
 				bMonstersGen = true; //флаг генерации скелетов
-				for (i=1; i<=15; i++)
+				for (i=1; i<=16; i++)
 				{
 				sTemp = "skel_"+(rand(3)+1);
-				sld = GetCharacter(NPC_GenerateCharacter("Skelet_Drug_"+i, sTemp, "skeleton", "skeleton", 3, PIRATE, -1, true));
+				sld = GetCharacter(NPC_GenerateCharacter("Skelet_Drug_"+i, sTemp, "skeleton", "skeleton", sti(pchar.rank), PIRATE, -1, true));
 				PlaceCharacter(sld, "monsters", "random_free");
 				LAi_SetWarriorType(sld);
 				sld.lifeday = 0;
