@@ -2576,13 +2576,6 @@ void PDMQuestsInit()
 	FantomMakeCoolFighter(sld, 25, 25, 25, "blade10", "", 40);
 	LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
 	ChangeCharacterAddressGroup(sld,"FortFrance_town","officers","soldier_uniq1");
-
-	//******Аптекарь Sinistra******
-	//Маркус
-	pchar.quest.PDM_Apt_Markus_Spawn.win_condition.l1 = "Rank";
-	pchar.quest.PDM_Apt_Markus_Spawn.win_condition.l1.value = 8;
-	pchar.quest.PDM_Apt_Markus_Spawn.win_condition.l1.operation = ">=";
-	PChar.quest.PDM_Apt_Markus_Spawn.win_condition = "PDM_Apt_Markus_Spawn";
 }
 //Сундук Мертвеца
 void KSMQuestsInit()

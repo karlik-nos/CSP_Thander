@@ -10593,30 +10593,7 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 
 //========================  Квест "Аптекарь".  =======================
-		case "PDM_Apt_Markus_Spawn":
-			//Маркус
-			sld = GetCharacter(NPC_GenerateCharacter("PDM_Markus", "prison_3", "man", "man", 10, ENGLAND, -1, false));
-			sld.name	= "Маркус";
-			sld.lastname	= "";
-			sld.City = "SentJons";
-			sld.Dialog.Filename = "Quest/PDM/Aptekar.c";
-			LAi_SetGroundSitType(sld);
-			LAi_SetImmortal(sld, true);
-			LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
-			ChangeCharacterAddressGroup(sld,"SentJons_tavern","goto","goto1");
-		break;
-
-		case "PDM_Apt_Markus_Vizdorovel":
-			sld = CharacterFromID("PDM_Markus")
-			sld.model = "shipowner_8";
-			DeleteAttribute(sld,"heromodel");
-			LAi_SetStayType(sld);
-			ChangeCharacterAddressGroup(sld,"CommonRoom_MH3","goto","goto1");
-			sld.dialog.filename   = "Quest/PDM/Aptekar.c";
-			sld.dialog.currentnode   = "Markus_Vizdorovel";
-			pchar.questTemp.PDM_Apt_Vizdorovel = "PDM_Apt_Vizdorovel";
-		break;
-
+		
 		case "PDM_Apt_Prihov_v_buhtu":
 			PChar.quest.PDM_Apt_Derevo_1.win_condition.l1 = "locator";
 			PChar.quest.PDM_Apt_Derevo_1.win_condition.l1.location = "Common_jungle_01";
