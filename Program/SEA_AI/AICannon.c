@@ -76,13 +76,15 @@ void Cannon_RecalculateParameters(int iCharacterIndex)
 	ref	rCharacter = GetCharacter(iCharacterIndex);
 	ref	rCannon = GetCannonByType(sti(rCharacter.Ship.Cannons.Type));
 	ref	rBall = GetGoodByType(sti(rCharacter.Ship.Cannons.Charge.Type));
+	int p = GetCharacterSPECIALSimple(rCharacter, SPECIAL_P)-3;
+	if (p < 0) p = 0;
 	if (CheckAttribute(rCharacter, "TmpPerks.LongRangeShoot"))
 	{
-		rCharacter.Ship.Cannons.SpeedV0 = stf(rCannon.SpeedV0) * stf(rBall.SpeedV0) * sqrt(AIShip_isPerksUse(rCharacter.TmpPerks.LongRangeShoot, 1.0, 1.15) + GetCharacterSPECIALSimple(rCharacter, SPECIAL_P) * 0.02); //slib
+		rCharacter.Ship.Cannons.SpeedV0 = stf(rCannon.SpeedV0) * stf(rBall.SpeedV0) * sqrt(AIShip_isPerksUse(rCharacter.TmpPerks.LongRangeShoot, 1.0, 1.15) + p * 0.03); //slib
 	}
 	else
 	{
-	    rCharacter.Ship.Cannons.SpeedV0 = stf(rCannon.SpeedV0) * stf(rBall.SpeedV0) * sqrt(1.0 +GetCharacterSPECIALSimple(rCharacter, SPECIAL_P) * 0.02);
+	    rCharacter.Ship.Cannons.SpeedV0 = stf(rCannon.SpeedV0) * stf(rBall.SpeedV0) * sqrt(1.0 + p * 0.03);
 	}
 	rCharacter.Ship.Cannons.FireAngMax = rCannon.FireAngMax;
 	rCharacter.Ship.Cannons.FireAngMin = rCannon.FireAngMin;

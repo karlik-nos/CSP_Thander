@@ -523,6 +523,10 @@ void ShowInfoWindow()
 	}
 	if (sCurrentNode == "TABLE_SKILL_1" || sCurrentNode == "TABLE_SKILL_2")
 	{
+		if (HasSubStr("Sailing",GameInterface.(CurTable).(CurRow).UserData.ID) && bRankRequirement)
+		{
+			sText3 = "Также, помимо требований навигации, присутствует и требование по уровню персонажа относительно класса корабля:\n7 и 6 класс = 1 уровень \n5 класс = 6 уровень \n4 класс = 12 уровень \n3 класс = 20 уровень \n2 класс = 26 уровень \n 1 класс = 33 уровень\n\nЗа каждый недостающий уровень требуются дополнительные 2 очка навигации."
+		}
 		sText4 = "";
 		if (CheckAttribute(xi_refCharacter,"chr_ai.Trauma") && HasSubStr("LeadershipFencingLightFencingHeavyPistolFortuneSneak",GameInterface.(CurTable).(CurRow).UserData.ID))
 		{
