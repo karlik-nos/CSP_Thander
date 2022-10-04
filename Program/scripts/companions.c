@@ -129,10 +129,6 @@ bool Ship_AutoAbordage(ref rCharacter, float fMinEnemyDistance)
 
 					if (GetRemovable(rCharacter) && GetShipRemovable(rCharacter))
 					{
-						LayerFreeze(EXECUTE,true);
-						LayerFreeze(REALIZE,true);
-						LayerFreeze(SEA_EXECUTE,true);
-						LayerFreeze(SEA_REALIZE,true);
 						LaunchRansackMain(rCharacter, rEnemyCharacter, "companion_captured");
 					}
 					else
@@ -173,10 +169,6 @@ bool Ship_AutoAbordage(ref rCharacter, float fMinEnemyDistance)
 
 					if (GetRemovable(rEnemyCharacter) && GetShipRemovable(rEnemyCharacter))
 					{
-						LayerFreeze(EXECUTE,true);
-						LayerFreeze(REALIZE,true);
-						LayerFreeze(SEA_EXECUTE,true);
-						LayerFreeze(SEA_REALIZE,true);
 						LaunchRansackMain(rEnemyCharacter, rCharacter, "companion_captured");
 					}
 					else
