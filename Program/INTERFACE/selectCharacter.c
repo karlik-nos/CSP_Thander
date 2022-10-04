@@ -1070,6 +1070,9 @@ void IDoExit(int exitCode, bool bCode)
 		bModDamage = makefloat(3.0 - 2.67 * (1.0 - stf(GameInterface.nodes.DAMAGE_SLIDE.value)));  // 0т 0 до 5
 		trace("bModDamage = " + bModDamage);
 		
+		MOD_DEFENDERS_RATE = makeint(5 - 5.0 * (1.0 - stf(GameInterface.nodes.DEFENDERS_SLIDE.value)))
+		trace("MOD_DEFENDERS_RATE = " + MOD_DEFENDERS_RATE);
+		
 		if (bAltBalance == false)
 		{
 			bAltBalanceTimeSlow = false;

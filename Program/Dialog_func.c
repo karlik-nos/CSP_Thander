@@ -823,6 +823,9 @@ string GetArealByCityName(string city) // ареал по городу по ат
 		case "Tenotchitlan":
             return "Tenotchitlan";
 		break;
+		case "Nassau":
+            return "Bahames";
+		break;
 	}
 	return "";
 }
