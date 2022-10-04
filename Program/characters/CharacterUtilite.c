@@ -4124,6 +4124,7 @@ void Lilarcor_Talks()
 		case "Lilarcor_Sword2": LAi_CharacterPlaySound(PChar, "Lilarcor_Bers_Sword2"); break;
 		case "Lilarcor_Sword3": LAi_CharacterPlaySound(PChar, "Lilarcor_Bers_Sword3"); break;
 	}
+	ActivateCharacterPerk(pchar, "Rush");
 	pchar.perks.list.Rush.active = 3600;
 	pchar.perks.list.Rush.delay = 3600;
 	pchar.chr_ai.energy = pchar.chr_ai.energyMax;
