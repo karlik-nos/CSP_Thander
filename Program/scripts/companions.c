@@ -127,7 +127,7 @@ bool Ship_AutoAbordage(ref rCharacter, float fMinEnemyDistance)
 			    {
 					RemoveCharacterGoodsSelf(rCharacter, GOOD_WEAPON, deadCrew);
 
-					if (GetRemovable(rCharacter) && GetShipRemovable(rCharacter))
+					if (false)
 					{
 						LaunchRansackMain(rCharacter, rEnemyCharacter, "companion_captured");
 					}
@@ -167,7 +167,7 @@ bool Ship_AutoAbordage(ref rCharacter, float fMinEnemyDistance)
 			    {
 					RemoveCharacterGoodsSelf(rEnemyCharacter, GOOD_WEAPON, deadCrew);
 
-					if (GetRemovable(rEnemyCharacter) && GetShipRemovable(rEnemyCharacter))
+					if (false)
 					{
 						LaunchRansackMain(rEnemyCharacter, rCharacter, "companion_captured");
 					}
