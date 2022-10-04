@@ -167,7 +167,7 @@ ref GetCharacter(int iIndex)
 	if (iIndex < 0 || iIndex >= TOTAL_CHARACTERS)
 	{
 		trace("Incorrect Index for a character! Wrong Index is " + iIndex);
-		if (MOD_BETTATESTMODE	==	"On") Log_TestInfo("ERROR: Incorrect Index for a character! Wrong Index is " + iIndex);
+		if (MOD_BETTATESTMODE	==	"On") Log_TestInfo("ОШИБКА: Неверный индекс для персонажа! Неправильный индекс " + iIndex);
 		return &NullCharacter;
 	}
 	return &Characters[iIndex];
