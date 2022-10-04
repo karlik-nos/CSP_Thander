@@ -2196,16 +2196,18 @@ int GenerateShipTop(int iBaseType, bool isStolen, ref chr)
 int GetShootDistance(ref chref, string ball)
 {
 	float distance = 0.0;
+	int p = GetCharacterSPECIALSimple(chref, SPECIAL_P)-3;
+	if (p < 0) p = 0;
 
 	ref	rCannon = GetCannonByType(sti(chref.Ship.Cannons.Type));
 	distance = stf(rCannon.FireRange);
 	if (CheckAttribute(chref, "perks.list.LongRangeShoot"))
 	{
-		distance = distance * (1.15+(GetCharacterSPECIALSimple(chref, SPECIAL_P)-4)*0.03);
+		distance = distance * (1.15+p*0.03);
 	}
 	else
 	{
-		distance = distance * (1.0+(GetCharacterSPECIALSimple(chref, SPECIAL_P)-4)*0.03);
+		distance = distance * (1.0+p*0.03);
 	}
 	switch(ball)
 	{

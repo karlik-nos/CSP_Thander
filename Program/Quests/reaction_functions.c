@@ -9399,7 +9399,7 @@ void Headhunter_CreateHoumShips(string qName)//cоздание кораблей 
 		else sld = GetCharacter(NPC_GenerateCharacter("Houm_helper", "pirate_1", "man", "man", 35, ENGLAND, -1, true));//создание кэпа-помощника
 		sld.name = "Андре";
 		sld.lastname = "Деготь";
-		FantomMakeCoolSailor(sld, SHIP_BRIG, "", CANNON_TYPE_CANNON_LBS24, 70, 70, 70);//создание брига
+		FantomMakeCoolSailor(sld, SHIP_BRIG, "", CANNON_TYPE_CANNON_LBS16, 70, 70, 70);//создание брига
 		FantomMakeCoolFighter(sld, 35, 60, 60, "blade15", "pistol5", 90);//создание фантома кэпа
 		if (bHardBoss) sld.AlwaysReload = true;//перезарядка независимо от Дозарядки
 		DeleteAttribute(sld, "SaveItemsForDead");

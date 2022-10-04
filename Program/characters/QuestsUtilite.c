@@ -2585,11 +2585,17 @@ void PDMQuestsInit()
 	ChangeCharacterAddressGroup(sld,"FortFrance_town","officers","soldier_uniq1");
 
 	//******Аптекарь Sinistra******
-	//Маркус
-	pchar.quest.PDM_Apt_Markus_Spawn.win_condition.l1 = "Rank";
-	pchar.quest.PDM_Apt_Markus_Spawn.win_condition.l1.value = 8;
-	pchar.quest.PDM_Apt_Markus_Spawn.win_condition.l1.operation = ">=";
-	PChar.quest.PDM_Apt_Markus_Spawn.win_condition = "PDM_Apt_Markus_Spawn";
+	//Аптекарь
+	sld = GetCharacter(NPC_GenerateCharacter("Doktor_Alumnus", "Alumnus", "man", "man", 10, HOLLAND, -1, false));
+	sld.name = "Алюмнус";
+	sld.lastname = "";
+	LAi_group_MoveCharacter(sld, "HOLLAND_CITIZENS");
+	LAi_SetBarmanType(sld);
+	sld.greeting = "GR_Doctor_Alumnus";
+	sld.dialog.filename   = "Quest/PDM/Aptekar.c";
+	sld.dialog.currentnode   = "First time";
+	sld.City = "Marigo";
+	ChangeCharacterAddressGroup(sld,"Farmacia","barmen","stay");
 }
 //Сундук Мертвеца
 void KSMQuestsInit()

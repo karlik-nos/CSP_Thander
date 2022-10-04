@@ -76,7 +76,7 @@ void ProcessDialogEvent()
                 break;
     		}
 			//Sinistra пролог Анжелики Тич
-			if (pchar.questTemp.AnjelikaTichPrologue == "ATP")
+			if (CheckAttribute(pchar, "questTemp.AnjelikaTichPrologue"))
             {
                 dialog.Text = "Добрый день, сеньорита.";
                 Link.l1 = "Добрый день, " + NPChar.name + ".";

@@ -549,6 +549,9 @@ void LAi_LoadLocation(string locationID, int locType)
 		Trace("Boarding: Boarding location not found, current loc <" + locationID + ">");
 	}
 	ReloadProgressEnd();
+	SetPerspectiveSettings();
+	//#20190815-01
+	SetPerspective2Settings();
 	PostEvent("LoadSceneSound", 500);
 	pchar.OfficerAttRange = 100.0;//автоагр абордажников на палубе
 }
@@ -1298,6 +1301,12 @@ string LAi_GetBoardingModel(ref rCharacter, ref ani)
 			ani = "man";
 			return model;
         }
+		if (rCharacter.sex == "skeleton")
+		{
+			model = GetRandSkelModelClassic();
+			ani = "man";
+			return model;
+		}
 		if (CheckAttribute(rCharacter, "OZG") == true)
         {
             model = "OZG_" + (rand(9) + 1);

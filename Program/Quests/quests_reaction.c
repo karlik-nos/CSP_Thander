@@ -10592,30 +10592,7 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 
 //========================  Квест "Аптекарь".  =======================
-		case "PDM_Apt_Markus_Spawn":
-			//Маркус
-			sld = GetCharacter(NPC_GenerateCharacter("PDM_Markus", "prison_3", "man", "man", 10, ENGLAND, -1, false));
-			sld.name	= "Маркус";
-			sld.lastname	= "";
-			sld.City = "SentJons";
-			sld.Dialog.Filename = "Quest/PDM/Aptekar.c";
-			LAi_SetGroundSitType(sld);
-			LAi_SetImmortal(sld, true);
-			LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
-			ChangeCharacterAddressGroup(sld,"SentJons_tavern","goto","goto1");
-		break;
-
-		case "PDM_Apt_Markus_Vizdorovel":
-			sld = CharacterFromID("PDM_Markus")
-			sld.model = "shipowner_8";
-			DeleteAttribute(sld,"heromodel");
-			LAi_SetStayType(sld);
-			ChangeCharacterAddressGroup(sld,"CommonRoom_MH3","goto","goto1");
-			sld.dialog.filename   = "Quest/PDM/Aptekar.c";
-			sld.dialog.currentnode   = "Markus_Vizdorovel";
-			pchar.questTemp.PDM_Apt_Vizdorovel = "PDM_Apt_Vizdorovel";
-		break;
-
+		
 		case "PDM_Apt_Prihov_v_buhtu":
 			PChar.quest.PDM_Apt_Derevo_1.win_condition.l1 = "locator";
 			PChar.quest.PDM_Apt_Derevo_1.win_condition.l1.location = "Common_jungle_01";
@@ -10635,7 +10612,7 @@ void QuestComplete(string sQuestName, string qname)
 			PChar.quest.PDM_Apt_Derevo_3.win_condition.l1.locator = "randitem3";
 			PChar.quest.PDM_Apt_Derevo_3.win_condition = "PDM_Apt_Nashel_Derevo";
 
-			AddQuestRecord("PDM_Aptekar", "8");
+			AddQuestRecord("PDM_Aptekar", "5");
 		break;
 
 		case "PDM_Apt_Nashel_Derevo":
@@ -10645,11 +10622,49 @@ void QuestComplete(string sQuestName, string qname)
 			sld.dialog.filename   = "Quest/PDM/Aptekar.c";
 			sld.dialog.currentnode   = "Nashel_Derevo";
 
-			AddQuestRecord("PDM_Aptekar", "9");
+			AddQuestRecord("PDM_Aptekar", "6");
 
 			PChar.quest.PDM_Apt_Derevo_1.over = "yes";
 			PChar.quest.PDM_Apt_Derevo_2.over = "yes";
 			PChar.quest.PDM_Apt_Derevo_3.over = "yes";
+			
+			chrDisableReloadToLocation = true;
+			DoQuestCheckDelay("PDM_Apt_Canibaly_Attack", 3.5);
+		break;
+		
+		case "PDM_Apt_Canibaly_Attack":
+			Log_info("Кажется, индейцы разгневались!");
+			for (i=1; i<=3; i++)
+			{
+				sTemp = "Canib_"+(rand(5)+1);					
+				sld = GetCharacter(NPC_GenerateCharacter("PDM_Apt_Canib_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+				ChangeCharacterAddressGroup(sld, pchar.location, "reload",  "reload1");
+			}
+			for (i=4; i<=5; i++)
+			{
+				sTemp = "Canib_"+(rand(5)+1);					
+				sld = GetCharacter(NPC_GenerateCharacter("PDM_Apt_Canib_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+				ChangeCharacterAddressGroup(sld, pchar.location, "randitem",  "randitem5");
+			}
+			for (i=6; i<=7; i++)
+			{
+				sTemp = "Canib_"+(rand(5)+1);					
+				sld = GetCharacter(NPC_GenerateCharacter("PDM_Apt_Canib_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+				ChangeCharacterAddressGroup(sld, pchar.location, "randitem",  "randitem10");
+			}
+			LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+			LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);			//true - если помирить
+			LAi_group_SetCheck("EnemyFight", "PDM_Apt_Canibaly_Pobeda");
+		break;
+		
+		case "PDM_Apt_Canibaly_Pobeda":
+			chrDisableReloadToLocation = false;
 		break;
 
 		case "PDM_Apt_Lodka_Postroena":
@@ -11123,12 +11138,6 @@ void QuestComplete(string sQuestName, string qname)
 			chrDisableReloadToLocation = false;
 		break;
 		
-		case "UP_Skelet_Moryak_HoditPoPeshere":
-			sld = CharacterFromID("Skelet_Drug")
-			LAi_SetWarriorType(sld);
-			LAi_CharacterDisableDialog(sld);
-		break;
-		
 		case "UP_SkeletyVPeshere_NanyatSnova":
 			DeleteAttribute(pchar, "questTemp.UP_SkeletyVPeshere");
 		break;
@@ -11149,7 +11158,7 @@ void QuestComplete(string sQuestName, string qname)
 			sld.AlwaysEnemy = true;
 			sld.DontRansackCaptain = true;
 			sld.mapEnc.type = "war";
-			sld.mapEnc.Name = "корабль, на котором находится 'Говорящий клинок'";
+			sld.mapEnc.Name = "корабль, на котором находится 'Внеземной артефакт'";
 			sld.hunter = "pirate";
 			Group_AddCharacter("UP_Ship", "UP_Korabl_s_klinkom");
 
@@ -11169,6 +11178,7 @@ void QuestComplete(string sQuestName, string qname)
 			sld.name = "Джессика";
 			sld.lastname = "";
 			sld.FaceId = 527;
+			SetSPECIAL(sld, 7, 3, 8, 3, 8, 10, 10);
 			GiveItem2Character(sld, "blade36");
 			EquipCharacterByItem(sld, "blade36");
 			sld.Dialog.Filename = "Enc_Officer_dialog.c";
@@ -11181,8 +11191,14 @@ void QuestComplete(string sQuestName, string qname)
 			sld.location = "None";
 			sld.Dialog.CurrentNode = "hired";
 			sld.Payment = true;
+			sld.HeroModel = "PGG_Ghost_0,PGG_Ghost_1,PGG_Ghost_2,PGG_Ghost_3,PGG_Ghost_4,PGG_Ghost_5";
+			SetCharacterPerk(sld, "BasicDefense");
+			SetCharacterPerk(sld, "AdvancedDefense");
+			SetCharacterPerk(sld, "CriticalHit");
+			SetCharacterPerk(sld, "Tireless");
+			SetCharacterPerk(sld, "SwordplayProfessional");
+			SetCharacterPerk(sld, "Energaiser");
 			LAi_SetHP(sld, 260.0, 260.0);
-			AddBonusEnergyToCharacter(sld, 30);
 			
 			//Скелет индеец
 			sld = GetCharacter(NPC_GenerateCharacter("Undead_Indeech", "skel_5", "skeleton", "skeleton", 10, PIRATE, -1, false));
@@ -11192,6 +11208,7 @@ void QuestComplete(string sQuestName, string qname)
 			GiveItem2Character(sld, "toporAZ");
 			EquipCharacterByItem(sld, "toporAZ");
 			GiveItem2Character(sld, "Totem_11");
+			SetSPECIAL(sld, 5, 9, 6, 5, 8, 6, 10);
 			SetShipSkill(sld, 15, 25, 30, 30, 45, 30, 25, 20, 5);	//Умения морские (лидер, торг, точн, пушки, навиг, ремонт, аборд, защита, скрыт)
 			sld.Dialog.Filename = "Enc_Officer_dialog.c";
 			sld.quest.meeting = true;
@@ -11203,13 +11220,26 @@ void QuestComplete(string sQuestName, string qname)
 			sld.location = "None";
 			sld.Dialog.CurrentNode = "hired";
 			sld.Payment = true;
+			sld.HeroModel = "skel_5,skel_5_1,skel_5_2,skel_5_3,skel_5_4,skel_5_5";
 			LAi_SetHP(sld, 150.0, 150.0);
+			SetCharacterPerk(sld, "ByWorker");
+			SetCharacterPerk(sld, "ByWorker2");
+			SetCharacterPerk(sld, "LongRangeGrappling");
+			SetCharacterPerk(sld, "MusketsShoot");
+			SetCharacterPerk(sld, "GrapplingProfessional");
+			SetCharacterPerk(sld, "BasicBattleState");
+			SetCharacterPerk(sld, "AdvancedBattleState");
+			SetCharacterPerk(sld, "ShipDefenseProfessional");
+			SetCharacterPerk(sld, "Doctor1");
+			SetCharacterPerk(sld, "Doctor2");
+			SetCharacterPerk(sld, "EmergentSurgeon");
 			
 			//Синий скелет
 			sld = GetCharacter(NPC_GenerateCharacter("Undead_Blue", "skelt", "skeleton", "skeleton", 10, PIRATE, -1, false));
 			sld.name = "Ледяной";
 			sld.lastname = "демон";
 			sld.FaceId = 354;
+			SetSPECIAL(sld, 10, 3, 10, 3, 5, 10, 3);
 			GiveItem2Character(sld, "topor2");
 			EquipCharacterByItem(sld, "topor2");
 			sld.Dialog.Filename = "Enc_Officer_dialog.c";
@@ -11222,7 +11252,14 @@ void QuestComplete(string sQuestName, string qname)
 			sld.location = "None";
 			sld.Dialog.CurrentNode = "hired";
 			sld.Payment = true;
-			LAi_SetHP(sld, 350.0, 350.0);
+			LAi_SetHP(sld, 300.0, 300.0);
+			SetCharacterPerk(sld, "BasicDefense");
+			SetCharacterPerk(sld, "AdvancedDefense");
+			SetCharacterPerk(sld, "EnergyPlus");
+			SetCharacterPerk(sld, "HPPlus");
+			SetCharacterPerk(sld, "Sliding");
+			SetCharacterPerk(sld, "HardHitter");
+			SetCharacterPerk(sld, "Energaiser");
 			
 			//Скелет с красной повязкой
 			sld = GetCharacter(NPC_GenerateCharacter("Undead_Red", "skel_4", "skeleton", "skeleton", 10, PIRATE, -1, false));
@@ -11241,13 +11278,26 @@ void QuestComplete(string sQuestName, string qname)
 			sld.location = "None";
 			sld.Dialog.CurrentNode = "hired";
 			sld.Payment = true;
+			sld.HeroModel = "skel_4,skel_4_1,skel_4_2,skel_4_3,skel_4_4,skel_4_5";
 			LAi_SetHP(sld, 200.0, 200.0);
+			SetSPECIAL(sld, 9, 3, 10, 3, 6, 9, 10);
+			SetCharacterPerk(sld, "BasicDefense");
+			SetCharacterPerk(sld, "AdvancedDefense");
+			SetCharacterPerk(sld, "EnergyPlus");
+			SetCharacterPerk(sld, "HPPlus");
+			SetCharacterPerk(sld, "Sliding");
+			SetCharacterPerk(sld, "HardHitter");
+			SetCharacterPerk(sld, "BladeDancer");
+			SetCharacterPerk(sld, "Gunman");
+			SetCharacterPerk(sld, "GunProfessional");
+			SetCharacterPerk(sld, "Energaiser");
 			
 			//Скелет с зелёными штанами
 			sld = GetCharacter(NPC_GenerateCharacter("Undead_Green", "skel_2", "skeleton", "skeleton", 10, PIRATE, -1, false));
 			sld.name = "Кактус";
 			sld.lastname = "";
 			sld.FaceId = 351;
+			SetSPECIAL(sld, 5, 10, 6, 5, 8, 6, 9);
 			SetShipSkill(sld, 10, 40, 15, 20, 50, 38, 32, 60, 30);	//Умения морские (лидер, торг, точн, пушки, навиг, ремонт, аборд, защита, скрыт)
 			GiveItem2Character(sld, "blade18");
 			EquipCharacterByItem(sld, "blade18");
@@ -11261,7 +11311,17 @@ void QuestComplete(string sQuestName, string qname)
 			sld.location = "None";
 			sld.Dialog.CurrentNode = "hired";
 			sld.Payment = true;
+			sld.HeroModel = "skel_2,skel_2_1,skel_2_2,skel_2_3,skel_2_4,skel_2_5";
 			LAi_SetHP(sld, 150.0, 150.0);
+			SetCharacterPerk(sld, "FastReload");
+			SetCharacterPerk(sld, "ImmediateReload");
+			SetCharacterPerk(sld, "HullDamageUp");
+			SetCharacterPerk(sld, "SailsDamageUp");
+			SetCharacterPerk(sld, "SailsDamageUp");
+			SetCharacterPerk(sld, "CrewDamageUp");
+			SetCharacterPerk(sld, "CriticalShoot");
+			SetCharacterPerk(sld, "LongRangeShoot");
+			SetCharacterPerk(sld, "CannonProfessional");
 		break;
 		
 //========================  "Игра в прятки"  =======================		

@@ -2019,18 +2019,26 @@ bool LAi_Chr_CheckEnergy()
 }
 // EvgAnat - требование энергии для отскока <--
 
+// EvgAnat - включено ли уклонение от выстрела для нпс -->
+#event_handler("NPC_IsDodgeEnabled", "LAi_Chr_IsDodgeEnabled");
+bool LAi_Chr_IsDodgeEnabled()
+{
+	return true;
+}
+// EvgAnat - включено ли уклонение от выстрела для нпс <--
+
 // EvgAnat - уклонение от выстрела -->
-#event_handler("Check_ChrHitFire", "LAi_Chr_CheckHitFire")
-int LAi_Chr_CheckHitFire() // 1 - не попал, 2 - попал
+#event_handler("Check_ChrHitFire", "LAi_Chr_CheckHitFire");
+int LAi_Chr_CheckHitFire() // 0 - не попал, 1 - попал
 {
 	aref shooter = GetEventData(); // стрелок
 	aref target = GetEventData(); // цель
 	bool isRecoil = GetEventData(); // находится ли цель в окне уклонения 
 	float kDist = GetEventData(); // коэффициент дальности, равный 1-d/25; k(0)=1; k(10)=0.6; k(25)=0
-	int res = 2;
+	int res = 1;
 	if(isRecoil)
 	{
-		res = 1;
+		res = 0;
 		if (shooter.index == GetMainCharacterIndex())
 			Log_SetStringToLog("Мазила!");
 	}
@@ -2064,3 +2072,23 @@ bool LAi_NPC_IsDodge() // true - уклоняется, false - не уклоня
 	return true;
 }
 // EvgAnat - вероятность желания уклониться от выстрела у нпс <--
+
+// EvgAnat - дальность отскока и стрейфа -->
+#event_handler("GetCharacterRecoilDistance", "LAi_GetRecoilDistance");
+float LAi_GetRecoilDistance()
+{
+	aref chr = GetEventData();
+	string aType = GetEventData();
+	float res = 2.0;
+	switch(aType)
+	{
+		case "recoil":
+			res = 3.0; // по умолчанию 2.0
+		break;
+		case "strafe":
+			res = 10.0; // по умолчанию 15.0
+		break;
+	}
+	return res;
+}
+// EvgAnat - дальность отскока и стрейфа <--

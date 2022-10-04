@@ -984,7 +984,7 @@ void ProcessDialogEvent()
 					Link.l1.go = "exit";
 					Diag.TempNode = "hired";
 					CompanionTravel_DeleteSpecialShipAttributes(NPChar);
-					Group_DeleteAtEnd(NPChar.CompanionTravel.GroupID); // Потрём группу
+					Group_DeleteGroup(NPChar.CompanionTravel.GroupID); // Потрём группу
 					SetCompanionIndex(PChar, -1, sti(NPChar.index));
 					PChar.CompanionTravel = sti(PChar.CompanionTravel) - 1; // Этого компаньона взяли обратно в эскадру
 					if(GetAttrValue(PChar, "CompanionTravel") == 0) CloseQuestHeader("CompanionTravel");
@@ -1020,7 +1020,7 @@ void ProcessDialogEvent()
 				Link.l1.go = "exit";
 				Diag.TempNode = "hired";
 				CompanionTravel_DeleteSpecialShipAttributes(NPChar);
-				Group_DeleteAtEnd(NPChar.CompanionTravel.GroupID);
+				Group_DeleteGroup(NPChar.CompanionTravel.GroupID);
 				SetCompanionIndex(PChar, -1, sti(NPChar.index));
 				PChar.CompanionTravel = sti(PChar.CompanionTravel) - 1; // Этого компаньона взяли обратно в эскадру
 				if(GetAttrValue(PChar, "CompanionTravel") == 0) CloseQuestHeader("CompanionTravel");

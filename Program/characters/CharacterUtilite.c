@@ -1113,7 +1113,7 @@ int RemoveCharacterCompanion(ref _refCharacter, ref refCompanion)
 			refCompanion.location.group = _refCharacter.location.group;
 			refCompanion.location.locator = _refCharacter.location.locator;
 			Event(EVENT_CHANGE_COMPANIONS,"");
-
+			SortCompanionId();
 			return i;
 		}
 	}
@@ -1171,6 +1171,36 @@ int GetCompanionQuantity(ref _refCharacter)
 	}
 	if(qn >= COMPANION_MAX) UnlockAchievement("ships", 3);
 	return qn;
+}
+void SortCompanionId()
+{
+	string correctorder[COMPANION_MAX];
+	string compname;
+	aref cgroup;
+	makearef(cgroup,pchar.fellows.companions);
+	int a = 0;
+	int b = COMPANION_MAX - 1;
+	for(int i=0; i<COMPANION_MAX; i++)
+	{
+		compname = "id" + sti(i+1);
+		//Log_TestInfo("" + cgroup.(compname));
+		if(sti(cgroup.(compname)) == -1)
+		{
+			correctorder[b] = -1;
+			b--;
+		}
+		else
+		{
+			correctorder[a] = cgroup.(compname);
+			a++;
+		}
+	}
+	Log_TestInfo("1:" + correctorder[0] + " 2:" + correctorder[1] + " 3:" + correctorder[2] + " 4:" + correctorder[3]);
+	for(i=0; i<COMPANION_MAX; i++)
+	{
+		compname = "id" + sti(i+1);
+		cgroup.(compname) = correctorder[i];
+	}
 }
 // нигде не юзается
 int GetRemovableCompanionsNumber(ref _refCharacter)
@@ -1431,7 +1461,10 @@ void SetBaseShipData(ref refCharacter)
 
 			if (!CheckAttribute(refShip,"Crew.Morale"))
 			{
-				refShip.Crew.Morale = 20 + rand(79);
+				if (!HasSubStr(refCharacter.id, "FortDefender"))
+					refShip.Crew.Morale = 20 + rand(79);
+				else
+					refShip.Crew.Morale = 100;
 			}
 			if (!CheckAttribute(refShip,"Crew.Quantity"))
 			{
@@ -1442,9 +1475,18 @@ void SetBaseShipData(ref refCharacter)
 			// новый опыт
 			if(!CheckAttribute(refCharacter, "ship.crew.Exp"))
 			{
-				refCharacter.Ship.Crew.Exp.Sailors   = 1 + rand(80);
-				refCharacter.Ship.Crew.Exp.Cannoners = 1 + rand(80);
-				refCharacter.Ship.Crew.Exp.Soldiers  = 1 + rand(80);
+				if (!HasSubStr(refCharacter.id, "FortDefender"))
+				{
+					refCharacter.Ship.Crew.Exp.Sailors   = 1 + rand(80);
+					refCharacter.Ship.Crew.Exp.Cannoners = 1 + rand(80);
+					refCharacter.Ship.Crew.Exp.Soldiers  = 1 + rand(80);
+				}
+				else
+				{
+					refCharacter.Ship.Crew.Exp.Sailors   = 100;
+					refCharacter.Ship.Crew.Exp.Cannoners = 100;
+					refCharacter.Ship.Crew.Exp.Soldiers  = 100;
+				}
 			}
 			int iGoodN = 0;
 			int iGoodR = 0;
@@ -4082,6 +4124,7 @@ void Lilarcor_Talks()
 		case "Lilarcor_Sword2": LAi_CharacterPlaySound(PChar, "Lilarcor_Bers_Sword2"); break;
 		case "Lilarcor_Sword3": LAi_CharacterPlaySound(PChar, "Lilarcor_Bers_Sword3"); break;
 	}
+	ActivateCharacterPerk(pchar, "Rush");
 	pchar.perks.list.Rush.active = 3600;
 	pchar.perks.list.Rush.delay = 3600;
 	pchar.chr_ai.energy = pchar.chr_ai.energyMax;

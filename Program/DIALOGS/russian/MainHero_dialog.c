@@ -1042,6 +1042,7 @@ void ProcessDialogEvent()
 	        }
 	        AddDialogExitQuest("Capture_Forts");
 	        Ship_NationAgressive(chr, chr);
+			pchar.HalfOfPaymentByCity = true;
 	        DialogExit_Self();
 	    break;
 	    // Зачислить рабов в команду  -->
