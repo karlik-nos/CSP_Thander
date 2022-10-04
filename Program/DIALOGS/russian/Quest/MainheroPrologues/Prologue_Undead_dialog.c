@@ -175,7 +175,7 @@ void ProcessDialogEvent()
 				sld.name = "Ужасный";
 				sld.lastname = "";
 				sld.FaceId = 537;
-				GiveItem2Character(sld, "mushket_SeaCarbine");
+				GiveItem2Character(sld, "mushket");
 				SetCharacterPerk(sld, "Gunman");
 				SetCharacterPerk(sld, "GunProfessional");
 				AddItems(sld, "bullet", 20);
@@ -196,7 +196,7 @@ void ProcessDialogEvent()
 				sld.name = "Весёлый";
 				sld.lastname = "Роджер";
 				sld.FaceId = 511;
-				GiveItem2Character(sld, "mushket_SeaCarbine");
+				GiveItem2Character(sld, "mushket");
 				SetCharacterPerk(sld, "Gunman");
 				SetCharacterPerk(sld, "GunProfessional");
 				AddItems(sld, "bullet", 20);
