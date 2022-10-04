@@ -26,6 +26,7 @@ string sMessageMode;
 bool bTransferMode;
 bool bSwap;
 bool bShipScrollEnabled = false;
+string _type_ = "";
 
 void InitInterface_RRS(string iniName, ref rLeftChar, ref rRightChar, string _type)
 {
@@ -191,6 +192,7 @@ void InitInterface_RRS(string iniName, ref rLeftChar, ref rRightChar, string _ty
 
 	if (_type == "companion_captured")
 	{
+		_type_ = _type;
 		SetFormatedText("REMOVE_WINDOW_CAPTION", XI_ConvertString("Auto_Captured_Management_Caption"));
 		string sMessage =
 			XI_ConvertString("Auto_Captured_Management_Question_0") + refCharacter.Ship.Name +
@@ -459,6 +461,13 @@ void IDoExit(int exitCode)
 	PostEvent("StopQuestCheckProcessFreeze", 100);
 
 	interfaceResultCommand = exitCode;
+	if (_type_ == "companion_captured")
+	{
+		LayerFreeze(EXECUTE,false);
+		LayerFreeze(REALIZE,false);
+		LayerFreeze(SEA_EXECUTE,false);
+		LayerFreeze(SEA_REALIZE,false);
+	}
 	if( CheckAttribute(&InterfaceStates,"ReloadMenuExit"))
 	{
         DeleteAttribute(&InterfaceStates,"ReloadMenuExit");
