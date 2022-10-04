@@ -55,7 +55,7 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Islands.Antigua.Treasure.SentJons_TownCave.t1="box2";
 	NullCharacter.TravelMap.Islands.Antigua.Treasure.SentJons_TownCave.t2="box3";
 	NullCharacter.TravelMap.Islands.Barbados.Treasure.Barbados_Cave.t0="box1";
-	NullCharacter.TravelMap.Islands.Bahames.Treasure.Bahames_Cave.t0="box1";
+	NullCharacter.TravelMap.Islands.Bahames.Treasure.Bahames_Grot.t0="box1";
 	NullCharacter.TravelMap.Islands.Beliz.Treasure.Beliz_Cave.t0="box1";
 	NullCharacter.TravelMap.Islands.Beliz.Treasure.Beliz_Cave.t1="box2";
 	NullCharacter.TravelMap.Islands.Beliz.Treasure.Beliz_Cave.t2="box3";
@@ -269,6 +269,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.PortSpein.t27.town = "";
 	NullCharacter.TravelMap.PortSpein.t27.town.days.min = 6;
 	NullCharacter.TravelMap.PortSpein.t27.town.days.max = 12;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.PortSpein.t29 = "Bahames";
+	NullCharacter.TravelMap.PortSpein.t29.town = "Nassau";
+	NullCharacter.TravelMap.PortSpein.t29.town.days.min = 13;
+	NullCharacter.TravelMap.PortSpein.t29.town.days.max = 20;
 
 //////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// CUMANA ////////////////////////////////////////
@@ -421,6 +428,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Cumana.t27.town = "";
 	NullCharacter.TravelMap.Cumana.t27.town.days.min = 5;
 	NullCharacter.TravelMap.Cumana.t27.town.days.max = 11;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.Cumana.t29 = "Bahames";
+	NullCharacter.TravelMap.Cumana.t29.town = "Nassau";
+	NullCharacter.TravelMap.Cumana.t29.town.days.min = 13;
+	NullCharacter.TravelMap.Cumana.t29.town.days.max = 19;
 
 //////////////////////////////////////////////////////////////////////////////
 ///////////////////////////// CARACAS ////////////////////////////////////////
@@ -573,6 +587,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Caracas.t27.town = "";
 	NullCharacter.TravelMap.Caracas.t27.town.days.min = 8;
 	NullCharacter.TravelMap.Caracas.t27.town.days.max = 14;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.Caracas.t29 = "Bahames";
+	NullCharacter.TravelMap.Caracas.t29.town = "Nassau";
+	NullCharacter.TravelMap.Caracas.t29.town.days.min = 11;
+	NullCharacter.TravelMap.Caracas.t29.town.days.max = 20;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// MARACAIBO ///////////////////////////////////////
@@ -725,6 +746,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Maracaibo.t27.town = "";
 	NullCharacter.TravelMap.Maracaibo.t27.town.days.min = 9;
 	NullCharacter.TravelMap.Maracaibo.t27.town.days.max = 14;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.Maracaibo.t29 = "Bahames";
+	NullCharacter.TravelMap.Maracaibo.t29.town = "Nassau";
+	NullCharacter.TravelMap.Maracaibo.t29.town.days.min = 10;
+	NullCharacter.TravelMap.Maracaibo.t29.town.days.max = 19;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// CARTAHENA ///////////////////////////////////////
@@ -877,6 +905,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Cartahena.t27.town = "";
 	NullCharacter.TravelMap.Cartahena.t27.town.days.min = 8;
 	NullCharacter.TravelMap.Cartahena.t27.town.days.max = 13;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.Cartahena.t29 = "Bahames";
+	NullCharacter.TravelMap.Cartahena.t29.town = "Nassau";
+	NullCharacter.TravelMap.Cartahena.t29.town.days.min = 10;
+	NullCharacter.TravelMap.Cartahena.t29.town.days.max = 17;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// PORTOBELLO //////////////////////////////////////
@@ -1029,6 +1064,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.PortoBello.t27.town = "";
 	NullCharacter.TravelMap.PortoBello.t27.town.days.min = 9;
 	NullCharacter.TravelMap.PortoBello.t27.town.days.max = 14;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.PortoBello.t29 = "Bahames";
+	NullCharacter.TravelMap.PortoBello.t29.town = "Nassau";
+	NullCharacter.TravelMap.PortoBello.t29.town.days.min = 11;
+	NullCharacter.TravelMap.PortoBello.t29.town.days.max = 17;
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////// SANTACATALINA ////////////////////////////////////
@@ -1181,6 +1223,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.SantaCatalina.t27.town = "";
 	NullCharacter.TravelMap.SantaCatalina.t27.town.days.min = 8;
 	NullCharacter.TravelMap.SantaCatalina.t27.town.days.max = 14;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.SantaCatalina.t29 = "Bahames";
+	NullCharacter.TravelMap.SantaCatalina.t29.town = "Nassau";
+	NullCharacter.TravelMap.SantaCatalina.t29.town.days.min = 8;
+	NullCharacter.TravelMap.SantaCatalina.t29.town.days.max = 13;
 
 //////////////////////////////////////////////////////////////////////////////
 ///////////////////////////// JAMAYKA ////////////////////////////////////////
@@ -1328,6 +1377,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.PortRoyal.t27.town = "";
 	NullCharacter.TravelMap.PortRoyal.t27.town.days.min = 7;
 	NullCharacter.TravelMap.PortRoyal.t27.town.days.max = 12;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.PortRoyal.t28 = "Bahames";
+	NullCharacter.TravelMap.PortRoyal.t28.town = "Nassau";
+	NullCharacter.TravelMap.PortRoyal.t28.town.days.min = 8;
+	NullCharacter.TravelMap.PortRoyal.t28.town.days.max = 10;
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// CUBA /////////////////////////////////////////
@@ -1475,6 +1531,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Santiago.t26.town = "";
 	NullCharacter.TravelMap.Santiago.t26.town.days.min = 7;
 	NullCharacter.TravelMap.Santiago.t26.town.days.max = 10;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.Santiago.t28 = "Bahames";
+	NullCharacter.TravelMap.Santiago.t28.town = "Nassau";
+	NullCharacter.TravelMap.Santiago.t28.town.days.min = 1;
+	NullCharacter.TravelMap.Santiago.t28.town.days.max = 1;
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// CUBA /////////////////////////////////////////
@@ -1622,6 +1685,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Havana.t26.town = "";
 	NullCharacter.TravelMap.Havana.t26.town.days.min = 8;
 	NullCharacter.TravelMap.Havana.t26.town.days.max = 12;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.Havana.t28 = "Bahames";
+	NullCharacter.TravelMap.Havana.t28.town = "Nassau";
+	NullCharacter.TravelMap.Havana.t28.town.days.min = 1;
+	NullCharacter.TravelMap.Havana.t28.town.days.max = 2;
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -1775,6 +1845,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Beliz.t27.town = "";
 	NullCharacter.TravelMap.Beliz.t27.town.days.min = 7;
 	NullCharacter.TravelMap.Beliz.t27.town.days.max = 12;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.Beliz.t29 = "Bahames";
+	NullCharacter.TravelMap.Beliz.t29.town = "Nassau";
+	NullCharacter.TravelMap.Beliz.t29.town.days.min = 7;
+	NullCharacter.TravelMap.Beliz.t29.town.days.max = 12;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// BERMUDES ////////////////////////////////////////
@@ -1927,6 +2004,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Pirates.t27.town = "";
 	NullCharacter.TravelMap.Pirates.t27.town.days.min = 1;
 	NullCharacter.TravelMap.Pirates.t27.town.days.max = 2;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.Pirates.t29 = "Bahames";
+	NullCharacter.TravelMap.Pirates.t29.town = "Nassau";
+	NullCharacter.TravelMap.Pirates.t29.town.days.min = 7;
+	NullCharacter.TravelMap.Pirates.t29.town.days.max = 12;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// SENTMARTIN //////////////////////////////////////
@@ -2079,6 +2163,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Marigo.t27.town = "";
 	NullCharacter.TravelMap.Marigo.t27.town.days.min = 2;
 	NullCharacter.TravelMap.Marigo.t27.town.days.max = 5;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.Marigo.t29 = "Bahames";
+	NullCharacter.TravelMap.Marigo.t29.town = "Nassau";
+	NullCharacter.TravelMap.Marigo.t29.town.days.min = 8;
+	NullCharacter.TravelMap.Marigo.t29.town.days.max = 13;
 
 //////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// NEVIS /////////////////////////////////////////
@@ -2231,6 +2322,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Charles.t27.town = "";
 	NullCharacter.TravelMap.Charles.t27.town.days.min = 3;
 	NullCharacter.TravelMap.Charles.t27.town.days.max = 6;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.Charles.t29 = "Bahames";
+	NullCharacter.TravelMap.Charles.t29.town = "Nassau";
+	NullCharacter.TravelMap.Charles.t29.town.days.min = 7;
+	NullCharacter.TravelMap.Charles.t29.town.days.max = 12;
 
 //////////////////////////////////////////////////////////////////////////////
 ///////////////////////////// ANTIGUA ////////////////////////////////////////
@@ -2383,6 +2481,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.SentJons.t27.town = "";
 	NullCharacter.TravelMap.SentJons.t27.town.days.min = 4;
 	NullCharacter.TravelMap.SentJons.t27.town.days.max = 8;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.SentJons.t29 = "Bahames";
+	NullCharacter.TravelMap.SentJons.t29.town = "Nassau";
+	NullCharacter.TravelMap.SentJons.t29.town.days.min = 8;
+	NullCharacter.TravelMap.SentJons.t29.town.days.max = 14;
 
 //////////////////////////////////////////////////////////////////////////////
 ///////////////////////////// BARBADOS ///////////////////////////////////////
@@ -2535,6 +2640,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Bridgetown.t27.town = "";
 	NullCharacter.TravelMap.Bridgetown.t27.town.days.min = 6;
 	NullCharacter.TravelMap.Bridgetown.t27.town.days.max = 10;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.Bridgetown.t29 = "Bahames";
+	NullCharacter.TravelMap.Bridgetown.t29.town = "Nassau";
+	NullCharacter.TravelMap.Bridgetown.t29.town.days.min = 12;
+	NullCharacter.TravelMap.Bridgetown.t29.town.days.max = 20;
 
 //////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// CURACAO ///////////////////////////////////////
@@ -2687,6 +2799,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Villemstad.t27.town = "";
 	NullCharacter.TravelMap.Villemstad.t27.town.days.min = 6;
 	NullCharacter.TravelMap.Villemstad.t27.town.days.max = 11;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.Villemstad.t29 = "Bahames";
+	NullCharacter.TravelMap.Villemstad.t29.town = "Nassau";
+	NullCharacter.TravelMap.Villemstad.t29.town.days.min = 10;
+	NullCharacter.TravelMap.Villemstad.t29.town.days.max = 16;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// MARTINIQUE //////////////////////////////////////
@@ -2834,6 +2953,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.FortFrance.t26.town = "";
 	NullCharacter.TravelMap.FortFrance.t26.town.days.min = 5;
 	NullCharacter.TravelMap.FortFrance.t26.town.days.max = 8;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.FortFrance.t28 = "Bahames";
+	NullCharacter.TravelMap.FortFrance.t28.town = "Nassau";
+	NullCharacter.TravelMap.FortFrance.t28.town.days.min = 10;
+	NullCharacter.TravelMap.FortFrance.t28.town.days.max = 14;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// GUADELOUPE //////////////////////////////////////
@@ -2986,6 +3112,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.BasTer.t27.town = "";
 	NullCharacter.TravelMap.BasTer.t27.town.days.min = 6;
 	NullCharacter.TravelMap.BasTer.t27.town.days.max = 9;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.BasTer.t29 = "Bahames";
+	NullCharacter.TravelMap.BasTer.t29.town = "Nassau";
+	NullCharacter.TravelMap.BasTer.t29.town.days.min = 8;
+	NullCharacter.TravelMap.BasTer.t29.town.days.max = 14;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// PUERTORICO //////////////////////////////////////
@@ -3138,6 +3271,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.SanJuan.t27.town = "";
 	NullCharacter.TravelMap.SanJuan.t27.town.days.min = 3;
 	NullCharacter.TravelMap.SanJuan.t27.town.days.max = 5;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.SanJuan.t29 = "Bahames";
+	NullCharacter.TravelMap.SanJuan.t29.town = "Nassau";
+	NullCharacter.TravelMap.SanJuan.t29.town.days.min = 6;
+	NullCharacter.TravelMap.SanJuan.t29.town.days.max = 10;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// HISPANIOLA //////////////////////////////////////
@@ -3285,6 +3425,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.SantoDomingo.t26.town = "";
 	NullCharacter.TravelMap.SantoDomingo.t26.town.days.min = 3;
 	NullCharacter.TravelMap.SantoDomingo.t26.town.days.max = 5;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.SantoDomingo.t28 = "Bahames";
+	NullCharacter.TravelMap.SantoDomingo.t28.town = "Nassau";
+	NullCharacter.TravelMap.SantoDomingo.t28.town.days.min = 4;
+	NullCharacter.TravelMap.SantoDomingo.t28.town.days.max = 8;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// HISPANIOLA //////////////////////////////////////
@@ -3432,6 +3579,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.PortPax.t26.town = "";
 	NullCharacter.TravelMap.PortPax.t26.town.days.min = 4;
 	NullCharacter.TravelMap.PortPax.t26.town.days.max = 6;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.PortPax.t28 = "Bahames";
+	NullCharacter.TravelMap.PortPax.t28.town = "Nassau";
+	NullCharacter.TravelMap.PortPax.t28.town.days.min = 3;
+	NullCharacter.TravelMap.PortPax.t28.town.days.max = 5;
 
 //////////////////////////////////////////////////////////////////////////////
 ///////////////////////////// TORTUGA ////////////////////////////////////////
@@ -3584,6 +3738,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Tortuga.t27.town = "";
 	NullCharacter.TravelMap.Tortuga.t27.town.days.min = 1;
 	NullCharacter.TravelMap.Tortuga.t27.town.days.max = 3;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.Tortuga.t29 = "Bahames";
+	NullCharacter.TravelMap.Tortuga.t29.town = "Nassau";
+	NullCharacter.TravelMap.Tortuga.t29.town.days.min = 4;
+	NullCharacter.TravelMap.Tortuga.t29.town.days.max = 5;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////// HISPANIOLA LAVEGA ///////////////////////////////////
@@ -3731,6 +3892,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.LaVega.t26.town = "";
 	NullCharacter.TravelMap.LaVega.t26.town.days.min = 3;
 	NullCharacter.TravelMap.LaVega.t26.town.days.max = 5;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.LaVega.t28 = "Bahames";
+	NullCharacter.TravelMap.LaVega.t28.town = "Nassau";
+	NullCharacter.TravelMap.LaVega.t28.town.days.min = 5;
+	NullCharacter.TravelMap.LaVega.t28.town.days.max = 8;
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////// MARTINIQUE LEFRANSUA /////////////////////////////////
@@ -3878,6 +4046,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.LeFransua.t26.town = "";
 	NullCharacter.TravelMap.LeFransua.t26.town.days.min = 5;
 	NullCharacter.TravelMap.LeFransua.t26.town.days.max = 8;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.LeFransua.t28 = "Bahames";
+	NullCharacter.TravelMap.LeFransua.t28.town = "Nassau";
+	NullCharacter.TravelMap.LeFransua.t28.town.days.min = 9;
+	NullCharacter.TravelMap.LeFransua.t28.town.days.max = 14;
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////// CUBA PUERTOPRINCIPE //////////////////////////////////
@@ -4025,6 +4200,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.PuertoPrincipe.t26.town = "";
 	NullCharacter.TravelMap.PuertoPrincipe.t26.town.days.min = 7;
 	NullCharacter.TravelMap.PuertoPrincipe.t26.town.days.max = 10;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.PuertoPrincipe.t28 = "Bahames";
+	NullCharacter.TravelMap.PuertoPrincipe.t28.town = "Nassau";
+	NullCharacter.TravelMap.PuertoPrincipe.t28.town.days.min = 1;
+	NullCharacter.TravelMap.PuertoPrincipe.t28.town.days.max = 1;
 	
 	//////////////////////////////////////////////////////////////////////////////
 /////////////////////// NASSAU //////////////////////////////////
@@ -4068,6 +4250,11 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Nassau.t7.town = "PortSpein";
 	NullCharacter.TravelMap.Nassau.t7.town.days.min = 13;
 	NullCharacter.TravelMap.Nassau.t7.town.days.max = 20;
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.Nassau.t28 = "Cuba";
+	NullCharacter.TravelMap.Nassau.t28.town = "Santiago";
+	NullCharacter.TravelMap.Nassau.t28.town.days.min = 1;
+	NullCharacter.TravelMap.Nassau.t28.town.days.max = 1;
 	//------------------------------------------------------------
 	NullCharacter.TravelMap.Nassau.t8 = "Cuba2";
 	NullCharacter.TravelMap.Nassau.t8.town = "Havana";
@@ -4319,6 +4506,13 @@ void InitTravelMap()
 	NullCharacter.TravelMap.FortOrange.t27.town = "";
 	NullCharacter.TravelMap.FortOrange.t27.town.days.min = 7;
 	NullCharacter.TravelMap.FortOrange.t27.town.days.max = 12;
+	//------------------------------------------------------------
+	// Новые
+	//------------------------------------------------------------
+	NullCharacter.TravelMap.FortOrange.t28 = "Bahames";
+	NullCharacter.TravelMap.FortOrange.t28.town = "Nassau";
+	NullCharacter.TravelMap.FortOrange.t28.town.days.min = 6;
+	NullCharacter.TravelMap.FortOrange.t28.town.days.max = 10;
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PANAMA ///////////////////////////////////////
