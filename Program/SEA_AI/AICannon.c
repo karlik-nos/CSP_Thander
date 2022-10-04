@@ -102,11 +102,7 @@ float Cannon_GetFireHeight()
 	Y = stf(rEnemyShip.Height.(sBallName).Y);
 	DY = stf(rEnemyShip.Height.(sBallName).DY);
 	Y = (Y + (frnd()-0.5) * DY);
-	//временно - нужно перебрать все высоты в шипс.инит
-	if(sBallName != "Knippels")
-	{
-		Y = Y * 0.66;
-	}
+	
 	return Y;
 }
 

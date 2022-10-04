@@ -170,10 +170,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 14;	refship.InertiaBrakingY		= 5;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 3.0;
 
-	refShip.Height.Bombs.Y				= 0.4;	refShip.Height.Bombs.DY		= 0.2;
-	refShip.Height.Grapes.Y				= 1.3;	refShip.Height.Grapes.DY	= 0.6;
-	refShip.Height.Knippels.Y			= 6.5;	refShip.Height.Knippels.DY	= 5.8;
-	refShip.Height.Balls.Y				= 0.4;	refShip.Height.Balls.DY		= 0.2;
+	refShip.Height.Bombs.Y				= 0.2;	refShip.Height.Bombs.DY		= 0.2;
+	refShip.Height.Grapes.Y				= 0.3;	refShip.Height.Grapes.DY	= 0.6;
+	refShip.Height.Knippels.Y			= 6.0;	refShip.Height.Knippels.DY	= 1.5;
+	refShip.Height.Balls.Y				= 0.2;	refShip.Height.Balls.DY		= 0.2;
 
 	refship.Track.Enable	= true;
 	refship.Track1.ZStart	= 0.20;
@@ -238,10 +238,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 14;	refship.InertiaBrakingY		= 5;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 3.0;
 
-	refShip.Height.Bombs.Y				= 1.0;	refShip.Height.Bombs.DY		= 0.5;
-	refShip.Height.Grapes.Y				= 2.0;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 10.0;	refShip.Height.Knippels.DY	= 8.0;
-	refShip.Height.Balls.Y				= 1.0;	refShip.Height.Balls.DY		= 0.5;
+	refShip.Height.Bombs.Y				= 0.7;	refShip.Height.Bombs.DY		= 0.3;
+	refShip.Height.Grapes.Y				= 0.7;	refShip.Height.Grapes.DY	= 0.3;
+	refShip.Height.Knippels.Y			= 10.0;	refShip.Height.Knippels.DY	= 4.0;
+	refShip.Height.Balls.Y				= 0.7;	refShip.Height.Balls.DY		= 0.3;
 	refship.Track.Enable	= true;
 	refship.Track1.ZStart	= 0.20;
 	refship.Track1.LifeTime = 9;
@@ -309,8 +309,8 @@ void InitShips()
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 3.0;
 
 	refShip.Height.Bombs.Y				= 1.0;	refShip.Height.Bombs.DY		= 0.5;
-	refShip.Height.Grapes.Y				= 1.8;	refShip.Height.Grapes.DY	= 0.9;
-	refShip.Height.Knippels.Y			= 6.7;	refShip.Height.Knippels.DY	= 6.7;
+	refShip.Height.Grapes.Y				= 1.0;	refShip.Height.Grapes.DY	= 0.5;
+	refShip.Height.Knippels.Y			= 11.0;	refShip.Height.Knippels.DY	= 3.5;
 	refShip.Height.Balls.Y				= 1.0;	refShip.Height.Balls.DY		= 0.5;
 
 	refship.Track.Enable	= true;
@@ -379,8 +379,8 @@ void InitShips()
 	refship.InertiaAccelerationZ	= 8.0;	refship.InertiaBrakingZ		= 8.0;
 
 	refShip.Height.Bombs.Y				= 1.0;	refShip.Height.Bombs.DY		= 0.5;
-	refShip.Height.Grapes.Y				= 2.0;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 10.0;	refShip.Height.Knippels.DY	= 8.0;
+	refShip.Height.Grapes.Y				= 1.0;	refShip.Height.Grapes.DY	= 0.5;
+	refShip.Height.Knippels.Y			= 11.0;	refShip.Height.Knippels.DY	= 3.0;
 	refShip.Height.Balls.Y				= 1.0;	refShip.Height.Balls.DY		= 0.5;
 
 	refship.Track.Enable	= true;
@@ -453,10 +453,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY		= 8;
 	refship.InertiaAccelerationZ	= 8.0;	refship.InertiaBrakingZ		= 8.0;
 
-	refShip.Height.Bombs.Y				= 1.0;	refShip.Height.Bombs.DY		= 0.5;
-	refShip.Height.Grapes.Y				= 2.0;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 10.0;	refShip.Height.Knippels.DY	= 8.0;
-	refShip.Height.Balls.Y				= 1.0;	refShip.Height.Balls.DY		= 0.5;
+	refShip.Height.Bombs.Y				= 1.2;	refShip.Height.Bombs.DY		= 0.5;
+	refShip.Height.Grapes.Y				= 1.2;	refShip.Height.Grapes.DY	= 0.5;
+	refShip.Height.Knippels.Y			= 13.0;	refShip.Height.Knippels.DY	= 4.0;
+	refShip.Height.Balls.Y				= 1.2;	refShip.Height.Balls.DY		= 0.5;
 
 	refship.Track.Enable				= true;
 	refship.Track1.ZStart				= 0.20;
@@ -524,8 +524,8 @@ void InitShips()
 	refship.InertiaAccelerationZ	= 8.0;	refship.InertiaBrakingZ		= 8.0;
 
 	refShip.Height.Bombs.Y				= 1.0;	refShip.Height.Bombs.DY		= 0.5;
-	refShip.Height.Grapes.Y				= 2.0;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 10.0;	refShip.Height.Knippels.DY	= 8.0;
+	refShip.Height.Grapes.Y				= 1.0;	refShip.Height.Grapes.DY	= 0.5;
+	refShip.Height.Knippels.Y			= 14.0;	refShip.Height.Knippels.DY	= 3.0;
 	refShip.Height.Balls.Y				= 1.0;	refShip.Height.Balls.DY		= 0.5;
 
 	refship.Track.Enable	= true;
@@ -597,10 +597,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY		= 8;
 	refship.InertiaAccelerationZ	= 8.0;	refship.InertiaBrakingZ		= 8.0;
 
-	refShip.Height.Bombs.Y				= 2.1;	refShip.Height.Bombs.DY		= 1.0;
-	refShip.Height.Grapes.Y				= 3.1;	refShip.Height.Grapes.DY	= 1.5;
-	refShip.Height.Knippels.Y			= 10.5;	refShip.Height.Knippels.DY	= 8.5;
-	refShip.Height.Balls.Y				= 2.1;	refShip.Height.Balls.DY		= 1.0;
+	refShip.Height.Bombs.Y				= 1.0;	refShip.Height.Bombs.DY		= 0.5;
+	refShip.Height.Grapes.Y				= 1.0;	refShip.Height.Grapes.DY	= 0.5;
+	refShip.Height.Knippels.Y			= 13.0;	refShip.Height.Knippels.DY	= 7.0;
+	refShip.Height.Balls.Y				= 1.0;	refShip.Height.Balls.DY		= 0.5;
 
 	refship.Track.Enable	= true;
 	refship.Track1.ZStart	= 0.20;
@@ -670,8 +670,8 @@ void InitShips()
 	refship.InertiaAccelerationZ	= 8.0;	refship.InertiaBrakingZ		= 8.0;
 
 	refShip.Height.Bombs.Y				= 1.0;	refShip.Height.Bombs.DY		= 0.5;
-	refShip.Height.Grapes.Y				= 2.0;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 10.0;	refShip.Height.Knippels.DY	= 8.0;
+	refShip.Height.Grapes.Y				= 1.0;	refShip.Height.Grapes.DY	= 0.5;
+	refShip.Height.Knippels.Y			= 14.0;	refShip.Height.Knippels.DY	= 6.0;
 	refShip.Height.Balls.Y				= 1.0;	refShip.Height.Balls.DY		= 0.5;
 
 	refship.Track.Enable	= true;
@@ -742,10 +742,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY		= 8;
 	refship.InertiaAccelerationZ	= 8.0;	refship.InertiaBrakingZ		= 8.0;
 
-	refShip.Height.Bombs.Y		= 1.0;	refShip.Height.Bombs.DY		= 1.0;
-	refShip.Height.Grapes.Y		= 2.0;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y	= 15.0;	refShip.Height.Knippels.DY	= 10.0;
-	refShip.Height.Balls.Y		= 1.0;	refShip.Height.Balls.DY		= 1.0;
+	refShip.Height.Bombs.Y		= 1.4;	refShip.Height.Bombs.DY		= 0.5;
+	refShip.Height.Grapes.Y		= 1.4;	refShip.Height.Grapes.DY	= 0.5;
+	refShip.Height.Knippels.Y	= 15.0;	refShip.Height.Knippels.DY	= 11.0;
+	refShip.Height.Balls.Y		= 1.4;	refShip.Height.Balls.DY		= 0.5;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -819,8 +819,8 @@ void InitShips()
 	refShip.GeraldSails.rey_a2	= 1;
 
 	refShip.Height.Bombs.Y			= 1.0;	refShip.Height.Bombs.DY 	= 0.5;
-	refShip.Height.Grapes.Y 		= 2.0;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y		= 10.0; refShip.Height.Knippels.DY	= 8.0;
+	refShip.Height.Grapes.Y 		= 1.0;	refShip.Height.Grapes.DY	= 0.5;
+	refShip.Height.Knippels.Y		= 12.0; refShip.Height.Knippels.DY	= 7.0;
 	refShip.Height.Balls.Y			= 1.0;	refShip.Height.Balls.DY 	= 0.5;
 
 	refship.InertiaAccelerationX	= 8.0;	refship.InertiaBrakingX		= 8.0;
@@ -893,8 +893,8 @@ void InitShips()
 	refship.InertiaAccelerationZ	= 8.0;	refship.InertiaBrakingZ		= 8.0;
 
 	refShip.Height.Bombs.Y				= 1.0;	refShip.Height.Bombs.DY		= 0.5;
-	refShip.Height.Grapes.Y				= 2.0;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 10.0;	refShip.Height.Knippels.DY	= 8.0;
+	refShip.Height.Grapes.Y				= 1.3;	refShip.Height.Grapes.DY	= 0.6;
+	refShip.Height.Knippels.Y			= 11.0;	refShip.Height.Knippels.DY	= 6.0;
 	refShip.Height.Balls.Y				= 1.0;	refShip.Height.Balls.DY		= 0.5;
 
 	refship.Track.Enable	= true;
@@ -964,10 +964,10 @@ void InitShips()
 	refship.CabinType          = "Cabin_Small"; // boal 28.03.05
 	refship.DeckType           			= "Low";
 
-	refShip.Height.Bombs.Y				= 2.0;	refShip.Height.Bombs.DY		= 1.0;
-	refShip.Height.Grapes.Y				= 3.8;	refShip.Height.Grapes.DY	= 1.9;
-	refShip.Height.Knippels.Y			= 15.2;	refShip.Height.Knippels.DY	= 13.9;
-	refShip.Height.Balls.Y				= 2.0;	refShip.Height.Balls.DY		= 1.0;
+	refShip.Height.Bombs.Y				= 1.0;	refShip.Height.Bombs.DY		= 0.5;
+	refShip.Height.Grapes.Y				= 1.5;	refShip.Height.Grapes.DY	= 0.5;
+	refShip.Height.Knippels.Y			= 13.2;	refShip.Height.Knippels.DY	= 8.9;
+	refShip.Height.Balls.Y				= 1.0;	refShip.Height.Balls.DY		= 0.5;
 
 	refship.InertiaAccelerationX	= 8.0;	refship.InertiaBrakingX		= 8.0;
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY		= 8;
@@ -1035,10 +1035,10 @@ void InitShips()
 	refship.CabinType          = "New_Cabin1"; // boal 28.03.05
 	refship.DeckType           			= "Low";
 
-	refShip.Height.Bombs.Y				= 1.6;	refShip.Height.Bombs.DY		= 1.25;
-	refShip.Height.Grapes.Y				= 2.75;	refShip.Height.Grapes.DY	= 0.6;
-	refShip.Height.Knippels.Y			= 13.2;	refShip.Height.Knippels.DY	= 8.5;
-	refShip.Height.Balls.Y				= 1.6;	refShip.Height.Balls.DY		= 1.25;
+	refShip.Height.Bombs.Y				= 1.2;	refShip.Height.Bombs.DY		= 0.6;
+	refShip.Height.Grapes.Y				= 1.5;	refShip.Height.Grapes.DY	= 0.6;
+	refShip.Height.Knippels.Y			= 14.2;	refShip.Height.Knippels.DY	= 8.5;
+	refShip.Height.Balls.Y				= 1.2;	refShip.Height.Balls.DY		= 0.6;
 
 	refShip.GeraldSails.rey_a2		= 1;
 	refShip.GeraldSails.rey_b1		= 1;
@@ -1108,6 +1108,11 @@ void InitShips()
 	refship.WindAgainstSpeed   = 5.5;//boal
 	refship.CabinType          = "New_Cabin1"; // boal 28.03.05
 	refship.DeckType           			= "Low";
+	
+	refShip.Height.Bombs.Y				= 1.2;	refShip.Height.Bombs.DY		= 0.6;
+	refShip.Height.Grapes.Y				= 1.5;	refShip.Height.Grapes.DY	= 0.6;
+	refShip.Height.Knippels.Y			= 13.2;	refShip.Height.Knippels.DY	= 8.5;
+	refShip.Height.Balls.Y				= 1.2;	refShip.Height.Balls.DY		= 0.6;
 
 	refShip.Flags.Mast1.Flag1 = FLAG_SPECIAL;
 	refShip.Flags.Mast2.Flag1 = FLAG_ENSIGN;
@@ -1189,10 +1194,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 6;	refship.InertiaBrakingY		= 6;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ		= 6.0;
 
-	refShip.Height.Bombs.Y = 1.0; refShip.Height.Bombs.DY = 1.0;
-	refShip.Height.Grapes.Y = 2.0; refShip.Height.Grapes.DY = 1.0;
-	refShip.Height.Knippels.Y = 15.0; refShip.Height.Knippels.DY = 10.0;
-	refShip.Height.Balls.Y = 1.0; refShip.Height.Balls.DY = 1.0;
+	refShip.Height.Bombs.Y = 1.0; refShip.Height.Bombs.DY = 0.5;
+	refShip.Height.Grapes.Y = 1.0; refShip.Height.Grapes.DY = 0.5;
+	refShip.Height.Knippels.Y = 13.0; refShip.Height.Knippels.DY = 7.0;
+	refShip.Height.Balls.Y = 1.0; refShip.Height.Balls.DY = 0.5;
 
 	refShip.GeraldSails.rey_b2 = 1;
 	refShip.GeraldSails.rey_b3 = 1;
@@ -1264,10 +1269,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY		= 8;
 	refship.InertiaAccelerationZ	= 8.0;	refship.InertiaBrakingZ		= 8.0;
 
-	refShip.Height.Bombs.Y				= 1.0;	refShip.Height.Bombs.DY		= 0.5;
-	refShip.Height.Grapes.Y				= 2.0;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 10.0;	refShip.Height.Knippels.DY	= 8.0;
-	refShip.Height.Balls.Y				= 1.0;	refShip.Height.Balls.DY		= 0.5;
+	refShip.Height.Bombs.Y				= 1.2;	refShip.Height.Bombs.DY		= 0.5;
+	refShip.Height.Grapes.Y				= 1.4;	refShip.Height.Grapes.DY	= 0.5;
+	refShip.Height.Knippels.Y			= 16.0;	refShip.Height.Knippels.DY	= 10.0;
+	refShip.Height.Balls.Y				= 1.2;	refShip.Height.Balls.DY		= 0.5;
 
 	refShip.GeraldSails.rey_a2	= 1;
 	refShip.GeraldSails.rey_a3	= 1;
@@ -1337,10 +1342,10 @@ void InitShips()
 	refShip.Flags.Mast3.Flag1 = FLAG_ENSIGN;
 	refShip.Flags.Mast4.Flag1 = FLAG_ENSIGN;
 
-	refShip.Height.Bombs.Y				= 3.3;	refShip.Height.Bombs.DY		= 1.6;
-	refShip.Height.Grapes.Y				= 4.9;	refShip.Height.Grapes.DY	= 2.4;
-	refShip.Height.Knippels.Y			= 15.8;	refShip.Height.Knippels.DY	= 12.4;
-	refShip.Height.Balls.Y				= 3.3;	refShip.Height.Balls.DY		= 1.6;
+	refShip.Height.Bombs.Y				= 2.0;	refShip.Height.Bombs.DY		= 0.6;
+	refShip.Height.Grapes.Y				= 2.0;	refShip.Height.Grapes.DY	= 0.6;
+	refShip.Height.Knippels.Y			= 14.0;	refShip.Height.Knippels.DY	= 10.0;
+	refShip.Height.Balls.Y				= 2.0;	refShip.Height.Balls.DY		= 0.6;
 
 	refship.InertiaAccelerationX	= 4.0;	refship.InertiaBrakingX		= 4.0;
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4.0;
@@ -1419,10 +1424,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 6;	refship.InertiaBrakingY		= 6;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ		= 6.0;
 
-	refShip.Height.Bombs.Y		= 1.0;		refShip.Height.Bombs.DY		= 1.0;
-	refShip.Height.Grapes.Y		= 2.0;		refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y	= 15.0;		refShip.Height.Knippels.DY	= 10.0;
-	refShip.Height.Balls.Y		= 1.0;		refShip.Height.Balls.DY		= 1.0;
+	refShip.Height.Bombs.Y		= 1.7;		refShip.Height.Bombs.DY		= 0.7;
+	refShip.Height.Grapes.Y		= 1.7;		refShip.Height.Grapes.DY	= 0.7;
+	refShip.Height.Knippels.Y	= 17.0;		refShip.Height.Knippels.DY	= 12.0;
+	refShip.Height.Balls.Y		= 1.7;		refShip.Height.Balls.DY		= 0.7;
 
 	refShip.GeraldSails.rey_a2	= 1;
 	refShip.GeraldSails.rey_a3	= 1;
@@ -1498,10 +1503,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 6;		refship.InertiaBrakingY		= 6;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ		= 6.0;
 
-	refShip.Height.Bombs.Y				= 1.7;		refShip.Height.Bombs.DY		= 0.8;
-	refShip.Height.Grapes.Y				= 2.9;		refShip.Height.Grapes.DY	= 1.4;
-	refShip.Height.Knippels.Y			= 13.9;		refShip.Height.Knippels.DY	= 13.7;
-	refShip.Height.Balls.Y				= 1.7;		refShip.Height.Balls.DY		= 0.8;
+	refShip.Height.Bombs.Y				= 1.5;		refShip.Height.Bombs.DY		= 0.8;
+	refShip.Height.Grapes.Y				= 1.5;		refShip.Height.Grapes.DY	= 0.8;
+	refShip.Height.Knippels.Y			= 15.0;		refShip.Height.Knippels.DY	= 11.0;
+	refShip.Height.Balls.Y				= 1.5;		refShip.Height.Balls.DY		= 0.8;
 
 	refship.Track.Enable	= true;
 	refship.Track1.ZStart	= 0.20;
@@ -1570,10 +1575,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY		= 8;
 	refship.InertiaAccelerationZ	= 8.0;	refship.InertiaBrakingZ		= 8.0;
 
-	refShip.Height.Bombs.Y				= 1.0;	refShip.Height.Bombs.DY		= 0.5;
-	refShip.Height.Grapes.Y				= 2.0;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 10.0;	refShip.Height.Knippels.DY	= 8.0;
-	refShip.Height.Balls.Y				= 1.0;	refShip.Height.Balls.DY		= 0.5;
+	refShip.Height.Bombs.Y				= 1.5;		refShip.Height.Bombs.DY		= 0.8;
+	refShip.Height.Grapes.Y				= 1.5;		refShip.Height.Grapes.DY	= 0.8;
+	refShip.Height.Knippels.Y			= 15.0;		refShip.Height.Knippels.DY	= 11.0;
+	refShip.Height.Balls.Y				= 1.5;		refShip.Height.Balls.DY		= 0.8;
 
 	refship.Track.Enable	= true;
 	refship.Track1.ZStart	= 0.20;
@@ -1643,8 +1648,8 @@ void InitShips()
 	refship.InertiaAccelerationZ	= 8.0;	refship.InertiaBrakingZ		= 8.0;
 
 	refShip.Height.Bombs.Y				= 1.0;	refShip.Height.Bombs.DY		= 0.5;
-	refShip.Height.Grapes.Y				= 2.0;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 10.0;	refShip.Height.Knippels.DY	= 8.0;
+	refShip.Height.Grapes.Y				= 1.2;	refShip.Height.Grapes.DY	= 0.6;
+	refShip.Height.Knippels.Y			= 11.0;	refShip.Height.Knippels.DY	= 5.0;
 	refShip.Height.Balls.Y				= 1.0;	refShip.Height.Balls.DY		= 0.5;
 
 	refship.Track.Enable	= true;
@@ -1715,8 +1720,8 @@ void InitShips()
 	refship.InertiaAccelerationZ	= 8.0;	refship.InertiaBrakingZ		= 8.0;
 
 	refShip.Height.Bombs.Y				= 1.0;	refShip.Height.Bombs.DY		= 0.5;
-	refShip.Height.Grapes.Y				= 2.0;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 10.0;	refShip.Height.Knippels.DY	= 8.0;
+	refShip.Height.Grapes.Y				= 1.2;	refShip.Height.Grapes.DY	= 0.6;
+	refShip.Height.Knippels.Y			= 11.0;	refShip.Height.Knippels.DY	= 5.0;
 	refShip.Height.Balls.Y				= 1.0;	refShip.Height.Balls.DY		= 0.5;
 
 	refship.Track.Enable	= true;
@@ -1784,10 +1789,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY	= 8;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ	= 6.0;
 
-	refShip.Height.Bombs.Y	= 1.0;			refShip.Height.Bombs.DY	= 1.0;
-	refShip.Height.Grapes.Y	= 2.0;			refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y	= 16.0;		refShip.Height.Knippels.DY	= 10.0;
-	refShip.Height.Balls.Y		= 1.0;		refShip.Height.Balls.DY	= 1.0;
+	refShip.Height.Bombs.Y				= 1.0;	refShip.Height.Bombs.DY		= 0.5;
+	refShip.Height.Grapes.Y				= 1.2;	refShip.Height.Grapes.DY	= 0.6;
+	refShip.Height.Knippels.Y			= 11.0;	refShip.Height.Knippels.DY	= 5.0;
+	refShip.Height.Balls.Y				= 1.0;	refShip.Height.Balls.DY		= 0.5;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -1860,10 +1865,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY		= 8;
 	refship.InertiaAccelerationZ	= 8.0;	refship.InertiaBrakingZ		= 8.0;
 
-	refShip.Height.Bombs.Y				= 1.0;		refShip.Height.Bombs.DY		= 1.0;
-	refShip.Height.Grapes.Y				= 2.0;		refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 15.0;		refShip.Height.Knippels.DY	= 10.0;
-	refShip.Height.Balls.Y				= 1.0;		refShip.Height.Balls.DY		= 1.0;
+	refShip.Height.Bombs.Y				= 1.0;	refShip.Height.Bombs.DY		= 0.5;
+	refShip.Height.Grapes.Y				= 1.2;	refShip.Height.Grapes.DY	= 0.6;
+	refShip.Height.Knippels.Y			= 14.0;	refShip.Height.Knippels.DY	= 10.5;
+	refShip.Height.Balls.Y				= 1.0;	refShip.Height.Balls.DY		= 0.5;
 
 	refship.Track.Enable	= true;
 	refship.Track1.ZStart	= 0.20;
@@ -1936,10 +1941,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY		= 8;
 	refship.InertiaAccelerationZ	= 8.0;	refship.InertiaBrakingZ		= 8.0;
 
-	refShip.Height.Bombs.Y				= 1.0;	refShip.Height.Bombs.DY		= 0.5;
-	refShip.Height.Grapes.Y				= 2.0;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 10.0;	refShip.Height.Knippels.DY	= 8.0;
-	refShip.Height.Balls.Y				= 1.0;	refShip.Height.Balls.DY		= 0.5;
+	refShip.Height.Bombs.Y				= 1.4;	refShip.Height.Bombs.DY		= 0.5;
+	refShip.Height.Grapes.Y				= 1.5;	refShip.Height.Grapes.DY	= 0.7;
+	refShip.Height.Knippels.Y			= 14.0;	refShip.Height.Knippels.DY	= 6.0;
+	refShip.Height.Balls.Y				= 1.4;	refShip.Height.Balls.DY		= 0.5;
 
 	refship.Track.Enable	= true;
 	refship.Track1.ZStart	= 0.20;
@@ -2009,10 +2014,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY	= 8;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ	= 6.0;
 
-	refShip.Height.Bombs.Y		= 1.7;		refShip.Height.Bombs.DY	= 0.8;
-	refShip.Height.Grapes.Y		= 3.4;		refShip.Height.Grapes.DY	= 1.7;
-	refShip.Height.Knippels.Y	= 10.1;		refShip.Height.Knippels.DY	= 9.2;
-	refShip.Height.Balls.Y		= 1.7;		refShip.Height.Balls.DY	= 0.8;
+	refShip.Height.Bombs.Y		= 1.4;		refShip.Height.Bombs.DY		= 0.6;
+	refShip.Height.Grapes.Y		= 1.4;		refShip.Height.Grapes.DY	= 0.6;
+	refShip.Height.Knippels.Y	= 14.0;		refShip.Height.Knippels.DY	= 6.0;
+	refShip.Height.Balls.Y		= 1.4;		refShip.Height.Balls.DY		= 0.6;
 
 	refShip.GeraldSails.rey_b2			= 1;
 	refShip.GeraldSails.rey_b3			= 1;
@@ -2084,10 +2089,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY		= 8;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ		= 6.0;
 
-	refShip.Height.Bombs.Y				= 1.0;		refShip.Height.Bombs.DY		= 1.0;
-	refShip.Height.Grapes.Y				= 2.0;		refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 15.0;		refShip.Height.Knippels.DY	= 10.0;
-	refShip.Height.Balls.Y				= 1.0;		refShip.Height.Balls.DY		= 1.0;
+	refShip.Height.Bombs.Y				= 1.0;		refShip.Height.Bombs.DY		= 0.5;
+	refShip.Height.Grapes.Y				= 1.0;		refShip.Height.Grapes.DY	= 0.5;
+	refShip.Height.Knippels.Y			= 12.0;		refShip.Height.Knippels.DY	= 5.0;
+	refShip.Height.Balls.Y				= 1.0;		refShip.Height.Balls.DY		= 0.5;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -2164,10 +2169,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY		= 8;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ		= 6.0;
 
-	refShip.Height.Bombs.Y				= 1.0;		refShip.Height.Bombs.DY		= 1.0;
-	refShip.Height.Grapes.Y				= 2.0;		refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 15.0;		refShip.Height.Knippels.DY	= 10.0;
-	refShip.Height.Balls.Y				= 1.0;		refShip.Height.Balls.DY		= 1.0;
+	refShip.Height.Bombs.Y				= 1.3;		refShip.Height.Bombs.DY		= 0.5;
+	refShip.Height.Grapes.Y				= 1.3;		refShip.Height.Grapes.DY	= 0.5;
+	refShip.Height.Knippels.Y			= 12.0;		refShip.Height.Knippels.DY	= 5.0;
+	refShip.Height.Balls.Y				= 1.3;		refShip.Height.Balls.DY		= 0.5;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -2242,10 +2247,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY		= 8;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ		= 6.0;
 
-	refShip.Height.Bombs.Y				= 2.0;		refShip.Height.Bombs.DY		= 2.0;
-	refShip.Height.Grapes.Y				= 3.3;		refShip.Height.Grapes.DY	= 1.6;
-	refShip.Height.Knippels.Y			= 14.9;		refShip.Height.Knippels.DY	= 14.0;
-	refShip.Height.Balls.Y				= 2.0;		refShip.Height.Balls.DY		= 2.0;
+	refShip.Height.Bombs.Y				= 1.6;		refShip.Height.Bombs.DY		= 0.8;
+	refShip.Height.Grapes.Y				= 1.9;		refShip.Height.Grapes.DY	= 0.8;
+	refShip.Height.Knippels.Y			= 14.9;		refShip.Height.Knippels.DY	= 13.0;
+	refShip.Height.Balls.Y				= 1.6;		refShip.Height.Balls.DY		= 0.8;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -2319,10 +2324,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY		= 8;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ		= 6.0;
 
-	refShip.Height.Bombs.Y				= 1.0;		refShip.Height.Bombs.DY		= 1.0;
-	refShip.Height.Grapes.Y				= 2.0;		refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 15.0;		refShip.Height.Knippels.DY	= 10.0;
-	refShip.Height.Balls.Y				= 1.0;		refShip.Height.Balls.DY		= 1.0;
+	refShip.Height.Bombs.Y				= 1.6;		refShip.Height.Bombs.DY		= 0.8;
+	refShip.Height.Grapes.Y				= 1.9;		refShip.Height.Grapes.DY	= 0.8;
+	refShip.Height.Knippels.Y			= 14.9;		refShip.Height.Knippels.DY	= 13.0;
+	refShip.Height.Balls.Y				= 1.6;		refShip.Height.Balls.DY		= 0.8;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -2401,10 +2406,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY		= 8;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ		= 6.0;
 
-	refShip.Height.Bombs.Y				= 3.5;		refShip.Height.Bombs.DY		= 1.7;
-	refShip.Height.Grapes.Y				= 4.8;		refShip.Height.Grapes.DY	= 2.4;
-	refShip.Height.Knippels.Y			= 16.7;		refShip.Height.Knippels.DY	= 12.8;
-	refShip.Height.Balls.Y				= 3.5;		refShip.Height.Balls.DY		= 1.7;
+	refShip.Height.Bombs.Y				= 1.8;		refShip.Height.Bombs.DY		= 1.0;
+	refShip.Height.Grapes.Y				= 2.0;		refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Knippels.Y			= 13.7;		refShip.Height.Knippels.DY	= 10.8;
+	refShip.Height.Balls.Y				= 1.8;		refShip.Height.Balls.DY		= 1.0;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -2480,8 +2485,8 @@ void InitShips()
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ		= 6.0;
 
 	refShip.Height.Bombs.Y				= 2.0;		refShip.Height.Bombs.DY		= 1.0;
-	refShip.Height.Grapes.Y				= 3.4;		refShip.Height.Grapes.DY	= 1.7;
-	refShip.Height.Knippels.Y			= 13.2;		refShip.Height.Knippels.DY	= 11.6;
+	refShip.Height.Bombs.Y				= 2.0;		refShip.Height.Bombs.DY		= 1.0;
+	refShip.Height.Knippels.Y			= 13.2;		refShip.Height.Knippels.DY	= 9.6;
 	refShip.Height.Balls.Y				= 2.0;		refShip.Height.Balls.DY		= 1.0;
 
 	refShip.GeraldSails.rey_b2		= 1;
@@ -2557,10 +2562,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY		= 8;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ		= 6.0;
 
-	refShip.Height.Bombs.Y				= 1.0;		refShip.Height.Bombs.DY		= 1.0;
-	refShip.Height.Grapes.Y				= 2.0;		refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 15.0;		refShip.Height.Knippels.DY	= 10.0;
-	refShip.Height.Balls.Y				= 1.0;		refShip.Height.Balls.DY		= 1.0;
+	refShip.Height.Bombs.Y				= 1.5;		refShip.Height.Bombs.DY		= 0.7;
+	refShip.Height.Grapes.Y				= 1.6;		refShip.Height.Grapes.DY	= 0.7;
+	refShip.Height.Knippels.Y			= 15.0;		refShip.Height.Knippels.DY	= 8.0;
+	refShip.Height.Balls.Y				= 1.5;		refShip.Height.Balls.DY		= 0.7;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -2635,10 +2640,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 6;	refship.InertiaBrakingY		= 6;
 	refship.InertiaAccelerationZ	= 4.0;	refship.InertiaBrakingZ		= 4.0;
 
-	refShip.Height.Bombs.Y				= 1.0;		refShip.Height.Bombs.DY		= 1.0;
-	refShip.Height.Grapes.Y				= 2.0;		refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 15.0;		refShip.Height.Knippels.DY	= 10.0;
-	refShip.Height.Balls.Y				= 1.0;		refShip.Height.Balls.DY		= 1.0;
+	refShip.Height.Bombs.Y				= 2.0;		refShip.Height.Bombs.DY		= 1.0;
+	refShip.Height.Grapes.Y				= 2.2;		refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Knippels.Y			= 18.0;		refShip.Height.Knippels.DY	= 8.0;
+	refShip.Height.Balls.Y				= 2.0;		refShip.Height.Balls.DY		= 1.0;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -2710,10 +2715,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY		= 8;
 	refship.InertiaAccelerationZ	= 8.0;	refship.InertiaBrakingZ		= 8.0;
 
-	refShip.Height.Bombs.Y = 1.0; refShip.Height.Bombs.DY = 1.0;
-	refShip.Height.Grapes.Y = 2.0; refShip.Height.Grapes.DY = 1.0;
-	refShip.Height.Knippels.Y = 15.0; refShip.Height.Knippels.DY = 10.0;
-	refShip.Height.Balls.Y = 1.0; refShip.Height.Balls.DY = 1.0;
+	refShip.Height.Bombs.Y = 1.7; refShip.Height.Bombs.DY = 1.0;
+	refShip.Height.Grapes.Y = 1.8; refShip.Height.Grapes.DY = 1.0;
+	refShip.Height.Knippels.Y = 15.0; refShip.Height.Knippels.DY = 9.0;
+	refShip.Height.Balls.Y = 1.7; refShip.Height.Balls.DY = 1.0;
 
 	refShip.GeraldSails.rey_b2 = 1;
 	refShip.GeraldSails.rey_b3 = 1;
@@ -2793,10 +2798,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 6;	refship.InertiaBrakingY		= 6;
 	refship.InertiaAccelerationZ	= 4.0;	refship.InertiaBrakingZ		= 4.0;
 
-	refShip.Height.Bombs.Y				= 3.4;		refShip.Height.Bombs.DY		= 1.7;
-	refShip.Height.Grapes.Y				= 5.0;		refShip.Height.Grapes.DY	= 2.5;
-	refShip.Height.Knippels.Y			= 17.8;		refShip.Height.Knippels.DY	= 13.3;
-	refShip.Height.Balls.Y				= 3.4;		refShip.Height.Balls.DY		= 1.7;
+	refShip.Height.Bombs.Y				= 3.0;		refShip.Height.Bombs.DY		= 1.3;
+	refShip.Height.Grapes.Y				= 3.3;		refShip.Height.Grapes.DY	= 1.3;
+	refShip.Height.Knippels.Y			= 16.8;		refShip.Height.Knippels.DY	= 10.3;
+	refShip.Height.Balls.Y				= 3.0;		refShip.Height.Balls.DY		= 1.3;
 
 	refship.Track.Enable	= true;
 	refship.Track1.ZStart	= 0.20;
@@ -2858,6 +2863,11 @@ void InitShips()
 	refship.WindAgainstSpeed   = 4.0;//boal
 	refship.CabinType          = "Cabin_Medium"; // boal 28.03.05
 	refship.DeckType           			= "Medium";
+
+	refShip.Height.Bombs.Y				= 3.0;		refShip.Height.Bombs.DY		= 1.3;
+	refShip.Height.Grapes.Y				= 3.3;		refShip.Height.Grapes.DY	= 1.3;
+	refShip.Height.Knippels.Y			= 18.5;		refShip.Height.Knippels.DY	= 13.0;
+	refShip.Height.Balls.Y				= 3.0;		refShip.Height.Balls.DY		= 1.3;
 
 	refship.InertiaAccelerationX	= 2.0;	refship.InertiaBrakingX		= 1.0;
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY		= 6;
@@ -2932,10 +2942,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 6;	refship.InertiaBrakingY		= 6;
 	refship.InertiaAccelerationZ	= 4.0;	refship.InertiaBrakingZ		= 4.0;
 
-	refShip.Height.Bombs.Y				= 4.3;		refShip.Height.Bombs.DY		= 2.1;
-	refShip.Height.Grapes.Y				= 5.6;		refShip.Height.Grapes.DY	= 2.8;
-	refShip.Height.Knippels.Y			= 18.7;		refShip.Height.Knippels.DY	= 12.7;
-	refShip.Height.Balls.Y				= 4.3;		refShip.Height.Balls.DY		= 2.1;
+	refShip.Height.Bombs.Y				= 3.5;		refShip.Height.Bombs.DY		= 1.6;
+	refShip.Height.Grapes.Y				= 3.7;		refShip.Height.Grapes.DY	= 1.6;
+	refShip.Height.Knippels.Y			= 13.0;		refShip.Height.Knippels.DY	= 8.0;
+	refShip.Height.Balls.Y				= 3.5;		refShip.Height.Balls.DY		= 1.6;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -3011,10 +3021,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY		= 8;
 	refship.InertiaAccelerationZ	= 8.0;	refship.InertiaBrakingZ		= 8.0;
 
-	refShip.Height.Bombs.Y				= 1.0;		refShip.Height.Bombs.DY		= 1.0;
+	refShip.Height.Bombs.Y				= 1.5;		refShip.Height.Bombs.DY		= 1.0;
 	refShip.Height.Grapes.Y				= 2.0;		refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 15.0;		refShip.Height.Knippels.DY	= 10.0;
-	refShip.Height.Balls.Y				= 1.0;		refShip.Height.Balls.DY		= 1.0;
+	refShip.Height.Knippels.Y			= 16.0;		refShip.Height.Knippels.DY	= 12.0;
+	refShip.Height.Balls.Y				= 1.5;		refShip.Height.Balls.DY		= 1.0;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -3081,6 +3091,11 @@ void InitShips()
 	refship.WindAgainstSpeed   = 5.0;//boal
 	refship.CabinType          = "New_Cabin2"; // boal 28.03.05
 	refship.DeckType           			= "Low";
+	
+	refShip.Height.Bombs.Y				= 1.5;		refShip.Height.Bombs.DY		= 1.0;
+	refShip.Height.Grapes.Y				= 2.0;		refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Knippels.Y			= 13.0;		refShip.Height.Knippels.DY	= 10.0;
+	refShip.Height.Balls.Y				= 1.5;		refShip.Height.Balls.DY		= 1.0;
 
 	refship.InertiaAccelerationX	= 8.0;	refship.InertiaBrakingX		= 8.0;
 	refship.InertiaAccelerationY	= 6;	refship.InertiaBrakingY		= 6;
@@ -3156,10 +3171,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY		= 8;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ		= 6.0;
 
-	refShip.Height.Bombs.Y				= 1.0;		refShip.Height.Bombs.DY		= 1.0;
-	refShip.Height.Grapes.Y				= 2.0;		refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Bombs.Y				= 1.3;		refShip.Height.Bombs.DY		= 0.6;
+	refShip.Height.Grapes.Y				= 1.5;		refShip.Height.Grapes.DY	= 0.8;
 	refShip.Height.Knippels.Y			= 15.0;		refShip.Height.Knippels.DY	= 10.0;
-	refShip.Height.Balls.Y				= 1.0;		refShip.Height.Balls.DY		= 1.0;
+	refShip.Height.Balls.Y				= 1.3;		refShip.Height.Balls.DY		= 0.6;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -3236,10 +3251,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
-	refShip.Height.Bombs.Y = 1.0; refShip.Height.Bombs.DY = 0.5;
-	refShip.Height.Grapes.Y = 2.0; refShip.Height.Grapes.DY = 1.0;
-	refShip.Height.Knippels.Y = 10.0; refShip.Height.Knippels.DY = 8.0;
-	refShip.Height.Balls.Y = 1.0; refShip.Height.Balls.DY = 0.5;
+	refShip.Height.Bombs.Y				= 1.3;		refShip.Height.Bombs.DY		= 0.6;
+	refShip.Height.Grapes.Y				= 1.5;		refShip.Height.Grapes.DY	= 0.8;
+	refShip.Height.Knippels.Y			= 15.0;		refShip.Height.Knippels.DY	= 10.0;
+	refShip.Height.Balls.Y				= 1.3;		refShip.Height.Balls.DY		= 0.6;
 
 	refShip.GeraldSails.rey_b1 = 1;
 	refShip.GeraldSails.rey_b2 = 1;
@@ -3313,10 +3328,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY		= 8;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ		= 6.0;
 
-	refShip.Height.Bombs.Y				= 1.0;		refShip.Height.Bombs.DY		= 1.0;
-	refShip.Height.Grapes.Y				= 2.0;		refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 15.0;		refShip.Height.Knippels.DY	= 10.0;
-	refShip.Height.Balls.Y				= 1.0;		refShip.Height.Balls.DY		= 1.0;
+	refShip.Height.Bombs.Y				= 1.3;		refShip.Height.Bombs.DY		= 0.6;
+	refShip.Height.Grapes.Y				= 1.5;		refShip.Height.Grapes.DY	= 0.8;
+	refShip.Height.Knippels.Y			= 16.5;		refShip.Height.Knippels.DY	= 13.0;
+	refShip.Height.Balls.Y				= 1.3;		refShip.Height.Balls.DY		= 0.6;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -3390,10 +3405,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY	= 8;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ	= 6.0;
 
-	refShip.Height.Bombs.Y		= 1.7;		refShip.Height.Bombs.DY	= 0.8;
-	refShip.Height.Grapes.Y		= 3.4;		refShip.Height.Grapes.DY	= 1.7;
-	refShip.Height.Knippels.Y	= 10.1;		refShip.Height.Knippels.DY	= 9.2;
-	refShip.Height.Balls.Y		= 1.7;		refShip.Height.Balls.DY	= 0.8;
+	refShip.Height.Bombs.Y				= 1.5;		refShip.Height.Bombs.DY		= 0.6;
+	refShip.Height.Grapes.Y				= 1.5;		refShip.Height.Grapes.DY	= 0.8;
+	refShip.Height.Knippels.Y			= 15.0;		refShip.Height.Knippels.DY	= 10.0;
+	refShip.Height.Balls.Y				= 1.5;		refShip.Height.Balls.DY		= 0.6;
 
 	refShip.GeraldSails.rey_b2			= 1;
 	refShip.GeraldSails.rey_b3			= 1;
@@ -3469,10 +3484,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 3;	refship.InertiaBrakingY		= 3;
 	refship.InertiaAccelerationZ	= 3.0;	refship.InertiaBrakingZ		= 3.0;
 
-	refShip.Height.Bombs.Y				= 2.7;	refShip.Height.Bombs.DY		= 1.3;
-	refShip.Height.Grapes.Y				= 4.3;	refShip.Height.Grapes.DY	= 2.1;
-	refShip.Height.Knippels.Y			= 13.0;	refShip.Height.Knippels.DY	= 11.7;
-	refShip.Height.Balls.Y				= 2.7;	refShip.Height.Balls.DY		= 1.3;
+	refShip.Height.Bombs.Y				= 2.3;	refShip.Height.Bombs.DY		= 1.0;
+	refShip.Height.Grapes.Y				= 2.5;	refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Knippels.Y			= 13.0;	refShip.Height.Knippels.DY	= 6.7;
+	refShip.Height.Balls.Y				= 2.3;	refShip.Height.Balls.DY		= 1.0;
 
 	refship.Track.Enable	= true;
 	refship.Track1.ZStart	= 0.20;
@@ -3535,6 +3550,7 @@ void InitShips()
     refShip.CabinType          = "New_Cabin2";
     refShip.DeckType           = "Medium";
 
+
     refShip.InertiaAccelerationX	= 5.0;
     refShip.InertiaBrakingX		= 5.0;
     refShip.InertiaAccelerationY	= 4;
@@ -3542,14 +3558,10 @@ void InitShips()
     refShip.InertiaAccelerationZ	= 5.0;
     refShip.InertiaBrakingZ		= 5.0;
 
-    refShip.Height.Bombs.Y = 1.0;
-    refShip.Height.Bombs.DY = 0.5;
-    refShip.Height.Grapes.Y = 2.0;
-    refShip.Height.Grapes.DY = 1.0;
-    refShip.Height.Knippels.Y = 10.0;
-    refShip.Height.Knippels.DY = 8.0;
-    refShip.Height.Balls.Y = 1.0;
-    refShip.Height.Balls.DY = 0.5;
+    refShip.Height.Bombs.Y = 2.0;		refShip.Height.Bombs.DY = 1.0;
+    refShip.Height.Grapes.Y = 2.2;		refShip.Height.Grapes.DY = 1.0;
+    refShip.Height.Knippels.Y = 15.0;	refShip.Height.Knippels.DY = 11.0;
+    refShip.Height.Balls.Y = 2.0;		refShip.Height.Balls.DY = 1.0;
 
     refShip.GeraldSails.rey_b1 = 1;
     refShip.GeraldSails.rey_b2 = 1;
@@ -3623,10 +3635,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
-    refShip.Height.Bombs.Y = 1.0; refShip.Height.Bombs.DY = 0.5;
-	refShip.Height.Grapes.Y = 2.0; refShip.Height.Grapes.DY = 1.0;
-	refShip.Height.Knippels.Y = 10.0; refShip.Height.Knippels.DY = 8.0;
-	refShip.Height.Balls.Y = 1.0; refShip.Height.Balls.DY = 0.5;
+    refShip.Height.Bombs.Y = 2.0;		refShip.Height.Bombs.DY = 1.0;
+    refShip.Height.Grapes.Y = 2.2;		refShip.Height.Grapes.DY = 1.0;
+    refShip.Height.Knippels.Y = 15.0;	refShip.Height.Knippels.DY = 11.0;
+    refShip.Height.Balls.Y = 2.0;		refShip.Height.Balls.DY = 1.0;
 
 	refShip.GeraldSails.rey_b1 = 1;
 	refShip.GeraldSails.rey_b2 = 1;
@@ -3702,10 +3714,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 6;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 3.0;	refship.InertiaBrakingZ		= 3.0;
 
-	refShip.Height.Bombs.Y				= 1.0;	refShip.Height.Bombs.DY		= 0.5;
-	refShip.Height.Grapes.Y				= 2.0;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 10.0;	refShip.Height.Knippels.DY	= 8.0;
-	refShip.Height.Balls.Y				= 1.0;	refShip.Height.Balls.DY		= 0.5;
+    refShip.Height.Bombs.Y	= 2.2;		refShip.Height.Bombs.DY = 1.0;
+    refShip.Height.Grapes.Y	= 2.5;		refShip.Height.Grapes.DY = 1.0;
+    refShip.Height.Knippels.Y = 15.0;	refShip.Height.Knippels.DY = 8.0;
+    refShip.Height.Balls.Y 	= 2.2;		refShip.Height.Balls.DY = 1.0;
 
 	refship.Track.Enable	= true;
 	refship.Track1.ZStart	= 0.20;
@@ -3767,6 +3779,11 @@ void InitShips()
 	refship.WindAgainstSpeed   = 4.0;//boal
 	refship.CabinType          = "Cabin_Medium2"; // boal 28.03.05
 	refship.DeckType           			= "Medium";
+	
+    refShip.Height.Bombs.Y	= 3.0;		refShip.Height.Bombs.DY = 1.0;
+    refShip.Height.Grapes.Y	= 3.5;		refShip.Height.Grapes.DY = 1.0;
+    refShip.Height.Knippels.Y = 17.0;	refShip.Height.Knippels.DY = 9.0;
+    refShip.Height.Balls.Y 	= 3.0;		refShip.Height.Balls.DY = 1.0;
 
 	refShip.Flags.Mast0.Flag1 = FLAG_ENSIGN;
 	refShip.Flags.Mast2.Flag1 = FLAG_ENSIGN;
@@ -3842,6 +3859,11 @@ void InitShips()
 	refship.CabinType          = "Cabin_Medium2"; // boal 28.03.05
 	refship.DeckType           			= "Medium";
 
+    refShip.Height.Bombs.Y	= 3.0;		refShip.Height.Bombs.DY = 1.0;
+    refShip.Height.Grapes.Y	= 3.5;		refShip.Height.Grapes.DY = 1.0;
+    refShip.Height.Knippels.Y = 17.0;	refShip.Height.Knippels.DY = 9.0;
+    refShip.Height.Balls.Y 	= 3.0;		refShip.Height.Balls.DY = 1.0;
+
 	refShip.Flags.Mast0.Flag1 = FLAG_ENSIGN;
 	refShip.Flags.Mast2.Flag1 = FLAG_ENSIGN;
 	refShip.Flags.Mast3.Flag1 = FLAG_SPECIAL;
@@ -3916,6 +3938,11 @@ void InitShips()
 	refship.WindAgainstSpeed   = 2.6;//boal
 	refship.CabinType          = "Cabin_Medium2"; // boal 28.03.05
 	refship.DeckType           			= "Medium";
+	
+	refShip.Height.Bombs.Y		= 3.0;		refShip.Height.Bombs.DY		= 1.0;
+	refShip.Height.Grapes.Y		= 3.3;		refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Knippels.Y	= 22.0;		refShip.Height.Knippels.DY	= 20.0;
+	refShip.Height.Balls.Y		= 3.0;		refShip.Height.Balls.DY		= 1.0;
 
 	refship.InertiaAccelerationX	= 4.5;	refship.InertiaBrakingX		= 4.5;
 	refship.InertiaAccelerationY	= 3;	refship.InertiaBrakingY		= 3;
@@ -3989,10 +4016,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
-	refShip.Height.Bombs.Y				= 3.0;		refShip.Height.Bombs.DY		= 1.5;
-	refShip.Height.Grapes.Y				= 4.5;		refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 24.0;		refShip.Height.Knippels.DY	= 17.0;
-	refShip.Height.Balls.Y				= 3.0;		refShip.Height.Balls.DY		= 1.5;
+    refShip.Height.Bombs.Y	= 2.5;		refShip.Height.Bombs.DY = 1.0;
+    refShip.Height.Grapes.Y	= 2.9;		refShip.Height.Grapes.DY = 1.0;
+    refShip.Height.Knippels.Y = 17.0;	refShip.Height.Knippels.DY = 9.0;
+    refShip.Height.Balls.Y 	= 2.5;		refShip.Height.Balls.DY = 1.0;
 
 	refShip.GeraldSails.rey_b1		= 1;
 	refShip.GeraldSails.rey_b2		= 1;
@@ -4072,10 +4099,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 3.0;	refship.InertiaBrakingZ		= 3.0;
 
-	refShip.Height.Bombs.Y				= 3.0;		refShip.Height.Bombs.DY		= 1.5;
-	refShip.Height.Grapes.Y				= 5.5;		refShip.Height.Grapes.DY	= 2.7;
-	refShip.Height.Knippels.Y			= 24.1;		refShip.Height.Knippels.DY	= 20.7;
-	refShip.Height.Balls.Y				= 3.0;		refShip.Height.Balls.DY		= 1.5;
+	refShip.Height.Bombs.Y				= 2.7;		refShip.Height.Bombs.DY		= 1.5;
+	refShip.Height.Grapes.Y				= 3.0;		refShip.Height.Grapes.DY	= 1.5;
+	refShip.Height.Knippels.Y			= 17.0;		refShip.Height.Knippels.DY	= 12.0;
+	refShip.Height.Balls.Y				= 2.7;		refShip.Height.Balls.DY		= 1.5;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -4146,6 +4173,11 @@ void InitShips()
 	refship.WindAgainstSpeed   	= 3.0;//boal
     refship.CabinType          	= "New_Cabin2"; // boal 28.03.05
 	refship.DeckType           			= "Medium";
+
+	refShip.Height.Bombs.Y				= 2.0;		refShip.Height.Bombs.DY		= 1.5;
+	refShip.Height.Grapes.Y				= 2.5;		refShip.Height.Grapes.DY	= 1.5;
+	refShip.Height.Knippels.Y			= 16.1;		refShip.Height.Knippels.DY	= 13.7;
+	refShip.Height.Balls.Y				= 2.0;		refShip.Height.Balls.DY		= 1.5;
 
 	refShip.Flags.Mast2.Flag1 = FLAG_SPECIAL;
 	refShip.Flags.Mast3.Flag1 = FLAG_ENSIGN;
@@ -4223,6 +4255,11 @@ void InitShips()
     refship.CabinType          = "Cabin_Medium2"; // boal 28.03.05
 	refship.DeckType           			= "Big";
 
+	refShip.Height.Bombs.Y				= 2.0;		refShip.Height.Bombs.DY		= 1.5;
+	refShip.Height.Grapes.Y				= 2.5;		refShip.Height.Grapes.DY	= 1.5;
+	refShip.Height.Knippels.Y			= 16.1;		refShip.Height.Knippels.DY	= 13.7;
+	refShip.Height.Balls.Y				= 2.0;		refShip.Height.Balls.DY		= 1.5;
+
 	refship.InertiaAccelerationX	= 3.0;	refship.InertiaBrakingX		= 3.0;
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 3.0;	refship.InertiaBrakingZ		= 3.0;
@@ -4298,10 +4335,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY	= 8;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ	= 6.0;
 
-	refShip.Height.Bombs.Y		= 1.0;		refShip.Height.Bombs.DY	= 1.0;
-	refShip.Height.Grapes.Y		= 2.0;		refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y	= 16.0;		refShip.Height.Knippels.DY	= 10.0;
-	refShip.Height.Balls.Y		= 1.0;		refShip.Height.Balls.DY	= 1.0;
+	refShip.Height.Bombs.Y		= 1.5;		refShip.Height.Bombs.DY	= 0.8;
+	refShip.Height.Grapes.Y		= 1.8;		refShip.Height.Grapes.DY	= 0.8;
+	refShip.Height.Knippels.Y	= 15.0;		refShip.Height.Knippels.DY	= 6.0;
+	refShip.Height.Balls.Y		= 1.5;		refShip.Height.Balls.DY	= 0.8;
 
 	refShip.GeraldSails.rey_b2			= 1;
 	refShip.GeraldSails.rey_b3			= 1;
@@ -4369,6 +4406,11 @@ void InitShips()
 	refship.WindAgainstSpeed   	= 2.6;//boal
 	refship.CabinType          	= "Cabin_Medium2"; // boal 28.03.05
 	refship.DeckType           			= "Big";
+
+	refShip.Height.Bombs.Y				= 2.5;		refShip.Height.Bombs.DY		= 1.5;
+	refShip.Height.Grapes.Y				= 2.9;		refShip.Height.Grapes.DY	= 1.5;
+	refShip.Height.Knippels.Y			= 17.5;		refShip.Height.Knippels.DY	= 13.7;
+	refShip.Height.Balls.Y				= 2.5;		refShip.Height.Balls.DY		= 1.5;
 
 	refShip.Flags.Mast0.Flag1 = FLAG_ENSIGN;
 	refShip.Flags.Mast1.Flag1 = FLAG_ENSIGN;
@@ -4455,10 +4497,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 6;	refship.InertiaBrakingY		= 6;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ		= 6.0;
 
-	refShip.Height.Bombs.Y				= 1.0;		refShip.Height.Bombs.DY		= 1.0;
-	refShip.Height.Grapes.Y				= 2.0;		refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 15.0;		refShip.Height.Knippels.DY	= 10.0;
-	refShip.Height.Balls.Y				= 1.0;		refShip.Height.Balls.DY		= 1.0;
+	refShip.Height.Bombs.Y				= 1.7;		refShip.Height.Bombs.DY		= 1.0;
+	refShip.Height.Grapes.Y				= 1.9;		refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Knippels.Y			= 19.0;		refShip.Height.Knippels.DY	= 14.0;
+	refShip.Height.Balls.Y				= 1.7;		refShip.Height.Balls.DY		= 1.0;
 
 	refShip.GeraldSails.rey_b2	= 1;
 	refShip.GeraldSails.rey_b3	= 1;
@@ -4532,10 +4574,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 6;	refship.InertiaBrakingY		= 6;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ		= 6.0;
 
-	refShip.Height.Bombs.Y				= 1.2;		refShip.Height.Bombs.DY		= 0.6;
-	refShip.Height.Grapes.Y				= 3.0;		refShip.Height.Grapes.DY	= 1.5;
-	refShip.Height.Knippels.Y			= 15.4;		refShip.Height.Knippels.DY	= 14.9;
-	refShip.Height.Balls.Y				= 1.2;		refShip.Height.Balls.DY		= 0.6;
+	refShip.Height.Bombs.Y				= 1.7;		refShip.Height.Bombs.DY		= 0.6;
+	refShip.Height.Grapes.Y				= 2.0;		refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Knippels.Y			= 17.4;		refShip.Height.Knippels.DY	= 14.9;
+	refShip.Height.Balls.Y				= 1.7;		refShip.Height.Balls.DY		= 0.6;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -4613,10 +4655,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 6;	refship.InertiaBrakingY		= 6;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ		= 6.0;
 
-    refShip.Height.Bombs.Y = 1.0; refShip.Height.Bombs.DY = 0.5;
-	refShip.Height.Grapes.Y = 2.0; refShip.Height.Grapes.DY = 1.0;
-	refShip.Height.Knippels.Y = 10.0; refShip.Height.Knippels.DY = 8.0;
-	refShip.Height.Balls.Y = 1.0; refShip.Height.Balls.DY = 0.5;
+	refShip.Height.Bombs.Y				= 1.7;		refShip.Height.Bombs.DY		= 1.0;
+	refShip.Height.Grapes.Y				= 1.9;		refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Knippels.Y			= 19.0;		refShip.Height.Knippels.DY	= 14.0;
+	refShip.Height.Balls.Y				= 1.7;		refShip.Height.Balls.DY		= 1.0;
 
 	refShip.GeraldSails.rey_b1 = 1;
 	refShip.GeraldSails.rey_b2 = 1;
@@ -4686,10 +4728,10 @@ void InitShips()
 	refship.CabinType          = "Cabin_Medium2"; // boal 28.03.05
 	refship.DeckType           			= "Medium";
 
-	refShip.Height.Bombs.Y				= 1.0;		refShip.Height.Bombs.DY		= 1.0;
-	refShip.Height.Grapes.Y				= 3.0;		refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 18.0;		refShip.Height.Knippels.DY	= 10.0;
-	refShip.Height.Balls.Y				= 1.0;		refShip.Height.Balls.DY		= 1.0;
+	refShip.Height.Bombs.Y				= 1.7;		refShip.Height.Bombs.DY		= 1.0;
+	refShip.Height.Grapes.Y				= 1.9;		refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Knippels.Y			= 19.0;		refShip.Height.Knippels.DY	= 14.0;
+	refShip.Height.Balls.Y				= 1.7;		refShip.Height.Balls.DY		= 1.0;
 
 	refship.InertiaAccelerationX	= 8.0;	refship.InertiaBrakingX		= 8.0;
 	refship.InertiaAccelerationY	= 6;	refship.InertiaBrakingY		= 6;
@@ -4761,10 +4803,10 @@ void InitShips()
 	refship.CabinType          = "Cabin_Medium2"; // boal 28.03.05
 	refship.DeckType           			= "Medium";
 
-	refShip.Height.Bombs.Y				= 1.0;		refShip.Height.Bombs.DY		= 1.0;
-	refShip.Height.Grapes.Y				= 3.0;		refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 18.0;		refShip.Height.Knippels.DY	= 10.0;
-	refShip.Height.Balls.Y				= 1.0;		refShip.Height.Balls.DY		= 1.0;
+	refShip.Height.Bombs.Y				= 1.7;		refShip.Height.Bombs.DY		= 1.0;
+	refShip.Height.Grapes.Y				= 1.9;		refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Knippels.Y			= 19.0;		refShip.Height.Knippels.DY	= 14.0;
+	refShip.Height.Balls.Y				= 1.7;		refShip.Height.Balls.DY		= 1.0;
 
 	refship.InertiaAccelerationX	= 8.0;	refship.InertiaBrakingX		= 8.0;
 	refship.InertiaAccelerationY	= 6;	refship.InertiaBrakingY		= 6;
@@ -4840,14 +4882,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
-    refShip.Height.Bombs.Y = 1.0;
-    refShip.Height.Bombs.DY = 0.5;
-    refShip.Height.Grapes.Y = 2.0;
-    refShip.Height.Grapes.DY = 1.0;
-    refShip.Height.Knippels.Y = 10.0;
-    refShip.Height.Knippels.DY = 8.0;
-    refShip.Height.Balls.Y = 1.0;
-    refShip.Height.Balls.DY = 0.5;
+	refShip.Height.Bombs.Y				= 1.7;		refShip.Height.Bombs.DY		= 1.0;
+	refShip.Height.Grapes.Y				= 1.9;		refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Knippels.Y			= 19.0;		refShip.Height.Knippels.DY	= 14.0;
+	refShip.Height.Balls.Y				= 1.7;		refShip.Height.Balls.DY		= 1.0;
 
     refShip.GeraldSails.rey_b1 = 1;
     refShip.GeraldSails.rey_b2 = 1;
@@ -4926,10 +4964,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
-	refShip.Height.Bombs.Y				= 3.0;	refShip.Height.Bombs.DY		= 1.5;
-	refShip.Height.Grapes.Y				= 4.5;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 24.0;	refShip.Height.Knippels.DY	= 17.0;
-	refShip.Height.Balls.Y				= 3.0;	refShip.Height.Balls.DY		= 1.5;
+	refShip.Height.Bombs.Y				= 2.5;	refShip.Height.Bombs.DY		= 1.5;
+	refShip.Height.Grapes.Y				= 3.1;	refShip.Height.Grapes.DY	= 1.5;
+	refShip.Height.Knippels.Y			= 21.0;	refShip.Height.Knippels.DY	= 20.0;
+	refShip.Height.Balls.Y				= 2.5;	refShip.Height.Balls.DY		= 1.5;
 
 	refShip.GeraldSails.rey_b2	= 1;
 	refShip.GeraldSails.rey_b3	= 1;
@@ -5000,10 +5038,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
-	refShip.Height.Bombs.Y				= 3.0;	refShip.Height.Bombs.DY		= 1.5;
-	refShip.Height.Grapes.Y				= 4.5;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 24.0;	refShip.Height.Knippels.DY	= 17.0;
-	refShip.Height.Balls.Y				= 3.0;	refShip.Height.Balls.DY		= 1.5;
+	refShip.Height.Bombs.Y				= 2.5;	refShip.Height.Bombs.DY		= 1.5;
+	refShip.Height.Grapes.Y				= 3.0;	refShip.Height.Grapes.DY	= 1.5;
+	refShip.Height.Knippels.Y			= 20.0;	refShip.Height.Knippels.DY	= 16.0;
+	refShip.Height.Balls.Y				= 2.5;	refShip.Height.Balls.DY		= 1.5;
 
 	refShip.GeraldSails.rey_b1		= 1;
 	refShip.GeraldSails.rey_b2		= 1;
@@ -5080,10 +5118,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 3;	refship.InertiaBrakingY		= 3;
 	refship.InertiaAccelerationZ	= 4.5;	refship.InertiaBrakingZ		= 4.5;
 
-	refShip.Height.Bombs.Y				= 1.0;	refShip.Height.Bombs.DY		= 0.5;
-	refShip.Height.Grapes.Y				= 2.0;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 10.0;	refShip.Height.Knippels.DY	= 8.0;
-	refShip.Height.Balls.Y				= 1.0;	refShip.Height.Balls.DY		= 0.5;
+	refShip.Height.Bombs.Y				= 2.5;	refShip.Height.Bombs.DY		= 1.5;
+	refShip.Height.Grapes.Y				= 3.0;	refShip.Height.Grapes.DY	= 1.5;
+	refShip.Height.Knippels.Y			= 20.0;	refShip.Height.Knippels.DY	= 16.0;
+	refShip.Height.Balls.Y				= 2.5;	refShip.Height.Balls.DY		= 1.5;
 
 	refShip.GeraldSails.rey_b1			= 1;
 	refShip.GeraldSails.rey_b2			= 1;
@@ -5165,8 +5203,8 @@ void InitShips()
 	refship.InertiaAccelerationZ	= 4.5;	refship.InertiaBrakingZ		= 4.5;
 
 	refShip.Height.Bombs.Y				= 3.0;		refShip.Height.Bombs.DY		= 1.5;
-	refShip.Height.Grapes.Y				= 4.4;		refShip.Height.Grapes.DY	= 2.2;
-	refShip.Height.Knippels.Y			= 21.4;		refShip.Height.Knippels.DY	= 19.8;
+	refShip.Height.Grapes.Y				= 3.4;		refShip.Height.Grapes.DY	= 2.0;
+	refShip.Height.Knippels.Y			= 21.4;		refShip.Height.Knippels.DY	= 15.8;
 	refShip.Height.Balls.Y				= 3.0;		refShip.Height.Balls.DY		= 1.5;
 
 	refShip.GeraldSails.rey_b2		= 1;
@@ -5238,6 +5276,11 @@ void InitShips()
 	refship.WindAgainstSpeed   = 2.6;//boal
 	refship.CabinType          = "Cabin"; // boal 28.03.05
 	refship.DeckType           			= "Big";
+
+	refShip.Height.Bombs.Y				= 2.6;		refShip.Height.Bombs.DY		= 1.3;
+	refShip.Height.Grapes.Y				= 3.4;		refShip.Height.Grapes.DY	= 2.0;
+	refShip.Height.Knippels.Y			= 22.0;		refShip.Height.Knippels.DY	= 17.8;
+	refShip.Height.Balls.Y				= 2.6;		refShip.Height.Balls.DY		= 1.3;
 
 	refShip.Flags.Mast0.Flag1 = FLAG_ENSIGN;
 	refShip.Flags.Mast1.Flag1 = FLAG_ENSIGN;
@@ -5318,6 +5361,11 @@ void InitShips()
 	refship.CabinType          = "Cabin"; // boal 28.03.05
 	refship.DeckType           			= "Big";
 
+	refShip.Height.Bombs.Y				= 2.6;		refShip.Height.Bombs.DY		= 1.3;
+	refShip.Height.Grapes.Y				= 3.4;		refShip.Height.Grapes.DY	= 2.0;
+	refShip.Height.Knippels.Y			= 22.0;		refShip.Height.Knippels.DY	= 17.8;
+	refShip.Height.Balls.Y				= 2.6;		refShip.Height.Balls.DY		= 1.3;
+
 	refShip.Flags.Mast2.Flag1 = FLAG_ENSIGN;
 	refShip.Flags.Mast3.Flag1 = FLAG_SPECIAL;
 	refShip.Flags.Mast4.Flag1 = FLAG_ENSIGN;
@@ -5390,6 +5438,11 @@ void InitShips()
 	refship.WindAgainstSpeed   = 3.0;//boal
 	refship.CabinType          = "Cabin"; // boal 28.03.05
 	refship.DeckType           			= "Big";
+
+	refShip.Height.Bombs.Y				= 2.6;		refShip.Height.Bombs.DY		= 1.3;
+	refShip.Height.Grapes.Y				= 3.4;		refShip.Height.Grapes.DY	= 2.0;
+	refShip.Height.Knippels.Y			= 22.0;		refShip.Height.Knippels.DY	= 17.8;
+	refShip.Height.Balls.Y				= 2.6;		refShip.Height.Balls.DY		= 1.3;
 
 	refShip.Flags.Mast1.Flag1 = FLAG_SPECIAL;
 	refShip.Flags.Mast2.Flag1 = FLAG_ENSIGN;
@@ -5471,10 +5524,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
-	refShip.Height.Bombs.Y		= 1.0;	refShip.Height.Bombs.DY		= 0.5;
-	refShip.Height.Grapes.Y		= 2.0;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y	= 10.0;	refShip.Height.Knippels.DY	= 8.0;
-	refShip.Height.Balls.Y		= 1.0;	refShip.Height.Balls.DY		= 0.5;
+	refShip.Height.Bombs.Y		= 2.0;	refShip.Height.Bombs.DY		= 0.9;
+	refShip.Height.Grapes.Y		= 2.2;	refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Knippels.Y	= 22.0;	refShip.Height.Knippels.DY	= 17.8;
+	refShip.Height.Balls.Y		= 2.0;	refShip.Height.Balls.DY		= 0.9;
 
 	refShip.GeraldSails.rey_b1		= 1;
 	refShip.GeraldSails.rey_b2		= 1;
@@ -5546,6 +5599,11 @@ void InitShips()
 	refship.WindAgainstSpeed                        = 2.6;//boal
 	refship.CabinType          			= "Cabin"; // boal 28.03.05
 	refship.DeckType           			= "Big";
+
+	refShip.Height.Bombs.Y				= 2.6;		refShip.Height.Bombs.DY		= 1.3;
+	refShip.Height.Grapes.Y				= 3.2;		refShip.Height.Grapes.DY	= 2.0;
+	refShip.Height.Knippels.Y			= 22.0;		refShip.Height.Knippels.DY	= 17.8;
+	refShip.Height.Balls.Y				= 2.6;		refShip.Height.Balls.DY		= 1.3;
 
 	refship.InertiaAccelerationX	= 4.5;	refship.InertiaBrakingX		= 4.5;
 	refship.InertiaAccelerationY	= 3;	refship.InertiaBrakingY		= 3;
@@ -5628,10 +5686,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
-	refShip.Height.Bombs.Y				= 1.0;	refShip.Height.Bombs.DY		= 0.5;
-	refShip.Height.Grapes.Y				= 2.0;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 10.0;	refShip.Height.Knippels.DY	= 8.0;
-	refShip.Height.Balls.Y				= 1.0;	refShip.Height.Balls.DY		= 0.5;
+	refShip.Height.Bombs.Y				= 3.0;		refShip.Height.Bombs.DY		= 1.5;
+	refShip.Height.Grapes.Y				= 3.4;		refShip.Height.Grapes.DY	= 2.0;
+	refShip.Height.Knippels.Y			= 25.4;		refShip.Height.Knippels.DY	= 19.8;
+	refShip.Height.Balls.Y				= 3.0;		refShip.Height.Balls.DY		= 1.5;
 
 	refShip.GeraldSails.rey_b1		= 1;
 	refShip.GeraldSails.rey_b2		= 1;
@@ -5707,7 +5765,7 @@ void InitShips()
 
 	refShip.Height.Bombs.Y				= 3.0;	refShip.Height.Bombs.DY		= 1.5;
 	refShip.Height.Grapes.Y				= 4.5;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 24.0;	refShip.Height.Knippels.DY	= 17.0;
+	refShip.Height.Knippels.Y			= 25.0;	refShip.Height.Knippels.DY	= 17.0;
 	refShip.Height.Balls.Y				= 3.0;	refShip.Height.Balls.DY		= 1.5;
 
 	refShip.GeraldSails.rey_b2		= 1;
@@ -5780,10 +5838,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 6;	refship.InertiaBrakingY		= 6;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ		= 6.0;
 
-	refShip.Height.Bombs.Y = 1.0; refShip.Height.Bombs.DY = 0.5;
-	refShip.Height.Grapes.Y = 2.0; refShip.Height.Grapes.DY = 1.0;
-	refShip.Height.Knippels.Y = 10.0; refShip.Height.Knippels.DY = 8.0;
-	refShip.Height.Balls.Y = 1.0; refShip.Height.Balls.DY = 0.5;
+	refShip.Height.Bombs.Y		= 2.0;	refShip.Height.Bombs.DY		= 0.9;
+	refShip.Height.Grapes.Y		= 2.2;	refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Knippels.Y	= 22.0;	refShip.Height.Knippels.DY	= 17.8;
+	refShip.Height.Balls.Y		= 2.0;	refShip.Height.Balls.DY		= 0.9;
 
 	refShip.GeraldSails.rey_b1 = 1;
 	refShip.GeraldSails.rey_b2 = 1;
@@ -5859,10 +5917,10 @@ void InitShips()
 	refship.InertiaAccelerationY = 4; refship.InertiaBrakingY = 4;
 	refship.InertiaAccelerationZ = 5.0; refship.InertiaBrakingZ = 5.0;
 
-	refShip.Height.Bombs.Y = 1.0; refShip.Height.Bombs.DY = 0.5;
-	refShip.Height.Grapes.Y = 2.0; refShip.Height.Grapes.DY = 1.0;
-	refShip.Height.Knippels.Y = 10.0; refShip.Height.Knippels.DY = 8.0;
-	refShip.Height.Balls.Y = 1.0; refShip.Height.Balls.DY = 0.5;
+	refShip.Height.Bombs.Y		= 2.0;	refShip.Height.Bombs.DY		= 0.9;
+	refShip.Height.Grapes.Y		= 2.2;	refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Knippels.Y	= 22.0;	refShip.Height.Knippels.DY	= 17.8;
+	refShip.Height.Balls.Y		= 2.0;	refShip.Height.Balls.DY		= 0.9;
 
 	refShip.GeraldSails.rey_b1 = 1;
 	refShip.GeraldSails.rey_b2 = 1;
@@ -5936,10 +5994,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
-	refShip.Height.Bombs.Y			= 1.0;	refShip.Height.Bombs.DY		= 0.5;
-	refShip.Height.Grapes.Y			= 2.0;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y		= 10.0;	refShip.Height.Knippels.DY	= 8.0;
-	refShip.Height.Balls.Y			= 1.0;	refShip.Height.Balls.DY		= 0.5;
+	refShip.Height.Bombs.Y				= 3.0;	refShip.Height.Bombs.DY		= 1.5;
+	refShip.Height.Grapes.Y				= 3.5;	refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Knippels.Y			= 20.0;	refShip.Height.Knippels.DY	= 17.0;
+	refShip.Height.Balls.Y				= 3.0;	refShip.Height.Balls.DY		= 1.5;
 
 	refShip.GeraldSails.rey_b3		= 1;
 	refShip.GeraldSails.rey_b2		= 1;
@@ -6014,8 +6072,8 @@ void InitShips()
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
 	refShip.Height.Bombs.Y				= 3.0;	refShip.Height.Bombs.DY		= 1.5;
-	refShip.Height.Grapes.Y				= 4.5;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 24.0;	refShip.Height.Knippels.DY	= 17.0;
+	refShip.Height.Grapes.Y				= 3.5;	refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Knippels.Y			= 20.0;	refShip.Height.Knippels.DY	= 17.0;
 	refShip.Height.Balls.Y				= 3.0;	refShip.Height.Balls.DY		= 1.5;
 
 	refShip.GeraldSails.rey_b3		= 1;
@@ -6089,8 +6147,8 @@ void InitShips()
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
 	refShip.Height.Bombs.Y				= 3.0;	refShip.Height.Bombs.DY		= 1.5;
-	refShip.Height.Grapes.Y				= 4.5;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 24.0;	refShip.Height.Knippels.DY	= 17.0;
+	refShip.Height.Grapes.Y				= 3.5;	refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Knippels.Y			= 20.0;	refShip.Height.Knippels.DY	= 17.0;
 	refShip.Height.Balls.Y				= 3.0;	refShip.Height.Balls.DY		= 1.5;
 
 	refShip.GeraldSails.rey_b2		= 1;
@@ -6164,8 +6222,8 @@ void InitShips()
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
 	refShip.Height.Bombs.Y				= 3.0;	refShip.Height.Bombs.DY		= 1.5;
-	refShip.Height.Grapes.Y				= 4.5;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 24.0;	refShip.Height.Knippels.DY	= 17.0;
+	refShip.Height.Grapes.Y				= 3.5;	refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Knippels.Y			= 22.0;	refShip.Height.Knippels.DY	= 17.0;
 	refShip.Height.Balls.Y				= 3.0;	refShip.Height.Balls.DY		= 1.5;
 
 	refShip.GeraldSails.rey_b3		= 1;
@@ -6239,8 +6297,8 @@ void InitShips()
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
 	refShip.Height.Bombs.Y = 2.7;			refShip.Height.Bombs.DY = 1.3;
-	refShip.Height.Grapes.Y = 4.3;			refShip.Height.Grapes.DY = 2.1;
-	refShip.Height.Knippels.Y = 13.0;		refShip.Height.Knippels.DY = 11.7;
+	refShip.Height.Grapes.Y = 3.3;			refShip.Height.Grapes.DY = 2.1;
+	refShip.Height.Knippels.Y = 17.0;		refShip.Height.Knippels.DY = 11.7;
 	refShip.Height.Balls.Y = 2.7;			refShip.Height.Balls.DY = 1.3;
 
 	refShip.GeraldSails.rey_b3		= 1;
@@ -6321,8 +6379,8 @@ void InitShips()
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
 	refShip.Height.Bombs.Y				= 3.7;	refShip.Height.Bombs.DY		= 1.8;
-	refShip.Height.Grapes.Y				= 5.2;	refShip.Height.Grapes.DY	= 2.6;
-	refShip.Height.Knippels.Y			= 24.0;	refShip.Height.Knippels.DY	= 19.7;
+	refShip.Height.Grapes.Y				= 4.2;	refShip.Height.Grapes.DY	= 2.0;
+	refShip.Height.Knippels.Y			= 22.0;	refShip.Height.Knippels.DY	= 16.7;
 	refShip.Height.Balls.Y				= 3.7;	refShip.Height.Balls.DY		= 1.8;
 
 	refShip.GeraldSails.rey_b1		= 1;
@@ -6400,8 +6458,8 @@ void InitShips()
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
 	refShip.Height.Bombs.Y				= 3.0;	refShip.Height.Bombs.DY		= 1.5;
-	refShip.Height.Grapes.Y				= 4.5;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y			= 24.0;	refShip.Height.Knippels.DY	= 17.0;
+	refShip.Height.Grapes.Y				= 3.5;	refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Knippels.Y			= 20.0;	refShip.Height.Knippels.DY	= 17.0;
 	refShip.Height.Balls.Y				= 3.0;	refShip.Height.Balls.DY		= 1.5;
 
 	refShip.GeraldSails.rey_b3		= 1;
@@ -6465,7 +6523,7 @@ void InitShips()
 	refship.Rocking.y = 0.4;
 	refship.Rocking.az = 0.02;
 
-	refship.WaterLine							= 0.0;
+	refship.WaterLine							= -0.9;
 
 	refship.SpeedDependWeight			= 0.15;
 	refship.SubSeaDependWeight			= 1.1;
@@ -6473,6 +6531,11 @@ void InitShips()
 	refship.WindAgainstSpeed   = 2.5;//boal
 	refship.CabinType          = "Cabin"; // boal 28.03.05
 	refship.DeckType           			= "Big";
+
+	refShip.Height.Bombs.Y				= 3.5;	refShip.Height.Bombs.DY		= 3.0;
+	refShip.Height.Grapes.Y				= 4.0;	refShip.Height.Grapes.DY	= 2.7;
+	refShip.Height.Knippels.Y			= 18.0;	refShip.Height.Knippels.DY	= 15.0;
+	refShip.Height.Balls.Y				= 3.5;	refShip.Height.Balls.DY		= 3.0;
 
 	refship.InertiaAccelerationX	= 4;	refship.InertiaBrakingX		= 2.5;
 	refship.InertiaAccelerationY	= 2;	refship.InertiaBrakingY		= 3;
@@ -6545,6 +6608,11 @@ void InitShips()
 	refship.CabinType          		= "Cabin"; // boal 28.03.05
 	refship.DeckType           		= "Big";
 
+	refShip.Height.Bombs.Y		= 3.5;		refShip.Height.Bombs.DY		= 2.5;
+	refShip.Height.Grapes.Y		= 4.0;		refShip.Height.Grapes.DY	= 2.5;
+	refShip.Height.Knippels.Y	= 25.0;		refShip.Height.Knippels.DY	= 22.0;
+	refShip.Height.Balls.Y		= 3.5;		refShip.Height.Balls.DY		= 2.5;
+	
 	refShip.Flags.Mast2.Flag1 = FLAG_SPECIAL;
 	refShip.Flags.Mast3.Flag1 = FLAG_ENSIGN;
 	refShip.Flags.Mast4.Flag1 = FLAG_SPECIAL;
@@ -6623,10 +6691,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
-	refShip.Height.Bombs.Y				= 3.4;	refShip.Height.Bombs.DY		= 1.5;
-	refShip.Height.Grapes.Y				= 5.3;	refShip.Height.Grapes.DY	= 1.575;
-	refShip.Height.Knippels.Y			= 19.5;	refShip.Height.Knippels.DY	= 13.5;
-	refShip.Height.Balls.Y				= 3.4;	refShip.Height.Balls.DY		= 1.5;
+	refShip.Height.Bombs.Y				= 2.8;	refShip.Height.Bombs.DY		= 2.2;
+	refShip.Height.Grapes.Y				= 3.5;	refShip.Height.Grapes.DY	= 1.5;
+	refShip.Height.Knippels.Y			= 21.5;	refShip.Height.Knippels.DY	= 13.5;
+	refShip.Height.Balls.Y				= 2.8;	refShip.Height.Balls.DY		= 2.2;
 
 	refShip.GeraldSails.rey_b1		= 1;
 	refShip.GeraldSails.rey_b2		= 1;
@@ -6704,10 +6772,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
-	refShip.Height.Bombs.Y				= 3.7;	refShip.Height.Bombs.DY		= 1.8;
-	refShip.Height.Grapes.Y				= 5.2;	refShip.Height.Grapes.DY	= 2.6;
-	refShip.Height.Knippels.Y			= 24.0;	refShip.Height.Knippels.DY	= 19.7;
-	refShip.Height.Balls.Y				= 3.7;	refShip.Height.Balls.DY		= 1.8;
+	refShip.Height.Bombs.Y				= 2.2;	refShip.Height.Bombs.DY		= 1.8;
+	refShip.Height.Grapes.Y				= 3.2;	refShip.Height.Grapes.DY	= 1.6;
+	refShip.Height.Knippels.Y			= 20.0;	refShip.Height.Knippels.DY	= 24.7;
+	refShip.Height.Balls.Y				= 2.2;	refShip.Height.Balls.DY		= 1.8;
 
 	refShip.GeraldSails.rey_a22	= 1;
 	refShip.GeraldSails.rey_c2	= 1;
@@ -6778,10 +6846,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
-	refShip.Height.Bombs.Y				= 2.7;		refShip.Height.Bombs.DY		= 1.35;
-	refShip.Height.Grapes.Y				= 5.325;	refShip.Height.Grapes.DY	= 1.575;
-	refShip.Height.Knippels.Y			= 19.5;		refShip.Height.Knippels.DY	= 13.5;
-	refShip.Height.Balls.Y				= 2.7;		refShip.Height.Balls.DY		= 1.35;
+	refShip.Height.Bombs.Y				= 2.7;		refShip.Height.Bombs.DY		= 2.0;
+	refShip.Height.Grapes.Y				= 2.9;		refShip.Height.Grapes.DY	= 2.0;
+	refShip.Height.Knippels.Y			= 19.5;		refShip.Height.Knippels.DY	= 19.5;
+	refShip.Height.Balls.Y				= 2.7;		refShip.Height.Balls.DY		= 2.0;
 
 	refShip.GeraldSails.rey_b1		= 1;
 	refShip.GeraldSails.rey_b2		= 1;
@@ -6853,6 +6921,11 @@ void InitShips()
 	refship.WindAgainstSpeed   = 3.0;//boal
 	refship.CabinType          = "Cabin"; // boal 28.03.05
 	refship.DeckType           			= "Big";
+	
+	refShip.Height.Bombs.Y				= 2.8;	refShip.Height.Bombs.DY		= 2.2;
+	refShip.Height.Grapes.Y				= 3.5;	refShip.Height.Grapes.DY	= 1.5;
+	refShip.Height.Knippels.Y			= 20.5;	refShip.Height.Knippels.DY	= 15.5;
+	refShip.Height.Balls.Y				= 2.8;	refShip.Height.Balls.DY		= 2.2;
 
 	refship.InertiaAccelerationX	= 4.5;	refship.InertiaBrakingX		= 4.5;
 	refship.InertiaAccelerationY	= 3;	refship.InertiaBrakingY		= 3;
@@ -6923,6 +6996,11 @@ void InitShips()
 	refship.WindAgainstSpeed   = 3.0;//boal
 	refship.CabinType          = "Cabin"; // boal 28.03.05
 	refship.DeckType           = "Big";
+
+	refShip.Height.Bombs.Y				= 2.8;	refShip.Height.Bombs.DY		= 2.2;
+	refShip.Height.Grapes.Y				= 3.5;	refShip.Height.Grapes.DY	= 2.0;
+	refShip.Height.Knippels.Y			= 17.5;	refShip.Height.Knippels.DY	= 18	.0;
+	refShip.Height.Balls.Y				= 2.8;	refShip.Height.Balls.DY		= 2.2;
 
 	refship.InertiaAccelerationX	= 5.0;	refship.InertiaBrakingX		= 5.0;
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
@@ -6996,10 +7074,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 3;	refship.InertiaBrakingY		= 3;
 	refship.InertiaAccelerationZ	= 4.5;	refship.InertiaBrakingZ		= 4.5;
 
-	refShip.Height.Bombs.Y				= 3.0;		refShip.Height.Bombs.DY		= 1.5;
-	refShip.Height.Grapes.Y				= 4.4;		refShip.Height.Grapes.DY	= 2.2;
+	refShip.Height.Bombs.Y				= 3.0;		refShip.Height.Bombs.DY		= 1.9;
+	refShip.Height.Grapes.Y				= 3.4;		refShip.Height.Grapes.DY	= 2.2;
 	refShip.Height.Knippels.Y			= 21.4;		refShip.Height.Knippels.DY	= 19.8;
-	refShip.Height.Balls.Y				= 3.0;		refShip.Height.Balls.DY		= 1.5;
+	refShip.Height.Balls.Y				= 3.0;		refShip.Height.Balls.DY		= 1.9;
 
 	refShip.GeraldSails.rey_b2				= 1;
 	refShip.GeraldSails.rey_b3				= 1;
@@ -7070,10 +7148,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
-	refShip.Height.Bombs.Y			= 1.0;	refShip.Height.Bombs.DY		= 0.5;
-	refShip.Height.Grapes.Y			= 2.0;	refShip.Height.Grapes.DY	= 1.0;
-	refShip.Height.Knippels.Y		= 10.0;	refShip.Height.Knippels.DY	= 8.0;
-	refShip.Height.Balls.Y			= 1.0;	refShip.Height.Balls.DY		= 0.5;
+	refShip.Height.Bombs.Y				= 3.7;		refShip.Height.Bombs.DY		= 3.3;
+	refShip.Height.Grapes.Y				= 3.3;		refShip.Height.Grapes.DY	= 3.1;
+	refShip.Height.Knippels.Y			= 30.1;		refShip.Height.Knippels.DY	= 22.8;
+	refShip.Height.Balls.Y				= 3.7;		refShip.Height.Balls.DY		= 3.3;
 
 	refShip.GeraldSails.rey_b2	= 1;
 	refShip.GeraldSails.rey_b3	= 1;
@@ -7152,10 +7230,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 3.5;	refship.InertiaBrakingY		= 3;
 	refship.InertiaAccelerationZ	= 4.5;	refship.InertiaBrakingZ		= 4.0;
 
-	refShip.Height.Bombs.Y				= 6.7;		refShip.Height.Bombs.DY		= 3.3;
-	refShip.Height.Grapes.Y				= 8.3;		refShip.Height.Grapes.DY	= 4.1;
-	refShip.Height.Knippels.Y			= 32.1;		refShip.Height.Knippels.DY	= 25.8;
-	refShip.Height.Balls.Y				= 6.7;		refShip.Height.Balls.DY		= 3.3;
+	refShip.Height.Bombs.Y				= 3.7;		refShip.Height.Bombs.DY		= 3.3;
+	refShip.Height.Grapes.Y				= 3.3;		refShip.Height.Grapes.DY	= 3.1;
+	refShip.Height.Knippels.Y			= 30.1;		refShip.Height.Knippels.DY	= 22.8;
+	refShip.Height.Balls.Y				= 3.7;		refShip.Height.Balls.DY		= 3.3;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -7235,14 +7313,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 3;	refship.InertiaBrakingY		= 3;
 	refship.InertiaAccelerationZ	= 4.5;	refship.InertiaBrakingZ		= 4.5;
 
-	refShip.Height.Bombs.Y				= 6.7;
-	refShip.Height.Bombs.DY		= 3.3;
-	refShip.Height.Grapes.Y				= 8.3;
-	refShip.Height.Grapes.DY	= 4.1;
-	refShip.Height.Knippels.Y			= 32.1;
-	refShip.Height.Knippels.DY	= 25.8;
-	refShip.Height.Balls.Y				= 6.7;
-	refShip.Height.Balls.DY		= 3.3;
+	refShip.Height.Bombs.Y				= 3.7;		refShip.Height.Bombs.DY		= 2.3;
+	refShip.Height.Grapes.Y				= 3.3;		refShip.Height.Grapes.DY	= 2.1;
+	refShip.Height.Knippels.Y			= 19.1;		refShip.Height.Knippels.DY	= 16.8;
+	refShip.Height.Balls.Y				= 3.7;		refShip.Height.Balls.DY		= 2.3;
 
 	refShip.GeraldSails.rey_b2	= 1;
 	refShip.GeraldSails.rey_b3	= 1;
@@ -7312,10 +7386,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
-	refShip.Height.Bombs.Y = 1.0; refShip.Height.Bombs.DY = 0.5;
-	refShip.Height.Grapes.Y = 2.0; refShip.Height.Grapes.DY = 1.0;
-	refShip.Height.Knippels.Y = 10.0; refShip.Height.Knippels.DY = 8.0;
-	refShip.Height.Balls.Y = 1.0; refShip.Height.Balls.DY = 0.5;
+	refShip.Height.Bombs.Y = 2.7; refShip.Height.Bombs.DY = 1.5;
+	refShip.Height.Grapes.Y = 3.2; refShip.Height.Grapes.DY = 1.2;
+	refShip.Height.Knippels.Y = 22.0; refShip.Height.Knippels.DY = 18.0;
+	refShip.Height.Balls.Y = 2.7; refShip.Height.Balls.DY = 1.5;
 
 	refShip.GeraldSails.rey_b1 = 1;
 	refShip.GeraldSails.rey_b2 = 1;
@@ -7389,10 +7463,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
-	refShip.Height.Bombs.Y = 2.7;			refShip.Height.Bombs.DY = 1.3;
-	refShip.Height.Grapes.Y = 4.3;			refShip.Height.Grapes.DY = 2.1;
-	refShip.Height.Knippels.Y = 13.0;		refShip.Height.Knippels.DY = 11.7;
-	refShip.Height.Balls.Y = 2.7;			refShip.Height.Balls.DY = 1.3;
+	refShip.Height.Bombs.Y = 2.4; refShip.Height.Bombs.DY = 2.3;
+	refShip.Height.Grapes.Y = 3.0; refShip.Height.Grapes.DY = 1.5;
+	refShip.Height.Knippels.Y = 16.0; refShip.Height.Knippels.DY = 15.0;
+	refShip.Height.Balls.Y = 2.4; refShip.Height.Balls.DY = 2.3;
 
 	refShip.GeraldSails.rey_b3		= 1;
 	refShip.GeraldSails.rey_b2		= 1;
@@ -7465,6 +7539,11 @@ void InitShips()
 	refship.InertiaAccelerationY	= 3.5;	refship.InertiaBrakingY		= 3;
 	refship.InertiaAccelerationZ	= 4.5;	refship.InertiaBrakingZ		= 4.0;
 
+	refShip.Height.Bombs.Y		= 3.0;		refShip.Height.Bombs.DY		= 2.0;
+	refShip.Height.Grapes.Y		= 3.5;		refShip.Height.Grapes.DY	= 2.0;
+	refShip.Height.Knippels.Y	= 22.0;		refShip.Height.Knippels.DY	= 18.0;
+	refShip.Height.Balls.Y		= 3.0;		refShip.Height.Balls.DY		= 2.0;
+	
 	refShip.GeraldSails.rey_b2			= 1;
 	refShip.GeraldSails.rey_b3			= 1;
 	refShip.GeraldSails.rey_b1			= 1;
@@ -7536,10 +7615,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
-	refShip.Height.Bombs.Y				= 6.7;		refShip.Height.Bombs.DY		= 3.3;
-	refShip.Height.Grapes.Y				= 8.3;		refShip.Height.Grapes.DY	= 4.1;
-	refShip.Height.Knippels.Y			= 32.1;		refShip.Height.Knippels.DY	= 25.8;
-	refShip.Height.Balls.Y				= 6.7;		refShip.Height.Balls.DY		= 3.3;
+	refShip.Height.Bombs.Y		= 3.0;		refShip.Height.Bombs.DY		= 2.0;
+	refShip.Height.Grapes.Y		= 3.5;		refShip.Height.Grapes.DY	= 2.0;
+	refShip.Height.Knippels.Y	= 22.0;		refShip.Height.Knippels.DY	= 16.0;
+	refShip.Height.Balls.Y		= 3.0;		refShip.Height.Balls.DY		= 2.0;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -7609,6 +7688,11 @@ void InitShips()
 	refship.WindAgainstSpeed            		= 3.0;//boal
 	refship.CabinType          			= "Cabin_Huge"; // boal 28.03.05
 	refship.DeckType           			= "Lineship";
+
+	refShip.Height.Bombs.Y		= 3.0;		refShip.Height.Bombs.DY		= 2.0;
+	refShip.Height.Grapes.Y		= 3.5;		refShip.Height.Grapes.DY	= 2.0;
+	refShip.Height.Knippels.Y	= 22.0;		refShip.Height.Knippels.DY	= 16.0;
+	refShip.Height.Balls.Y		= 3.0;		refShip.Height.Balls.DY		= 2.0;
 
 	refShip.Flags.Mast0.Flag1 = FLAG_ENSIGN;
 	refShip.Flags.Mast1.Flag1 = FLAG_ENSIGN;
@@ -7688,6 +7772,11 @@ void InitShips()
 	refship.CabinType          	= "Cabin_Huge"; // boal 28.03.05
 	refship.DeckType           			= "Big";
 
+	refShip.Height.Bombs.Y		= 4.0;		refShip.Height.Bombs.DY		= 3.0;
+	refShip.Height.Grapes.Y		= 4.5;		refShip.Height.Grapes.DY	= 3.0;
+	refShip.Height.Knippels.Y	= 28.0;		refShip.Height.Knippels.DY	= 20.0;
+	refShip.Height.Balls.Y		= 4.0;		refShip.Height.Balls.DY		= 3.0;
+
 	refship.InertiaAccelerationX	= 4.5;	refship.InertiaBrakingX		= 4.5;
 	refship.InertiaAccelerationY	= 3;	refship.InertiaBrakingY		= 3;
 	refship.InertiaAccelerationZ	= 4.5;	refship.InertiaBrakingZ		= 4.5;
@@ -7763,6 +7852,11 @@ void InitShips()
 	refship.CabinType          			= "Cabin_Huge"; // boal 28.03.05
 	refship.DeckType           			= "Lineship";
 
+	refShip.Height.Bombs.Y		= 3.0;		refShip.Height.Bombs.DY		= 2.0;
+	refShip.Height.Grapes.Y		= 3.5;		refShip.Height.Grapes.DY	= 2.0;
+	refShip.Height.Knippels.Y	= 25.0;		refShip.Height.Knippels.DY	= 16.0;
+	refShip.Height.Balls.Y		= 3.0;		refShip.Height.Balls.DY		= 2.0;
+
 	refship.InertiaAccelerationX	= 4.5;	refship.InertiaBrakingX		= 4.0;
 	refship.InertiaAccelerationY	= 3.5;	refship.InertiaBrakingY		= 3;
 	refship.InertiaAccelerationZ	= 4.5;	refship.InertiaBrakingZ		= 4.0;
@@ -7835,10 +7929,10 @@ void InitShips()
 	refship.CabinType          			= "Cabin_Huge"; // boal 28.03.05
 	refship.DeckType           			= "Lineship";
 
-	refShip.Height.Bombs.Y				= 4.5;		refShip.Height.Bombs.DY		= 2.0;
-	refShip.Height.Grapes.Y				= 8.0;		refShip.Height.Grapes.DY	= 2.0;
-	refShip.Height.Knippels.Y			= 35.0;		refShip.Height.Knippels.DY	= 30.0;
-	refShip.Height.Balls.Y				= 4.5;		refShip.Height.Balls.DY		= 2.0;
+	refShip.Height.Bombs.Y				= 3.5;		refShip.Height.Bombs.DY		= 3.0;
+	refShip.Height.Grapes.Y				= 4.5;		refShip.Height.Grapes.DY	= 2.0;
+	refShip.Height.Knippels.Y			= 24.0;		refShip.Height.Knippels.DY	= 23.0;
+	refShip.Height.Balls.Y				= 3.5;		refShip.Height.Balls.DY		= 3.0;
 
 	refship.InertiaAccelerationX	= 5.0;	refship.InertiaBrakingX		= 5.0;
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
@@ -7925,10 +8019,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 3.0;		refship.InertiaBrakingY		= 2.5;
 	refship.InertiaAccelerationZ	= 4.0;	refship.InertiaBrakingZ		= 3.5;
 
-	refShip.Height.Bombs.Y				= 7.2;		refShip.Height.Bombs.DY		= 3.6;
-	refShip.Height.Grapes.Y				= 8.5;		refShip.Height.Grapes.DY	= 4.2;
-	refShip.Height.Knippels.Y			= 28.3;		refShip.Height.Knippels.DY	= 22.0;
-	refShip.Height.Balls.Y				= 7.2;		refShip.Height.Balls.DY		= 3.6;
+	refShip.Height.Bombs.Y				= 4.4;		refShip.Height.Bombs.DY		= 3.5;
+	refShip.Height.Grapes.Y				= 5.0;		refShip.Height.Grapes.DY	= 2.7;
+	refShip.Height.Knippels.Y			= 32.0;		refShip.Height.Knippels.DY	= 30.0;
+	refShip.Height.Balls.Y				= 4.4;		refShip.Height.Balls.DY		= 3.5;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -8003,10 +8097,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
-	refShip.Height.Bombs.Y				= 7.2;		refShip.Height.Bombs.DY		= 3.6;
-	refShip.Height.Grapes.Y				= 8.5;		refShip.Height.Grapes.DY	= 4.2;
+	refShip.Height.Bombs.Y				= 4.2;		refShip.Height.Bombs.DY		= 2.9;
+	refShip.Height.Grapes.Y				= 4.5;		refShip.Height.Grapes.DY	= 2.2;
 	refShip.Height.Knippels.Y			= 28.3;		refShip.Height.Knippels.DY	= 22.0;
-	refShip.Height.Balls.Y				= 7.2;		refShip.Height.Balls.DY		= 3.6;
+	refShip.Height.Balls.Y				= 4.2;		refShip.Height.Balls.DY		= 2.9;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -8086,10 +8180,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
-	refShip.Height.Bombs.Y				= 6.8;		refShip.Height.Bombs.DY		= 3.4;
-	refShip.Height.Grapes.Y				= 8.2;		refShip.Height.Grapes.DY	= 4.1;
-	refShip.Height.Knippels.Y			= 33.6;		refShip.Height.Knippels.DY	= 24.8;
-	refShip.Height.Balls.Y				= 6.8;		refShip.Height.Balls.DY		= 3.4;
+	refShip.Height.Bombs.Y				= 4.8;		refShip.Height.Bombs.DY		= 3.4;
+	refShip.Height.Grapes.Y				= 5.2;		refShip.Height.Grapes.DY	= 2.1;
+	refShip.Height.Knippels.Y			= 23.6;		refShip.Height.Knippels.DY	= 20.8;
+	refShip.Height.Balls.Y				= 4.8;		refShip.Height.Balls.DY		= 3.4;
 
 	refShip.GeraldSails.rey_a2	= 1;
 	refShip.GeraldSails.rey_a3	= 1;
@@ -8158,6 +8252,11 @@ void InitShips()
 	refship.CabinType          	= "Cabin_Huge"; // boal 28.03.05
 	refship.DeckType           			= "Lineship";
 
+	refShip.Height.Bombs.Y		= 3.0;		refShip.Height.Bombs.DY		= 3.0;
+	refShip.Height.Grapes.Y		= 4.0;		refShip.Height.Grapes.DY	= 2.0;
+	refShip.Height.Knippels.Y	= 23.0;		refShip.Height.Knippels.DY	= 22.0;
+	refShip.Height.Balls.Y		= 3.0;		refShip.Height.Balls.DY		= 3.0;
+	
 	refShip.Flags.Mast2.Flag1 = FLAG_SPECIAL;
 	refShip.Flags.Mast3.Flag1 = FLAG_ENSIGN;
 	refShip.Flags.Mast4.Flag1 = FLAG_ENSIGN;
@@ -8233,6 +8332,11 @@ void InitShips()
 	refship.WindAgainstSpeed   	= 2.1;//boal
 	refship.CabinType          	= "Cabin_Huge"; // boal 28.03.05
 	refship.DeckType           	= "Lineship";
+	
+	refShip.Height.Bombs.Y		= 3.0;		refShip.Height.Bombs.DY		= 3.0;
+	refShip.Height.Grapes.Y		= 4.0;		refShip.Height.Grapes.DY	= 2.0;
+	refShip.Height.Knippels.Y	= 23.0;		refShip.Height.Knippels.DY	= 22.0;
+	refShip.Height.Balls.Y		= 3.0;		refShip.Height.Balls.DY		= 3.0;
 
 	refShip.Flags.Mast3.Flag1 = FLAG_SPECIAL;
 	refShip.Flags.Mast2.Flag1 = FLAG_ENSIGN;
@@ -8310,10 +8414,10 @@ void InitShips()
 	refship.InertiaAccelerationY = 2.5;		refship.InertiaBrakingY = 2.5;
 	refship.InertiaAccelerationZ = 3.5;		refship.InertiaBrakingZ = 3.0;
 
-	refShip.Height.Bombs.Y = 3.5;			refShip.Height.Bombs.DY = 1.7;
-	refShip.Height.Grapes.Y = 4.8;			refShip.Height.Grapes.DY = 2.4;
-	refShip.Height.Knippels.Y = 16.7;		refShip.Height.Knippels.DY = 12.8;
-	refShip.Height.Balls.Y = 3.5;			refShip.Height.Balls.DY = 1.7;
+	refShip.Height.Bombs.Y = 3.5;			refShip.Height.Bombs.DY = 2.5;
+	refShip.Height.Grapes.Y = 3.8;			refShip.Height.Grapes.DY = 2.0;
+	refShip.Height.Knippels.Y = 24.7;		refShip.Height.Knippels.DY = 21.8;
+	refShip.Height.Balls.Y = 3.5;			refShip.Height.Balls.DY = 2.5;
 
 	refShip.GeraldSails.rey_b3		= 1;
 	refShip.GeraldSails.rey_b2		= 1;
@@ -8386,10 +8490,10 @@ void InitShips()
 	refShip.Flags.Mast3.Flag1 = FLAG_ENSIGN;
 	refShip.Flags.Mast4.Flag1 = FLAG_ENSIGN;
 
-	refShip.Height.Bombs.Y				= 4.0;		refShip.Height.Bombs.DY		= 2.0;
-	refShip.Height.Grapes.Y				= 7.0;		refShip.Height.Grapes.DY	= 1.5;
-	refShip.Height.Knippels.Y			= 36.0;		refShip.Height.Knippels.DY	= 32.0;
-	refShip.Height.Balls.Y				= 4.0;		refShip.Height.Balls.DY		= 2.0;
+	refShip.Height.Bombs.Y				= 4.0;		refShip.Height.Bombs.DY		= 3.0;
+	refShip.Height.Grapes.Y				= 5.0;		refShip.Height.Grapes.DY	= 1.5;
+	refShip.Height.Knippels.Y			= 27.0;		refShip.Height.Knippels.DY	= 27.0;
+	refShip.Height.Balls.Y				= 4.0;		refShip.Height.Balls.DY		= 3.0;
 
 	refship.InertiaAccelerationX	= 3.5;	refship.InertiaBrakingX		= 3.0;
 	refship.InertiaAccelerationY	= 2.5;	refship.InertiaBrakingY		= 2.5;
@@ -8460,6 +8564,11 @@ void InitShips()
 	refship.WindAgainstSpeed   = 1.8;//boal
 	refship.CabinType          = "Cabin_Huge"; // boal 28.03.05
 	refship.DeckType           			= "Lineship";
+
+	refShip.Height.Bombs.Y				= 4.0;		refShip.Height.Bombs.DY		= 3.0;
+	refShip.Height.Grapes.Y				= 5.0;		refShip.Height.Grapes.DY	= 1.5;
+	refShip.Height.Knippels.Y			= 27.0;		refShip.Height.Knippels.DY	= 27.0;
+	refShip.Height.Balls.Y				= 4.0;		refShip.Height.Balls.DY		= 3.0;
 
 	refShip.Flags.Mast2.Flag1 = FLAG_SPECIAL;
 	refShip.Flags.Mast3.Flag1 = FLAG_ENSIGN;
@@ -8537,6 +8646,11 @@ void InitShips()
 	refship.WindAgainstSpeed   	= 2.0;//boal
 	refship.CabinType          		= "Cabin_Huge"; // boal 28.03.05
 	refship.DeckType           			= "Lineship";
+
+	refShip.Height.Bombs.Y				= 4.0;		refShip.Height.Bombs.DY		= 3.0;
+	refShip.Height.Grapes.Y				= 5.0;		refShip.Height.Grapes.DY	= 1.5;
+	refShip.Height.Knippels.Y			= 27.0;		refShip.Height.Knippels.DY	= 27.0;
+	refShip.Height.Balls.Y				= 4.0;		refShip.Height.Balls.DY		= 3.0;
 
 	refShip.Flags.Mast1.Flag1 = FLAG_ENSIGN;
 	refShip.Flags.Mast2.Flag1 = FLAG_SPECIAL;
@@ -8625,10 +8739,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 2.5;	refship.InertiaBrakingY		= 2.5;
 	refship.InertiaAccelerationZ	= 3.5;	refship.InertiaBrakingZ		= 3.0;
 
-	refShip.Height.Bombs.Y				= 6.8;		refShip.Height.Bombs.DY		= 3.4;
-	refShip.Height.Grapes.Y				= 8.2;		refShip.Height.Grapes.DY	= 4.1;
-	refShip.Height.Knippels.Y			= 33.6;		refShip.Height.Knippels.DY	= 24.8;
-	refShip.Height.Balls.Y				= 6.8;		refShip.Height.Balls.DY		= 3.4;
+	refShip.Height.Bombs.Y				= 5.5;		refShip.Height.Bombs.DY		= 4.4;
+	refShip.Height.Grapes.Y				= 6.2;		refShip.Height.Grapes.DY	= 3.1;
+	refShip.Height.Knippels.Y			= 33.6;		refShip.Height.Knippels.DY	= 32.8;
+	refShip.Height.Balls.Y				= 5.5;		refShip.Height.Balls.DY		= 4.4;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -8697,6 +8811,11 @@ void InitShips()
 	refship.WindAgainstSpeed            = 1.8;
 	refship.CabinType          			= "Cabin_Huge";
 	refship.DeckType           			= "Lineship";
+
+	refShip.Height.Bombs.Y				= 5.0;		refShip.Height.Bombs.DY		= 4.0;
+	refShip.Height.Grapes.Y				= 6.0;		refShip.Height.Grapes.DY	= 3.1;
+	refShip.Height.Knippels.Y			= 33.6;		refShip.Height.Knippels.DY	= 32.8;
+	refShip.Height.Balls.Y				= 5.0;		refShip.Height.Balls.DY		= 4.0;
 
 	refShip.Flags.Mast1.Flag1 = FLAG_ENSIGN;
 	refShip.Flags.Mast2.Flag1 = FLAG_SPECIAL;
@@ -8785,10 +8904,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 2.5;	refship.InertiaBrakingY		= 2.5;
 	refship.InertiaAccelerationZ	= 3.5;	refship.InertiaBrakingZ		= 3.0;
 
-	refShip.Height.Bombs.Y				= 6.8;		refShip.Height.Bombs.DY		= 3.4;
-	refShip.Height.Grapes.Y				= 8.2;		refShip.Height.Grapes.DY	= 4.1;
-	refShip.Height.Knippels.Y			= 33.6;		refShip.Height.Knippels.DY	= 24.8;
-	refShip.Height.Balls.Y				= 6.8;		refShip.Height.Balls.DY		= 3.4;
+	refShip.Height.Bombs.Y				= 3.8;		refShip.Height.Bombs.DY		= 3.4;
+	refShip.Height.Grapes.Y				= 4.0;		refShip.Height.Grapes.DY	= 2.0;
+	refShip.Height.Knippels.Y			= 25.6;		refShip.Height.Knippels.DY	= 27.8;
+	refShip.Height.Balls.Y				= 3.8;		refShip.Height.Balls.DY		= 3.4;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -8869,10 +8988,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 2.5;	refship.InertiaBrakingY		= 2.5;
 	refship.InertiaAccelerationZ	= 3.5;	refship.InertiaBrakingZ		= 3.0;
 
-	refShip.Height.Bombs.Y				= 6.7;		refShip.Height.Bombs.DY		= 3.3;
-	refShip.Height.Grapes.Y				= 8.3;		refShip.Height.Grapes.DY	= 4.1;
-	refShip.Height.Knippels.Y			= 32.1;		refShip.Height.Knippels.DY	= 25.8;
-	refShip.Height.Balls.Y				= 6.7;		refShip.Height.Balls.DY		= 3.3;
+	refShip.Height.Bombs.Y				= 3.7;		refShip.Height.Bombs.DY		= 3.3;
+	refShip.Height.Grapes.Y				= 4.3;		refShip.Height.Grapes.DY	= 2.1;
+	refShip.Height.Knippels.Y			= 27.1;		refShip.Height.Knippels.DY	= 23.8;
+	refShip.Height.Balls.Y				= 3.7;		refShip.Height.Balls.DY		= 3.3;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -8942,10 +9061,10 @@ void InitShips()
 	refship.CabinType          			= "Cabin_Huge"; // boal 28.03.05
 	refship.DeckType           			= "Lineship";
 
-	refShip.Height.Bombs.Y				= 4.0;		refShip.Height.Bombs.DY		= 2.0;
-	refShip.Height.Grapes.Y				= 7.0;		refShip.Height.Grapes.DY	= 1.5;
-	refShip.Height.Knippels.Y			= 36.0;		refShip.Height.Knippels.DY	= 32.0;
-	refShip.Height.Balls.Y				= 4.0;		refShip.Height.Balls.DY		= 2.0;
+	refShip.Height.Bombs.Y				= 4.5;		refShip.Height.Bombs.DY		= 4.0;
+	refShip.Height.Grapes.Y				= 5.0;		refShip.Height.Grapes.DY	= 3.5;
+	refShip.Height.Knippels.Y			= 30.0;		refShip.Height.Knippels.DY	= 32.0;
+	refShip.Height.Balls.Y				= 4.5;		refShip.Height.Balls.DY		= 4.0;
 
 	refship.InertiaAccelerationX	= 3.5;	refship.InertiaBrakingX		= 3.0;
 	refship.InertiaAccelerationY	= 2.5;	refship.InertiaBrakingY		= 2.5;
@@ -9016,6 +9135,11 @@ void InitShips()
 	refship.CabinType          			= "Cabin_Huge"; // boal 28.03.05
 	refship.DeckType           			= "Lineship";
 
+	refShip.Height.Bombs.Y				= 3.5;		refShip.Height.Bombs.DY		= 4.0;
+	refShip.Height.Grapes.Y				= 4.0;		refShip.Height.Grapes.DY	= 3.5;
+	refShip.Height.Knippels.Y			= 24.0;		refShip.Height.Knippels.DY	= 24.0;
+	refShip.Height.Balls.Y				= 3.5;		refShip.Height.Balls.DY		= 4.0;
+	
 	refShip.Flags.Mast0.Flag1 = FLAG_ENSIGN;
 	refShip.Flags.Mast1.Flag1 = FLAG_ENSIGN;
 	refShip.Flags.Mast2.Flag1 = FLAG_SPECIAL;
@@ -9094,6 +9218,11 @@ void InitShips()
 	refship.CabinType          			= "Cabin_Huge"; // boal 28.03.05
 	refship.DeckType           			= "Lineship";
 
+	refShip.Height.Bombs.Y				= 4.5;		refShip.Height.Bombs.DY		= 4.0;
+	refShip.Height.Grapes.Y				= 5.0;		refShip.Height.Grapes.DY	= 3.5;
+	refShip.Height.Knippels.Y			= 32.0;		refShip.Height.Knippels.DY	= 29.0;
+	refShip.Height.Balls.Y				= 4.5;		refShip.Height.Balls.DY		= 4.0;
+
 	refShip.Flags.Mast2.Flag1 = FLAG_ENSIGN;
 	refShip.Flags.Mast3.Flag1 = FLAG_SPECIAL;
 	refShip.Flags.Mast4.Flag1 = FLAG_ENSIGN;
@@ -9169,10 +9298,10 @@ void InitShips()
 	refship.CabinType          			= "Cabin_Huge"; // boal 28.03.05
 	refship.DeckType           			= "Lineship";
 
-	refShip.Height.Bombs.Y				= 6.7;		refShip.Height.Bombs.DY		= 3.0;
-	refShip.Height.Grapes.Y				= 11.0;		refShip.Height.Grapes.DY	= 3.0;
-	refShip.Height.Knippels.Y			= 46.0;		refShip.Height.Knippels.DY	= 40.0;
-	refShip.Height.Balls.Y				= 6.7;		refShip.Height.Balls.DY		= 3.0;
+	refShip.Height.Bombs.Y				= 5.7;		refShip.Height.Bombs.DY		= 4.0;
+	refShip.Height.Grapes.Y				= 6.0;		refShip.Height.Grapes.DY	= 3.0;
+	refShip.Height.Knippels.Y			= 34.0;		refShip.Height.Knippels.DY	= 35.0;
+	refShip.Height.Balls.Y				= 5.7;		refShip.Height.Balls.DY		= 4.0;
 
 	refship.InertiaAccelerationX	= 2.0;	refship.InertiaBrakingX		= 2.0;
 	refship.InertiaAccelerationY	= 2;	refship.InertiaBrakingY		= 2;
@@ -9243,7 +9372,12 @@ void InitShips()
 	refship.WindAgainstSpeed   			= 1.5;//boal
 	refship.CabinType          			= "Cabin_Huge"; // boal 28.03.05
 	refship.DeckType           			= "Lineship";
-
+	
+	refShip.Height.Bombs.Y				= 4.7;		refShip.Height.Bombs.DY		= 4.0;
+	refShip.Height.Grapes.Y				= 5.0;		refShip.Height.Grapes.DY	= 3.0;
+	refShip.Height.Knippels.Y			= 29.0;		refShip.Height.Knippels.DY	= 24.0;
+	refShip.Height.Balls.Y				= 4.7;		refShip.Height.Balls.DY		= 4.0;
+	
 	refship.InertiaAccelerationX	= 2.0;	refship.InertiaBrakingX		= 2.0;
 	refship.InertiaAccelerationY	= 2;	refship.InertiaBrakingY		= 2;
 	refship.InertiaAccelerationZ	= 2.0;	refship.InertiaBrakingZ		= 2.0;
@@ -9316,6 +9450,11 @@ void InitShips()
 	refship.CabinType         			= "Cabin_Huge"; // boal 28.03.05
 	refship.DeckType           			= "Lineship";
 
+	refShip.Height.Bombs.Y				= 5.6;		refShip.Height.Bombs.DY		= 4.3;
+	refShip.Height.Grapes.Y				= 6.5;		refShip.Height.Grapes.DY	= 3.2;
+	refShip.Height.Knippels.Y			= 35.8;		refShip.Height.Knippels.DY	= 29.6;
+	refShip.Height.Balls.Y				= 6.6;		refShip.Height.Balls.DY		= 4.3;
+	
 	refShip.Flags.Mast2.Flag1 = FLAG_SPECIAL;
 	refShip.Flags.Mast3.Flag1 = FLAG_ENSIGN;
 	refShip.Flags.Mast4.Flag1 = FLAG_SPECIAL;
@@ -9396,10 +9535,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 2;	refship.InertiaBrakingY		= 2;
 	refship.InertiaAccelerationZ	= 2.0;	refship.InertiaBrakingZ		= 2.0;
 
-	refShip.Height.Bombs.Y = 4.3;			refShip.Height.Bombs.DY = 2.1;
-	refShip.Height.Grapes.Y = 5.6;			refShip.Height.Grapes.DY = 2.8;
-	refShip.Height.Knippels.Y = 18.7;		refShip.Height.Knippels.DY = 12.7;
-	refShip.Height.Balls.Y = 4.3;			refShip.Height.Balls.DY = 2.1;
+	refShip.Height.Bombs.Y				= 4.0;		refShip.Height.Bombs.DY		= 3.3;
+	refShip.Height.Grapes.Y				= 4.5;		refShip.Height.Grapes.DY	= 3.2;
+	refShip.Height.Knippels.Y			= 26.8;		refShip.Height.Knippels.DY	= 23.6;
+	refShip.Height.Balls.Y				= 4.0;		refShip.Height.Balls.DY		= 3.3;
 
 	refShip.GeraldSails.rey_b3		= 1;
 	refShip.GeraldSails.rey_b2		= 1;
@@ -9480,10 +9619,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 1.5;	refship.InertiaBrakingY		= 1.5;
 	refship.InertiaAccelerationZ	= 1.5;	refship.InertiaBrakingZ		= 1.5;
 
-	refShip.Height.Bombs.Y				= 8.6;		refShip.Height.Bombs.DY		= 4.3;
-	refShip.Height.Grapes.Y				= 12.5;		refShip.Height.Grapes.DY	= 6.2;
-	refShip.Height.Knippels.Y			= 36.8;		refShip.Height.Knippels.DY	= 29.6;
-	refShip.Height.Balls.Y				= 8.6;		refShip.Height.Balls.DY		= 4.3;
+	refShip.Height.Bombs.Y				= 4.0;		refShip.Height.Bombs.DY		= 3.3;
+	refShip.Height.Grapes.Y				= 4.5;		refShip.Height.Grapes.DY	= 3.0;
+	refShip.Height.Knippels.Y			= 29.8;		refShip.Height.Knippels.DY	= 26.6;
+	refShip.Height.Balls.Y				= 4.0;		refShip.Height.Balls.DY		= 3.3;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -9552,6 +9691,11 @@ void InitShips()
 	refship.WindAgainstSpeed   			= 1.5;//boal
 	refship.CabinType          			= "Cabin_Huge"; // boal 28.03.05
 	refship.DeckType           			= "Lineship";
+
+	refShip.Height.Bombs.Y				= 4.6;		refShip.Height.Bombs.DY		= 4.3;
+	refShip.Height.Grapes.Y				= 5.2;		refShip.Height.Grapes.DY	= 3.2;
+	refShip.Height.Knippels.Y			= 31.8;		refShip.Height.Knippels.DY	= 31.6;
+	refShip.Height.Balls.Y				= 4.6;		refShip.Height.Balls.DY		= 4.3;
 
 	refShip.Flags.Mast1.Flag1 = FLAG_ENSIGN;
 	refShip.Flags.Mast2.Flag1 = FLAG_SPECIAL;
@@ -9629,6 +9773,11 @@ void InitShips()
 	refship.WindAgainstSpeed   			= 1.4;//boal
 	refship.CabinType          			= "Cabin_Huge"; // boal 28.03.05
 	refship.DeckType           			= "Lineship";
+
+	refShip.Height.Bombs.Y				= 5.6;		refShip.Height.Bombs.DY		= 3.3;
+	refShip.Height.Grapes.Y				= 6.2;		refShip.Height.Grapes.DY	= 3.2;
+	refShip.Height.Knippels.Y			= 36.8;		refShip.Height.Knippels.DY	= 35.6;
+	refShip.Height.Balls.Y				= 5.6;		refShip.Height.Balls.DY		= 3.3;
 
 	refShip.Flags.Mast0.Flag1 = FLAG_ENSIGN;
 	refShip.Flags.Mast1.Flag1 = FLAG_SPECIAL;
@@ -9716,10 +9865,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 10;	refship.InertiaBrakingY		= 10;
 	refship.InertiaAccelerationZ	= 10.0;	refship.InertiaBrakingZ		= 10.0;
 
-	refShip.Height.Bombs.Y				= 1.5;	refShip.Height.Bombs.DY		= 0.7;
-	refShip.Height.Grapes.Y				= 2.7;	refShip.Height.Grapes.DY	= 1.3;
-	refShip.Height.Knippels.Y			= 13.4;	refShip.Height.Knippels.DY	= 9.7;
-	refShip.Height.Balls.Y				= 1.5;	refShip.Height.Balls.DY		= 0.7;
+	refShip.Height.Bombs.Y				= 1.6;	refShip.Height.Bombs.DY		= 0.7;
+	refShip.Height.Grapes.Y				= 1.9;	refShip.Height.Grapes.DY	= 0.5;
+	refShip.Height.Knippels.Y			= 15.4;	refShip.Height.Knippels.DY	= 7.7;
+	refShip.Height.Balls.Y				= 1.6;	refShip.Height.Balls.DY		= 0.7;
 
 	refship.Track.Enable	= true;
 	refship.Track1.ZStart	= 0.20;
@@ -9784,10 +9933,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY	= 8;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ	= 6.0;
 
-	refShip.Height.Bombs.Y	= 1.7;			refShip.Height.Bombs.DY	= 0.8;
-	refShip.Height.Grapes.Y	= 3.4;			refShip.Height.Grapes.DY	= 1.7;
-	refShip.Height.Knippels.Y	= 10.1;		refShip.Height.Knippels.DY	= 9.2;
-	refShip.Height.Balls.Y		= 1.7;		refShip.Height.Balls.DY	= 0.8;
+	refShip.Height.Bombs.Y	= 1.9;			refShip.Height.Bombs.DY	= 0.6;
+	refShip.Height.Grapes.Y	= 2.1;			refShip.Height.Grapes.DY	= 0.7;
+	refShip.Height.Knippels.Y	= 13.1;		refShip.Height.Knippels.DY	= 5.2;
+	refShip.Height.Balls.Y		= 1.9;		refShip.Height.Balls.DY	= 0.6;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -9857,10 +10006,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY	= 8;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ	= 6.0;
 
-	refShip.Height.Bombs.Y	= 1.2;			refShip.Height.Bombs.DY	= 0.6;
-	refShip.Height.Grapes.Y	= 3.1;			refShip.Height.Grapes.DY	= 1.5;
-	refShip.Height.Knippels.Y	= 17.7;		refShip.Height.Knippels.DY	= 16.7;
-	refShip.Height.Balls.Y		= 1.2;		refShip.Height.Balls.DY	= 0.6;
+	refShip.Height.Bombs.Y	= 1.5;			refShip.Height.Bombs.DY	= 0.6;
+	refShip.Height.Grapes.Y	= 1.7;			refShip.Height.Grapes.DY	= 0.5;
+	refShip.Height.Knippels.Y	= 18.7;		refShip.Height.Knippels.DY	= 13.7;
+	refShip.Height.Balls.Y		= 1.5;		refShip.Height.Balls.DY	= 0.6;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -9930,10 +10079,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 8;	refship.InertiaBrakingY	= 8;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ	= 6.0;
 
-	refShip.Height.Bombs.Y	= 1.5;			refShip.Height.Bombs.DY	= 0.7;
-	refShip.Height.Grapes.Y	= 2.8;			refShip.Height.Grapes.DY	= 1.4;
-	refShip.Height.Knippels.Y	= 16.9;		refShip.Height.Knippels.DY	= 15.4;
-	refShip.Height.Balls.Y		= 1.5;		refShip.Height.Balls.DY	= 0.7;
+	refShip.Height.Bombs.Y	= 1.9;			refShip.Height.Bombs.DY	= 0.7;
+	refShip.Height.Grapes.Y	= 2.2;			refShip.Height.Grapes.DY	= 0.6;
+	refShip.Height.Knippels.Y	= 18.9;		refShip.Height.Knippels.DY	= 13.4;
+	refShip.Height.Balls.Y		= 1.9;		refShip.Height.Balls.DY	= 0.7;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -10002,10 +10151,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 6;	refship.InertiaBrakingY		= 6;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ		= 6.0;
 
-	refShip.Height.Bombs.Y				= 1.3;		refShip.Height.Bombs.DY		= 0.6;
-	refShip.Height.Grapes.Y				= 3.1;		refShip.Height.Grapes.DY	= 1.5;
-	refShip.Height.Knippels.Y			= 14.7;		refShip.Height.Knippels.DY	= 15.0;
-	refShip.Height.Balls.Y				= 1.3;		refShip.Height.Balls.DY		= 0.6;
+	refShip.Height.Bombs.Y				= 1.9;		refShip.Height.Bombs.DY		= 0.9;
+	refShip.Height.Grapes.Y				= 2.1;		refShip.Height.Grapes.DY	= 0.7;
+	refShip.Height.Knippels.Y			= 18.7;		refShip.Height.Knippels.DY	= 17.0;
+	refShip.Height.Balls.Y				= 1.9;		refShip.Height.Balls.DY		= 0.9;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -10075,10 +10224,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 6;	refship.InertiaBrakingY		= 6;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ		= 6.0;
 
-	refShip.Height.Bombs.Y				= 1.3;		refShip.Height.Bombs.DY		= 0.6;
-	refShip.Height.Grapes.Y				= 3.1;		refShip.Height.Grapes.DY	= 1.5;
-	refShip.Height.Knippels.Y			= 14.7;		refShip.Height.Knippels.DY	= 15.0;
-	refShip.Height.Balls.Y				= 1.3;		refShip.Height.Balls.DY		= 0.6;
+	refShip.Height.Bombs.Y				= 2.3;		refShip.Height.Bombs.DY		= 0.9;
+	refShip.Height.Grapes.Y				= 3.0;		refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Knippels.Y			= 19.7;		refShip.Height.Knippels.DY	= 16.0;
+	refShip.Height.Balls.Y				= 2.3;		refShip.Height.Balls.DY		= 0.9;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -10149,10 +10298,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 6;	refship.InertiaBrakingY		= 6;
 	refship.InertiaAccelerationZ	= 6.0;	refship.InertiaBrakingZ		= 6.0;
 
-	refShip.Height.Bombs.Y				= 1.3;		refShip.Height.Bombs.DY		= 0.6;
-	refShip.Height.Grapes.Y				= 3.1;		refShip.Height.Grapes.DY	= 1.5;
-	refShip.Height.Knippels.Y			= 14.7;		refShip.Height.Knippels.DY	= 15.0;
-	refShip.Height.Balls.Y				= 1.3;		refShip.Height.Balls.DY		= 0.6;
+	refShip.Height.Bombs.Y				= 1.8;		refShip.Height.Bombs.DY		= 0.9;
+	refShip.Height.Grapes.Y				= 2.5;		refShip.Height.Grapes.DY	= 1.1;
+	refShip.Height.Knippels.Y			= 15.7;		refShip.Height.Knippels.DY	= 13.0;
+	refShip.Height.Balls.Y				= 1.8;		refShip.Height.Balls.DY		= 0.9;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -10223,10 +10372,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
-	refShip.Height.Bombs.Y				= 3.1;	refShip.Height.Bombs.DY		= 1.5;
-	refShip.Height.Grapes.Y				= 4.5;	refShip.Height.Grapes.DY	= 2.2;
-	refShip.Height.Knippels.Y			= 21.2;	refShip.Height.Knippels.DY	= 18.3;
-	refShip.Height.Balls.Y				= 3.1;	refShip.Height.Balls.DY		= 1.5;
+	refShip.Height.Bombs.Y				= 2.1;	refShip.Height.Bombs.DY		= 1.1;
+	refShip.Height.Grapes.Y				= 3.2;	refShip.Height.Grapes.DY	= 1.2;
+	refShip.Height.Knippels.Y			= 23.8;	refShip.Height.Knippels.DY	= 16.3;
+	refShip.Height.Balls.Y				= 2.1;	refShip.Height.Balls.DY		= 1.1;
 
 	refShip.GeraldSails.rey_b1		= 1;
 	refShip.GeraldSails.rey_b2		= 1;
@@ -10302,8 +10451,8 @@ void InitShips()
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
 	refShip.Height.Bombs.Y				= 3.1;	refShip.Height.Bombs.DY		= 1.5;
-	refShip.Height.Grapes.Y				= 4.5;	refShip.Height.Grapes.DY	= 2.2;
-	refShip.Height.Knippels.Y			= 21.2;	refShip.Height.Knippels.DY	= 18.3;
+	refShip.Height.Grapes.Y				= 3.5;	refShip.Height.Grapes.DY	= 1.2;
+	refShip.Height.Knippels.Y			= 20.2;	refShip.Height.Knippels.DY	= 19.3;
 	refShip.Height.Balls.Y				= 3.1;	refShip.Height.Balls.DY		= 1.5;
 
 	refShip.GeraldSails.rey_b1		= 1;
@@ -10376,10 +10525,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
 	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
 
-	refShip.Height.Bombs.Y				= 3.1;	refShip.Height.Bombs.DY		= 1.5;
-	refShip.Height.Grapes.Y				= 4.5;	refShip.Height.Grapes.DY	= 2.2;
+	refShip.Height.Bombs.Y				= 3.4;	refShip.Height.Bombs.DY		= 1.9;
+	refShip.Height.Grapes.Y				= 4.0;	refShip.Height.Grapes.DY	= 2.2;
 	refShip.Height.Knippels.Y			= 21.2;	refShip.Height.Knippels.DY	= 18.3;
-	refShip.Height.Balls.Y				= 3.1;	refShip.Height.Balls.DY		= 1.5;
+	refShip.Height.Balls.Y				= 3.4;	refShip.Height.Balls.DY		= 1.9;
 
 	refShip.GeraldSails.rey_b1		= 1;
 	refShip.GeraldSails.rey_b2		= 1;
@@ -10453,10 +10602,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 3.0;	refship.InertiaBrakingY		= 2.5;
 	refship.InertiaAccelerationZ	= 4.0;	refship.InertiaBrakingZ		= 3.5;
 
-	refShip.Height.Bombs.Y				= 6.4;		refShip.Height.Bombs.DY		= 3.2;
-	refShip.Height.Grapes.Y				= 8.5;		refShip.Height.Grapes.DY	= 4.2;
-	refShip.Height.Knippels.Y			= 27.4;		refShip.Height.Knippels.DY	= 23.4;
-	refShip.Height.Balls.Y				= 6.4;		refShip.Height.Balls.DY		= 3.2;
+	refShip.Height.Bombs.Y				= 5.4;		refShip.Height.Bombs.DY		= 3.9;
+	refShip.Height.Grapes.Y				= 6.5;		refShip.Height.Grapes.DY	= 3.2;
+	refShip.Height.Knippels.Y			= 27.4;		refShip.Height.Knippels.DY	= 26.4;
+	refShip.Height.Balls.Y				= 5.4;		refShip.Height.Balls.DY		= 3.9;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -10529,10 +10678,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 3.0;	refship.InertiaBrakingY		= 2.5;
 	refship.InertiaAccelerationZ	= 4.0;	refship.InertiaBrakingZ		= 3.5;
 
-	refShip.Height.Bombs.Y				= 6.4;		refShip.Height.Bombs.DY		= 3.2;
-	refShip.Height.Grapes.Y				= 8.5;		refShip.Height.Grapes.DY	= 4.2;
-	refShip.Height.Knippels.Y			= 27.4;		refShip.Height.Knippels.DY	= 23.4;
-	refShip.Height.Balls.Y				= 6.4;		refShip.Height.Balls.DY		= 3.2;
+	refShip.Height.Bombs.Y				= 5.4;		refShip.Height.Bombs.DY		= 3.9;
+	refShip.Height.Grapes.Y				= 6.5;		refShip.Height.Grapes.DY	= 3.2;
+	refShip.Height.Knippels.Y			= 27.4;		refShip.Height.Knippels.DY	= 26.4;
+	refShip.Height.Balls.Y				= 5.4;		refShip.Height.Balls.DY		= 3.9;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -10605,10 +10754,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 2;	refship.InertiaBrakingY		= 2;
 	refship.InertiaAccelerationZ	= 2.0;	refship.InertiaBrakingZ		= 2.0;
 
-	refShip.Height.Bombs.Y				= 8.0;		refShip.Height.Bombs.DY		= 4.0;
-	refShip.Height.Grapes.Y				= 9.7;		refShip.Height.Grapes.DY	= 4.8;
-	refShip.Height.Knippels.Y			= 34.7;		refShip.Height.Knippels.DY	= 26.0;
-	refShip.Height.Balls.Y				= 8.0;		refShip.Height.Balls.DY		= 4.0;
+	refShip.Height.Bombs.Y				= 6.6;		refShip.Height.Bombs.DY		= 5.0;
+	refShip.Height.Grapes.Y				= 7.7;		refShip.Height.Grapes.DY	= 3.8;
+	refShip.Height.Knippels.Y			= 37.7;		refShip.Height.Knippels.DY	= 33.0;
+	refShip.Height.Balls.Y				= 6.6;		refShip.Height.Balls.DY		= 5.0;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
@@ -10684,10 +10833,10 @@ void InitShips()
 	refship.InertiaAccelerationY	= 2;	refship.InertiaBrakingY		= 2;
 	refship.InertiaAccelerationZ	= 2.0;	refship.InertiaBrakingZ		= 2.0;
 
-	refShip.Height.Bombs.Y				= 8.6;		refShip.Height.Bombs.DY		= 4.3;
-	refShip.Height.Grapes.Y				= 12.5;		refShip.Height.Grapes.DY	= 6.2;
-	refShip.Height.Knippels.Y			= 36.8;		refShip.Height.Knippels.DY	= 29.6;
-	refShip.Height.Balls.Y				= 8.6;		refShip.Height.Balls.DY		= 4.3;
+	refShip.Height.Bombs.Y				= 6.6;		refShip.Height.Bombs.DY		= 4.9;
+	refShip.Height.Grapes.Y				= 8.5;		refShip.Height.Grapes.DY	= 6.0;
+	refShip.Height.Knippels.Y			= 39.8;		refShip.Height.Knippels.DY	= 34.6;
+	refShip.Height.Balls.Y				= 6.6;		refShip.Height.Balls.DY		= 4.9;
 
 	refShip.GeraldSails.rey_b2		= 1;
 	refShip.GeraldSails.rey_b3		= 1;
