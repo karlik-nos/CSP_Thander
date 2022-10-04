@@ -95,6 +95,10 @@ void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0,
 	AIBalls.Type = Goods[sti(aCharacter.Ship.Cannons.Charge.Type)].Name;
 	if(SeaCameras.Camera != "SeaDeckCamera")
 	{
+		if(AIBalls.Type == GOOD_KNIPPELS)
+		{
+			fTempDispersionX *= 3; 
+		}
 		fCannonHeightMultiply *= 0.3;//высота траектории
 	}
 	AIBalls.HeightMultiply    = fCannonHeightMultiply;
@@ -104,10 +108,7 @@ void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0,
 	AIBalls.RawAng = fCannonDirAng;
 	float fTempDispersionY = Degree2Radian(5.0); // LEO: Важные параметры разброса снарядов - (15.0)
 	float fTempDispersionX = Degree2Radian(6.5); // (5.0)
-	if(AIBalls.Type == GOOD_KNIPPELS)
-	{
-		fTempDispersionX *= 3; 
-	}
+
 	//float fDamage2Cannons = 100.0;
 
 	float fCannons = stf(aCharacter.TmpSkill.Cannons)*10;
