@@ -147,6 +147,9 @@ SantaCatalina_Cave_box3	{сундук рядом с факелом}
 SantaCatalina_Grot	{в пещере справа от залива Сан Хуан дель Норте}
 SantaCatalina_Grot_box1	{сундук на берегу}
 
+Bahames_Grot	{в гроте справа от бухты Приватира}
+Bahames_Grot_box1	{сундук слева от входа}
+
 SantaCatalina_PearlCave	{в пещере слева от залива Сан Хуан дель Норте}
 SantaCatalina_PearlCave_box1	{сундук рядом с каменным мостиком}
 SantaCatalina_PearlCave_box2	{сундук на большом камне}
