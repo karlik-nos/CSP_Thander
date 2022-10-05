@@ -1747,6 +1747,7 @@ void SetMapCross(string _MapLocId)
 	case "Jamaica_Grot": left = 263; top = 287; break;	//{в пещере справа от маяка Порт-Рояля}
 	case "Marigo_Cave": left = 619; top = 140; break;	//{в пещере напротив выхода из Мариго}
 	case "SanJuan_Cave": left = 485; top = 153; break;	//{в пещере недалеко от Сан-Хуана}
+	case "Bahames_Grot": left = 263; top = 33; break;	//{в гроте справа от бухты Приватира}
 	case "Terks_Grot": left = 474; top = 33; break;	//{в пещере справа от залива Северный}
  	case "Trinidad_Grot": left = 591; top = 458; break;	//{в пещере напротив маяка Тринидада и Тобаго}
  	case "FortFrance_Dungeon": left = 499; top = 357; break;	//{в подземелье города Форт де Франс}
