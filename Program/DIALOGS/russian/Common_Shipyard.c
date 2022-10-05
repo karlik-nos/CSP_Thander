@@ -355,7 +355,7 @@ void ProcessDialogEvent()
 				Link.l2 = "Я только хочу поговорить.";
 				link.l2.go = "quests";
 
-				link.l15 = "Я лишь хотел"+ GetSexPhrase("","а") +"узнать, нет ли у вас работы, подходящей для меня? ";
+				link.l15 = "Я лишь хотел"+ GetSexPhrase("","а") +" узнать, нет ли у вас работы, подходящей для меня? ";
 				link.l15.go = "AskQuest";
 				// -->
 				if (CheckAttribute(pchar, "GenQuest.LoanChest.TakeChest") && sti(pchar.GenQuest.LoanChest.TargetIdx) == sti(NPChar.index))
