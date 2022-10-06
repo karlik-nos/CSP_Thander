@@ -75,7 +75,7 @@ void SetFantomParamFromRank(ref NPchar, int  rank, bool setEquip)
 void SetFantomParamFromRank_PPG(ref NPchar, int  rank, bool setEquip)   //WW
 {
     SetRandSPECIAL_PGG(Npchar);
-    CalculateSkillsFromRank(Npchar, rank);
+    CalculateSkillsForRank(Npchar, rank);
     SetFantomHP(NPchar);
 	if (setEquip)
     {
