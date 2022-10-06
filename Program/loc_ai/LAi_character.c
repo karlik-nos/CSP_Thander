@@ -1034,15 +1034,16 @@ void LAi_AllCharactersUpdate(float dltTime)
 					}
 					else
 					{	
-						if(chr.chr_ai.backuptype == officer)
+						if(chr.chr_ai.backuptype == "officer")
 						{
-							DeleteAttribute(chr, "ai_type.backuptype");
-							LAi_type_officer_Init(chr);
+							DeleteAttribute(chr, "chr_ai.backuptype");
+							LAi_SetOfficerType(chr);
+							LAi_tmpl_SetFollow(chr, pchar, -1.0);
 							LAi_SetFightMode(chr, true);
 						}
 						else
 						{
-							DeleteAttribute(chr, "ai_type.backuptype");
+							DeleteAttribute(chr, "chr_ai.backuptype");
 							LAi_SetWarriorTypeNoGroup(chr);
 							LAi_SetFightMode(chr, true);
 						}
