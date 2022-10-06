@@ -608,6 +608,7 @@ void  wdmUpdateAllEncounterLivetime()
     int ihours;
     string sdel;
     float b,k;
+	bool ignore = false;
     if(!actLoadFlag)
     {
 		ihours = GetQuestPastTimeParam("WordMapEncounters_DailyUpdate");
@@ -638,9 +639,14 @@ void  wdmUpdateAllEncounterLivetime()
                     if (sti(enc.livetime)<=0)
                     {
                         //Map_ReleaseQuestEncounter(enc.quest.chrID);
+						if (enc.quest.chrID == "MaryCelesteCapitan") ignore = true; //фикс вылета из-за Мэри Селест
 						Map_TraderSucces_quest(enc.quest.chrID); //на обрабоку нпс-кэпов eddy
-               	        sdel  = "encounters."+GetAttributeName(enc);
-                        DeleteAttribute(&worldMap, sdel);
+               	        if (!ignore)
+						{
+							sdel  = "encounters."+GetAttributeName(enc);
+							DeleteAttribute(&worldMap, sdel);
+						}
+						else ignore = false;
 						pchar.worldmap.shipcounter = sti(pchar.worldmap.shipcounter) - 1;
 						num--;
 						i--;

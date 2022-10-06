@@ -262,6 +262,7 @@ float Cannon_DamageEvent()
 
 int GetBortIntactCannonsNum(ref rCharacter, string sBort, int iNumCannonsOnBort)
 {
+	if (rCharacter.ship.cannons=="") return 0; //фикс вылета от корабля кораблекрушения с 0 пушек
 	string sBort_real = sBort;
 	float fDamage;
 
