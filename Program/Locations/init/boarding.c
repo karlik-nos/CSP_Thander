@@ -271,7 +271,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "Nassau_fort";
 	locations[n].id.label = "Nassau Fort";
 	//Info
-	Locations[n].image = "loading\fort_spa_" + rand(1) + ".tga";
+	Locations[n].image = "loading\jonny_load\outside\FortV.tga";
 	locations[n].townsack = "Nassau";
 	//Sound
 	locations[n].type = "fort";

@@ -101,7 +101,7 @@ void FaceMaker(aref rCharacter)
 		case "officer_31":		rCharacter.FaceId = 454; break;
 		case "officer_32":		rCharacter.FaceId = 413; break;
 		case "officer_33":		rCharacter.FaceId = 451; break;
-		case "officer_34":		rCharacter.FaceId = 415; break;
+		case "officer_34":		rCharacter.FaceId = 416; break;
 		case "officer_35":		rCharacter.FaceId = 416; break;
 		case "officer_36":		rCharacter.FaceId = 418; break;
 		case "officer_37":		rCharacter.FaceId = 450; break;
