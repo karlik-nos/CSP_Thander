@@ -288,6 +288,10 @@ int GetBortIntactCannonsNum(ref rCharacter, string sBort, int iNumCannonsOnBort)
 	}
 
 	int iNumIntactCannons = 0;
+	if (arDamages=="null") 
+	{
+		return 0;
+	}
 	for (int i=0; i<iNumCannonsOnBort; i++)
 	{
 		fDamage = stf(GetAttributeValue(GetAttributeN(arDamages, i)));
