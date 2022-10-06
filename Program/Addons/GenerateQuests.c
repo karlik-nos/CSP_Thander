@@ -1312,12 +1312,20 @@ void ShipWreckNoCapture(string qName)
 {
 	PChar.GenerateShipWreck.State = "none";
 	CloseQuestHeader("ShipWreck");
+	if (CheckAttribute(PChar, "quest.ShipWreckCapture")) {
+		DeleteAttribute(PChar, "quest.ShipWreckCapture")
+	}
+
+	ClearShipWreckQuest();
 }
 
 void ShipWreckCapture(string qName)
 {
 	AddQuestRecord("ShipWreck", "3");
 	CloseQuestHeader("ShipWreck");
+	if (CheckAttribute(PChar, "quest.ShipWreckNoCapture")) {
+		DeleteAttribute(PChar, "quest.ShipWreckNoCapture")
+	}
 
 	PChar.GenerateShipWreck.State = "none";
 	PChar.GenerateShipWreck.Block = true;
@@ -1921,7 +1929,5 @@ void ClearShipWreckQuest()
 	PChar.GenerateShipWreck.ValodyaToMoney = false;
 	DeleteAttribute(PChar,"VolodyaDebil.Convoy");
 	DeleteAttribute(PChar,"IdVolodiDebila");
-	if(CheckAttribute(PChar, "quest.ShipWreckCapture")) { DeleteAttribute(PChar, "quest.ShipWreckCapture"); }
-	if(CheckAttribute(PChar, "quest.ShipWreckNoCapture")) { DeleteAttribute(PChar, "quest.ShipWreckNoCapture"); }
 }
 
