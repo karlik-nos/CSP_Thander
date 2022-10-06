@@ -1393,7 +1393,7 @@ int LocationInitBahames(int n)
 	locations[n].models.always.grotto1alpha.level = 65532;
 	locations[n].models.always.chest = "chest";	
 	locations[n].models.always.locators = "grotto1_locators";
-	locations[n].locators_radius.item.duhi1 = 0.0;
+	locations[n].locators_radius.item.duhi1 = 1.3;
 	Locations[n].models.always.rays = "grotto1_rays";
 	Locations[n].models.always.rays.level = 49;
 	Locations[n].models.always.rays.tech= "LocVisRays";
