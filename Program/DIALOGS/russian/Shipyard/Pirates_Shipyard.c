@@ -2258,12 +2258,12 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			}
 			shTo.MaxCaliber = iCaliber;
 
-			SetShipTuningF(Pchar, "SpeedRate", 2.0 / stf(shTo.SpeedRate));
-			SetShipTuningF(Pchar, "TurnRate", 10.0 / stf(shTo.TurnRate));
-			SetShipTuningI(Pchar, "HP", 1000 / stf(shTo.HP));
-			SetShipTuningI(Pchar, "MaxCrew", 120 / stf(shTo.MaxCrew));
-			SetShipTuningF(Pchar, "WindAgainstSpeed", 1.0 / stf(shTo.WindAgainstSpeed));
-			SetShipTuningI(Pchar, "Capacity", 700 / stf(shTo.Capacity));
+			SetShipTuningAdditiveF(Pchar, "SpeedRate", 2.0);
+			SetShipTuningAdditiveF(Pchar, "TurnRate", 10.0);
+			SetShipTuningAdditiveI(Pchar, "HP", 1000);
+			SetShipTuningAdditiveI(Pchar, "MaxCrew", 120);
+			SetShipTuningAdditiveF(Pchar, "WindAgainstSpeed", 1.0);
+			SetShipTuningAdditiveI(Pchar, "Capacity", 700);
 			shTo.HullArmor = 30;
 			shTo.OptCrew = 300;
 
