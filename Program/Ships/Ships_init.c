@@ -9891,12 +9891,12 @@ void InitShips()
 	refShip.Cannon  			= CANNON_TYPE_CANNON_LBS8;
 	refShip.MaxCaliber  		= 20;
 	refShip.Weight				= Tonnes2CWT(380);
-	refShip.Capacity   			= 1800;
+	refShip.Capacity   			= 2800;
 	refShip.MaxCannonDiff				= 0;
-	refShip.CannonsQuantity				= 30;
-	refShip.rcannon 					= 13;
-	refShip.lcannon 					= 13;
-	refShip.fcannon 					= 2;
+	refShip.CannonsQuantity				= 22;
+	refShip.rcannon 					= 8;
+	refShip.lcannon 					= 8;
+	refShip.fcannon 					= 4;
 	refShip.bcannon 					= 2;
 	refShip.MaxCrew        			= 180;
 	refShip.MinCrew        			= 36;
