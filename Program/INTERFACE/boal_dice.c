@@ -63,7 +63,7 @@ void InitInterface(string iniName)
          {   money_s = "silver";
             iExpRate = 1;
 	     }
-       if (iRate > 100)
+       if (iRate >= 100)
          {    money_s = "silver";
             iExpRate = 2;
           }
