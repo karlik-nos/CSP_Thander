@@ -137,7 +137,7 @@ void DeleteCloneHeros(ref sld)
 				LAi_KillCharacter(sld);
 			}
 		}
-		if (startHeroType == 3 || startHeroType == 4)
+		if (startHeroType == 4 || startHeroType == 5)
 		{
 			if(sld.FaceId == 1 || sld.FaceId == 522)
 			{//Его мы позже наймем оффом, так что убираем из ПГГ
@@ -146,7 +146,7 @@ void DeleteCloneHeros(ref sld)
 				LAi_KillCharacter(sld);
 			}
 		}
-		if (startHeroType == 5 || startHeroType == 6)
+		if (startHeroType == 6 || startHeroType == 7)
 		{
 			if(sld.FaceId == 508 || sld.FaceId == 517)
 			{//Его мы позже наймем оффом, так что убираем из ПГГ

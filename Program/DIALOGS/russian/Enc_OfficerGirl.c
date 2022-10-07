@@ -865,7 +865,7 @@ void ProcessDialogEvent()
 		break;
 		//Анджелика
 		case "Angellica_meet":
-			if (startherotype == 3 || startherotype == 4)
+			if (startherotype == 4 || startherotype == 5)
 			{
 				if(npchar.id == "Angellica")
 				{

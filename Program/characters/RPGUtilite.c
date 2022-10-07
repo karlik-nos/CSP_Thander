@@ -2780,7 +2780,7 @@ void initNewMainCharacter()
 			ch.HeroParam.Location = "PuertoPrincipe_port";
 		}
 	}
-	if(startherotype == 3 || startherotype == 4)
+	if(startherotype == 4 || startherotype == 5)
 	{
 		ch.HeroParam.Location = "Shore57";
 		ch.HeroParam.Group    = "reload";
@@ -2928,7 +2928,7 @@ void initNewMainCharacter()
     	pchar.quest.Tut_start.function                  = "Whisper_StartGame";
         Pchar.questTemp.CapBloodLine = false;
     }
-	if (startHeroType == 3 || startHeroType == 4)
+	if (startHeroType == 4 || startHeroType == 5)
     {
     	pchar.quest.Tut_start.win_condition.l1          = "location";
     	pchar.quest.Tut_start.win_condition.l1.location = "Shore57";
@@ -2936,7 +2936,7 @@ void initNewMainCharacter()
         Pchar.questTemp.CapBloodLine = false;
 		Pchar.questTemp.WhisperLine = false;
     }
-	if (startHeroType == 5 || startHeroType == 6)
+	if (startHeroType == 6 || startHeroType == 7)
     {
     	pchar.quest.Tut_start.win_condition.l1          = "location";
     	pchar.quest.Tut_start.win_condition.l1.location = "Shore_ship2";
@@ -2944,7 +2944,7 @@ void initNewMainCharacter()
         Pchar.questTemp.CapBloodLine = false;
 		Pchar.questTemp.WhisperLine = false;
     }
-	if (startHeroType > 6)
+	if (startHeroType > 7)
     {
     	pchar.quest.Tut_start.win_condition.l1          = "location";
     	pchar.quest.Tut_start.win_condition.l1.location = "Ship_deck_Low";
