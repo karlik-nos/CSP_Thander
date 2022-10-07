@@ -2036,7 +2036,8 @@ int LAi_Chr_CheckHitFire() // 0 - не попал, 1 - попал
 	bool isRecoil = GetEventData(); // находится ли цель в окне уклонения 
 	float kDist = GetEventData(); // коэффициент дальности, равный 1-d/25; k(0)=1; k(10)=0.6; k(25)=0
 	int res = 1;
-	if(isRecoil)
+	float r = Random();
+	if (isRecoil && r <= 0.75)
 	{
 		res = 0;
 		if (shooter.index == GetMainCharacterIndex())
@@ -2067,9 +2068,9 @@ bool LAi_NPC_IsDodge() // true - уклоняется, false - не уклоня
 	aref chr = GetEventData();
 	float r = Random();
 	bool res = false;
-	if (r <= 1.0)
+	if (r <= 0.25)
 		res = true;
-	return true;
+	return res;
 }
 // EvgAnat - вероятность желания уклониться от выстрела у нпс <--
 
