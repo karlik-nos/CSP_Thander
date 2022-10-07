@@ -443,6 +443,11 @@ void FaceMaker(aref rCharacter)
 		case "quest_mush_1":	rCharacter.FaceId = 292; break; //саксонец
 		case "quest_mush_2":	rCharacter.FaceId = 293; break; //пират
 		case "Lil_Jim_0":		rCharacter.FaceId = 294; break; //Маленький Джимми
+		case "Lil_Jim_1":		rCharacter.FaceId = 294; break; //Маленький Джимми
+		case "Lil_Jim_2":		rCharacter.FaceId = 294; break; //Маленький Джимми
+		case "Lil_Jim_3":		rCharacter.FaceId = 294; break; //Маленький Джимми
+		case "Lil_Jim_4":		rCharacter.FaceId = 294; break; //Маленький Джимми
+		case "Lil_Jim_5":		rCharacter.FaceId = 294; break; //Маленький Джимми
 		case "CCS_Mechanic":	rCharacter.FaceId = 295; break;
 		// временное решение для девиц из борделя
 		case "horse01": 		rCharacter.FaceId = 164; break;
