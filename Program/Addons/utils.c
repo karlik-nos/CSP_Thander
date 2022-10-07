@@ -365,7 +365,17 @@ void WayBeginning(string _tmp)
 		DoQuestReloadToLocation("Bermudes_Dungeon", "reload", "reload2_back", "");
 		return;
     }
-	if (startHeroType == 3 || startHeroType == 4)	//Дети Николаса Шарпа
+	if (startHeroType == 3)	//Анжелика Тич
+    {
+    	pchar.quest.Tut_start.win_condition.l1          = "location";
+    	pchar.quest.Tut_start.win_condition.l1.location = "LaVega_MH12";
+    	pchar.quest.Tut_start.function                  = "AnjelikaTich_StartGame";
+        Pchar.questTemp.CapBloodLine = false;
+		Pchar.questTemp.WhisperLine = false;
+		DoQuestReloadToLocation("LaVega_MH12", "reload", "reload3", "");
+		return;
+    }
+	if (startHeroType == 4 || startHeroType == 5)	//Дети Николаса Шарпа
     {
     	pchar.quest.Tut_start.win_condition.l1          = "location";
     	pchar.quest.Tut_start.win_condition.l1.location = "Shore57";
@@ -375,7 +385,7 @@ void WayBeginning(string _tmp)
 		DoQuestReloadToLocation("Shore57", "item", "item11", "");
 		return;
     }
-	if (startHeroType == 5 || startHeroType == 6)	//Шарль и Мэри
+	if (startHeroType == 6 || startHeroType == 7)	//Шарль и Мэри
     {
     	pchar.quest.Tut_start.win_condition.l1          = "location";
     	pchar.quest.Tut_start.win_condition.l1.location = "Shore_ship2";
@@ -383,16 +393,6 @@ void WayBeginning(string _tmp)
         Pchar.questTemp.CapBloodLine = false;
 		Pchar.questTemp.WhisperLine = false;
 		DoQuestReloadToLocation("Shore_ship2", "goto", "goto4", "");
-		return;
-    }
-	if (startHeroType == 7)	//Анжелика Тич
-    {
-    	pchar.quest.Tut_start.win_condition.l1          = "location";
-    	pchar.quest.Tut_start.win_condition.l1.location = "LaVega_MH12";
-    	pchar.quest.Tut_start.function                  = "AnjelikaTich_StartGame";
-        Pchar.questTemp.CapBloodLine = false;
-		Pchar.questTemp.WhisperLine = false;
-		DoQuestReloadToLocation("LaVega_MH12", "reload", "reload3", "");
 		return;
     }
 	if (startHeroType == 8)

@@ -43,7 +43,7 @@ void Sharp_MeetSiblings(string qName)
 		}
 	}
 	chrDisableReloadToLocation = true;
-	if (startherotype == 3)
+	if (startherotype == 4)
 	{
 		sld = GetCharacter(NPC_GenerateCharacter("Sharp_Sibling", "PGG_Devlin_0", "man", "man", 1, PIRATE, -1, true));
 		sld.dialog.filename = "Quest\MainheroPrologues\Prologue_Blaze_dialog.c";
@@ -163,7 +163,7 @@ void SharleMary_Indians(string qName)
 	LAi_group_FightGroups("Jungle_indians", LAI_GROUP_PLAYER, true);
 	LAi_group_SetCheck("Jungle_indians", "IndianInJungleClearGroup");
 
-	if (startherotype == 5)
+	if (startherotype == 6)
 	{
 		sld = GetCharacter(NPC_GenerateCharacter("SharleMary", "PGG_Mary", "woman", "YokoDias", 1, PIRATE, -1, true));
 		sld.name = "Мэри";
