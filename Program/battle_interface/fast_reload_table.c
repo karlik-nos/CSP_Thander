@@ -797,21 +797,26 @@ void initFastReloadTable()
 	curTable.l6.tex = FRT_CHURCH;
 	curTable.l6.location = "Nassau_church";
 
-	curTable.l7.pic = FRP_PORT_OFFICE;
-	curTable.l7.tex = FRT_PORT_OFFICE;
-	curTable.l7.location = "Nassau_PortOffice";
+	// brothel
+	curTable.l7.pic = FRP_BROTHEL;
+	curTable.l7.tex = FRT_BROTHEL;
+	curTable.l7.location = "Nassau_brothel";
 
-	curTable.l8.pic = FRP_TOWN_EXIT;
-	curTable.l8.tex = FRT_TOWN_EXIT;
-	curTable.l8.location = "Nassau_ExitTown";
+	curTable.l8.pic = FRP_PORT_OFFICE;
+	curTable.l8.tex = FRT_PORT_OFFICE;
+	curTable.l8.location = "Nassau_PortOffice";
 
-	curTable.l9.pic = FRP_FORT;
-	curTable.l9.tex = FRT_FORT;
-	curTable.l9.location = "Nassau_fort";
+	curTable.l9.pic = FRP_TOWN_EXIT;
+	curTable.l9.tex = FRT_TOWN_EXIT;
+	curTable.l9.location = "Nassau_ExitTown";
 
-	curTable.l10.pic = FRP_PRISON;
-	curTable.l10.tex = FRT_PRISON;
-	curTable.l10.location = "Nassau_prison";
+	curTable.l10.pic = FRP_FORT;
+	curTable.l10.tex = FRT_FORT;
+	curTable.l10.location = "Nassau_fort";
+
+	curTable.l11.pic = FRP_PRISON;
+	curTable.l11.tex = FRT_PRISON;
+	curTable.l11.location = "Nassau_prison";
 
 	makearef(curTable,objFastReloadTable.table.Marigo);
 	// store
