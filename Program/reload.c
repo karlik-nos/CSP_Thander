@@ -387,7 +387,7 @@ void ReloadEndFade()
 	}
 	SendMessage(&reload_fader, "lfl", FADER_IN, RELOAD_TIME_FADE_IN, true);
 	PostEvent("LoadSceneSound", 500);
-	if (startherotype == 9 || startherotype == 10)
+	if (startherotype == 9)
 	{
 		if (CheckAttribute(pchar,"equip.blade") && HasSubStr(pchar.equip.blade, "Lilarcor"))
 		{

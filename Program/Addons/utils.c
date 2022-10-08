@@ -365,7 +365,7 @@ void WayBeginning(string _tmp)
 		DoQuestReloadToLocation("Bermudes_Dungeon", "reload", "reload2_back", "");
 		return;
     }
-	if (startHeroType == 3)	//Анжелика Тич
+	if (startHeroType == 3)		//Анжелика Тич
     {
     	pchar.quest.Tut_start.win_condition.l1          = "location";
     	pchar.quest.Tut_start.win_condition.l1.location = "LaVega_MH12";
@@ -405,7 +405,7 @@ void WayBeginning(string _tmp)
 		DoQuestReloadToLocation("My_Campus", "goto", "goto5", "");
 		return;
     }
-	if (startHeroType == 9 || startHeroType == 10)	//Нежить
+	if (startHeroType == 9)		//Весёлый Роджер
     {
     	pchar.quest.Tut_start.win_condition.l1          = "location";
     	pchar.quest.Tut_start.win_condition.l1.location = "Temple_skulls";
@@ -415,7 +415,7 @@ void WayBeginning(string _tmp)
 		DoQuestReloadToLocation("Temple_skulls", "goto", "goto2", "");
 		return;
     }
-	if (startHeroType > 10)		//Все остальные
+	if (startHeroType > 9)		//Все остальные
     {
     	pchar.quest.Tut_start.win_condition.l1          = "location";
     	pchar.quest.Tut_start.win_condition.l1.location = "Ship_deck_Low";
