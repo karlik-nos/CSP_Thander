@@ -10,6 +10,7 @@ int iCurTab;
 
 void InitInterface(string iniName)
 {
+	GetXYWindowOffset(&fOffsetX, &fOffsetY);
 	InterfaceStack.SelectMenu_node = "LaunchItems"; // запоминаем, что звать по Ф2
 	GameInterface.title = "titleItems";
 	xi_refCharacter = pchar;
@@ -1755,7 +1756,6 @@ void SetMapCross(string _MapLocId)
 	//to do - тогда уж можно выбирать ещё и карту отдельного острова для отображения
 	//оставить плохую общую для карт с описанием "старая рваная", а качественные карты островов выбирать при описании "выглядит новой"???
 
-	GetXYWindowOffset(&fOffsetX, &fOffsetY);
 	//position = 50,50,750,580 - позиция карты
 	SendMessage(&GameInterface,"lslllll",MSG_INTERFACE_MSG_TO_NODE,"MAP_X_CROSS", 0, 43+makeint(fOffsetX)+left, 50+top, 43+makeint(fOffsetX)+left+14, 50+top+14);// Установить картинку на новую позицию
 }
