@@ -1222,6 +1222,9 @@ void wdmInitWorldMap()
 	worldMap.islands.Bahames.Shore68.position.x = -359.95;
 	worldMap.islands.Bahames.Shore68.position.z = 1109.9;
 	
+	worldMap.islands.Bahames.Nassau_town.position.x = -352;
+	worldMap.islands.Bahames.Nassau_town.position.z = 1140;
+	
 	worldMap.islands.StLucia.position.x = 640.0;
 	worldMap.islands.StLucia.position.z = -640.0;
 	worldMap.islands.StLucia.Shore65.position.x = 640.0;

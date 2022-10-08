@@ -314,7 +314,7 @@ int LocationInitBahames(int n)
 	// Резиденция
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Nassau_townhall";
-	locations[n].id.label = "Townhall ";
+	locations[n].id.label = "Townhall";
 	locations[n].image = "loading\jonny_load\inside\smallresidence.tga";
 	//Town sack
 	locations[n].townsack = "Nassau";
