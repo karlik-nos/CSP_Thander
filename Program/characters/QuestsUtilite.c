@@ -1496,9 +1496,7 @@ bool RestoreTempRemoveParam(ref _refCharacter, string _param)
 	aref dstRef; makearef(dstRef, _refCharacter.(_param));
 	aref srcRef; makearef(srcRef, _refCharacter.(sParam));
 
-	DeleteAttribute(_refCharacter, _param);
 	//--> eddy. структура быть должна, иначе вылет в винду.
-	_refCharacter.(_param) = "";
 	CopyAttributes(dstRef,srcRef);
 	DeleteAttribute(_refCharacter, sParam);
 	return true;
