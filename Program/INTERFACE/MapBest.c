@@ -56,6 +56,8 @@ string FloatToStr(float value)
 
 void AddImageToImageList(string sImgName, string sPicGroup, string sPic, float X, float Y, int Width, int Height)
 {
+	int DY = 75;//расширение карты вверх от оригинальной
+	Y = Y + DY*(2000 + DY - Y)/(2000 + DY);		//2000 - наугад ставлю. предполагаю, что была карта от -1000 до +1000. в сумме 2000
 	GameInterface.MAP.imagelist.(sImgName).group = sPicGroup;
 	GameInterface.MAP.imagelist.(sImgName).pic = sPic;
 	GameInterface.MAP.imagelist.(sImgName).x = X;
@@ -173,8 +175,7 @@ void InitInterface(string iniName)
 			X = 1000;
 			Y = 829;
 		}
-		int DY = 75;//расширение карты вверх от оригинальной
-		Y = Y + DY*(2000 + DY - Y)/(2000 + DY);		//2000 - наугад ставлю. предполагаю, что была карта от -1000 до +1000. в сумме 2000
+
 		//Draw colony on the map
 		AddImageToImageList(sColony, "NATIONS_SMALL", sPic, X, Y, 16, 16);
 
@@ -396,6 +397,8 @@ void FillTable()
 	}
 	if (colonyindex != i)
 	{
+		int DY = 75;//расширение карты вверх от оригинальной		//фикс списка локаций по ЛКМ
+		fMouseY = fMouseY - DY*(2000 + DY - fMouseY)/(2000 + DY);		//2000 - наугад ставлю. предполагаю, что была карта от -1000 до +1000. в сумме 2000
 		if (fMouseX >= 69.0 && fMouseX <= 155.0 && fMouseY >= 1275.0 && fMouseY <= 1380.0)
 		{
 			setCharacterShipLocation(pchar, "Shore53");
@@ -470,7 +473,7 @@ void FillTable()
 			setWDMPointXZ("LostShipsCity_town");
 			ssColony = "LostShipsCity";
 		}
-		if (fMouseX >= 680.0 && fMouseX <= 718.0 && fMouseY >= 27.0 && fMouseY <= 89.0)
+		if (fMouseX >= 640.0 && fMouseX <= 690.0 && fMouseY >= -55.0 && fMouseY <= 15.0)
 		{
 			setCharacterShipLocation(pchar, "Nassau_town");
 			setWDMPointXZ("Nassau_town");
@@ -557,6 +560,8 @@ void SelectRColony()
 	Log_TestInfo(fMouseX+"/"+fMouseY);
 	if (bBettaTestMode)
 	{
+		int DY = 75;//расширение карты вверх от оригинальной		//фикс телепорта по ПКМ
+		fMouseY = fMouseY - DY*(2000 + DY - fMouseY)/(2000 + DY);		//2000 - наугад ставлю. предполагаю, что была карта от -1000 до +1000. в сумме 2000
 		if (fMouseX >= 69.0 && fMouseX <= 155.0 && fMouseY >= 1275.0 && fMouseY <= 1380.0)
 		{
 			setCharacterShipLocation(pchar, "Shore53");
@@ -632,7 +637,7 @@ void SelectRColony()
 			setWDMPointXZ("LostShipsCity_town");
 			DoQuestReloadToLocation("LostShipsCity_town", "reload", "reload1", "");
 		}
-		if (fMouseX >= 680.0 && fMouseX <= 718.0 && fMouseY >= 27.0 && fMouseY <= 89.0)
+		if (fMouseX >= 680.0 && fMouseX <= 718.0 && fMouseY >= -48.0 && fMouseY <= 14.0)
 		{
 			setCharacterShipLocation(pchar, "Nassau_town");
 			setWDMPointXZ("Nassau_town");
