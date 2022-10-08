@@ -274,20 +274,17 @@ int GetBortIntactCannonsNum(ref rCharacter, string sBort, int iNumCannonsOnBort)
 	if (!CheckAttribute(rCharacter, "Ship.Cannons.Borts." + sBort_real + ".damages") &&
 	    !CheckAttribute(rCharacter, "Ship.Cannons.Borts." + sBort + ".damages")) return iNumCannonsOnBort;
 
-	aref arDamages;
-	if(CheckAttribute(rCharacter, "Ship.Cannons.Borts." + sBort_real + ".damages"))
+	if(!CheckAttribute(rCharacter, "Ship.Cannons.Borts." + sBort_real + ".damages"))
 	{
-		makearef(arDamages, rCharacter.Ship.Cannons.Borts.(sBort_real).damages);
-	}
-	else
-	{
-		makearef(arDamages, rCharacter.Ship.Cannons.Borts.(sBort).damages);
+		sBort_real = sBort;
 	}
 
+	string attr;
 	int iNumIntactCannons = 0;
 	for (int i=0; i<iNumCannonsOnBort; i++)
 	{
-		fDamage = stf(GetAttributeValue(GetAttributeN(arDamages, i)));
+		attr = "c"+i;
+		fDamage = stf(rCharacter.Ship.Cannons.Borts.(sBort_real).damages.(attr));
 		if (fDamage < 1.0) { iNumIntactCannons++; }
 	}
 	int iNumRealCannons = iNumIntactCannons;
