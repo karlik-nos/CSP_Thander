@@ -143,7 +143,6 @@ void InitInterface(string iniName)
 		if(sColony == "SantaQuiteria") continue;
 		if(sColony == "IslaDeVieques") continue;
 		if(sColony == "SanAndres") continue;
-		if(sColony == "Nassau") continue;
 		if(sColony == "Is") continue;
 		if(sColony == "IslaMona" && !CheckAttribute(CharacterFromID("Islamona_carpenter"), "Storage.Activate")) continue;
 
@@ -175,7 +174,7 @@ void InitInterface(string iniName)
 			X = 1000;
 			Y = 829;
 		}
-
+		if(sColony == "Nassau") {X = 638;Y = -60;}//это фикс без НИ, можно удалить впоследствии - пусть берёт из инита глобалки
 		//Draw colony on the map
 		AddImageToImageList(sColony, "NATIONS_SMALL", sPic, X, Y, 16, 16);
 
