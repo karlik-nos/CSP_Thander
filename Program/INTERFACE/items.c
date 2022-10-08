@@ -1728,7 +1728,7 @@ void SetMapCross(string _MapLocId)
 	case "Maracaibo_Cave": left = 369; top = 474; break;	//{в пещере напротив выхода из Маракайбо}
 	case "Cartahena_Cave": left = 304; top = 510; break;	//{в пещере напротив выхода из Картахены}
 
-	case "Pearl_Grot": left = 66; top = 345; break;	//{в пещере на западном побережье между Белизом и Санта Каталиной} 			//тут надо исправить на грот описание, если там грот
+	case "Pearl_Grot": left = 66; top = 345; break;	//{в пещере на западном побережье между Белизом и Санта Каталиной}
 	case "SantaCatalina_Grot": left = 123; top = 445; break;	//{в пещере справа от залива Сан Хуан дель Норте}
 	case "SantaCatalina_PearlCave": left = 109; top = 466; break;	//{в пещере слева от залива Сан Хуан дель Норте}
 	case "SantaCatalina_Cave": left = 106; top = 375; break;	//{в пещере справа от мыса Перлас}
@@ -1747,7 +1747,7 @@ void SetMapCross(string _MapLocId)
 	case "Jamaica_Grot": left = 263; top = 287; break;	//{в пещере справа от маяка Порт-Рояля}
 	case "Marigo_Cave": left = 619; top = 140; break;	//{в пещере напротив выхода из Мариго}
 	case "SanJuan_Cave": left = 485; top = 153; break;	//{в пещере недалеко от Сан-Хуана}
-	case "Bahames_Grot": left = 263; top = 33; break;	//{в гроте справа от бухты Приватира}
+	case "Bahames_Grot": left = 263; top = 26; break;	//{в гроте справа от бухты Приватира}
 	case "Terks_Grot": left = 474; top = 33; break;	//{в пещере справа от залива Северный}
  	case "Trinidad_Grot": left = 591; top = 458; break;	//{в пещере напротив маяка Тринидада и Тобаго}
  	case "FortFrance_Dungeon": left = 499; top = 357; break;	//{в подземелье города Форт де Франс}
@@ -1757,7 +1757,7 @@ void SetMapCross(string _MapLocId)
 
 	GetXYWindowOffset(&fOffsetX, &fOffsetY);
 	//position = 50,50,750,580 - позиция карты
-	SendMessage(&GameInterface,"lslllll",MSG_INTERFACE_MSG_TO_NODE,"MAP_X_CROSS", 0, 43+makeint(fOffsetX)+left, 43+top, 43+makeint(fOffsetX)+left+14, 43+top+14);// Установить картинку на новую позицию
+	SendMessage(&GameInterface,"lslllll",MSG_INTERFACE_MSG_TO_NODE,"MAP_X_CROSS", 0, 43+makeint(fOffsetX)+left, 50+top, 43+makeint(fOffsetX)+left+14, 50+top+14);// Установить картинку на новую позицию
 }
 
 void ShowMapDesc()
