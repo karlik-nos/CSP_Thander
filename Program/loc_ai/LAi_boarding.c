@@ -674,6 +674,9 @@ void LAi_ReloadEndFade()
 		ref mchar       = GetMainCharacter();
 		float fDefenceSkill = 0.9 + MakeFloat(GetSummonSkillFromName(mchar, SKILL_DEFENCE)) / SKILL_MAX;
 		int deadCrew    = makeint((boarding_player_base_crew - crew) / fDefenceSkill + 0.3 + AIShip_isPerksUse(CheckOfficersPerk(mchar, "EmergentSurgeon"), 0.0, 0.9)); // бонус выжившим
+		if (deadCrew < 0) {
+			deadCrew = 0;
+		}
 		int deadCrewWOMedic = makeint(boarding_player_base_crew - crew); // без бонуса
 		float leaderSkill = GetSummonSkillFromNameToOld(mchar, SKILL_LEADERSHIP);
 		int iTemp;
