@@ -197,7 +197,7 @@ void ProcessDialogEvent()
 				dialog.Text = "(У одного из поверженных противников вы находите клочок бумаги с каким-то текстом, а также пузырёк со странным содержимым)\nКажется, чтобы переродиться, я должен выпить зелье и прочесть вслух этот текст.";
 				bMonstersGen = true;
 				DeleteAttribute(pchar, "questTemp.HellSpawn.Rebirth");
-				Link.l1 = "(Исполнить ритуал)";
+				Link.l1 = "(исполнить ритуал)";
 				Link.l1.go = "HellSpawn_Ritual";
 				Link.l2 = "Нет, меня вполне устраивает моя текущая форма.";
 				Link.l2.go = "exit";
@@ -751,43 +751,13 @@ void ProcessDialogEvent()
 		break;
 
 		case "HellSpawn_Ritual"://перерождение
-			Dialog.Text = "(Вы чувствуете себя немного другим).";
+			Dialog.Text = "(вы чувствуете себя немного другим).";
 			pchar.Ritual.ModelChanged = false;
-			if (HasSubStr(pchar.model,"Skeletcap"))
-			{//весёлый роджер
-				pchar.sex = "man";
-				pchar.animation = "man";
-				pchar.model = "PGG_Tich_0";
-				pchar.HeroModel  = "PGG_Tich_0,PGG_Tich_1,PGG_Tich_2,PGG_Tich_3,PGG_Tich_4,PGG_Tich_5";
-				pchar.Ritual.ModelChanged = true;
-			}
-			if (HasSubStr(pchar.model,"PGG_Ghost"))
-			{//призрак джессики
-				pchar.sex = "woman";
-				pchar.animation = "Jessika";
-				pchar.model = "PGG_MaryBred_0";
-				pchar.HeroModel  = "PGG_MaryBred_0,PGG_MaryBred_1,PGG_MaryBred_2,PGG_MaryBred_3,PGG_MaryBred_4,PGG_MaryBred_5";
-				pchar.Ritual.ModelChanged = true;
-			}
-			if (HasSubStr(pchar.model,"PGG_Meriman"))
-			{//ужасный
-				pchar.sex = "man";
-				pchar.animation = "man";
-				pchar.model = "PGG_WillTerner_0";
-				pchar.HeroModel  = "PGG_WillTerner_0,PGG_WillTerner_1,PGG_WillTerner_2,PGG_WillTerner_3,PGG_WillTerner_4,PGG_WillTerner_5,PGG_WillTerner_6,PGG_WillTerner_7,PGG_WillTerner_8";
-				pchar.Ritual.ModelChanged = true;
-			}
-			/*if (pchar.HeroModel == "PGG_Giant_0,PGG_Giant_1,PGG_Giant_2,PGG_Giant_3,PGG_Giant_4,PGG_Giant_5" )
-			{//каскос
-				pchar.Ritual.ModelChanged = true;
-			}*/
-			if (pchar.Ritual.ModelChanged == false)
-			{//никто из перечисленных
-				pchar.sex = "man";
-				pchar.animation = "man";
-				pchar.model = "PGG_Pat_0";
-				pchar.HeroModel  = "PGG_Pat_0,PGG_Pat_1,PGG_Pat_2,PGG_Pat_3,PGG_Pat_4,PGG_Pat_5,PGG_Pat_6,PGG_Pat_7,PGG_Pat_8";
-			}
+			pchar.sex = "man";
+			pchar.animation = "man";
+			pchar.model = "PGG_Skeletman_0";
+			pchar.HeroModel  = "PGG_Skeletman_0,PGG_Skeletman_1,PGG_Skeletman_2,PGG_Skeletman_3,PGG_Skeletman_4,PGG_Skeletman_5,PGG_Skeletman_6,PGG_Skeletman_7,PGG_Skeletman_8";
+			pchar.Ritual.ModelChanged = true;
 			SetNewModelToChar(pchar);
 			link.l1 = "Что-то мне нехорошо. Выйду на воздух.";
 			Link.l1.go = "exit";

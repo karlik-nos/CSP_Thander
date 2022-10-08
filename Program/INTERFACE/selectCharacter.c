@@ -1009,7 +1009,6 @@ void selectPirate()
 	if (startHeroType == 3) SelectNation(SPAIN);	//Анжелика Тич
 	if (startHeroType > 3) SelectNation(PIRATE);
 	if (startHeroType == 9) SelectNation(FRANCE);	//Нежить
-	if (startHeroType == 10) SelectNation(HOLLAND);	//Нежить
 }
 
 void IDoExit(int exitCode, bool bCode)

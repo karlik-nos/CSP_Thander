@@ -11084,18 +11084,10 @@ void QuestComplete(string sQuestName, string qname)
 		case "UP_DrugPridet_2":
 			bDisableFastReload = true;
 			chrDisableReloadToLocation = true;
-			if (pchar.name == "Весёлый Роджер")
-			{
-				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Meriman_0", "skeleton", "man", 10, PIRATE, -1, false));
-				sld.name = "Ужасный";
-				sld.lastname = "";
-			}
-			if (pchar.name == "Ужасный")
-			{
-				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Skeletcap_0", "skeleton", "skeleton", 10, PIRATE, -1, false));
-				sld.name = "Весёлый";
-				sld.lastname = "Роджер";
-			}
+			
+			sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Meriman_0", "skeleton", "man", 10, PIRATE, -1, false));
+			sld.name = "Ужасный";
+			sld.lastname = "";
 			GiveItem2Character(sld, "blade6");
 			EquipCharacterByItem(sld, "blade6");
 			ChangeCharacterAddressGroup(sld, pchar.location, "quest", "quest3");
@@ -11110,18 +11102,10 @@ void QuestComplete(string sQuestName, string qname)
 		case "UP_DrugPridet_3":
 			bDisableFastReload = true;
 			chrDisableReloadToLocation = true;
-			if (pchar.name == "Весёлый Роджер")
-			{
-				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Meriman_0", "skeleton", "man", 10, PIRATE, -1, false));
-				sld.name = "Ужасный";
-				sld.lastname = "";
-			}
-			if (pchar.name == "Ужасный")
-			{
-				sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Skeletcap_0", "skeleton", "skeleton", 10, PIRATE, -1, false));
-				sld.name = "Весёлый";
-				sld.lastname = "Роджер";
-			}
+			
+			sld = GetCharacter(NPC_GenerateCharacter("PGG_Undead", "PGG_Meriman_0", "skeleton", "man", 10, PIRATE, -1, false));
+			sld.name = "Ужасный";
+			sld.lastname = "";
 			GiveItem2Character(sld, "blade6");
 			EquipCharacterByItem(sld, "blade6");
 			ChangeCharacterAddressGroup(sld, pchar.location, "quest", "quest3");

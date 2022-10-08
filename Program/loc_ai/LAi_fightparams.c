@@ -1392,7 +1392,7 @@ void LAi_SetResultOfDeath(ref attack, ref enemy, bool isSetBlade)
 			    SetNationRelation2MainCharacter(sti(enemy.nation), RELATION_ENEMY);
 		    }
 		}
-		if (startherotype == 9 || startherotype == 10)
+		if (startherotype == 9)
 		{
 			if (CheckAttribute(pchar,"equip.blade") && HasSubStr(pchar.equip.blade, "Lilarcor"))
 			{
