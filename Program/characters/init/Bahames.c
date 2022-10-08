@@ -162,7 +162,7 @@ int CreateBahamesCharacters(int n)
 	ch.item_date = "";
 	n = n + 1;
 
-    makeref(ch,Characters[n]);
+    makeref(ch,Characters[n]);			// Контрабандист
 	ch.name 	= "Контрабандист";
 	ch.lastname = "";
 	ch.id		= "Nassau_Smuggler";
@@ -177,6 +177,24 @@ int CreateBahamesCharacters(int n)
 	LAi_SetSitType(ch);
 	LAi_SetHP(ch, 80.0, 80.0);
 	ch.greeting = "Gr_Smuggler Agent";
+	n = n + 1;
+
+	makeref(ch,Characters[n]);			//Хозяйка борделя
+	ch.id		= "Nassau_Hostess";
+	ch.name		= "Маркиза"
+	ch.lastname = "";
+	ch.model	= "lady04";
+	ch.sex = "woman";
+	ch.City = "Nassau";
+	ch.location	= "Nassau_SecBrRoom";
+	ch.location.group = "goto";
+	ch.location.locator = "goto7";
+	ch.Dialog.Filename = "Common_Brothel.c";
+	ch.greeting = "hostess";
+	ch.nation = ENGLAND;
+	ch.questChurch = ""; //флаг для пожертвований
+	LAi_SetOwnerType(ch);
+	LAi_group_MoveCharacter(ch, "ENGLAND_CITIZENS");
 	n = n + 1;
 
 	return n;
