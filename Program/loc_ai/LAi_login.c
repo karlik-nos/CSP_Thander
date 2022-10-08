@@ -696,36 +696,40 @@ void LAi_PostLoginInit(aref chr)
 //Евент с искателем лазутчиков Lipsar//
 void GenerateSpySeeker(ref location)
 {
-		bool bOK = 	CheckAttribute(pchar, "GenQuest.questName") && pchar.GenQuest.questName != "SeekSpy";
-		bool bOK2 = !CheckAttribute(pchar, "GenQuest.questName");
-		if(!CheckAttribute(pchar, "SpySeeker.dayrandom")) pchar.SpySeeker.dayrandom = 0;
-		if(pchar.questTemp.CapBloodLine == true) return;
-		if(HasSubStr(location.id, "Common") && rand(1000) > 750 && pchar.dayrandom != pchar.SpySeeker.dayrandom && !HasSubStr(location.id, "Crypt") && GetCityNation(location.fastreload) != 4)
+	bool bOK = 	CheckAttribute(pchar, "GenQuest.questName") && pchar.GenQuest.questName != "SeekSpy";
+	bool bOK2 = !CheckAttribute(pchar, "GenQuest.questName");
+	if(!CheckAttribute(pchar, "SpySeeker.dayrandom")) pchar.SpySeeker.dayrandom = 0;
+	if(pchar.questTemp.CapBloodLine == true) return;
+	if(HasSubStr(location.id, "Common") && rand(1000) > 750 && pchar.dayrandom != pchar.SpySeeker.dayrandom && !HasSubStr(location.id, "Crypt") && GetCityNation(location.fastreload) != 4)
+	{
+		if(bOK || bOK2)
 		{
-			if(bOK || bOK2)
-			{
-				chrDisableReloadToLocation = true;
-				if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) ref rChar = GetCharacter(NPC_GenerateCharacter("SpySeeker", "officer_"+ (1 + drand(63)), "man", "spy", pchar.rank, GetCityNation(location.fastreload), -1, false)); //LEO: Превозмогаторам страдание 08.12.2021
-				else rChar = GetCharacter(NPC_GenerateCharacter("SpySeeker", "officer_"+ (1 + drand(63)), "man", "man", pchar.rank, GetCityNation(location.fastreload), -1, false));
-				rChar.Dialog.FileName = "Common_Seeker.c";
-				LAi_SetImmortal(rChar, true);
-				rChar.saveItemsForDead = true;
-				SetCharacterPerk(rChar, "Fencer");
-				if (bHardBoss) rChar.AlwaysReload = true;//перезарядка независимо от Дозарядки
-				FantomMakeCoolFighter(rChar, sti(pchar.rank), sti(PChar.skill.Fencing), sti(PChar.skill.Pistol), BLADE_LONG, "pistol3",100);
-				int iRel = GetNationRelation(GetCityNation(location.fastreload), GetBaseHeroNation());
-				if(iRel == RELATION_ENEMY) pchar.SpySeeker = "Enemy";
-				else pchar.SpySeeker = "Friend";
-				ChangeCharacterAddressGroup(rChar, PChar.location, "goto", "goto1");
-				LAi_SetActorType(rChar);
-				LAi_ActorDialogDelay(rChar, PChar, "", 2.0);
-				rChar.Dialog.CurrentNode = "FirstTime";
-				pchar.SpySeeker.dayrandom = pchar.dayrandom;
-				for(int i = 0; i<2 + rand(2); i++)
-				{
-				GiveItem2Character(rChar, "Lockpick");
-				}
+			if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) ref rChar = GetCharacter(NPC_GenerateCharacter("SpySeeker", "officer_"+ (1 + drand(63)), "man", "spy", pchar.rank, GetCityNation(location.fastreload), -1, false)); //LEO: Превозмогаторам страдание 08.12.2021
+			else rChar = GetCharacter(NPC_GenerateCharacter("SpySeeker", "officer_"+ (1 + drand(63)), "man", "man", pchar.rank, GetCityNation(location.fastreload), -1, false));
+			rChar.Dialog.FileName = "Common_Seeker.c";
+			LAi_SetImmortal(rChar, true);
+			rChar.saveItemsForDead = true;
+			SetCharacterPerk(rChar, "Fencer");
+			if (bHardBoss) rChar.AlwaysReload = true;//перезарядка независимо от Дозарядки
+			FantomMakeCoolFighter(rChar, sti(pchar.rank), sti(PChar.skill.Fencing), sti(PChar.skill.Pistol), BLADE_LONG, "pistol3",100);
+			int iRel = GetNationRelation(GetCityNation(location.fastreload), GetBaseHeroNation());
+			if(iRel == RELATION_ENEMY) pchar.SpySeeker = "Enemy";
+			else pchar.SpySeeker = "Friend";
+			if (CheckAttribute(location, "locators.goto")) {
+				aref tmpAref;
+				makearef(tmpAref, location.locators.goto);
+				ChangeCharacterAddressGroup(rChar, PChar.location, "goto", GetAttributeName(GetAttributeN(tmpAref, 0))); // берем первый доступный локатор на локации
+			} else {
+				Trace("not found locators for location: "+location.name)
+				return;
 			}
+			LAi_SetActorType(rChar);
+			LAi_ActorDialogDelay(rChar, PChar, "", 2.0);
+			rChar.Dialog.CurrentNode = "FirstTime";
+			pchar.SpySeeker.dayrandom = pchar.dayrandom;
+			AddItems(rChar, "Lockpick", 2 + rand(2));
+			chrDisableReloadToLocation = true;
 		}
+	}
 }
 //Евент с искателем лазутчиков Lipsar//
