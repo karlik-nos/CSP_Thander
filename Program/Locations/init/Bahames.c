@@ -606,7 +606,7 @@ int LocationInitBahames(int n)
 	locations[n].environment.sea = "false";
 	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
-	locations[n].reload.l1.go = "PortRoyal_brothel";
+	locations[n].reload.l1.go = "Nassau_Brothel";
 	locations[n].reload.l1.emerge = "reload2";
 	locations[n].reload.l1.autoreload = "0";
 	locations[n].reload.l1.label = "Brothel";
