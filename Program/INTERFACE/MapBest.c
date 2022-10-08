@@ -175,7 +175,8 @@ void InitInterface(string iniName)
 			X = 1000;
 			Y = 829;
 		}
-
+		int DY = 75;//расширение карты вверх от оригинальной
+		Y = Y + DY*(2000 + DY - Y)/(2000 + DY);		//2000 - наугад ставлю. предполагаю, что была карта от -1000 до +1000. в сумме 2000
 		//Draw colony on the map
 		AddImageToImageList(sColony, "NATIONS_SMALL", sPic, X, Y, 16, 16);
 
