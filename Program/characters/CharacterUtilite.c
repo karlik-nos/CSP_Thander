@@ -3813,6 +3813,7 @@ bool IsPCharHaveMushketerModel()
 	HasSubStr(sModel, "PGG_Espinosa") ||
 	HasSubStr(sModel, "PGG_Espinosa") ||
 	HasSubStr(sModel, "PGG_Skeletcap") ||
+	HasSubStr(sModel, "PGG_Skeletman") ||
 	HasSubStr(sModel, "PGG_Baltrop") ||
 	HasSubStr(sModel, "PGG_Nord") ||
 	HasSubStr(sModel, "PGG_Lejitos") ||
