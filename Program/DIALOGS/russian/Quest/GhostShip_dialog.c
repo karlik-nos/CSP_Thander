@@ -116,6 +116,7 @@ void ProcessDialogEvent()
 			PChar.GenQuest.GhostShip.LastBattle = true;
 			NPChar.location = "none";
 			NPChar.LifeDay = 0;
+			GhostShipOnMap();
             NextDiag.TempNode = "temp_coins";
 		break;
 
