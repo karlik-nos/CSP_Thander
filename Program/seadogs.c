@@ -1352,9 +1352,6 @@ void ProcessControls()
   	if (ControlName=="TimeScaleFaster" || ControlName == "TimeScaleSlower" ||
 		ControlName=="TimeScaleFasterBA" || ControlName=="TimeScaleSlowerBA")
   	{
-		pchar.SystemInfo.OnlyShowCharacter = true;
-		LaunchCharacter(CharacterFromID("OfMush2"));
-		DumpAttributes(CharacterFromID("OfMush2"));
         //Boyer change #20170318-38
         // if (CheckAttribute(&loadedLocation, "type") && loadedLocation.type == "underwater") return; //запрет ускорения под водой.
 		//if (bAltBalance && !bSeaActive && ControlName == "TimeScaleSlower" && TimeScaleCounter == 0)
