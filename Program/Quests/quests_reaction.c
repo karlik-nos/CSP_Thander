@@ -10754,7 +10754,14 @@ void QuestComplete(string sQuestName, string qname)
 			//Наши
 			for (i=4; i<=14; i++)
 			{
-				sTemp = "shipowner_"+(rand(24)+1);
+				if (pchar.sex != "skeleton")
+				{
+					sTemp = "shipowner_"+(rand(24)+1);
+				}
+				else
+				{
+					sTemp = "Skel_" + (rand(4)+1);
+				}
 				sld = GetCharacter(NPC_GenerateCharacter("KSM_Snr_Matrosiki_"+i, sTemp, "man", "man", sti(pchar.rank), sti(pchar.nation), -1, true));
 				LAi_SetWarriorType(sld);
 				LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
