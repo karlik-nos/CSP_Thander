@@ -39,6 +39,7 @@ void SetFantomParamFromRank(ref NPchar, int  rank, bool setEquip)
 	}
 	if (CheckAttribute(NPchar,"id"))
 	{
+		RemoveSpeciality(NPchar);
 		switch (NPchar.id)
 		{
 			case "Tichingitu": SetCharacterPerk(NPchar, "Buccaneer"); break;
@@ -65,9 +66,8 @@ void SetFantomParamFromRank(ref NPchar, int  rank, bool setEquip)
 			case "Undead_Blue": SetCharacterPerk(NPchar, "Grunt"); break;
 			case "Undead_Red": SetCharacterPerk(NPchar, "Adventurer"); break;
 			case "Undead_Green": SetCharacterPerk(NPchar, "SeaWolf"); break;
-			else {SetSpeciality(NPchar, PerksChars()); break;}
+			default: SetSpeciality(NPchar, PerksChars()); break;
 		}
-
 	}
 	else SetSpeciality(NPchar, PerksChars());
 }

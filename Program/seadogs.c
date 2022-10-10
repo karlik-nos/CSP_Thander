@@ -891,6 +891,8 @@ void NewGame()
 	DeleteClass(&IBoardingStatus);
 	DeleteAttribute(&IBoardingStatus,"");
 
+	for (i = 0; i < TOTAL_CHARACTERS; i++) InitCharacter(&Characters[i], i);
+
 	SetEventHandler("frame","NewGame_continue",1);
 }
 
