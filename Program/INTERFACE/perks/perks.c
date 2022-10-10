@@ -247,6 +247,10 @@ void procChrPerkDelay()
 		delay--;
 	}
 
+	if ((bSeaReloadStarted) && (!bCabinStarted) && (!bAbordageStarted))
+	{
+		delay = 0;
+	}
 	if( CheckAttribute(arPerk,"active") )
 	{
 		int iActive = sti(arPerk.active)-1;
@@ -295,8 +299,6 @@ void PerkLoad()
 
 	for(i=0; i<MAX_CHARACTERS; i++)
 	{
-		if(Characters[i].location == locName)
-		{
 			makearef(arPerksRoot,Characters[i].perks.list);
 			n = GetAttributesNum(arPerksRoot);
 			for(j=0; j<n; j++)
@@ -311,7 +313,6 @@ void PerkLoad()
 					}
 				}
 			}
-		}
 	}
 
 //	trace("TIME!!! PerkLoad() = " + RDTSC_E(iRDTSC));
