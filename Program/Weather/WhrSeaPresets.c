@@ -22,13 +22,13 @@ string WhrGetSeaPresetFromWind(float fWind)
 	if(fWind > 10.7) sPreset = "strong_breeze";
 	if(fWind > 13.8) sPreset = "near_gale";
 	if(fWind > 17.1) sPreset = "gale";
-	if(CheckAttribute(&WeatherParams, "Storm") && sti(WeatherParams.Storm) == 1) sPreset = "storm";
 	if(FindLocation(sLocation) != -1){
 		if (fWind > 10.0) sPreset = "strong_breeze_land";
 		else{
 			sPreset = "light_breeze_land";
 		}
 	}
+	if(CheckAttribute(&WeatherParams, "Storm") && sti(WeatherParams.Storm) == 1) sPreset = "storm";
 	return sPreset;
 }
 
