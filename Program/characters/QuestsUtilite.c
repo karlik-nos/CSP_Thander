@@ -2533,6 +2533,7 @@ void PDMQuestsInit()
 	sld.talker = 7;
 	LAi_SetImmortal(sld, true);
 	LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
+	sld.city = "BasTer";
 	ChangeCharacterAddressGroup(sld,"BasTer_town","goto","goto4");
 
 	//******Непутёвый казначей Sinistra******
@@ -2570,6 +2571,7 @@ void PDMQuestsInit()
 	LAi_SetStayType(sld);
 	FantomMakeCoolFighter(sld, 25, 25, 25, "blade10", "", 40);
 	LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
+	sld.City = "FortFrance";
 	ChangeCharacterAddressGroup(sld,"FortFrance_town","officers","soldier_uniq2");
 
 	sld = GetCharacter(NPC_GenerateCharacter("PDM_PJ_Strajnik_2", "sold_fra_1", "man", "man", 10, FRANCE, -1, false));
@@ -2580,6 +2582,7 @@ void PDMQuestsInit()
 	LAi_SetGuardianType(sld);
 	FantomMakeCoolFighter(sld, 25, 25, 25, "blade10", "", 40);
 	LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
+	sld.City = "FortFrance";
 	ChangeCharacterAddressGroup(sld,"FortFrance_town","officers","soldier_uniq1");
 
 	//******Аптекарь Sinistra******
@@ -2616,6 +2619,7 @@ void VSEnpcInit()
 	LAi_SetGuardianType(sld);
 	LAi_SetImmortal(sld, true);
 	LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
+	sld.city = "SantoDomingo";
 	ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","soldiers","soldier1");
 	
 	sld = GetCharacter(NPC_GenerateCharacter("VSE_Admir_2", "sold_spa_1", "man", "man", 10, SPAIN, -1, true));
@@ -2624,6 +2628,7 @@ void VSEnpcInit()
 	LAi_SetGuardianType(sld);
 	LAi_SetImmortal(sld, true);
 	LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
+	sld.city = "SantoDomingo";
 	ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","soldiers","soldier2");
 	
 	sld = GetCharacter(NPC_GenerateCharacter("VSE_Admir_3", "sold_spa_3", "man", "man", 10, SPAIN, -1, true));
@@ -2632,6 +2637,7 @@ void VSEnpcInit()
 	LAi_SetPatrolType(sld);
 	LAi_SetImmortal(sld, true);
 	LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
+	sld.city = "SantoDomingo";
 	ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","goto","goto2");
 	//Глаша уборщица в резиденции Мариго
 	sld = GetCharacter(NPC_GenerateCharacter("CleanUpGrandmatha", "BaynesWife", "woman", "towngirl", 1, Holland, 1, false));
@@ -2641,6 +2647,7 @@ void VSEnpcInit()
 	sld.lastname = "";
 	LAi_SetLoginTime(sld, 11.0, 16.99);
 	LAi_group_MoveCharacter(sld, "HOLLAND_CITIZENS");
+	sld.city = "Marigo";
 	sld.dialog.filename = "Janitor.c";
 	sld.dialog.currentnode = "First";
 	//Девушка с нежданным наследством

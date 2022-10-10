@@ -438,7 +438,7 @@ void QuestDuelMeeting(string qName)
 			}
 			else
 			{
-				chr.Dialog.CurrentNode = "Duelist_2_6";
+				chr.Dialog.CurrentNode = "Duelist_2_10";
 			}
 
 			LAi_ActorFollow(PChar, chr, "QuestDuelTalkMainCharacterWithDuelist", 25.0);
@@ -501,7 +501,7 @@ void QuestDuelBattleWithMercenaryWinner(string qName)
 
 	string sCharacter = PChar.GenerateQuestDuel.Characters.Duelist_2;
 	ref chr = CharacterFromID(sCharacter);
-	chr.Dialog.CurrentNode = "Duelist_2_5";
+	chr.Dialog.CurrentNode = "Duelist_2_8";
 
 	string sChar = PChar.GenerateQuestDuel.Characters.Duelist_1;
 	ref achr = CharacterFromID(sChar);
@@ -529,7 +529,7 @@ void QuestDuelBattleWithMercenaryEnd()
 
 	sCharacter = PChar.GenerateQuestDuel.Characters.Duelist_1;
 	chr = CharacterFromID(sCharacter);
-	chr.Dialog.CurrentNode = "Duelist_1_14";
+	chr.Dialog.CurrentNode = "Duelist_1_18";
 
 	LAi_SetActorType(chr);
 	LAi_SetActorType(PChar);
@@ -642,7 +642,7 @@ void QuestDuelBattleWithDuelistWinner(string qName)
 {
 	string sCharacter = PChar.GenerateQuestDuel.Characters.Duelist_1;
 	ref chr = CharacterFromID(sCharacter);
-	chr.Dialog.CurrentNode = "Duelist_1_16";
+	chr.Dialog.CurrentNode = "Duelist_1_20";
 
 	LAi_SetActorType(chr);
 	LAi_SetActorType(PChar);

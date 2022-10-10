@@ -10360,6 +10360,7 @@ void QuestComplete(string sQuestName, string qname)
 			LAi_SetActorType(sld);
 			sld.lifeday = 0;
 			LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
+			sld.City = "FortFrance";
 			ChangeCharacterAddressGroup(sld,"FortFrance_town","goto","goto34");
 			LAi_ActorGoToLocator(sld, "officers", "reloadPr1_1", "", -1);
 		
@@ -10367,6 +10368,7 @@ void QuestComplete(string sQuestName, string qname)
 			LAi_SetActorType(sld);
 			sld.lifeday = 0;
 			LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
+			sld.City = "FortFrance";
 			ChangeCharacterAddressGroup(sld,"FortFrance_town","goto","goto34");
 			LAi_ActorGoToLocator(sld, "officers", "reloadPr1_3", "PDM_PJ_Arest_1_1", -1);
 			
@@ -10428,6 +10430,7 @@ void QuestComplete(string sQuestName, string qname)
 			LAi_SetLoginTime(sld, 6.0, 21.99);
 			LAi_SetGuardianType(sld);
 			LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
+			sld.City = "FortFrance";
 			ChangeCharacterAddressGroup(sld,"FortFrance_town","officers","soldier_uniq2");
 			
 			sld = CharacterFromID("PDM_PJ_Strajnik_2")
@@ -10448,7 +10451,8 @@ void QuestComplete(string sQuestName, string qname)
 			sld.dialog.currentnode   = "First time";
 			LAi_SetLoginTime(sld, 6.0, 21.99);
 			LAi_SetGuardianType(sld);
-			LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");		
+			LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
+			sld.City = "FortFrance";
 		break;
 		
 //========================  Квест "Клан Ламбрини".  =======================

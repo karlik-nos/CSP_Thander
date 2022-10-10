@@ -180,6 +180,7 @@ void ProcessDialogEvent()
 			sld.dialog.currentnode = "Ya_Toje_Hochu_5_EsheRaz";
 			LAi_SetGuardianType(sld);
 			LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
+			sld.City = "FortFrance";
 		break;
 
 		case "Ya_Toje_Hochu_5_EsheRaz":
@@ -222,6 +223,7 @@ void ProcessDialogEvent()
 			LAi_SetActorType(sld);
 			LAi_ActorAnimation(sld, "stun_1", "", 1.0);
 			LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
+			sld.City = "FortFrance";
 			
 			PChar.quest.PDM_PJ_Protrezvel.win_condition.l1 = "ExitFromLocation";
 			PChar.quest.PDM_PJ_Protrezvel.win_condition.l1.location = PChar.location;
