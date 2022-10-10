@@ -789,7 +789,7 @@ int LocationInitSantoDomingo(int n)
 	locations[n].reload.l2.emerge = "reload91";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Street";
-	LAi_LocationFightDisable(&locations[n], true);
+	locations[n].reload.l2.disable = 1;
 	n = n + 1;
 
  	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
