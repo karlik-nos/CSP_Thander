@@ -9,8 +9,10 @@ void SetFantomParamFromRank(ref NPchar, int  rank, bool setEquip)
     SetRandSPECIAL(Npchar);
     CalculateSkillsFromRank(Npchar, rank);
     SetFantomHP(NPchar);
+	if (NPchar.id == "OfMush2") trace("1");
     if (setEquip)
     {
+		if (NPchar.id == "OfMush2") trace("2");
 	    LAi_NPC_Equip(NPchar, sti(NPchar.rank), true, true);
     }
 	if (IsCharacterPerkOn(NPchar, "Ciras") && rand(4)==0)
@@ -37,8 +39,10 @@ void SetFantomParamFromRank(ref NPchar, int  rank, bool setEquip)
 		NPchar.cirassId = Items_FindItemIdx(cirnum);
 		Log_TestInfo("Персонаж "+NPchar.name+" получил кирасу "+cirnum);
 	}
+	if (NPchar.id == "OfMush2") {trace("3"); DumpAttributes(NPchar);}
 	if (CheckAttribute(NPchar,"id"))
 	{
+		if (NPchar.id == "OfMush2") {trace("4");}
 		switch (NPchar.id)
 		{
 			case "Tichingitu": SetCharacterPerk(NPchar, "Buccaneer"); break;
@@ -67,9 +71,9 @@ void SetFantomParamFromRank(ref NPchar, int  rank, bool setEquip)
 			case "Undead_Green": SetCharacterPerk(NPchar, "SeaWolf"); break;
 			else {SetSpeciality(NPchar, PerksChars()); break;}
 		}
-
 	}
 	else SetSpeciality(NPchar, PerksChars());
+	if (NPchar.id == "OfMush2") {trace("5"); DumpAttributes(NPchar);}
 }
 
 void SetFantomParamFromRank_PPG(ref NPchar, int  rank, bool setEquip)   //WW

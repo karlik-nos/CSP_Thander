@@ -891,6 +891,8 @@ void NewGame()
 	DeleteClass(&IBoardingStatus);
 	DeleteAttribute(&IBoardingStatus,"");
 
+	for (i = 0; i < TOTAL_CHARACTERS; i++) InitCharacter(&Characters[i], i);
+
 	SetEventHandler("frame","NewGame_continue",1);
 }
 
@@ -1350,6 +1352,9 @@ void ProcessControls()
   	if (ControlName=="TimeScaleFaster" || ControlName == "TimeScaleSlower" ||
 		ControlName=="TimeScaleFasterBA" || ControlName=="TimeScaleSlowerBA")
   	{
+		pchar.SystemInfo.OnlyShowCharacter = true;
+		LaunchCharacter(CharacterFromID("OfMush2"));
+		DumpAttributes(CharacterFromID("OfMush2"));
         //Boyer change #20170318-38
         // if (CheckAttribute(&loadedLocation, "type") && loadedLocation.type == "underwater") return; //запрет ускорения под водой.
 		//if (bAltBalance && !bSeaActive && ControlName == "TimeScaleSlower" && TimeScaleCounter == 0)
