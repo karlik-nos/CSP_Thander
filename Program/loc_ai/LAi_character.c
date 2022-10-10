@@ -1036,6 +1036,7 @@ void LAi_AllCharactersUpdate(float dltTime)
 					{	
 						if(chr.chr_ai.backuptype == "officer")
 						{
+							//Log_TestInfo("Type restoration: officer");
 							DeleteAttribute(chr, "chr_ai.backuptype");
 							LAi_SetOfficerType(chr);
 							LAi_tmpl_SetFollow(chr, pchar, -1.0);
@@ -1043,7 +1044,7 @@ void LAi_AllCharactersUpdate(float dltTime)
 						}
 						else
 						{
-							DeleteAttribute(chr, "chr_ai.backuptype");
+							//Log_TestInfo("Type restoration: warrior");
 							LAi_SetWarriorTypeNoGroup(chr);
 							LAi_SetFightMode(chr, true);
 						}
