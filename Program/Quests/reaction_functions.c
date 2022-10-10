@@ -11438,14 +11438,28 @@ void KSM_Snr_Nashli_Ship(string qName)
 	//Наши матросы
 	for (i=1; i<=2; i++)
 	{
-		sTemp = "shipowner_"+(rand(28)+1);
+		if (pchar.sex != "skeleton")
+		{
+			sTemp = "shipowner_"+(rand(28)+1);
+		}
+		else
+		{
+			sTemp = "Skel_" + (rand(4)+1);
+		}
 		sld = GetCharacter(NPC_GenerateCharacter("KSM_Snr_Matrosiki_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
 		ChangeCharacterAddressGroup(sld, "WreckedShip", "goto", "goto1");
 		LAi_SetActorType(sld);
 		LAi_ActorFollow(sld, pchar, "", -1);
 		LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
 	}
-	sTemp = "shipowner_"+(rand(28)+1);
+	if (pchar.sex != "skeleton")
+	{
+		sTemp = "shipowner_"+(rand(28)+1);
+	}
+	else
+	{
+		sTemp = "Skel_" + (rand(4)+1);
+	}
 	sld = GetCharacter(NPC_GenerateCharacter("KSM_Snr_Matrosiki_3", sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
 	ChangeCharacterAddressGroup(sld, "WreckedShip", "goto", "goto1");
 	LAi_SetActorType(sld);
