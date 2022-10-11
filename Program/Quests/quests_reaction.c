@@ -11234,7 +11234,7 @@ void QuestComplete(string sQuestName, string qname)
 			SetCharacterPerk(sld, "EmergentSurgeon");
 			
 			//Синий скелет
-			sld = GetCharacter(NPC_GenerateCharacter("Undead_Blue", "skelt", "skeleton", "skeleton", 10, PIRATE, -1, false));
+			sld = GetCharacter(NPC_GenerateCharacter("Undead_Blue", "skelt_0", "skeleton", "skeleton", 10, PIRATE, -1, false));
 			sld.name = "Ледяной";
 			sld.lastname = "демон";
 			sld.FaceId = 354;
@@ -11251,6 +11251,7 @@ void QuestComplete(string sQuestName, string qname)
 			sld.location = "None";
 			sld.Dialog.CurrentNode = "hired";
 			sld.Payment = true;
+			sld.HeroModel = "skelt_0,skelt_1,skelt_2,skelt_3,skelt_4,skelt_5";
 			LAi_SetHP(sld, 300.0, 300.0);
 			SetCharacterPerk(sld, "BasicDefense");
 			SetCharacterPerk(sld, "AdvancedDefense");
