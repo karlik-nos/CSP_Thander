@@ -8702,6 +8702,10 @@ void QuestComplete(string sQuestName, string qname)
 			LAi_group_MoveCharacter(&Characters[GetCharacterIndex("Builder")], LAI_GROUP_PLAYER);
 			chrDisableReloadToLocation = false;
 		break;
+		
+		case "BuilderToTownhall":
+			ChangeCharacterAddressGroup(CharacterFromID("Builder"), "Caiman_townhall", "goto", LAi_FindFreeRandomLocator("goto"));
+		break;
 
 		case "ColonyModification_5":
 			Characters[GetCharacterIndex("Builder")].Dialog.CurrentNode = "First time";
