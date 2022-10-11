@@ -569,17 +569,12 @@ void HideInfoWindow()
 	CloseTooltip();
 }
 
-int GetSummonSkillForSkillTable(ref _refCharacter, string skillName)
+int GetSummonSkillForSkillTable(ref _refCharacter, string skillName)//метод-дубль без бэк скилов, у оригинала почему-то иногда сносит крышу
 {
     int sumSkill;
 
     sumSkill = GetSummonSkillFromNameSimple(_refCharacter, skillName);
-    // boal 27.01.2004 пенальти за крутой корабль -->
     sumSkill = ApplayNavyPenaltyToSkill(_refCharacter, skillName, sumSkill);
-    // boal 27.01.2004 <--
-
-    _refCharacter.BakSkill.(skillName)      =  sumSkill; // значение
-    _refCharacter.BakSkillCount.(skillName) = rand(5); // счетчик немного размажем пересчет
 
     return sumSkill;
 }
