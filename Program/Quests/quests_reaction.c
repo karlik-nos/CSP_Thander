@@ -2411,7 +2411,7 @@ void QuestComplete(string sQuestName, string qname)
 			        sld.SaveItemsForDead  = true;
 					AddBonusEnergyToCharacter(sld, 30);
 					FantomMakeCoolFighterWRankDepend(sld,Rank,20+rand(70),20+rand(70),70+(MOD_SKILL_ENEMY_RATE*3));//реф,уровень,скилы фехта(дополнительно скейлятся в методе от сложности),навык стрельбы и везения(аналогично),доп хп(аналогично)
-					DeleteAttribute(sld, "perks.list");
+					DeleteAllPerksExceptChar(sld);
 					DeleteAttribute(sld, "items.spyglass3")
 					SetCharacterPerk(sld, "BasicDefense");
 					SetCharacterPerk(sld, "CriticalHit");
