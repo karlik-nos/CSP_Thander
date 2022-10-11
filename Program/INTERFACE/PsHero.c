@@ -210,26 +210,28 @@ void ShowPGGInfo()
 {
 	if (CheckAttribute(&GameInterface, CurTable + "." + CurRow + ".index"))
 	{ // нет ПГГ в списке
-	chr = CharacterFromID("PsHero_" + GameInterface.TABLE_HERO.(CurRow).index);
-	SetSPECIALMiniTable("TABLE_SMALLSKILL", chr);
-	SetOTHERMiniTable("TABLE_SMALLOTHER", chr);
-	SetFormatedText("OFFICER_NAME", GetFullName(chr));
-	SetNewPicture("CHARACTER_BIG_PICTURE", "interfaces\portraits\256\face_" + chr.faceId + ".tga");
-	SetNewPicture("CHARACTER_FRAME_PICTURE", "interfaces\Frame3.tga");
+		chr = CharacterFromID("PsHero_" + GameInterface.TABLE_HERO.(CurRow).index);
+		SetSPECIALMiniTable("TABLE_SMALLSKILL", chr);
+		SetOTHERMiniTable("TABLE_SMALLOTHER", chr);
+		SetFormatedText("OFFICER_NAME", GetFullName(chr));
+		SetNewPicture("CHARACTER_BIG_PICTURE", "interfaces\portraits\256\face_" + chr.faceId + ".tga");
+		SetNewPicture("CHARACTER_FRAME_PICTURE", "interfaces\Frame3.tga");
+		SetNewPicture("SHIP_BIG_PICTURE", "interfaces\Frame2.tga");
+		SetNewPicture("SHIP_FRAME_PICTURE", "interfaces\Frame2.tga");
 
-	string texturedata;
-	if (IsCharacterPerkOn(chr, "Grunt")) texturedata = "INTERFACES\Sith\Char_Master.tga";
-	if (IsCharacterPerkOn(chr, "Trader")) texturedata = "INTERFACES\Sith\Char_Merchant.tga";
-	if (IsCharacterPerkOn(chr, "Fencer")) texturedata = "INTERFACES\Sith\Char_Corsair.tga";
-	if (IsCharacterPerkOn(chr, "Adventurer")) texturedata = "INTERFACES\Sith\Char_Adventurer.tga";
-	if (IsCharacterPerkOn(chr, "Buccaneer")) texturedata = "INTERFACES\Sith\Char_Inquisitor.tga";
-	if (IsCharacterPerkOn(chr, "Agent")) texturedata = "INTERFACES\Sith\Char_SecretAgent.tga";
-	if (IsCharacterPerkOn(chr, "SeaWolf")) texturedata = "INTERFACES\Sith\Char_SeaWolf.tga";
-	SetNewPicture("CHARACTER_PROFESSION", texturedata);
+		string texturedata;
+		if (IsCharacterPerkOn(chr, "Grunt")) texturedata = "INTERFACES\Sith\Char_Master.tga";
+		if (IsCharacterPerkOn(chr, "Trader")) texturedata = "INTERFACES\Sith\Char_Merchant.tga";
+		if (IsCharacterPerkOn(chr, "Fencer")) texturedata = "INTERFACES\Sith\Char_Corsair.tga";
+		if (IsCharacterPerkOn(chr, "Adventurer")) texturedata = "INTERFACES\Sith\Char_Adventurer.tga";
+		if (IsCharacterPerkOn(chr, "Buccaneer")) texturedata = "INTERFACES\Sith\Char_Inquisitor.tga";
+		if (IsCharacterPerkOn(chr, "Agent")) texturedata = "INTERFACES\Sith\Char_SecretAgent.tga";
+		if (IsCharacterPerkOn(chr, "SeaWolf")) texturedata = "INTERFACES\Sith\Char_SeaWolf.tga";
+		SetNewPicture("CHARACTER_PROFESSION", texturedata);
 
-	XI_WindowShow("RPG_WINDOW", true);
-	XI_WindowDisable("RPG_WINDOW", false);
-	sMessageMode = "RPG_Hint";
+		XI_WindowShow("RPG_WINDOW", true);
+		XI_WindowDisable("RPG_WINDOW", false);
+		sMessageMode = "RPG_Hint";
 	}
 }
 
