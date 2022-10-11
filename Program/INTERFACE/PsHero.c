@@ -216,9 +216,15 @@ void ShowPGGInfo()
 		SetFormatedText("OFFICER_NAME", GetFullName(chr));
 		SetNewPicture("CHARACTER_BIG_PICTURE", "interfaces\portraits\256\face_" + chr.faceId + ".tga");
 		SetNewPicture("CHARACTER_FRAME_PICTURE", "interfaces\Frame3.tga");
-		SetNewPicture("SHIP_BIG_PICTURE", "interfaces\Frame2.tga");
+		int iShip = sti(chr.ship.type);
+		if (iShip != SHIP_NOTUSED)
+		{
+			ref refShip = GetRealShip(iShip);
+			string sShip = refShip.BaseName;
+			SetNewPicture("SHIP_BIG_PICTURE", "interfaces\ships\" + sShip + ".tga.tx");
+		}
+		else {SetNewPicture("SHIP_BIG_PICTURE", "interfaces\blank_ship2.tga.tx");}
 		SetNewPicture("SHIP_FRAME_PICTURE", "interfaces\Frame2.tga");
-
 		string texturedata;
 		if (IsCharacterPerkOn(chr, "Grunt")) texturedata = "INTERFACES\Sith\Char_Master.tga";
 		if (IsCharacterPerkOn(chr, "Trader")) texturedata = "INTERFACES\Sith\Char_Merchant.tga";
