@@ -104,7 +104,7 @@ int     MAX_CHARACTERS   = 10;
 #define LSC_MAX_RESIDENCE	3
 #define LSC_MAX_CHURCH		7
 #define LSC_MAX_PRISON		3
-#define LSC_MAX_STORE		3
+#define LSC_MAX_STORE		4
 
 string 	sEnManNames[10], sEnWomenNames[4], sEnFamilies[108];
 string 	sHoManNames[39], sHoWomenNames[14], sHoFamilies[95];
