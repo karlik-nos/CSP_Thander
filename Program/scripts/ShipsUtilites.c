@@ -1568,7 +1568,7 @@ int GetShipPriceByTTH(int iType, ref rChar)
 		case 4: speed_price = 250; break;
 		case 3: speed_price = 1250; break;
 		case 2: speed_price = 2500; break;
-		case 1: speed_price = 5000; break;
+		case 1: speed_price = 10000; break;
 	}
 	int SummSpeed = stf(rRealShip.SpeedRate) * speed_price;
 
@@ -1582,7 +1582,7 @@ int GetShipPriceByTTH(int iType, ref rChar)
 		case 4: turn_price = 125; break;
 		case 3: turn_price = 750; break;
 		case 2: turn_price = 1500; break;
-		case 1: turn_price = 3000; break;
+		case 1: turn_price = 6000; break;
 	}
 	int SummTurn = stf(rRealShip.TurnRate) * turn_price;
 
