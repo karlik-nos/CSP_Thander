@@ -1249,8 +1249,9 @@ void QuestComplete(string sQuestName, string qname)
 				"Грохоту было - весь город переполошился, а в местной лавке крышу ядром проломило! Да только без толку всё. Местные-то - скупщики значит, в джунглях спрятались, а капитан морем ушёл. Как есть, с носом нашу эскадру оставил! Так из бухты вырулил - любой лоцман позавидует!", Pchar.quest.contraband.City, 3, 5, "");
 		break;
 
-		case "ContraSneakGot":
+		case "ContraClearGot":
 			DeleteAttribute(pchar,"quest.Contraband.SneakGot");
+			DeleteAttribute(pchar,"quest.Contraband.InterruptionGot");
 		break;
 		case "Rand_ContrabandAtSeaEnded":
 			StopCoastalGuardPursuit();
