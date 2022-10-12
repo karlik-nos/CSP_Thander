@@ -718,7 +718,7 @@ void GenerateSpySeeker(ref location)
 			if (CheckAttribute(location, "locators.goto")) {
 				aref tmpAref;
 				makearef(tmpAref, location.locators.goto);
-				ChangeCharacterAddressGroup(rChar, PChar.location, "goto", GetAttributeName(GetAttributeN(tmpAref, 0))); // берем первый доступный локатор на локации
+				Log_TestInfo(PlaceCharacter(rChar, "goto", "random"));
 			} else {
 				Trace("not found locators for location: "+location.name)
 				return;

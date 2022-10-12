@@ -6,70 +6,68 @@ int m_rank_bonus, e_rank_bonus;
 // генерим НПС приблизительного ранга
 void SetFantomParamFromRank(ref NPchar, int  rank, bool setEquip)
 {
-    SetRandSPECIAL(Npchar);
-    CalculateSkillsFromRank(Npchar, rank);
-    SetFantomHP(NPchar);
-    if (setEquip)
-    {
-	    LAi_NPC_Equip(NPchar, sti(NPchar.rank), true, true);
-    }
-	if (IsCharacterPerkOn(NPchar, "Ciras") && rand(4)==0)
+	SetRandSPECIAL(Npchar);
+	CalculateSkillsFromRank(Npchar, rank);
+	SetFantomHP(NPchar);
+
+	if (setEquip) LAi_NPC_Equip(NPchar, sti(NPchar.rank), true, true); // выдаем эквип
+
+	if (IsCharacterPerkOn(NPchar, "Ciras") && rand(4)==0) SetFantomWearCirass(NPChar) // одеваем кирасу
+
+	if (!CheckAttribute(NPchar,"id")) { SetSpeciality(NPchar, PerksChars()); return; }
+
+	RemoveSpeciality(NPchar);
+	switch (NPchar.id)
 	{
-		string cirnum;
-		switch (rand(4))
-		{
-			case 0: cirnum = "cirass1"; break;
-			case 1: cirnum = "cirass1"; break;
-			case 2: cirnum = "cirass2"; break;
-			case 3: cirnum = "cirass3"; break;
-			case 4: cirnum = "cirass4"; break;
-		}
-		if (CheckAttribute(NPchar, "HeroModel")) // все, у кого есть что одеть
-        {
-			switch (cirnum)
+		case "Tichingitu": SetCharacterPerk(NPchar, "Buccaneer"); break;
+		case "Andreas_Fickler": SetCharacterPerk(NPchar, "Trader"); break;
+		case "OfMush1": SetCharacterPerk(NPchar, "Buccaneer"); break;
+		case "OfMush2": SetCharacterPerk(NPchar, "Buccaneer"); break;
+		case "OffMushketer": SetCharacterPerk(NPchar, "Buccaneer"); break;
+		case "zpqCaptainOf": SetCharacterPerk(NPchar, "Adventurer"); break;
+		case "Daniel": SetCharacterPerk(NPchar, "Grunt"); break;
+		case "W_Lejitos": SetCharacterPerk(NPchar, "Grunt"); break;
+		case "Jafarry": SetCharacterPerk(NPchar, "Fencer"); break;
+		case "Beatrice": SetCharacterPerk(NPchar, "SeaWolf"); break;
+		case "Angellica": SetCharacterPerk(NPchar, "SeaWolf"); break;
+		case "SharpOf": SetCharacterPerk(NPchar, "SeaWolf"); break;
+		case "W_Chinaman": SetCharacterPerk(NPchar, "SeaWolf"); break;
+		case "Mechanic1": SetCharacterPerk(NPchar, "Adventurer"); break;
+		case "DanielleOff": SetCharacterPerk(NPchar, "Fencer"); break;
+		case "Sharp_Sibling": SetCharacterPerk(NPchar, "Fencer"); break;
+		case "James_Callow": SetCharacterPerk(NPchar, "Fencer"); break;
+		case "PGG_Undead": SetCharacterPerk(NPchar, "Buccaneer"); break;
+		case "Undead_Jessika": SetCharacterPerk(NPchar, "Fencer"); break;
+		case "Undead_Indeech": SetCharacterPerk(NPchar, "SeaWolf"); break;
+		case "Undead_Blue": SetCharacterPerk(NPchar, "Grunt"); break;
+		case "Undead_Red": SetCharacterPerk(NPchar, "Adventurer"); break;
+		case "Undead_Green": SetCharacterPerk(NPchar, "SeaWolf"); break;
+		else: SetSpeciality(NPchar, PerksChars()); break;
+	}
+}
+
+void SetFantomWearCirass(ref NPChar) {
+	string cirnum;
+	switch (rand(4))
+	{
+		case 0: cirnum = "cirass1"; break;
+		case 1: cirnum = "cirass1"; break;
+		case 2: cirnum = "cirass2"; break;
+		case 3: cirnum = "cirass3"; break;
+		case 4: cirnum = "cirass4"; break;
+	}
+	if (CheckAttribute(NPchar, "HeroModel")) // все, у кого есть что одеть
 			{
-				case "cirass1": NPchar.model = GetSubStringByNum(NPchar.HeroModel, 1); break;
-				case "cirass2": NPchar.model = GetSubStringByNum(NPchar.HeroModel, 2); break;
-				case "cirass3": NPchar.model = GetSubStringByNum(NPchar.HeroModel, 3); break;
-				case "cirass4": NPchar.model = GetSubStringByNum(NPchar.HeroModel, 4); break;
-			}
-		}
-		NPchar.cirassId = Items_FindItemIdx(cirnum);
-		Log_TestInfo("Персонаж "+NPchar.name+" получил кирасу "+cirnum);
-	}
-	if (CheckAttribute(NPchar,"id"))
-	{
-		RemoveSpeciality(NPchar);
-		switch (NPchar.id)
+		switch (cirnum)
 		{
-			case "Tichingitu": SetCharacterPerk(NPchar, "Buccaneer"); break;
-			case "Andreas_Fickler": SetCharacterPerk(NPchar, "Trader"); break;
-			case "OfMush1": SetCharacterPerk(NPchar, "Buccaneer"); break;
-			case "OfMush2": SetCharacterPerk(NPchar, "Buccaneer"); break;
-			case "OffMushketer": SetCharacterPerk(NPchar, "Buccaneer"); break;
-			case "zpqCaptainOf": SetCharacterPerk(NPchar, "Adventurer"); break;
-			case "Daniel": SetCharacterPerk(NPchar, "Grunt"); break;
-			case "W_Lejitos": SetCharacterPerk(NPchar, "Grunt"); break;
-			case "Jafarry": SetCharacterPerk(NPchar, "Fencer"); break;
-			case "Beatrice": SetCharacterPerk(NPchar, "SeaWolf"); break;
-			case "Angellica": SetCharacterPerk(NPchar, "SeaWolf"); break;
-			case "SharpOf": SetCharacterPerk(NPchar, "SeaWolf"); break;
-			case "W_Chinaman": SetCharacterPerk(NPchar, "SeaWolf"); break;
-			case "Mechanic1": SetCharacterPerk(NPchar, "Adventurer"); break;
-			case "DanielleOff": SetCharacterPerk(NPchar, "Fencer"); break;
-			case "SharleMary": SetCharacterPerk(NPchar, "Fencer"); break;
-			case "Sharp_Sibling": SetCharacterPerk(NPchar, "Fencer"); break;
-			case "James_Callow": SetCharacterPerk(NPchar, "Fencer"); break;
-			case "PGG_Undead": SetCharacterPerk(NPchar, "Buccaneer"); break;
-			case "Undead_Jessika": SetCharacterPerk(NPchar, "Fencer"); break;
-			case "Undead_Indeech": SetCharacterPerk(NPchar, "SeaWolf"); break;
-			case "Undead_Blue": SetCharacterPerk(NPchar, "Grunt"); break;
-			case "Undead_Red": SetCharacterPerk(NPchar, "Adventurer"); break;
-			case "Undead_Green": SetCharacterPerk(NPchar, "SeaWolf"); break;
-			else {SetSpeciality(NPchar, PerksChars()); break;}
+			case "cirass1": NPchar.model = GetSubStringByNum(NPchar.HeroModel, 1); break;
+			case "cirass2": NPchar.model = GetSubStringByNum(NPchar.HeroModel, 2); break;
+			case "cirass3": NPchar.model = GetSubStringByNum(NPchar.HeroModel, 3); break;
+			case "cirass4": NPchar.model = GetSubStringByNum(NPchar.HeroModel, 4); break;
 		}
 	}
-	else SetSpeciality(NPchar, PerksChars());
+	NPchar.cirassId = Items_FindItemIdx(cirnum);
+	Log_TestInfo("Персонаж "+NPchar.name+" получил кирасу "+cirnum);
 }
 
 void SetFantomParamFromRank_PPG(ref NPchar, int  rank, bool setEquip)   //WW
