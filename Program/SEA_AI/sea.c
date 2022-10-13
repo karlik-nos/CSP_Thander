@@ -372,6 +372,8 @@ void Sea_LandLoad()
 		Group_FreeAllDead();
 	}
 
+	PerkReload();
+
 	if (sborCancelledByPatent)
 	{
 		Log_Info("Пропуск в порт колонии бесплатен благодаря патенту.");
@@ -533,6 +535,7 @@ void Sea_MapLoad()
 	SeaMapLoadZ = stf(pchar.Ship.Pos.z);
 	SeaMapLoadAY = stf(pchar.Ship.Ang.y);
 	CheckWoundedOfficers();
+	PerkReload();
 }
 
 // нигде не пользуетя, может глючить для абордажа
