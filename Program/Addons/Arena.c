@@ -1070,31 +1070,7 @@ void GenerateArenaTournament()
 		iNumPosition = GetNumPositionForCharInTournament();
 		chr.greeting = "Gr_ArenaMember";
 
-		if (IsCharacterPerkOn(chr, "Ciras") && rand(4)==0)
-		{
-			string cirnum;
-			switch (rand(4))
-			{
-				case 0: cirnum = "cirass1"; break;
-				case 1: cirnum = "cirass2"; break;
-				case 2: cirnum = "cirass3"; break;
-				case 3: cirnum = "cirass4"; break;
-				case 4: cirnum = "cirass5"; break;
-			}
-			if (CheckAttribute(chr, "HeroModel")) // все, у кого есть что одеть
-			{
-				switch (cirnum)
-				{
-					case "cirass1": chr.model = GetSubStringByNum(chr.HeroModel, 1); break;
-					case "cirass2": chr.model = GetSubStringByNum(chr.HeroModel, 2); break;
-					case "cirass3": chr.model = GetSubStringByNum(chr.HeroModel, 3); break;
-					case "cirass4": chr.model = GetSubStringByNum(chr.HeroModel, 4); break;
-					case "cirass5": chr.model = GetSubStringByNum(chr.HeroModel, 5); break;
-				}
-			}
-			chr.cirassId = Items_FindItemIdx(cirnum);
-			Log_TestInfo("Персонаж "+chr.name+" получил кирасу "+cirnum);
-		}
+		if (IsCharacterPerkOn(chr, "Ciras") && rand(4)==0) SetFantomWearCirass(chr);
 
 		//SetNewModelToChar(chr);
 		SetRandomNameToCharacter(chr);

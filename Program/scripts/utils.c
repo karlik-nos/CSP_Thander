@@ -1612,30 +1612,7 @@ int NPC_GenerateCharacter(string _id, string _model, string _sex, string _ani, i
      	DeleteAttribute(ch, "LifeDay");
 	}
 	SetFoodToCharacter(ch, 5, 50);
-	if (IsCharacterPerkOn(ch, "Ciras") && rand(4)==0)
-	{
-		string cirnum;
-		switch (rand(4))
-		{
-			case 0: cirnum = "cirass1"; break;
-			case 1: cirnum = "cirass1"; break;
-			case 2: cirnum = "cirass2"; break;
-			case 3: cirnum = "cirass3"; break;
-			case 4: cirnum = "cirass4"; break;
-		}
-		if (CheckAttribute(ch, "HeroModel")) // все, у кого есть что одеть
-        {
-			switch (cirnum)
-			{
-				case "cirass1": ch.model = GetSubStringByNum(ch.HeroModel, 1); break;
-				case "cirass2": ch.model = GetSubStringByNum(ch.HeroModel, 2); break;
-				case "cirass3": ch.model = GetSubStringByNum(ch.HeroModel, 3); break;
-				case "cirass4": ch.model = GetSubStringByNum(ch.HeroModel, 4); break;
-			}
-		}
-		ch.cirassId = Items_FindItemIdx(cirnum);
-		Log_TestInfo("Персонаж "+ch.name+" получил кирасу "+cirnum);
-	}
+	if (IsCharacterPerkOn(ch, "Ciras") && rand(4)==0) SetFantomWearCirass(ch);
 
 	return  iChar;
 }
