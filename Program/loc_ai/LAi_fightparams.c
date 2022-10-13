@@ -1099,9 +1099,83 @@ void CheckForBlooding(ref attack, ref enemy, bool type, string attackType)
 
 void CheckForSwift(ref attack, ref enemy, bool type)
 {
-	
-				MakeSwiftAttack(enemy, attack, 5.0);
-	
+	int valueSS = sti(attack.chr_ai.special.valueSS);
+	if (type)
+	{
+		float coeff = makefloat(GetCharacterSkillSimple(attack,"Fencing"))/20;
+		if ((2.5+valueSS+coeff)*10>rand(999))
+		{
+			if(CheckAttribute(enemy, "sex") && enemy.model.animation != "Terminator" && enemy.sex != "skeleton")
+			{
+				if(sti(attack.index) == GetMainCharacterIndex())
+				{
+					Log_Info("Вы нанесли резкий удар.");
+					PlaySound("interface\Stan_"+rand(5)+".wav");
+					pchar.questTemp.swiftcount = sti(pchar.questTemp.swiftcount) + 1;
+				}
+				if(sti(enemy.index) == GetMainCharacterIndex())
+				{
+					Log_Info("Вам был нанесён резкий удар.");
+					PlaySound("interface\Stan_"+rand(5)+".wav");
+				}
+				MakeSwiftAttack(enemy, attack, coeff);
+			}
+			else
+			{
+				if(sti(attack.index) == GetMainCharacterIndex())
+				{
+					Log_Info("Вы нанесли глубокую рану.");
+					PlaySound("interface\Krovotok_"+rand(4)+".wav");
+					pchar.questTemp.swiftcount = sti(pchar.questTemp.swiftcount) + 1;
+				}
+				if(sti(enemy.index) == GetMainCharacterIndex())
+				{
+					Log_Info("Вам нанесли глубокую рану.");
+					PlaySound("interface\Krovotok_"+rand(4)+".wav");
+				}
+				LAi_ApplyCharacterAdditionalDamage(enemy, MakeInt(5+(coeff*4)));
+			}
+		}
+	}
+	else
+	{
+		if (valueSS != 0)
+		{
+			if (valueSS>rand(99))
+			{
+				if(CheckAttribute(enemy, "sex") && enemy.model.animation != "Terminator" && enemy.sex != "skeleton")
+				{
+					if(sti(attack.index) == GetMainCharacterIndex())
+					{
+						Log_Info("Вы нанесли резкий удар.");
+						PlaySound("interface\Stan_"+rand(5)+".wav");
+						pchar.questTemp.swiftcount = sti(pchar.questTemp.swiftcount) + 1;
+					}
+					if(sti(enemy.index) == GetMainCharacterIndex())
+					{
+						Log_Info("Вам нанесён резкий удар.");
+						PlaySound("interface\Stan_"+rand(5)+".wav");
+					}
+					MakeSwiftAttack(enemy, attack, 3.0);
+				}
+				else
+				{
+					if(sti(attack.index) == GetMainCharacterIndex())
+					{
+						Log_Info("Вы нанесли глубокую рану.");
+						PlaySound("interface\Krovotok_"+rand(4)+".wav");
+						pchar.questTemp.swiftcount = sti(pchar.questTemp.swiftcount) + 1;
+					}
+					if(sti(enemy.index) == GetMainCharacterIndex())
+					{
+						Log_Info("Вам нанесли глубокую рану.");
+						PlaySound("interface\Krovotok_"+rand(4)+".wav");
+					}
+					LAi_ApplyCharacterAdditionalDamage(enemy, MakeInt(5+(valueSS*2)));
+				}
+			}
+		}
+	}
 }
 
 void CheckForStun(ref attack, ref enemy)
