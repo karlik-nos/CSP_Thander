@@ -57,7 +57,7 @@ void SetFantomWearCirass(ref NPChar) {
 		case 4: cirnum = "cirass4"; break;
 	}
 	if (CheckAttribute(NPchar, "HeroModel")) // все, у кого есть что одеть
-			{
+	{
 		switch (cirnum)
 		{
 			case "cirass1": NPchar.model = GetSubStringByNum(NPchar.HeroModel, 1); break;
