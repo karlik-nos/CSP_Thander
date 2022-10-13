@@ -1151,7 +1151,7 @@ void LAi_AllCharactersUpdate(float dltTime)
 					}
 				}
 			}
-			if (sti(chr.index) == GetMainCharacterIndex() && !CheckAttribute(pchar,"chr_ai.swift") && CheckAttribute(pchar, "autofood") && !CheckAttribute(chr, "noeat"))
+			if (sti(chr.index) == GetMainCharacterIndex() && CheckAttribute(pchar, "autofood") && !CheckAttribute(pchar,"chr_ai.swift") &&  !CheckAttribute(chr, "noeat"))
 			{
 				if(chr_ai.energy < (LAi_GetCharacterMaxEnergy(chr) * (sti(PChar.autofood_use) * 0.01)) && LAi_IsFightMode(pchar))
 				{
