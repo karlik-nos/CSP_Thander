@@ -2340,4 +2340,9 @@ void AcceptPerk()
     FillPerksTable(GameInterface.(CurTable).(CurRow).UserData.Type, false);
     // перерисуем все <--
 	ExitPerkMenu();
+	int iCurrentNode = nCurScrollNum;
+	FillCharactersScroll();
+	GameInterface.CHARACTERS_SCROLL.current = iCurrentNode;
+	SetCurrentNode("CHARACTERS_SCROLL");
+	SendMessage(&GameInterface,"lsl",MSG_INTERFACE_REFRESH_SCROLL,"CHARACTERS_SCROLL",-1);
 }
