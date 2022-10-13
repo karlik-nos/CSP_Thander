@@ -316,6 +316,36 @@ void PerkLoad()
 
 //	trace("TIME!!! PerkLoad() = " + RDTSC_E(iRDTSC));
 }
+
+void PerkReload()
+{
+//	int iRDTSC = RDTSC_B();
+	string locName = pchar.location;
+	aref arPerksRoot,arPerk;
+	int i,j,n,tmpi;
+
+	for(i=0; i<MAX_CHARACTERS; i++)
+	{
+		if(Characters[i].location == locName)
+		{
+			makearef(arPerksRoot,Characters[i].perks.list);
+			n = GetAttributesNum(arPerksRoot);
+			for(j=0; j<n; j++)
+			{
+				arPerk = GetAttributeN(arPerksRoot,j);
+				if( CheckAttribute(arPerk,"delay") )
+				{
+					DeleteAttribute(arPerk,"delay");
+					DeleteAttribute(arPerk,"active");
+					PostEvent("evntPerkAgainUsable",1);
+				}
+			}
+		}
+	}
+
+//	trace("TIME!!! PerkLoad() = " + RDTSC_E(iRDTSC));
+}
+
 // boal под новые слоты -->
 void ClearActiveChrPerks(ref chref)
 {
