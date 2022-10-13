@@ -673,6 +673,20 @@ ref LAi_CreateFantomCharacterEx(string model, string ani, string group, string l
 	}
 	LAi_AddLoginedCharacter(chr);
 	// boal del lag Event("Fantom_FillSkills", "a", chr);
+	if (IsCharacterPerkOn(chr, "Ciras") && rand(4)==0)
+	{
+		string cirnum;
+		switch (rand(4))
+		{
+			case 0: cirnum = "cirass1"; break;
+			case 1: cirnum = "cirass1"; break;
+			case 2: cirnum = "cirass2"; break;
+			case 3: cirnum = "cirass3"; break;
+			case 4: cirnum = "cirass4"; break;
+		}
+		chr.cirassId = Items_FindItemIdx(cirnum);
+		Log_TestInfo("Персонаж "+chr.name+" получил кирасу "+cirnum);
+	}
 	if(!CreateCharacter(chr))
 	{
 		Trace("LAi_CreateFantomCharacter -> CreateCharacter return false");
@@ -694,30 +708,6 @@ ref LAi_CreateFantomCharacterEx(string model, string ani, string group, string l
 	if(SendMessage(chr, "lss", MSG_CHARACTER_ENTRY_TO_LOCATION, group, locator) == false)
 	{
 		Trace("LAi_CreateFantomCharacter -> can't teleportation character to <" + group + "::" + locator + ">");
-	}
-	if (IsCharacterPerkOn(chr, "Ciras") && rand(4)==0)
-	{
-		string cirnum;
-		switch (rand(4))
-		{
-			case 0: cirnum = "cirass1"; break;
-			case 1: cirnum = "cirass1"; break;
-			case 2: cirnum = "cirass2"; break;
-			case 3: cirnum = "cirass3"; break;
-			case 4: cirnum = "cirass4"; break;
-		}
-		if (CheckAttribute(chr, "HeroModel")) // все, у кого есть что одеть
-        {
-			switch (cirnum)
-			{
-				case "cirass1": chr.model = GetSubStringByNum(chr.HeroModel, 1); break;
-				case "cirass2": chr.model = GetSubStringByNum(chr.HeroModel, 2); break;
-				case "cirass3": chr.model = GetSubStringByNum(chr.HeroModel, 3); break;
-				case "cirass4": chr.model = GetSubStringByNum(chr.HeroModel, 4); break;
-			}
-		}
-		chr.cirassId = Items_FindItemIdx(cirnum);
-		Log_TestInfo("Персонаж "+chr.name+" получил кирасу "+cirnum);
 	}
 	return chr;
 }
