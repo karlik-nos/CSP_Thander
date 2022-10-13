@@ -568,12 +568,22 @@ void SetButtionsAccess()
 	int iRank = sti(pchar.rank);
 	string sText = "Заказать";
 	if (iPriceOrder > sti(pchar.Money)) SetSelectable("BUTTON_BUY", false); else SetSelectable("BUTTON_BUY", true);
-
-	if (iRank<4 && iClass<6) {SetSelectable("BUTTON_BUY", false); sText = "c 4 ранга";}
-	if (iRank<9 && iClass<5) {SetSelectable("BUTTON_BUY", false); sText = "c 9 ранга";}
-	if (iRank<14 && iClass<4) {SetSelectable("BUTTON_BUY", false); sText = "c 14 ранга";}
-	if (iRank<19 && iClass<3) {SetSelectable("BUTTON_BUY", false); sText = "c 19 ранга";}
-	if (iRank<29 && iClass<2) {SetSelectable("BUTTON_BUY", false); sText = "c 29 ранга";}
+	if (bRankRequirement)
+	{
+		if (iRank<6 && iClass<6) {SetSelectable("BUTTON_BUY", false); sText = "c 6 ранга";}
+		if (iRank<12 && iClass<5) {SetSelectable("BUTTON_BUY", false); sText = "c 12 ранга";}
+		if (iRank<20 && iClass<4) {SetSelectable("BUTTON_BUY", false); sText = "c 20 ранга";}
+		if (iRank<26 && iClass<3) {SetSelectable("BUTTON_BUY", false); sText = "c 26 ранга";}
+		if (iRank<33 && iClass<2) {SetSelectable("BUTTON_BUY", false); sText = "c 33 ранга";}
+	}
+	else
+	{
+		if (iRank<4 && iClass<6) {SetSelectable("BUTTON_BUY", false); sText = "c 4 ранга";}
+		if (iRank<9 && iClass<5) {SetSelectable("BUTTON_BUY", false); sText = "c 9 ранга";}
+		if (iRank<14 && iClass<4) {SetSelectable("BUTTON_BUY", false); sText = "c 14 ранга";}
+		if (iRank<19 && iClass<3) {SetSelectable("BUTTON_BUY", false); sText = "c 19 ранга";}
+		if (iRank<29 && iClass<2) {SetSelectable("BUTTON_BUY", false); sText = "c 29 ранга";}
+	}
 	if (refNPCShipyard.id != "Pirates_shipyarder" && sti(RealShips[iShip].basetype) >= SHIP_FR_TRINITY && !CheckCharacterItem(Pchar, "patent_" + NationShortName(sti(refNPCShipyard.nation))) && sText == "Заказать")
 	{SetSelectable("BUTTON_BUY", false); sText = "нет патента";}
 	SendMessage(&GameInterface,"lsls",MSG_INTERFACE_MSG_TO_NODE,"BUTTON_BUY", 0, "#" + sText);
