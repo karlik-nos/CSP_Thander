@@ -35,7 +35,6 @@ int FindBetterFoodFromChr(ref chref, ref arFind)
 
 bool EnableFoodUsing(ref mc, aref arItm)
 {
-	bool bEnableUse = false;
 	if(CheckAttribute(arItm,"Food.energy") && !CheckAttribute(mc,"chr_ai.noeat"))
 	{
 		if(LAi_GetCharacterEnergy(mc) < LAi_GetCharacterMaxEnergy(mc))
@@ -69,9 +68,6 @@ bool EnableFoodUsing(ref mc, aref arItm)
 
 		}
 	}
-
-
-
 	return false;
 }
 
