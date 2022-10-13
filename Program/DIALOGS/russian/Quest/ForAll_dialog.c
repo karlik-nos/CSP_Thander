@@ -1529,14 +1529,14 @@ void ProcessDialogEvent()
 					link.l1.go = "SCQ_ProverkaZnaniy";
 				break;
 				case "1":
-					dialog.text = "Дело в том, что у меня похитили жену. Один капитан, пират по слухам, ухлёстывал тут за ней, как только мог. Жена одно время даже не выходила из дома, настолько он был назойлив. Я пытался привлечь городские власти к этой проблеме - безрезультатно. И вот дождались, называется...";
-					link.l1 = "Чего дождались?";
-					link.l1.go = "SCQ_RapeWife";
+					dialog.text = "Дело в том, что в местной церкви меня обучают латинскому языку, но в свободное время мне не с кем попрактиковаться...";
+					link.l1 = "Изучение латыни - это похвально, но а я здесь при чём?";
+					link.l1.go = "SCQ_ProverkaZnaniy";
 				break;
 				case "2":
-					dialog.text = "Вы знаете, я ищу своего земляка, с которым три года назад мы отправились сюда из Старого света в поисках новой жизни. Так случилось, что в дороге мы потеряли друг друга. Но недавно я узнал, что мой земляк стал торговым капитаном! Я пытался его найти, но сам с этим справиться не могу.";
-					link.l1 = "Почему? Множество капитанов, включая меня, могут доставить вас куда угодно.";
-					link.l1.go = "SCQ_Friend";
+					dialog.text = "Дело в том, что в местной церкви меня обучают латинскому языку, но в свободное время мне не с кем попрактиковаться...";
+					link.l1 = "Изучение латыни - это похвально, но а я здесь при чём?";
+					link.l1.go = "SCQ_ProverkaZnaniy";
 				break;
 			}
 		break;
@@ -1550,11 +1550,128 @@ void ProcessDialogEvent()
 		break;
 		
 		case "SCQ_ProverkaZnaniy_2":
-			dialog.text = "Я назову вам предложение на латыни, а вы должны без ошибок повторить за мной. На это я дам вам 10 секунд. Готовы?";
+			dialog.text = "Я назову вам предложение на латыни, а вы должны без ошибок повторить за мной. На это я дам вам 12 секунд. Готовы?";
 			link.l1 = "Давай попробуем. Начинай!";
 			link.l1.go = "SCQ_ProverkaZnaniy_3";
 			link.l2 = "Я капитан, а не полиглот. Прошу меня простить.";
 			link.l2.go = "SCQ_exit";
+		break;
+		
+		case "SCQ_ProverkaZnaniy_3":
+			Log_info("Вам нужно повторить текст за 12 секунд");
+			SetShowTimer(12.0);
+			DoQuestCheckDelay("SCQ_Zachet_VremyVishlo", 11.6);
+			pchar.StudentZachet = npchar.id;
+			int Phrase;
+			Phrase = rand(11);
+			Link.l1.edit = 1;
+			Link.l1 = "";
+			link.l1.go = "SCQ_ProverkaZnaniy_4";
+			if (Phrase == 0)
+			{
+				dialog.text = "Actum atque tractatum";
+			break;
+			}
+			if (Phrase == 1)
+			{
+				dialog.text = "Abeunt studia in mores";
+			break;
+			}
+			if (Phrase == 2)
+			{
+				dialog.text = "Cuncta supercilio moventis";
+			break;
+			}
+			if (Phrase == 3)
+			{
+				dialog.text = "Decies repetitia placebit";
+			break;
+			}
+			if (Phrase == 4)
+			{
+				dialog.text = "Et fabula partem veri habet";
+			break;
+			}
+			if (Phrase == 5)
+			{
+				dialog.text = "Homo homini lupus est";
+			break;
+			}
+			if (Phrase == 6)
+			{
+				dialog.text = "Letum non omnia finit";
+			break;
+			}
+			if (Phrase == 7)
+			{
+				dialog.text = "Memento quia pulvis es";
+			break;
+			}
+			if (Phrase == 8)
+			{
+				dialog.text = "Nec sutor ultra crepidam";
+			break;
+			}
+			if (Phrase == 9)
+			{
+				dialog.text = "Omnis ars imitatio est naturae";
+			break;
+			}
+			if (Phrase == 10)
+			{
+				dialog.text = "Porta itineri longissima";
+			break;
+			}
+			if (Phrase == 11)
+			{
+				dialog.text = "Repetitio est mater studiorum";
+			break;
+			}
+		break;
+		
+		case "SCQ_ProverkaZnaniy_4":
+			if ("Actum atque tractatum" == GetStrSmallRegister(dialogEditStrings[1]) || "Abeunt studia in mores" == GetStrSmallRegister(dialogEditStrings[1]) || "Cuncta supercilio moventis" == GetStrSmallRegister(dialogEditStrings[1]) || "Decies repetitia placebit" == GetStrSmallRegister(dialogEditStrings[1]) 
+				|| "Et fabula partem veri habet" == GetStrSmallRegister(dialogEditStrings[1]) || "Homo homini lupus est" == GetStrSmallRegister(dialogEditStrings[1]) || "Letum non omnia finit" == GetStrSmallRegister(dialogEditStrings[1]) || "Memento quia pulvis es" == GetStrSmallRegister(dialogEditStrings[1])
+				|| "Nec sutor ultra crepidam" == GetStrSmallRegister(dialogEditStrings[1]) || "Omnis ars imitatio est naturae" == GetStrSmallRegister(dialogEditStrings[1]) || "Porta itineri longissima" == GetStrSmallRegister(dialogEditStrings[1]) || "Repetitio est mater studiorum" == GetStrSmallRegister(dialogEditStrings[1]))
+			{
+				Dialog.text = "Невероятно, вы прекрасно владеете латынью! Теперь я замотивирован сдать зачёт, и у меня точно всё получится! Спасибо вам, "+GetSexPhrase("капитан","девушка")+", вот ваша награда, "+ sti(iMoney) +" пиастров.";
+				Link.l1 = "Это было несложно. Желаю вам удачи!";
+				Link.l1.go = "SCQ_Proverka_Znani_Final";
+				
+				DeleteAttribute(pchar, "showTimer");
+				ClearAllLogStrings();
+				DoQuestDelayExit();
+				
+				AddMoneyToCharacter(pchar, sti(iMoney));
+				AddCharacterExpToSkill(pchar, "Leadership", 30);
+				AddCharacterExpToSkill(pchar, "Commerce", 30);
+				break;
+			}
+			else
+			{
+				Dialog.text = "Нет! Не правильно! Как"+GetSexPhrase("ой","ая")+" же вы неграмотн"+GetSexPhrase("ый","ая")+", "+GetSexPhrase("капитан","девушка")+". Зря я к вам обратился.";
+				Link.l1 = "Ну и вали.";
+				Link.l1.go = "SCQ_Proverka_Znani_Final";
+				
+				DeleteAttribute(pchar, "showTimer");
+				ClearAllLogStrings();
+				DoQuestDelayExit();
+			}
+		break;
+		
+		case "SCQ_Proverka_Znani_Final":
+			DialogExit();
+			npchar.lifeday = 0;
+			LAi_CharacterDisableDialog(npchar);
+			LAi_SetCitizenType(npchar);
+			UnmarkCharacter(npchar);
+		break;
+		
+		case "SCQ_Proverka_Znani_VremyVishlo":
+			Log_info("Вы не успели");
+			dialog.text = "Вы и двух слов связать не можете. Зря я к вам обратился...";
+			link.l1 = "Ну и вали.";
+			link.l1.go = "SCQ_Proverka_Znani_Final";
 		break;
 		
 		// квест бывшего раба, которого негодяй-кэп взял в плен
@@ -1907,7 +2024,7 @@ void ProcessDialogEvent()
 		
 		case "SCQ_Prytki_Dengi":		
 			dialog.text = "Ой, хи-хи-хи. А вы хорош"+GetSexPhrase("ий","ая")+" сыщи"+GetSexPhrase("к","ца")+", капитан, так уж и быть, вот ваши "+ sti(iMoney) +" пиастров.";
-			link.l1 = "Благодарю, красавица, был рад"+GetSexPhrase("","а")+" провести с вами время. До свидания.";
+			link.l1 = "Благодарю, красавица, "+GetSexPhrase("был рад","была рада")+" провести с вами время. До свидания.";
 			link.l1.go = "SCQ_Prytki_Dengi_Final";
 			DeleteAttribute(pchar, "showTimer");
 			ClearAllLogStrings();
