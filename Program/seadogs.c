@@ -851,7 +851,7 @@ void OnLoad()
 
 	ReloadProgressUpdate();
 
-	PerkLoad();
+	PerkLoad(false);
 
 	ReloadProgressUpdate();
 
