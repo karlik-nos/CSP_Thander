@@ -11358,6 +11358,20 @@ void QuestComplete(string sQuestName, string qname)
 			InterfaceStates.Buttons.Save.enable = true;
 		break;
 		
+//========================  "Проверка знаний"  =======================
+
+		case "SCQ_Zachet_VremyVishlo":
+			DialogExit();
+			DeleteAttribute(pchar, "showTimer");
+			ClearAllLogStrings();
+			sld = CharacterFromID(pchar.StudentZachet);
+			sld.dialog.filename = "Quest/ForAll_dialog.c";
+			sld.dialog.currentnode = "SCQ_Proverka_Znani_VremyVishlo";
+			sld.lifeday = 0;
+			LAi_SetActorType(sld);
+			LAi_ActorDialogNow(sld, Pchar, "", -1);
+		break;
+		
 
 		// Тичингиту
 		case "TichingituFree":
