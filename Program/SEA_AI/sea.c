@@ -372,7 +372,7 @@ void Sea_LandLoad()
 		Group_FreeAllDead();
 	}
 
-	PerkReload();
+	PerkLoad(true);
 
 	if (sborCancelledByPatent)
 	{
@@ -535,7 +535,7 @@ void Sea_MapLoad()
 	SeaMapLoadZ = stf(pchar.Ship.Pos.z);
 	SeaMapLoadAY = stf(pchar.Ship.Ang.y);
 	CheckWoundedOfficers();
-	PerkReload();
+	PerkLoad(true);
 }
 
 // нигде не пользуетя, может глючить для абордажа
