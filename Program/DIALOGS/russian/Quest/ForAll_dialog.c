@@ -1569,70 +1569,70 @@ void ProcessDialogEvent()
 			link.l1.go = "SCQ_ProverkaZnaniy_4";
 			if (Phrase == 0)
 			{
-				dialog.text = "Actum atque tractatum";
+				dialog.text = "actum atque tractatum";
 			break;
 			}
 			if (Phrase == 1)
 			{
-				dialog.text = "Abeunt studia in mores";
+				dialog.text = "abeunt studia in mores";
 			break;
 			}
 			if (Phrase == 2)
 			{
-				dialog.text = "Cuncta supercilio moventis";
+				dialog.text = "cuncta supercilio moventis";
 			break;
 			}
 			if (Phrase == 3)
 			{
-				dialog.text = "Decies repetitia placebit";
+				dialog.text = "decies repetitia placebit";
 			break;
 			}
 			if (Phrase == 4)
 			{
-				dialog.text = "Et fabula partem veri habet";
+				dialog.text = "et fabula partem veri habet";
 			break;
 			}
 			if (Phrase == 5)
 			{
-				dialog.text = "Homo homini lupus est";
+				dialog.text = "homo homini lupus est";
 			break;
 			}
 			if (Phrase == 6)
 			{
-				dialog.text = "Letum non omnia finit";
+				dialog.text = "letum non omnia finit";
 			break;
 			}
 			if (Phrase == 7)
 			{
-				dialog.text = "Memento quia pulvis es";
+				dialog.text = "memento quia pulvis es";
 			break;
 			}
 			if (Phrase == 8)
 			{
-				dialog.text = "Nec sutor ultra crepidam";
+				dialog.text = "nec sutor ultra crepidam";
 			break;
 			}
 			if (Phrase == 9)
 			{
-				dialog.text = "Omnis ars imitatio est naturae";
+				dialog.text = "omnis ars imitatio est naturae";
 			break;
 			}
 			if (Phrase == 10)
 			{
-				dialog.text = "Porta itineri longissima";
+				dialog.text = "porta itineri longissima";
 			break;
 			}
 			if (Phrase == 11)
 			{
-				dialog.text = "Repetitio est mater studiorum";
+				dialog.text = "repetitio est mater studiorum";
 			break;
 			}
 		break;
 		
 		case "SCQ_ProverkaZnaniy_4":
-			if ("Actum atque tractatum" == GetStrSmallRegister(dialogEditStrings[1]) || "Abeunt studia in mores" == GetStrSmallRegister(dialogEditStrings[1]) || "Cuncta supercilio moventis" == GetStrSmallRegister(dialogEditStrings[1]) || "Decies repetitia placebit" == GetStrSmallRegister(dialogEditStrings[1]) 
-				|| "Et fabula partem veri habet" == GetStrSmallRegister(dialogEditStrings[1]) || "Homo homini lupus est" == GetStrSmallRegister(dialogEditStrings[1]) || "Letum non omnia finit" == GetStrSmallRegister(dialogEditStrings[1]) || "Memento quia pulvis es" == GetStrSmallRegister(dialogEditStrings[1])
-				|| "Nec sutor ultra crepidam" == GetStrSmallRegister(dialogEditStrings[1]) || "Omnis ars imitatio est naturae" == GetStrSmallRegister(dialogEditStrings[1]) || "Porta itineri longissima" == GetStrSmallRegister(dialogEditStrings[1]) || "Repetitio est mater studiorum" == GetStrSmallRegister(dialogEditStrings[1]))
+			if ("actum atque tractatum" == GetStrSmallRegister(dialogEditStrings[1]) || "abeunt studia in mores" == GetStrSmallRegister(dialogEditStrings[1]) || "cuncta supercilio moventis" == GetStrSmallRegister(dialogEditStrings[1]) || "decies repetitia placebit" == GetStrSmallRegister(dialogEditStrings[1]) 
+				|| "et fabula partem veri habet" == GetStrSmallRegister(dialogEditStrings[1]) || "homo homini lupus est" == GetStrSmallRegister(dialogEditStrings[1]) || "letum non omnia finit" == GetStrSmallRegister(dialogEditStrings[1]) || "memento quia pulvis es" == GetStrSmallRegister(dialogEditStrings[1])
+				|| "nec sutor ultra crepidam" == GetStrSmallRegister(dialogEditStrings[1]) || "omnis ars imitatio est naturae" == GetStrSmallRegister(dialogEditStrings[1]) || "porta itineri longissima" == GetStrSmallRegister(dialogEditStrings[1]) || "repetitio est mater studiorum" == GetStrSmallRegister(dialogEditStrings[1]))
 			{
 				Dialog.text = "Невероятно, вы прекрасно владеете латынью! Теперь я замотивирован сдать зачёт, и у меня точно всё получится! Спасибо вам, "+GetSexPhrase("капитан","девушка")+", вот ваша награда, "+ sti(iMoney) +" пиастров.";
 				Link.l1 = "Это было несложно. Желаю вам удачи!";
