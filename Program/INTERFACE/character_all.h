@@ -92,6 +92,7 @@ void FillCharactersScroll()
 		_curCharIdx = sti(pRef.(PsgAttrName));
 		if(_curCharIdx!=-1)
 		{
+			ReplaceTreasureMapPartCopies(GetCharacter(_curCharIdx), PChar);
 			GameInterface.CHARACTERS_SCROLL.(attributeName).character = _curCharIdx;
 			GameInterface.CHARACTERS_SCROLL.(attributeName).img1 = GetFacePicName(GetCharacter(_curCharIdx));
 			GameInterface.CHARACTERS_SCROLL.(attributeName).tex1 = FindFaceGroupNum("CHARACTERS_SCROLL.ImagesGroup","FACE128_"+Characters[_curCharIdx].FaceID);

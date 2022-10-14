@@ -3361,6 +3361,26 @@ void SetReefSkeletonsToLocation(aref _location, string loc)
 	}
 }
 
+// заменяем копии частей карты
+void ReplaceTreasureMapPartCopies(ref boxRef, ref charRef) {
+	bool isPart1 = GetCharacterItem(charRef, "map_part1") != 0;
+	bool isPart2 = GetCharacterItem(charRef, "map_part2") != 0;
+	
+	// если есть обе части, просто скипаем
+	if (isPart1 && isPart2) return;
+
+	// подменяем части карты
+	if (GetCharacterItem(boxRef, "map_part1") != 0 && isPart1) {
+		AddItems(boxRef, "map_part2", 1);
+		RemoveItems(boxRef, "map_part1", 1);
+	}
+	
+	if (GetCharacterItem(boxRef, "map_part2") != 0 && isPart2) {
+		AddItems(boxRef, "map_part1", 1);
+		RemoveItems(boxRef, "map_part2", 1);
+	}
+}
+
 //Перехват всех попыток ГГ залезть в боксы
 void QuestCheckTakeBoxes(ref itemsRef)
 {
