@@ -1563,7 +1563,7 @@ void ProcessDialogEvent()
 			DoQuestCheckDelay("SCQ_Zachet_VremyVishlo", 11.6);
 			pchar.StudentZachet = npchar.id;
 			int Phrase;
-			Phrase = rand(11);
+			Phrase = rand(19);
 			Link.l1.edit = 1;
 			Link.l1 = "";
 			link.l1.go = "SCQ_ProverkaZnaniy_4";
