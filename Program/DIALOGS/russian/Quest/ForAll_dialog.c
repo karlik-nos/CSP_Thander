@@ -1627,12 +1627,54 @@ void ProcessDialogEvent()
 				dialog.text = "repetitio est mater studiorum";
 			break;
 			}
+			if (Phrase == 12)
+			{
+				dialog.text = "sero venientibus ossa";
+			break;
+			}
+			if (Phrase == 13)
+			{
+				dialog.text = "silentium est aurum";
+			break;
+			}
+			if (Phrase == 14)
+			{
+				dialog.text = "sudore et sanguine";
+			break;
+			}
+			if (Phrase == 15)
+			{
+				dialog.text = "tempus edax rerum";
+			break;
+			}
+			if (Phrase == 16)
+			{
+				dialog.text = "te amo est verum";
+			break;
+			}
+			if (Phrase == 17)
+			{
+				dialog.text = "usus est optimus magister";
+			break;
+			}
+			if (Phrase == 18)
+			{
+				dialog.text = "ut tensio sic vis";
+			break;
+			}
+			if (Phrase == 19)
+			{
+				dialog.text = "vinum verba ministrat";
+			break;
+			}
 		break;
 		
 		case "SCQ_ProverkaZnaniy_4":
 			if ("actum atque tractatum" == GetStrSmallRegister(dialogEditStrings[1]) || "abeunt studia in mores" == GetStrSmallRegister(dialogEditStrings[1]) || "cuncta supercilio moventis" == GetStrSmallRegister(dialogEditStrings[1]) || "decies repetitia placebit" == GetStrSmallRegister(dialogEditStrings[1]) 
 				|| "et fabula partem veri habet" == GetStrSmallRegister(dialogEditStrings[1]) || "homo homini lupus est" == GetStrSmallRegister(dialogEditStrings[1]) || "letum non omnia finit" == GetStrSmallRegister(dialogEditStrings[1]) || "memento quia pulvis es" == GetStrSmallRegister(dialogEditStrings[1])
-				|| "nec sutor ultra crepidam" == GetStrSmallRegister(dialogEditStrings[1]) || "omnis ars imitatio est naturae" == GetStrSmallRegister(dialogEditStrings[1]) || "porta itineri longissima" == GetStrSmallRegister(dialogEditStrings[1]) || "repetitio est mater studiorum" == GetStrSmallRegister(dialogEditStrings[1]))
+				|| "nec sutor ultra crepidam" == GetStrSmallRegister(dialogEditStrings[1]) || "omnis ars imitatio est naturae" == GetStrSmallRegister(dialogEditStrings[1]) || "porta itineri longissima" == GetStrSmallRegister(dialogEditStrings[1]) || "repetitio est mater studiorum" == GetStrSmallRegister(dialogEditStrings[1])
+				|| "sero venientibus ossa" == GetStrSmallRegister(dialogEditStrings[1]) || "silentium est aurum" == GetStrSmallRegister(dialogEditStrings[1]) || "sudore et sanguine" == GetStrSmallRegister(dialogEditStrings[1]) || "tempus edax rerum" == GetStrSmallRegister(dialogEditStrings[1])
+				|| "te amo est verum" == GetStrSmallRegister(dialogEditStrings[1]) || "usus est optimus magister" == GetStrSmallRegister(dialogEditStrings[1]) || "ut tensio sic vis" == GetStrSmallRegister(dialogEditStrings[1]) || "vinum verba ministrat" == GetStrSmallRegister(dialogEditStrings[1]))
 			{
 				Dialog.text = "Невероятно, вы прекрасно владеете латынью! Теперь я замотивирован сдать зачёт, и у меня точно всё получится! Спасибо вам, "+GetSexPhrase("капитан","девушка")+", вот ваша награда, "+ sti(iMoney) +" пиастров.";
 				Link.l1 = "Это было несложно. Желаю вам удачи!";
