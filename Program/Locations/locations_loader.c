@@ -638,6 +638,19 @@ bool LoadLocation(ref loc)
 			}
             break;
 		case "town":
+	if(rand(100) < 80)
+			{
+				crtAnimals = true;
+				if(!IsDay()) crtAnimals = true;
+				if(Whr_GetWindSpeed() > 10.0) crtAnimals = true;
+				if(Whr_IsRain()) crtAnimals = false;
+				if(Whr_IsStorm()) crtAnimals = false;
+				if(Whr_GetFogDensity() > 0.008) crtAnimals = false;
+				if(crtAnimals)
+				{
+					SendMessage(loc, "ls", MSG_LOCATION_EX_MSG, "AddEagle");
+				}
+			}								
 			if(rand(100) < 35)
 			{
 				crtAnimals = true;
@@ -659,9 +672,13 @@ bool LoadLocation(ref loc)
 		// boal -->
         if (loc.id == "My_Deck_Medium" || loc.id == "My_Deck")
         {
-            SendMessage(loc, "lsl", MSG_LOCATION_EX_MSG, "AddRats", 2 + rand(3));
+            SendMessage(loc, "lsl", MSG_LOCATION_EX_MSG, "AddRats", 3 + rand(5));
         }
         // boal <--
+if(loc.type == "seashore" || loc.type == "port")
+		{		
+			SendMessage(loc, "lsl", MSG_LOCATION_EX_MSG, "AddCrabs", rand(50) - 1);
+		}		
 	}
     float resizeRatio = stf(Render.screen_y) / screenscaling;
     SendMessage(loadedLocation, "lsf", MSG_LOCATION_EX_MSG, "resizeRatio", resizeRatio);
