@@ -3270,7 +3270,7 @@ void SetReefSkeletonsToLocation(aref _location, string loc)
 			if (GetDataDay() == 3 && GetDataMonth() == 3 && GetTime() >= 3.0 && GetTime() < 4.0 && loc == "MountainPath" && !CheckAttribute(pchar,"salasarmet") && CheckAttribute(pchar,"SalasarEventKnow"))
 			{
 				pchar.salasarmet = true;
-				if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sld = GetCharacter(NPC_GenerateCharacter("salasar", "salasar", "skeleton", "spy", iRank, PIRATE, 1, true)); // LEO: Превозмогаторам - страдать 01.12.2021
+				if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sld = GetCharacter(NPC_GenerateCharacter("salasar", "salasar", "skeleton", "man_fast", iRank, PIRATE, 1, true)); // LEO: Превозмогаторам - страдать 01.12.2021
 				else sld = GetCharacter(NPC_GenerateCharacter("salasar", "salasar", "skeleton", "skeleton", iRank, PIRATE, 1, true));
 				sld.name = "Армандо";
 				sld.lastname = "Салазар";
