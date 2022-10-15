@@ -2555,7 +2555,7 @@ int InitItems()
 	itm.picIndex = 11;
 	itm.picTexture = "ITEMS_14";
 	itm.price = 4900;
-	itm.Weight = 12.0;
+	itm.Weight = 22.0;
 	itm.dmg_min = 60.0;
 	itm.dmg_max = 140.0;
 	itm.piercing = 110.0;
