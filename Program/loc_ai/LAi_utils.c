@@ -458,7 +458,7 @@ void LAi_CheckKillCharacter(aref chr)
 		}
 		if(IsCharacterPerkOn(chr, "Adventurer"))
 		{
-			if (!CheckAttribute(chr, "ScriptedDeath") && !CheckAttribute(chr, "Adventurers_Luck") && rand(15) <= GetCharacterSPECIALSimple(chr, SPECIAL_L))
+			if (!CheckAttribute(chr, "ScriptedDeath") && !CheckAttribute(chr, "Adventurers_Luck") && rand(10) <= GetCharacterSPECIALSimple(chr, SPECIAL_L))
 			{
 				chr.Adventurers_Luck = true;
 				int hitpoints = LAi_GetCharacterMaxHP(chr) / 2;
