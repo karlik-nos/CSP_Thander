@@ -650,7 +650,7 @@ float LAi_GunReloadSpeed(aref chr)
 //#20200522-01
 void LAi_ApplyCharacterAttackDamage(aref attack, aref enemy, string attackType, bool isBlocked, bool blockSave)
 {
-	if(IsCharacterPerkOn(enemy, "Fencer") && rand(9)==1)  {Log_Info("Избежал удара!"); return;}
+	if(IsCharacterPerkOn(enemy, "Fencer") && rand(9)==1)  {Log_Info(GetFullName(enemy) + " избежал удара!"); return;}
 	//Если неубиваемый, то нетрогаем его
 	if(CheckAttribute(enemy, "chr_ai.immortal"))
 	{
