@@ -560,6 +560,12 @@ void ShowInfoWindow()
 			sText4 += "\nНа показатель данного умения действует штраф от недостатка навигации.";
         }
 	}
+	if (sCurrentNode == "TABLE_SPECIAL" && HasSubStr("Charisma",GameInterface.(CurTable).(CurRow).UserData.ID))
+	{
+		sText3 = "Ниже показано количество уже нанятых и доступных к найму на текущий момент офицеров.\nРассчитывается как удвоенный показатель Лидерства + (чистый Авторитет/20)."
+		int numnum = (GetNotQuestPassengersQuantity(Pchar) + GetCompanionQuantity(Pchar) - 1);
+		sText4 = "Нанято: "+numnum+"\nВсего доступно к найму: "+GetCharacterMaxOfficersQty(Pchar);
+	}
 	CreateTooltip("#" + sHeader, sText1, argb(255,255,255,255), sText2, argb(255,255,192,192), sText3, argb(255,192,255,192), sText4, argb(255,255,196,196), sPicture, sGroup, sGroupPicture, 64, 64);
 
 }
