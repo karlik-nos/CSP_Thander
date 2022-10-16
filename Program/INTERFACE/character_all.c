@@ -922,7 +922,7 @@ string ShowStatValue(string type)
 			return value;
 		break;
 		case "energychar":
-			float fMultiplierE = 1.6666667 + (GetCharacterSPECIALSimple(xi_refCharacter,SPECIAL_S)/10.0);//влияние силы на скорость восстановления энергии
+			float fMultiplierE = 1.3333337 + (GetCharacterSPECIALSimple(xi_refCharacter,SPECIAL_S)/10.0);//влияние силы на скорость восстановления энергии
 			if(CheckCharacterPerk(xi_refCharacter, "Energaiser")) // скрытый перк боссов и ГГ
 			{
 				fMultiplierE = fMultiplierE * 1.5;
