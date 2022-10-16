@@ -1723,6 +1723,10 @@ bool CheckForExchangeAllowed(ref _chref)
 
 int GetMaxItemsWeight(ref _chref)
 {
+	if (CheckAttribute(_chref, "UnlimitedWeight"))
+	{
+		return 9999999; // бесконечный переносимый
+	}
 	if (CheckAttribute(_chref, "Skill.Fencing"))
     {
         int iBonus = 0;
