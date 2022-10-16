@@ -5916,7 +5916,7 @@ void Blood_StartGame(string qName)
     sld.Dialog.CurrentNode = "First time";
     sld.dialog.filename = "Quest\CapBloodLine\Bishop.c";
     sld.greeting = "Gr_YoungMan";
-//                  P I R  A T E  S
+//                  P I R A T  E S
     SetSPECIAL(sld, 5,9,7,5,10,7,4);
     sld.rank = 12;
     sld.OfficerWantToGo.DontGo = true; //не пытаться уйти
@@ -9465,7 +9465,7 @@ void Headhunter_CreateRatpinasse(string qName)//создание пинаса А
 	else sld = GetCharacter(NPC_GenerateCharacter("RatSeaOfficer", "officer_15", "man", "man", 35, FRANCE, -1, true));//создание кэпа
 	sld.name = "Первый помощник";
 	sld.lastname = "Барнс";
-	FantomMakeCoolSailor(sld, SHIP_PINNACE, "Аделаида", CANNON_TYPE_CANNON_LBS32, 100, 100, 100);//создание кораблей
+	FantomMakeCoolSailor(sld, SHIP_JAMAICASHIP, "Аделаида", CANNON_TYPE_CANNON_LBS16, 100, 100, 100);//создание кораблей
 	FantomMakeCoolFighter(sld, 35, 80, 80, "blade15", "pistol2", 90);//создание фантома кэпа
 	if (bHardBoss) sld.AlwaysReload = true;//перезарядка независимо от Дозарядки
 	sld.DontRansackCaptain = true;
@@ -9608,7 +9608,7 @@ void Headhunter_CreateRatTruepinasse(string qName)//создание пинас�
 	sld.lastname = "Грин";
 	sld.DontRansackCaptain = true;
 	sld.HeroModel = "ozg_piRat,ozg_piRat_1,ozg_piRat_2,ozg_piRat_3,ozg_piRat_4,ozg_piRat_5";
-	FantomMakeCoolSailor(sld, SHIP_PINNACE, "Аделаида", CANNON_TYPE_CANNON_LBS32, 80, 80, 80);//создание кораблей
+	FantomMakeCoolSailor(sld, SHIP_JAMAICASHIP, "Аделаида", CANNON_TYPE_CANNON_LBS16, 80, 80, 80);//создание кораблей
 	FantomMakeCoolFighter(sld, 25, 70, 70, "blade15", "pistol6", 100);//создание фантома кэпа
 	if (bHardBoss) sld.AlwaysReload = true;//перезарядка независимо от Дозарядки
 	DeleteAttribute(sld, "SaveItemsForDead");
