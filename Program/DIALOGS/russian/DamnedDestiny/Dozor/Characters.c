@@ -409,6 +409,7 @@ void ProcessDialogEvent()
 			dialog.text = "Рад, что вы со мной согласились. Спасибо за игру. Удачи вам!";
 			link.l1 = "Счастливо оставаться.";
 			link.l1.go = "exit";
+			UnlockAchievement("AchDozor", 3);
 			AddDialogExitQuestFunction("DozorHappyEnd");
 		break;
 		// <-- НЕЗНАКОМЕЦ В ДОМЕ
