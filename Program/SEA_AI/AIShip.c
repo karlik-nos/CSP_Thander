@@ -1067,6 +1067,7 @@ void Ship_ChangeCharge(ref rCharacter, int iNewChargeType)
 	//fix Ship_PlaySound3D(rCharacter, "reloadstart_" + rGood.name, 1.0);
 
 	Ship_ClearBortsReloadedEvent(rCharacter);
+	BI_UpdateLoadedProjectiles(); // обновим иконки и текста заряженных снарядов в BattleInterface
 }
 
 void Ship_OnCreate()

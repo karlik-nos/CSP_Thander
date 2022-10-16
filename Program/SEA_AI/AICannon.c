@@ -250,9 +250,10 @@ float Cannon_DamageEvent()
 		CreateBlast(x,y,z);
 		CreateParticleSystem("blast_inv", x, y, z, 0.0, 0.0, 0.0, 0);
 		Play3DSound("cannon_explosion", x, y, z);
-		if (sti(aCharacter.index) == GetMainCharacterIndex())
+		if (IsMainCharacter(aCharacter))
 		{
 		    Log_Info(XI_ConvertString("Cannon_DamageEvent"));
+		    BI_UpdateCannons();
 		}
 		aCharacter.Ship.Cargo.RecalculateCargoLoad = true; // boal 27.07.06 пушки - груз
 	}

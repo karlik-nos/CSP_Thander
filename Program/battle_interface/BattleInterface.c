@@ -60,6 +60,9 @@ float BI_g_fRetVal;
 
 int BI_intNRetValue[8];
 
+int BI_CannonsUpdate = 0;
+int BI_icons_ProjectilesUpdate = 0;
+
 object BI_objRetValue;
 object objShipPointer;
 // boal -->
@@ -140,6 +143,8 @@ void InitBattleInterface()
 	ResetTimeScale(); // boal
 	//#20190424-02
     ReconnectShips();
+	BI_UpdateLoadedProjectiles(); 
+	BI_UpdateCannons();
 }
 
 ref BI_GetFortRelation()
@@ -1403,32 +1408,9 @@ ref BI_GetChargeQuantity()
 	return &BI_ChargeState;
 }
 
-ref GetCurrentCharge()
+ref GetCurrentCharge() // вызывается каждый кадр
 {
-	BI_intNRetValue[0] = -1;
-
-	if( CheckAttribute(pchar,"Ship.Cannons.Charge.Type") )
-	{
-		switch(sti(pchar.Ship.Cannons.Charge.Type))
-		{
-		case GOOD_BALLS:
-			BI_intNRetValue[0] = 32;
-			BattleInterface.textinfo.Ammo.text = ""+sti(pchar.ship.cargo.goods.balls);
-			break;
-		case GOOD_GRAPES:
-			BI_intNRetValue[0] = 35;
-			BattleInterface.textinfo.Ammo.text = ""+sti(pchar.ship.cargo.goods.grapes);
-			break;
-		case GOOD_KNIPPELS:
-			BI_intNRetValue[0] = 34;
-			BattleInterface.textinfo.Ammo.text = ""+sti(pchar.ship.cargo.goods.knippels);
-			break;
-		case GOOD_BOMBS:
-			BI_intNRetValue[0] = 33;
-			BattleInterface.textinfo.Ammo.text = ""+sti(pchar.ship.cargo.goods.bombs);
-			break;
-		}
-	}
+	BI_intNRetValue[0] = BI_icons_ProjectilesUpdate;
 
 	float fState = Ship_GetSailState(pchar);
 	if( fState < 0.33 ) {
@@ -1452,18 +1434,8 @@ ref GetCurrentCharge()
 	BattleInterface.textinfo.Planks.text = /* XI_convertString("Powder") + ": " + */ sti(pchar.ship.cargo.goods.planks);
 	BI_intNRetValue[6] = sti(pchar.ship.cargo.goods.sailcloth == 0);
 	BattleInterface.textinfo.Sailcloth.text = /* XI_convertString("Powder") + ": " + */ sti(pchar.ship.cargo.goods.sailcloth);
-	BI_intNRetValue[7] = sti(GetCannonsNum(pchar) == 0);
-	int nShipType = sti(pchar.ship.type);
-    ref refBaseShip = GetRealShip(nShipType);
-	BattleInterface.textinfo.CannonsNumL.text = GetBortIntactCannonsNum(pchar, "lcannon", sti(refBaseShip.lcannon)) + "/" + GetBortCannonsMaxQty(pchar, "lcannon");
-	BattleInterface.textinfo.CannonsNumR.text = GetBortIntactCannonsNum(pchar, "rcannon", sti(refBaseShip.rcannon)) + "/" + GetBortCannonsMaxQty(pchar, "rcannon");
-	BattleInterface.textinfo.CannonsNumB.text = GetBortIntactCannonsNum(pchar, "bcannon", sti(refBaseShip.bcannon)) + "/" + GetBortCannonsMaxQty(pchar, "bcannon");
-	BattleInterface.textinfo.CannonsNumF.text = GetBortIntactCannonsNum(pchar, "fcannon", sti(refBaseShip.fcannon)) + "/" + GetBortCannonsMaxQty(pchar, "fcannon");
-	/*if (CheckAttribute(pchar,"perks.list.Turn180.delay")) BattleInterface.textinfo.Turn180CD.text = "Откат Манёвр. разворота: "+sti(pchar.perks.list.Turn180.delay)+" c.";
-	else BattleInterface.textinfo.Turn180CD.text = "";
-	if (CheckAttribute(pchar,"perks.list.ImmediateReload.delay")) BattleInterface.textinfo.ImmediateReloadCD.text = "Откат Предв. перезарядки: "+sti(pchar.perks.list.ImmediateReload.delay)+" c.";
-	else BattleInterface.textinfo.ImmediateReloadCD.text = "";*/ //инфа по перезарядке перков
-	//<---
+	BI_intNRetValue[7] = BI_CannonsUpdate;
+	
 	return &BI_intNRetValue;
 }
 
@@ -3518,4 +3490,55 @@ string GetBILocationName()
 	if (strlen(Name) > 24 && fHtRatio > 1.0)
 		Name += strcut("               ", 0, makeint((fHtRatio - 1.0) * 10.0 + 0.5));
 	return Name;
+}
+
+void BI_UpdateLoadedProjectiles() {  // обновление иконок и текстов в BattleInterface
+	if (!CheckAttribute(pchar,"Ship.Cannons.Charge.Type")) {
+		trace("ОШИБКА: Не нашли Ship.Cannons.Charge.Type для ГГ")
+		return;
+	}
+
+	switch(sti(pchar.Ship.Cannons.Charge.Type))
+	{
+	case GOOD_BALLS:
+		BI_icons_ProjectilesUpdate = 32;
+		BattleInterface.textinfo.Ammo.text = ""+sti(pchar.ship.cargo.goods.balls);
+		break;
+	case GOOD_GRAPES:
+		BI_icons_ProjectilesUpdate = 35;
+		BattleInterface.textinfo.Ammo.text = ""+sti(pchar.ship.cargo.goods.grapes);
+		break;
+	case GOOD_KNIPPELS:
+		BI_icons_ProjectilesUpdate = 34;
+		BattleInterface.textinfo.Ammo.text = ""+sti(pchar.ship.cargo.goods.knippels);
+		break;
+	case GOOD_BOMBS:
+		BI_icons_ProjectilesUpdate = 33;
+		BattleInterface.textinfo.Ammo.text = ""+sti(pchar.ship.cargo.goods.bombs);
+		break;
+	}
+}
+
+void BI_UpdateCannons() { // обновление состояния пушек в BattleInterface
+	int nShipType = sti(pchar.ship.type);
+	if(nShipType == SHIP_NOTUSED)
+	{
+		trace("ОШИБКА: ГГ без корабля");
+		return;
+	}
+
+	ref refBaseShip = GetRealShip(nShipType);
+
+	int fcannonsIntactCount = GetBortIntactCannonsNum(pchar, "fcannon", sti(refBaseShip.fcannon));
+	int bcannonsIntactCount = GetBortIntactCannonsNum(pchar, "bcannon", sti(refBaseShip.bcannon));
+	int lcannonsIntactCount = GetBortIntactCannonsNum(pchar, "lcannon", sti(refBaseShip.lcannon));
+	int rcannonsIntactCount = GetBortIntactCannonsNum(pchar, "rcannon", sti(refBaseShip.rcannon));
+
+	int allcannonsIntactCount = fcannonsIntactCount + bcannonsIntactCount + lcannonsIntactCount + rcannonsIntactCount;
+	BI_CannonsUpdate = (allcannonsIntactCount == 0);
+
+	BattleInterface.textinfo.CannonsNumF.text = fcannonsIntactCount + "/" + refBaseShip.fcannon;
+	BattleInterface.textinfo.CannonsNumB.text = bcannonsIntactCount + "/" + refBaseShip.bcannon;
+	BattleInterface.textinfo.CannonsNumL.text = lcannonsIntactCount + "/" + refBaseShip.lcannon;
+	BattleInterface.textinfo.CannonsNumR.text = rcannonsIntactCount + "/" + refBaseShip.rcannon;
 }

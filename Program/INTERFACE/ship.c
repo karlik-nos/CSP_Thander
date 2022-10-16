@@ -1296,6 +1296,7 @@ void CannonsMenuRefresh()
 		SetFormatedText("CANNONS_QTY_L", "0");
 	}
 	FillCannonsTable();
+	if (IsMainCharacter(xi_refCharacter)) BI_UpdateCannons();
 }
 void ExitCannonsMenu()
 {
