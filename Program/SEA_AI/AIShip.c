@@ -318,6 +318,7 @@ void Ship_NationAgressive(ref rMainGroupCharacter, ref rCharacter)// ком гр
 
     if (CheckAttribute(rCharacter, "Coastal_Captain")) return;  // есть флаг есть, то нет ругани, это таможенник и квестовый
 
+	if (rCharacter.relation.1 == 3) return; // Если атакуем враждебный корабль под союзным флагом
 	//--> eddy. квест мэра на пирата
 	if (rCharacter.id == "MQPirate" && sti(rCharacter.nation) != PIRATE)
 	{
