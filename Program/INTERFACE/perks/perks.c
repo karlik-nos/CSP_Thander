@@ -295,27 +295,24 @@ void PerkLoad(bool noDelay)
 
 	for(i=0; i<MAX_CHARACTERS; i++)
 	{
-		if(Characters[i].location == locName)
+		makearef(arPerksRoot,Characters[i].perks.list);
+		n = GetAttributesNum(arPerksRoot);
+		for(j=0; j<n; j++)
 		{
-			makearef(arPerksRoot,Characters[i].perks.list);
-			n = GetAttributesNum(arPerksRoot);
-			for(j=0; j<n; j++)
+			arPerk = GetAttributeN(arPerksRoot,j);
+			if( CheckAttribute(arPerk,"delay") )
 			{
-				arPerk = GetAttributeN(arPerksRoot,j);
-				if( CheckAttribute(arPerk,"delay") )
-				{
-					if (noDelay) {
-						DeleteAttribute(arPerk,"delay");
-						DeleteAttribute(arPerk,"active");
-						PostEvent("evntPerkAgainUsable",1);
-						return;
-					}
+				if (noDelay) {
+					DeleteAttribute(arPerk,"delay");
+					DeleteAttribute(arPerk,"active");
+					PostEvent("evntPerkAgainUsable",1);
+					return;
+				}
 
-					tmpi = sti(arPerk.delay);
-					if( tmpi>0 )
-					{
-						PostEvent("evntChrPerkDelay",1000,"sl",GetAttributeName(arPerk),i);
-					}
+				tmpi = sti(arPerk.delay);
+				if( tmpi>0 )
+				{
+					PostEvent("evntChrPerkDelay",1000,"sl",GetAttributeName(arPerk),i);
 				}
 			}
 		}
