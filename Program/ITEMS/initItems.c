@@ -3417,6 +3417,7 @@ int InitItems()
 	itm.picTexture = "ITEMS_12";
 	itm.price = 0;
 	itm.Weight = 0.1;
+	itm.ItemType = "QUESTITEMS";
 	n++;
 
     // eddy торговые грамоты <--

@@ -1881,36 +1881,23 @@ bool TakeNItems(ref _refCharacter, string itemName, int n)
 	//<-
 
 	int price = GetItemPrice(itemName);
-	if(price == 0)
+	if(price == 0 &&
+			itemName != "Gold" &&
+			CheckAttribute(_refCharacter, "index") && 
+			sti(_refCharacter.index) == GetMainCharacterIndex() && 
+			IsEntity(_refCharacter) && 
+			n != 0) 
 	{
-		if(itemName != "Gold") // Warship. Для нового интерфейса обмена - проверка на золото
-		{
-			if(CheckAttribute(_refCharacter, "index"))
-			{
-				if(sti(_refCharacter.index) == GetMainCharacterIndex() && IsEntity(_refCharacter))
-				{
-					if(n > 0)
-					{
-						Log_Info(XI_ConvertString("You take item"));
-						AddMsgToCharacter(_refCharacter, MSGICON_GETITEM);
-					}
+		string itmActionString;
+		if (n > 0) itmActionString = XI_ConvertString("You take item");
+		else 			 itmActionString = XI_ConvertString("You give item");
 
-					if(n < 0)
-					{
-						Log_Info(XI_ConvertString("You give item"));
-					}
+		string itmName = GetConvertStr(arItm.name, "ItemsDescribe.txt");
+		Log_Info(itmActionString + ": " + itmName);
 
-					PlayStereoSound("interface\important_item.wav");
-				}
-			}
+		if(n > 0) AddMsgToCharacter(_refCharacter, MSGICON_GETITEM);
 
-			// Warship 08.05.09 - Не ясная мне логика. И и ИЛИ в одном выражении не поддерживаются скриптовым двигом
-			// Перенес вверх
-			/*if(n > 0 && IsOfficer(_refCharacter) || IsCompanion(_refCharacter))
-			{
-				AddMsgToCharacter(_refCharacter, MSGICON_GETITEM);
-			}*/
-		}
+		PlayStereoSound("interface\important_item.wav");
 	}
 
 	q = GetCharacterItem(_refCharacter, itemName);
