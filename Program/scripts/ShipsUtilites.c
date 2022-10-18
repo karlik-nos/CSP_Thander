@@ -391,9 +391,9 @@ int CreateBaseShip(int iBaseType)
 	switch (sti(rRealShip.Class))
 	{
 		case 7: rRealShip.HullArmor = 4+(rand(1)*hullarmor); break;
-		case 6: rRealShip.HullArmor = 12+(rand(1)*hullarmor); break;
-		case 5: rRealShip.HullArmor = 16+(rand(1)*hullarmor); break;
-		case 4: rRealShip.HullArmor = 20+(rand(2)*hullarmor); break;
+		case 6: rRealShip.HullArmor = 8+(rand(1)*hullarmor); break;
+		case 5: rRealShip.HullArmor = 12+(rand(1)*hullarmor); break;
+		case 4: rRealShip.HullArmor = 16+(rand(2)*hullarmor); break;
 		case 3: rRealShip.HullArmor = 24+(rand(2)*hullarmor); break;
 		case 2: rRealShip.HullArmor = 32+(rand(2)*hullarmor); break;
 		case 1: rRealShip.HullArmor = 42+(rand(2)*hullarmor); break;

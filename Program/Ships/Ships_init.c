@@ -4054,7 +4054,7 @@ void InitShips()
 	refship.Soundtype					= "frigate";
 	refShip.Class						= 3;
 	refShip.Cannon          			= CANNON_TYPE_CANNON_LBS8;
-	refShip.MaxCaliber      			= 16;
+	refShip.MaxCaliber      			= 20;
 	refShip.Weight						= Tonnes2CWT(800);
 	refShip.Capacity        			= 5600;
 	refShip.MaxCannonDiff						= 2;
@@ -4220,7 +4220,7 @@ void InitShips()
 	refship.Soundtype					= "frigate";
 	refShip.Class						= 3;
 	refShip.Cannon          			= CANNON_TYPE_CANNON_LBS8;
-	refShip.MaxCaliber      			= 16;
+	refShip.MaxCaliber      			= 20;
 	refShip.Weight						= Tonnes2CWT(800);
 	refShip.Capacity        			= 3400;
 	refShip.MaxCannonDiff					= 3;
@@ -4453,7 +4453,7 @@ void InitShips()
 	refship.Soundtype					= "corvette";
 	refShip.Class						= 3;
 	refShip.Cannon          			= CANNON_TYPE_CANNON_LBS8;
-	refShip.MaxCaliber      			= 16;
+	refShip.MaxCaliber      			= 20;
 	refShip.Weight						= Tonnes2CWT(600);
 	refShip.Capacity        			= 2000;
 	refShip.MaxCannonDiff						= 3;
@@ -4998,7 +4998,7 @@ void InitShips()
 	refship.Soundtype					= "frigate";
 	refShip.Class						= 3;
 	refShip.Cannon          			= CANNON_TYPE_CANNON_LBS8;
-	refShip.MaxCaliber      			= 16;
+	refShip.MaxCaliber      			= 20;
 	refShip.Weight						= Tonnes2CWT(1100);
 	refShip.Capacity        			= 4500;
 	refShip.MaxCannonDiff						= 3;
@@ -6495,7 +6495,7 @@ void InitShips()
 	refship.Soundtype					= "corvette";
 	refShip.Class						= 3;
 	refShip.Cannon          			= CANNON_TYPE_CANNON_LBS8;
-	refShip.MaxCaliber      			= 16;
+	refShip.MaxCaliber      			= 20;
 	refShip.Weight						= Tonnes2CWT(2500);
 	refShip.Capacity        			= 6500;
 	refShip.MaxCannonDiff						= 4;

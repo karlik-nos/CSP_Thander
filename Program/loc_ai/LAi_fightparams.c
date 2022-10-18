@@ -416,7 +416,7 @@ float GetMushketEnergyDrain(ref character)
 
 float Lai_UpdateEnergyPerDltTime(aref chr, float curEnergy, float dltTime)
 {
-	float fMultiplier = 1.3333337+(GetCharacterSPECIALSimple(chr,SPECIAL_S)/10.0);//влияние силы на скорость восстановления энергии
+	float fMultiplier = 1.30+(GetCharacterSPECIALSimple(chr,SPECIAL_S)/10.0);//влияние силы на скорость восстановления энергии
 
 	if(CheckCharacterPerk(chr, "Energaiser")) // скрытый перк боссов и ГГ
 	{

@@ -87,9 +87,9 @@ void ProcessDialogEvent()
 		}
 		switch (iClass)
 		{
-			case 6: RealShips[sti(compref.Ship.Type)].HullArmor = 12+(rand(1)*hullarmor); break;
-			case 5: RealShips[sti(compref.Ship.Type)].HullArmor = 16+(rand(1)*hullarmor); break;
-			case 4: RealShips[sti(compref.Ship.Type)].HullArmor = 20+(rand(2)*hullarmor); break;
+			case 6: RealShips[sti(compref.Ship.Type)].HullArmor = 8+(rand(1)*hullarmor); break;
+			case 5: RealShips[sti(compref.Ship.Type)].HullArmor = 12+(rand(1)*hullarmor); break;
+			case 4: RealShips[sti(compref.Ship.Type)].HullArmor = 16+(rand(2)*hullarmor); break;
 			case 3: RealShips[sti(compref.Ship.Type)].HullArmor = 24+(rand(2)*hullarmor); break;
 			case 2: RealShips[sti(compref.Ship.Type)].HullArmor = 32+(rand(2)*hullarmor); break;
 			case 1: RealShips[sti(compref.Ship.Type)].HullArmor = 42+(rand(2)*hullarmor); break;
