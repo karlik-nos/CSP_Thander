@@ -1641,7 +1641,8 @@ void Sea_Load()
 	{
 		if(Ships[i] > 0)
 		{
-			chr = GetCharacter(Ships[i]); sTemp = chr.Ship.Name
+			chr = GetCharacter(Ships[i]);
+			sTemp = chr.Ship.Name;
 		}
 		else
 		{

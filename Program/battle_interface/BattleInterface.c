@@ -7,6 +7,7 @@
 #include "battle_interface\ActivePerksShow.c"
 #include "battle_interface\backgroundtask.c"
 #include "battle_interface\WmInterface.c"
+#include "battle_interface\BattleInterfaceUpdates.c"
 
 #define BI_ICONS_SHIPS_TEXTURE_NAME "battle_interface\icons.tga.tx"
 
@@ -59,9 +60,6 @@ int BI_ChargeState[5];
 float BI_g_fRetVal;
 
 int BI_intNRetValue[8];
-
-int BI_CannonsUpdate = 0;
-int BI_icons_ProjectilesUpdate = 0;
 
 object BI_objRetValue;
 object objShipPointer;
@@ -135,6 +133,7 @@ void InitBattleInterface()
 	SetEventHandler("evntGetSRollSpeed","procGetSRollSpeed",0);
 	SetEventHandler("DoSailHole","ProcessSailDamage",0);
 	SetEventHandler("evntBISelectShip","procBISelectShip",0);
+	SetEventHandler("BI_CallUpdateShipsRollSpeed","BI_UpdateShipsRollSpeed", 0);
 
 	procLoadIntoNew(); // Проинитим таблицу активных перков
 	SetEventHandler("Control Activation","BI_ProcessControlPress",0);
@@ -145,6 +144,7 @@ void InitBattleInterface()
     ReconnectShips();
 	BI_UpdateLoadedProjectiles(); 
 	BI_UpdateCannons();
+	BI_UpdateShipsRollSpeed();
 }
 
 ref BI_GetFortRelation()
@@ -380,6 +380,7 @@ void DeleteBattleInterface()
 	DelEventHandler("Control Activation","BI_ProcessControlPress");
 	DelEventHandler("DoSailHole","ProcessSailDamage");
 	DelEventHandler("evntBISelectShip","procBISelectShip");
+	DelEventHandler("BI_CallUpdateShipsRollSpeed","BI_UpdateShipsRollSpeed");
 
 	// был сброс времени, выше поднял
 	//DeleteClass(&BattleInterface);
@@ -3248,53 +3249,9 @@ ref procGetSRollSpeed()
 {
 	int chrIdx = GetEventData();
 	BI_g_fRetVal = 0.0;
-	if(chrIdx>=0) BI_g_fRetVal = GetRSRollSpeed(GetCharacter(chrIdx));
+	ref chref = GetCharacter(chrIdx);
+	if(CheckAttribute(chref, "Ship.RollSpeed")) BI_g_fRetVal = chref.Ship.RollSpeed;
 	return &BI_g_fRetVal;
-}
-// скорость подъема паруса
-float GetRSRollSpeed(ref chref)
-{
-	if (HasSubStr(chref.id, "_DriftCap_")) return 3.0;
-
-	int iShip = sti(chref.ship.type);
-	if( iShip<0 || iShip>=REAL_SHIPS_QUANTITY ) {return 0.0;}
-
-	float fRollSpeed = 0.5 + 0.05 * makefloat( GetSummonSkillFromNameToOld(chref,SKILL_SAILING) ); //fix skill
-	int crewQ = GetCrewQuantity(chref);
-	//int crewMin = sti(RealShips[iShip].MinCrew);
-	if (!CheckAttribute(&RealShips[iShip], "MaxCrew"))
-	{
-		Log_TestInfo("GetRSRollSpeed нет MaxCrew у корабля НПС ID=" + chref.id);
-		return 0.0;
-	}
- 	int crewMax = sti(RealShips[iShip].MaxCrew);
- 	int crewOpt = sti(RealShips[iShip].OptCrew);//boal
- 	if (crewMax < crewQ) crewQ  = crewMax; // boal
-	//if(crewQ < crewMin) fRollSpeed *= makefloat(crewQ)/makefloat(2*crewMin);
-	//fRollSpeed = fRollSpeed * (0.5 + makefloat(crewQ)/makefloat(2*crewMax)); // уменьшение скорости разворота от команды
-	//fRollSpeed = fRollSpeed * makefloat(crewQ)/makefloat(crewMax);
-	// опыт матросов
-	float  fExp;
-
-	if (crewOpt <= 0) crewOpt = 0; // fix для профилактики деления на ноль
-
-	fExp = 0.05 + stf(GetCrewExp(chref, "Sailors") * crewQ) / stf(crewOpt * GetCrewExpRate());
-	if (fExp > 1) fExp = 1;
-	fRollSpeed = fRollSpeed * fExp;
-	// мораль
-	float  fMorale = stf(stf(GetCharacterCrewMorale(chref)) / MORALE_MAX);
-	fRollSpeed = fRollSpeed * (0.7 + fMorale / 2.0);
-
-	if (iArcadeSails != 1)
-	{
-		fRollSpeed = fRollSpeed / 2.5;
-	}
-	if(CheckOfficersPerk(chref, "SailsMan"))
-	{
-		fRollSpeed = fRollSpeed * 1.1; // 10 процентов
-	}
-	if (CheckAttribute(&RealShips[iShip],"Tuning.SailsSpecial")) fRollSpeed = fRollSpeed * 1.25;
-	return fRollSpeed;
 }
 
 ref BI_GetLandData()
@@ -3490,55 +3447,4 @@ string GetBILocationName()
 	if (strlen(Name) > 24 && fHtRatio > 1.0)
 		Name += strcut("               ", 0, makeint((fHtRatio - 1.0) * 10.0 + 0.5));
 	return Name;
-}
-
-void BI_UpdateLoadedProjectiles() {  // обновление иконок и текстов в BattleInterface
-	if (!CheckAttribute(pchar,"Ship.Cannons.Charge.Type")) {
-		trace("ОШИБКА: Не нашли Ship.Cannons.Charge.Type для ГГ")
-		return;
-	}
-
-	switch(sti(pchar.Ship.Cannons.Charge.Type))
-	{
-	case GOOD_BALLS:
-		BI_icons_ProjectilesUpdate = 32;
-		BattleInterface.textinfo.Ammo.text = ""+sti(pchar.ship.cargo.goods.balls);
-		break;
-	case GOOD_GRAPES:
-		BI_icons_ProjectilesUpdate = 35;
-		BattleInterface.textinfo.Ammo.text = ""+sti(pchar.ship.cargo.goods.grapes);
-		break;
-	case GOOD_KNIPPELS:
-		BI_icons_ProjectilesUpdate = 34;
-		BattleInterface.textinfo.Ammo.text = ""+sti(pchar.ship.cargo.goods.knippels);
-		break;
-	case GOOD_BOMBS:
-		BI_icons_ProjectilesUpdate = 33;
-		BattleInterface.textinfo.Ammo.text = ""+sti(pchar.ship.cargo.goods.bombs);
-		break;
-	}
-}
-
-void BI_UpdateCannons() { // обновление состояния пушек в BattleInterface
-	int nShipType = sti(pchar.ship.type);
-	if(nShipType == SHIP_NOTUSED)
-	{
-		trace("ОШИБКА: ГГ без корабля");
-		return;
-	}
-
-	ref refBaseShip = GetRealShip(nShipType);
-
-	int fcannonsIntactCount = GetBortIntactCannonsNum(pchar, "fcannon", sti(refBaseShip.fcannon));
-	int bcannonsIntactCount = GetBortIntactCannonsNum(pchar, "bcannon", sti(refBaseShip.bcannon));
-	int lcannonsIntactCount = GetBortIntactCannonsNum(pchar, "lcannon", sti(refBaseShip.lcannon));
-	int rcannonsIntactCount = GetBortIntactCannonsNum(pchar, "rcannon", sti(refBaseShip.rcannon));
-
-	int allcannonsIntactCount = fcannonsIntactCount + bcannonsIntactCount + lcannonsIntactCount + rcannonsIntactCount;
-	BI_CannonsUpdate = (allcannonsIntactCount == 0);
-
-	BattleInterface.textinfo.CannonsNumF.text = fcannonsIntactCount + "/" + refBaseShip.fcannon;
-	BattleInterface.textinfo.CannonsNumB.text = bcannonsIntactCount + "/" + refBaseShip.bcannon;
-	BattleInterface.textinfo.CannonsNumL.text = lcannonsIntactCount + "/" + refBaseShip.lcannon;
-	BattleInterface.textinfo.CannonsNumR.text = rcannonsIntactCount + "/" + refBaseShip.rcannon;
 }
