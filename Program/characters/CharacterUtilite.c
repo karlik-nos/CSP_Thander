@@ -258,6 +258,29 @@ int GetSquadronGoods(ref _refCharacter,int _Goods)
 	return retVal;
 }
 
+int GetSquadronNeededGoods(ref _refCharacter,int _Goods)
+{
+	int i,cn;
+	ref chref;
+	ref rGood = &Goods[_Goods];
+	string sGood = rGood.name;
+	int retVal = 0;
+	if (CheckAttribute(_refCharacter, "TransferGoods." + sGood)) retVal = makeint(_refCharacter.TransferGoods.(sGood)); else _refCharacter.TransferGoods.(sGood) = 0;
+	for(i=1; i<COMPANION_MAX; i++)
+	{
+		cn = GetCompanionIndex(_refCharacter,i);
+		if(cn!=-1 && GetRemovable(&Characters[cn]))//fix грузим токо своим
+		{
+			chref = GetCharacter(cn);
+			if( GetShipRemovableEx(chref) )
+			{
+				if (CheckAttribute(chref, "TransferGoods." + sGood)) retVal += makeint(chref.TransferGoods.(sGood)); else chref.TransferGoods.(sGood) = 0;
+			}
+		}
+	}
+	return retVal;
+}
+
 void SetCharacterGoods(ref _refCharacter,int _Goods,int _Quantity)
 {
 	string goodsName = Goods[_Goods].name;
