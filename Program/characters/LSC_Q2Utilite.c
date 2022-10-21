@@ -2029,7 +2029,7 @@ string GetQuestNationsPrison(int _nation)//ищем город определе�
 	{
 		if (colonies[n].nation != "none"  && colonies[n].id != "Panama" && sti(colonies[n].nation) == _nation && GiveArealByLocation(loadedLocation) != colonies[n].island) //не на свой остров
 		{
-			if (GetCharacterIndex(colonies[n].id + "_tavernkeeper") > 0 && GetCharacterIndex(colonies[n].id + "JailOff") > 0)
+			if (GetCharacterIndex(colonies[n].id + "_tavernkeeper") > 0 && !CheckAttribute(rColony, "HasNoFort"))
 			{
 				fortArray[howStore] = n;
 				howStore++;
