@@ -1500,7 +1500,7 @@ string checkOrderMatherial(ref NPChar)
 	string sLeft = "";
 	int idLngFile = LanguageOpenFile("ItemsDescribe.txt");
 
-	for (int k=0;k<8;k++)
+	for (int k=1;k<10;k++)
 	{
 		sGood1 = g_ShipBermudeTuningGoods[k];
 		amount = GetSquadronGoods(Pchar, FindGood(sGood1)) - sti(NPChar.questtemp.(sGood1));
