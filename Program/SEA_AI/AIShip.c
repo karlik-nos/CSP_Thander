@@ -121,11 +121,9 @@ void DeleteShipEnvironment()
 	DelEventHandler("Ship_SailsMoveSound", "Ship_SailsMoveSound");
 	DelEventHandler("Ship_BortReloadEvent", "Ship_BortReloadEvent");
 
-	for (int i=0; i<iNumShips; i++)
-	{
-		// delete particles from ship/etc
-		SendMessage(&Characters[Ships[i]], "l", MSG_SHIP_SAFE_DELETE);
-	}
+	int i = 0;
+	for(i = 0; i < GetArraySize(&LoadedChars); i++) LoadedChars[i] = 0; // clear array of loaded chars on sea
+	for(i = 0; i<iNumShips; i++) SendMessage(&Characters[Ships[i]], "l", MSG_SHIP_SAFE_DELETE); // delete particles from ship/etc
 
 	// scan characters for delete snd id's
 	DeleteEntitiesByType("ship");
@@ -895,6 +893,7 @@ void Ship_Add2Sea(int iCharacterIndex, bool bFromCoast, string sFantomType)
 	}
 
 	Ships[iNumShips] = iCharacterIndex;
+	LoadedChars[iNumShips] = iCharacterIndex; // после загрузки локации в море
 	rCharacter.curshipnum = iNumShips;
 	trace("AIShip  iNumShips : " + iNumShips + " ShipModelrList : " + ShipModelrList[iNumShips] + " ShipName : " + rCharacter.Ship.Name + " Ships = " + Ships[iNumShips]);
 	iNumShips++;
@@ -1879,7 +1878,7 @@ int Ship_FindOtherBallType(ref rCharacter, float fMinEnemyDistance, bool bBalls,
 }
 
 // event: indicate that ball is not enough for fire for main character
-void Ship_NotEnoughBalls()
+void Ship_NotEnoughBalls() // FPSTODO: зачем вызывается так часто?
 {
 	bNotEnoughBalls = GetEventData();
 	// boal -->
@@ -1894,7 +1893,7 @@ void Ship_NotEnoughBalls()
 
 }
 
-int Ship_GetCurrentBallsNum()
+int Ship_GetCurrentBallsNum() // FPSTODO: вызывается каждый кадр, юзать кэш, прибавка минимальна
 {
 	aref aCharacter = GetEventData();
 	return GetCargoGoods(aCharacter,sti(aCharacter.Ship.Cannons.Charge.Type));
@@ -2906,7 +2905,6 @@ void Ship_SetFantomData(ref rFantom)
 	if (CheckAttribute(rFantom, "Ship.Masts")) { DeleteAttribute(rFantom, "Ship.Masts"); }
 	if (CheckAttribute(rFantom, "Ship.Blots")) { DeleteAttribute(rFantom, "Ship.Blots"); }
 	if (CheckAttribute(rFantom, "Ship.Sails")) { DeleteAttribute(rFantom, "Ship.Sails"); }
-
 }
 
 void CharacterUpdateShipFromBaseShip(int iCharacterIndex)
@@ -4159,6 +4157,7 @@ void Ship_LoadShip()
 		ShipModelrList[iNumShips] = GetCurrentModelrNumber();
 
 		Ships[iNumShips] = iCharacterIndex;
+		LoadedChars[iNumShips] = iCharacterIndex; // после загрузки сейва в море
 		rCharacter.curshipnum = iNumShips;
 		Dev_Trace("Ship_LoadShip = " + iCharacterIndex + " id = " + rCharacter.id + " iNumShips = " + iNumShips + " curshipnum = " + rCharacter.curshipnum + " ShipModelrList[iNumShips] = " + ShipModelrList[iNumShips]);
 		Event(SHIP_UPDATE_PARAMETERS, "lf", iCharacterIndex, stf(rCharacter.Ship.Speed.z));		// Parameters      после создания корабля

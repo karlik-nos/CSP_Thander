@@ -81,6 +81,7 @@ void Ball_FlyNearCamera()
 
 int ballNumber;
 
+// FPSTODO: метод очень тяжелый, особенно в замесах проседания видны невооруженным глазом
 void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0, float fDirAng, float fHeightAng, float fCannonDirAng, float fMaxFireDistance)
 {
 	int iCannonType = sti(aCharacter.Ship.Cannons.Type);

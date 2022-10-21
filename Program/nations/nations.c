@@ -227,7 +227,7 @@ int GetRelation(int iCharacterIndex1, int iCharacterIndex2)
 	return NationsRelations[iNation1 * MAX_NATIONS + iNation2];
 }
 
-int GetRelationEvent()
+int GetRelationEvent() // FPSTODO: в бою вызывается слишком часто, оптимизировать
 {
 	int iCharacterIndex1 = GetEventData();
 	int iCharacterIndex2 = GetEventData();

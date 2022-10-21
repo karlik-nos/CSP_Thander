@@ -308,7 +308,7 @@ bool SeaAI_SetOfficer2ShipAfterAbordage(ref refMyCharacter, ref refEnemyCharacte
 	return true;
 }
 
-int SeaAI_GetRelation(int iCharacterIndex1, int iCharacterIndex2)
+int SeaAI_GetRelation(int iCharacterIndex1, int iCharacterIndex2) // FPSTODO: слишком часто вызывается
 {
  	int iRelation = RELATION_NEUTRAL;
 	/*if (bSeaActive)
