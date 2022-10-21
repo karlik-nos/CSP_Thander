@@ -1172,8 +1172,10 @@ void Autotrade_Goods(ref rChar)
 	string sGood;
 	float fNeedCargo;
 	int iCurGoodQty, iNeedGoodsQty, iFreeCargo;
+	int iCurGoodSquadQty, iNeedGoodSquadQty, iNeedGoodSquad;
 	int iMoneyQty = 0;
 
+	bool bFraht;
 	rTreasurer = GetPCharTreasurerRef(); // Казначей. Ему даем экспу
 
 	for(i = 0; i < GOODS_QUANTITY; i++)
@@ -1185,10 +1187,20 @@ void Autotrade_Goods(ref rChar)
 		{
 			rChar.TransferGoods.(sGood) = 0;
 		}
+		bFraht = false; 
+		if (CheckQuestAttribute("generate_trade_quest_progress", "begin") || CheckQuestAttribute("generate_trade_quest_progress",  "failed"))//сейчас везём фрахт
+		{
+			if (makeint(pchar.CargoQuest.iTradeGoods) == i) //везём именно этот фрахт-товар
+			{
+				bFraht = true;
+				iCurGoodSquadQty = GetSquadronGoods(pchar,i);//всего в эскадре
+				iNeedGoodSquadQty = GetSquadronNeededGoods(pchar,i);//всего нужно экскадре по автозакупке
+				iNeedGoodSquad = iCurGoodSquadQty-iNeedGoodSquadQty-makeint(pchar.CargoQuest.iQuantityGoods);//столько не хватает эскадре с учетом автозакупок и фрахта
+			}
+		}
 
 		iCurGoodQty = GetCargoGoods(rChar, i); // Сколько этого товара есть сейчас
 		iNeedGoodsQty = sti(rChar.TransferGoods.(sGood)); // Сколько нужно ВСЕГО данного товара (не докупить!)
-//нужно ли чекать атрибут, если не заполнен - проверить логи
 
 		if(iCurGoodQty == iNeedGoodsQty) continue; // ничего не нужно
 
@@ -1202,6 +1214,9 @@ void Autotrade_Goods(ref rChar)
 					if (refStore.goods.(sGood).tradetype == TRADE_TYPE_CANNONS) continue;
 				}
 				iNeedGood = iCurGoodQty - iNeedGoodsQty; // Столько нужно продать
+				if (bFraht && iNeedGoodSquad < iNeedGood) iNeedGood = iNeedGoodSquad;
+				//Тут не учитывается вариант, что автозакупку можно провести только для одного корабля, и получится излишек, если на других неполное кол-во 
+				//То есть получается как бы принудительная закупка этого товара для всех кораблей, даже если нажата кнопка только для автозакупок на одном корабле. Не особо важно. 
 
 				/*if(!bIsColony)//если продаём на корабль в море
 				//Отключаю кнопку торговли в море, этот фрагмент пока не нужен
