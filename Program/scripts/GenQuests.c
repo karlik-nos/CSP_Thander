@@ -3540,7 +3540,7 @@ void CaptainComission_PirateAttack_DieHard(string qName)
 void CaptainComission_GaleonInit(ref chref)
 {
 	pchar.GenQuest.CaptainComission.Nation = chref.nation;
-	pchar.GenQuest.CaptainComission.City = GetQuestNationsCity(sti(chref.nation));
+	pchar.GenQuest.CaptainComission.City = GetQuestNationsPrison(sti(chref.nation));
 	pchar.GenQuest.CaptainComission.Name = GenerateRandomName_Generator(sti(chref.nation), "man");
 	pchar.GenQuest.CaptainComission.ShipName = chref.Back.Ship.Name;
 	pchar.GenQuest.CaptainComission.City1 = FindAlliedColonyForNationExceptColony(pchar.GenQuest.CaptainComission.City);
