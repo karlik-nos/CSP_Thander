@@ -2019,6 +2019,28 @@ string GetQuestNationsCity(int _nation)
 	return colonies[iRes].id;
 }
 
+string GetQuestNationsPrison(int _nation)//ищем город определенной нации, проверять наличие тавернщика и тюремного босса
+{
+	int n, iRes;
+    int fortArray[MAX_COLONIES];
+    int howStore = 0;
+
+	for(n=0; n<MAX_COLONIES; n++)
+	{
+		if (colonies[n].nation != "none"  && colonies[n].id != "Panama" && sti(colonies[n].nation) == _nation && GiveArealByLocation(loadedLocation) != colonies[n].island) //не на свой остров
+		{
+			if (GetCharacterIndex(colonies[n].id + "_tavernkeeper") > 0 && GetCharacterIndex(colonies[n].id + "JailOff") > 0)
+			{
+				fortArray[howStore] = n;
+				howStore++;
+			}
+		}
+	}
+	if (howStore == 0) return "none";
+	iRes = fortArray[cRand(howStore-1)];
+	return colonies[iRes].id;
+}
+
 string GetRandomPirateCity()
 {
 	int n, iRes;
