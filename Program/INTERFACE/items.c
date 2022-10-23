@@ -1642,7 +1642,21 @@ void EquipPress()
 		ApplayNewSkill(pchar, "", 0);
 		TakeNItems(pchar, sItemID, -1);
 		FillItemsTable(iCurTab);
-
+	}
+	if (sItemID == "letter_LSC")
+	{
+        AddQuestRecord("ISS_PoorsMurder", "11");
+        AddQuestUserData("ISS_PoorsMurder", "sSex", GetSexPhrase("ся","ась"));
+        AddQuestUserData("ISS_PoorsMurder", "sName", pchar.questTemp.LSC.poorName);
+        pchar.questTemp.LSC = "readyGoLSC";
+        DeleteAttribute(pchar, "questTemp.LSC.poorName");
+        int n = FindIsland("LostShipsCity");
+        Islands[n].visible = true;
+        Islands[n].reload_enable = true;
+        Islands[n].alwaysStorm = true; //живём в штормах
+        Islands[n].MaxSeaHeight = 2.0;
+        Islands[n].storm = true;
+        Islands[n].tornado = true;
 	}
 }
 void GetHigh()
