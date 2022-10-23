@@ -38,6 +38,7 @@ bool Cannon_LoadBall()
 	{
 		AddCharacterGoodsCannon(aCharacter, iBallType, -1);
 		AddCharacterGoodsCannon(aCharacter, GOOD_POWDER, -1);
+		if (IsMainCharacter(aCharacter)) BI_UpdateLoadedProjectiles();
 		// boal <--
 		return true;
 	}
