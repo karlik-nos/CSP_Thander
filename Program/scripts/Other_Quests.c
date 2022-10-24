@@ -100,7 +100,7 @@ void Andre_Abel_Quest_Battle_With_Pirates_Squadron(string sQuest)	// Выпол�
 
 		rChar = GetCharacter(NPC_GenerateCharacter("Andre_Abel_Quest_Pirate_" + i, sModel, "man", "man", 15, PIRATE, -1, true));
 		FantomMakeCoolFighter(rChar, 35, 40, 35, "blade24", "pistol3", 10);
-		FantomMakeCoolSailor(rChar, RandShipFromShipClass(PChar), sShipName, CANNON_TYPE_CANNON_LBS24, 75, 70, 65);
+		FantomMakeCoolSailor(rChar, RandShipFromShipClass(PChar), sShipName, CANNON_TYPE_CANNON_LBS20, 75, 70, 65);
 		rChar.name = sName;
 		rChar.Lastname = sLastName;
 		//rChar.Abordage.Enable = false;
