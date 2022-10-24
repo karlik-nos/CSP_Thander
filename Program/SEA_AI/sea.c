@@ -1720,25 +1720,22 @@ ref CalculateGroupShipPos()
 	float centerPosX = GetEventData();
 	float rotation = GetEventData();
 	float centerPosZ = GetEventData();
-	aref aShipChar = GetEventData();
-	//int shipCount = GetCompanionQuantity(PChar);
-	shipCount = Group_GetLiveCharactersNum(aShipChar.SeaAI.Group.Name);
-	log_info("shipIndex - " + shipIndex + "=" + aShipChar.id);
-	log_info("shipCount - " + shipCount);
+	int shipCount = GetCompanionQuantity(PChar);
+
 	float distanceBetweenShips = 200.0;
-//TO DO не забыть проверить логи и построение, если у группы не назначен командующий
-//TO DO сделать три колонны, если кол-во больше 7 - проверить и Золотой флот, чтоб галеоны в центре строя были
-//TO DO сделать расстояние между кораблей от их базовых размеров???
 
 	float result[3];
 	result[0] = centerPosX;
 	result[1] = rotation;
 	result[2] = centerPosZ;
 
-	if (CheckAttribute(aShipChar,"Do180Turn") && aShipChar.Do180Turn == true)
+	if (shipIndex == 0)
 	{
-		result[1] = rotation-180.0;
-		aShipChar.Do180Turn = false;
+		if (CheckAttribute(pchar,"Do180Turn") && pchar.Do180Turn == true)
+		{
+			result[1] = rotation-180.0;
+			pchar.Do180Turn = false;
+		}
 		return &result;
 	}
 
