@@ -372,8 +372,6 @@ void Sea_LandLoad()
 		Group_FreeAllDead();
 	}
 
-	PerkLoad(true);
-
 	if (sborCancelledByPatent)
 	{
 		Log_Info("РџСЂРѕРїСѓСЃРє РІ РїРѕСЂС‚ РєРѕР»РѕРЅРёРё Р±РµСЃРїР»Р°С‚РµРЅ Р±Р»Р°РіРѕРґР°СЂСЏ РїР°С‚РµРЅС‚Сѓ.");
@@ -535,7 +533,6 @@ void Sea_MapLoad()
 	SeaMapLoadZ = stf(pchar.Ship.Pos.z);
 	SeaMapLoadAY = stf(pchar.Ship.Ang.y);
 	CheckWoundedOfficers();
-	PerkLoad(true);
 }
 
 // РЅРёРіРґРµ РЅРµ РїРѕР»СЊР·СѓРµС‚СЏ, РјРѕР¶РµС‚ РіР»СЋС‡РёС‚СЊ РґР»СЏ Р°Р±РѕСЂРґР°Р¶Р°
@@ -1641,8 +1638,7 @@ void Sea_Load()
 	{
 		if(Ships[i] > 0)
 		{
-			chr = GetCharacter(Ships[i]);
-			sTemp = chr.Ship.Name;
+			chr = GetCharacter(Ships[i]); sTemp = chr.Ship.Name
 		}
 		else
 		{
@@ -1712,7 +1708,7 @@ void ReconnectShips()
         }
 	}*/
 }
-
+				    
 #event_handler("CalculateGroupShipPos", "CalculateGroupShipPos")
 ref CalculateGroupShipPos()
 {
@@ -1723,17 +1719,16 @@ ref CalculateGroupShipPos()
 	aref aShipChar = GetEventData();
 	//int shipCount = GetCompanionQuantity(PChar);
 	shipCount = Group_GetLiveCharactersNum(aShipChar.SeaAI.Group.Name);
-	log_info("shipIndex - " + shipIndex + "=" + aShipChar.id);
-	log_info("shipCount - " + shipCount);
 	float distanceBetweenShips = 200.0;
-//TO DO не забыть проверить логи и построение, если у группы не назначен командующий
-//TO DO сделать три колонны, если кол-во больше 7 - проверить и Золотой флот, чтоб галеоны в центре строя были
-//TO DO сделать расстояние между кораблей от их базовых размеров???
 
 	float result[3];
 	result[0] = centerPosX;
 	result[1] = rotation;
 	result[2] = centerPosZ;
+
+//TO DO РЅРµ Р·Р°Р±С‹С‚СЊ РїСЂРѕРІРµСЂРёС‚СЊ Р»РѕРіРё Рё РїРѕСЃС‚СЂРѕРµРЅРёРµ, РµСЃР»Рё Сѓ РіСЂСѓРїРїС‹ РЅРµ РЅР°Р·РЅР°С‡РµРЅ РєРѕРјР°РЅРґСѓСЋС‰РёР№
+//TO DO СЃРґРµР»Р°С‚СЊ С‚СЂРё РєРѕР»РѕРЅРЅС‹, РµСЃР»Рё РєРѕР»-РІРѕ Р±РѕР»СЊС€Рµ 7 - РїСЂРѕРІРµСЂРёС‚СЊ Рё Р—РѕР»РѕС‚РѕР№ С„Р»РѕС‚, С‡С‚РѕР± РіР°Р»РµРѕРЅС‹ РІ С†РµРЅС‚СЂРµ СЃС‚СЂРѕСЏ Р±С‹Р»Рё
+//TO DO СЃРґРµР»Р°С‚СЊ СЂР°СЃСЃС‚РѕСЏРЅРёРµ РјРµР¶РґСѓ РєРѕСЂР°Р±Р»РµР№ РѕС‚ РёС… Р±Р°Р·РѕРІС‹С… СЂР°Р·РјРµСЂРѕРІ???
 
 	if (CheckAttribute(aShipChar,"Do180Turn") && aShipChar.Do180Turn == true)
 	{
