@@ -54,6 +54,7 @@ void InitInterface_R(string iniName, ref _shipyarder)
 	refStore = &stores[sti(rColony.StoreNum)];
 
 	SendMessage(&GameInterface,"ls",MSG_INTERFACE_INIT,iniName);
+	if (iTunPoints < 1) SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE, "TunSheme", -1, 1, 0);//если тюнинга нет из-за низкого навыка, отключаем клики по кнопкам
 
 	SetEventHandler("InterfaceBreak","ProcessExitCancel",0);
 	SetEventHandler("exitCancel","ProcessExitCancel",0);
