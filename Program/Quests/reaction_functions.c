@@ -9116,7 +9116,7 @@ void pirateStartQuest_Bahus_seaBattle(string qName)
 {
 	sld = GetCharacter(NPC_GenerateCharacter("pSQB_Captain", "pirate_3", "man", "man", 6, PIRATE, 1, true));
 	FantomMakeCoolFighter(sld, 6, 30, 30, "blade6", "pistol1", 30);
-	FantomMakeCoolSailor(sld, SHIP_FLEUT, "Бахус", CANNON_TYPE_CANNON_LBS12, 50, 30, 30);
+	FantomMakeCoolSailor(sld, SHIP_FLEUT, "Бахус", CANNON_TYPE_CANNON_LBS16, 50, 30, 30);
         sld.name 	= "Сиренсио";
         sld.lastname = "Беграччи";
 	SetCharacterGoods(sld, GOOD_SLAVES, 300);
@@ -9139,7 +9139,7 @@ void pirateStartQuest_seaBattle(string qName)
 
 	sld = GetCharacter(NPC_GenerateCharacter("pSQ_Captain", "pirate_6", "man", "man", 8, PIRATE, -1, true));
 	FantomMakeCoolFighter(sld, 8, 40, 40, "blade9", "pistol3", 40);
-	FantomMakeCoolSailor(sld, SHIP_LUGGER, "Септима", CANNON_TYPE_CANNON_LBS16, 40, 40, 40);
+	FantomMakeCoolSailor(sld, SHIP_LUGGER, "Септима", CANNON_TYPE_CANNON_LBS12, 40, 40, 40);
         sld.name 	= "Норман";
         sld.lastname = "Виго";
 	sld.AlwaysSandbankManeuver = true;
