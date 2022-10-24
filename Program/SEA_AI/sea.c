@@ -371,7 +371,9 @@ void Sea_LandLoad()
 		DeleteAttribute(pchar, "CheckStateOk"); // проверка протектором
 		Group_FreeAllDead();
 	}
-
+	
+	PerkLoad(true);
+	
 	if (sborCancelledByPatent)
 	{
 		Log_Info("Пропуск в порт колонии бесплатен благодаря патенту.");
@@ -533,6 +535,7 @@ void Sea_MapLoad()
 	SeaMapLoadZ = stf(pchar.Ship.Pos.z);
 	SeaMapLoadAY = stf(pchar.Ship.Ang.y);
 	CheckWoundedOfficers();
+	PerkLoad(true);
 }
 
 // нигде не пользуетя, может глючить для абордажа
