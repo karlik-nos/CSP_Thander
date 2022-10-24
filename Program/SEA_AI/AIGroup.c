@@ -242,12 +242,11 @@ ref Group_GetGroupCommander(string sGroupID)
 void Group_SetGroupCommander(string sGroupID, string sCharacterID)
 {
 	ref rGroup = Group_FindOrCreateGroup(sGroupID);
-
 	rGroup.MainCharacter = sCharacterID;
-
+	ref rCharacter = GetCharacter(GetCharacterIndex(sCharacterID));
+	rCharacter.GroupShipPos_event = "CalculateGroupShipPos";
 	if (bSeaActive)
 	{
-		ref rCharacter = GetCharacter(GetCharacterIndex(sCharacterID));
 		SendMessage(&AISea, "lsa", AI_MESSAGE_GROUP_SET_COMMANDER, sGroupID, rCharacter);
 	}
 }
