@@ -1715,13 +1715,15 @@ void ReconnectShips()
 #event_handler("CalculateGroupShipPos", "CalculateGroupShipPos")
 ref CalculateGroupShipPos()
 {
+	int iTempK;
 	int shipIndex = GetEventData();
 	float centerPosX = GetEventData();
 	float rotation = GetEventData();
 	float centerPosZ = GetEventData();
 	aref aShipChar = GetEventData();
+	int shipCount = 2; 
 	//int shipCount = GetCompanionQuantity(PChar);
-	int shipCount = Group_GetLiveCharactersNum(aShipChar.SeaAI.Group.Name);
+	//int shipCount = Group_GetLiveCharactersNum(aShipChar.SeaAI.Group.Name);
 	float distanceBetweenShips = 200.0;
 
 	float result[3];
@@ -1732,27 +1734,32 @@ ref CalculateGroupShipPos()
 //TO DO не забыть проверить логи и построение, если у группы не назначен командующий
 //TO DO сделать три колонны, если кол-во больше 7 - проверить и Золотой флот, чтоб галеоны в центре строя были
 //TO DO сделать расстояние между кораблей от их базовых размеров???
-
-	if (CheckAttribute(aShipChar,"Do180Turn") && aShipChar.Do180Turn == true)
+	if (shipIndex == 0)
 	{
-		result[1] = rotation-180.0;
-		aShipChar.Do180Turn = false;
+		if (CheckAttribute(aShipChar,"Do180Turn") && aShipChar.Do180Turn == true)
+		{
+			result[1] = rotation-180.0;
+			aShipChar.Do180Turn = false;
+		}
 		return &result;
 	}
 
+/*
 	if ((shipIndex == 1) && (shipCount == 2))
 	{
 		result[0] -= distanceBetweenShips * sin(rotation);
 		result[2] -= distanceBetweenShips * cos(rotation);
 		return &result;
 	}
-
+*/
+	
 	float offset_sign = -0.4;
 	if ((shipIndex % 2) == 0) offset_sign = 0.4;
 
 	int offset_in_line = makeint((shipCount - shipIndex - 1) / 2) + 1;
+	if (offset_in_line == 0) iTempK = 2; else iTempK = 1;
 
-	result[0] -= distanceBetweenShips * (offset_in_line * sin(rotation) + offset_sign * cos(rotation));
+	result[0] -= iTempK * distanceBetweenShips * (offset_in_line * sin(rotation) + offset_sign * cos(rotation));
 	result[2] -= distanceBetweenShips * (offset_in_line * cos(rotation) - offset_sign * sin(rotation));
 	return &result;
 }
