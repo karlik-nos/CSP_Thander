@@ -1721,7 +1721,7 @@ ref CalculateGroupShipPos()
 	float centerPosZ = GetEventData();
 	aref aShipChar = GetEventData();
 	//int shipCount = GetCompanionQuantity(PChar);
-	shipCount = Group_GetLiveCharactersNum(aShipChar.SeaAI.Group.Name);
+	int shipCount = Group_GetLiveCharactersNum(aShipChar.SeaAI.Group.Name);
 	float distanceBetweenShips = 200.0;
 
 	float result[3];
