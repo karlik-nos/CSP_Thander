@@ -438,3 +438,8 @@ void DelCharacterRelation(int iCharacterIndex1)
 {
 	DeleteAttribute(&Characters[iCharacterIndex1], "relation");
 }
+
+bool IsColonyEnemyToMainCharacter(string colonyID) {
+	ref rColony = GetColonyByIndex(FindColony(colonyID));
+	return GetNationRelation(GetBaseHeroNation(), sti(rColony.nation)) == RELATION_ENEMY;
+}

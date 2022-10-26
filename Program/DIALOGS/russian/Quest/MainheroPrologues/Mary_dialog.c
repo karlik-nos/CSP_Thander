@@ -710,10 +710,14 @@ void ProcessDialogEvent()
 				attrLoc = "l" + iTemp;
 				NPChar.Temp.(attr) = attr;
 				Link.(attrLoc) = "В " + XI_ConvertString("Colony" + attr + "Dat");
+				if (IsColonyEnemyToMainCharacter(attr)) {
+					Link.(attrLoc).go = "CompanionTravel_EnemyColony";
+					continue;
+				}
 				Link.(attrLoc).go = "CompanionTravelToColony_" + attr;
 			}
-				Link.l99 = "Я передумал"+ GetSexPhrase("","а") +". Ничего не нужно.";
-				Link.l99.go = "exit";
+			Link.l99 = "Я передумал"+ GetSexPhrase("","а") +". Ничего не нужно.";
+			Link.l99.go = "exit";
 		break;
 
 		case "TravelToPiratesTowns":
@@ -875,10 +879,10 @@ void ProcessDialogEvent()
 		int nFind = findSubStr(Dialog.CurrentNode, "CompanionTravelToColony_", 0);
 		string idxVal;
 		string nodName;
-		if(nFind == 0)
+		if (nFind == 0)
 		{
-            idxVal = strcut(Dialog.CurrentNode, 24, strlen(Dialog.CurrentNode)-1);
-            nodName = "CompanionTravelToColony_" + idxVal;
+			idxVal = strcut(Dialog.CurrentNode, 24, strlen(Dialog.CurrentNode) - 1);
+			nodName = "CompanionTravelToColony_" + idxVal;
 			for (i = 1; i < COMPANION_MAX; i++)
 			{
 				int cn;									// Companion index
@@ -886,15 +890,17 @@ void ProcessDialogEvent()
 				if (cn == -1) continue;
 				if (NPChar.name == characters[cn].name) NPChar.realcompanionidx = &characters[cn].index;
 			}
-			characters[sti(NPChar.realcompanionidx)].CompanionTravel.ToColonyID = NPChar.Temp.(idxVal);
-			characters[sti(NPChar.realcompanionidx)].CompanionTravel.Days = makeint(GetDistanceToColony2D(NPChar.Temp.(idxVal))/300+1.0);
-			dialog.Text = "Вы выбрали колонию "+XI_ConvertString("Colony" + characters[sti(NPChar.realcompanionidx)].CompanionTravel.ToColonyID + "Gen")+", капитан?";
+			aref rCTravel;
+			makearef(rCTravel, characters[sti(NPChar.realcompanionidx)].CompanionTravel);
+			rCTravel.ToColonyID = NPChar.Temp.(idxVal);
+			rCTravel.Days = makeint(GetDistanceToColony2D(NPChar.Temp.(idxVal)) / 300 + 1.0);
+			dialog.Text = "Вы выбрали колонию " + XI_ConvertString("Colony" + rCTravel.ToColonyID + "Gen") + ", капитан?";
 			Link.l1 = "Да, именно её.";
-            Link.l1.go = "CompanionTravel_PrepareStart";
-			Link.l2 = "Нет, я передумал"+ GetSexPhrase("","а")+", не бери в голову.";
-            Link.l2.go = "exit";
-            break;
-        }
+			Link.l1.go = "CompanionTravel_PrepareStart";
+			Link.l2 = "Нет, я передумал" + GetSexPhrase("", "а") + ", не бери в голову.";
+			Link.l2.go = "exit";
+			break;
+		}
 
 		case "CompanionTravel_EnemyColony":
 			dialog.Text = "Капитан, но я же не cмогу ждать вас в колонии, которая к нам враждебна!";
