@@ -250,7 +250,8 @@ void ProcessDialogEvent()
 		break;
 
 		case "Pablo_Loco_Pravilno":
-			if ("корицы и аниса" == GetStrSmallRegister(dialogEditStrings[1]) || "корица и анис" == GetStrSmallRegister(dialogEditStrings[1]) || "запах корицы и аниса" == GetStrSmallRegister(dialogEditStrings[1]) || "запахи корицы и аниса" == GetStrSmallRegister(dialogEditStrings[1]) || "анис и корица" == GetStrSmallRegister(dialogEditStrings[1]) || "аниса и корицы" == GetStrSmallRegister(dialogEditStrings[1]) || "запах аниса и корицы" == GetStrSmallRegister(dialogEditStrings[1]) || "запахи аниса и корицы" == GetStrSmallRegister(dialogEditStrings[1]))
+			string answer = GetStrSmallRegister(dialogEditStrings[1])
+			if (HasSubStr(answer, "кориц") && HasSubStr(answer, "анис"))
 			{
 				Dialog.text = "Пахнет корицей и анисом? Я знать такую траву. Она может лечить, а может убить. Скажи мне, зачем тебе нужна эта трава?";
 				Link.l1 = "Доктор Алюмнус послал меня за ней.";
