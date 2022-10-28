@@ -220,7 +220,7 @@ void SetHalfPerksToChar(ref _ch, bool _isOfficer)
 void RemoveAllCharacterItems(ref _ch, bool _removemoney)
 {
 	// сносим нафик всю экипировку
-	if(_ch == GetMainCharacter())
+	if(IsMainCharacter(_ch))
 	{
 		StoreEquippedMaps(_ch);
 		_ch.MapsAtlasCount = 0;
