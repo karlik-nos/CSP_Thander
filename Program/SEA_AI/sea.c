@@ -1105,9 +1105,12 @@ void SeaLogin(ref Login)
 
 				// add fantom
 				Group_AddCharacter(sGName, rFantom.id);
+			}
 
+			for (j = 0; j < iNumFantomShips; j++)
+			{
 				// add to sea
-				Ship_Add2Sea(iFantomIndex, 0, rEncounter.Type);
+				Ship_Add2Sea(FANTOM_CHARACTERS + iNumFantoms - iNumFantomShips + j, 0, rEncounter.Type);
 			}
 		}
 	}
