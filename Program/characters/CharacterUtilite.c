@@ -3098,7 +3098,7 @@ int ChangeCharacterReputation(ref chref, float incr)
 	string newName = GetReputationName(makeint(newVal));
 	if (prevName!=newName)
 	{
-		string outString = XI_ConvertString("Your reputation")+" ";
+		string outString = XI_ConvertString("Your reputation");
 		if (incr>0)	{outString+=XI_ConvertString("increase");}
 		else	{outString+=XI_ConvertString("decrease");}
 		outString += " "+XI_ConvertString("to")+" "+XI_ConvertString(newName);
