@@ -3275,6 +3275,8 @@ void SetReefSkeletonsToLocation(aref _location, string loc)
 				sld.name = "Армандо";
 				sld.lastname = "Салазар";
 				sld.SaveItemsForDead = true;
+				sld.locid = _location.index;
+				sld.num = num;
 				if (bHardBoss) sld.AlwaysReload = true;//перезарядка независимо от Дозарядки
 
 				SetSPECIAL(sld, 10,10,10,10,10,10,10); // SPECIAL (Сила, Восприятие, Выносливость, Лидерство, Обучаемость, Реакция, Удача)
