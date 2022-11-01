@@ -306,7 +306,7 @@ void PerkLoad(bool noDelay)
 					DeleteAttribute(arPerk,"delay");
 					DeleteAttribute(arPerk,"active");
 					PostEvent("evntPerkAgainUsable",1);
-					return;
+					continue;
 				}
 
 				tmpi = sti(arPerk.delay);
