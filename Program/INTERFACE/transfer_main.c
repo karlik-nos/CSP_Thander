@@ -1790,6 +1790,7 @@ void SwapProcess()
 		FillScrollImageWithCompanions("SHIPS_SCROLL", COMPANION_MAX);
 		SeaAI_SwapShipAfterAbordage(refCharacter, xi_refCharacter);
 	}
+	BI_UpdateCannons();
 }
 
 //////////////
