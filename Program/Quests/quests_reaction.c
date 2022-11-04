@@ -11687,14 +11687,28 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 		case "SpawnSalasarSupports_3":
 			LAi_group_SetRelation("ReefAssholes", LAI_GROUP_PLAYER, LAI_GROUP_FRIEND);
-			LAi_SetFightMode(pchar, false);
-			LAi_LockFightMode(pchar, false);
 			LAi_LocationFightDisable(loadedLocation, true);
+			LAi_SetFightMode(pchar, false);
+			LAi_LockFightMode(pchar, true);
 			sld = CharacterFromID("salasar");
 			LAi_SetActorTypeNoGroup(sld);
 			sld.dialog.filename = "Salasar.c";
 			sld.dialog.currentnode = "Last";
 			LAi_ActorDialog(sld, pchar, "", 4.0, 0);
+			int salnum = sld.num;
+			int npclocnum = sld.locid;
+			for(i = 0; i < 10; i++)
+			{
+				sld = CharacterFromID("SalSupp"+i);
+				LAi_KillCharacter(sld);
+				sld = CharacterFromID("SalSupps"+i);
+				LAi_KillCharacter(sld);
+			}
+			for(i = 0; i < salnum; i++)
+			{
+				sld = CharacterFromID("Skelet"+npclocnum+"_"+i);
+				LAi_KillCharacter(sld);
+			}
 		break;
 		case "SpawnGiantEvilSkeleton":
 			if (loadedLocation.id != "DeckWithReefs" || CheckAttribute(pchar,"GiantEvilSkeletonSpawned")) {chrDisableReloadToLocation = false; break;}
