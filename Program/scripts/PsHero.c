@@ -2124,7 +2124,7 @@ void PGG_Q1AfterSeaFight(string qName)
 void PGG_Q1PlaceShipsNearIsland()
 {
 	ref chr;
-	string sTmp, sLoc, sType;
+	string sCharId, sLoc, sType;
 	int i, iRnd, iNation, iLifeDay, iRank, iGoods, iSpace;
 
 	sLoc = PChar.GenQuest.PGG_Quest.Island;
@@ -2136,48 +2136,13 @@ void PGG_Q1PlaceShipsNearIsland()
 	iRnd = 3 + rand(2);
 	for (i = 0; i < iRnd; i++)
 	{
-		sTmp = "pirate_" + i;
-		chr = GetCharacter(NPC_GenerateCharacter("RandQuestCap_0" + i, sTmp, "man", "man", MakeInt(iRank/2 + rand(iRank)), iNation, iLifeDay, true));
-		chr.AlwaysSandbankManeuver = true;
+		sCharId = "RandQuestCap_0" + i;
+
+		if (i < 2) chr = PGG_Q1CreateWarShip(sCharId); // первые два военные, остальные торговые
+		else       chr = PGG_Q1CreateTradeShip(sCharId);
+
 		SetCharacterPerk(chr,PerksChars());
-		if (i < 2)
-		{
-			//Lipsar правки в спавне-->
-			CreatePGG_War(chr, iNation, pchar);
-			SetRandomNameToShip(chr);
-			SetBaseShipData(chr);
-			SetCrewQuantityFull(chr);
-			Fantom_SetCannons(chr, "war"); //fix
-			Fantom_SetBalls(chr, "pirate");
-			Fantom_SetGoods(chr, "war");
-			iSpace = GetCharacterFreeSpace(chr, iGoods)/rand(10);
-			// iSpace = MakeInt(iSpace/(2+rand(1)));
-			if (!CheckAttribute(PChar, "GenQuest.PGG_Quest.Goods.Qty")) PChar.GenQuest.PGG_Quest.Goods.Qty = 0;
-			PChar.GenQuest.PGG_Quest.Goods.Qty = sti(PChar.GenQuest.PGG_Quest.Goods.Qty) + iSpace;
-			Fantom_SetCharacterGoods(chr, iGoods, iSpace, 1);
-			SetRandomNameToShip(chr);
-			SetFantomParamHunter(chr); //крутые парни
-			SetCaptanModelByEncType(chr, "war");//
-		}
-		else
-		{
-			CreatePGG_Trade(chr, iNation, pchar);
-			SetRandomNameToShip(chr);
-			SetBaseShipData(chr);
-			SetCrewQuantityFull(chr);
-			Fantom_SetCannons(chr, "trade");
-			Fantom_SetBalls(chr, "trade");
-			iSpace = GetCharacterFreeSpace(chr, iGoods)/(1+rand(1));
-			// iSpace = MakeInt(iSpace/2 + rand(iSpace/2));
-			if (!CheckAttribute(PChar, "GenQuest.PGG_Quest.Goods.Qty")) PChar.GenQuest.PGG_Quest.Goods.Qty = 0;
-			PChar.GenQuest.PGG_Quest.Goods.Qty = sti(PChar.GenQuest.PGG_Quest.Goods.Qty) + iSpace;
-			Fantom_SetCharacterGoods(chr, iGoods, iSpace, 1);
-//			SetCrewQuantityOverMax()
-			SetSeaFantomParam(chr, "trade");
-			SetCaptanModelByEncType(chr, "trade");
-//			PChar.Quest.(sTmp).win_condition.l1 = "NPC_Death";
-		}
-		//<--Lipsar правки в спавне
+		chr.AlwaysSandbankManeuver = true;
 		Group_AddCharacter("PGGQuest", chr.id);
 		chr.AlwaysEnemy = true;
 	}
@@ -2193,6 +2158,64 @@ void PGG_Q1PlaceShipsNearIsland()
 	PChar.Quest.PGGQuest1_CheckStartState.win_condition.l1 = "Location";
 	PChar.Quest.PGGQuest1_CheckStartState.win_condition.l1.Location = PChar.GenQuest.PGG_Quest.Island;
 	PChar.Quest.PGGQuest1_CheckStartState.function = "PGG_Q1CheckStartState";
+}
+
+ref PGG_Q1CreateWarShip(string sCharId)
+{
+	int iRank = sti(PChar.Rank);
+	int iGoods = sti(PChar.GenQuest.PGG_Quest.Goods);
+	int iNation = sti(PChar.GenQuest.PGG_Quest.Nation);
+	int iLifeDay = sti(PChar.GenQuest.PGG_Quest.Days);
+
+	ref chr = GetCharacter(NPC_GenerateCharacter(sCharId, GetCaptainModelByNation(iNation, "war"), "man", "man", MakeInt(iRank / 2 + rand(iRank)), iNation, iLifeDay, true));
+	chr.EncType = "war";
+
+	CreatePGG_War(chr, iNation, pchar);
+	SetRandomNameToShip(chr);
+	SetBaseShipData(chr);
+	SetCrewQuantityFull(chr);
+
+	Fantom_SetCannons(chr, chr.EncType);
+	Fantom_SetBalls(chr, chr.EncType);
+	Fantom_SetGoods(chr, chr.EncType);
+	int iSpace = GetCharacterFreeSpace(chr, iGoods) / rand(10);
+	if (!CheckAttribute(PChar, "GenQuest.PGG_Quest.Goods.Qty")) PChar.GenQuest.PGG_Quest.Goods.Qty = 0;
+	PChar.GenQuest.PGG_Quest.Goods.Qty = sti(PChar.GenQuest.PGG_Quest.Goods.Qty) + iSpace;
+	Fantom_SetCharacterGoods(chr, iGoods, iSpace, 1);
+
+	SetRandomNameToShip(chr);
+	SetFantomParamHunter(chr);
+	SetCaptanModelByEncType(chr, chr.EncType);
+
+	return chr;
+}
+
+ref PGG_Q1CreateTradeShip(string sCharId)
+{
+	int iRank = sti(PChar.Rank);
+	int iGoods = sti(PChar.GenQuest.PGG_Quest.Goods);
+	int iNation = sti(PChar.GenQuest.PGG_Quest.Nation);
+	int iLifeDay = sti(PChar.GenQuest.PGG_Quest.Days);
+
+	ref chr = GetCharacter(NPC_GenerateCharacter(sCharId, GetCaptainModelByNation(iNation, "trade"), "man", "man", MakeInt(iRank / 2 + rand(iRank)), iNation, iLifeDay, true));
+	chr.EncType = "trade";
+
+	CreatePGG_Trade(chr, iNation, pchar);
+	SetRandomNameToShip(chr);
+	SetBaseShipData(chr);
+	SetCrewQuantityFull(chr);
+
+	Fantom_SetCannons(chr, chr.EncType);
+	Fantom_SetBalls(chr, chr.EncType);
+	int iSpace = GetCharacterFreeSpace(chr, iGoods) / (1 + rand(1));
+	if (!CheckAttribute(PChar, "GenQuest.PGG_Quest.Goods.Qty")) PChar.GenQuest.PGG_Quest.Goods.Qty = 0;
+	PChar.GenQuest.PGG_Quest.Goods.Qty = sti(PChar.GenQuest.PGG_Quest.Goods.Qty) + iSpace;
+	Fantom_SetCharacterGoods(chr, iGoods, iSpace, 1);
+
+	SetSeaFantomParam(chr, chr.EncType);
+	SetCaptanModelByEncType(chr, chr.EncType);
+
+	return chr;
 }
 
 void PGG_Q1PGGDead(string qName)
