@@ -236,7 +236,7 @@ void LAi_CharacterPostLogin(ref location)
 					Trace("Can't find good locator for follower character <" + chr.id + ">");
 				}
 			}
-			if (findsubstr(chr.model, "ghost" , 0) != -1 )
+			if (CheckAttribute(chr, "model") && findsubstr(chr.model, "ghost" , 0) != -1 )
 			{
 				object persRef = GetCharacterModel(chr);
 				SendMessage(persRef, "ls", MSG_MODEL_SET_TECHNIQUE, "DLightMark");
@@ -479,7 +479,7 @@ void SecondChanceRefresh()
 		{
 			DeleteAttribute(chr, "Adventurers_Luck");
 		}
-		if (findsubstr(chr.model, "ghost" , 0) != -1 )
+		if (CheckAttribute(chr, "model") && findsubstr(chr.model, "ghost" , 0) != -1 )
 		{
 			object persRef = GetCharacterModel(chr);
 			SendMessage(persRef, "ls", MSG_MODEL_SET_TECHNIQUE, "DLightMark");
