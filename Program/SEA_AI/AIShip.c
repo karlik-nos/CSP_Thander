@@ -2728,7 +2728,7 @@ void Ship_HullHitEvent()
 		break;
 	}
 	fTmpCannonDamage = fCannonDamageMultiply * stf(rBall.DamageHull);
-	if (rand(2) == 1) CreateParticleSystem("blast", x, y, z, 0.0, 0.0, 0.0, 0);// boal fix
+	CreateParticleSystem("blast", x, y, z, 0.0, 0.0, 0.0, 0);// boal fix
 
     if (sti(rOurCharacter.TmpPerks.ShipDefenseProfessional) && rand(1000) < 700) { bSeriousBoom = false; }				// no seriouse boom
 
