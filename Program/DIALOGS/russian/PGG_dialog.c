@@ -853,6 +853,7 @@ void ProcessDialogEvent()
 		break;
 
 	case "Quest_1_Ship_Detail":
+		if (PChar.GenQuest.PGG_Quest.Island == "Pearl") RegeneratePP();
 		sTmp = "Караван, принадлежащий " + NationNameGenitive(sti(PChar.GenQuest.PGG_Quest.Nation)) + ", перевозящий ";
 		if (sti(PChar.GenQuest.PGG_Quest.Goods) == GOOD_SLAVES)
 		{
@@ -949,6 +950,7 @@ void ProcessDialogEvent()
 
 	case "Exit_Quest_1_Accept":
 		ReOpenQuestHeader("Gen_PGGQuest1");
+		
 		if (CheckAttribute(NPChar, "PGGAi.Task.SetSail"))
 		{
 			PGG_Disband_Fleet(npchar);
@@ -1485,3 +1487,25 @@ void ProcessDialogEvent()
 		link.l3 = "";
 		link.l3.go = "";
 */
+void RegeneratePP()
+{
+	if(PChar.GenQuest.PGG_Quest.Template == "1") PChar.GenQuest.PGG_Quest.Island = GetRandomUninhabitatIsland();
+	else PChar.GenQuest.PGG_Quest.Island = GetRandomIslandId();
+	PChar.GenQuest.PGG_Quest.Island.Shore = GetIslandRandomShoreId(PChar.GenQuest.PGG_Quest.Island);
+	while(PChar.GenQuest.PGG_Quest.Island.Shore == "")
+	{
+		PChar.GenQuest.PGG_Quest.Island = GetRandomIslandId();
+		PChar.GenQuest.PGG_Quest.Island.Shore = GetIslandRandomShoreId(PChar.GenQuest.PGG_Quest.Island);
+		if (sti(PChar.GenQuest.PGG_Quest.Template))
+		{
+			if (!isLocationFreeForQuests(PChar.GenQuest.PGG_Quest.Island)) PChar.GenQuest.PGG_Quest.Island.Shore = "";
+		}
+		else
+		{
+			if (!isLocationFreeForQuests(PChar.GenQuest.PGG_Quest.Island.Shore)) PChar.GenQuest.PGG_Quest.Island.Shore = "";
+		}
+	}
+	PChar.GenQuest.PGG_Quest.Island.Town = FindTownOnIsland(PChar.GenQuest.PGG_Quest.Island);
+	PChar.GenQuest.PGG_Quest.Days = GetMaxDaysFromIsland2Island(Islands[GetCharacterCurrentIsland(pchar)].id, PChar.GenQuest.PGG_Quest.Island)/2 + 1;
+	PChar.GenQuest.PGG_Quest.Goods = GOOD_SLAVES + drand(2);
+}
