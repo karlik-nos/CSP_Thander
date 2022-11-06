@@ -228,7 +228,7 @@ void SelectRColony()
 
 void DoTeleport(float x, float y, string mapid)
 {
-	log_info(FloatToString(x,1)+" "+FloatToString(y,1)+" "+mapid+" "+loadedLocation.islandId);
+	//log_info(FloatToString(x,1)+" "+FloatToString(y,1)+" "+mapid+" "+loadedLocation.islandId);
 	
 	aref mapname,shorename,shorenum;
 	string shore_name,shore_numname;
