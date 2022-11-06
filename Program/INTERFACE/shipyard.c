@@ -2140,6 +2140,7 @@ void RepairOk()
 		DeleteAttribute(xi_refCharacter, "ship.sails");
 		DeleteAttribute(xi_refCharacter, "ship.masts");
 	}
+	ReSetCannons(xi_refCharacter);
 	///
 	ExitRepairMenu();
 	st = sti(GameInterface.SHIPS_SCROLL.current);
@@ -2149,6 +2150,143 @@ void RepairOk()
    	SendMessage(&GameInterface,"lsl",MSG_INTERFACE_SCROLL_CHANGE,"SHIPS_SCROLL",-1);
 	OnShipScrollChange();
 	SetButtionsAccess();
+}
+
+void ReSetCannons(ref chr)
+{
+    if (GetCannonQuantity(chr) <= 0) return;
+    //if (GetCannonQuantity(chr) <= GetCannonsNum(chr)) return;
+	// сначала все убрать
+	int CannonsType = sti(chr.Ship.Cannons.Type);
+    if (GetCannonsNum(chr) > 0)
+    {
+		SetCannonsToBort(chr, "fcannon", 0);
+	    SetCannonsToBort(chr, "bcannon", 0);
+	    SetCannonsToBort(chr, "rcannon", 0);
+	    SetCannonsToBort(chr, "lcannon", 0);
+    }
+    // потом все выставить раскидав по бортам
+    int idx = GetCannonGoodsIdxByType(CannonsType);
+    int fb, lb, rb, bb;
+    int qty;
+
+    if (idx != -1)
+    {
+    	qty = GetCargoGoods(chr, idx);
+
+    	rb = GetBortCannonsMaxQty(chr, "rcannon");
+
+    	if (rb  > (qty / 2)) rb = qty / 2;
+    	qty = qty - rb;
+    	if (qty < 0) qty = 0;
+
+    	lb = GetBortCannonsMaxQty(chr, "lcannon");
+    	if (lb > qty) lb = qty;
+    	qty = qty - lb;
+    	if (qty < 0) qty = 0;
+
+    	bb = GetBortCannonsMaxQty(chr, "bcannon");
+    	if (bb > qty) bb = qty;
+    	qty = qty - bb;
+    	if (qty < 0) qty = 0;
+
+    	fb = GetBortCannonsMaxQty(chr, "fcannon");
+    	if (fb > qty) fb = qty;
+
+    	SetCannonsToBort(chr, "fcannon", fb);
+	    SetCannonsToBort(chr, "bcannon", bb);
+	    SetCannonsToBort(chr, "rcannon", rb);
+	    SetCannonsToBort(chr, "lcannon", lb);
+    }
+}
+
+/// установить орудия по борту (сперва расчитать дельту было стало - лишнее в запасы)
+void SetCannonsToBort(ref chr, string sBort, int iQty)
+{
+	int     curQty = GetBortCannonsQty(chr, sBort);
+	int     maxQty = GetBortCannonsMaxQty(chr, sBort);
+	int     i, delta;
+	string  attr;
+	int     center, left, right; // счетчики орудий для распределения
+	bool    bLeft; // направление хода
+	string  sBort_real;
+
+	if(sBort == "rcannon") sBort_real = "cannonr";
+	if(sBort == "lcannon") sBort_real = "cannonl";
+	if(sBort == "fcannon") sBort_real = "cannonf";
+	if(sBort == "bcannon") sBort_real = "cannonb";
+
+	if (iQty > maxQty) iQty = maxQty;
+	if (iQty < 0) iQty = 0;
+
+	int idx = GetCannonGoodsIdxByType(sti(chr.Ship.Cannons.Type));
+    delta = iQty - curQty;
+    if (delta > 0)
+    {
+    	if (GetCargoGoods(chr, idx) < delta) iQty = curQty + GetCargoGoods(chr, idx);
+    }
+	if (iQty > curQty)
+	{ // списать со склада
+		RemoveCharacterGoodsSelf(chr, idx, (iQty - curQty));
+	}
+	else
+	{
+		if (iQty < curQty)
+		{// лишние на склад
+			SetCharacterGoods(chr, idx, GetCargoGoods(chr, idx) + (curQty - iQty)); // этот метод, тк перегруз может быть, а  AddCharacterGoodsSimple режет перегруз
+		}
+	}
+	// нулим колво пушек на борту и распределяем заново от центра (как они на модели по номерам не знаю, допуск, что подряд)
+	for (i = 0; i < maxQty; i++)
+	{
+		attr = "c" + i;
+		chr.Ship.Cannons.borts.(sBort).damages.(attr) = 1.0; // поломана на 100 процентов, не палит, те нет её
+		chr.Ship.Cannons.borts.(sBort_real).damages.(attr) = 1.0; // поломана на 100 процентов, не палит, те нет её
+	}
+	// распределяем
+	if (iQty > 0)
+	{
+		center = makeint(maxQty / 2); // целочисленное деление
+		left   = center - 1;
+		right  = center;
+		i = 0; // сколько распределили уже
+		bLeft = true;
+		while (i < iQty)
+		{
+			if (bLeft)
+			{
+				if (left >= 0)
+				{
+					attr = "c" + left;
+					left--;
+				}
+				else
+				{
+					attr = "c" + right;
+					right++;
+				}
+				if (right < maxQty) bLeft = false;
+			}
+			else
+			{
+				if (right < maxQty)
+				{
+					attr = "c" + right;
+					right++;
+				}
+				else
+				{
+					attr = "c" + left;
+					left--;
+				}
+				if (left >= 0) bLeft = true;
+			}
+			chr.Ship.Cannons.borts.(sBort).damages.(attr) = 0.0; // новая, не битая
+			chr.Ship.Cannons.borts.(sBort_real).damages.(attr) = 0.0; // новая, не битая
+			i++;
+		}
+	}
+	RecalculateCargoLoad(chr);  // пересчет, тк пушки снялись
 }
 
 void RepairAll()
