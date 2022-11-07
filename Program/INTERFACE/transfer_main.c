@@ -79,9 +79,6 @@ void InitInterface_RRS(string iniName, ref rLeftChar, ref rRightChar, string _ty
 
 		SetShipRemovable(xi_refCharacter, true);
 		SetCharacterRemovable(xi_refCharacter, true); // разрешить обмен после абордажа
-
-		DeleteParticles();
-		CreateParticleEntity();
 	}
 	
 	bool bOk = !bSeaActive && LAi_grp_alarmactive;
