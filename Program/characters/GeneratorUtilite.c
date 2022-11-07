@@ -1078,6 +1078,7 @@ float Sea_ApplyMaxSpeedZ(aref arCharShip, float fWindDotShip) //float fTRFromSai
     //fMaxSpeedZ = (0.16 + fTRFromSailDamage / 1.2) * stf(arCharShip.MaxSpeedZ);
     fMaxSpeedZ = stf(arCharShip.MaxSpeedZ);
     fWindAgainstSpeed = stf(rShip.WindAgainstSpeed);// / 1.7; // мин fWindAgainstSpeed = 0.8 - мах 10.5
+	if (CheckAttribute(arCharShip,"GhostShipTuning")) fWindAgainstSpeed *= 1.05;
     //#20180207-01
     arCharShip.WindAgainstSpeed = rShip.WindAgainstSpeed;
     arCharShip.SpeedRate = rShip.SpeedRate;
