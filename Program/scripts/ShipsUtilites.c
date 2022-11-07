@@ -623,6 +623,7 @@ float SpeedBySkill(aref refCharacter)
 	//if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.SailsSpecial")) fSpeedPerk *= 0.85;
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.HullSpecial")) fSpeedPerk *= 0.75;
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.CuBot")) fSpeedPerk *= 1.05;
+	if (CheckAttribute(refCharacter,"GhostShipTuning")) fSpeedPerk *= 1.05;
 
 	return fSRFromSkill * fSpeedPerk / 1.2;
 }
@@ -729,6 +730,7 @@ float TurnBySkill(aref refCharacter)
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.SailsSpecial")) fSpeedPerk *= 0.8;
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.HullSpecial")) fSpeedPerk *= 0.75;
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.CuBot")) fSpeedPerk *= 1.05;
+	if (CheckAttribute(refCharacter,"GhostShipTuning")) fSpeedPerk *= 1.05;
 
 	return fTRFromSKill * fSpeedPerk * fFastTurn180 / 1.2;
 }

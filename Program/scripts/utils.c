@@ -547,6 +547,8 @@ void GiveItemToTrader(aref ch)
 	if(irand == 1) AddItems(ch, "CompCraft_Copper", Rand(8) + 1);	// Медь
 	irand = rand(6);
 	if(irand == 1) AddItems(ch, "CompCraft_Sulfur", Rand(5) + 2);	// Сера
+	irand = rand(2);
+	if(irand == 1) AddItems(ch, "CompCraft_Parchment", Rand(5) + 5); // Пергамент //Gregg - добавил бумагу лоточникам, а то реально задолбишься её фармить
 	irand = rand(4);
 	if(irand == 1  && rank >=5) AddItems(ch, "CompCraft_Grindstone", Rand(7) + 3);	// Оселок
 	irand = rand(9);
