@@ -1136,12 +1136,36 @@ int RemoveCharacterCompanion(ref _refCharacter, ref refCompanion)
 			refCompanion.location.group = _refCharacter.location.group;
 			refCompanion.location.locator = _refCharacter.location.locator;
 			Event(EVENT_CHANGE_COMPANIONS,"");
-			SortCompanionId();
+			DeleteSpacesInCompanions();
 			return i;
 		}
 	}
 	return -1;
 }
+
+void DeleteSpacesInCompanions() // закрываем "дырки" в интерфейсе при удалении компаньона
+{	
+	int shiftCounter = 0;
+	for(int i = 1; i < COMPANION_MAX; i++) // заменяем слоты по порядку
+	{
+		string sCompID = "id"+i;
+		int iOffID = pchar.Fellows.Companions.(sCompID);
+		if (iOffID == -1) {
+			shiftCounter++;
+			continue;
+		}
+
+		sCompID = "id"+(i - shiftCounter);
+		pchar.Fellows.Companions.(sCompID) = iOffID;
+	}
+
+	for(i = COMPANION_MAX - shiftCounter; i < COMPANION_MAX; i++) //дублирующие слоты освобождаем
+	{
+		sCompID = "id"+i;
+		pchar.Fellows.Companions.(sCompID) = -1;
+	}
+}
+
 int GetCompanionIndex(ref _refCharacter,int _CompanionNum)
 {
 	if(_CompanionNum < 0)
@@ -1194,36 +1218,6 @@ int GetCompanionQuantity(ref _refCharacter)
 	}
 	if(qn >= COMPANION_MAX) UnlockAchievement("ships", 3);
 	return qn;
-}
-void SortCompanionId()
-{
-	string correctorder[COMPANION_MAX];
-	string compname;
-	aref cgroup;
-	makearef(cgroup,pchar.fellows.companions);
-	int a = 0;
-	int b = COMPANION_MAX - 1;
-	for(int i=0; i<COMPANION_MAX; i++)
-	{
-		compname = "id" + sti(i+1);
-		//Log_TestInfo("" + cgroup.(compname));
-		if(sti(cgroup.(compname)) == -1)
-		{
-			correctorder[b] = -1;
-			b--;
-		}
-		else
-		{
-			correctorder[a] = cgroup.(compname);
-			a++;
-		}
-	}
-	Log_TestInfo("1:" + correctorder[0] + " 2:" + correctorder[1] + " 3:" + correctorder[2] + " 4:" + correctorder[3]);
-	for(i=0; i<COMPANION_MAX; i++)
-	{
-		compname = "id" + sti(i+1);
-		cgroup.(compname) = correctorder[i];
-	}
 }
 // нигде не юзается
 int GetRemovableCompanionsNumber(ref _refCharacter)
