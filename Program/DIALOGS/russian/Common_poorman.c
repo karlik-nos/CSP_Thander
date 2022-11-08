@@ -135,7 +135,7 @@ void ProcessDialogEvent()
 						link.l1.go = "FoundLetter";
 					}
 					//базар о том, что нашёл причину заказа на нищих
-					if (pchar.questTemp.LSC == "readyGoLSC")
+					if (pchar.questTemp.LSC == "readyGoLSC" && GetCharacterFreeItem(pchar, "keyQuestLSC")==0)
 					{
 						link.l1 = "Ты знаешь, мне удалось распутать этот клубок!";
 						link.l1.go = "GoLSC";
