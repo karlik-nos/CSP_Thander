@@ -23,14 +23,15 @@ void ProcessDialogEvent()
 			link.l1.go = "Vstrecha_2";
 			link.l2 = "Честно говоря, на самом деле я "+ GetSexPhrase("кроткий и мягкий","кроткая и мягкая") +". Извините, но я бы "+ GetSexPhrase("предпочёл","предпочла") +" ненадолго обратиться в паническое бегство.";
 			link.l2.go = "exit";
-			if (pchar.questTemp.AnjelikaTichPrologue == "ATP")
+			if (CheckAttribute("pchar", questTemp.AnjelikaTichPrologue) && pchar.questTemp.AnjelikaTichPrologue == "ATP")
 			{
 				dialog.text = "Я пью пену - волна...";
 				link.l1 = "...";
 				link.l1.go = "Slushat_Pesnu_1";
 				DeleteAttribute(link, "l2");
 			}
-			if (pchar.questTemp.AnjelikaTichPrologue == "ATP" && pchar.questTemp.ATPNapelsy == "Napelsy")
+			if (CheckAttribute("pchar", questTemp.AnjelikaTichPrologue) && pchar.questTemp.AnjelikaTichPrologue == "ATP" &&
+					CheckAttribute("pchar", questTemp.ATPNapelsy) && pchar.questTemp.ATPNapelsy == "Napelsy")
 			{
 				dialog.text = "Это брюхо вспорол мне... Коралловый риф... Ла-ла-ла-ла-ла!";
 				link.l1 = "";

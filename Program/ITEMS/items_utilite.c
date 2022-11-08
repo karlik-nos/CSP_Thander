@@ -558,6 +558,7 @@ int CalculateBladePrice(string fencingType, float dmg_min, float dmg_max, float 
 		break;
 	}
 
+	if (weight == 0.0) return 0; //вещи с нулевым весом квестовые и стоить должны нисколько
 	return sti(priceMod * dmg_min * dmg_max / weight);
 }
 
@@ -765,7 +766,12 @@ int GetItemIndex(string _ItemID)
 
 ref ItemsFromID(string _Items)
 {
-	return &items[GetItemIndex(_Items)];
+	int i = GetItemIndex(_Items);
+	if (i == -1) {
+		trace("ERROR: cannot find item with id '" + _Items + "'")
+		return NullItem;
+	}
+	return &items[i];
 }
 
 void ChangeItemDescribe(string _Items, string _Describe)

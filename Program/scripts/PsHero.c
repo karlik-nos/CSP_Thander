@@ -1984,13 +1984,13 @@ void PGG_Q1RemoveShip(string qName)
 	if (CheckAttribute(PChar, "GenQuest.PGG_Quest.Stage") && sti(PChar.GenQuest.PGG_Quest.Stage) < 2 && sti(PChar.GenQuest.PGG_Quest.Stage) >= -1)
 	{
 		chr.Dialog.CurrentNode = "Second Time";
-		DeleteAttribute(chr, "PGGAi.ActiveQuest");
-		DeleteAttribute(PChar, "GenQuest.PGG_Quest");
 		//#20180927-01
 		int nRelChange = -10;
 		if(sti(PChar.GenQuest.PGG_Quest.Stage) == -1)
             nRelChange = -20;
 		PGG_ChangeRelation2MainCharacter(chr, nRelChange);
+		DeleteAttribute(chr, "PGGAi.ActiveQuest");
+		DeleteAttribute(PChar, "GenQuest.PGG_Quest");
 		if (chr.sex != "woman")CloseQuestHeader("Gen_PGGQuest1");
 		else CloseQuestHeader("Gen_PGGQuest1woman");
 	}
@@ -2178,7 +2178,7 @@ ref PGG_Q1CreateWarShip(string sCharId)
 	Fantom_SetCannons(chr, chr.EncType);
 	Fantom_SetBalls(chr, chr.EncType);
 	Fantom_SetGoods(chr, chr.EncType);
-	int iSpace = GetCharacterFreeSpace(chr, iGoods) / rand(10);
+	int iSpace = GetCharacterFreeSpace(chr, iGoods) / (1 + rand(9));
 	if (!CheckAttribute(PChar, "GenQuest.PGG_Quest.Goods.Qty")) PChar.GenQuest.PGG_Quest.Goods.Qty = 0;
 	PChar.GenQuest.PGG_Quest.Goods.Qty = sti(PChar.GenQuest.PGG_Quest.Goods.Qty) + iSpace;
 	Fantom_SetCharacterGoods(chr, iGoods, iSpace, 1);

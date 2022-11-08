@@ -71,7 +71,7 @@ void ProcessDialogEvent()
 				link.l3 = "Просто решил"+ GetSexPhrase("","а")+" поздороваться. Бывай!";
 				link.l3.go = "exit";
 				npchar.quest.meeting = "1";
-				if (pchar.questTemp.AnjelikaTichPrologue == "ATP")	//Sinistra Пролог Анжелика Тич
+				if (CheckAttribute(pchar, "questTemp.AnjelikaTichPrologue") && pchar.questTemp.AnjelikaTichPrologue == "ATP")	//Sinistra Пролог Анжелика Тич
 				{
 					dialog.text = "Приветствую, сударыня! Что вам угодно от простого матроса?";
 					link.l1 = "Да так, жениха моей сестре ищу.";

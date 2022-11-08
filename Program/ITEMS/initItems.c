@@ -48,6 +48,14 @@ int InitItems()
 	ref itm;
 	int n;
 
+	NullItem.id = "none"
+	NullItem.name = "itmname_nullitem"
+	NullItem.describe = "itmdescr_nullitem"
+	NullItem.model = "unarmed";
+	NullItem.folder = "items";
+	NullItem.picIndex = 11;
+	NullItem.picTexture = "ITEMS_1";
+
 	for(n=0; n<ITEMS_QUANTITY; n++)
 	{
 		makeref(itm,Items[n]);
