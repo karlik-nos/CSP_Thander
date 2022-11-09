@@ -1138,11 +1138,11 @@ string GetItemDescribe(string sItemID)
 			object tempObj;
 			aref arTemp;
 			makearef(arTemp, tempObj);
-			CopyAttributes(arTemp, arItm);
 			tempObj.dmg_min = dmg_min;
 			tempObj.dmg_max = dmg_max;
 			tempObj.weight = weight;
 			tempObj.price = price;
+			CopyAttributes(arTemp, arItm);
 
 			describeStr += GetAssembledString(
 				LanguageConvertString(lngFileID,"weapon blade parameters"),

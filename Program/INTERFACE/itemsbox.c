@@ -1510,7 +1510,7 @@ void onTableRemoveAllBtnClick()
 }
 
 // инфа о предмете
-void ShowGoodsInfo(int sItem)
+void ShowGoodsInfo(string sItem)
 {
 	int itemIndex = FindItem(sItem);
 	string GoodName = Items[itemIndex].name;
