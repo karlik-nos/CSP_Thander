@@ -452,21 +452,6 @@ void UniqueHeroEvents()
 		Log_info(" - Ожидайте - ");
 		DoQuestFunctionDelay("DHmessages",4.0);
 	}
-
-	if (CheckAttribute(pchar, "WhisperPGG"))
-	{
-		sld = CharacterFromID(pchar.WhisperPGG);
-		if (IsCompanion(sld) || IsOfficer(sld))
-		{
-			if (CheckNPCQuestDate(sld, "AmmoUpdate"))
-			{
-				SetNPCQuestDate(sld, "AmmoUpdate");
-				int maxShells = sti(sld.rank) + sti(pchar.rank);
-				if (sti(sld.Items.12_gauge) < maxShells)	sld.Items.12_gauge = sti(sld.Items.12_gauge) + maxShells/10;
-				if (sti(sld.Items.grapeshot) < maxShells)	sld.Items.grapeshot = sti(sld.Items.grapeshot) + maxShells/10;
-			}
-		}
-	}
 }
 
 void SecondChanceRefresh()
