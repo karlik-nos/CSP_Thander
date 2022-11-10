@@ -133,7 +133,7 @@ void FillCharactersScroll()
 		}
 	}
 	if (z < MAX_NUM_FIGHTERS) z = z + 1;
-
+	bool bOnlyOneEmptyFighter = false;
 	for(int k=1; k<=z; k++)
 	{
 		attributeName = "pic" + (m+1);
@@ -159,6 +159,8 @@ void FillCharactersScroll()
 		}
 		else
 		{
+			if (bOnlyOneEmptyFighter) continue;//не рисуем пустые слоты после снятия абордага. Но вообще-то там надо делать сортировку или смещение индексов для абордажников после снятия с должности
+			bOnlyOneEmptyFighter = true;
 			GameInterface.CHARACTERS_SCROLL.(attributeName).character = "0";
 			GameInterface.CHARACTERS_SCROLL.(attributeName).img1 = "face";//"FACE128_" + PsgAttrName;
 			GameInterface.CHARACTERS_SCROLL.(attributeName).tex1 = FindFaceGroupNum("CHARACTERS_SCROLL.ImagesGroup","FACE128_"+PsgAttrName);
