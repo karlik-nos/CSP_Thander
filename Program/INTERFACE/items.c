@@ -290,7 +290,7 @@ void AcceptAddOfficer()
 					pchar.Fellows.Passengers.carpenter = iChar;
 				break;
 				//default:
-					SetOfficersIndex(pchar, nCurScrollNum - 6, iChar);
+					SetOfficersIndex(pchar, -1, iChar);
 					bNeedFollow = true;
 				break;
 			}
@@ -367,7 +367,7 @@ void AcceptRemoveOfficer()
 			pchar.Fellows.Passengers.carpenter = -1;
 		break;
 		//default:
-			RemoveOfficersIndex(pchar, GetOfficersIndex(pchar, nCurScrollNum - 6));
+			RemoveOfficersIndex(pchar, iChar);
 		break;
 	}
 	attributeName2 = GetOfficerTypeByNum(nCurScrollNum);
