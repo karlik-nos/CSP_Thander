@@ -774,6 +774,7 @@ void SaveStartGameParam()
 	optref.StartGameParam.bFillEncyShips         = bFillEncyShips;
 	optref.StartGameParam.bDifficultyWeight      = bDifficultyWeight;
 	optref.StartGameParam.bModDamage      		 = bModDamage;
+	optref.StartGameParam.bShootOnlyEnemy		 = bShootOnlyEnemy;
 	optref.StartGameParam.iStealthSystem         = iStealthSystem;
     // иначе сброс галки может быть optref.StartGameParam.bWorldAlivePause       = bWorldAlivePause;
 
@@ -945,6 +946,10 @@ void LoadStartGameParam()
 	if (CheckAttribute(optref, "StartGameParam.iStealthSystem"))
 	{
     	iStealthSystem = sti(optref.StartGameParam.iStealthSystem);
+    }
+	if (CheckAttribute(optref, "StartGameParam.bShootOnlyEnemy"))
+	{
+    	bShootOnlyEnemy = sti(optref.StartGameParam.bShootOnlyEnemy);
     }
 	int  heroQty   = sti(GetNewMainCharacterParam("ps_hero_qty"));
 	for (int n=1; n<=heroQty; n++)

@@ -264,6 +264,14 @@ void SetByDefault()
 	{
 		CheckButton_SetState("CHECK_DIFFICULTY_WEIGHT",1,false);
 	}
+	if(bShootOnlyEnemy)
+	{
+		CheckButton_SetState("CHECK_SHOOTONLYENEMY",1,true);
+	}
+	else
+	{
+		CheckButton_SetState("CHECK_SHOOTONLYENEMY",1,false);
+	}
 	/*if(bModDamage)
 	{
 		CheckButton_SetState("CHECK_MOD_DAMAGE",1,true);
@@ -498,6 +506,14 @@ void IProcessFrame()
 	else
 	{
 		bDifficultyWeight = false;
+	}
+	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_SHOOTONLYENEMY", 3, 1))
+	{
+		bShootOnlyEnemy = true;
+	}
+	else
+	{
+		bShootOnlyEnemy = false;
 	}
 	/*if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_MOD_DAMAGE", 3, 1))
 	{
@@ -1213,6 +1229,11 @@ void ShowInfo()
 		case "CHECK_DIFFICULTY_WEIGHT":
 			sHeader = XI_ConvertString("DifficultyWeight");
 			sText1 = GetRPGText("DifficultyWeight_hint");
+		break;
+		
+		case "CHECK_SHOOTONLYENEMY":
+			sHeader = XI_ConvertString("ShootOnlyEnemy");
+			sText1 = GetRPGText("ShootOnlyEnemy_hint");
 		break;
 
 		case "CHECK_MOD_DAMAGE":
