@@ -814,6 +814,8 @@ void FillItemsSelected()
 	for(i = 0; i < q; i++)
 	{
 		sGood = GetAttributeValue(GetAttributeN(arEquip, i));
+		if (sGood == "") continue;
+
 		item = ItemsFromID(sGood);
 
 		switch (item.groupID)
