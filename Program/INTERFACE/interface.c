@@ -1710,6 +1710,7 @@ void procInfoShow()
 
 			//LayerCreate("inf_realize", 1);
 			//LayerSetRealize("inf_realize", 1);
+			LayerSetRealize(INFO_REALIZE);
 		}
 	}
 	else
