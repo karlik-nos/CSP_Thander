@@ -2691,7 +2691,9 @@ void QuestComplete(string sQuestName, string qname)
 			//сформируем строку с типом корабля, пригодится
 			sld = characterFromId("MQPirate");
 			iTemp = RealShips[sti(sld.ship.type)].basetype;
-			pchar.GenQuest.DestroyPirate.ShipType = GetShipSexWord(ShipsTypes[iTemp].name, "пиратский ", "пиратскую ") + XI_ConvertString(ShipsTypes[iTemp].name+"Gen");
+			pchar.GenQuest.DestroyPirate.ShipType = GetShipSexWord(ShipsTypes[iTemp].name,
+				"пиратский " + XI_ConvertString(ShipsTypes[iTemp].name),
+				"пиратскую " + XI_ConvertString(ShipsTypes[iTemp].name + "Gen"));
 			//прерывание на смерть пирата
 			pchar.quest.DestroyPirate.win_condition.l1 = "NPC_Death";
 			pchar.quest.DestroyPirate.win_condition.l1.character = "MQPirate";
