@@ -264,6 +264,7 @@ bool LAi_CreateEncounters(ref location)
 			pchar.quest.(str).win_condition.l1.date.month = GetAddingDataMonth(0, 0, 1);
 			pchar.quest.(str).win_condition.l1.date.year  = GetAddingDataYear(0, 0, 1);
 			pchar.quest.(str).win_condition               = "LandEnc_RaidersOver";
+			pchar.quest.(str).EncQty = num; //кол-во бандитов
 			pchar.quest.(str).LocIdx = location.index;
 		break;
 		//------------------ Спасаем девку в пампасах ----------------------
