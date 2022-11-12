@@ -3561,7 +3561,7 @@ void Ship_UpdateParameters()
 	float	fWindPower = Whr_GetWindSpeed() / WIND_NORMAL_POWER;
 	float	fWindDotShip = GetDotProduct(Whr_GetWindAngle(), stf(arCharShip.Ang.y));		// Wind.ay | Ship.ay
     // boal -->
-	fShipSpeed = (fShipSpeed * fWindPower);  // boal крейсерская скорость до уменьшений при данном ветре.
+	fShipSpeed = fShipSpeed * fWindPower;  // boal крейсерская скорость до уменьшений при данном ветре.
 	arCharShip.MaxSpeedZ = fShipSpeed;
 	arCharShip.MaxSpeedZ = Sea_ApplyMaxSpeedZ(arCharShip, fWindDotShip); // учет парусов в др месте
 	// boal <--
@@ -3611,9 +3611,12 @@ void Ship_UpdateParameters()
     // Apply arcade mode
 	if (iArcadeSails == 1)
 	{
-		//arCharShip.MaxSpeedZ = 6.0 * stf(arCharShip.MaxSpeedZ);
-		arCharShip.MaxSpeedZ = (2.5 * stf(arCharShip.MaxSpeedZ));
+		arCharShip.MaxSpeedZ = (3.0 * stf(arCharShip.MaxSpeedZ));
 		arCharShip.MaxSpeedY = (2.0 * stf(arCharShip.MaxSpeedY));
+	}
+	else
+	{
+		arCharShip.MaxSpeedZ = (1.2 * stf(arCharShip.MaxSpeedZ));
 	}
 
 	// calculate immersion
