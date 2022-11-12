@@ -133,8 +133,7 @@ string 	sSpManGenNames[21], sSpWomenGenNames[9], sSpGenFamilies[54];
 
 Object Names;
 
-object    NullCharacter;
-object    NullItem;
+object  	NullCharacter;
 object	Characters[TOTAL_CHARACTERS];
 object	Locations[MAX_LOCATIONS];
 object	Islands[MAX_ISLANDS];

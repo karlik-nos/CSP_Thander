@@ -766,12 +766,7 @@ int GetItemIndex(string _ItemID)
 
 ref ItemsFromID(string _Items)
 {
-	int i = GetItemIndex(_Items);
-	if (i == -1) {
-		trace("ERROR: cannot find item with id '" + _Items + "'")
-		return NullItem;
-	}
-	return &items[i];
+	return &items[GetItemIndex(_Items)];
 }
 
 void ChangeItemDescribe(string _Items, string _Describe)
