@@ -3992,7 +3992,7 @@ void SetJornalCapParam(ref npchar)
 	sld.quest.baseShore = GetIslandRandomShoreId(sTemp);
 	//на карту
 	sld.mapEnc.type = "trade";
-	sld.mapEnc.worldMapShip = "ranger";
+	sld.mapEnc.worldMapShip = "Galleon_red"; //стояла модель кораблекрушенца
 	sld.mapEnc.Name = XI_ConvertString(npchar.quest.PortmansJornal.shipTapeName) + " '" + npchar.quest.PortmansJornal.shipName + "'";
 	int daysQty = GetMaxDaysFromIsland2Island(sTemp, GetArealByCityName(sld.quest.targetCity))+5; //дней доехать даём с запасом
 	Map_CreateTrader(sld.quest.baseShore, sld.quest.targetCity, sld.id, daysQty);
