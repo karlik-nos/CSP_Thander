@@ -2640,7 +2640,7 @@ void VSEnpcInit()
 	sld.city = "SantoDomingo";
 	ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","goto","goto2");
 	//Глаша уборщица в резиденции Мариго
-	sld = GetCharacter(NPC_GenerateCharacter("CleanUpGrandmatha", "BaynesWife", "woman", "towngirl", 1, Holland, 1, false));
+	sld = GetCharacter(NPC_GenerateCharacter("CleanUpGrandmatha", "BaynesWife", "woman", "towngirl", 1, Holland, -1, false));
 	ChangeCharacterAddressGroup(sld, "Marigo_hall", "goto", "goto11");
 	LAi_SetCitizenType(sld);
 	sld.name = "уборщица Глаша";
