@@ -1196,7 +1196,6 @@ void PGG_UpdateEquip(ref chr)
 			}
 		}
 	}
-	Fantom_SetBalls(chr, "pirate");
 //--------------------------------------------------
 // Blade & Gun Section
 //--------------------------------------------------
@@ -1318,7 +1317,7 @@ void PGG_UpdateShipEquip(ref chr)
 	if (chr.HeroParam.HeroType == "Merchant")
 	{
 		Fantom_SetCannons(chr, "trade");
-		Fantom_SetBalls(chr, "trade");
+		Fantom_SetBalls(chr, "pirate");
 		Fantom_SetGoods(chr, "trade");
 	}
 	else

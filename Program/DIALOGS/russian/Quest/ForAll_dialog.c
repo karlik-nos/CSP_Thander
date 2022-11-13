@@ -3084,7 +3084,9 @@ void ProcessDialogEvent()
 			npchar.equip.gun = "mushket2x2";
 			EquipCharacterByItem(NPChar, "mushket2x2");
 			npchar.IsMushketer.MushketID = "mushket2x2";
-			npchar.MusketerDistance = 5;
+			npchar.MusketerDistance = 10.0;
+			npchar.isMusketer = true;
+			npchar.isMusketer.weapon = true;
 			npchar.greeting = "Gr_questOfficer";
 			npchar.Dialog.Filename = "Enc_Officer_dialog.c";
 			Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(Npchar.id);

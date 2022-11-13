@@ -34,6 +34,22 @@ void InitInterface_R(string iniName, ref pStore)
 	{
 		refShipChar = CharacterFromID(pchar.shiptrade.character);
 	}
+
+	if (refStore.Colony == "none")
+	{
+		bIsColony = false;
+		bIsPirateColony = false;
+	}
+	else
+	{
+		bIsColony = true;
+		bIsPirateColony = false;
+		if (sti(Colonies[FindColony(refStore.Colony)].Nation) == PIRATE)
+		{
+			bIsPirateColony = true;
+		}
+	}
+
 	GameInterface.TABLE_LIST.hr.td1.str = XI_ConvertString("In the hold");
 	GameInterface.TABLE_LIST.hr.td1.scale = 0.9;
 	GameInterface.TABLE_LIST.hr.td2.str = "Вес";
@@ -44,7 +60,7 @@ void InitInterface_R(string iniName, ref pStore)
 	GameInterface.TABLE_LIST.hr.td4.scale = 0.9;
 	GameInterface.TABLE_LIST.hr.td5.str = XI_ConvertString("Price buy");
 	GameInterface.TABLE_LIST.hr.td5.scale = 0.9;
-	if(refStore.Colony == "none")
+	if (!bIsColony)
 	{
 		GameInterface.TABLE_LIST.hr.td6.str = XI_ConvertString("In the hold");
 	}
@@ -102,23 +118,15 @@ void InitInterface_R(string iniName, ref pStore)
 
 	SetEventHandler("frame","ProcessFrame",1);
 
-	if(refStore.Colony == "none")
+	if (!bIsColony)
 	{
 		SetFormatedText("STORECAPTION1", "Корабль: '" + refShipChar.ship.name + "'");
 		SetNewPicture("OTHER_PICTURE", "interfaces\portraits\256\face_" + its(refShipChar.FaceId) + ".tga");
 		SetNodeUsing("AUTOTRADE_ALL", false);//убираем автозакупку в море
-		bIsColony = false;
-		bIsPirateColony = false;
 	}
 	else
 	{
 		SetFormatedText("STORECAPTION1", XI_ConvertString("Colony" + refStore.Colony) + ": " + XI_ConvertString("titleStore"));
-		bIsColony = true;
-		bIsPirateColony = false;
-		if (sti(Colonies[FindColony(refStore.Colony)].Nation) == PIRATE)
-		{
-			bIsPirateColony = true;
-		}
 	}
 }
 
