@@ -1266,7 +1266,7 @@ void ProcessDialogEvent()
 			AddQuestRecordEx(sTitle, "PortmansBook_Delivery", "3");
 			AddQuestUserData(sTitle, "sCity", XI_ConvertString("Colony" + npchar.City + "Dat"));
 			AddQuestUserData(sTitle, "sCity2", XI_ConvertString("Colony" + sld.city + "Gen"));
-			CloseQuestHeader(sTitle);
+			CloseQuestHeader("Caiman_PortManPortmansBook_Delivery");
 
 			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
 			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
@@ -3267,8 +3267,8 @@ void SetSeekCapCitizenParam(ref npchar, int iNation)
 	{
 		case "manSlave":	 sld.mapEnc.worldMapShip = "Galleon_red"; break;
 		case "manRapeWife":	 sld.mapEnc.worldMapShip = "Galleon_red"; break;
-		case "manFriend":	 sld.mapEnc.worldMapShip = "ranger";	  break;
-		case "womanHasband": sld.mapEnc.worldMapShip = "ranger";	  break;
+		case "manFriend":	 sld.mapEnc.worldMapShip = "Galleon_red"; break; //стояла модель кораблекрушенца ranger
+		case "womanHasband": sld.mapEnc.worldMapShip = "Galleon_red"; break; //стояла модель кораблекрушенца ranger
 		case "womanRevenge": sld.mapEnc.worldMapShip = "Galleon_red"; break;
 		case "womanPirates": sld.mapEnc.worldMapShip = "Galleon_red"; break;
 	}

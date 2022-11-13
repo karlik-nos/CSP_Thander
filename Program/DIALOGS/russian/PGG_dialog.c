@@ -854,6 +854,7 @@ void ProcessDialogEvent()
 
 	case "Quest_1_Ship_Detail":
 		if (PChar.GenQuest.PGG_Quest.Island == "Pearl") RegeneratePP();
+		if (!isLocationFreeForQuests(PChar.GenQuest.PGG_Quest.Island.Shore)) RegeneratePP();
 		sTmp = "Караван, принадлежащий " + NationNameGenitive(sti(PChar.GenQuest.PGG_Quest.Nation)) + ", перевозящий ";
 		if (sti(PChar.GenQuest.PGG_Quest.Goods) == GOOD_SLAVES)
 		{

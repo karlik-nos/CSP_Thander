@@ -275,6 +275,7 @@ bool CC(float x, float y, int dx, int dy, int gridsize)
 
 bool CWMC(float x, float z, float x2, float z2)
 {
+	//log_info(worldMap.playerShipX+" "+worldMap.playerShipZ);
 	if (stf(worldMap.playerShipX) >= x-100 && stf(worldMap.playerShipX) <= z+100 && stf(worldMap.playerShipZ) >= x2-100 && stf(worldMap.playerShipZ) <= z2+100) return true;
 	return false;
 }
@@ -538,7 +539,7 @@ void InitMapTeleport()
 		oMapTeleport.map_beliz.Beliz_CaveEntrance_2.Pos0.X = 140;
 		oMapTeleport.map_beliz.Beliz_CaveEntrance_2.Pos0.Y = 510;
 	}
-	if (CWMC(574,924,-969,-929))
+	if (CWMC(574,924,-1000,-900))
 	{
 		oMapTeleport.map_cumana.island = "Mein";
 		oMapTeleport.map_cumana.Cumana_ExitTown.Pos0.X = 340;
