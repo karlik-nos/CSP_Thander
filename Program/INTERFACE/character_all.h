@@ -159,6 +159,7 @@ void FillCharactersScroll()
 		}
 		else
 		{
+			if (k!=z) continue;//только один пустой слот абордага в конце списка
 			GameInterface.CHARACTERS_SCROLL.(attributeName).character = "0";
 			GameInterface.CHARACTERS_SCROLL.(attributeName).img1 = "face";//"FACE128_" + PsgAttrName;
 			GameInterface.CHARACTERS_SCROLL.(attributeName).tex1 = FindFaceGroupNum("CHARACTERS_SCROLL.ImagesGroup","FACE128_"+PsgAttrName);
