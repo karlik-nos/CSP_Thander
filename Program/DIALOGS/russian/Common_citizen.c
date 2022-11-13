@@ -127,7 +127,7 @@ void ProcessDialogEvent()
 					link.l1.go = "exit";
 					LAi_CharacterDisableDialog(npchar);
 				}
-				if (pchar.questTemp.AnjelikaTichPrologue == "ATP" && pchar.questTemp.AnjelikaTichPrologue2 == "ATP2")	//Sinistra Пролог Анжелики Шарп
+				if (CheckAttribute("pchar", questTemp.AnjelikaTichPrologue) && pchar.questTemp.AnjelikaTichPrologue == "ATP" && pchar.questTemp.AnjelikaTichPrologue2 == "ATP2")	//Sinistra Пролог Анжелики Шарп
 				{
 					pchar.ATP_MirJitId = npchar.id;
 					
@@ -148,7 +148,7 @@ void ProcessDialogEvent()
 					break;
 					}
 				}
-				if (pchar.questTemp.AnjelikaTichPrologue == "ATP")	//Sinistra Пролог Анжелики Шарп
+				if (CheckAttribute("pchar", questTemp.AnjelikaTichPrologue) && pchar.questTemp.AnjelikaTichPrologue == "ATP")	//Sinistra Пролог Анжелики Шарп
 				{
 					pchar.ATP_MirJitId = npchar.id;
 					

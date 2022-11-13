@@ -1682,7 +1682,7 @@ void ProcessDialogEvent()
 				
 				DeleteAttribute(pchar, "showTimer");
 				ClearAllLogStrings();
-				DoQuestDelayExit();
+				Event("QuestDelayExit","sl", "", 0);
 				
 				AddMoneyToCharacter(pchar, sti(iMoney));
 				AddCharacterExpToSkill(pchar, "Leadership", 30);
@@ -1697,7 +1697,7 @@ void ProcessDialogEvent()
 				
 				DeleteAttribute(pchar, "showTimer");
 				ClearAllLogStrings();
-				DoQuestDelayExit();
+				Event("QuestDelayExit","sl", "", 0);
 			}
 		break;
 		
@@ -2070,7 +2070,7 @@ void ProcessDialogEvent()
 			link.l1.go = "SCQ_Prytki_Dengi_Final";
 			DeleteAttribute(pchar, "showTimer");
 			ClearAllLogStrings();
-			DoQuestDelayExit();
+			Event("QuestDelayExit","sl", "", 0);
 			InterfaceStates.Buttons.Save.enable = true;
 			
 			AddMoneyToCharacter(pchar, sti(iMoney));
@@ -2091,7 +2091,7 @@ void ProcessDialogEvent()
 			link.l1.go = "SCQ_Prytki_Trah_2";
 			DeleteAttribute(pchar, "showTimer");
 			ClearAllLogStrings();
-			DoQuestDelayExit();
+			Event("QuestDelayExit","sl", "", 0);
 			InterfaceStates.Buttons.Save.enable = true;
 		break;
 		

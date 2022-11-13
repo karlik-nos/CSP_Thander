@@ -1854,7 +1854,7 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 
 		case "LandEnc_RaidersOver": //чистим за собой
-			sTemp = "EncRaiders_" + pchar.quest.(qname).LocIdx;
+			sTemp = "TimeRaiders_" + pchar.quest.(qname).LocIdx;
 			iTemp = sti(pchar.quest.(sTemp).EncQty);
 			sTemp = "Gang" + pchar.quest.(qname).LocIdx + "_";
 			for(i = 0; i < iTemp; i++)
@@ -1868,7 +1868,7 @@ void QuestComplete(string sQuestName, string qname)
 			//#20190328-03
 			LAi_group_SetAlarm(sTemp, LAI_GROUP_PLAYER, 0.0);
 			pchar.quest.(qname).over = "yes";
-			sTemp = "EncRaiders_" + pchar.quest.(qname).LocIdx;
+			sTemp = "TimeRaiders_" + pchar.quest.(qname).LocIdx;
 			pchar.quest.(sTemp).over = "yes";
 			sTemp = pchar.quest.(qname).LocIdx;
 			DeleteAttribute(pchar, "GenQuest." + sTemp); //трем нацию и имя
