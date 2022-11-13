@@ -10723,7 +10723,7 @@ void InitShips()
 	refShip.SpeedRate				= 10.0;
 	refShip.TurnRate        		= 23.0;
 	refShip.Price           			= 3000000;
-	refShip.HP              				= 10000;
+	refShip.HP              				= 13000;
 	refShip.SP              				= 100;
 	refShip.MastMultiplier					= 1.3;
 	refship.CanEncounter = false;
