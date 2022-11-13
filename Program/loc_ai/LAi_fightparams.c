@@ -152,6 +152,7 @@ float LAi_CalcDamageForBlade(aref attack, aref enemy, string attackType, bool is
 					kAttackDmg = 3.0;
 				}
 				if (fencing_type != "FencingHeavy") kAttackDmg *= 0.7;
+				if (!CheckCharacterPerk(attack, "HardHitter")) kAttackDmg /= 2.0;
 			break;
 
 			case "feintc":  // фикс после изучения ядра //Атакующие продолжение финта
@@ -253,6 +254,7 @@ float LAi_CalcDamageForBlade(aref attack, aref enemy, string attackType, bool is
 				{
 					kAttackDmg = 3.0;
 				}
+				if (!CheckCharacterPerk(attack, "HardHitter")) kAttackDmg /= 2.0;
 			break;
 
 			case "feintc":  // фикс после изучения ядра //Атакующие продолжение финта
