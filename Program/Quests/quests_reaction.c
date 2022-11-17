@@ -9186,12 +9186,12 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 
 		case "CheckDefenceColonyUptade_2":
-			SetTimerCondition("CheckDefenceColonyUptade_3", 0, 0, 40, false);
+			SetTimerCondition("CheckDefenceColonyUptade_3", 0, 0, 120, false);
 		break;
 
 		case "CheckDefenceColonyUptade_3":
 			CheckDefenceColony();
-			SetTimerCondition("CheckDefenceColonyUptade_4", 0, 0, 38, false);
+			SetTimerCondition("CheckDefenceColonyUptade_4", 0, 0, 118, false);
 		break;
 
 		case "CheckDefenceColonyUptade_4":

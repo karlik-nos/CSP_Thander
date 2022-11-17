@@ -348,7 +348,7 @@ void InitGoods()
 	Goods[GOOD_POWDER].AfraidWater = 1;
 	Goods[GOOD_POWDER].type				= TRADE_TYPE_AMMUNITION;
 	Goods[GOOD_POWDER].canbecontraband	= 0;
-	Goods[GOOD_FOOD].Norm          = 12000;
+	Goods[GOOD_POWDER].Norm          = 12000;
 
 	Goods[GOOD_MEDICAMENT].Name		    = "Medicament";
 	Goods[GOOD_MEDICAMENT].Weight	    = 1;
