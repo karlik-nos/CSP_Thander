@@ -747,7 +747,7 @@ void FillItemsTable(int _mode) // 1 - все 2 - оружие 3 - остальн
 		if (_mode == 2 && !ok && ok2) continue;
 		ok = ok || rItem.ItemType == "MAP";
 		if (_mode == 3 && ok && ok2) continue;
-		if (_mode == 4 && rItem.ItemType != "MAP") continue;
+		if (_mode == 4 && rItem.ItemType != "MAP" && rItem.id != "MapsAtlas") continue;
 
 		GameInterface.TABLE_ITEMS.(row).id = sGood;
 
