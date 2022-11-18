@@ -1868,6 +1868,8 @@ int SetCharToPrisoner(ref refEnemyCharacter)
 	    LAi_NoRebirthEnable(rChTo);
 
 	    SetCharacterRemovable(rChTo, true);
+		
+		FaceMaker(rChTo);
 
 	    AddPassenger(refMyCharacter,rChTo,true);
     }
