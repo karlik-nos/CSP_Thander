@@ -919,10 +919,12 @@ float _GetAttackFactor(string sBladeID, ref rBlade, string sType, ref kPerk)
 	{
 		case "fast":
 		kAttackDmg = 0.7;
+		if (bAltBalanceProHits && rBlade.FencingType != "Fencing") kAttackDmg *= 0.7;
 		break;
 
 		case "force":
 		kAttackDmg = 1.0;
+		if (bAltBalanceProHits && rBlade.FencingType != "FencingLight") kAttackDmg *= 0.7;
 		break;
 
 		case "round":
@@ -931,15 +933,19 @@ float _GetAttackFactor(string sBladeID, ref rBlade, string sType, ref kPerk)
 		{
 			kAttackDmg = kAttackDmg * 1.3;
 		}
+		if (bAltBalanceProHits && rBlade.FencingType != "Fencing") kAttackDmg *= 0.7;
 		break;
 
 		case "break":
 		kAttackDmg = 3.0;
+		if (bAltBalanceProHits && rBlade.FencingType != "FencingHeavy") kAttackDmg *= 0.7;
+		if (!CheckCharacterPerk(xi_refCharacter, "HardHitter")) kAttackDmg /= 2.0;
 		break;
 
 		case "fient":
 		kAttackDmg = 0.5;
 		if(CheckCharacterPerk(xi_refCharacter, "Agent")) kAttackDmg = kAttackDmg * 2;
+		if (bAltBalanceProHits && rBlade.FencingType != "FencingLight") kAttackDmg *= 0.7;
 		break;
 	}
 	float dmg = bladeDmg * kAttackDmg;
