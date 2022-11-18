@@ -1243,6 +1243,10 @@ bool DoMapToOtherKey(int keyIdx,int stickUp)
 
 	makearef(arControlGroup,objControlsState.keygroups.(groupName));
 	makearef(arKeyRoot,objControlsState.key_codes);
+	if (keyIdx >= GetAttributesNum(arKeyRoot)) {
+		trace("ERROR: DoMapToOtherKey keyIdx more than arKeyRoot length")
+		return false;
+	}
 	arKey = GetAttributeN(arKeyRoot,keyIdx);
 	keyCode = sti(GetAttributeValue(arKey));
 

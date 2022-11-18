@@ -1416,11 +1416,11 @@ void ProcessDialogEvent()
 				license_expires = rand(2);
 		break;
 		case "CapitainList":
-			if (sti(npchar.quest.qty) > 0)
+			if (GetAttributesNum(arCapBase) > 0)
 			{
 				dialog.text = "Есть отметившиеся капитаны. Кто конкретно вас интересует?";
 				makearef(arCapBase, npchar.quest.capitainsList);
-				for (i=0; i<sti(npchar.quest.qty); i++)
+				for (i=0; i<GetAttributesNum(arCapBase); i++)
 				{
 					arCapLocal = GetAttributeN(arCapBase, i);
 					sCapitainId = GetAttributeName(arCapLocal);
@@ -1439,6 +1439,12 @@ void ProcessDialogEvent()
 		break;
 		case "CapList_l0":
 			makearef(arCapBase, npchar.quest.capitainsList);
+			if (GetAttributesNum(arCapBase) <= 0) {
+				trace("ERROR: capitainsList is empty")
+				link.l2 = "Все, капитаны меня более не интересуют.";
+				link.l2.go = "node_2";
+				break;
+			}
 			arCapLocal = GetAttributeN(arCapBase,  0);
 			sCapitainId = GetAttributeName(arCapLocal);
 			sld = characterFromId(sCapitainId);
@@ -1465,6 +1471,12 @@ void ProcessDialogEvent()
 		break;
 		case "CapList_l1":
 			makearef(arCapBase, npchar.quest.capitainsList);
+			if (GetAttributesNum(arCapBase) <= 1) {
+				trace("ERROR: capitainsList is empty")
+				link.l2 = "Все, капитаны меня более не интересуют.";
+				link.l2.go = "node_2";
+				break;
+			}
 			arCapLocal = GetAttributeN(arCapBase,  1);
 			sCapitainId = GetAttributeName(arCapLocal);
 			sld = characterFromId(sCapitainId);
@@ -1491,6 +1503,12 @@ void ProcessDialogEvent()
 		break;
 		case "CapList_l2":
 			makearef(arCapBase, npchar.quest.capitainsList);
+			if (GetAttributesNum(arCapBase) <= 2) {
+				trace("ERROR: capitainsList is empty")
+				link.l2 = "Все, капитаны меня более не интересуют.";
+				link.l2.go = "node_2";
+				break;
+			}
 			arCapLocal = GetAttributeN(arCapBase,  2);
 			sCapitainId = GetAttributeName(arCapLocal);
 			sld = characterFromId(sCapitainId);
@@ -1517,6 +1535,12 @@ void ProcessDialogEvent()
 		break;
 		case "CapList_l3":
 			makearef(arCapBase, npchar.quest.capitainsList);
+			if (GetAttributesNum(arCapBase) <= 3) {
+				trace("ERROR: capitainsList is empty")
+				link.l2 = "Все, капитаны меня более не интересуют.";
+				link.l2.go = "node_2";
+				break;
+			}
 			arCapLocal = GetAttributeN(arCapBase,  3);
 			sCapitainId = GetAttributeName(arCapLocal);
 			sld = characterFromId(sCapitainId);
@@ -1543,6 +1567,12 @@ void ProcessDialogEvent()
 		break;
 		case "CapList_l4":
 			makearef(arCapBase, npchar.quest.capitainsList);
+			if (GetAttributesNum(arCapBase) <= 4) {
+				trace("ERROR: capitainsList is empty")
+				link.l2 = "Все, капитаны меня более не интересуют.";
+				link.l2.go = "node_2";
+				break;
+			}
 			arCapLocal = GetAttributeN(arCapBase,  4);
 			sCapitainId = GetAttributeName(arCapLocal);
 			sld = characterFromId(sCapitainId);

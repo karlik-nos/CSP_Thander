@@ -490,6 +490,10 @@ void QuestTopChange()
 void SetQTextShow(aref pA,int qnum)
 {
 	// boal Покраска, выбрали 22.06.07 -->
+	if (qnum >= GetAttributesNum(pA)) {
+		trace("ERROR: SetQTextShow qnum more than pA length")
+		return;
+	}
 	aref arTopic = GetAttributeN(pA, qnum);
 	DeleteQuestHeaderColor(GetAttributeName(arTopic));
 	// boal <--
