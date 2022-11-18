@@ -1027,7 +1027,7 @@ void GiveGunAmmunition(ref _Character, string sItem)
 {
 	ref itm = ItemsFromID(sItem);
 	TakeNItems(_Character,itm.type.t1.bullet, 30+rand(20));
-	AddItems(_Character, itm.type.t1.gunpowder, 30+rand(20)); // Warship. Порох
+	if(itm.type.t1.gunpowder != "") AddItems(_Character, itm.type.t1.gunpowder, 30+rand(20));// порох при необходимости
 	LAi_SetCharacterUseBullet(_Character, itm.type.t1.bullet);
 }
 
@@ -1035,7 +1035,7 @@ void GiveGunAmmunitionPchar(ref _Character, string sItem, int qty)
 {
 	ref itm = ItemsFromID(sItem);
 	TakeNItems(_Character,itm.type.t1.bullet, qty);
-	AddItems(_Character, itm.type.t1.gunpowder, qty); // Warship. Порох
+	if(itm.type.t1.gunpowder != "") AddItems(_Character, itm.type.t1.gunpowder, qty);// порох при необходимости
 	LAi_SetCharacterUseBullet(_Character, itm.type.t1.bullet);
 }
 

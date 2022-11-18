@@ -2321,9 +2321,13 @@ void CaptureCapitol_ShoreBattle(string q)
 	pchar.CaptureCapitolSailors = iRnd;
 	pchar.CaptureCapitolPerSailor = perSailor;
 
+	float fCoeff = iRnd / stf(iRnd + sti(pchar.rank) + MOD_SKILL_ENEMY_RATE) // чтобы оверфлоу по персонажам в локации не было (макс 64)
+	int iMaxFriends = sti(fCoeff * MAX_CHARS_IN_LOC);
+	int iMaxEnemies = sti(MAX_CHARS_IN_LOC - iMaxFriends);
+
 	PChar.GenQuestFort.FarLocator = false;
 	sLoc = LAi_FindNPCLocator("officers");
-	for (i = 1; i < iRnd; i++)
+	for (i = 1; i < iRnd && i < (iMaxFriends - MAX_NUM_FIGHTERS); i++)
 	{
 		chr = SetFantomDefenceForts("officers", sLoc, PIRATE, relation);
 		FantomMakeCoolFighterWRankDepend(chr,sti(pchar.rank),25+rand(75),25+rand(75),50);
@@ -2340,7 +2344,7 @@ void CaptureCapitol_ShoreBattle(string q)
 	Pchar.GenQuestFort.FarLocator = true;
 	sLoc = LAi_FindNPCLocator("quest");
 	sLoc_2 = LAi_FindNPCLocator("reload");
-	for (i = 1; i < iRnd; i++)
+	for (i = 1; i < iRnd && i < iMaxEnemies; i++)
 	{
 		if (i % 2 == 0)
 		{
