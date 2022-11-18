@@ -1138,16 +1138,16 @@ string GetItemDescribe(string sItemID)
 			object tempObj;
 			aref arTemp;
 			makearef(arTemp, tempObj);
+			CopyAttributes(arTemp, arItm);
 			tempObj.dmg_min = dmg_min;
 			tempObj.dmg_max = dmg_max;
 			tempObj.weight = weight;
 			tempObj.price = price;
-			CopyAttributes(arTemp, arItm);
 
 			describeStr += GetAssembledString(
 				LanguageConvertString(lngFileID,"weapon blade parameters"),
 				arTemp) + newStr();
-
+			
 			if (CheckAttribute(arItm, "FencingType"))
 			{
     			arItm.FencingTypeName = XI_ConvertString(arItm.FencingType);
@@ -1157,6 +1157,7 @@ string GetItemDescribe(string sItemID)
 			{
                 describeStr += "ERROR" + newStr();
 			}
+			
 		}
 	}
 
@@ -1192,6 +1193,12 @@ string GetItemDescribe(string sItemID)
 			}
 		}
 	}
+	
+	if(CheckAttribute(arItm, "groupID") && arItm.groupID == BLADE_ITEM_TYPE)
+	{
+		describeStr += newStr() + GetOtherBladeInfo(arItm) + newStr(); // EvgAnat
+	}
+	
 	describeStr += "\nЦена " + GetItemPrice(sItemID) + " / Вес " + FloatToString(GetItemWeight(sItemID), 2) + newStr();
 	if (CheckAttribute(arItm, "groupID"))//Книги, процент прочитанности - Gregg
 	{
@@ -1404,3 +1411,35 @@ void ScrollImage_SetPosition(string sControl, int iPosition)
 }
 
 // boal <--
+
+string GetOtherBladeInfo(ref arItm) // EvgAnat - добавление иконок спецэффектов ХО в инфошки
+{
+	aref arSpecial, arProp;
+	makearef(arSpecial, arItm.special);
+	string sName, sVal, sSymb, sInfo;
+	int n = GetAttributesNum(arSpecial);
+	int i;
+	sInfo = "";
+	for(i=0; i<n; i++)
+	{
+		arProp = GetAttributeN(arSpecial, i);
+		sName = GetAttributeName(arProp);
+		sVal = GetAttributeValue(arProp);
+		switch(sName)
+		{
+			case "valueBB":		sSymb = "‡";	break; 
+			case "valueCrB":	sSymb = "„";	break;
+			case "valueCB":		sSymb = "ƒ";	break;
+			case "valueSS":		sSymb = "…";	break;
+			case "valueStS":	sSymb = "†";	break;
+			case "valueT":		sSymb = "Š";	break;
+			case "valueB":		sSymb = "‰";	break;
+			case "valueP":		sSymb = "ˆ";	break;
+			case "valueV":		sSymb = "‹"; sVal = "50";	break; 
+		}
+		sInfo += sSymb + " " + sVal + "%   ";
+	}
+	if (sInfo != "")
+		sInfo = strcut(sInfo, 0, strlen(sInfo)-4);
+	return sInfo;
+}
