@@ -8309,7 +8309,7 @@ void InitShips()
 	refShip.bcannon 							= 2;
 	refShip.MaxCrew         				= 400;
 	refShip.MinCrew         				= 80;
-	refShip.SpeedRate				= 10.1;
+	refShip.SpeedRate				= 10.5;
 	refShip.TurnRate        		= 25.0;
 	refShip.Price           			= 542350;
 	refShip.HP              				= 9000;
@@ -8386,7 +8386,7 @@ void InitShips()
 	refShip.bcannon 							= 4;
 	refShip.MaxCrew         				= 420;
 	refShip.MinCrew         				= 84;
-	refShip.SpeedRate				= 10.3;
+	refShip.SpeedRate				= 10.2;
 	refShip.TurnRate        		= 25.0;
 	refShip.Price           			= 549453;
 	refShip.HP              				= 7000;
