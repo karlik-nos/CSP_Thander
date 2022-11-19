@@ -1178,7 +1178,11 @@ void LocLoadShips(ref Location)
 				}
 				//Boyer fix #20170331-04
 				else {
-                    locator = GetAttributeN(locator_ships, iCurNumShips);
+					if (iCurNumShips >= GetAttributesNum(locator_ships)) {
+						trace("ERROR: LocLoadShips iCurNumShips more than locator_ships length")
+						return;
+					}
+					locator = GetAttributeN(locator_ships, iCurNumShips);
 				}
 				iCurNumShips++;
 			break;
@@ -1190,7 +1194,11 @@ void LocLoadShips(ref Location)
 				}
 				//Boyer fix #20170331-04
 				else {
-                    locator = GetAttributeN(locator_otherships, iCurNumOtherShips);
+					if (iCurNumOtherShips >= GetAttributesNum(locator_otherships)) {
+						trace("ERROR: LocLoadShips iCurNumOtherShips more than locator_otherships length")
+						return;
+					}
+					locator = GetAttributeN(locator_otherships, iCurNumOtherShips);
 				}
 				iCurNumOtherShips++;
 			break;
