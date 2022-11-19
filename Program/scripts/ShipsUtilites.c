@@ -608,14 +608,29 @@ float ShipSpeedBonusFromSoiling(ref _refCharacter)
 
 float SpeedBySkill(aref refCharacter)
 {
-	int skill = GetSummonSkillFromName(refCharacter, SKILL_SAILING);
+	float fSkill = GetSummonSkillFromName(refCharacter, SKILL_SAILING);
 
 	int shipClass = GetCharacterShipClass(refCharacter);
-	int needSkillMin = GetShipClassNavySkill(shipClass);
-	int needSkillMax = func_min(needSkillMin + 10, SKILL_MAX);
-	if (needSkillMin == needSkillMax) needSkillMin = needSkillMin - 1;
+	float fNeedSkillMin, fNeedSkillMax, fSkillMax;
 
-	float fSRFromSkill = 0.7 + Bring2Range(0.0, 0.25, makefloat(needSkillMin), makefloat(needSkillMax), makefloat(skill)) + 0.0005 * makefloat(skill);
+	fNeedSkillMin = GetShipClassNavySkill(shipClass);
+	if (fNeedSkillMin == SKILL_MAX)
+	{
+		fNeedSkillMax = SKILL_MAX + 1;
+		fSkillMax = SKILL_MAX + 1;
+	}
+	else
+	{
+		if (fNeedSkillMin < 1) fNeedSkillMax = 1;
+		fNeedSkillMax = fNeedSkillMin + 10;
+		if (fNeedSkillMax > SKILL_MAX) fNeedSkillMax = SKILL_MAX;
+		fSkillMax = SKILL_MAX;
+	}
+
+	float fSRFromSkill = 0.6 +
+		Bring2Range(0.0, 0.004 * fNeedSkillMin, 0.0, fNeedSkillMin, fSkill) +
+		Bring2Range(0.0, 0.3 - 0.003 * fNeedSkillMin, fNeedSkillMin, fNeedSkillMax, fSkill) +
+		Bring2Range(0.0, 0.1 - 0.001 * fNeedSkillMin, fNeedSkillMin, fSkillMax, fSkill);
 
     float fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "ShipSpeedUp"), 1.0, 1.15);   //slib
     fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "SailingProfessional"), fSpeedPerk, 1.20);
@@ -706,21 +721,39 @@ float ShipTurnRateBonusFromSoiling(ref _refCharacter)
 
 float TurnBySkill(aref refCharacter)
 {
-	int skill = GetSummonSkillFromName(refCharacter, SKILL_SAILING);
+	float fSkill = GetSummonSkillFromName(refCharacter, SKILL_SAILING);
 
 	int shipClass = GetCharacterShipClass(refCharacter);
-	int needSkillMin = GetShipClassNavySkill(shipClass);
-	int needSkillMax = func_min(needSkillMin + 10, SKILL_MAX);
-	if (needSkillMin == needSkillMax) needSkillMin = needSkillMin - 1;
+	float fNeedSkillMin, fNeedSkillMax, fSkillMax;
 
-	float fTRFromSKill;
-    if (iArcadeSails == 1)
+	fNeedSkillMin = GetShipClassNavySkill(shipClass);
+	if (fNeedSkillMin == SKILL_MAX)
 	{
-		fTRFromSKill = 0.5 + Bring2Range(0.0, 0.4, makefloat(needSkillMin), makefloat(needSkillMax), makefloat(skill)) + 0.001 * makefloat(skill);
+		fNeedSkillMax = SKILL_MAX + 1;
+		fSkillMax = SKILL_MAX + 1;
 	}
 	else
 	{
-		fTRFromSKill = 0.3 + Bring2Range(0.0, 0.4, makefloat(needSkillMin), makefloat(needSkillMax), makefloat(skill)) + 0.003 * makefloat(skill);
+		if (fNeedSkillMin < 1) fNeedSkillMax = 1;
+		fNeedSkillMax = fNeedSkillMin + 10;
+		if (fNeedSkillMax > SKILL_MAX) fNeedSkillMax = SKILL_MAX;
+		fSkillMax = SKILL_MAX;
+	}
+
+	float fTRFromSKill;
+	if (iArcadeSails == 1)
+	{
+		fTRFromSKill = 0.5 +
+			Bring2Range(0.0, 0.005 * fNeedSkillMin, 0.0, fNeedSkillMin, fSkill) +
+			Bring2Range(0.0, 0.35 - 0.0035 * fNeedSkillMin, fNeedSkillMin, fNeedSkillMax, fSkill) +
+			Bring2Range(0.0, 0.15 - 0.0015 * fNeedSkillMin, fNeedSkillMin, fSkillMax, fSkill);
+	}
+	else
+	{
+		fTRFromSKill = 0.3 +
+			Bring2Range(0.0, 0.007 * fNeedSkillMin, 0.0, fNeedSkillMin, fSkill) +
+			Bring2Range(0.0, 0.4 - 0.004 * fNeedSkillMin, fNeedSkillMin, fNeedSkillMax, fSkill) +
+			Bring2Range(0.0, 0.3 - 0.003 * fNeedSkillMin, fNeedSkillMin, fSkillMax, fSkill);
 	}
 
     float fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "ShipTurnRateUp"), 1.0, 1.15);   //slib
