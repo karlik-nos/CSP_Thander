@@ -10319,6 +10319,79 @@ void InitShips()
 	refship.Track2.Width	= "5.0, 7.0";
 	refship.Track2.Speed	= "0.15, 0.25";
 
+    ///////////////////////////////////////////////////////////////////////////
+	/// Mefisto			Фрегат культистов
+	///////////////////////////////////////////////////////////////////////////
+	makeref(refShip,ShipsTypes[SHIP_MEFISTO]);
+	refShip.Name            			= "Mefisto";
+	refship.Soundtype					= "frigate";
+	refShip.Class						= 3;
+	refShip.Cannon          			= CANNON_TYPE_CANNON_LBS16;
+	refShip.MaxCaliber      			= 24;
+	refShip.Weight						= Tonnes2CWT(1100);
+	refShip.Capacity        			= 3600;
+	refShip.MaxCannonDiff						= 0;
+	refShip.CannonsQuantity						= 44;
+	refShip.rcannon 							= 19;
+	refShip.lcannon 							= 19;
+	refShip.fcannon 							= 2;
+	refShip.bcannon 							= 4;
+	refShip.MaxCrew         				= 330;
+	refShip.MinCrew         				= 66;
+	refShip.SpeedRate       		= 15.0;
+	refShip.TurnRate        		= 38.0;
+	refShip.Price           			= 1800000;
+	refShip.HP              				= 6000;
+	refShip.SP              				= 100;
+	refShip.MastMultiplier					= 1.6;
+	refship.EmblemedSails.normalTex 	= "ships\parus_mefisto.tga";
+	refship.Type.Merchant					= true;
+	refship.Type.War						= true;
+	refship.QuestShip					    = true;
+	refShip.sea_enchantment					= 1.2;
+	refShip.lowpolycrew = 20;
+	refShip.buildtime = 100;
+
+	refship.Rocking.y = 0.4;
+	refship.Rocking.az = 0.035;
+
+	refship.WaterLine = 0.5;
+	refship.SpeedDependWeight	= 0.2;
+	refship.SubSeaDependWeight	= 0.9;
+	refship.TurnDependWeight	= 0.2;
+	refship.WindAgainstSpeed   = 3.6;//boal
+	refship.CabinType          = "Cabin"; // boal 28.03.05
+	refship.DeckType           			= "Frigate";
+	
+	refShip.Flags.Mast1.Flag1 = FLAG_SPECIAL;
+	refShip.Flags.Mast3.Flag1 = FLAG_ENSIGN;
+	refShip.Flags.Mast4.Flag1 = FLAG_ENSIGN;
+
+	refship.InertiaAccelerationX	= 5.0;	refship.InertiaBrakingX		= 5.0;
+	refship.InertiaAccelerationY	= 4;	refship.InertiaBrakingY		= 4;
+	refship.InertiaAccelerationZ	= 5.0;	refship.InertiaBrakingZ		= 5.0;
+
+	refShip.Height.Bombs.Y				= 3.0;	refShip.Height.Bombs.DY		= 1.5;
+	refShip.Height.Grapes.Y				= 3.5;	refShip.Height.Grapes.DY	= 1.0;
+	refShip.Height.Knippels.Y			= 22.0;	refShip.Height.Knippels.DY	= 17.0;
+	refShip.Height.Balls.Y				= 3.0;	refShip.Height.Balls.DY		= 1.5;
+
+	refShip.GeraldSails.rey_b3		= 1;
+	refShip.GeraldSails.rey_b2		= 1;
+	refShip.GeraldSails.rey_b3.vscale		= 0.9;
+	refShip.GeraldSails.rey_b2.vscale		= 0.7;
+
+	refship.Track.Enable	= true;
+	refship.Track1.ZStart	= 0.20;
+	refship.Track1.LifeTime = 14.5;
+	refship.Track1.Width	= "3.7, 3.9";
+	refship.Track1.Speed	= "7.0, 8.0";
+
+	refship.Track2.ZStart	= -0.15;
+	refship.Track2.LifeTime = 8.5;
+	refship.Track2.Width	= "8.0, 9.0";
+	refship.Track2.Speed	= "0.15, 0.25";
+	
 	///////////////////////////////////////////////////////////////////////////
 	//// ArabellaShip			Фрегат Арабелла СЛ
 	///////////////////////////////////////////////////////////////////////////
