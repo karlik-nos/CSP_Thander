@@ -1841,7 +1841,8 @@ float LAi_NPC_StunChance()
 #event_handler("NPC_Event_ShotOnlyEnemyTest", "LAi_NPC_ShotOnlyEnemyTest");
 bool LAi_NPC_ShotOnlyEnemyTest()
 {
-	return LAi_grp_alarmactive;
+	if (bShootOnlyEnemy) return LAi_grp_alarmactive;
+	else return false;
 }
 
 //Вероятность желания выстрелить - кубик с такой вероятностью кидается 2 раза в секунду
