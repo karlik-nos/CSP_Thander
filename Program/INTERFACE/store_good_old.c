@@ -311,7 +311,7 @@ void AddToTable()
 		if (sti(sStoreQ) == 0 && FIS_FilterState == FIS_STORE) continue;
 		if (sti(sShipQ) == 0 && FIS_FilterState == FIS_SHIP) continue;
 		if (tradeType != TRADE_TYPE_EXPORT && FIS_FilterState == FIS_STORE_EXPORT) continue;
-		if (tradeType != TRADE_TYPE_IMPORT && FIS_FilterState == FIS_STORE_IMPORT) continue;
+		if (tradeType != TRADE_TYPE_IMPORT && tradeType != TRADE_TYPE_AGGRESSIVE && FIS_FilterState == FIS_STORE_IMPORT) continue;
 		if (tradeType != TRADE_TYPE_CONTRABAND && FIS_FilterState == FIS_STORE_CONTRA) continue;
 		//// {*} BUHO END ADDITION
 
