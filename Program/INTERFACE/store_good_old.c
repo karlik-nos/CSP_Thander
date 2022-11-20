@@ -21,6 +21,9 @@ bool ok;
 #define FIS_ALL		0		// Normal
 #define FIS_SHIP	1		// Show ship
 #define FIS_STORE	2		// Show store
+#define FIS_STORE_EXPORT	3		// Show store export
+#define FIS_STORE_IMPORT	4		// Show store import
+#define FIS_STORE_CONTRA	5		// Show store contra
 int FIS_FilterState;
 
 void InitInterface_R(string iniName, ref pStore)
@@ -86,6 +89,9 @@ void InitInterface_R(string iniName, ref pStore)
 	case FIS_ALL: SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_ALL", 2, 1, 1); break;
 	case FIS_SHIP: SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_SHIP", 2, 1, 1); break;
 	case FIS_STORE: SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_STORE", 2, 1, 1); break;
+	case FIS_STORE_EXPORT: SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_STORE_EXPORT", 2, 1, 1); break;
+	case FIS_STORE_IMPORT: SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_STORE_IMPORT", 2, 1, 1); break;
+	case FIS_STORE_CONTRA: SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_STORE_CONTRA", 2, 1, 1); break;
 	}
 
 	CreateString(true,"ShipName","",FONT_NORMAL,COLOR_MONEY, 405,108,SCRIPT_ALIGN_CENTER,1.0);
@@ -251,6 +257,9 @@ void ProcCommand()
 		case "CB_SHIP":		if (comName == "click")ProcessFilter(nodName); break;
 		case "CB_ALL":		if (comName == "click")ProcessFilter(nodName); break;
 		case "CB_STORE":	if (comName == "click")ProcessFilter(nodName); break;
+		case "CB_STORE_EXPORT":	if (comName == "click")ProcessFilter(nodName); break;
+		case "CB_STORE_IMPORT":	if (comName == "click")ProcessFilter(nodName); break;
+		case "CB_STORE_CONTRA":	if (comName == "click")ProcessFilter(nodName); break;
 	}
 }
 
@@ -301,6 +310,9 @@ void AddToTable()
 		//// {*} BUHO-FIST - ADDED CODE - Filters at work.
 		if (sti(sStoreQ) == 0 && FIS_FilterState == FIS_STORE) continue;
 		if (sti(sShipQ) == 0 && FIS_FilterState == FIS_SHIP) continue;
+		if (tradeType != TRADE_TYPE_EXPORT && FIS_FilterState == FIS_STORE_EXPORT) continue;
+		if (tradeType != TRADE_TYPE_IMPORT && FIS_FilterState == FIS_STORE_IMPORT) continue;
+		if (tradeType != TRADE_TYPE_CONTRABAND && FIS_FilterState == FIS_STORE_CONTRA) continue;
 		//// {*} BUHO END ADDITION
 
 		GameInterface.TABLE_LIST.(row).td1.str = sShipQ;
@@ -404,6 +416,9 @@ void ShowHelpHint()
 		case "CB_SHIP":		bCheckboxes = True; break;
 		case "CB_ALL":		bCheckboxes = True; break;
 		case "CB_STORE":	bCheckboxes = True; break;
+		case "CB_STORE_EXPORT":	bCheckboxes = True; break;
+		case "CB_STORE_IMPORT":	bCheckboxes = True; break;
+		case "CB_STORE_CONTRA":	bCheckboxes = True; break;
 	}
 	if (bCheckboxes)
 	{
@@ -736,6 +751,12 @@ void ShowFoodInfo()
 void ProcessFilter(string sButton)
 {
 	nocheck = false;
+	SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_SHIP", 2, 1, 0);
+	SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_ALL", 2, 1, 0);
+	SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_STORE", 2, 1, 0);
+	SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_STORE_EXPORT", 2, 1, 0);
+	SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_STORE_IMPORT", 2, 1, 0);
+	SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_STORE_CONTRA", 2, 1, 0);
 	switch (sButton)
 	{
 	case "CB_SHIP":
@@ -746,36 +767,30 @@ void ProcessFilter(string sButton)
 		  reload the table.
 		*/
 		SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_SHIP", 2, 1, 1);
-		if (FIS_FilterState != FIS_SHIP)
-		{
-			// Button being selected.
-			SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_ALL", 2, 1, 0);
-			SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_STORE", 2, 1, 0);
-			FIS_FilterState = FIS_SHIP;
-			AddToTable();
-		}
+		FIS_FilterState = FIS_SHIP;
 		break;
 	case "CB_ALL":
 		SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_ALL", 2, 1, 1);
-		if (FIS_FilterState != FIS_ALL)
-		{
-			SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_SHIP", 2, 1, 0);
-			SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_STORE", 2, 1, 0);
-			FIS_FilterState = FIS_ALL;
-			AddToTable();
-		}
+		FIS_FilterState = FIS_ALL;
 		break;
 	case "CB_STORE":
 		SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_STORE", 2, 1, 1);
-		if (FIS_FilterState != FIS_STORE)
-		{
-			SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_SHIP", 2, 1, 0);
-			SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_ALL", 2, 1, 0);
-			FIS_FilterState = FIS_STORE;
-			AddToTable();
-		}
+		FIS_FilterState = FIS_STORE;
+		break;
+	case "CB_STORE_EXPORT":
+		SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_STORE_EXPORT", 2, 1, 1);
+		FIS_FilterState = FIS_STORE_EXPORT;
+		break;
+	case "CB_STORE_IMPORT":
+		SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_STORE_IMPORT", 2, 1, 1);
+		FIS_FilterState = FIS_STORE_IMPORT;
+		break;
+	case "CB_STORE_CONTRA":
+		SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "CB_STORE_CONTRA", 2, 1, 1);
+		FIS_FilterState = FIS_STORE_CONTRA;
 		break;
 	}
+	AddToTable();
 }
 
 void TransactionOK()
