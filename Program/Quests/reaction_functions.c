@@ -5153,7 +5153,7 @@ void LSC_figtInResidence()
 	{
 		sld.dialog.currentnode = "crab_hire";
 		sld.model	= "pet_crab";
-		sld.animation = "crabBig";
+		sld.model.animation = "crabBig";
 		LAi_SetHP(sld, 1000, 1000);
 		SetSPECIAL(sld, 7,7,7,7,7,7,7)
 		sld.rank = 25;
