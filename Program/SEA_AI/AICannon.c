@@ -195,7 +195,7 @@ float Cannon_GetFireTime()
 
 void Cannon_FireCannon()
 {
-	float fX, fY, fZ, fSpeedV0, fDirAng, fHeightAng, fCannonDirAng, fMaxFireDistance;
+	float fX, fY, fZ, fSpeedV0, fDirAng, fHeightAng, fCannonDirAng, fMaxFireDistance, fAngle;
 
 	aref aCharacter = GetEventData();
 
@@ -209,8 +209,9 @@ void Cannon_FireCannon()
 	fHeightAng = GetEventData();
 	fCannonDirAng = GetEventData();
 	fMaxFireDistance = GetEventData();
+	fAngle = GetEventData();
 	 // boal навел порядок по оптимизации
-	Ball_AddBall(aCharacter, fX, fY, fZ, fSpeedV0, fDirAng, fHeightAng, fCannonDirAng, fMaxFireDistance);
+	Ball_AddBall(aCharacter, fX, fY, fZ, fSpeedV0, fDirAng, fHeightAng, fCannonDirAng, fMaxFireDistance, fAngle);
 }
 
 // Damage 2 cannon from balls
