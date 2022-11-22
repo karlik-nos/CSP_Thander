@@ -11105,9 +11105,9 @@ void UnexpectedInheritanceTranslatePart(string part)
 	{
 		AddQuestRecord("UnexpectedInheritance", "4");
 		pchar.quest.UnexpectedInheritanceGetPartTwo.win_condition.l1 = "locator";
-		pchar.quest.UnexpectedInheritanceGetPartTwo.win_condition.l1.location = "FortOrange_town";
+		pchar.quest.UnexpectedInheritanceGetPartTwo.win_condition.l1.location = "FortOrange_Grot";
 		pchar.quest.UnexpectedInheritanceGetPartTwo.win_condition.l1.locator_group = "box";
-		pchar.quest.UnexpectedInheritanceGetPartTwo.win_condition.l1.locator = "private1";
+		pchar.quest.UnexpectedInheritanceGetPartTwo.win_condition.l1.locator = "box1";
 		pchar.quest.UnexpectedInheritanceGetPartTwo.function = "UnexpectedInheritanceGetPartThree";
 	}
 	if (part == "part3")
