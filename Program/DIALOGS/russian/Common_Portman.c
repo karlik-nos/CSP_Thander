@@ -1383,10 +1383,7 @@ void ProcessDialogEvent()
 			AddQuestRecordEx(sTitle, "Portmans_SeekShip", "6");
 			CloseQuestHeader(sTitle);
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 
 			DeleteAttribute(npchar, "quest.PortmansSeekShip");
 			npchar.quest = ""; //освобождаем личный флаг квеста для портмана

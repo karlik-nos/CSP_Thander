@@ -1236,10 +1236,7 @@ void ProcessDialogEvent()
 			AddQuestUserData(sTitle, "sCity2", XI_ConvertString("Colony" + sld.city + "Gen"));
 			CloseQuestHeader(sTitle);
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 
 			sGem = pchar.questTemp.PortmansJornal.gem;
 			TakeNItems(pchar, sGem, 12+drand(10));
@@ -1268,10 +1265,7 @@ void ProcessDialogEvent()
 			AddQuestUserData(sTitle, "sCity2", XI_ConvertString("Colony" + sld.city + "Gen"));
 			CloseQuestHeader("Caiman_PortManPortmansBook_Delivery");
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 
 			DeleteAttribute(sld, "quest.PortmansJornal");
 			sld.quest = ""; //освобождаем личный флаг квеста для портмана
@@ -1341,10 +1335,7 @@ void ProcessDialogEvent()
 			AddQuestUserData(sTitle, "sCity", XI_ConvertString("Colony" + sld.city + "Gen"));
 			CloseQuestHeader(sTitle);
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 
 			sGem = pchar.questTemp.PortmansJornal.gem;
 			TakeNItems(pchar, sGem, 12+drand(10));
@@ -1372,10 +1363,7 @@ void ProcessDialogEvent()
 			AddQuestUserData(sTitle, "sCity", XI_ConvertString("Colony" + sld.city + "Gen"));
 			CloseQuestHeader(sTitle);
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 
 			DeleteAttribute(sld, "quest.PortmansJornal");
 			sld.quest = ""; //освобождаем личный флаг квеста для портмана
@@ -1924,11 +1912,7 @@ void ProcessDialogEvent()
 			sTitle = npchar.city + "SCQ_manSlave";
 			CloseQuestHeader(sTitle);
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
-
+			AchievementsCounter_genquests(1);
 		break;
 		case "SCQR_manRapeWife":
 			dialog.text = "Боже мой, вы буквально вернули меня к жизни! Извольте получить свои " + FindRussianMoneyString(sti(npchar.quest.money)) + " и драгоценности. И знайте, что мы будем молиться за вас до конца жизни!";
@@ -1944,10 +1928,7 @@ void ProcessDialogEvent()
 			sTitle = npchar.city + "SCQ_manRapeWife";
 			CloseQuestHeader(sTitle);
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 		break;
 		case "SCQR_manFriend":
 			dialog.text = "Отлично!.. Вот то, что я вам обещал - " + FindRussianMoneyString(sti(npchar.quest.money)) + " и драгоценности. И спасибо вам, капитан.";
@@ -1960,10 +1941,7 @@ void ProcessDialogEvent()
 			sTitle = npchar.city + "SCQ_manFriend";
 			CloseQuestHeader(sTitle);
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 		break;
 		//========= квесты баб ===========
 		/*case "SCQ_woman":
@@ -2337,10 +2315,7 @@ void ProcessDialogEvent()
 			sTitle = npchar.city + "SCQ_womanHasband";
 			CloseQuestHeader(sTitle);
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 		break;
 		case "SCQR_womanRevenge":
 			dialog.text = "Отлично! Ну что же, вот ваши " + FindRussianMoneyString(sti(npchar.quest.money)) + " и драгоценности. Прощайте.";
@@ -2361,10 +2336,7 @@ void ProcessDialogEvent()
 			sTitle = npchar.city + "SCQ_womanRevenge";
 			CloseQuestHeader(sTitle);
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 		break;
 		case "SCQR_womanPirates":
 			dialog.text = "Конечно, это он!!! Господи, капитан, как же я вам благодарна! Вот ваши " + FindRussianMoneyString(sti(npchar.quest.money)) + ". Я буду молиться за вас каждый день, пока жива!";
@@ -2380,10 +2352,7 @@ void ProcessDialogEvent()
 			sTitle = npchar.city + "SCQ_womanPirates";
 			CloseQuestHeader(sTitle);
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 		break;
 		//========= разыскиваемый капитан-работорговец ===========
 		case "CitizCap": //встреча на суше

@@ -1421,6 +1421,19 @@ void UnlockAchievement(string ach_name, int level) // Открываем дос�
 	pchar.achievements.(ach_name) = level;
 	AddAchievementPoints(points);
 }
+
+int AchievementsCounter_genquests(int _add)
+{
+	pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + _add;
+	if(_add>0)
+	{
+	if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
+	if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
+	if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+	}
+	return sti(pchar.questTemp.genquestcount);
+}
+
 void SetBaseShipData(ref refCharacter)
 {
     int  i;
