@@ -817,7 +817,6 @@ void LAi_NPC_EquipPerk(ref chr, string kind)
 			}
 			if (PerkTemplates[PERK_TEMPLATE_MELEE] >= 6)
 			{
-				chr.perks.list.HardHitter = "1";
 				chr.perks.list.Ciras = "1";
 			}
 			if (PerkTemplates[PERK_TEMPLATE_MELEE] >= 7)
@@ -841,6 +840,10 @@ void LAi_NPC_EquipPerk(ref chr, string kind)
 				chr.perks.list.SwordplayProfessional = "1";
 			}
 			if (PerkTemplates[PERK_TEMPLATE_MELEE] >= 12)
+			{
+				chr.perks.list.HardHitter = "1";
+			}
+			if (PerkTemplates[PERK_TEMPLATE_MELEE] >= 13)
 			{
 				chr.perks.list.GunProfessional = "1";
 			}

@@ -1454,6 +1454,22 @@ int SelectQuestions()
 void PoormansInit()
 {
 	ref sld;
+	//нищий в Нассау
+	sld = GetCharacter(NPC_GenerateCharacter("Nassau_Poorman", "panhandler_"+(rand(5)+1), "man", "man", 5, ENGLAND, -1, false));
+	sld.city = "Nassau";
+	sld.location	= "Nassau_town";
+	sld.location.group = "goto";
+	sld.location.locator = "goto6";
+	sld.forStay.locator = "goto6"; //где генеримся в случае стояния
+	sld.forSit.locator0 = "goto15";
+	sld.forSit.locator1 = "goto17"; //три локатора, где генеримся в случае сидения
+	sld.forSit.locator2 = "goto4";
+	sld.Dialog.Filename = "Common_poorman.c";
+	LAi_SetPoorType(sld);
+	LAi_SetHP(sld, 50.0, 50.0);
+	LAi_SetLoginTime(sld, 9.0, 21.99);
+	sld.greeting = "Gr_poorman";
+	LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
 	//нищий в Сент-Джонсе
 	sld = GetCharacter(NPC_GenerateCharacter("SentJons_Poorman", "panhandler_"+(rand(5)+1), "man", "man", 5, ENGLAND, -1, false));
 	sld.city = "SentJons";
