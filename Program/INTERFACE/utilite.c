@@ -1162,7 +1162,7 @@ string GetItemDescribe(string sItemID)
 			{
                 describeStr += "ERROR" + newStr();
 			}
-			
+			describeStr += newStr() + GetOtherBladeInfo(arItm) + newStr(); // EvgAnat
 		}
 	}
 
@@ -1198,12 +1198,7 @@ string GetItemDescribe(string sItemID)
 			}
 		}
 	}
-	
-	if(CheckAttribute(arItm, "groupID") && arItm.groupID == BLADE_ITEM_TYPE)
-	{
-		describeStr += newStr() + GetOtherBladeInfo(arItm) + newStr(); // EvgAnat
-	}
-	
+
 	describeStr += "\nЦена " + GetItemPrice(sItemID) + " / Вес " + FloatToString(GetItemWeight(sItemID), 2) + newStr();
 	if (CheckAttribute(arItm, "groupID"))//Книги, процент прочитанности - Gregg
 	{

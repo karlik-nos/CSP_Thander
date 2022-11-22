@@ -321,6 +321,8 @@ Village				{Деревня}
 Plantation			{Плантация}
 UnderWater			{Под водой}
 Alcove				{Альков}
+Ruins               {Руины} 
+dungeon_02          {Подземелье}
 
 BuilderHouse				{дом Архитектора}
 Canyon						{Каньон}

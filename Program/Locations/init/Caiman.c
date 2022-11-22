@@ -289,26 +289,26 @@ int LocationInitCaiman(int n)
 	locations[n].fastreload = "Caiman";
 	//Models
 	//Always
-	Locations[n].filespath.models = "locations\Outside\smugglerLairExit";
-	Locations[n].models.always.smugglerLairExit = "smugglerLairExit";
-	Locations[n].models.always.locators = "smugglerLairExit_locators";
-	Locations[n].models.always.grassPatch = "smugglerLairExit_grass";
+	Locations[n].filespath.models = "locations\SmugglerLair\Exit";
+	Locations[n].models.always.smlexit = "smlexit";
+	Locations[n].models.always.locators = "smlexit_l";
+	Locations[n].models.always.grassPatch = "smlexit_g";
 	Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";
-	Locations[n].models.always.l1 = "plan1";
+	Locations[n].models.always.l1 = "plan_1";
 	Locations[n].models.always.l1.level = 9;
 	Locations[n].models.always.l1.tech = "DLightModel";
-	Locations[n].models.always.l2 = "plan2";
+	Locations[n].models.always.l2 = "plan_2";
 	Locations[n].models.always.l2.level = 8;
 	Locations[n].models.always.l2.tech = "DLightModel";
-	Locations[n].models.always.l3 = "plan3";
+	Locations[n].models.always.l3 = "plan_3";
 	Locations[n].models.always.l3.level = 7;
 	Locations[n].models.always.l3.tech = "DLightModel";
 	//Day
-	locations[n].models.day.charactersPatch = "smugglerLairExit_patch";
-	locations[n].models.day.fonars = "smugglerLairExit_fd";
+	locations[n].models.day.charactersPatch = "smlexit_p";
+	locations[n].models.day.fonars = "smlexit_fd";
 	//Night
-	locations[n].models.night.charactersPatch = "smugglerLairExit_patch";
-	locations[n].models.night.fonars = "smugglerLairExit_fn";
+	locations[n].models.night.charactersPatch = "smlexit_p";
+	locations[n].models.night.fonars = "smlexit_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "false";
@@ -353,26 +353,32 @@ int LocationInitCaiman(int n)
 	locations[n].islandId = "Caiman";
 	//Models
 	//Always
-	Locations[n].filespath.models = "locations\Outside\smugglerLairTown";
-	Locations[n].models.always.smugglerLairTown = "smugglerLairTown";
-	Locations[n].models.always.locators = "smugglerLairTown_locators";
-	Locations[n].models.always.grassPatch = "smugglerLairTown_grass";
+	Locations[n].filespath.models = "locations\SmugglerLair\Town";
+	Locations[n].models.always.sml = "sml";
+	Locations[n].models.always.locators = "sml_l";
+	Locations[n].models.always.grassPatch = "sml_g";
 	Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";
-	Locations[n].models.always.l1 = "plan1";
+	Locations[n].models.always.l1 = "plan_1";
 	Locations[n].models.always.l1.level = 9;
 	Locations[n].models.always.l1.tech = "DLightModel";
-	Locations[n].models.always.l2 = "plan2";
+	Locations[n].models.always.l2 = "plan_2";
 	Locations[n].models.always.l2.level = 8;
 	Locations[n].models.always.l2.tech = "DLightModel";
-	Locations[n].models.always.l3 = "plan3";
+	Locations[n].models.always.l3 = "plan_3";
 	Locations[n].models.always.l3.level = 7;
 	Locations[n].models.always.l3.tech = "DLightModel";
+	Locations[n].models.always.l4 = "plan_4";
+	Locations[n].models.always.l4.level = 6;
+	Locations[n].models.always.l4.tech = "DLightModel";
 	//Day
-	locations[n].models.day.charactersPatch = "smugglerLairTown_patch";
-	locations[n].models.day.fonars = "smugglerLairTown_fd";
+	locations[n].models.day.charactersPatch = "sml_p";
+	locations[n].models.day.fonars = "sml_fd";
 	//Night
-	locations[n].models.night.charactersPatch = "smugglerLairTown_patch";
-	locations[n].models.night.fonars = "smugglerLairTown_fn";
+	locations[n].models.night.charactersPatch = "sml_p";
+	locations[n].models.night.fonars = "sml_fn";
+	// Jump patch
+	Locations[n].models.day.jumpPatch = "sml_j";
+	Locations[n].models.night.jumpPatch = "sml_j";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "false";
@@ -445,7 +451,7 @@ int LocationInitCaiman(int n)
 	locations[n].reload.l10.close_for_night = 1;
 	locations[n].reload.l10.disable = true;
 
-	locations[n].reload.l11.name = "reload4";
+	locations[n].reload.l11.name = "reload10";
 	locations[n].reload.l11.go = "Caiman_StoreHouse";
 	locations[n].reload.l11.emerge = "reload1";
 	locations[n].reload.l11.autoreload = "0";
@@ -627,7 +633,7 @@ int LocationInitCaiman(int n)
 	//Reload map
 	locations[n].reload.l1.name = "reload1";
 	locations[n].reload.l1.go = "Caiman_town";
-	locations[n].reload.l1.emerge = "reload4";
+	locations[n].reload.l1.emerge = "reload10";
 	locations[n].reload.l1.autoreload = "0";
 	locations[n].reload.l1.label = "Caiman";
 	n = n + 1;
@@ -637,7 +643,7 @@ int LocationInitCaiman(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Caiman_townhall";
 	locations[n].id.label = "Townhall";
-	locations[n].image = "loading\jonny_load\inside\SmallResidence.tga";
+	locations[n].image = "loading\jonny_load\inside\Residencepkm.tga";
 	//Town sack
 	locations[n].townsack = "Caiman";
 	locations[n].lockWeather = "Inside";
@@ -647,20 +653,20 @@ int LocationInitCaiman(int n)
  	locations[n].islandId = "Caiman";
 	//Models
 	//Always
-	locations[n].filespath.models = "locations\inside\SmallResidence";
-	locations[n].models.always.locators = "SmallResidence_locators";
-	locations[n].models.always.house = "SmallResidence";
+	locations[n].filespath.models = "locations\inside\residence_PKM";
+	locations[n].models.always.locators = "ResP_locators";
+	locations[n].models.always.house = "ResP";
 	locations[n].models.always.house.level = 65538;
-	locations[n].models.always.window = "SmallResidence_windows";
+	locations[n].models.always.window = "ResP_windows";
 	locations[n].models.always.window.tech = "LocationWindows";
 	locations[n].models.always.window.level = 65539;
 
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	locations[n].models.day.charactersPatch = "SmallResidence_patch";
+	locations[n].models.day.charactersPatch = "ResP_patch";
 	//Night
-	locations[n].models.night.charactersPatch = "SmallResidence_patch";
+	locations[n].models.night.charactersPatch = "ResP_patch";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "false";
