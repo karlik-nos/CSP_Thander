@@ -110,6 +110,8 @@ bool 	bAltBalanceOffTopPerk       = false;
 bool 	bAltBalanceProHits          = false;
 //Разговор местных жителей
 //bool 	bCharVoice                 = false;
+//альтернативный баланс
+bool 	bShootOnlyEnemy				= true;
 
 // платный сайв-лоад
 //bool    bPayForSaveLoad           = true;

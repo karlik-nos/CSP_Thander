@@ -882,7 +882,10 @@ void ProcessDialogEvent()
 
 	case "WantToGo_Stay_ForMoney":
 		Diag.TempNode = "Hired";
-		NPChar.greeting = "Gr_Officer";
+		if (NPChar.sex != "woman")
+		{
+			NPChar.greeting = "Gr_Officer";
+		}
 		AddMoneyToCharacter(Pchar, -(makeint(sti(NPChar.rank)*500)));
 		Npchar.loyality = makeint(Npchar.loyality) + 1;
             Diag.CurrentNode = Diag.TempNode;

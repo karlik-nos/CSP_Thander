@@ -1027,7 +1027,7 @@ void GiveGunAmmunition(ref _Character, string sItem)
 {
 	ref itm = ItemsFromID(sItem);
 	TakeNItems(_Character,itm.type.t1.bullet, 30+rand(20));
-	AddItems(_Character, itm.type.t1.gunpowder, 30+rand(20)); // Warship. Порох
+	if(itm.type.t1.gunpowder != "") AddItems(_Character, itm.type.t1.gunpowder, 30+rand(20));// порох при необходимости
 	LAi_SetCharacterUseBullet(_Character, itm.type.t1.bullet);
 }
 
@@ -1035,7 +1035,7 @@ void GiveGunAmmunitionPchar(ref _Character, string sItem, int qty)
 {
 	ref itm = ItemsFromID(sItem);
 	TakeNItems(_Character,itm.type.t1.bullet, qty);
-	AddItems(_Character, itm.type.t1.gunpowder, qty); // Warship. Порох
+	if(itm.type.t1.gunpowder != "") AddItems(_Character, itm.type.t1.gunpowder, qty);// порох при необходимости
 	LAi_SetCharacterUseBullet(_Character, itm.type.t1.bullet);
 }
 
@@ -2640,7 +2640,7 @@ void VSEnpcInit()
 	sld.city = "SantoDomingo";
 	ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","goto","goto2");
 	//Глаша уборщица в резиденции Мариго
-	sld = GetCharacter(NPC_GenerateCharacter("CleanUpGrandmatha", "BaynesWife", "woman", "towngirl", 1, Holland, 1, false));
+	sld = GetCharacter(NPC_GenerateCharacter("CleanUpGrandmatha", "BaynesWife", "woman", "towngirl", 1, Holland, -1, false));
 	ChangeCharacterAddressGroup(sld, "Marigo_hall", "goto", "goto11");
 	LAi_SetCitizenType(sld);
 	sld.name = "уборщица Глаша";
@@ -3148,21 +3148,29 @@ void SetSkeletonsToLocation(aref _location)
 	int rNum = drand(num);
 	for(int i = 0; i < num; i++)
 	{
-		sld = GetCharacter(NPC_GenerateCharacter("Skelet"+_location.index+"_"+i, "Skel"+(rand(3)+1), "skeleton", "skeleton", iRank, PIRATE, 1, true));
-		//если квест по зачистке от нечисти - скелетов делаем круче
-		if (CheckAttribute(_location, "DestroyGhost"))
+		if (_location.id == "dungeon_02")
 		{
-			FantomMakeCoolFighter(sld, sti(pchar.rank)+5, 90, 90, LinkRandPhrase(RandPhraseSimple("blade23","blade25"), RandPhraseSimple("blade30","blade26"), RandPhraseSimple("blade24","blade13")), RandPhraseSimple("pistol6", "pistol3"), MOD_SKILL_ENEMY_RATE*4);
-			DeleteAttribute(sld, "SuperShooter");
+			sld = GetCharacter(NPC_GenerateCharacter("Skelet"+_location.index+"_"+i, "Skel"+(rand(3)+1), "skeleton", "skeleton", sti(pchar.rank)+20, PIRATE, 1, true));
+			FantomMakeCoolFighter(sld, sti(pchar.rank)+20, 90, 90, LinkRandPhrase(RandPhraseSimple("blade23","blade25"), RandPhraseSimple("blade30","blade26"), RandPhraseSimple("blade24","blade13")), RandPhraseSimple("pistol6", "pistol3"), MOD_SKILL_ENEMY_RATE*5);
 		}
 		else
 		{
-			if (i == rNum && sti(pchar.rank) > 5)
+			sld = GetCharacter(NPC_GenerateCharacter("Skelet"+_location.index+"_"+i, "Skel"+(rand(3)+1), "skeleton", "skeleton", iRank, PIRATE, 1, true));
+			//если квест по зачистке от нечисти - скелетов делаем круче
+			if (CheckAttribute(_location, "DestroyGhost"))
 			{
-				FantomMakeCoolFighter(sld, sti(pchar.rank)+5, 80, 80, LinkRandPhrase(RandPhraseSimple("blade23","blade25"), RandPhraseSimple("blade30","blade26"), RandPhraseSimple("blade24","blade13")), RandPhraseSimple("pistol6", "pistol4"), MOD_SKILL_ENEMY_RATE*3);
+				FantomMakeCoolFighter(sld, sti(pchar.rank)+5, 90, 90, LinkRandPhrase(RandPhraseSimple("blade23","blade25"), RandPhraseSimple("blade30","blade26"), RandPhraseSimple("blade24","blade13")), RandPhraseSimple("pistol6", "pistol3"), MOD_SKILL_ENEMY_RATE*4);
 				DeleteAttribute(sld, "SuperShooter");
 			}
-			else SetFantomParamFromRank(sld, iRank, true);
+			else
+			{
+				if (i == rNum && sti(pchar.rank) > 5)
+				{
+					FantomMakeCoolFighter(sld, sti(pchar.rank)+5, 80, 80, LinkRandPhrase(RandPhraseSimple("blade23","blade25"), RandPhraseSimple("blade30","blade26"), RandPhraseSimple("blade24","blade13")), RandPhraseSimple("pistol6", "pistol4"), MOD_SKILL_ENEMY_RATE*3);
+					DeleteAttribute(sld, "SuperShooter");
+				}
+				else SetFantomParamFromRank(sld, iRank, true);
+			}
 		}
 		LAi_SetWarriorType(sld);
 		LAi_warrior_SetStay(sld, true);

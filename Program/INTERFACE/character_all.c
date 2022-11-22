@@ -1937,7 +1937,7 @@ void AcceptAddOfficer()
 
 				//Boyer mod
 				//default:
-					SetOfficersIndex(pchar, nCurScrollNum - 6, iChar);
+					SetOfficersIndex(pchar, -1, iChar);//назначаем в первый свободный слот, а не куда-то конкретно
 					bNeedFollow = true;
 				break;
 				//End Boyer add
@@ -2015,7 +2015,7 @@ void AcceptRemoveOfficer()
 		break;
 		//Boyer mod
 		//default:
-			RemoveOfficersIndex(pchar, GetOfficersIndex(pchar, nCurScrollNum - 6));
+			RemoveOfficersIndex(pchar, iChar);
 		break;
 		//End Boyer mod
 	}

@@ -1,18 +1,18 @@
 //--------------------------------------------------------------------
 // Environment section
 //--------------------------------------------------------------------
-#define DAY_TIME_NIGHT    "Night"
-#define DAY_TIME_MORNING  "Morning"
-#define DAY_TIME_DAY      "Day"
-#define DAY_TIME_EVENING  "Evening"
+#define DAY_TIME_NIGHT		"Night"
+#define DAY_TIME_MORNING	"Morning"
+#define DAY_TIME_DAY		"Day"
+#define DAY_TIME_EVENING	"Evening"
 
-float  GetTime(){   if (!CheckAttribute(Environment, "time")) return 0.0; return stf(Environment.time); }
-float  GetHour(){   if (!CheckAttribute(Environment, "date")) return 0.0; return stf(Environment.date.hour); }
-float  GetMinute(){ if (!CheckAttribute(Environment, "date")) return 0.0; return stf(Environment.date.min); }
-float  GetSecond(){ if (!CheckAttribute(Environment, "date")) return 0.0; return stf(Environment.date.sec); }
-int	GetDataYear(){  if (!CheckAttribute(Environment, "date")) return 0;   return sti(Environment.date.year); }
-int	GetDataMonth(){ if (!CheckAttribute(Environment, "date")) return 0;   return sti(Environment.date.month); }
-int	GetDataDay(){   if (!CheckAttribute(Environment, "date")) return 0;   return sti(Environment.date.day); }
+float  GetTime(){ return stf(Environment.time); }
+float  GetHour(){ return stf(Environment.date.hour); }
+float  GetMinute(){ return stf(Environment.date.min); }
+float  GetSecond(){ return stf(Environment.date.sec); }
+int	GetDataYear(){ return sti(Environment.date.year); }
+int	GetDataMonth(){ return sti(Environment.date.month); }
+int	GetDataDay(){ return sti(Environment.date.day); }
 
 void SetDayTime(string name)
 {

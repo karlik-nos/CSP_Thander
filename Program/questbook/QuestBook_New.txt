@@ -336,10 +336,10 @@
 Святой, посох, гнев... Похоже, загадка ведёт к маяку на Сантьяго.
 #TEXT 3
 Я наш@<sSex> следующую часть пергамента. Вот что там написано: 
-"Quod lux virgam fundit trans maria ad meridianam: captivis ab infidelium tyrannide in terras: et perterriti et capti sunt sancti gratia throni. Ibi in arce in promunturio nigro praemium in fornace exstincto inveniet". 
+"Quod lux virgam fundit trans maria ad meridianam: captivis ab infidelium tyrannide in terras: et perterriti et capti sunt sancti gratia throni. Ibi post castellum, quod in promunturio nigro stat, intra cataracta praemium invenies". 
 Поищу священника или банкира.
 #TEXT 4
-"Свет посоха, через моря на юг изливается, в земли неверных, отринувших благодать святого престола. Там, в форте, что на мысе чёрном стоит, отыщешь награду в горниле погасшем". 
+"Свет посоха, через моря на юг изливается, в земли неверных, отринувших благодать святого престола. Там, за фортом, что на мысе чёрном стоит, внутри водопада отыщешь награду". 
 Судя по описанию, загадка указывает на Форт Оранж.
 #TEXT 5
 Внутри оказались половинка карты и ещё один пергамент:

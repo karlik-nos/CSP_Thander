@@ -1266,7 +1266,7 @@ void ProcessDialogEvent()
 			AddQuestRecordEx(sTitle, "PortmansBook_Delivery", "3");
 			AddQuestUserData(sTitle, "sCity", XI_ConvertString("Colony" + npchar.City + "Dat"));
 			AddQuestUserData(sTitle, "sCity2", XI_ConvertString("Colony" + sld.city + "Gen"));
-			CloseQuestHeader(sTitle);
+			CloseQuestHeader("Caiman_PortManPortmansBook_Delivery");
 
 			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
 			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
@@ -1682,7 +1682,7 @@ void ProcessDialogEvent()
 				
 				DeleteAttribute(pchar, "showTimer");
 				ClearAllLogStrings();
-				DoQuestDelayExit();
+				Event("QuestDelayExit","sl", "", 0);
 				
 				AddMoneyToCharacter(pchar, sti(iMoney));
 				AddCharacterExpToSkill(pchar, "Leadership", 30);
@@ -1697,7 +1697,7 @@ void ProcessDialogEvent()
 				
 				DeleteAttribute(pchar, "showTimer");
 				ClearAllLogStrings();
-				DoQuestDelayExit();
+				Event("QuestDelayExit","sl", "", 0);
 			}
 		break;
 		
@@ -2070,7 +2070,7 @@ void ProcessDialogEvent()
 			link.l1.go = "SCQ_Prytki_Dengi_Final";
 			DeleteAttribute(pchar, "showTimer");
 			ClearAllLogStrings();
-			DoQuestDelayExit();
+			Event("QuestDelayExit","sl", "", 0);
 			InterfaceStates.Buttons.Save.enable = true;
 			
 			AddMoneyToCharacter(pchar, sti(iMoney));
@@ -2091,7 +2091,7 @@ void ProcessDialogEvent()
 			link.l1.go = "SCQ_Prytki_Trah_2";
 			DeleteAttribute(pchar, "showTimer");
 			ClearAllLogStrings();
-			DoQuestDelayExit();
+			Event("QuestDelayExit","sl", "", 0);
 			InterfaceStates.Buttons.Save.enable = true;
 		break;
 		
@@ -3084,7 +3084,9 @@ void ProcessDialogEvent()
 			npchar.equip.gun = "mushket2x2";
 			EquipCharacterByItem(NPChar, "mushket2x2");
 			npchar.IsMushketer.MushketID = "mushket2x2";
-			npchar.MusketerDistance = 5;
+			npchar.MusketerDistance = 10.0;
+			npchar.isMusketer = true;
+			npchar.isMusketer.weapon = true;
 			npchar.greeting = "Gr_questOfficer";
 			npchar.Dialog.Filename = "Enc_Officer_dialog.c";
 			Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(Npchar.id);
@@ -3267,8 +3269,8 @@ void SetSeekCapCitizenParam(ref npchar, int iNation)
 	{
 		case "manSlave":	 sld.mapEnc.worldMapShip = "Galleon_red"; break;
 		case "manRapeWife":	 sld.mapEnc.worldMapShip = "Galleon_red"; break;
-		case "manFriend":	 sld.mapEnc.worldMapShip = "ranger";	  break;
-		case "womanHasband": sld.mapEnc.worldMapShip = "ranger";	  break;
+		case "manFriend":	 sld.mapEnc.worldMapShip = "Galleon_red"; break; //стояла модель кораблекрушенца ranger
+		case "womanHasband": sld.mapEnc.worldMapShip = "Galleon_red"; break; //стояла модель кораблекрушенца ranger
 		case "womanRevenge": sld.mapEnc.worldMapShip = "Galleon_red"; break;
 		case "womanPirates": sld.mapEnc.worldMapShip = "Galleon_red"; break;
 	}

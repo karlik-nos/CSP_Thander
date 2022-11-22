@@ -16,33 +16,36 @@ int LocationInitPuertoPrincipe(int n)
 	locations[n].islandId = "Cuba";
 	//Models
 	//Always
-	locations[n].filespath.models = "locations\Outside\Shores\Shore01";
-	Locations[n].models.always.shore01 = "shore01";
-	locations[n].models.always.shore01.sea_reflection = 1;
-	Locations[n].models.always.shore01seabed = "shore01_sb";
-	Locations[n].models.always.locators = "shore01_locators";
+	locations[n].filespath.models = "locations\Town_QC\Port";
+	Locations[n].models.always.qcport = "qcport";
+	locations[n].models.always.qcport.sea_reflection = 1;
+	Locations[n].models.always.qcportseabed = "qcport_sb";
+	Locations[n].models.always.locators = "QCport_l";
 
-	Locations[n].models.always.grassPatch = "shore01_grass";
+	Locations[n].models.always.grassPatch = "QCport_g";
 	Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";
 
-	Locations[n].models.always.l1 = "plan1";
+	Locations[n].models.always.l1 = "plan_1";
 	Locations[n].models.always.l1.level = 9;
 	Locations[n].models.always.l1.tech = "DLightModel";
-	Locations[n].models.always.l2 = "plan2";
+	Locations[n].models.always.l2 = "plan_2";
 	Locations[n].models.always.l2.level = 8;
 	Locations[n].models.always.l2.tech = "DLightModel";
-	Locations[n].models.always.l3 = "plan3";
+	Locations[n].models.always.l3 = "plan_3";
 	Locations[n].models.always.l3.level = 7;
 	Locations[n].models.always.l3.tech = "DLightModel";
 	//Day
-	locations[n].models.day.charactersPatch = "shore01_patch";
+	locations[n].models.day.charactersPatch = "QCport_p";
 	//Night
-	locations[n].models.night.charactersPatch = "shore01_patch";
+	locations[n].models.night.charactersPatch = "QCport_p";
+	// Jump patch
+	Locations[n].models.day.jumpPatch = "QCport_j";
+	Locations[n].models.night.jumpPatch = "QCport_j";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 	//Reload map
-	locations[n].reload.l1.name = "reload1_back";
+	locations[n].reload.l1.name = "reload2_back";
 	locations[n].reload.l1.go = "PuertoPrincipe_ExitTown";
 	locations[n].reload.l1.emerge = "reload2";
 	locations[n].reload.l1.autoreload = "1";
@@ -72,26 +75,26 @@ int LocationInitPuertoPrincipe(int n)
 	locations[n].islandId = "Cuba";
 	//Models
 	//Always
-	Locations[n].filespath.models = "locations\Outside\smugglerLairExit";
-	Locations[n].models.always.smugglerLairExit = "smugglerLairExit";
-	Locations[n].models.always.locators = "smugglerLairExit_locators";
-	Locations[n].models.always.grassPatch = "smugglerLairExit_grass";
+	Locations[n].filespath.models = "locations\Town_QC\Exit";
+	Locations[n].models.always.qcexit = "qcexit";
+	Locations[n].models.always.locators = "qcexit_l";
+	Locations[n].models.always.grassPatch = "qcexit_g";
 	Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";
-	Locations[n].models.always.l1 = "plan1";
+	Locations[n].models.always.l1 = "plan_1";
 	Locations[n].models.always.l1.level = 9;
 	Locations[n].models.always.l1.tech = "DLightModel";
-	Locations[n].models.always.l2 = "plan2";
+	Locations[n].models.always.l2 = "plan_2";
 	Locations[n].models.always.l2.level = 8;
 	Locations[n].models.always.l2.tech = "DLightModel";
-	Locations[n].models.always.l3 = "plan3";
+	Locations[n].models.always.l3 = "plan_3";
 	Locations[n].models.always.l3.level = 7;
 	Locations[n].models.always.l3.tech = "DLightModel";
 	//Day
-	locations[n].models.day.charactersPatch = "smugglerLairExit_patch";
-	locations[n].models.day.fonars = "smugglerLairExit_fd";
+	locations[n].models.day.charactersPatch = "qcexit_p";
+	locations[n].models.day.fonars = "qcexit_fd";
 	//Night
-	locations[n].models.night.charactersPatch = "smugglerLairExit_patch";
-	locations[n].models.night.fonars = "smugglerLairExit_fn";
+	locations[n].models.night.charactersPatch = "qcexit_p";
+	locations[n].models.night.fonars = "qcexit_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "false";
@@ -105,7 +108,7 @@ int LocationInitPuertoPrincipe(int n)
 
 	locations[n].reload.l2.name = "reload2_back";
 	locations[n].reload.l2.go = "PuertoPrincipe_port";
-	locations[n].reload.l2.emerge = "reload1";
+	locations[n].reload.l2.emerge = "reload2";
 	locations[n].reload.l2.autoreload = "1";
 	locations[n].reload.l2.label = "PuertoPrincipe Port";
 	locations[n].locators_radius.reload.reload1_back = 2.0;
@@ -135,26 +138,26 @@ int LocationInitPuertoPrincipe(int n)
  	locations[n].islandId = "Cuba";
 	//Models
 	//Always
-	Locations[n].filespath.models = "locations\Outside\smugglerLairTown";
-	Locations[n].models.always.smugglerLairTown = "smugglerLairTown";
-	Locations[n].models.always.locators = "smugglerLairTown_locators";
-	Locations[n].models.always.grassPatch = "smugglerLairTown_grass";
+	Locations[n].filespath.models = "locations\Town_QC\Town";
+	Locations[n].models.always.QCtown = "QCtown";
+	Locations[n].models.always.locators = "QCtown_l";
+	Locations[n].models.always.grassPatch = "QCtown_g";
 	Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";
-	Locations[n].models.always.l1 = "plan1";
+	Locations[n].models.always.l1 = "plan_1";
 	Locations[n].models.always.l1.level = 9;
 	Locations[n].models.always.l1.tech = "DLightModel";
-	Locations[n].models.always.l2 = "plan2";
+	Locations[n].models.always.l2 = "plan_2";
 	Locations[n].models.always.l2.level = 8;
 	Locations[n].models.always.l2.tech = "DLightModel";
-	Locations[n].models.always.l3 = "plan3";
+	Locations[n].models.always.l3 = "plan_3";
 	Locations[n].models.always.l3.level = 7;
 	Locations[n].models.always.l3.tech = "DLightModel";
 	//Day
-	locations[n].models.day.charactersPatch = "smugglerLairTown_patch";
-	locations[n].models.day.fonars = "smugglerLairTown_fd";
+	locations[n].models.day.charactersPatch = "QCtown_p";
+	locations[n].models.day.fonars = "QCtown_fd";
 	//Night
-	locations[n].models.night.charactersPatch = "smugglerLairTown_patch";
-	locations[n].models.night.fonars = "smugglerLairTown_fn";
+	locations[n].models.night.charactersPatch = "QCtown_p";
+	locations[n].models.night.fonars = "QCtown_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "false";
@@ -184,7 +187,7 @@ int LocationInitPuertoPrincipe(int n)
 	Locations[n].reload.l5.autoreload = "0";
 	Locations[n].reload.l5.label = "Tavern";
 
-	Locations[n].reload.l6.name = "reload6";
+	Locations[n].reload.l6.name = "reload10";
 	Locations[n].reload.l6.go = "PuertoPrincipe_townhall";
 	Locations[n].reload.l6.emerge = "reload1";
 	Locations[n].reload.l6.autoreload = "0";
@@ -379,7 +382,7 @@ int LocationInitPuertoPrincipe(int n)
 	//Reload map
 	locations[n].reload.l1.name = "reload1";
 	locations[n].reload.l1.go = "PuertoPrincipe_town";
-	locations[n].reload.l1.emerge = "reload6";
+	locations[n].reload.l1.emerge = "reload10";
 	locations[n].reload.l1.autoreload = "0";
 	locations[n].reload.l1.label = "Street";
 	locations[n].locators_radius.item.item1 = 0.8;

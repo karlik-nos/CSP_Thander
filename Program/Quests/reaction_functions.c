@@ -5153,7 +5153,7 @@ void LSC_figtInResidence()
 	{
 		sld.dialog.currentnode = "crab_hire";
 		sld.model	= "pet_crab";
-		sld.animation = "crabBig";
+		sld.model.animation = "crabBig";
 		LAi_SetHP(sld, 1000, 1000);
 		SetSPECIAL(sld, 7,7,7,7,7,7,7)
 		sld.rank = 25;
@@ -10295,7 +10295,7 @@ void PirateComeToIsabella(string qName)
 	sld = CharacterFromID("Anri");
 	sld.NextDiag.CurrentNode = "Isabella_1";
 	LAi_SetStayType(sld);
-	ChangeCharacterAddressGroup(sld, "Shore32", "smugglers", "smugglerload"));
+	ChangeCharacterAddressGroup(sld, "Shore32", "smugglers", LAi_FindNearestFreeLocator2Pchar("smugglers"));
 	Locations[FindLocation("Shore32")].DisableEncounters = true;
 	LAi_SetActorType(sld);
 	LAi_LocationDisableOfficersGen("Shore32", true);
@@ -11105,9 +11105,9 @@ void UnexpectedInheritanceTranslatePart(string part)
 	{
 		AddQuestRecord("UnexpectedInheritance", "4");
 		pchar.quest.UnexpectedInheritanceGetPartTwo.win_condition.l1 = "locator";
-		pchar.quest.UnexpectedInheritanceGetPartTwo.win_condition.l1.location = "FortOrange_town";
+		pchar.quest.UnexpectedInheritanceGetPartTwo.win_condition.l1.location = "FortOrange_Grot";
 		pchar.quest.UnexpectedInheritanceGetPartTwo.win_condition.l1.locator_group = "box";
-		pchar.quest.UnexpectedInheritanceGetPartTwo.win_condition.l1.locator = "private1";
+		pchar.quest.UnexpectedInheritanceGetPartTwo.win_condition.l1.locator = "box1";
 		pchar.quest.UnexpectedInheritanceGetPartTwo.function = "UnexpectedInheritanceGetPartThree";
 	}
 	if (part == "part3")

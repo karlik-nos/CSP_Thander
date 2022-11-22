@@ -552,29 +552,6 @@ string GetRandSkelModelClassic()
 }
 
 // boal 22.04.04 выбор модели зависимо от типа
-void SetCaptanModelByEncType(ref Chref, string sFantomType)
-{
-	string ModelPirate = "Albermal"; // значит баг
-
-	if (sti(Chref.nation) == PIRATE) sFantomType = "pirate"; // иначе баг
-
-	switch (sFantomType)
-	{
-	case "trade":
-		ModelPirate = "trader_" + (rand(15) + 1);
-		break;
-	case "war":
-		ModelPirate = "off_" + NationShortName(sti(Chref.nation)) + "_" + (rand(1) + 1);
-		break;
-	case "pirate":
-		ModelPirate = "officer_" + (rand(63) + 1);
-		break;
-	}
-	Chref.model = ModelPirate;
-	FaceMaker(Chref);
-	if (Chref.model == "Albermal") {trace("ОШИБКА: неверный тип фантома '" + sFantomType + "' при создании модели капитана")}
-}
-
 string GetCaptainModelByNation(int iNation, string sFantomType)
 {
 	if (iNation == PIRATE) sFantomType = "pirate"; // иначе баг
@@ -592,8 +569,14 @@ string GetCaptainModelByNation(int iNation, string sFantomType)
 		break;
 	}
 
-	trace("ОШИБКА: неверный тип фантома '" + sFantomType + "'")
-	return "Albermal" // баг
+	Log_Info("ERROR: wrong fantom type '" + sFantomType + "'");
+	return "Albermal";
+}
+
+void SetCaptanModelByEncType(ref Chref, string sFantomType)
+{
+	Chref.model = GetCaptainModelByNation(sti(Chref.nation), sFantomType);
+	FaceMaker(Chref);
 }
 
 void SetModelPirate(ref ChrefPirate)
