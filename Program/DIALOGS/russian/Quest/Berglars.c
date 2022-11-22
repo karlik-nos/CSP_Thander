@@ -410,6 +410,9 @@ void ProcessDialogEvent()
 		//------------ общие ноды ----------------
  		case "Step_overAll":
 			sTemp = "berglar" + npchar.city;
+			LAi_LocationDisableMonGenTimer(pchar.questTemp.tugs.(sTemp), 1); //монстров не генерить 1 день
+			LAi_LocationDisableOffGenTimer(pchar.questTemp.tugs.(sTemp), 1); //офицеров не пускать 1 день
+			LAi_LocationDisableToughSkeletonTimer(pchar.questTemp.tugs.(sTemp), 1); //ПК не пускать 1 день
 			sStr = "Birglars_fight_" + npchar.index;
 			pchar.quest.(sStr).win_condition.l1 = "locator";
 			pchar.quest.(sStr).win_condition.l1.location = pchar.questTemp.tugs.(sTemp);
@@ -450,9 +453,6 @@ void ProcessDialogEvent()
 				GiveItem2Character(npchar, "pistol2");
 				GiveItem2Character(npchar, GetGeneratedItem("blade15"));
 			}
-			sTemp = "berglar" + npchar.city;
-			LAi_LocationDisableMonGenTimer(pchar.questTemp.tugs.(sTemp), 1); //монстров не генерить 1 день
-			LAi_LocationDisableOffGenTimer(pchar.questTemp.tugs.(sTemp), 1); //офицеров не пускать 1 день
 			LAi_SetActorTypeNoGroup(NPChar);
             LAi_ActorRunToLocation(NPChar, "reload", pchar.questTemp.tugs.(sTemp).locator, pchar.questTemp.tugs.(sTemp), "item", "berglar1", "OpenTheDoors", -1.0);
 			chrDisableReloadToLocation = true;
