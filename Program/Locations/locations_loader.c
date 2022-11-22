@@ -677,8 +677,8 @@ bool LoadLocation(ref loc)
         // boal <--
 if(loc.type == "seashore" || loc.type == "port")
 		{		
-			SendMessage(loc, "lsl", MSG_LOCATION_EX_MSG, "AddCrabs", rand(50) - 1);
-		}		
+			SendMessage(loc, "lsl", MSG_LOCATION_EX_MSG, "AddCrabs", 5 + rand(5) - 1);
+		}
 	}
     float resizeRatio = stf(Render.screen_y) / screenscaling;
     SendMessage(loadedLocation, "lsf", MSG_LOCATION_EX_MSG, "resizeRatio", resizeRatio);
