@@ -82,7 +82,7 @@ void Ball_FlyNearCamera()
 int ballNumber;
 
 // FPSTODO: метод очень тяжелый, особенно в замесах проседания видны невооруженным глазом
-void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0, float fDirAng, float fHeightAng, float fCannonDirAng, float fMaxFireDistance)
+void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0, float fDirAng, float fHeightAng, float fCannonDirAng, float fMaxFireDistance, float fAngle)
 {
 	int iCannonType = sti(aCharacter.Ship.Cannons.Type);
 	ref rCannon = GetCannonByType(iCannonType);
@@ -107,7 +107,7 @@ void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0,
 	AIBalls.SizeMultiply      = rCannon.SizeMultiply;
 	AIBalls.TimeSpeedMultiply = rCannon.TimeSpeedMultiply;
 	AIBalls.MaxFireDistance   = fMaxFireDistance;
-	AIBalls.RawAng = fCannonDirAng;
+	AIBalls.RawAng = fAngle;
 	float fTempDispersionY = Degree2Radian(5.0); // LEO: Важные параметры разброса снарядов - (15.0)
 	float fTempDispersionX = Degree2Radian(6.5); // (5.0)
 
