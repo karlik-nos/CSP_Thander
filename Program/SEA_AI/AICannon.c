@@ -241,7 +241,7 @@ float Cannon_DamageEvent()
 	float fMaxCHP = stf(rCannon.hp);
 	//fCurDamage = (fCurDamage * fMaxCHP + fBallDamage * (1.0 - fDistance / MAX_CANNON_DAMAGE_DISTANCE)) / fMaxCHP;
     //Log_TestInfo("fBallDamage "  + fBallDamage + " fCurDamage " +fCurDamage + " fMaxCHP " + fMaxCHP + " fDistance " +fDistance);
-    fBallDamage *= 0.1 / fDistance;
+    fBallDamage *= 0.05 / fDistance;
     fCurDamage =  fCurDamage  + fBallDamage / fMaxCHP;  // TO_DO
 
 	//fCurDamage = fCurDamage - fCurDamage/100*(sti(aCharacter.ship.upgrades.cannons)-1)*20;
