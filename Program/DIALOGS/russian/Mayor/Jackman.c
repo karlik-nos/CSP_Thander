@@ -397,10 +397,13 @@ void ProcessDialogEvent()
 			}
 			if (bOk)
 			{
-				dialog.text = "Именно этих слов я и ждал. Вижу, что ещё и мой бриг сумел"+ GetSexPhrase("","а") +" прихватить! Молодец. Ты доказал"+ GetSexPhrase("","а") +", что ты – Вол"+ GetSexPhrase("к","чица") +"! Поэтому с чистым сердцем отдаю тебе 'Морского Волка', владей по праву! Хотел бы я иметь "+ GetSexPhrase("такого парня","такую лихую деваху") +", как ты, в своей команде!";
+				//dialog.text = "Именно этих слов я и ждал. Вижу, что ещё и мой бриг сумел"+ GetSexPhrase("","а") +" прихватить! Молодец. Ты доказал"+ GetSexPhrase("","а") +", что ты – Вол"+ GetSexPhrase("к","чица") +"! Поэтому с чистым сердцем отдаю тебе 'Морского Волка', владей по праву! Хотел бы я иметь "+ GetSexPhrase("такого парня","такую лихую деваху") +", как ты, в своей команде!";
+				dialog.text = "Именно этих слов я и ждал. Вижу, что ещё и мой бриг сумел"+ GetSexPhrase("","а") +" прихватить! Молодец. Ты доказал"+ GetSexPhrase("","а") +", что ты – Вол"+ GetSexPhrase("к","чица") +"! Уважаю таких людей!";
 				link.l1 = "Я - свободный капитан, Джекмен. Но твои слова - честь для меня!";
-				link.l1.go = "exit";
-				AddQuestRecord("Pir_Line_3_KillLoy", "19");
+				link.l1.go = "PL_SEAWOLF_2";
+				link.l2 = "Твои слова - честь для меня, Джекман! А ты хочешь 'Морского Волка' назад? Думаю, что вполне могу вернуть его. Мне кажется, он для тебя многое значил.";
+				link.l2.go = "PL_SEAWOLF_3";
+				
 			}
 			else
 			{
@@ -412,6 +415,80 @@ void ProcessDialogEvent()
 				AddQuestUserData("Pir_Line_3_KillLoy", "sSex", GetSexPhrase("","а"));
 			}
 		break;
+		case "PL_SEAWOLF_2":
+			dialog.text = "Поэтому с чистым сердцем отдаю тебе 'Морского Волка', владей по праву! Хотел бы я иметь "+ GetSexPhrase("такого парня","такую лихую деваху") +", как ты, в своей команде!";
+			link.l1 = "Благодарю от всего сердца, Джекман!";
+			link.l1.go = "exit";
+			AddQuestRecord("Pir_Line_3_KillLoy", "19");
+		break;
+		case "PL_SEAWOLF_3":
+			dialog.text = "Неожиданно! Не ждал такого предложения... Я согласен, всё-таки 'Волк' занимает в моём сердце важное место. Но не могу отпустить тебя без подарка за такое. Вот, возьми-ка его. Ты не можешь даже представить, каких трудов мне в своё время стоило его добыть, но теперь с чистой совестью дарю его тебе. Пользуйся!"; //Также, отдаю тебе один из своих кораблей. Просто так, в знак хорошего отношения.
+			link.l1 = "Благодарю от всего сердца, Джекман!";
+			link.l1.go = "exit";
+			GiveItem2Character(pchar,"mushket6");
+			log_info("Джекман подарил вам свой башенный мушкетон!");
+			int chComp1;
+			ref swchar;
+			if (RealShips[sti(pchar.ship.type)].Name == "BrigSW1")
+			{
+				DeleteAttribute(pchar, "ship");
+				pchar.ship.name = "";
+				pchar.ship.type = SHIP_NOTUSED;
+			}
+			else
+			{
+				for (int x=1; x<=COMPANION_MAX; x++)
+				{
+					chComp1 = GetCompanionIndex(pchar, x);
+					if(chComp1 != -1 && RealShips[sti(characters[chComp1].ship.type)].Name == "BrigSW1")
+					{
+						swchar = &characters[chComp1];
+						RemoveCharacterCompanion(PChar, swchar);
+						AddPassenger(PChar, swchar, false);
+						//swchar.ship.type = GenerateShipTop(SHIP_MIRAGE, true, swchar);
+						break;
+					}
+				}
+			}
+			/*SetBaseShipData(swchar);
+			swchar.ship.name = "Мираж";
+			ref VeryRealShip = GetRealShip(sti(swchar.Ship.Type));
+			DeleteAttribute(VeryRealShip,"EmblemedSails");
+			DeleteAttribute(VeryRealShip,"shipsails");
+			VeryRealShip.ship.upgrades.sails = 3;
+			
+			SetShipBermudeTuningSpeedRate(swchar);
+			SetShipBermudeTuningTurnRate(swchar);
+			SetShipBermudeTuningWindAgainstSpeed(swchar);
+			SetShipBermudeTuningCapacity(swchar);
+			SetShipBermudeTuningMaxCrew(swchar);
+			SetShipBermudeTuningHP(swchar);
+			SetShipBermudeTuningMastMultiplier(swchar);
+			VeryRealShip.Tuning.CuBot = true;
+			
+			VeryRealShip.MaxCaliber = 20;
+			VeryRealShip.Tuning.Cannon = true;
+			VeryRealShip.CannonsQuantity = 22;
+			swchar.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS20;
+			
+			SetCharacterGoods(swchar, GOOD_BALLS, 200);
+			SetCharacterGoods(swchar, GOOD_GRAPES, 400);
+			SetCharacterGoods(swchar, GOOD_KNIPPELS, 200);
+			SetCharacterGoods(swchar, GOOD_BOMBS, 400);;
+			SetCharacterGoods(swchar, GOOD_FOOD, 1000);
+			SetCharacterGoods(swchar, GOOD_MEDICAMENT, 500);
+			SetCharacterGoods(swchar, GOOD_POWDER, 2000);
+			SetCharacterGoods(swchar, GOOD_WEAPON, 300);
+			
+			SetCrewQuantityFull(swchar);
+			AddCrewMorale(swchar, 100);
+			ChangeCrewExp(swchar, "Sailors", 100);
+			ChangeCrewExp(swchar, "Cannoners", 100);
+			ChangeCrewExp(swchar, "Soldiers", 100);*/
+			AddQuestRecord("Pir_Line_3_KillLoy", "19_2");
+			AddQuestUserData("Pir_Line_3_KillLoy", "sSex2", GetSexPhrase("","а"));
+		break;
+		
 		//********************* пиратка, квест №6. двойник *********************
 		case "PL_Q6":
 			dialog.text = "О-о-о, кого я вижу?! Глазам не верю!";
