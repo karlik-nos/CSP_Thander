@@ -6,9 +6,9 @@ void Nation_InitAfterLoading()
 {
 	int i,j;
 	// check version
-	int version_number = 099;
+	int version_number = 99;
 	if( CheckAttribute(pchar,"version_number") ) {
-		version_number = pchar.version_number;
+		version_number = sti(pchar.version_number);
 	}
 
 	if( version_number < 104 )

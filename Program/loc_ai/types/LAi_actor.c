@@ -51,7 +51,7 @@ void LAi_type_actor_Init(aref chr)
         if (sAni == "mushketer")
             isMusk = true;
 	}
-	if (isMusk && !CheckAttribute(chr, "isMusketer.weapon") && chr.index != getmaincharacterindex() && chr != GetMainCharacter())
+	if (isMusk && !CheckAttribute(chr, "isMusketer.weapon") && !isMainCharacter(chr))
 	{
         while (FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE) != "")
         {
