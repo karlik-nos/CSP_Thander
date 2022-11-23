@@ -9257,13 +9257,13 @@ int InitItems()
 	InitGunExt(		 "pistol7shotgun", "t1", "grapeshot",       "12_gauge",  80.0, 200.0,  50.0, 180.0,  0.0,  0.0, 0, 1, 1, 2, 1, 1, 80, 52, 1);
 	InitGunExt(		 "pistol7shotgun", "t2", 	"bullet",       "12_gauge", 100.0, 300.0, 100.0, 300.0,  0.0,  0.0, 1, 0, 0, 2, 0, 0, 80, 52, 0);
 	InitGunExt(		 "pistol8", "t1", 	     "grapeshot",      "gunpowder",  50.0, 100.0,  50.0, 100.0,  5.0,  5.0, 1, 1, 1, 0, 1, 1, 50, 20, 1);
-	InitGunExt(		 "pistol8", "t2", 		   "harpoon",      "gunpowder", 150.0, 250.0, 150.0, 250.0,  20.0, 20.0,0, 1, 0, 0, 0, 0, 20, 35, 0);
-	InitGunExt(		 "pistol8", "t3", 		  "GunEchin",               "", 120.0, 220.0, 120.0, 220.0,  20.0, 20.0,0, 1, 1, 0, 0, 0, 20, 30, 0);
+	InitGunExt(		 "pistol8", "t2", 		   "harpoon",      "gunpowder", 150.0, 250.0, 150.0, 250.0,  20.0, 20.0,0, 1, 0, 0, 0, 0, 60, 30, 0);
+	InitGunExt(		 "pistol8", "t3", 		  "GunEchin",               "", 120.0, 220.0, 120.0, 220.0,  20.0, 20.0,0, 1, 1, 0, 0, 0, 40, 25, 0);
 	InitGunExt(		 "pistol9", "t1", 	     "cartridge",               "",  50.0, 160.0,  40.0, 140.0,  0.0,  0.0, 1, 0, 0, 0, 0, 0, 45, 25, 0);
 	InitGunExt(		 "pistol9", "t2", 		    "bullet",      "gunpowder",  50.0, 160.0,  40.0, 140.0,  0.0,  0.0, 1, 0, 0, 0, 0, 0, 45, 50, 1);
 	InitGunExt( 	 "pistol_grapebok", "t1","grapeshot",      "gunpowder",  30.0, 110.0,  30.0, 110.0,  0.0,  0.0, 0, 1, 1, 0, 1, 1, 40, 40, 1);
-	InitGunExt(		 "howdah", "t1",         "grapeshot",      "gunpowder",  50.0,  85.0,  40.0,  70.0,  5.0,  5.0, 1, 1, 1, 0, 0, 1, 50, 40, 1);
-    InitGunExt(		 "howdah", "t2",          "GunEchin",               "", 115.0, 215.0, 115.0, 215.0,  20.0, 20.0,0, 1, 1, 0, 0, 0, 20, 60, 0);
+	InitGunExt(		 "howdah", "t1",         "grapeshot",      "gunpowder",  50.0,  85.0,  40.0,  70.0,  5.0,  5.0, 1, 1, 1, 0, 0, 1, 45, 35, 1);
+    InitGunExt(		 "howdah", "t2",          "GunEchin",               "", 115.0, 215.0, 115.0, 215.0,  20.0, 20.0,0, 1, 1, 0, 0, 0, 35, 45, 0);
 
 	InitGunExt(		"mushket", "t1", 	             "cartridge",               "", 100.0, 150.0, 100.0, 150.0,  0.0,  0.0, 1, 0, 0, 0, 0, 0,  80,  20, 0);
 	InitGunExt(		"mushket", "t2", 		            "bullet",      "gunpowder", 100.0, 150.0, 100.0, 150.0,  0.0,  0.0, 1, 0, 0, 0, 0, 0,  80,  40, 1);
