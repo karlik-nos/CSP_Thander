@@ -105,6 +105,7 @@ void Ascold_actorSetWarrior(string qName)
 void Ascold_LeifIsDead(string qName)
 {
 	LocatorReloadEnterDisable("Guadeloupe_Cave", "reload3_back", false);
+	LAi_LocationDisableToughSkeletonTimer("Guadeloupe_Cave", -1); 
 }
 
  void Ascold_OpenTheGrave(string qName)
