@@ -1617,10 +1617,7 @@ void QuestComplete(string sQuestName, string qname)
 				RemoveCharacterCompanion(Pchar, characterFromID("QuestTrader"));
 				CloseQuestHeader("convoy_quest");
 
-				pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-				if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-				if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-				if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+				AchievementsCounter_genquests(1);
 			}
 			pchar.quest.generate_convoy_quest_progress = "";
 			GetCharacterPos(pchar, &locx, &locy, &locz);
@@ -3318,10 +3315,7 @@ void QuestComplete(string sQuestName, string qname)
 			AddQuestUserData("GivePrisonFree", "sName", pchar.questTemp.jailCanMove.Deliver.name);
 			CloseQuestHeader("GivePrisonFree");
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 
             chrDisableReloadToLocation = false;
 			iTemp = GetCharacterIndex(pchar.questTemp.jailCanMove.Deliver.Id);
