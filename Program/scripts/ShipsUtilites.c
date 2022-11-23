@@ -2231,6 +2231,7 @@ int GenerateShipTop(int iBaseType, bool isStolen, ref chr)
 int GetShootDistance(ref chref, string ball)
 {
 	float distance = 0.0;
+	float fKoefBallType = 1.0;
 	int p = GetCharacterSPECIALSimple(chref, SPECIAL_P)-3;
 	if (p < 0) p = 0;
 
@@ -2244,20 +2245,13 @@ int GetShootDistance(ref chref, string ball)
 	{
 		distance = distance * (1.0+p*0.03);
 	}
-	switch(ball)
+	switch(ball)//зависит от скорости из инита квадратично
 	{
-		case "ball":
-			distance = distance * 1.0;
-		break;
-		case "grape":
-			distance = distance * 0.6;
-		break;
-		case "knippel":
-			distance = distance * 0.9;
-		break;
-		case "bomb":
-			distance = distance * 0.8;
-		break;
+		case "ball":	fKoefBallType = stf(Goods[GOOD_BALLS].SpeedV0); break;
+		case "grape":	fKoefBallType = stf(Goods[GOOD_GRAPES].SpeedV0); break;		//0,55*0,55	=0,3025
+		case "knippel":	fKoefBallType = stf(Goods[GOOD_KNIPPELS].SpeedV0); break;		//0,90*0,90	=0,81
+		case "bomb":	fKoefBallType = stf(Goods[GOOD_BOMBS].SpeedV0); break;		//0,65*0,65	=0,4225
 	}
+	distance = distance * fKoefBallType * fKoefBallType;
 	return makeint(distance+0.5);
 }
