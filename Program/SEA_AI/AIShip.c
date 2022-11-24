@@ -2808,7 +2808,7 @@ void Ship_HullHitEvent()
 		//boal 27.09.05 <--
 		}
 	}
-    SendMessage(&AISea, "laffff", AI_MESSAGE_CANNONS_BOOM_CHECK, rOurCharacter, fH, x, y, z);  // fix перенес с проверкой на труп
+    SendMessage(&AISea, "laffff", AI_MESSAGE_CANNONS_BOOM_CHECK, rOurCharacter, fHP, x, y, z);  // fix перенес с проверкой на труп
 	// boal 290704 раз в минуту проверяем обиду на гл героя, если жухлит через желтый прицел -->
 	//Log_Info(rOurCharacter.id);
 	//Log_Info(" LastBallCharacter = "+rOurCharacter.Ship.LastBallCharacter);
