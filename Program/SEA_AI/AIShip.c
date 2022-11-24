@@ -2741,7 +2741,7 @@ void Ship_HullHitEvent()
 	if (bSeriousBoom)
 	{
 		fCrewDamage = fCrewDamage * 7.0;
-		fHP = fHP * 4; // 4.0
+		fHP = fHP * 4.0; // 4.0
 		if (iBallCharacterIndex == nMainCharacterIndex)
 		{
 			Log_SetStringToLog(LanguageConvertString(iSeaSectionLang, "Ship_critical"));
