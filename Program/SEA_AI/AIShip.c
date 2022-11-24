@@ -2692,7 +2692,6 @@ void Ship_HullHitEvent()
 	bool	bSeriousBoom = false;
 	bool	bInflame = false;
     bool    isOurCompanion   = IsCompanion(rOurCharacter);
-    float   fTmpCannonDamage = 0;
 
     if (bDead) return; // фикс, не нужно обсчитывать труп
 	// Cannon damage multiply
@@ -2727,7 +2726,6 @@ void Ship_HullHitEvent()
 			Play3DSound("bomb2bort", x, y, z);
 		break;
 	}
-	fTmpCannonDamage = fCannonDamageMultiply * stf(rBall.DamageHull);
 	CreateParticleSystem("blast", x, y, z, 0.0, 0.0, 0.0, 0);// boal fix
 
     if (sti(rOurCharacter.TmpPerks.ShipDefenseProfessional) && rand(1000) < 700) { bSeriousBoom = false; }				// no seriouse boom
@@ -2794,7 +2792,6 @@ void Ship_HullHitEvent()
 		{
 			Ship_Serious_Boom(x, y, z);
 		}
-		fTmpCannonDamage = fTmpCannonDamage * 6.0;
 		//boal 27.09.05 -->
 		if ((GetCargoGoods(rOurCharacter, GOOD_POWDER) / 20.0) > (GetCargoMaxSpace(rOurCharacter) * 0.25) && rand(1) == 1)
 		{
@@ -2811,7 +2808,7 @@ void Ship_HullHitEvent()
 		//boal 27.09.05 <--
 		}
 	}
-    SendMessage(&AISea, "laffff", AI_MESSAGE_CANNONS_BOOM_CHECK, rOurCharacter, fTmpCannonDamage, x, y, z);  // fix перенес с проверкой на труп
+    SendMessage(&AISea, "laffff", AI_MESSAGE_CANNONS_BOOM_CHECK, rOurCharacter, fH, x, y, z);  // fix перенес с проверкой на труп
 	// boal 290704 раз в минуту проверяем обиду на гл героя, если жухлит через желтый прицел -->
 	//Log_Info(rOurCharacter.id);
 	//Log_Info(" LastBallCharacter = "+rOurCharacter.Ship.LastBallCharacter);
