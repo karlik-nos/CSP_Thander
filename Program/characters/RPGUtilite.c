@@ -271,6 +271,7 @@ void SetRandSPECIAL(ref _refCharacter)  // Для всех
                (4 + rand(6)),
                (4 + rand(6)),
                (2 + rand(8)));
+	if (CheckAttribute(_refCharacter,"id") && HasSubStr(_refCharacter.id,"Fort Commander"))  _refCharacter.SPECIAL.Perception = 10;
 }
 
  void SetRandSPECIAL_PGG(ref _refCharacter)  //WW для ПГГ
