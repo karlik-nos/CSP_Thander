@@ -825,7 +825,7 @@ float Cannon_GetRechargeTimeValue(ref aCharacter)
 	if (CheckCharacterPerk(aCharacter, "FastReload")) fMultiply = 0.9;
 	float ImmRel = AIShip_isPerksUse(CheckOfficersPerk(aCharacter, "ImmediateReload"), 1.0, 0.5);
 	fMultiply *= ImmRel;
-	if (CheckAttribute(&RealShips[sti(aCharacter.Ship.Type)], "Tuning.CannonsSpecial")) fMultiply *= 1.2;
+	if (CheckAttribute(&RealShips[sti(aCharacter.Ship.Type)], "Tuning.CannonsSpecial")) fMultiply *= 0.9;
 	fMultiply *= (1+CheckOfficersPerk(aCharacter,"InstantRepair"));//x2 времени при активной быстрой починке
 	// boal 060804 для компа поблажки
 	//Boyer remove reload speed boost for enemies
