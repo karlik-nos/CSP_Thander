@@ -148,7 +148,7 @@ void ProcessDialogEvent()
 					break;
 					}
 				}
-				if (CheckAttribute("pchar", questTemp.AnjelikaTichPrologue) && pchar.questTemp.AnjelikaTichPrologue == "ATP")	//Sinistra Пролог Анжелики Шарп
+				if (CheckAttribute(pchar, "questTemp.AnjelikaTichPrologue") && pchar.questTemp.AnjelikaTichPrologue == "ATP")	//Sinistra Пролог Анжелики Шарп
 				{
 					pchar.ATP_MirJitId = npchar.id;
 					
