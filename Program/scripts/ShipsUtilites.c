@@ -621,7 +621,7 @@ float SpeedBySkill(aref refCharacter)
 	}
 	else
 	{
-		if (fNeedSkillMin < 1) fNeedSkillMax = 1;
+		if (fNeedSkillMin < 1) fNeedSkillMin = 1;
 		fNeedSkillMax = fNeedSkillMin + 10;
 		if (fNeedSkillMax > SKILL_MAX) fNeedSkillMax = SKILL_MAX;
 		fSkillMax = SKILL_MAX;
@@ -734,7 +734,7 @@ float TurnBySkill(aref refCharacter)
 	}
 	else
 	{
-		if (fNeedSkillMin < 1) fNeedSkillMax = 1;
+		if (fNeedSkillMin < 1) fNeedSkillMin = 1;
 		fNeedSkillMax = fNeedSkillMin + 10;
 		if (fNeedSkillMax > SKILL_MAX) fNeedSkillMax = SKILL_MAX;
 		fSkillMax = SKILL_MAX;
