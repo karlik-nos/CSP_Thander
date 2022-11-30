@@ -761,7 +761,12 @@ bool IsBlade(String _itemID)
 /////////////////////// ==> Items-методы
 int GetItemIndex(string _ItemID)
 {
-	return FindItem(_ItemID);
+	int result = FindItem(_ItemID);
+	if (result < 0)
+	{
+		trace("Item not found: " + _ItemID);
+	}
+	return result;
 }
 
 ref ItemsFromID(string _Items)

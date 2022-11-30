@@ -1492,7 +1492,7 @@ int LocationInitJamaica(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Shore35";
 	locations[n].id.label = "Shore35";
-	locations[n].image = "loading\jonny_load\shores\Shore09_Shore10.tga";
+	locations[n].image = "loading\jonny_load\shores\PortFortOrange.tga";
 	locations[n].worldmap = "Shore35";
 	//Sound
 	locations[n].townsack = "FortOrange";
@@ -1546,7 +1546,7 @@ int LocationInitJamaica(int n)
 	locations[n].id = "FortOrange_ExitTown";
 	locations[n].fastreload = "FortOrange";
 	locations[n].id.label = "ExitTown";
-	locations[n].image = "loading\jonny_load\jungle\TownExitY.tga";
+	locations[n].image = "loading\jonny_load\outside\TownExitFortOrange.tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].townsack = "FortOrange";
@@ -1640,7 +1640,7 @@ int LocationInitJamaica(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     Locations[n].id = "FortOrange_town";
 	locations[n].id.label = "Street";
-	Locations[n].image = "loading\jonny_load\outside\smugglerLairTown_(FortOrang).tga";
+	Locations[n].image = "loading\jonny_load\city\Town_FortOrange.tga";
     //Town sack
 	locations[n].citizens = true;
 	locations[n].soldiers = true;

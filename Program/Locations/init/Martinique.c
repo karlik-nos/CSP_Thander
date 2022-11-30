@@ -1290,7 +1290,7 @@ int LocationInitMartinique(int n)
 	locations[n].id = "LeFransua_ExitTown";
 	locations[n].fastreload = "LeFransua";
 	locations[n].id.label = "ExitTown";
-	locations[n].image = "loading\jonny_load\outside\Exit.tga";
+	locations[n].image = "loading\jonny_load\outside\smugglerLairExit.tga";
 	//Town sack
 	locations[n].townsack = "LeFransua";
 	//Sound
@@ -1299,26 +1299,26 @@ int LocationInitMartinique(int n)
     locations[n].islandId = "Martinique";
 	//Models
 	//Always
-	Locations[n].filespath.models = "locations\SmugglerLair\Exit";
-	Locations[n].models.always.smlexit = "smlexit";
-	Locations[n].models.always.locators = "smlexit_l";
-	Locations[n].models.always.grassPatch = "smlexit_g";
+	Locations[n].filespath.models = "locations\Outside\smugglerLairExit";
+	Locations[n].models.always.smugglerLairExit = "smugglerLairExit";
+	Locations[n].models.always.locators = "smugglerLairExit_locators";
+	Locations[n].models.always.grassPatch = "smugglerLairExit_grass";
 	Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";
-	Locations[n].models.always.l1 = "plan_1";
+	Locations[n].models.always.l1 = "plan1";
 	Locations[n].models.always.l1.level = 9;
 	Locations[n].models.always.l1.tech = "DLightModel";
-	Locations[n].models.always.l2 = "plan_2";
+	Locations[n].models.always.l2 = "plan2";
 	Locations[n].models.always.l2.level = 8;
 	Locations[n].models.always.l2.tech = "DLightModel";
-	Locations[n].models.always.l3 = "plan_3";
+	Locations[n].models.always.l3 = "plan3";
 	Locations[n].models.always.l3.level = 7;
 	Locations[n].models.always.l3.tech = "DLightModel";
 	//Day
-	locations[n].models.day.charactersPatch = "smlexit_p";
-	locations[n].models.day.fonars = "smlexit_fd";
+	locations[n].models.day.charactersPatch = "smugglerLairExit_patch";
+	locations[n].models.day.fonars = "smugglerLairExit_fd";
 	//Night
-	locations[n].models.night.charactersPatch = "smlexit_p";
-	locations[n].models.night.fonars = "smlexit_fn";
+	locations[n].models.night.charactersPatch = "smugglerLairExit_patch";
+	locations[n].models.night.fonars = "smugglerLairExit_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "false";
@@ -1362,32 +1362,26 @@ int LocationInitMartinique(int n)
 	locations[n].islandId = "Martinique";
 	//Models
 	//Always
-	Locations[n].filespath.models = "locations\SmugglerLair\Town";
-	Locations[n].models.always.sml = "sml";
-	Locations[n].models.always.locators = "sml_l";
-	Locations[n].models.always.grassPatch = "sml_g";
+	Locations[n].filespath.models = "locations\Outside\smugglerLairTown";
+	Locations[n].models.always.smugglerLairTown = "smugglerLairTown";
+	Locations[n].models.always.locators = "smugglerLairTown_locators";
+	Locations[n].models.always.grassPatch = "smugglerLairTown_grass";
 	Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";
-	Locations[n].models.always.l1 = "plan_1";
+	Locations[n].models.always.l1 = "plan1";
 	Locations[n].models.always.l1.level = 9;
 	Locations[n].models.always.l1.tech = "DLightModel";
-	Locations[n].models.always.l2 = "plan_2";
+	Locations[n].models.always.l2 = "plan2";
 	Locations[n].models.always.l2.level = 8;
 	Locations[n].models.always.l2.tech = "DLightModel";
-	Locations[n].models.always.l3 = "plan_3";
+	Locations[n].models.always.l3 = "plan3";
 	Locations[n].models.always.l3.level = 7;
 	Locations[n].models.always.l3.tech = "DLightModel";
-	Locations[n].models.always.l4 = "plan_4";
-	Locations[n].models.always.l4.level = 6;
-	Locations[n].models.always.l4.tech = "DLightModel";
 	//Day
-	locations[n].models.day.charactersPatch = "sml_p";
-	locations[n].models.day.fonars = "sml_fd";
+	locations[n].models.day.charactersPatch = "smugglerLairTown_patch";
+	locations[n].models.day.fonars = "smugglerLairTown_fd";
 	//Night
-	locations[n].models.night.charactersPatch = "sml_p";
-	locations[n].models.night.fonars = "sml_fn";
-	// Jump patch
-	Locations[n].models.day.jumpPatch = "sml_j";
-	Locations[n].models.night.jumpPatch = "sml_j";
+	locations[n].models.night.charactersPatch = "smugglerLairTown_patch";
+	locations[n].models.night.fonars = "smugglerLairTown_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "false";

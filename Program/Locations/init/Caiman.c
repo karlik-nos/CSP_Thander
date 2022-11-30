@@ -278,7 +278,7 @@ int LocationInitCaiman(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Caiman_ExitTown";
 	locations[n].id.label = "ExitTown";
-	locations[n].image = "loading\jonny_load\outside\smugglerLairExit.tga";
+	locations[n].image = "loading\jonny_load\outside\TownExitCaiman.tga";
 	//Town sack
 	locations[n].townsack = "Caiman";
 	//Sound
@@ -289,10 +289,10 @@ int LocationInitCaiman(int n)
 	locations[n].fastreload = "Caiman";
 	//Models
 	//Always
-	Locations[n].filespath.models = "locations\SmugglerLair\Exit";
-	Locations[n].models.always.smlexit = "smlexit";
-	Locations[n].models.always.locators = "smlexit_l";
-	Locations[n].models.always.grassPatch = "smlexit_g";
+	Locations[n].filespath.models = "locations\Town_QC\Exit";
+	Locations[n].models.always.qcexit = "qcexit";
+	Locations[n].models.always.locators = "qcexit_l";
+	Locations[n].models.always.grassPatch = "qcexit_g";
 	Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";
 	Locations[n].models.always.l1 = "plan_1";
 	Locations[n].models.always.l1.level = 9;
@@ -304,11 +304,11 @@ int LocationInitCaiman(int n)
 	Locations[n].models.always.l3.level = 7;
 	Locations[n].models.always.l3.tech = "DLightModel";
 	//Day
-	locations[n].models.day.charactersPatch = "smlexit_p";
-	locations[n].models.day.fonars = "smlexit_fd";
+	locations[n].models.day.charactersPatch = "qcexit_p";
+	locations[n].models.day.fonars = "qcexit_fd";
 	//Night
-	locations[n].models.night.charactersPatch = "smlexit_p";
-	locations[n].models.night.fonars = "smlexit_fn";
+	locations[n].models.night.charactersPatch = "qcexit_p";
+	locations[n].models.night.fonars = "qcexit_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "false";
@@ -353,10 +353,10 @@ int LocationInitCaiman(int n)
 	locations[n].islandId = "Caiman";
 	//Models
 	//Always
-	Locations[n].filespath.models = "locations\SmugglerLair\Town";
-	Locations[n].models.always.sml = "sml";
-	Locations[n].models.always.locators = "sml_l";
-	Locations[n].models.always.grassPatch = "sml_g";
+	Locations[n].filespath.models = "locations\Town_QC\Town";
+	Locations[n].models.always.QCtown = "QCtown";
+	Locations[n].models.always.locators = "QCtown_l";
+	Locations[n].models.always.grassPatch = "QCtown_g";
 	Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";
 	Locations[n].models.always.l1 = "plan_1";
 	Locations[n].models.always.l1.level = 9;
@@ -367,18 +367,15 @@ int LocationInitCaiman(int n)
 	Locations[n].models.always.l3 = "plan_3";
 	Locations[n].models.always.l3.level = 7;
 	Locations[n].models.always.l3.tech = "DLightModel";
-	Locations[n].models.always.l4 = "plan_4";
-	Locations[n].models.always.l4.level = 6;
-	Locations[n].models.always.l4.tech = "DLightModel";
 	//Day
-	locations[n].models.day.charactersPatch = "sml_p";
-	locations[n].models.day.fonars = "sml_fd";
+	locations[n].models.day.charactersPatch = "QCtown_p";
+	locations[n].models.day.fonars = "QCtown_fd";
 	//Night
-	locations[n].models.night.charactersPatch = "sml_p";
-	locations[n].models.night.fonars = "sml_fn";
+	locations[n].models.night.charactersPatch = "QCtown_p";
+	locations[n].models.night.fonars = "QCtown_fn";
 	// Jump patch
-	Locations[n].models.day.jumpPatch = "sml_j";
-	Locations[n].models.night.jumpPatch = "sml_j";
+	Locations[n].models.day.jumpPatch = "QCtown_j";
+	Locations[n].models.night.jumpPatch = "QCtown_j";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "false";
@@ -397,7 +394,7 @@ int LocationInitCaiman(int n)
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "House";
 
-	Locations[n].reload.l3.name = "reload6";
+	Locations[n].reload.l3.name = "reload10";
 	Locations[n].reload.l3.go = "Caiman_townhall";
 	Locations[n].reload.l3.emerge = "reload1";
 	Locations[n].reload.l3.autoreload = "0";
@@ -451,7 +448,7 @@ int LocationInitCaiman(int n)
 	locations[n].reload.l10.close_for_night = 1;
 	locations[n].reload.l10.disable = true;
 
-	locations[n].reload.l11.name = "reload10";
+	locations[n].reload.l11.name = "reload4";
 	locations[n].reload.l11.go = "Caiman_StoreHouse";
 	locations[n].reload.l11.emerge = "reload1";
 	locations[n].reload.l11.autoreload = "0";
@@ -633,7 +630,7 @@ int LocationInitCaiman(int n)
 	//Reload map
 	locations[n].reload.l1.name = "reload1";
 	locations[n].reload.l1.go = "Caiman_town";
-	locations[n].reload.l1.emerge = "reload10";
+	locations[n].reload.l1.emerge = "reload4";
 	locations[n].reload.l1.autoreload = "0";
 	locations[n].reload.l1.label = "Caiman";
 	n = n + 1;
@@ -673,7 +670,7 @@ int LocationInitCaiman(int n)
 	//Reload map
 	locations[n].reload.l1.name = "reload1";
 	locations[n].reload.l1.go = "Caiman_town";
-	locations[n].reload.l1.emerge = "reload6";
+	locations[n].reload.l1.emerge = "reload10";
 	locations[n].reload.l1.autoreload = "0";
 	locations[n].reload.l1.label = "Street";
 	LAi_LocationFightDisable(&locations[n], true);

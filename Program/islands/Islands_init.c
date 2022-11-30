@@ -2316,7 +2316,7 @@ void InitIslands()
 		Islands[n].reload_enable = true;
 		Islands[n].hidden = true;
 		Islands[n].colonyquantity = 0;
-		Islands[n].jungle.patch = "StLucia_jungles";
+		Islands[n].jungle.patch = "StLucia_jungle";
 		Islands[n].jungle.texture = "junglesprites";
 		Islands[n].jungle.scale = 12.5;
 		Islands[n].TexturePath = "StLucia";

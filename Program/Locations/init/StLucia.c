@@ -53,7 +53,7 @@ int LocationInitStLucia(int n)
 
 	locations[n].reload.l2.name = "boat";
 	locations[n].reload.l2.go = "StLucia";
-	locations[n].reload.l2.emerge = "reload_3";
+	locations[n].reload.l2.emerge = "reload_1";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
     locations[n].locators_radius.reload.boat = 9.0;
@@ -225,7 +225,7 @@ int LocationInitStLucia(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Ruins";
 	locations[n].id.label = "Ruins";
-	locations[n].image = "loading\jonny_load\outside\pirateFort_plz.tga";
+	locations[n].image = "loading\jonny_load\outside\Ruins.tga";
 	//Sound
 	locations[n].type = "questisland";
 	locations[n].islandId = "StLucia";
@@ -275,7 +275,7 @@ int LocationInitStLucia(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "dungeon_02";
 	locations[n].id.label = "dungeon";
-	locations[n].image = "loading\inside\DungeonVault2.tga";
+	locations[n].image = "loading\jonny_load\inside\DungeonVault2.tga";
 	//Sound
 	locations[n].type = "dungeon";
 	locations[n].islandId = "StLucia";
@@ -320,7 +320,7 @@ int LocationInitStLucia(int n)
 	locations[n].private1.items.potion4 = 3;
 	locations[n].private1.items.potion3 = 6;
 	locations[n].private1.items.jewelry10 = 1;
-	locations[n].private1.items.blade20 = 1;
+	//locations[n].private1.items.blade20 = 1;
 	
 	locations[n].private2.items.chest = 40;
 	
@@ -350,7 +350,7 @@ int LocationInitStLucia(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Shore66";
 	locations[n].id.label = "Shore66";
-	locations[n].image = "loading\jonny_load\shores\ShoreShip1.tga";
+	locations[n].image = "loading\jonny_load\shores\Shore11.tga";
 	locations[n].worldmap = "StLucia";
 	//Sound
 	locations[n].type = "seashore";
@@ -406,7 +406,7 @@ int LocationInitStLucia(int n)
 
 	locations[n].reload.l2.name = "boat";
 	locations[n].reload.l2.go = "StLucia";
-	locations[n].reload.l2.emerge = "reload_1";
+	locations[n].reload.l2.emerge = "reload_2";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
     locations[n].locators_radius.reload.boat = 9.0;
@@ -471,15 +471,10 @@ int LocationInitStLucia(int n)
 	
 	locations[n].private1.key = "key1";
 	locations[n].private1.key.delItem = true;
-	locations[n].private1.money = 100000;
 	locations[n].private1.items.topor_01 = 1;
-	locations[n].private1.items.talisman1 = 1;
-	locations[n].private1.items.pistol9 = 1;
-	locations[n].private1.items.sculma2 = 1;
-	locations[n].private1.items.coins = 666;
+	locations[n].private1.items.coins = 663;
 	locations[n].private1.items.keyMorgan = 1;
 	
-	locations[n].private2.items.map_maine_1 = 1;
 	locations[n].private2.items.potion3 = 7;
 	locations[n].private2.items.blade5 = 1;
 	
