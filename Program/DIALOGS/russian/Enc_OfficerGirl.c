@@ -269,7 +269,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "contract4":
-			dialog.text = "Вполне, капитан. Я согласен.";
+			dialog.text = "Вполне, капитан. Я соглас" + GetSexPhrase("ен.","сна.");
 			AddMoneyToCharacter(Pchar, -sti(NPChar.contractMoney));
 			SetCharacterPerk(NPChar, "EnergyPlus");
 			SetCharacterPerk(NPChar, "HPPlus");
