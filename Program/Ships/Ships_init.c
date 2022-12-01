@@ -414,10 +414,10 @@ void InitShips()
 	refShip.Capacity       				= 1500;
 	refShip.MaxCannonDiff				= 1;
 	refShip.CannonsQuantity				= 10;
-	refShip.rcannon 							= 5;
-	refShip.lcannon 							= 5;
+	refShip.rcannon 							= 4;
+	refShip.lcannon 							= 4;
 	refShip.fcannon 							= 0;
-	refShip.bcannon 							= 0;
+	refShip.bcannon 							= 2;
 	refShip.MaxCrew         				= 60;
 	refShip.MinCrew         				= 12;
 	refShip.SpeedRate				= 14.5;
@@ -426,7 +426,6 @@ void InitShips()
 	refShip.HP              				= 1200;
 	refShip.SP              				= 100;
 	refShip.MastMultiplier					= 1.6;
-	refship.EmblemedSails.normalTex = "ships\sail_Empress.tga";
 	refship.CanEncounter				= true;
 	refship.Type.Merchant				= true;
 	refship.Type.War					= false;
