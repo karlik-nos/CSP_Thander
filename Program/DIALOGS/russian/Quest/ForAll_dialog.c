@@ -1670,7 +1670,6 @@ void ProcessDialogEvent()
 				
 				DeleteAttribute(pchar, "showTimer");
 				ClearAllLogStrings();
-				Event("QuestDelayExit","sl", "", 0);
 				
 				AddMoneyToCharacter(pchar, sti(iMoney));
 				AddCharacterExpToSkill(pchar, "Leadership", 30);
@@ -1685,7 +1684,6 @@ void ProcessDialogEvent()
 				
 				DeleteAttribute(pchar, "showTimer");
 				ClearAllLogStrings();
-				Event("QuestDelayExit","sl", "", 0);
 			}
 		break;
 		
@@ -1695,6 +1693,7 @@ void ProcessDialogEvent()
 			LAi_CharacterDisableDialog(npchar);
 			LAi_SetCitizenType(npchar);
 			UnmarkCharacter(npchar);
+			DeleteAttribute(pchar, "StudentZachet");
 		break;
 		
 		case "SCQ_Proverka_Znani_VremyVishlo":
@@ -2048,7 +2047,6 @@ void ProcessDialogEvent()
 			link.l1.go = "SCQ_Prytki_Dengi_Final";
 			DeleteAttribute(pchar, "showTimer");
 			ClearAllLogStrings();
-			Event("QuestDelayExit","sl", "", 0);
 			InterfaceStates.Buttons.Save.enable = true;
 			
 			AddMoneyToCharacter(pchar, sti(iMoney));
@@ -2069,7 +2067,6 @@ void ProcessDialogEvent()
 			link.l1.go = "SCQ_Prytki_Trah_2";
 			DeleteAttribute(pchar, "showTimer");
 			ClearAllLogStrings();
-			Event("QuestDelayExit","sl", "", 0);
 			InterfaceStates.Buttons.Save.enable = true;
 		break;
 		
