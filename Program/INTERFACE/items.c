@@ -2409,7 +2409,7 @@ void ReEquipCharacter()
 	if (!checkattribute(xi_refCharacter, sSET)) return; //не было сохранения этого комплекта
 
 	string sTemp;
-	for (int q=0;q<10;q++)
+	for (int q=0;q<8;q++)
 	{
 	sTemp = sEType[q];
 		if(xi_refCharacter.(sSET).(sTemp) != GetCharacterEquipByGroup(xi_refCharacter, sTemp))//если другой предмет, то снимаем старый, одеваем сохранённый
@@ -2427,7 +2427,7 @@ void SaveEquipSet()
 	xi_refCharacter.(sSET) = 1; //помечаем, что в этом комплекте что-то сохранено
 	if (!checkattribute(xi_refCharacter, sSET + ".nameset")) xi_refCharacter.(sSET).nameset = "Комплект " + iEQUIP_SET;//в первый раз записываем "Комплект N"
 	string sTemp;
-	for (int q=0;q<10;q++)
+	for (int q=0;q<8;q++)
 	{
 	sTemp = sEType[q];
 	xi_refCharacter.(sSET).(sTemp) = GetCharacterEquipByGroup(xi_refCharacter, sTemp);

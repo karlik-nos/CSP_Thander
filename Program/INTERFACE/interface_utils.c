@@ -1,15 +1,15 @@
-string sEType[10] = {"blade","spyglass","cirass","BackPack","talisman","jewelry_indian_left","jewelry_indian_right","indian_center","idols_left","idols_right"};
+string sEType[8] = {"blade","cirass","talisman","jewelry_indian_left","jewelry_indian_right","indian_center","idols_left","idols_right"};
 int CheckItemInSets(ref _character, string sItemName)
 {
 	if (!checkattribute(_character, "selectedSet")) return 0; //у этого персонажа не было сохранено комплектов
 	int i, q;
 	string sSET, sTemp;
-	for(i=1;i<10;i++)
+	for(i=1;i<10;i++)//9 комплектов???
 	{
 		if (_character.selectedSet == i) continue;//текущий комплект уже скрыт в списке перемещения предметов
 		sSET = "Set" + i;
 		if (!checkattribute(_character, sSET)) continue; //нет комплекта
-		for (q=0;q<10;q++)
+		for (q=0;q<8;q++)
 		{
 			sTemp = sEType[q];
 			if(_character.(sSET).(sTemp) == sItemName && GetCharacterEquipByGroup(_character, sTemp) != sItemName) return i;
