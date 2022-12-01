@@ -136,7 +136,7 @@ void wdmCreateWorldMap()
 	if(iFlagAllWdm == 2) worldMap.nationFlag.width = 96;
 	else worldMap.nationFlag.width = 48;
  	worldMap.nationFlag.height = 48;
-	worldMap.nationFlag.texName = "WorldMap/Interfaces/WorldMapEnsigns" + iFlagAllWdm + ".tga";
+	worldMap.nationFlag.texture = "WorldMap/Interfaces/WorldMapEnsigns" + iFlagAllWdm + ".tga";
 	//#20200226-03
 	worldMap.outputRum = true;
 	worldMap.resizeRatio = fHtRatio;
