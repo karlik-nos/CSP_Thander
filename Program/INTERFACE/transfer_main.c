@@ -811,7 +811,7 @@ void OnShipScrollChange()
 	else
 	{  // не наш, значит убит или сдался
 		// Warship 09.07.09 Мэри Селест и (20.08.09) генер "Пираты на необитайке"
-		if(xi_refCharacter.id == "BS_Vein" || xi_refCharacter.id == "MaryCelesteCapitan" || xi_refCharacter.Id == "PiratesOnUninhabited_BadPirate" || (refCharacter != PChar) || CheckAttribute(refCharacter,"GenQuest.ShipSituation.Explosion") || xi_refCharacter.Id == "ShipWreck_0")
+		if(xi_refCharacter.id == "BS_Vein" || xi_refCharacter.id == "MaryCelesteCapitan" || xi_refCharacter.Id == "PiratesOnUninhabited_BadPirate" || (refCharacter.index != PChar.index) || CheckAttribute(refCharacter,"GenQuest.ShipSituation.Explosion") || xi_refCharacter.Id == "ShipWreck_0")
 		{
 			SetSelectable("CAPTAN_BUTTON", false);
 			SetSelectable("SWAP_BUTTON", false);
