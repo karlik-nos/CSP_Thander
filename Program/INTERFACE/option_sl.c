@@ -33,6 +33,7 @@ void PrepareDefaultOption(ref optref)
 	*/
 	optref.alwaysrun = true;
 	optref.video.grassquantity = 0;
+	optref.video.FlagAllWdm = 2;
 	optref.seadetails = 1.0;
 	//#20171223-01 Camera perspective option
     optref.perspdetails = 0.0;
@@ -74,6 +75,7 @@ void GetRealOptions(ref optref)
 	optref.cameramode.follow_on = !locCameraEnableSpecialMode;
 
 	optref.video.grassquantity = iGrassQuality;
+	optref.video.FlagAllWdm = iFlagAllWdm;
 	if( CheckAttribute(&InterfaceStates,"SeaDetails") ) {
 		optref.seadetails = stf(InterfaceStates.SeaDetails);
 	}
@@ -206,6 +208,18 @@ void GetRealOptions(ref optref)
 		optref.cameramode.AltIntIcons = sti(InterfaceStates.AltIntIcons);
 	} else {
 		optref.cameramode.AltIntIcons = true;
+	}
+	
+	if( CheckAttribute(&InterfaceStates,"ShowBoardMode") ) {
+		optref.cameramode.ShowBoardMode = sti(InterfaceStates.ShowBoardMode);
+	} else {
+		optref.cameramode.ShowBoardMode = true;
+	}
+	
+	if( CheckAttribute(&InterfaceStates,"CharVoice") ) {
+		optref.cameramode.CharVoice = sti(InterfaceStates.CharVoice);
+	} else {
+		optref.cameramode.CharVoice = true;
 	}
 
 	GetControlsOptions(optref);
@@ -385,6 +399,18 @@ void SetCurentOptions(ref optref)
 	} else {
 		InterfaceStates.AltIntIcons = false;
 	}
+	
+	if( CheckAttribute(optref,"cameramode.ShowBoardMode") ) {
+		InterfaceStates.ShowBoardMode = optref.cameramode.ShowBoardMode;
+	} else {
+		InterfaceStates.ShowBoardMode = false;
+	}
+	
+	if( CheckAttribute(optref,"cameramode.CharVoice") ) {
+		InterfaceStates.CharVoice = optref.cameramode.CharVoice;
+	} else {
+		InterfaceStates.CharVoice = false;
+	}
 
 
 	// mouse
@@ -423,6 +449,9 @@ void SetCurentOptions(ref optref)
 	if( CheckAttribute(optref,"video.grassquantity") ) {
 		iGrassQuality = sti(optref.video.grassquantity);
 	}
+	if( CheckAttribute(optref,"video.FlagAllWdm") ) {
+		iFlagAllWdm = sti(optref.video.FlagAllWdm);
+	}
 	if( CheckAttribute(optref,"seadetails") ) {
 		InterfaceStates.SeaDetails = stf(optref.seadetails);
 	}
@@ -458,18 +487,18 @@ void SetCurentOptions(ref optref)
 void ReadSavedOptions(ref gopt)
 {
 	string sFileName = "options";
-	if( CheckAttribute(&PlayerProfile,"name") && PlayerProfile.name!="" ) {
+	/*if( CheckAttribute(&PlayerProfile,"name") && PlayerProfile.name!="" ) {
 		sFileName = "SAVE\" + PlayerProfile.name+"\options\options";
-	}
+	}*/
 	SendMessage(&GameInterface, "lsa", MSG_INTERFACE_LOADOPTIONS, sFileName, gopt);
 }
 
 void SaveSavedOptions(ref gopt)
 {
 	string sFileName = "options";
-	if( CheckAttribute(&PlayerProfile,"name") && PlayerProfile.name!="" ) {
+	/* if( CheckAttribute(&PlayerProfile,"name") && PlayerProfile.name!="" ) {
 		sFileName = "SAVE\" + PlayerProfile.name+"\options\options";
-	}
+	} */
 	SendMessage(&GameInterface, "lsa", MSG_INTERFACE_SAVEOPTIONS, sFileName, gopt);
 }
 

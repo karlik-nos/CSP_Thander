@@ -77,6 +77,8 @@ void CharactersInit()
 	LoadSegment(sPath + "init\Beliz.c");				ReloadProgressUpdate();
 
 	LoadSegment(sPath + "init\SantaCatalina.c");				ReloadProgressUpdate();
+	
+	LoadSegment(sPath + "init\Bahames.c");				ReloadProgressUpdate();
 
 	LoadSegment(sPath + "init\StoryCharacters.c");		ReloadProgressUpdate();
 
@@ -118,6 +120,7 @@ void CharactersInit()
 	UnloadSegment(sPath + "init\Cumana.c");
 	UnloadSegment(sPath + "init\Beliz.c");
 	UnloadSegment(sPath + "init\SantaCatalina.c");
+	UnloadSegment(sPath + "init\Bahames.c");
 	UnloadSegment(sPath + "init\StoryCharacters.c");
 	UnloadSegment(sPath + "init\Caiman.c");
 	UnloadSegment(sPath + "init\Other.c");
@@ -145,6 +148,80 @@ bool CreateCharacter(ref character)
 		fCurCharge = stf(character.chr_ai.charge);
 	}
 
+	CheckForCirass(character);
+
+	ExecuteCharacterEquip(character);
+	if( CheckAttribute(character,"chr_ai.charge") &&
+		fCurCharge<stf(character.chr_ai.charge) ) {
+			character.chr_ai.charge = fCurCharge;
+	}
+
+	//Set fight level
+	if(!CheckAttribute(&character, "sex"))
+	{
+		character.sex = "man";
+	}
+	//if(character.sex == "man")
+	//{
+	float fgtlevel = LAi_GetCharacterFightLevel(character); // boal fix
+
+	SendMessage(character, "lf", MSG_CHARACTER_SETFTGLEVEL, fgtlevel);
+	//Set character sex
+	SendMessage(character, "lsl", MSG_CHARACTER_EX_MSG, "SetSex", character.sex == "man");
+	//
+	AddCharacterLocatorGroup(character, "goto");
+	BeginChangeCharacterActions(character);
+	SetDefaultFight(character);
+	EndChangeCharacterActions(character);
+	//}
+	if (CheckAttribute(character,"quest.questflag.model"))
+	{
+		if (character.quest.questflag.model != "exclamationmarkY")
+		{
+			switch (character.quest.questflag.model)
+			{
+				case "FX_Blood":
+					if (!CheckAttribute(character,"chr_ai.blooding"))
+					{
+						character.quest.questflag.model = "";
+						character.quest.questflag.technique = "";
+					}
+				break;
+				case "FX_StanS":
+					if (!CheckAttribute(character,"chr_ai.Swift"))
+					{
+						character.quest.questflag.model = "";
+						character.quest.questflag.technique = "";
+					}
+				break;
+				case "FX_StanH":
+					if (!CheckAttribute(character,"chr_ai.understun"))
+					{
+						character.quest.questflag.model = "";
+						character.quest.questflag.technique = "";
+					}
+				break;
+				case "FX_Travma":
+					if (!CheckAttribute(character,"chr_ai.Trauma"))
+					{
+						character.quest.questflag.model = "";
+						character.quest.questflag.technique = "";
+					}
+				break;
+			}
+		}
+	}
+
+	/*if (CheckAttribute(character, "HeadAccessory") && IsEquipCharacterByItem(character, character.HeadAccessory))
+	{
+		SendMessage(character,"lsss",MSG_CHARACTER_SETHEAD,character.model, character.HeadAccessory, "pscripts\HeadGear.ini");
+	}*/
+
+	return true;
+}
+
+void CheckForCirass(ref character)
+{
 	if (CheckAttribute(character, "HeroModel") && !CheckAttribute(character,"ismushketer") && character.model != "protocusto" && !CheckAttribute(character,"Cirgnore")) ////добавил проверку на атрибут, блокирующий смену модели кирасной логикой
 	{
 		int VisCir = sti(InterfaceStates.VISUAL_CIRASS);
@@ -238,75 +315,6 @@ bool CreateCharacter(ref character)
 			}
 		}
 	}
-
-	ExecuteCharacterEquip(character);
-	if( CheckAttribute(character,"chr_ai.charge") &&
-		fCurCharge<stf(character.chr_ai.charge) ) {
-			character.chr_ai.charge = fCurCharge;
-	}
-
-	//Set fight level
-	if(!CheckAttribute(&character, "sex"))
-	{
-		character.sex = "man";
-	}
-	//if(character.sex == "man")
-	//{
-	float fgtlevel = LAi_GetCharacterFightLevel(character); // boal fix
-
-	SendMessage(character, "lf", MSG_CHARACTER_SETFTGLEVEL, fgtlevel);
-	//Set character sex
-	SendMessage(character, "lsl", MSG_CHARACTER_EX_MSG, "SetSex", character.sex == "man");
-	//
-	AddCharacterLocatorGroup(character, "goto");
-	BeginChangeCharacterActions(character);
-	SetDefaultFight(character);
-	EndChangeCharacterActions(character);
-	//}
-	if (CheckAttribute(character,"quest.questflag.model"))
-	{
-		if (character.quest.questflag.model != "exclamationmarkY")
-		{
-			switch (character.quest.questflag.model)
-			{
-				case "FX_Blood":
-					if (!CheckAttribute(character,"chr_ai.blooding"))
-					{
-						character.quest.questflag.model = "";
-						character.quest.questflag.technique = "";
-					}
-				break;
-				case "FX_StanS":
-					if (!CheckAttribute(character,"chr_ai.Swift"))
-					{
-						character.quest.questflag.model = "";
-						character.quest.questflag.technique = "";
-					}
-				break;
-				case "FX_StanH":
-					if (!CheckAttribute(character,"chr_ai.understun"))
-					{
-						character.quest.questflag.model = "";
-						character.quest.questflag.technique = "";
-					}
-				break;
-				case "FX_Travma":
-					if (!CheckAttribute(character,"chr_ai.Trauma"))
-					{
-						character.quest.questflag.model = "";
-						character.quest.questflag.technique = "";
-					}
-				break;
-			}
-		}
-	}
-
-	/*if (CheckAttribute(character, "HeadAccessory") && IsEquipCharacterByItem(character, character.HeadAccessory))
-	{
-		SendMessage(character,"lsss",MSG_CHARACTER_SETHEAD,character.model, character.HeadAccessory, "pscripts\HeadGear.ini");
-	}*/
-
-	return true;
 }
 
 bool DeleteCharacter(ref character)

@@ -160,7 +160,7 @@ void GenerateMaps(aref ch, int iProbability1, int iProbability2)
 	if(rand(iProbability2) == 1 && !CheckMainHeroMap("map_maine_1")) AddItems(ch, "map_maine_1", 1);
 	if(rand(iProbability2) == 1 && !CheckMainHeroMap("map_maine_2")) AddItems(ch, "map_maine_2", 1);
 	if(rand(iProbability1) == 1 && !CheckMainHeroMap("map_panama")) AddItems(ch, "map_panama", 1);
-	if(rand(iProbability1) == 1 && !CheckMainHeroMap("map_maracaibo")) AddItems(ch, "map_maracaibo", 1);
+	if(rand(iProbability1) == 1 && !CheckMainHeroMap("map_Bahames")) AddItems(ch, "map_Bahames", 1);
 	if(rand(iProbability1) == 1 && !CheckMainHeroMap("map_cumana")) AddItems(ch, "map_cumana", 1);
 }
 
@@ -547,6 +547,8 @@ void GiveItemToTrader(aref ch)
 	if(irand == 1) AddItems(ch, "CompCraft_Copper", Rand(8) + 1);	// Медь
 	irand = rand(6);
 	if(irand == 1) AddItems(ch, "CompCraft_Sulfur", Rand(5) + 2);	// Сера
+	irand = rand(2);
+	if(irand == 1) AddItems(ch, "CompCraft_Parchment", Rand(5) + 5); // Пергамент //Gregg - добавил бумагу лоточникам, а то реально задолбишься её фармить
 	irand = rand(4);
 	if(irand == 1  && rank >=5) AddItems(ch, "CompCraft_Grindstone", Rand(7) + 3);	// Оселок
 	irand = rand(9);
@@ -1612,30 +1614,7 @@ int NPC_GenerateCharacter(string _id, string _model, string _sex, string _ani, i
      	DeleteAttribute(ch, "LifeDay");
 	}
 	SetFoodToCharacter(ch, 5, 50);
-	if (IsCharacterPerkOn(ch, "Ciras") && rand(4)==0)
-	{
-		string cirnum;
-		switch (rand(4))
-		{
-			case 0: cirnum = "cirass1"; break;
-			case 1: cirnum = "cirass1"; break;
-			case 2: cirnum = "cirass2"; break;
-			case 3: cirnum = "cirass3"; break;
-			case 4: cirnum = "cirass4"; break;
-		}
-		if (CheckAttribute(ch, "HeroModel")) // все, у кого есть что одеть
-        {
-			switch (cirnum)
-			{
-				case "cirass1": ch.model = GetSubStringByNum(ch.HeroModel, 1); break;
-				case "cirass2": ch.model = GetSubStringByNum(ch.HeroModel, 2); break;
-				case "cirass3": ch.model = GetSubStringByNum(ch.HeroModel, 3); break;
-				case "cirass4": ch.model = GetSubStringByNum(ch.HeroModel, 4); break;
-			}
-		}
-		ch.cirassId = Items_FindItemIdx(cirnum);
-		Log_TestInfo("Персонаж "+ch.name+" получил кирасу "+cirnum);
-	}
+	if (IsCharacterPerkOn(ch, "Ciras") && rand(4)==0) SetFantomWearCirass(ch);
 
 	return  iChar;
 }
@@ -1801,6 +1780,13 @@ string PerksChars()
 
 void SetSpeciality(ref chref, string perkName)
 {
+	if (IsCharacterPerkOn(chref, "Adventurer")) return; //уже есть характер, новый не ставим
+	if (IsCharacterPerkOn(chref, "SeaWolf")) return;
+	if (IsCharacterPerkOn(chref, "Agent")) return;
+	if (IsCharacterPerkOn(chref, "Grunt")) return;
+	if (IsCharacterPerkOn(chref, "Fencer")) return;
+	if (IsCharacterPerkOn(chref, "Trader")) return;
+	if (IsCharacterPerkOn(chref, "Buccaneer")) return;
 	chref.perks.list.(perkName) = true;
 }
 
@@ -1882,6 +1868,8 @@ int SetCharToPrisoner(ref refEnemyCharacter)
 	    LAi_NoRebirthEnable(rChTo);
 
 	    SetCharacterRemovable(rChTo, true);
+		
+		FaceMaker(rChTo);
 
 	    AddPassenger(refMyCharacter,rChTo,true);
     }

@@ -79,9 +79,24 @@ void InitInterface_RRS(string iniName, ref rLeftChar, ref rRightChar, string _ty
 
 		SetShipRemovable(xi_refCharacter, true);
 		SetCharacterRemovable(xi_refCharacter, true); // разрешить обмен после абордажа
-
-		DeleteParticles();
-		CreateParticleEntity();
+	}
+	
+	bool bOk = !bSeaActive && LAi_grp_alarmactive;
+	if (bTransferMode && !bDisableMapEnter && !bOk && !chrDisableReloadToLocation && !bIsDriftCap)
+	{
+		FillShipsScroll();
+		for(int i= 1; i< COMPANION_MAX; i++)
+		{
+			int cn = GetCompanionIndex(pchar, i);
+			if(cn!= -1)
+			{
+				if (sti(xi_refCharacter.index) == cn) 
+				{
+					GameInterface.SHIPS_SCROLL.current = (i-1); 
+					break;
+				}
+			}
+		}
 	}
 
 	SendMessage(&GameInterface,"ls",MSG_INTERFACE_INIT,iniName);
@@ -235,10 +250,8 @@ void InitInterface_RRS(string iniName, ref rLeftChar, ref rRightChar, string _ty
 		RealShips[stolenShip].Stolen = true;
 	}
 
-	bool bOk = !bSeaActive && LAi_grp_alarmactive;
 	if (bTransferMode && !bDisableMapEnter && !bOk && !chrDisableReloadToLocation && !bIsDriftCap)
 	{
-		FillShipsScroll();
 		bShipScrollEnabled = true;
 		SetCurrentNode("SHIPS_SCROLL");
 	}
@@ -798,7 +811,7 @@ void OnShipScrollChange()
 	else
 	{  // не наш, значит убит или сдался
 		// Warship 09.07.09 Мэри Селест и (20.08.09) генер "Пираты на необитайке"
-		if(xi_refCharacter.id == "BS_Vein" || xi_refCharacter.id == "MaryCelesteCapitan" || xi_refCharacter.Id == "PiratesOnUninhabited_BadPirate" || (refCharacter != PChar) || CheckAttribute(refCharacter,"GenQuest.ShipSituation.Explosion") || xi_refCharacter.Id == "ShipWreck_0")
+		if(xi_refCharacter.id == "BS_Vein" || xi_refCharacter.id == "MaryCelesteCapitan" || xi_refCharacter.Id == "PiratesOnUninhabited_BadPirate" || (refCharacter.index != PChar.index) || CheckAttribute(refCharacter,"GenQuest.ShipSituation.Explosion") || xi_refCharacter.Id == "ShipWreck_0")
 		{
 			SetSelectable("CAPTAN_BUTTON", false);
 			SetSelectable("SWAP_BUTTON", false);
@@ -1774,6 +1787,7 @@ void SwapProcess()
 		FillScrollImageWithCompanions("SHIPS_SCROLL", COMPANION_MAX);
 		SeaAI_SwapShipAfterAbordage(refCharacter, xi_refCharacter);
 	}
+	BI_UpdateCannons();
 }
 
 //////////////

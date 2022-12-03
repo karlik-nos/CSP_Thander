@@ -1,5 +1,5 @@
 float fNewPos;
-#define MAX_LINE         106
+#define MAX_LINE         123
 
 string STR_TEXT[MAX_LINE] = {
 "",
@@ -17,7 +17,7 @@ string STR_TEXT[MAX_LINE] = {
 "",
 "",
 "",
-"Создатели модификации",
+"Разработчики проекта",
 "",
 "LEOPARD's team",
 "Corsairs Ship Pack: OpenSource Edition",
@@ -26,7 +26,7 @@ string STR_TEXT[MAX_LINE] = {
 "",
 "",
 "",
-"Основатель мода",
+"Основатель аддона",
 "LEOPARD",
 "",
 "Кодеры",
@@ -39,6 +39,7 @@ string STR_TEXT[MAX_LINE] = {
 "Arty",
 "Bestreducer",
 "annoyer",
+"Terra",
 "",
 "",
 "",
@@ -50,18 +51,33 @@ string STR_TEXT[MAX_LINE] = {
 "Lipsar",
 "annoyer",
 "",
+"",
+"",
+"Моделирование кораблей и локаций",
+"Noctus",
+"Nikk",
+"",
+"",
+"",
 "Тестирование",
 "LEOPARD",
 "Gregg",
 "Googman",
 "Qwerry, St.",
-"Shaharan",
 "BlackThorn",
 "Lipsar",
 "Sinistra",
 "Arty",
 "Bestreducer",
 "annoyer",
+"Terra",
+"Noctus",
+"Nikk",
+"",
+"",
+"Переиздание старых плагинов для моддинга и их усовершенствование",
+"под современные программы для Blender'а, а также многих мелких программ",
+"Arty aka Artes999",
 "",
 "",
 "При создании модификации были",
@@ -77,7 +93,7 @@ string STR_TEXT[MAX_LINE] = {
 "",
 "Код и ресурсы из Корсары: New abilities 0.4.0",
 "",
-"Код и ресурсы из Gentelmen of Fortune: Eras II",
+"Код и ресурсы из Gentlemen of Fortune: Eras II",
 "",
 "Ресурсы с сайта 'Гавань Корсаров'",
 "",
@@ -89,12 +105,10 @@ string STR_TEXT[MAX_LINE] = {
 "Ерилейн за его уникального героя 'Темный Странник' и за помощь по мелочам",
 "Konstrush за его описание для героев и за сочный, крутой HUD",
 "Etienne и Narve за шикарных персонажей из Чёрныйх парусов и не только",
-"karlik-nos за моделирование многих вещей и за город Мариго",
 "johnny88 за классный худ и переделку всех портретов",
 "johnny88 а также за кучу переделок по графике",
 "Kormach за переделку множества персонажей",
-"EvgAnt за шикарную озвучку боссов-нежить",
-"Noctus за шикарную переделку половины всех кораблей",
+"EvgAnat за шикарную озвучку боссов-нежить и за уникальные механики",
 "Shanks за предоставление качественных кораблей",
 "",
 "",
@@ -103,10 +117,12 @@ string STR_TEXT[MAX_LINE] = {
 "Zik",
 "crem_soda",
 "Krah_an_Krait",
+"Shaharan",
 "",
 "",
-"Особая благодарность всем раазработчикам движка",
-"OpenSource, а также нашему главному штурману - kb31",
+"Особая благодарность всем разработчикам движка",
+"OpenSource, а также нашему главному штурману",
+"kb31",
 "Без него мы вряд ли бы увидели развитие проекта!",
 };
 
@@ -151,13 +167,6 @@ string STR_COLOR[MAX_LINE] = {
 "",
 "",
 "",
-"yellow",
-"",
-"",
-"",
-"",
-"",
-"",
 "",
 "yellow",
 "",
@@ -169,8 +178,31 @@ string STR_COLOR[MAX_LINE] = {
 "",
 "",
 "",
+"yellow",
 "",
 "",
+"",
+"",
+"",
+"yellow",
+"",
+"",
+"",
+"",
+"",
+"",
+"",
+"",
+"",
+"",
+"",
+"",
+"",
+"",
+"",
+"yellow",
+"yellow",
+"violet",
 "",
 "",
 "blue",
@@ -205,8 +237,6 @@ string STR_COLOR[MAX_LINE] = {
 "",
 "",
 "",
-"",
-"",
 "yellow",
 "",
 "",
@@ -214,9 +244,11 @@ string STR_COLOR[MAX_LINE] = {
 "",
 "",
 "",
+"",
 "yellow",
 "yellow",
-"red",
+"violet",
+"blue",
 };
 
 
@@ -249,6 +281,9 @@ void InitInterface(string iniName)
 				break;
 				case "blue":
 					SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "INFO_TEXT", 8, i, argb(255,0,255,255));
+				break;
+				case "violet":
+					SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, "INFO_TEXT", 8, i, argb(255,255, 20, 147));
 				break;
 			}
 		}
@@ -294,6 +329,6 @@ void MoveText()
 	{
 		SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"INFO_TEXT",2, fNewPos);
 		PostEvent("My_MoveText", 30);
-		fNewPos = fNewPos + 0.0002;
+		fNewPos = fNewPos + 0.0003;
 	}
 }

@@ -234,7 +234,7 @@ void IReadVariableAfterInit()
 	}
 	SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"FXMARK_CHECKBOX", 2, 1, nEnabledFXMarks );
 
-	int nEnabledCMControls = 1;
+	int nEnabledCMControls = 0;
 	if( CheckAttribute(&InterfaceStates,"EnabledCMControls") ) {
 		nEnabledCMControls = sti(InterfaceStates.EnabledCMControls);
 	}
@@ -298,6 +298,12 @@ void IReadVariableAfterInit()
 		nShowBoardMode = sti(InterfaceStates.ShowBoardMode);
 	}
 	SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"BOARD_MODE_CHECKBOX", 2, 1, nShowBoardMode );
+	
+	int nCharVoice = 0;
+	if( CheckAttribute(&InterfaceStates,"CharVoice") ) {
+		nCharVoice = sti(InterfaceStates.CharVoice);
+	}
+	SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"CHAR_VOICE_CHECKBOX", 2, 1, nCharVoice );
 
 	int nDeadBoxText = 0;
 	if( CheckAttribute(&InterfaceStates,"DeadBoxText") ) {
@@ -330,7 +336,7 @@ void IReadVariableAfterInit()
 	SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"ALT_INT_ICONS_CHECKBOX", 2, 1, nAltIntIcons );
 
 
-	if(bBoardMode)
+	/*if(bBoardMode)
 	{
 		CheckButton_SetState("BOARD_MODE_CHECKBOX", 1, true);
 	}
@@ -344,7 +350,7 @@ void IReadVariableAfterInit()
 	{
 		nCharVoice = bCharVoice;
 	}
-	SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"CHAR_VOICE_CHECKBOX", 2, 1, nCharVoice );
+	SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"CHAR_VOICE_CHECKBOX", 2, 1, nCharVoice );*/
 
 }
 
@@ -589,19 +595,26 @@ void procCheckBoxChange()
 		}
 	}
 
- 	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "BOARD_MODE_CHECKBOX", 3, 1))
+ 	/*if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "BOARD_MODE_CHECKBOX", 3, 1))
 	{
 		bBoardMode = true;
 	}
 	else
 	{
 		bBoardMode = false;
+	}*/
+	
+	if( sNodName == "BOARD_MODE_CHECKBOX")
+	{
+		{ // Show battle mode border
+			InterfaceStates.ShowBoardMode = bBtnState;
+		}
 	}
 
 	if( sNodName == "CHAR_VOICE_CHECKBOX")
 	{
 		{
-			bCharVoice = bBtnState;
+			InterfaceStates.CharVoice = bBtnState;
 		}
 	}
 
@@ -1230,6 +1243,10 @@ bool DoMapToOtherKey(int keyIdx,int stickUp)
 
 	makearef(arControlGroup,objControlsState.keygroups.(groupName));
 	makearef(arKeyRoot,objControlsState.key_codes);
+	if (keyIdx >= GetAttributesNum(arKeyRoot)) {
+		trace("ERROR: DoMapToOtherKey keyIdx more than arKeyRoot length")
+		return false;
+	}
 	arKey = GetAttributeN(arKeyRoot,keyIdx);
 	keyCode = sti(GetAttributeValue(arKey));
 
@@ -1442,6 +1459,7 @@ void ShowInfo()
 		case "ALT_GUN_SOUNDS_CHECKBOX":
 			sHeader = XI_ConvertString("AltSoundsGun");
 			sText1 = XI_ConvertString("AltSoundsGun_descr");
+            PlayVoice("CSR\GUNSFIRE_ALT\Fort_cannon_0"+rand(5)+".wav");
 		break;
 
 		case "FLAGALLWDM_CHECKBOX":

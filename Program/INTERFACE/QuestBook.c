@@ -490,6 +490,10 @@ void QuestTopChange()
 void SetQTextShow(aref pA,int qnum)
 {
 	// boal Покраска, выбрали 22.06.07 -->
+	if (qnum >= GetAttributesNum(pA)) {
+		trace("ERROR: SetQTextShow qnum more than pA length")
+		return;
+	}
 	aref arTopic = GetAttributeN(pA, qnum);
 	DeleteQuestHeaderColor(GetAttributeName(arTopic));
 	// boal <--
@@ -1215,7 +1219,7 @@ void SetTableRowByAchievement(string ach_id, int level)
 		if(ach_id == "Nation_quest_E" || ach_id == "Nation_quest_F" || ach_id == "Nation_quest_H" || ach_id == "Nation_quest_S" || ach_id == "Nation_quest_P" || ach_id == "Isabella_quest" || ach_id == "LSC_quest" || ach_id == "Teno_quest" || ach_id == "Killbeggars_quest"
 		|| ach_id == "Ghostship_quest" || ach_id == "Bluebird_quest" || ach_id == "Berglarsgang_quest" || ach_id == "Mummydust_quest" || ach_id == "Enchantcity_quest"
 		|| ach_id == "ships" || ach_id == "bank_money" || ach_id == "CapBladLine" || ach_id == "WhisperLine" || ach_id == "AchShipSearch" || ach_id == "AchOrion" || ach_id == "AchRabotorg" || ach_id == "AchKondotier"
-		|| ach_id == "AchTich" || ach_id == "AchRagnar" || ach_id == "AchSalazar" || ach_id == "AchKaskos" || ach_id == "AchUmSamil" || ach_id == "AchMapMaker")
+		|| ach_id == "AchTich" || ach_id == "AchRagnar" || ach_id == "AchSalazar" || ach_id == "AchKaskos" || ach_id == "AchUmSamil" || ach_id == "AchDozor" || ach_id == "AchMapMaker")
 		{
 			// GameInterface.TABLE_ACHIEVEMENTS.(row).td1.str = "1 ур.";
 			GameInterface.TABLE_ACHIEVEMENTS.(row).td1.str = "1";
@@ -1438,7 +1442,7 @@ void SetTableRowByAchievement(string ach_id, int level)
 
 		if(ach_id == "Nation_quest_E" || ach_id == "Nation_quest_F" || ach_id == "Nation_quest_H" || ach_id == "Nation_quest_S" || ach_id == "Nation_quest_P" || ach_id == "Isabella_quest" || ach_id == "LSC_quest" || ach_id == "Teno_quest" || ach_id == "Killbeggars_quest"
 		|| ach_id == "Ghostship_quest" || ach_id == "Bluebird_quest" || ach_id == "Berglarsgang_quest" || ach_id == "Mummydust_quest" || ach_id == "Enchantcity_quest" || ach_id == "CapBladLine" || ach_id == "WhisperLine" || ach_id == "AchOrion" || ach_id == "AchRabotorg" || ach_id == "AchKondotier"
-		|| ach_id == "AchTich" || ach_id == "AchRagnar" || ach_id == "AchSalazar" || ach_id == "AchKaskos" || ach_id == "AchUmSamil")
+		|| ach_id == "AchTich" || ach_id == "AchRagnar" || ach_id == "AchSalazar" || ach_id == "AchKaskos" || ach_id == "AchUmSamil" || ach_id == "AchDozor")
 		{
 			GameInterface.TABLE_ACHIEVEMENTS.(row).td4.str = "Не завершено...";
 		}

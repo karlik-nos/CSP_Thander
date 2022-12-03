@@ -114,7 +114,7 @@ void Duel_Move_Opponent2Place(string qName)
 	attrName = "locators." + sTemp;
 	sld = &Locations[FindLocation(pchar.questTemp.duel.place)];
 	makearef(arAll, sld.(attrName));
-	attrName = GetAttributeName(GetAttributeN(arAll, rand(0)));
+	attrName = GetAttributeName(GetAttributeN(arAll, 0));
 	ChangeCharacterAddressGroup(npchar, pchar.questTemp.duel.place, sTemp, attrName);
 	//прерывание на попадание в локатор
 	pchar.quest.Duel_Talk_Off_Town.win_condition.l1        = "locator";

@@ -371,7 +371,9 @@ void Sea_LandLoad()
 		DeleteAttribute(pchar, "CheckStateOk"); // проверка протектором
 		Group_FreeAllDead();
 	}
-
+	
+	PerkLoad(true);
+	
 	if (sborCancelledByPatent)
 	{
 		Log_Info("Пропуск в порт колонии бесплатен благодаря патенту.");
@@ -533,6 +535,7 @@ void Sea_MapLoad()
 	SeaMapLoadZ = stf(pchar.Ship.Pos.z);
 	SeaMapLoadAY = stf(pchar.Ship.Ang.y);
 	CheckWoundedOfficers();
+	PerkLoad(true);
 }
 
 // нигде не пользуетя, может глючить для абордажа
@@ -1102,9 +1105,12 @@ void SeaLogin(ref Login)
 
 				// add fantom
 				Group_AddCharacter(sGName, rFantom.id);
+			}
 
+			for (j = 0; j < iNumFantomShips; j++)
+			{
 				// add to sea
-				Ship_Add2Sea(iFantomIndex, 0, rEncounter.Type);
+				Ship_Add2Sea(FANTOM_CHARACTERS + iNumFantoms - iNumFantomShips + j, 0, rEncounter.Type);
 			}
 		}
 	}
@@ -1708,7 +1714,7 @@ void ReconnectShips()
         }
 	}*/
 }
-
+				    
 #event_handler("CalculateGroupShipPos", "CalculateGroupShipPos")
 ref CalculateGroupShipPos()
 {
@@ -1716,8 +1722,9 @@ ref CalculateGroupShipPos()
 	float centerPosX = GetEventData();
 	float rotation = GetEventData();
 	float centerPosZ = GetEventData();
-	int shipCount = GetCompanionQuantity(PChar);
-
+	aref aShipChar = GetEventData();
+	//int shipCount = GetCompanionQuantity(PChar);
+	int shipCount = Group_GetLiveCharactersNum(aShipChar.SeaAI.Group.Name);
 	float distanceBetweenShips = 200.0;
 
 	float result[3];
@@ -1725,13 +1732,14 @@ ref CalculateGroupShipPos()
 	result[1] = rotation;
 	result[2] = centerPosZ;
 
-	if (shipIndex == 0)
+//TO DO не забыть проверить логи и построение, если у группы не назначен командующий
+//TO DO сделать три колонны, если кол-во больше 7 - проверить и Золотой флот, чтоб галеоны в центре строя были
+//TO DO сделать расстояние между кораблей от их базовых размеров???
+
+	if (CheckAttribute(aShipChar,"Do180Turn") && aShipChar.Do180Turn == true)
 	{
-		if (CheckAttribute(pchar,"Do180Turn") && pchar.Do180Turn == true)
-		{
-			result[1] = rotation-180.0;
-			pchar.Do180Turn = false;
-		}
+		result[1] = rotation-180.0;
+		aShipChar.Do180Turn = false;
 		return &result;
 	}
 

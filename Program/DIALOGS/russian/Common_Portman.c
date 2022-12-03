@@ -1,4 +1,5 @@
 #include "DIALOGS\russian\Rumours\Common_rumours.c"  //homo 25/06/06
+string sProf;
 
 void ProcessDialogEvent()
 {
@@ -1398,10 +1399,7 @@ void ProcessDialogEvent()
 			AddQuestRecordEx(sTitle, "Portmans_SeekShip", "6");
 			CloseQuestHeader(sTitle);
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 
 			DeleteAttribute(npchar, "quest.PortmansSeekShip");
 			npchar.quest = ""; //освобождаем личный флаг квеста для портмана
@@ -1431,11 +1429,11 @@ void ProcessDialogEvent()
 				license_expires = rand(2);
 		break;
 		case "CapitainList":
-			if (sti(npchar.quest.qty) > 0)
+			if (GetAttributesNum(arCapBase) > 0)
 			{
 				dialog.text = "Есть отметившиеся капитаны. Кто конкретно вас интересует?";
 				makearef(arCapBase, npchar.quest.capitainsList);
-				for (i=0; i<sti(npchar.quest.qty); i++)
+				for (i=0; i<GetAttributesNum(arCapBase); i++)
 				{
 					arCapLocal = GetAttributeN(arCapBase, i);
 					sCapitainId = GetAttributeName(arCapLocal);
@@ -1454,6 +1452,12 @@ void ProcessDialogEvent()
 		break;
 		case "CapList_l0":
 			makearef(arCapBase, npchar.quest.capitainsList);
+			if (GetAttributesNum(arCapBase) <= 0) {
+				trace("ERROR: capitainsList is empty")
+				link.l2 = "Все, капитаны меня более не интересуют.";
+				link.l2.go = "node_2";
+				break;
+			}
 			arCapLocal = GetAttributeN(arCapBase,  0);
 			sCapitainId = GetAttributeName(arCapLocal);
 			sld = characterFromId(sCapitainId);
@@ -1480,6 +1484,12 @@ void ProcessDialogEvent()
 		break;
 		case "CapList_l1":
 			makearef(arCapBase, npchar.quest.capitainsList);
+			if (GetAttributesNum(arCapBase) <= 1) {
+				trace("ERROR: capitainsList is empty")
+				link.l2 = "Все, капитаны меня более не интересуют.";
+				link.l2.go = "node_2";
+				break;
+			}
 			arCapLocal = GetAttributeN(arCapBase,  1);
 			sCapitainId = GetAttributeName(arCapLocal);
 			sld = characterFromId(sCapitainId);
@@ -1506,6 +1516,12 @@ void ProcessDialogEvent()
 		break;
 		case "CapList_l2":
 			makearef(arCapBase, npchar.quest.capitainsList);
+			if (GetAttributesNum(arCapBase) <= 2) {
+				trace("ERROR: capitainsList is empty")
+				link.l2 = "Все, капитаны меня более не интересуют.";
+				link.l2.go = "node_2";
+				break;
+			}
 			arCapLocal = GetAttributeN(arCapBase,  2);
 			sCapitainId = GetAttributeName(arCapLocal);
 			sld = characterFromId(sCapitainId);
@@ -1532,6 +1548,12 @@ void ProcessDialogEvent()
 		break;
 		case "CapList_l3":
 			makearef(arCapBase, npchar.quest.capitainsList);
+			if (GetAttributesNum(arCapBase) <= 3) {
+				trace("ERROR: capitainsList is empty")
+				link.l2 = "Все, капитаны меня более не интересуют.";
+				link.l2.go = "node_2";
+				break;
+			}
 			arCapLocal = GetAttributeN(arCapBase,  3);
 			sCapitainId = GetAttributeName(arCapLocal);
 			sld = characterFromId(sCapitainId);
@@ -1558,6 +1580,12 @@ void ProcessDialogEvent()
 		break;
 		case "CapList_l4":
 			makearef(arCapBase, npchar.quest.capitainsList);
+			if (GetAttributesNum(arCapBase) <= 4) {
+				trace("ERROR: capitainsList is empty")
+				link.l2 = "Все, капитаны меня более не интересуют.";
+				link.l2.go = "node_2";
+				break;
+			}
 			arCapLocal = GetAttributeN(arCapBase,  4);
 			sCapitainId = GetAttributeName(arCapLocal);
 			sld = characterFromId(sCapitainId);
@@ -1814,7 +1842,15 @@ void ProcessDialogEvent()
 							if (!ok && GetRemovable(&characters[_curCharIdx]))
 							{
 								attrL = "l"+i;
-								Link.(attrL)	= GetFullName(&characters[_curCharIdx]);
+								sProf = "";
+								if (IsOfficer(sld)) sProf += " (абордажник)";
+								if (sti(pchar.Fellows.Passengers.navigator) == sti(sld.index)) sProf += " (штурман)";
+								if (sti(pchar.Fellows.Passengers.boatswain) == sti(sld.index)) sProf += " (боцман)";
+								if (sti(pchar.Fellows.Passengers.cannoner) == sti(sld.index)) sProf += " (канонир)";
+								if (sti(pchar.Fellows.Passengers.doctor) == sti(sld.index)) sProf += " (врач)";
+								if (sti(pchar.Fellows.Passengers.carpenter) == sti(sld.index)) sProf += " (плотник)";
+							    if (sti(pchar.Fellows.Passengers.treasurer) == sti(sld.index)) sProf += " (казначей)";
+								Link.(attrL)	= GetFullName(&characters[_curCharIdx]) + sProf;
 								Link.(attrL).go = "ShipStockManBack2_" + i;
 								q++;
 							}
@@ -3999,7 +4035,7 @@ void SetJornalCapParam(ref npchar)
 	sld.quest.baseShore = GetIslandRandomShoreId(sTemp);
 	//на карту
 	sld.mapEnc.type = "trade";
-	sld.mapEnc.worldMapShip = "ranger";
+	sld.mapEnc.worldMapShip = "Galleon_red"; //стояла модель кораблекрушенца
 	sld.mapEnc.Name = XI_ConvertString(npchar.quest.PortmansJornal.shipTapeName) + " '" + npchar.quest.PortmansJornal.shipName + "'";
 	int daysQty = GetMaxDaysFromIsland2Island(sTemp, GetArealByCityName(sld.quest.targetCity))+5; //дней доехать даём с запасом
 	Map_CreateTrader(sld.quest.baseShore, sld.quest.targetCity, sld.id, daysQty);

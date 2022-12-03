@@ -155,7 +155,7 @@ string RandSwear()
 		break;
 
 		case 13:
-			return "Укуси меня селедка! ";
+			return "Укуси меня селёдка! ";
 		break;
 
 		case 14:
@@ -725,6 +725,9 @@ string GetIslandByCityName(string city) // имена острова по гор
 		case "Tenotchitlan":
             return "Mein";
 		break;
+		case "Nassau":
+            return "Bahames";
+		break;
 	}
 	return "";
 }
@@ -819,6 +822,9 @@ string GetArealByCityName(string city) // ареал по городу по ат
 		break;
 		case "Tenotchitlan":
             return "Tenotchitlan";
+		break;
+		case "Nassau":
+            return "Bahames";
 		break;
 	}
 	return "";

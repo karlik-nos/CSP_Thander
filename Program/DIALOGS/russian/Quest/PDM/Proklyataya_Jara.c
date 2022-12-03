@@ -131,7 +131,7 @@ void ProcessDialogEvent()
 			sld.Dialog.Filename = "Quest/PDM/Proklyataya_Jara.c";
 			sld.dialog.currentnode = "Ya_Toje_Hochu_1";
 			LAi_SetActorType(sld);
-			LAi_ActorDialog(sld, pchar, "", 0.5, 0);
+			LAi_ActorDialog(sld, pchar, "", 0.0, 0);
 		break;
 
 		case "Ya_Toje_Hochu_1":
@@ -180,6 +180,7 @@ void ProcessDialogEvent()
 			sld.dialog.currentnode = "Ya_Toje_Hochu_5_EsheRaz";
 			LAi_SetGuardianType(sld);
 			LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
+			sld.City = "FortFrance";
 		break;
 
 		case "Ya_Toje_Hochu_5_EsheRaz":
@@ -215,8 +216,18 @@ void ProcessDialogEvent()
 			DialogExit();
 			CloseQuestHeader("PDM_Proklyataya_Jara");
 			AddQuestRecord("PDM_Proklyataya_Jara", "5");
-			AddCharacterExpToSkill(pchar, "Leadership", 140);
-			AddCharacterExpToSkill(pchar, "Commerce", 70);
+			AddCharacterExpToSkill(pchar, "Leadership", 170);
+			AddCharacterExpToSkill(pchar, "Commerce", 80);
+			
+			sld = CharacterFromID("PDM_PJ_Strajnik_1")
+			LAi_SetActorType(sld);
+			LAi_ActorAnimation(sld, "stun_1", "", 1.0);
+			LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
+			sld.City = "FortFrance";
+			
+			PChar.quest.PDM_PJ_Protrezvel.win_condition.l1 = "ExitFromLocation";
+			PChar.quest.PDM_PJ_Protrezvel.win_condition.l1.location = PChar.location;
+			PChar.quest.PDM_PJ_Protrezvel.win_condition = "PDM_PJ_Protrezvel";
 		break;
 
 	}

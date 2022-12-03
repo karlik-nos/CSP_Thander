@@ -55,7 +55,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		int  SpeedRateWorkPrice  = makeint((100 * shipSpeedRate * MOD_SKILL_ENEMY_RATE + 4000 * ((7-shipClass) * MOD_SKILL_ENEMY_RATE)) * fQuestShip);
 
 		int  MastMultiplierMatherial1 = makeint((shipHP * 25/1000 + 70 * (7-shipClass)) * fQuestShip);
-	    int	 MastMultiplierMatherial2 = makeint(5 * (7-shipClass) * fQuestShip);
+	    int	 MastMultiplierMatherial2 = makeint(10 * (7-shipClass) * fQuestShip);
 	    int	 MastMultiplierMatherial3 = sundukSum;
 		int  MastMultiplierMatherialWorkPrice  = makeint((100 * MastMulti * MOD_SKILL_ENEMY_RATE + 4000 * ((7-shipClass) * MOD_SKILL_ENEMY_RATE)) * fQuestShip);
 
@@ -1126,7 +1126,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			s1 = "Давайте посмотрим, что можно сделать. Сейчас прочность мачт вашего корабля " + MastMulti;
 
 			s1 = s1 + ". Для укрепления мачт мне понадобится: досок - "+ MastMultiplierMatherial1 + ".";
-			s1 = s1 + " Я стар, и не собираюсь вечно гнить в этой дыре, поэтому за работу возьму: сундуков с золотом - "+ MastMultiplierMatherial3 + ", хороших бронзовых крестов - "+ MastMultiplierMatherial2 + ", плюс - " + MastMultiplierMatherialWorkPrice + " пиастров на рабочие расходы. Вроде бы всё. Ах да - и деньги вперед.";
+			s1 = s1 + " Я стар, и не собираюсь вечно гнить в этой дыре, поэтому за работу возьму: сундуков с золотом - "+ MastMultiplierMatherial3 + ", хороших больших жемчужин - "+ MastMultiplierMatherial2 + ", плюс - " + MastMultiplierMatherialWorkPrice + " пиастров на рабочие расходы. Вроде бы всё. Ах да - и деньги вперед.";
 
             dialog.Text = s1;
 			Link.l1 = "Годится. Я принимаю условия. Всё оговорённое будет доставлено.";
@@ -1167,7 +1167,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			    ReOpenQuestHeader("ShipTuning");
 			    AddQuestRecord("ShipTuning", "t1");
 				AddQuestUserData("ShipTuning", "sText", "За свою работу по укреплению мачт корабля " + XI_ConvertString(RealShips[sti(Pchar.Ship.Type)].BaseName) +
-				" мастер-корабел требует: досок - " + NPChar.Tuning.Matherial1 + ", крестиков - "+ NPChar.Tuning.Matherial2+ ", сундуков с золотом - " + NPChar.Tuning.Matherial3 + ". В качестве задатка было уплачено " + NPChar.Tuning.Money + " золотых. Видимо, старик без ума от драгоценностей. Что ж - у каждого свои слабости...");
+				" мастер-корабел требует: досок - " + NPChar.Tuning.Matherial1 + ", больших жемчужин - "+ NPChar.Tuning.Matherial2+ ", сундуков с золотом - " + NPChar.Tuning.Matherial3 + ". В качестве задатка было уплачено " + NPChar.Tuning.Money + " золотых. Видимо, старик без ума от драгоценностей. Что ж - у каждого свои слабости...");
 			}
 			else
 			{
@@ -1204,7 +1204,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 
 		case "ship_tunning_MastMultiplier_again_2":
-		    checkMatherial(Pchar, NPChar, GOOD_PLANKS, "jewelry9", "chest");
+		    checkMatherial(Pchar, NPChar, GOOD_PLANKS, "jewelry11", "chest");
 
 		    if(sti(NPChar.Tuning.Matherial2) < 1 && sti(NPChar.Tuning.Matherial1) < 1 && sti(NPChar.Tuning.Matherial3) < 1)
 			{
@@ -1217,12 +1217,12 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			else
 			{
 				NextDiag.TempNode = "ship_tunning_MastMultiplier_again";
-				dialog.Text = "Тебе осталось привезти: досок - "+ sti(NPChar.Tuning.Matherial1) + ", крестиков - "+ sti(NPChar.Tuning.Matherial2) + ", сундуков - "+ sti(NPChar.Tuning.Matherial3) + ".";
+				dialog.Text = "Тебе осталось привезти: досок - "+ sti(NPChar.Tuning.Matherial1) + ", больших жемчужин - "+ sti(NPChar.Tuning.Matherial2) + ", сундуков - "+ sti(NPChar.Tuning.Matherial3) + ".";
 				link.l1 = "Хорошо.";
 				link.l1.go = "Exit";
 
                 AddQuestRecord("ShipTuning", "t1");
-				AddQuestUserData("ShipTuning", "sText",  "Мне осталось довезти: досок - "+ sti(NPChar.Tuning.Matherial1) + ", крестиков - "+ sti(NPChar.Tuning.Matherial2) + ", сундуков - "+ sti(NPChar.Tuning.Matherial3) + ".");
+				AddQuestUserData("ShipTuning", "sText",  "Мне осталось довезти: досок - "+ sti(NPChar.Tuning.Matherial1) + ", больших жемчужин - "+ sti(NPChar.Tuning.Matherial2) + ", сундуков - "+ sti(NPChar.Tuning.Matherial3) + ".");
 			}
 		break;
 
@@ -2258,12 +2258,12 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			}
 			shTo.MaxCaliber = iCaliber;
 
-			SetShipTuningF(Pchar, "SpeedRate", 2.0 / stf(shTo.SpeedRate));
-			SetShipTuningF(Pchar, "TurnRate", 10.0 / stf(shTo.TurnRate));
-			SetShipTuningI(Pchar, "HP", 1000 / stf(shTo.HP));
-			SetShipTuningI(Pchar, "MaxCrew", 120 / stf(shTo.MaxCrew));
-			SetShipTuningF(Pchar, "WindAgainstSpeed", 1.0 / stf(shTo.WindAgainstSpeed));
-			SetShipTuningI(Pchar, "Capacity", 700 / stf(shTo.Capacity));
+			SetShipTuningAdditiveF(Pchar, "SpeedRate", 2.0);
+			SetShipTuningAdditiveF(Pchar, "TurnRate", 10.0);
+			SetShipTuningAdditiveI(Pchar, "HP", 1000);
+			SetShipTuningAdditiveI(Pchar, "MaxCrew", 120);
+			SetShipTuningAdditiveF(Pchar, "WindAgainstSpeed", 1.0);
+			SetShipTuningAdditiveI(Pchar, "Capacity", 700);
 			shTo.HullArmor = 30;
 			shTo.OptCrew = 300;
 

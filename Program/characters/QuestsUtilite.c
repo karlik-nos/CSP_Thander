@@ -707,6 +707,18 @@ void FillAboardCabinBox(ref _location, ref _npchar)
 		_location.box1.items.PDM_SJ_Angl_Gal = 1);
         ok = false;
 	}
+	//Квест "Лиларкор", в корабле лежит Лиларкор
+	if (_npchar.id == "UP_Korabl_s_klinkom")
+	{
+        DeleteAttribute(_location, "box1");
+        _location.box1.money = 12000;
+		_location.box1.items.jewelry1 = 5+rand(10);
+        _location.box1.items.jewelry3 = 5+rand(10);
+        _location.box1.items.jewelry4 = 5+rand(10);
+		_location.box1.items.cirass1 = 1);
+		_location.box1.items.Lilarcor_Sword1 = 1);
+        ok = false;
+	}
 
     if (ok) // не квестовый
     {
@@ -1015,7 +1027,7 @@ void GiveGunAmmunition(ref _Character, string sItem)
 {
 	ref itm = ItemsFromID(sItem);
 	TakeNItems(_Character,itm.type.t1.bullet, 30+rand(20));
-	AddItems(_Character, itm.type.t1.gunpowder, 30+rand(20)); // Warship. Порох
+	if(itm.type.t1.gunpowder != "") AddItems(_Character, itm.type.t1.gunpowder, 30+rand(20));// порох при необходимости
 	LAi_SetCharacterUseBullet(_Character, itm.type.t1.bullet);
 }
 
@@ -1023,7 +1035,7 @@ void GiveGunAmmunitionPchar(ref _Character, string sItem, int qty)
 {
 	ref itm = ItemsFromID(sItem);
 	TakeNItems(_Character,itm.type.t1.bullet, qty);
-	AddItems(_Character, itm.type.t1.gunpowder, qty); // Warship. Порох
+	if(itm.type.t1.gunpowder != "") AddItems(_Character, itm.type.t1.gunpowder, qty);// порох при необходимости
 	LAi_SetCharacterUseBullet(_Character, itm.type.t1.bullet);
 }
 
@@ -1484,9 +1496,7 @@ bool RestoreTempRemoveParam(ref _refCharacter, string _param)
 	aref dstRef; makearef(dstRef, _refCharacter.(_param));
 	aref srcRef; makearef(srcRef, _refCharacter.(sParam));
 
-	DeleteAttribute(_refCharacter, _param);
 	//--> eddy. структура быть должна, иначе вылет в винду.
-	_refCharacter.(_param) = "";
 	CopyAttributes(dstRef,srcRef);
 	DeleteAttribute(_refCharacter, sParam);
 	return true;
@@ -1707,12 +1717,19 @@ void SetQuestGoodsToStore(ref refStore)
 			refStore.Goods.(goodName).RndPriceModify = GetStoreGoodsRndPriceModify(refStore, GOOD_SANDAL, PRICE_TYPE_BUY, pchar, sti(pchar.questTemp.HL2Save.SandalPrice));
             DeleteAttribute(pchar, "questTemp.HL2Save");
         }
-		if (CheckAttribute(pchar, "GenQuest.StoreGoods.HL5_ThreeFleutes")) //Голл.линейка, квест №5, добавляем количества.
+		if (CheckAttribute(pchar, "GenQuest.StoreGoods.HL5_ThreeFleutes")) //Голл.линейка, квест №5, добавляем количества, снижаем цену
 		{
-            DeleteAttribute(pchar, "GenQuest.StoreGoods"); // одноразовая операция, трем обе ветки
             goodName = Goods[GOOD_FOOD].Name;
-		    refStore.Goods.(goodName).Quantity       = 100000;
+		    refStore.Goods.(goodName).Quantity       = sti(refStore.Goods.(goodName).Quantity) + 75000;
+			pchar.questTemp.HL5Save.FoodPrice 		 = GetStoreGoodsPrice(refStore, GOOD_FOOD, PRICE_TYPE_BUY, pchar, refStore.Goods.(goodName).RndPriceModify);
 			refStore.Goods.(goodName).RndPriceModify = GetStoreGoodsRndPriceModify(refStore, GOOD_FOOD, PRICE_TYPE_BUY, pchar, 10);
+        }
+		if (CheckAttribute(pchar, "GenQuest.StoreGoods.HL5_QtyPriceIsBack")) //Голл.линейка, квест №5, возврат цен после квеста.
+		{
+			DeleteAttribute(pchar, "GenQuest.StoreGoods"); // одноразовая операция, трем обе ветки
+			goodName = Goods[GOOD_FOOD].Name;
+			refStore.Goods.(goodName).RndPriceModify = GetStoreGoodsRndPriceModify(refStore, GOOD_FOOD, PRICE_TYPE_BUY, pchar, sti(pchar.questTemp.HL5Save.FoodPrice));
+            DeleteAttribute(pchar, "questTemp.HL5Save");
         }
 	}
 }
@@ -2390,40 +2407,15 @@ void SelectSlavetraderRendom() // работорговец, выбор горо�
 // квест Изабеллы
 void IsabellaInit()
 {
+	//Атилла
+	pchar.quest.Romantic_Pirat_Spawn.win_condition.l1 = "Rank";
+	pchar.quest.Romantic_Pirat_Spawn.win_condition.l1.value = 20;
+	pchar.quest.Romantic_Pirat_Spawn.win_condition.l1.operation = ">=";
+	PChar.quest.Romantic_Pirat_Spawn.win_condition = "Romantic_Pirat_Spawn";
+	
 	ref ch;
 	// ==> состояние квеста Изабеллы, если равен "" - то квест Атилла не даст.
 	pchar.RomanticQuest = "canTakeQuest";
-	//Атилла
-	ch = GetCharacter(NPC_GenerateCharacter("Atilla", "pirate_1", "man", "man", 22, PIRATE, -1, false));
-	ch.name 	= "Атилла";
-	ch.lastname 	= "";
-	GiveItem2Character(ch, GUN_COMMON);
-	ch.equip.gun = GUN_COMMON;
-	GiveItem2Character(ch, BLADE_LONG);
-	ch.equip.blade = BLADE_LONG;
-	ch.location	= "Pirates_town";
-	ch.location.group = "goto";
-	ch.location.locator = "goto1";
-	ch.Dialog.Filename = "Quest\Isabella\Atilla.c";
-	ch.greeting = "Gr_Smuggler Agent";
-	ch.rank 	= 25;
-	ch.reputation = "30";
-	ch.talker = 5; //начать диалог
-	ch.TiedItems.itm1.model = "HandsItems\meet";
-	ch.TiedItems.itm1.locator = "Saber_hand";
-	ch.TiedItems.itm2.model = "HandsItems\cup";
-	ch.TiedItems.itm2.locator = "Saber_hand";
-    SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 80, 70, 90, 60, 50);
-    SetShipSkill(ch, 50, 10, 60, 60, 40, 70, 70, 40, 50);
-	ch.money = "200";
-	LAi_SetCitizenType(ch);
-	LAi_group_MoveCharacter(ch, "PIRATE_CITIZENS");
-	LAi_SetLoginTime(ch, 0.0, 24.0);
-	LAi_SetHP(ch, 200.0, 200.0);
-	LAi_NoRebirthEnable(ch);
-	ch.DontClearDead = true;  // не убирать труп
-	ch.greeting = "Gr_Atilla";
 	// Злой муж :)
 	ch = GetCharacter(NPC_GenerateCharacter("Husband", "Usurer_7", "man", "man", 22, PIRATE, -1, false));
 	ch.name 	= "Сальватор";
@@ -2513,16 +2505,10 @@ void PDMQuestsInit()
 
 	//******Проклятый идол Sinistra******
 	//Джеймс Кэллоу
-	sld = GetCharacter(NPC_GenerateCharacter("James_Callow", "ozg_green", "man", "man", 15, PIRATE, -1, false));
-	sld.name	= "Джеймс";
-	sld.lastname	= "Кэллоу";
-	sld.model	= "ozg_green";
-	GiveItem2Character(sld, "blade12");
-	EquipCharacterByItem(sld, "blade12");
-	sld.Dialog.Filename = "Quest/PDM/Cursed_Idol.c";
-	LAi_SetSitType(sld);
-	LAi_SetImmortal(sld, true);
-	ChangeCharacterAddressGroup(sld,"LaVega_tavern","sit","sit_base3");
+	pchar.quest.PDM_CI_SpawnJC.win_condition.l1 = "Rank";
+	pchar.quest.PDM_CI_SpawnJC.win_condition.l1.value = 5;
+	pchar.quest.PDM_CI_SpawnJC.win_condition.l1.operation = ">=";
+	PChar.quest.PDM_CI_SpawnJC.win_condition = "PDM_CI_SpawnJC";
 
 	//******Новая Родина Sinistra******
 	//Хьюго Лесопилка
@@ -2547,6 +2533,7 @@ void PDMQuestsInit()
 	sld.talker = 7;
 	LAi_SetImmortal(sld, true);
 	LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
+	sld.city = "BasTer";
 	ChangeCharacterAddressGroup(sld,"BasTer_town","goto","goto4");
 
 	//******Непутёвый казначей Sinistra******
@@ -2575,7 +2562,7 @@ void PDMQuestsInit()
 	ChangeCharacterAddressGroup(sld,"PortSpein_tavern","sit","sit_front2");
 	//******Проклятая жара Sinistra******
 	//Стражники
-	sld = GetCharacter(NPC_GenerateCharacter("PDM_PJ_Strajnik_1", "sold_fra_5", "man", "man", 10, FRANCE, -1, false));
+	sld = GetCharacter(NPC_GenerateCharacter("PDM_PJ_Strajnik_1", "sold_fra_5KSM", "man", "manKSM", 10, FRANCE, -1, false));
 	sld.name	= "Джори";
 	sld.lastname	= "";
 	sld.Dialog.Filename = "Quest/PDM/Proklyataya_Jara.c";
@@ -2584,6 +2571,7 @@ void PDMQuestsInit()
 	LAi_SetStayType(sld);
 	FantomMakeCoolFighter(sld, 25, 25, 25, "blade10", "", 40);
 	LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
+	sld.City = "FortFrance";
 	ChangeCharacterAddressGroup(sld,"FortFrance_town","officers","soldier_uniq2");
 
 	sld = GetCharacter(NPC_GenerateCharacter("PDM_PJ_Strajnik_2", "sold_fra_1", "man", "man", 10, FRANCE, -1, false));
@@ -2594,19 +2582,21 @@ void PDMQuestsInit()
 	LAi_SetGuardianType(sld);
 	FantomMakeCoolFighter(sld, 25, 25, 25, "blade10", "", 40);
 	LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
+	sld.City = "FortFrance";
 	ChangeCharacterAddressGroup(sld,"FortFrance_town","officers","soldier_uniq1");
 
 	//******Аптекарь Sinistra******
-	//Маркус
-	sld = GetCharacter(NPC_GenerateCharacter("PDM_Markus", "prison_3", "man", "man", 10, ENGLAND, -1, false));
-	sld.name	= "Маркус";
-	sld.lastname	= "";
-	sld.City = "SentJons";
-	sld.Dialog.Filename = "Quest/PDM/Aptekar.c";
-	LAi_SetGroundSitType(sld);
-	LAi_SetImmortal(sld, true);
-	LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
-	ChangeCharacterAddressGroup(sld,"SentJons_tavern","goto","goto1");
+	//Аптекарь
+	sld = GetCharacter(NPC_GenerateCharacter("Doktor_Alumnus", "Alumnus", "man", "man", 10, HOLLAND, -1, false));
+	sld.name = "Алюмнус";
+	sld.lastname = "";
+	LAi_group_MoveCharacter(sld, "HOLLAND_CITIZENS");
+	LAi_SetBarmanType(sld);
+	sld.greeting = "GR_Doctor_Alumnus";
+	sld.dialog.filename   = "Quest/PDM/Aptekar.c";
+	sld.dialog.currentnode   = "First time";
+	sld.City = "Marigo";
+	ChangeCharacterAddressGroup(sld,"Farmacia","barmen","stay");
 }
 //Пираты Карибского Моря
 void PKMQuestsInit()
@@ -2650,19 +2640,12 @@ void PKMQuestsInit()
 //Сундук Мертвеца
 void KSMQuestsInit()
 {
-	ref sld;
 	//******Спасение на рифах******
 	//Джеймс Аллока
-	sld = GetCharacter(NPC_GenerateCharacter("KSM_Alloka", "trader_1", "man", "man", 10, ENGLAND, -1, false));
-	sld.name	= "Джеймс";
-	sld.lastname	= "Аллока";
-	sld.Dialog.Filename = "Quest/KSM/Spasenie_na_rifah.c";
-	LAi_SetCitizenType(sld);
-	LAi_SetLoginTime(sld, 6.0, 21.99);
-	sld.talker = 7;
-	LAi_SetImmortal(sld, true);
-	LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
-	ChangeCharacterAddressGroup(sld,"PortRoyal_town","goto","goto12");
+	pchar.quest.KSM_Snr_Alloka_Spawn.win_condition.l1 = "Rank";
+	pchar.quest.KSM_Snr_Alloka_Spawn.win_condition.l1.value = 5;
+	pchar.quest.KSM_Snr_Alloka_Spawn.win_condition.l1.operation = ">=";
+	PChar.quest.KSM_Snr_Alloka_Spawn.win_condition = "KSM_Snr_Alloka_Spawn";
 }
 //Все остальные НПС
 void VSEnpcInit()
@@ -2675,6 +2658,7 @@ void VSEnpcInit()
 	LAi_SetGuardianType(sld);
 	LAi_SetImmortal(sld, true);
 	LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
+	sld.city = "SantoDomingo";
 	ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","soldiers","soldier1");
 	
 	sld = GetCharacter(NPC_GenerateCharacter("VSE_Admir_2", "sold_spa_1", "man", "man", 10, SPAIN, -1, true));
@@ -2683,6 +2667,7 @@ void VSEnpcInit()
 	LAi_SetGuardianType(sld);
 	LAi_SetImmortal(sld, true);
 	LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
+	sld.city = "SantoDomingo";
 	ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","soldiers","soldier2");
 	
 	sld = GetCharacter(NPC_GenerateCharacter("VSE_Admir_3", "sold_spa_3", "man", "man", 10, SPAIN, -1, true));
@@ -2691,17 +2676,24 @@ void VSEnpcInit()
 	LAi_SetPatrolType(sld);
 	LAi_SetImmortal(sld, true);
 	LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
+	sld.city = "SantoDomingo";
 	ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","goto","goto2");
 	//Глаша уборщица в резиденции Мариго
-	sld = GetCharacter(NPC_GenerateCharacter("CleanUpGrandmatha", "BaynesWife", "woman", "towngirl", 1, Holland, 1, false));
+	sld = GetCharacter(NPC_GenerateCharacter("CleanUpGrandmatha", "BaynesWife", "woman", "towngirl", 1, Holland, -1, false));
 	ChangeCharacterAddressGroup(sld, "Marigo_hall", "goto", "goto11");
 	LAi_SetCitizenType(sld);
 	sld.name = "уборщица Глаша";
 	sld.lastname = "";
 	LAi_SetLoginTime(sld, 11.0, 16.99);
 	LAi_group_MoveCharacter(sld, "HOLLAND_CITIZENS");
+	sld.city = "Marigo";
 	sld.dialog.filename = "Janitor.c";
 	sld.dialog.currentnode = "First";
+	//Девушка с нежданным наследством
+	pchar.quest.CSP_NN_SpawnGirl.win_condition.l1 = "Rank";
+	pchar.quest.CSP_NN_SpawnGirl.win_condition.l1.value = 10;
+	pchar.quest.CSP_NN_SpawnGirl.win_condition.l1.operation = ">=";
+	PChar.quest.CSP_NN_SpawnGirl.function = "UnexpectedInheritance";
 }
 void OfficerGirlInit()
 {
@@ -3195,21 +3187,29 @@ void SetSkeletonsToLocation(aref _location)
 	int rNum = drand(num);
 	for(int i = 0; i < num; i++)
 	{
-		sld = GetCharacter(NPC_GenerateCharacter("Skelet"+_location.index+"_"+i, "Skel"+(rand(3)+1), "skeleton", "skeleton", iRank, PIRATE, 1, true));
-		//если квест по зачистке от нечисти - скелетов делаем круче
-		if (CheckAttribute(_location, "DestroyGhost"))
+		if (_location.id == "dungeon_02")
 		{
-			FantomMakeCoolFighter(sld, sti(pchar.rank)+5, 90, 90, LinkRandPhrase(RandPhraseSimple("blade23","blade25"), RandPhraseSimple("blade30","blade26"), RandPhraseSimple("blade24","blade13")), RandPhraseSimple("pistol6", "pistol3"), MOD_SKILL_ENEMY_RATE*4);
-			DeleteAttribute(sld, "SuperShooter");
+			sld = GetCharacter(NPC_GenerateCharacter("Skelet"+_location.index+"_"+i, "Skel"+(rand(3)+1), "skeleton", "skeleton", sti(pchar.rank)+20, PIRATE, 1, true));
+			FantomMakeCoolFighter(sld, sti(pchar.rank)+20, 90, 90, LinkRandPhrase(RandPhraseSimple("blade23","blade25"), RandPhraseSimple("blade30","blade26"), RandPhraseSimple("blade24","blade13")), RandPhraseSimple("pistol6", "pistol3"), MOD_SKILL_ENEMY_RATE*5);
 		}
 		else
 		{
-			if (i == rNum && sti(pchar.rank) > 5)
+			sld = GetCharacter(NPC_GenerateCharacter("Skelet"+_location.index+"_"+i, "Skel"+(rand(3)+1), "skeleton", "skeleton", iRank, PIRATE, 1, true));
+			//если квест по зачистке от нечисти - скелетов делаем круче
+			if (CheckAttribute(_location, "DestroyGhost"))
 			{
-				FantomMakeCoolFighter(sld, sti(pchar.rank)+5, 80, 80, LinkRandPhrase(RandPhraseSimple("blade23","blade25"), RandPhraseSimple("blade30","blade26"), RandPhraseSimple("blade24","blade13")), RandPhraseSimple("pistol6", "pistol4"), MOD_SKILL_ENEMY_RATE*3);
+				FantomMakeCoolFighter(sld, sti(pchar.rank)+5, 90, 90, LinkRandPhrase(RandPhraseSimple("blade23","blade25"), RandPhraseSimple("blade30","blade26"), RandPhraseSimple("blade24","blade13")), RandPhraseSimple("pistol6", "pistol3"), MOD_SKILL_ENEMY_RATE*4);
 				DeleteAttribute(sld, "SuperShooter");
 			}
-			else SetFantomParamFromRank(sld, iRank, true);
+			else
+			{
+				if (i == rNum && sti(pchar.rank) > 5)
+				{
+					FantomMakeCoolFighter(sld, sti(pchar.rank)+5, 80, 80, LinkRandPhrase(RandPhraseSimple("blade23","blade25"), RandPhraseSimple("blade30","blade26"), RandPhraseSimple("blade24","blade13")), RandPhraseSimple("pistol6", "pistol4"), MOD_SKILL_ENEMY_RATE*3);
+					DeleteAttribute(sld, "SuperShooter");
+				}
+				else SetFantomParamFromRank(sld, iRank, true);
+			}
 		}
 		LAi_SetWarriorType(sld);
 		LAi_warrior_SetStay(sld, true);
@@ -3317,11 +3317,13 @@ void SetReefSkeletonsToLocation(aref _location, string loc)
 			if (GetDataDay() == 3 && GetDataMonth() == 3 && GetTime() >= 3.0 && GetTime() < 4.0 && loc == "MountainPath" && !CheckAttribute(pchar,"salasarmet") && CheckAttribute(pchar,"SalasarEventKnow"))
 			{
 				pchar.salasarmet = true;
-				if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sld = GetCharacter(NPC_GenerateCharacter("salasar", "salasar", "skeleton", "spy", iRank, PIRATE, 1, true)); // LEO: Превозмогаторам - страдать 01.12.2021
+				if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sld = GetCharacter(NPC_GenerateCharacter("salasar", "salasar", "skeleton", "man_fast", iRank, PIRATE, 1, true)); // LEO: Превозмогаторам - страдать 01.12.2021
 				else sld = GetCharacter(NPC_GenerateCharacter("salasar", "salasar", "skeleton", "skeleton", iRank, PIRATE, 1, true));
 				sld.name = "Армандо";
 				sld.lastname = "Салазар";
 				sld.SaveItemsForDead = true;
+				sld.locid = _location.index;
+				sld.num = num;
 				if (bHardBoss) sld.AlwaysReload = true;//перезарядка независимо от Дозарядки
 
 				SetSPECIAL(sld, 10,10,10,10,10,10,10); // SPECIAL (Сила, Восприятие, Выносливость, Лидерство, Обучаемость, Реакция, Удача)
@@ -3405,6 +3407,26 @@ void SetReefSkeletonsToLocation(aref _location, string loc)
 		LAi_group_SetRelation("ReefAssholes", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
 		LAi_group_Attack(sld, Pchar);
 		LAi_group_SetLookRadius("ReefAssholes", 1000.0);
+	}
+}
+
+// заменяем копии частей карты
+void ReplaceTreasureMapPartCopies(ref boxRef, ref charRef) {
+	bool isPart1 = GetCharacterItem(charRef, "map_part1") != 0;
+	bool isPart2 = GetCharacterItem(charRef, "map_part2") != 0;
+	
+	// если есть обе части, просто скипаем
+	if (isPart1 && isPart2) return;
+
+	// подменяем части карты
+	if (GetCharacterItem(boxRef, "map_part1") != 0 && isPart1) {
+		AddItems(boxRef, "map_part2", 1);
+		RemoveItems(boxRef, "map_part1", 1);
+	}
+	
+	if (GetCharacterItem(boxRef, "map_part2") != 0 && isPart2) {
+		AddItems(boxRef, "map_part1", 1);
+		RemoveItems(boxRef, "map_part2", 1);
 	}
 }
 

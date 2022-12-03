@@ -142,6 +142,50 @@ int LocationInitReefs(int n)
 	}
 	Locations[n].locators_radius.item.item1 = 1.5;
 	n = n + 1;
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// Разбитый корабль
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	locations[n].id = "WreckedShip";
+	locations[n].id.label = "WreckedShip";
+	locations[n].image = "loading\jonny_load\shores\WreckedShisReefs.tga";
+	locations[n].worldmap = "MountainPath";
+	locations[n].parent_colony = "WreckedShip";
+	//Sound
+	locations[n].type = "MountainPath";
+	locations[n].islandId = "Reefs";
+	locations[n].onUninhabitedIsland = true;
+	locations[n].DisableEncounters = true;
+	locations[n].questflower = 1;
+	locations[n].Chestgennot = true; // не генерить сундуки
+	//Models
+	//Always
+	locations[n].filespath.models = "locations\Outside\WreckedShisReefs";
+	Locations[n].models.always.shore = "deck03";
+	locations[n].models.always.shore.sea_reflection = 1;
+	Locations[n].models.always.seabed = "deck03_alpha";
+	Locations[n].models.always.locators = "deck03_locators";
+	locations[n].models.always.L1 = "deck03_fonars";
+	locations[n].models.always.L2 = "deck03_sd";
+
+	//Day
+	locations[n].models.day.charactersPatch = "deck03_patch";
+	//Night
+	locations[n].models.night.charactersPatch = "deck03_patch";
+	//Environment
+	locations[n].environment.weather = "true";
+	locations[n].environment.sea = "true";
+	//Reload map
+
+	Locations[n].reload.l1.name = "reload1_back";
+        Locations[n].reload.l1.go = "Reefs";
+        Locations[n].reload.l1.emerge = "reload_3";
+        Locations[n].reload.l1.autoreload = "0";
+        Locations[n].reload.l1.label = "Sea";
+	Locations[n].locators_radius.reload.reload1_back = 2.5;
+
+	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////	Капитул		//////////////////////////////////////////////////

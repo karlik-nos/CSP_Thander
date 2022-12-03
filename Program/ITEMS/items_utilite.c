@@ -35,7 +35,6 @@ int FindBetterFoodFromChr(ref chref, ref arFind)
 
 bool EnableFoodUsing(ref mc, aref arItm)
 {
-	bool bEnableUse = false;
 	if(CheckAttribute(arItm,"Food.energy") && !CheckAttribute(mc,"chr_ai.noeat"))
 	{
 		if(LAi_GetCharacterEnergy(mc) < LAi_GetCharacterMaxEnergy(mc))
@@ -69,9 +68,6 @@ bool EnableFoodUsing(ref mc, aref arItm)
 
 		}
 	}
-
-
-
 	return false;
 }
 
@@ -562,6 +558,7 @@ int CalculateBladePrice(string fencingType, float dmg_min, float dmg_max, float 
 		break;
 	}
 
+	if (weight == 0.0) return 0; //вещи с нулевым весом квестовые и стоить должны нисколько
 	return sti(priceMod * dmg_min * dmg_max / weight);
 }
 
@@ -764,7 +761,12 @@ bool IsBlade(String _itemID)
 /////////////////////// ==> Items-методы
 int GetItemIndex(string _ItemID)
 {
-	return FindItem(_ItemID);
+	int result = FindItem(_ItemID);
+	if (result < 0)
+	{
+		trace("Item not found: " + _ItemID);
+	}
+	return result;
 }
 
 ref ItemsFromID(string _Items)
@@ -867,7 +869,41 @@ void QuestCheckEnterLocItem(aref _location, string _locator) /// <<<провер
 		//проверяем флаг запрещения генерации
 		if(LAi_LocationIsMonstersGen(_location) && LAi_grp_playeralarm == 0 && GenQuest_CheckMonstersGen() && _location.id != "Treasure_alcove")
 		{
-			SetSkeletonsToLocation(_location);
+			if (pchar.sex == "Skeleton" && GetCharacterEquipSuitID(pchar)!= "suit_1")
+			{
+				sTemp = "skel_"+(rand(3)+1);
+				sld = GetCharacter(NPC_GenerateCharacter("Skelet_Drug", sTemp, "skeleton", "skeleton", sti(pchar.rank), PIRATE, -1, true));
+				LAi_SetActorType(sld);
+				PlaceCharacter(sld, "monsters", PChar.location);
+				LAi_ActorDialog(sld, pchar, "", -1, 0);
+				sld.lifeday = 0;
+				sld.dialog.filename = "Sailor.c";
+				sld.dialog.currentnode = "First time";
+				LAi_SetImmortal(sld, true);
+				LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
+				if (rand(20) <= 10+GetSummonSkillFromNameToOld(GetMainCharacter(),SKILL_LEADERSHIP)) // WW нанимаются в команду в % от авторитета (У нежити выше шанс)
+				{
+					sld.quest.crew = "true";
+					sld.quest.crew.qty = 10+rand(14)+(GetSummonSkillFromNameToOld(GetMainCharacter(),SKILL_LEADERSHIP) * 8); // WW 10-24 + 6-60 = 16-84 от авторитета
+					sld.quest.crew.type = rand(2);
+					sld.quest.crew.money = ((rand(4)+1))*(1+(sti(Pchar.rank)/4))+rand(100);	//Для нежити дешевле
+				}
+				bMonstersGen = true; //флаг генерации скелетов
+				for (i=1; i<=16; i++)
+				{
+				sTemp = "skel_"+(rand(3)+1);
+				sld = GetCharacter(NPC_GenerateCharacter("Skelet_Drug_"+i, sTemp, "skeleton", "skeleton", sti(pchar.rank), PIRATE, -1, true));
+				PlaceCharacter(sld, "monsters", "random_free");
+				LAi_SetWarriorType(sld);
+				sld.lifeday = 0;
+				LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
+				LAi_CharacterDisableDialog(sld);
+				}
+			}
+			else
+			{
+				SetSkeletonsToLocation(_location);
+			}
 		}
 	}
 	if (_locator == "spawndeadsmangod")

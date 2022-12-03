@@ -96,15 +96,15 @@ int     MAX_CHARACTERS   = 10;
 #define TOTAL_CHARACTERS			2000  // прописать в BOAT_CHARACTER  TOTAL_CHARACTERS - 1
 #define BOAT_CHARACTER              1999
 
-#define MAX_LOCATIONS		820 // boal //700
-#define MAX_ISLANDS   32
-#define MAX_COLONIES  35
+#define MAX_LOCATIONS		870 // boal //700
+#define MAX_ISLANDS   34
+#define MAX_COLONIES  36
 
 #define LSC_MAX_TAVERN		12
 #define LSC_MAX_RESIDENCE	3
 #define LSC_MAX_CHURCH		7
 #define LSC_MAX_PRISON		3
-#define LSC_MAX_STORE		3
+#define LSC_MAX_STORE		4
 
 string 	sEnManNames[10], sEnWomenNames[4], sEnFamilies[108];
 string 	sHoManNames[39], sHoWomenNames[14], sHoFamilies[95];
@@ -167,7 +167,7 @@ ref GetCharacter(int iIndex)
 	if (iIndex < 0 || iIndex >= TOTAL_CHARACTERS)
 	{
 		trace("Incorrect Index for a character! Wrong Index is " + iIndex);
-		if (MOD_BETTATESTMODE	==	"On") Log_TestInfo("ERROR: Incorrect Index for a character! Wrong Index is " + iIndex);
+		if (MOD_BETTATESTMODE	==	"On") Log_TestInfo("ОШИБКА: Неверный индекс для персонажа! Неправильный индекс " + iIndex);
 		return &NullCharacter;
 	}
 	return &Characters[iIndex];

@@ -235,6 +235,16 @@ void wdmInitWorldMap()
 	worldMap.labels.KhaelRoa.id = "KhaelRoa";
 	worldMap.labels.KhaelRoa.locator = "KhaelRoa";
 	worldMap.labels.KhaelRoa.text = CheckingTranslate(idLngFile,"KhaelRoa");
+	
+	worldMap.labels.Bahames.type = "Island";
+	worldMap.labels.Bahames.id = "Bahames";
+	worldMap.labels.Bahames.locator = "Bahames";
+	worldMap.labels.Bahames.text = CheckingTranslate(idLngFile,"Bahames");
+	
+	worldMap.labels.StLucia.type = "Island";
+	worldMap.labels.StLucia.id = "StLucia";
+	worldMap.labels.StLucia.locator = "StLucia";
+	worldMap.labels.StLucia.text = CheckingTranslate(idLngFile,"StLucia");
 
 	//-------  TOWN ----------------------------------------------------
 
@@ -405,6 +415,12 @@ void wdmInitWorldMap()
 	worldMap.labels.Tortuga_town.locator = "Tortuga_town";
 	worldMap.labels.Tortuga_town.text = CheckingTranslate(idLngFile,"Tortuga_town");
 	worldMap.labels.Tortuga_town.icon = FRANCE;
+	
+	worldMap.labels.Nassau_town.type = "Town";
+	worldMap.labels.Nassau_town.id = "Nassau_town";
+	worldMap.labels.Nassau_town.locator = "Nassau_town";
+	worldMap.labels.Nassau_town.text = CheckingTranslate(idLngFile,"Nassau_town");
+	worldMap.labels.Nassau_town.icon = ENGLAND;
 
 	worldMap.labels.Tenotchitlan_town.type = "Town";
 	worldMap.labels.Tenotchitlan_town.id = "Tenotchitlan_town";
@@ -727,6 +743,26 @@ void wdmInitWorldMap()
 	worldMap.labels.Shore63.id = "Shore63";
 	worldMap.labels.Shore63.locator = "Shore63";
 	worldMap.labels.Shore63.text = CheckingTranslate(idLngFile,"Shore63");
+	
+	worldMap.labels.Shore65.type = "Shore";
+	worldMap.labels.Shore65.id = "Shore65";
+	worldMap.labels.Shore65.locator = "Shore65";
+	worldMap.labels.Shore65.text = CheckingTranslate(idLngFile,"Shore65");
+	
+	worldMap.labels.Shore66.type = "Shore";
+	worldMap.labels.Shore66.id = "Shore66";
+	worldMap.labels.Shore66.locator = "Shore66";
+	worldMap.labels.Shore66.text = CheckingTranslate(idLngFile,"Shore66");
+	
+	worldMap.labels.Shore68.type = "Shore";
+	worldMap.labels.Shore68.id = "Shore68";
+	worldMap.labels.Shore68.locator = "Shore68";
+	worldMap.labels.Shore68.text = CheckingTranslate(idLngFile,"Shore68");
+	
+	worldMap.labels.Shore69.type = "Shore";
+	worldMap.labels.Shore69.id = "Shore69";
+	worldMap.labels.Shore69.locator = "Shore69";
+	worldMap.labels.Shore69.text = CheckingTranslate(idLngFile,"Shore69");
 
 	worldMap.labels.Shore_ship1.type = "Shore";
 	worldMap.labels.Shore_ship1.id = "Shore_ship1";
@@ -1180,6 +1216,21 @@ void wdmInitWorldMap()
 	worldMap.islands.KhaelRoa.position.z = 298.6671;
 	worldMap.islands.KhaelRoa.Shore64.position.x = 810.6678;
 	worldMap.islands.KhaelRoa.Shore64.position.z = 298.6671;
+	
+	worldMap.islands.Bahames.position.x = -359.95;
+	worldMap.islands.Bahames.position.z = 1109.9;
+	worldMap.islands.Bahames.Nassau_town.position.x = -362;
+	worldMap.islands.Bahames.Nassau_town.position.z = 1060;
+	worldMap.islands.Bahames.Shore68.position.x = -359.95;
+	worldMap.islands.Bahames.Shore68.position.z = 1109.9;
+	
+	worldMap.islands.Bahames.Nassau_town.position.x = -352;
+	worldMap.islands.Bahames.Nassau_town.position.z = 1140;
+	
+	worldMap.islands.StLucia.position.x = 640.0;
+	worldMap.islands.StLucia.position.z = -640.0;
+	worldMap.islands.StLucia.Shore65.position.x = 640.0;
+	worldMap.islands.StLucia.Shore65.position.z = -640.0;
 
 	worldMap.islands.Reefs.position.x = 0.0;
 	worldMap.islands.Reefs.position.z = 170.0;

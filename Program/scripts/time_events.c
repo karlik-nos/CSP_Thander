@@ -236,6 +236,7 @@ void Tut_StartGame(string sQuest)
 void Tut_locCamera_1(string _tmp)
 {
     locCameraToPos(-5, 2.5, 5.6, false);
+	ChangeShowIntarface();
     DoQuestFunctionDelay("Tut_locCamera_2", 10.0);
 }
 
@@ -453,6 +454,7 @@ void CheckOfficersHPMinus()
 					Log_Info("Офицер " + GetFullName(sld) + " выздоровел.");
 				}
 			}
+			UnmarkCharacter(sld);
 		}
 	}
 	for(i=0; i<GetPassengersQuantity(pchar); i++)
@@ -476,6 +478,7 @@ void CheckOfficersHPMinus()
 				//LAi_SetHP(sld, ihpm, ihpm);
 				Log_Info("Офицер " + GetFullName(sld) + " выздоровел.");
 			}
+			UnmarkCharacter(sld);
 		}
 	}
 	int iCompanionQuantity = getCompanionQuantity(pchar);
@@ -503,6 +506,7 @@ void CheckOfficersHPMinus()
 					Log_Info("Офицер " + GetFullName(sld) + " выздоровел.");
 				}
 			}
+			UnmarkCharacter(sld);
 		}
 	}
 }
@@ -576,6 +580,7 @@ void CheckTrauma() //тяжёлая травма - Lipsar и Gregg
             }
         }
     }*/
+	UnmarkCharacter(PChar);
 	if(CheckAttribute(PChar, "chr_ai.Trauma"))//только ГГ, так как здоровье меняется только у ГГ
     {
 		DeleteAttribute(PChar, "chr_ai.Trauma");
@@ -596,6 +601,7 @@ void CheckTrauma() //тяжёлая травма - Lipsar и Gregg
 
 void CheckTraining()//треня офов
 {
+	if (!CheckAttribute(pchar,"MalteseOrder") && !CheckAttribute(pchar,"PirateOrder")) return;
 	ref chref;
 	for(i=1; i<MAX_CHARACTERS; i++)
 	{

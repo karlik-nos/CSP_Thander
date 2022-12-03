@@ -103,13 +103,13 @@ void GenerateIslandShips(string sIslandID)
 							if(defendersCount > 0) SetCaptanModelByEncType(chr, "war");
 							else SetCaptanModelByEncType(chr, "pirate");
 
-							Fantom_SetCannons(chr, characters[iChar].Ship.Mode);
-
-							Fantom_SetBalls(chr, characters[iChar].Ship.Mode);
-
 							SetRandomNameToShip(chr);
 
 							SetBaseShipData(chr);
+							
+							Fantom_SetCannons(chr, characters[iChar].Ship.Mode);
+
+							Fantom_SetBalls(chr, characters[iChar].Ship.Mode);
 
 							AddItems(chr,"potion2",10);
 

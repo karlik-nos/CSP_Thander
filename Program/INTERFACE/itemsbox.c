@@ -41,6 +41,7 @@ aref box4;
 
 void InitInterface_RS(string iniName, ref itemsRef, string faceID)
 {
+	ReplaceTreasureMapPartCopies(itemsRef, PChar);
 	if (loadedLocation.id == Get_My_Cabin())
 	{
 		aref chests;
@@ -859,6 +860,7 @@ void FillCharactersScroll()
 			{
 				if(sCharID == characters[_curCharIdx].ID) continue;
 
+				ReplaceTreasureMapPartCopies(GetCharacter(_curCharIdx), PChar); // на всякий случай
 				SetCharacterMoneyToGold(GetCharacter(_curCharIdx));
 				iSetCharIDToCharactersArroy(GetCharacter(_curCharIdx)); // Пометим его для удаления золота и дачи денег
 				attributeName = "pic" + (m + 1);
@@ -1508,7 +1510,7 @@ void onTableRemoveAllBtnClick()
 }
 
 // инфа о предмете
-void ShowGoodsInfo(int sItem)
+void ShowGoodsInfo(string sItem)
 {
 	int itemIndex = FindItem(sItem);
 	string GoodName = Items[itemIndex].name;

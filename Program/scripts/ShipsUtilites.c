@@ -391,9 +391,9 @@ int CreateBaseShip(int iBaseType)
 	switch (sti(rRealShip.Class))
 	{
 		case 7: rRealShip.HullArmor = 4+(rand(1)*hullarmor); break;
-		case 6: rRealShip.HullArmor = 12+(rand(1)*hullarmor); break;
-		case 5: rRealShip.HullArmor = 16+(rand(1)*hullarmor); break;
-		case 4: rRealShip.HullArmor = 20+(rand(2)*hullarmor); break;
+		case 6: rRealShip.HullArmor = 8+(rand(1)*hullarmor); break;
+		case 5: rRealShip.HullArmor = 12+(rand(1)*hullarmor); break;
+		case 4: rRealShip.HullArmor = 16+(rand(2)*hullarmor); break;
 		case 3: rRealShip.HullArmor = 24+(rand(2)*hullarmor); break;
 		case 2: rRealShip.HullArmor = 32+(rand(2)*hullarmor); break;
 		case 1: rRealShip.HullArmor = 42+(rand(2)*hullarmor); break;
@@ -608,15 +608,29 @@ float ShipSpeedBonusFromSoiling(ref _refCharacter)
 
 float SpeedBySkill(aref refCharacter)
 {
-	int skill = GetSummonSkillFromName(refCharacter, SKILL_SAILING);
+	float fSkill = GetSummonSkillFromName(refCharacter, SKILL_SAILING);
 
 	int shipClass = GetCharacterShipClass(refCharacter);
-	int needSkillMin = GetShipClassNavySkill(shipClass);
-	int needSkillMax = func_min(needSkillMin + 10, SKILL_MAX);
-	if (needSkillMin == needSkillMax) needSkillMin = needSkillMin - 1;
+	float fNeedSkillMin, fNeedSkillMax, fSkillMax;
 
-	float fSRFromSkill = 0.7 + Bring2Range(0.0, 0.25, makefloat(needSkillMin), makefloat(needSkillMax), makefloat(skill)) + 0.0005 * makefloat(skill);
-	if (skill < needSkillMin) fSRFromSkill *= Bring2Range(0.05, 0.9, makefloat(needSkillMin) - 15.0, makefloat(needSkillMin), makefloat(skill));
+	fNeedSkillMin = GetShipClassNavySkill(shipClass);
+	if (fNeedSkillMin == SKILL_MAX)
+	{
+		fNeedSkillMax = SKILL_MAX + 1;
+		fSkillMax = SKILL_MAX + 1;
+	}
+	else
+	{
+		if (fNeedSkillMin < 1) fNeedSkillMin = 1;
+		fNeedSkillMax = fNeedSkillMin + 10;
+		if (fNeedSkillMax > SKILL_MAX) fNeedSkillMax = SKILL_MAX;
+		fSkillMax = SKILL_MAX;
+	}
+
+	float fSRFromSkill = 0.6 +
+		Bring2Range(0.0, 0.004 * fNeedSkillMin, 0.0, fNeedSkillMin, fSkill) +
+		Bring2Range(0.0, 0.3 - 0.003 * fNeedSkillMin, fNeedSkillMin, fNeedSkillMax, fSkill) +
+		Bring2Range(0.0, 0.1 - 0.001 * fNeedSkillMin, fNeedSkillMin, fSkillMax, fSkill);
 
     float fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "ShipSpeedUp"), 1.0, 1.15);   //slib
     fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "SailingProfessional"), fSpeedPerk, 1.20);
@@ -624,6 +638,7 @@ float SpeedBySkill(aref refCharacter)
 	//if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.SailsSpecial")) fSpeedPerk *= 0.85;
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.HullSpecial")) fSpeedPerk *= 0.75;
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.CuBot")) fSpeedPerk *= 1.05;
+	if (CheckAttribute(refCharacter,"GhostShipTuning")) fSpeedPerk *= 1.05;
 
 	return fSRFromSkill * fSpeedPerk / 1.2;
 }
@@ -706,23 +721,40 @@ float ShipTurnRateBonusFromSoiling(ref _refCharacter)
 
 float TurnBySkill(aref refCharacter)
 {
-	int skill = GetSummonSkillFromName(refCharacter, SKILL_SAILING);
+	float fSkill = GetSummonSkillFromName(refCharacter, SKILL_SAILING);
 
 	int shipClass = GetCharacterShipClass(refCharacter);
-	int needSkillMin = GetShipClassNavySkill(shipClass);
-	int needSkillMax = func_min(needSkillMin + 10, SKILL_MAX);
-	if (needSkillMin == needSkillMax) needSkillMin = needSkillMin - 1;
+	float fNeedSkillMin, fNeedSkillMax, fSkillMax;
 
-	float fTRFromSKill;
-    if (iArcadeSails == 1)
+	fNeedSkillMin = GetShipClassNavySkill(shipClass);
+	if (fNeedSkillMin == SKILL_MAX)
 	{
-		fTRFromSKill = 0.5 + Bring2Range(0.0, 0.4, makefloat(needSkillMin), makefloat(needSkillMax), makefloat(skill)) + 0.001 * makefloat(skill);
+		fNeedSkillMax = SKILL_MAX + 1;
+		fSkillMax = SKILL_MAX + 1;
 	}
 	else
 	{
-		fTRFromSKill = 0.3 + Bring2Range(0.0, 0.4, makefloat(needSkillMin), makefloat(needSkillMax), makefloat(skill)) + 0.003 * makefloat(skill);
+		if (fNeedSkillMin < 1) fNeedSkillMin = 1;
+		fNeedSkillMax = fNeedSkillMin + 10;
+		if (fNeedSkillMax > SKILL_MAX) fNeedSkillMax = SKILL_MAX;
+		fSkillMax = SKILL_MAX;
 	}
-	if (skill < needSkillMin) fTRFromSKill *= Bring2Range(0.05, 0.9, makefloat(needSkillMin) - 15.0, makefloat(needSkillMin), makefloat(skill));
+
+	float fTRFromSKill;
+	if (iArcadeSails == 1)
+	{
+		fTRFromSKill = 0.5 +
+			Bring2Range(0.0, 0.005 * fNeedSkillMin, 0.0, fNeedSkillMin, fSkill) +
+			Bring2Range(0.0, 0.35 - 0.0035 * fNeedSkillMin, fNeedSkillMin, fNeedSkillMax, fSkill) +
+			Bring2Range(0.0, 0.15 - 0.0015 * fNeedSkillMin, fNeedSkillMin, fSkillMax, fSkill);
+	}
+	else
+	{
+		fTRFromSKill = 0.3 +
+			Bring2Range(0.0, 0.007 * fNeedSkillMin, 0.0, fNeedSkillMin, fSkill) +
+			Bring2Range(0.0, 0.4 - 0.004 * fNeedSkillMin, fNeedSkillMin, fNeedSkillMax, fSkill) +
+			Bring2Range(0.0, 0.3 - 0.003 * fNeedSkillMin, fNeedSkillMin, fSkillMax, fSkill);
+	}
 
     float fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "ShipTurnRateUp"), 1.0, 1.15);   //slib
     fSpeedPerk = AIShip_isPerksUse(CheckOfficersPerk(refCharacter, "SailingProfessional"), fSpeedPerk, 1.20);
@@ -731,6 +763,7 @@ float TurnBySkill(aref refCharacter)
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.SailsSpecial")) fSpeedPerk *= 0.8;
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.HullSpecial")) fSpeedPerk *= 0.75;
 	if (CheckAttribute(&RealShips[sti(refCharacter.Ship.Type)], "Tuning.CuBot")) fSpeedPerk *= 1.05;
+	if (CheckAttribute(refCharacter,"GhostShipTuning")) fSpeedPerk *= 1.05;
 
 	return fTRFromSKill * fSpeedPerk * fFastTurn180 / 1.2;
 }
@@ -792,7 +825,7 @@ float Cannon_GetRechargeTimeValue(ref aCharacter)
 	if (CheckCharacterPerk(aCharacter, "FastReload")) fMultiply = 0.9;
 	float ImmRel = AIShip_isPerksUse(CheckOfficersPerk(aCharacter, "ImmediateReload"), 1.0, 0.5);
 	fMultiply *= ImmRel;
-	if (CheckAttribute(&RealShips[sti(aCharacter.Ship.Type)], "Tuning.CannonsSpecial")) fMultiply *= 1.2;
+	if (CheckAttribute(&RealShips[sti(aCharacter.Ship.Type)], "Tuning.CannonsSpecial")) fMultiply *= 0.9;
 	fMultiply *= (1+CheckOfficersPerk(aCharacter,"InstantRepair"));//x2 времени при активной быстрой починке
 	// boal 060804 для компа поблажки
 	//Boyer remove reload speed boost for enemies
@@ -1570,7 +1603,7 @@ int GetShipPriceByTTH(int iType, ref rChar)
 		case 4: speed_price = 250; break;
 		case 3: speed_price = 1250; break;
 		case 2: speed_price = 2500; break;
-		case 1: speed_price = 5000; break;
+		case 1: speed_price = 10000; break;
 	}
 	int SummSpeed = stf(rRealShip.SpeedRate) * speed_price;
 
@@ -1584,7 +1617,7 @@ int GetShipPriceByTTH(int iType, ref rChar)
 		case 4: turn_price = 125; break;
 		case 3: turn_price = 750; break;
 		case 2: turn_price = 1500; break;
-		case 1: turn_price = 3000; break;
+		case 1: turn_price = 6000; break;
 	}
 	int SummTurn = stf(rRealShip.TurnRate) * turn_price;
 
@@ -2198,31 +2231,27 @@ int GenerateShipTop(int iBaseType, bool isStolen, ref chr)
 int GetShootDistance(ref chref, string ball)
 {
 	float distance = 0.0;
+	float fKoefBallType = 1.0;
+	int p = GetCharacterSPECIALSimple(chref, SPECIAL_P)-3;
+	if (p < 0) p = 0;
 
 	ref	rCannon = GetCannonByType(sti(chref.Ship.Cannons.Type));
 	distance = stf(rCannon.FireRange);
 	if (CheckAttribute(chref, "perks.list.LongRangeShoot"))
 	{
-		distance = distance * (1.15+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
+		distance = distance * (1.15+p*0.03);
 	}
 	else
 	{
-		distance = distance * (1.0+GetCharacterSPECIALSimple(chref, SPECIAL_P)*0.02);
+		distance = distance * (1.0+p*0.03);
 	}
-	switch(ball)
+	switch(ball)//зависит от скорости из инита квадратично
 	{
-		case "ball":
-			distance = distance * 1.0;
-		break;
-		case "grape":
-			distance = distance * 0.6;
-		break;
-		case "knippel":
-			distance = distance * 0.9;
-		break;
-		case "bomb":
-			distance = distance * 0.8;
-		break;
+		case "ball":	fKoefBallType = stf(Goods[GOOD_BALLS].SpeedV0); break;
+		case "grape":	fKoefBallType = stf(Goods[GOOD_GRAPES].SpeedV0); break;		//0,55*0,55	=0,3025
+		case "knippel":	fKoefBallType = stf(Goods[GOOD_KNIPPELS].SpeedV0); break;		//0,90*0,90	=0,81
+		case "bomb":	fKoefBallType = stf(Goods[GOOD_BOMBS].SpeedV0); break;		//0,65*0,65	=0,4225
 	}
+	distance = distance * fKoefBallType * fKoefBallType;
 	return makeint(distance+0.5);
 }

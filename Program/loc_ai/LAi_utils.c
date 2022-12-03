@@ -458,7 +458,7 @@ void LAi_CheckKillCharacter(aref chr)
 		}
 		if(IsCharacterPerkOn(chr, "Adventurer"))
 		{
-			if (!CheckAttribute(chr, "ScriptedDeath") && !CheckAttribute(chr, "Adventurers_Luck") && rand(15) <= GetCharacterSPECIALSimple(chr, SPECIAL_L))
+			if (!CheckAttribute(chr, "ScriptedDeath") && !CheckAttribute(chr, "Adventurers_Luck") && rand(10) <= GetCharacterSPECIALSimple(chr, SPECIAL_L))
 			{
 				chr.Adventurers_Luck = true;
 				int hitpoints = LAi_GetCharacterMaxHP(chr) / 2;
@@ -673,6 +673,20 @@ ref LAi_CreateFantomCharacterEx(string model, string ani, string group, string l
 	}
 	LAi_AddLoginedCharacter(chr);
 	// boal del lag Event("Fantom_FillSkills", "a", chr);
+	if (IsCharacterPerkOn(chr, "Ciras") && rand(4)==0)
+	{
+		string cirnum;
+		switch (rand(4))
+		{
+			case 0: cirnum = "cirass1"; break;
+			case 1: cirnum = "cirass1"; break;
+			case 2: cirnum = "cirass2"; break;
+			case 3: cirnum = "cirass3"; break;
+			case 4: cirnum = "cirass4"; break;
+		}
+		chr.cirassId = Items_FindItemIdx(cirnum);
+		Log_TestInfo("Персонаж "+chr.name+" получил кирасу "+cirnum);
+	}
 	if(!CreateCharacter(chr))
 	{
 		Trace("LAi_CreateFantomCharacter -> CreateCharacter return false");
@@ -694,30 +708,6 @@ ref LAi_CreateFantomCharacterEx(string model, string ani, string group, string l
 	if(SendMessage(chr, "lss", MSG_CHARACTER_ENTRY_TO_LOCATION, group, locator) == false)
 	{
 		Trace("LAi_CreateFantomCharacter -> can't teleportation character to <" + group + "::" + locator + ">");
-	}
-	if (IsCharacterPerkOn(chr, "Ciras") && rand(4)==0)
-	{
-		string cirnum;
-		switch (rand(4))
-		{
-			case 0: cirnum = "cirass1"; break;
-			case 1: cirnum = "cirass1"; break;
-			case 2: cirnum = "cirass2"; break;
-			case 3: cirnum = "cirass3"; break;
-			case 4: cirnum = "cirass4"; break;
-		}
-		if (CheckAttribute(chr, "HeroModel")) // все, у кого есть что одеть
-        {
-			switch (cirnum)
-			{
-				case "cirass1": chr.model = GetSubStringByNum(chr.HeroModel, 1); break;
-				case "cirass2": chr.model = GetSubStringByNum(chr.HeroModel, 2); break;
-				case "cirass3": chr.model = GetSubStringByNum(chr.HeroModel, 3); break;
-				case "cirass4": chr.model = GetSubStringByNum(chr.HeroModel, 4); break;
-			}
-		}
-		chr.cirassId = Items_FindItemIdx(cirnum);
-		Log_TestInfo("Персонаж "+chr.name+" получил кирасу "+cirnum);
 	}
 	return chr;
 }
@@ -1404,6 +1394,8 @@ bool LAi_CheckLocatorFree(string _group, string _locator)
 	if(!CheckAttribute(loadedLocation, at)) return false;
 	aref grp;
 	makearef(grp, loadedLocation.(at));
+	if (!CheckAttribute(grp, "x") || CheckAttribute(grp, "y" || CheckAttribute(grp, "z")))
+		trace("ERROR: cannot find xyz position for '" + at + "'")
 	float lx = stf(grp.x);
 	float ly = stf(grp.y);
 	float lz = stf(grp.z);
@@ -1548,7 +1540,7 @@ void MakeSwiftAttack(aref enemy, aref attacked, float coeff) // Резкий у�
 void MushketStun(aref enemy) // Мушкетный стан - Gregg
 {
 	LAi_LockFightMode(enemy, true);
-	enemy.chr_ai.backuptype = enemy.chr_ai.type;
+	if(enemy.chr_ai.type == "officer") enemy.chr_ai.backuptype = enemy.chr_ai.type; // фикс слета группы у офицеров из-за двойного стана
 	LAi_SetActorTypeNoGroup(enemy);
 	float understun = 0.0;
 	if(CheckAttribute(enemy, "chr_ai.understun"))

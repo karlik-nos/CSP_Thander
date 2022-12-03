@@ -85,14 +85,10 @@ void CompanionTravel_ProcessAllTravellers() // Этот метод вызыва�
 {
 	aref arTravellers;
 	if (!CheckAttribute(PChar,"CompanionTravel")) return;
-	int iTravellersCount = sti(PChar.CompanionTravel);
-	if(iTravellersCount == 0) return;
 	makearef(arTravellers, PChar.CompanionTravel);
 
-	Log_TestInfo("Всего компаньонов-путешественников - "+iTravellersCount);
-
 	string sCompanionTraveller;
-	for(int i=0; i<iTravellersCount; i++)
+	for(int i=0; i<GetAttributesNum(arTravellers); i++)
 	{
 		sCompanionTraveller = GetAttributeName(GetAttributeN(arTravellers, i));
 		Log_TestInfo("Обработка компаньона-путешественника "+sCompanionTraveller);
@@ -113,6 +109,7 @@ void CompanionTravel_DayUpdate(string sCompanion) // Обработка конк
 	CompanionTravel_SetRandomEvent(rCompanion); // Случайное событие по типу покоцался корпус или паруса и т.д.
 	iDays--;
 	PChar.CompanionTravel.(sCompanion).Days = iDays;
+	if (sCompanion == "") trace("sukasuka"+sCompanion)
 	Log_TestInfo(sCompanion+" - осталось дней (если < 0, значит ждет в порту) - "+iDays);
 	if(iDays == 0) // Если дней < 0, хначит он уже ждет в колонии
 	{

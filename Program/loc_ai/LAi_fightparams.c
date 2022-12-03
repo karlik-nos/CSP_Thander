@@ -152,6 +152,7 @@ float LAi_CalcDamageForBlade(aref attack, aref enemy, string attackType, bool is
 					kAttackDmg = 3.0;
 				}
 				if (fencing_type != "FencingHeavy") kAttackDmg *= 0.7;
+				if (!CheckCharacterPerk(attack, "HardHitter")) kAttackDmg /= 2.0;
 			break;
 
 			case "feintc":  // фикс после изучения ядра //Атакующие продолжение финта
@@ -253,6 +254,7 @@ float LAi_CalcDamageForBlade(aref attack, aref enemy, string attackType, bool is
 				{
 					kAttackDmg = 3.0;
 				}
+				if (!CheckCharacterPerk(attack, "HardHitter")) kAttackDmg /= 2.0;
 			break;
 
 			case "feintc":  // фикс после изучения ядра //Атакующие продолжение финта
@@ -303,19 +305,19 @@ float LAi_CalcDamageForBlade(aref attack, aref enemy, string attackType, bool is
 			}
 		}
 		// упрощение игры новичкам
-		if (MOD_SKILL_ENEMY_RATE == 1 && CheckAttribute(enemy, "chr_ai.group"))
+		/*if (MOD_SKILL_ENEMY_RATE == 1 && CheckAttribute(enemy, "chr_ai.group"))
 		{
 			if (enemy.chr_ai.group == LAI_GROUP_PLAYER)
 			{
 				dmg = dmg / MOD_Complexity_1_DMG;
 			}
-		}
-
+		}*/
+		
 		//Boyer mod #20170318-33 difficulty level rebalancing
 		//if (MOD_SKILL_ENEMY_RATE < 5 && sti(enemy.index) == GetMainCharacterIndex())
-		if (MOD_SKILL_ENEMY_RATE < 11 && sti(enemy.index) == GetMainCharacterIndex())
+		if (sti(enemy.index) == GetMainCharacterIndex())
 		{
-			dmg = dmg * (4.0 + MOD_SKILL_ENEMY_RATE) / 10.0;
+			dmg = (dmg * (4.0 + MOD_SKILL_ENEMY_RATE) / 10.0) * bModDamage;
 		}
 		return dmg;
 	}
@@ -416,7 +418,7 @@ float GetMushketEnergyDrain(ref character)
 
 float Lai_UpdateEnergyPerDltTime(aref chr, float curEnergy, float dltTime)
 {
-	float fMultiplier = 1.6666667;
+	float fMultiplier = 1.30+(GetCharacterSPECIALSimple(chr,SPECIAL_S)/10.0);//влияние силы на скорость восстановления энергии
 
 	if(CheckCharacterPerk(chr, "Energaiser")) // скрытый перк боссов и ГГ
 	{
@@ -537,18 +539,18 @@ float LAi_GunCalcDamage(aref attack, aref enemy)
 		dmg = dmg * (1.0 + 0.7 * (aSkill - eSkill));
 	}
 	// упрощение игры новичкам
-	if (MOD_SKILL_ENEMY_RATE == 1 && CheckAttribute(enemy, "chr_ai.group"))
+	/*if (MOD_SKILL_ENEMY_RATE == 1 && CheckAttribute(enemy, "chr_ai.group"))
 	{
 		if (enemy.chr_ai.group == LAI_GROUP_PLAYER)
 		{
-			dmg = dmg * MOD_Complexity_1_DMG;
+			dmg = dmg / MOD_Complexity_1_DMG;
 		}
-	}
+	}*/
 	//Boyer mod #20170318-33 Fight/difficulty level rebalancing
 	//if (MOD_SKILL_ENEMY_RATE < 5 && sti(enemy.index) == GetMainCharacterIndex())
-	if (MOD_SKILL_ENEMY_RATE < 11 && sti(enemy.index) == GetMainCharacterIndex())
+	if (sti(enemy.index) == GetMainCharacterIndex())
 	{
-		dmg = dmg * (4.0 + MOD_SKILL_ENEMY_RATE) / 10.0;
+		dmg = (dmg * (4.0 + MOD_SKILL_ENEMY_RATE) / 10.0) * bModDamage;
 	}
 	if(CheckCharacterPerk(attack, "Buccaneer"))
 	{
@@ -650,7 +652,7 @@ float LAi_GunReloadSpeed(aref chr)
 //#20200522-01
 void LAi_ApplyCharacterAttackDamage(aref attack, aref enemy, string attackType, bool isBlocked, bool blockSave)
 {
-	if(IsCharacterPerkOn(enemy, "Fencer") && rand(9)==1)  {Log_Info("Избежал удара!"); return;}
+	if(IsCharacterPerkOn(enemy, "Fencer") && rand(9)==1)  {Log_Info(GetFullName(enemy) + " избежал удара!"); return;}
 	//Если неубиваемый, то нетрогаем его
 	if(CheckAttribute(enemy, "chr_ai.immortal"))
 	{
@@ -1392,6 +1394,36 @@ void LAi_SetResultOfDeath(ref attack, ref enemy, bool isSetBlade)
 			    SetNationRelation2MainCharacter(sti(enemy.nation), RELATION_ENEMY);
 		    }
 		}
+		if (startherotype == 9)
+		{
+			if (CheckAttribute(pchar,"equip.blade") && HasSubStr(pchar.equip.blade, "Lilarcor"))
+			{
+				if (!CheckAttribute(pchar,"LilarcorKills")) pchar.LilarcorKills = 0;
+				pchar.LilarcorKills = sti(pchar.LilarcorKills)+1;
+				if (sti(pchar.LilarcorKills) == 300)
+				{
+					LAi_CharacterPlaySound(PChar, "Lilarcor_Up1");
+					DeleteAttribute(pchar,"items.Lilarcor_Sword1");
+					AddItems(pchar, "Lilarcor_Sword2", 1);
+					EquipCharacterbyItem(pchar, "Lilarcor_Sword2");
+				}
+				if (sti(pchar.LilarcorKills) == 800)
+				{
+					LAi_CharacterPlaySound(PChar, "Lilarcor_Up2");
+					DeleteAttribute(pchar,"items.Lilarcor_Sword2");
+					AddItems(pchar, "Lilarcor_Sword3", 1);
+					EquipCharacterbyItem(pchar, "Lilarcor_Sword3");
+				}
+				if (sti(pchar.LilarcorKills) == 1800)
+				{
+					LAi_CharacterPlaySound(PChar, "Lilarcor_Victory");
+					string sEquipItem = GetGeneratedItem("blade201");
+					AddItems(pchar, sEquipItem, 1);
+					EquipCharacterbyItem(pchar, sEquipItem);
+					RemoveItems(pchar, "Lilarcor_Sword3", 1);
+				}
+			}
+		}
 	}
 }
 // boal <--
@@ -1809,7 +1841,8 @@ float LAi_NPC_StunChance()
 #event_handler("NPC_Event_ShotOnlyEnemyTest", "LAi_NPC_ShotOnlyEnemyTest");
 bool LAi_NPC_ShotOnlyEnemyTest()
 {
-	return LAi_grp_alarmactive;
+	if (bShootOnlyEnemy) return LAi_grp_alarmactive;
+	else return false;
 }
 
 //Вероятность желания выстрелить - кубик с такой вероятностью кидается 2 раза в секунду
@@ -1989,18 +2022,27 @@ bool LAi_Chr_CheckEnergy()
 }
 // EvgAnat - требование энергии для отскока <--
 
+// EvgAnat - включено ли уклонение от выстрела для нпс -->
+#event_handler("NPC_IsDodgeEnabled", "LAi_Chr_IsDodgeEnabled");
+bool LAi_Chr_IsDodgeEnabled()
+{
+	return true;
+}
+// EvgAnat - включено ли уклонение от выстрела для нпс <--
+
 // EvgAnat - уклонение от выстрела -->
-#event_handler("Check_ChrHitFire", "LAi_Chr_CheckHitFire")
-int LAi_Chr_CheckHitFire() // 1 - не попал, 2 - попал
+#event_handler("Check_ChrHitFire", "LAi_Chr_CheckHitFire");
+int LAi_Chr_CheckHitFire() // 0 - не попал, 1 - попал
 {
 	aref shooter = GetEventData(); // стрелок
 	aref target = GetEventData(); // цель
 	bool isRecoil = GetEventData(); // находится ли цель в окне уклонения 
 	float kDist = GetEventData(); // коэффициент дальности, равный 1-d/25; k(0)=1; k(10)=0.6; k(25)=0
-	int res = 2;
-	if(isRecoil)
+	int res = 1;
+	float r = Random();
+	if (isRecoil && r <= 0.75)
 	{
-		res = 1;
+		res = 0;
 		if (shooter.index == GetMainCharacterIndex())
 			Log_SetStringToLog("Мазила!");
 	}
@@ -2029,8 +2071,28 @@ bool LAi_NPC_IsDodge() // true - уклоняется, false - не уклоня
 	aref chr = GetEventData();
 	float r = Random();
 	bool res = false;
-	if (r <= 1.0)
+	if (r <= 0.25)
 		res = true;
-	return true;
+	return res;
 }
 // EvgAnat - вероятность желания уклониться от выстрела у нпс <--
+
+// EvgAnat - дальность отскока и стрейфа -->
+#event_handler("GetCharacterRecoilDistance", "LAi_GetRecoilDistance");
+float LAi_GetRecoilDistance()
+{
+	aref chr = GetEventData();
+	string aType = GetEventData();
+	float res = 2.0;
+	switch(aType)
+	{
+		case "recoil":
+			res = 3.0; // по умолчанию 2.0
+		break;
+		case "strafe":
+			res = 10.0; // по умолчанию 15.0
+		break;
+	}
+	return res;
+}
+// EvgAnat - дальность отскока и стрейфа <--

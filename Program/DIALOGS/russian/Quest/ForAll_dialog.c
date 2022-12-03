@@ -11,6 +11,17 @@ void ProcessDialogEvent()
 	makeref(NPChar,CharacterRef);
 	makearef(Link, Dialog.Links);
 	makearef(NextDiag, NPChar.Dialog);
+	
+	int iRang = sti(PChar.rank);
+	float fRandom = FRAND(1) + 1;
+
+	float fLuck = GetCharacterSkillToOld(PChar, SKILL_FORTUNE);
+	if(fLuck < 1.1) { fLuck = 1.1; }
+	fLuck /= 10;
+
+	int iMoney = iRang * 1000 * fLuck * fRandom + drand(100);
+	if(iMoney < 1000) { iMoney = 1000 + drand1(500); }
+	if(iMoney > 20000) { iMoney = 20000 + drand2(100); }
 
 	switch(Dialog.CurrentNode)
 	{
@@ -1225,10 +1236,7 @@ void ProcessDialogEvent()
 			AddQuestUserData(sTitle, "sCity2", XI_ConvertString("Colony" + sld.city + "Gen"));
 			CloseQuestHeader(sTitle);
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 
 			sGem = pchar.questTemp.PortmansJornal.gem;
 			TakeNItems(pchar, sGem, 12+drand(10));
@@ -1255,12 +1263,9 @@ void ProcessDialogEvent()
 			AddQuestRecordEx(sTitle, "PortmansBook_Delivery", "3");
 			AddQuestUserData(sTitle, "sCity", XI_ConvertString("Colony" + npchar.City + "Dat"));
 			AddQuestUserData(sTitle, "sCity2", XI_ConvertString("Colony" + sld.city + "Gen"));
-			CloseQuestHeader(sTitle);
+			CloseQuestHeader("Caiman_PortManPortmansBook_Delivery");
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 
 			DeleteAttribute(sld, "quest.PortmansJornal");
 			sld.quest = ""; //освобождаем личный флаг квеста для портмана
@@ -1330,10 +1335,7 @@ void ProcessDialogEvent()
 			AddQuestUserData(sTitle, "sCity", XI_ConvertString("Colony" + sld.city + "Gen"));
 			CloseQuestHeader(sTitle);
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 
 			sGem = pchar.questTemp.PortmansJornal.gem;
 			TakeNItems(pchar, sGem, 12+drand(10));
@@ -1361,10 +1363,7 @@ void ProcessDialogEvent()
 			AddQuestUserData(sTitle, "sCity", XI_ConvertString("Colony" + sld.city + "Gen"));
 			CloseQuestHeader(sTitle);
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 
 			DeleteAttribute(sld, "quest.PortmansJornal");
 			sld.quest = ""; //освобождаем личный флаг квеста для портмана
@@ -1451,12 +1450,17 @@ void ProcessDialogEvent()
 		//--------------------------- поиск кэпов, дача квеста горожанином --------------------------------
 		//========= квесты мужиков ===========
 		case "SCQ_man":
-			dialog.text = LinkRandPhrase("Здравствуйте, капитан. Хочу просить вас помочь мне.",
+			/*dialog.text = LinkRandPhrase("Здравствуйте, капитан. Хочу просить вас помочь мне.",
 				"Капитан! Не окажете мне услугу? Дело в том, что я нуждаюсь в помощи.",
 				"Капитан, я прошу вас о помощи!");
 			link.l1 = RandPhraseSimple("Я занят"+ GetSexPhrase("","а") +", не сегодня!", "В данный момент у меня нет времени вас выслушивать.");
 			link.l1.go = "SCQ_exit";
 			link.l2 = RandPhraseSimple("Что у вас стряслось?", "Излагайте суть проблемы. Возможно, я сумею помочь.");
+			link.l2.go = "SCQ_man_1";*/
+			dialog.text = "Здравствуйте, капитан. Можно к вам обратиться?";
+			link.l1 = RandPhraseSimple("Я занят"+ GetSexPhrase("","а") +", не сегодня!", "В данный момент у меня нет времени вас выслушивать.");
+			link.l1.go = "SCQ_exit";
+			link.l2 = "Что у вас стряслось?";
 			link.l2.go = "SCQ_man_1";
 		break;
 		case "SCQ_exit":
@@ -1487,7 +1491,7 @@ void ProcessDialogEvent()
 		break;
 		//выбираем квест
 		case "SCQ_man_1":
-			switch (npchar.quest.SeekCap.numQuest)
+			/*switch (npchar.quest.SeekCap.numQuest)
 			{
 				case "0":
 					dialog.text = "Год назад один капитан взялся доставить меня " + XI_ConvertString("Colony" + SelectNotEnemyColony(NPChar) + "Acc") + ". Но на борту его корабля я был брошен в трюм, а потом продан в рабство. Из этой переделки я выбрался с огромным трудом, несколько раз находился на грани жизни и смерти... В общем, я хочу напомнить моему 'другу', что я ещё жив.";
@@ -1504,8 +1508,201 @@ void ProcessDialogEvent()
 					link.l1 = "Почему? Множество капитанов, включая меня, могут доставить вас куда угодно.";
 					link.l1.go = "SCQ_Friend";
 				break;
+			}*/
+			switch (npchar.quest.SeekCap.numQuest)
+			{
+				case "0":
+					dialog.text = "Дело в том, что в местной церкви меня обучают латинскому языку, но в свободное время мне не с кем попрактиковаться...";
+					link.l1 = "Изучение латыни - это похвально, но а я здесь при чём?";
+					link.l1.go = "SCQ_ProverkaZnaniy";
+				break;
+				case "1":
+					dialog.text = "Дело в том, что в местной церкви меня обучают латинскому языку, но в свободное время мне не с кем попрактиковаться...";
+					link.l1 = "Изучение латыни - это похвально, но а я здесь при чём?";
+					link.l1.go = "SCQ_ProverkaZnaniy";
+				break;
+				case "2":
+					dialog.text = "Дело в том, что в местной церкви меня обучают латинскому языку, но в свободное время мне не с кем попрактиковаться...";
+					link.l1 = "Изучение латыни - это похвально, но а я здесь при чём?";
+					link.l1.go = "SCQ_ProverkaZnaniy";
+				break;
 			}
 		break;
+		// Проверка знаний
+		case "SCQ_ProverkaZnaniy":
+			dialog.text = "Скоро мне сдавать зачёт, а я даже не уверен в своих знаниях. Поможете мне?";
+			link.l1 = "Делать мне больше нечего...";
+			link.l1.go = "SCQ_exit";
+			link.l2 = "Э-э... А что делать-то надо?";
+			link.l2.go = "SCQ_ProverkaZnaniy_2";
+		break;
+		
+		case "SCQ_ProverkaZnaniy_2":
+			dialog.text = "Я назову вам фразу на латыни, а вы должны без ошибок повторить за мной. На это я дам вам 12 секунд. Готовы?";
+			link.l1 = "Давай попробуем. Начинай!";
+			link.l1.go = "SCQ_ProverkaZnaniy_3";
+			link.l2 = "Я капитан, а не полиглот. Прошу меня простить.";
+			link.l2.go = "SCQ_exit";
+		break;
+		
+		case "SCQ_ProverkaZnaniy_3":
+			Log_info("Вам нужно повторить текст за 12 секунд");
+			SetShowTimer(12.0);
+			DoQuestCheckDelay("SCQ_Zachet_VremyVishlo", 11.6);
+			pchar.StudentZachet = npchar.id;
+			int Phrase;
+			Phrase = rand(19);
+			Link.l1.edit = 1;
+			Link.l1 = "";
+			link.l1.go = "SCQ_ProverkaZnaniy_4";
+			if (Phrase == 0)
+			{
+				dialog.text = "actum atque tractatum";
+			break;
+			}
+			if (Phrase == 1)
+			{
+				dialog.text = "abeunt studia in mores";
+			break;
+			}
+			if (Phrase == 2)
+			{
+				dialog.text = "cuncta supercilio moventis";
+			break;
+			}
+			if (Phrase == 3)
+			{
+				dialog.text = "decies repetitia placebit";
+			break;
+			}
+			if (Phrase == 4)
+			{
+				dialog.text = "et fabula partem veri habet";
+			break;
+			}
+			if (Phrase == 5)
+			{
+				dialog.text = "homo homini lupus est";
+			break;
+			}
+			if (Phrase == 6)
+			{
+				dialog.text = "letum non omnia finit";
+			break;
+			}
+			if (Phrase == 7)
+			{
+				dialog.text = "memento quia pulvis es";
+			break;
+			}
+			if (Phrase == 8)
+			{
+				dialog.text = "nec sutor ultra crepidam";
+			break;
+			}
+			if (Phrase == 9)
+			{
+				dialog.text = "omnis ars imitatio est naturae";
+			break;
+			}
+			if (Phrase == 10)
+			{
+				dialog.text = "porta itineri longissima";
+			break;
+			}
+			if (Phrase == 11)
+			{
+				dialog.text = "repetitio est mater studiorum";
+			break;
+			}
+			if (Phrase == 12)
+			{
+				dialog.text = "sero venientibus ossa";
+			break;
+			}
+			if (Phrase == 13)
+			{
+				dialog.text = "silentium est aurum";
+			break;
+			}
+			if (Phrase == 14)
+			{
+				dialog.text = "sudore et sanguine";
+			break;
+			}
+			if (Phrase == 15)
+			{
+				dialog.text = "tempus edax rerum";
+			break;
+			}
+			if (Phrase == 16)
+			{
+				dialog.text = "te amo est verum";
+			break;
+			}
+			if (Phrase == 17)
+			{
+				dialog.text = "usus est optimus magister";
+			break;
+			}
+			if (Phrase == 18)
+			{
+				dialog.text = "ut tensio sic vis";
+			break;
+			}
+			if (Phrase == 19)
+			{
+				dialog.text = "vinum verba ministrat";
+			break;
+			}
+		break;
+		
+		case "SCQ_ProverkaZnaniy_4":
+			if ("actum atque tractatum" == GetStrSmallRegister(dialogEditStrings[1]) || "abeunt studia in mores" == GetStrSmallRegister(dialogEditStrings[1]) || "cuncta supercilio moventis" == GetStrSmallRegister(dialogEditStrings[1]) || "decies repetitia placebit" == GetStrSmallRegister(dialogEditStrings[1]) 
+				|| "et fabula partem veri habet" == GetStrSmallRegister(dialogEditStrings[1]) || "homo homini lupus est" == GetStrSmallRegister(dialogEditStrings[1]) || "letum non omnia finit" == GetStrSmallRegister(dialogEditStrings[1]) || "memento quia pulvis es" == GetStrSmallRegister(dialogEditStrings[1])
+				|| "nec sutor ultra crepidam" == GetStrSmallRegister(dialogEditStrings[1]) || "omnis ars imitatio est naturae" == GetStrSmallRegister(dialogEditStrings[1]) || "porta itineri longissima" == GetStrSmallRegister(dialogEditStrings[1]) || "repetitio est mater studiorum" == GetStrSmallRegister(dialogEditStrings[1])
+				|| "sero venientibus ossa" == GetStrSmallRegister(dialogEditStrings[1]) || "silentium est aurum" == GetStrSmallRegister(dialogEditStrings[1]) || "sudore et sanguine" == GetStrSmallRegister(dialogEditStrings[1]) || "tempus edax rerum" == GetStrSmallRegister(dialogEditStrings[1])
+				|| "te amo est verum" == GetStrSmallRegister(dialogEditStrings[1]) || "usus est optimus magister" == GetStrSmallRegister(dialogEditStrings[1]) || "ut tensio sic vis" == GetStrSmallRegister(dialogEditStrings[1]) || "vinum verba ministrat" == GetStrSmallRegister(dialogEditStrings[1]))
+			{
+				Dialog.text = "Невероятно, вы прекрасно владеете латынью! Теперь я замотивирован сдать зачёт, и у меня точно всё получится! Спасибо вам, "+GetSexPhrase("капитан","девушка")+", вот ваша награда, "+ sti(iMoney) +" пиастров.";
+				Link.l1 = "Это было несложно. Желаю вам удачи!";
+				Link.l1.go = "SCQ_Proverka_Znani_Final";
+				
+				DeleteAttribute(pchar, "showTimer");
+				ClearAllLogStrings();
+				
+				AddMoneyToCharacter(pchar, sti(iMoney));
+				AddCharacterExpToSkill(pchar, "Leadership", 30);
+				AddCharacterExpToSkill(pchar, "Commerce", 30);
+				break;
+			}
+			else
+			{
+				Dialog.text = "Нет! Не правильно! Как"+GetSexPhrase("ой","ая")+" же вы неграмотн"+GetSexPhrase("ый","ая")+", "+GetSexPhrase("капитан","девушка")+". Зря я к вам обратился.";
+				Link.l1 = "Ну и вали.";
+				Link.l1.go = "SCQ_Proverka_Znani_Final";
+				
+				DeleteAttribute(pchar, "showTimer");
+				ClearAllLogStrings();
+			}
+		break;
+		
+		case "SCQ_Proverka_Znani_Final":
+			DialogExit();
+			npchar.lifeday = 0;
+			LAi_CharacterDisableDialog(npchar);
+			LAi_SetCitizenType(npchar);
+			UnmarkCharacter(npchar);
+			DeleteAttribute(pchar, "StudentZachet");
+		break;
+		
+		case "SCQ_Proverka_Znani_VremyVishlo":
+			Log_info("Вы не успели");
+			dialog.text = "Вы и двух слов связать не можете. Зря я к вам обратился...";
+			link.l1 = "Ну и вали.";
+			link.l1.go = "SCQ_Proverka_Znani_Final";
+		break;
+		
 		// квест бывшего раба, которого негодяй-кэп взял в плен
 		case "SCQ_Slave":
 			dialog.text = "Я хочу, чтобы вы нашли его и отправили на тот свет. Я настолько хочу отомстить, что просто кушать не могу...";
@@ -1714,11 +1911,7 @@ void ProcessDialogEvent()
 			sTitle = npchar.city + "SCQ_manSlave";
 			CloseQuestHeader(sTitle);
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
-
+			AchievementsCounter_genquests(1);
 		break;
 		case "SCQR_manRapeWife":
 			dialog.text = "Боже мой, вы буквально вернули меня к жизни! Извольте получить свои " + FindRussianMoneyString(sti(npchar.quest.money)) + " и драгоценности. И знайте, что мы будем молиться за вас до конца жизни!";
@@ -1734,10 +1927,7 @@ void ProcessDialogEvent()
 			sTitle = npchar.city + "SCQ_manRapeWife";
 			CloseQuestHeader(sTitle);
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 		break;
 		case "SCQR_manFriend":
 			dialog.text = "Отлично!.. Вот то, что я вам обещал - " + FindRussianMoneyString(sti(npchar.quest.money)) + " и драгоценности. И спасибо вам, капитан.";
@@ -1750,13 +1940,10 @@ void ProcessDialogEvent()
 			sTitle = npchar.city + "SCQ_manFriend";
 			CloseQuestHeader(sTitle);
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 		break;
 		//========= квесты баб ===========
-		case "SCQ_woman":
+		/*case "SCQ_woman":
 			dialog.text = LinkRandPhrase("Здравствуйте, капитан. Я хотела попросить вас об одном одолжении.",
 				"Капитан! Помогите женщине, будьте так добры...",
 				"Капитан, не откажите "+ GetSexPhrase("даме","мне") +" в помощи.");
@@ -1764,10 +1951,17 @@ void ProcessDialogEvent()
 			link.l1.go = "SCQ_exit";
 			link.l2 = RandPhraseSimple("Что у вас стряслось, " + GetAddress_FormToNPC(NPChar) + "?", "Излагайте суть проблемы, " + GetAddress_FormToNPC(NPChar) + ". Я постараюсь вам помочь.");
 			link.l2.go = "SCQ_woman_1";
+		break;*/
+		case "SCQ_woman":
+			dialog.text = "Здравствуйте, капитан. Можно к вам обратиться?";
+			link.l1 = RandPhraseSimple("Я занят"+ GetSexPhrase("","а") +", красавица, не сегодня!", "Прошу прощения, " + GetAddress_FormToNPC(NPChar) + ", но в данный момент я не имею времени...");
+			link.l1.go = "SCQ_exit";
+			link.l2 = "Что у вас стряслось, " + GetAddress_FormToNPC(NPChar) + "?";
+			link.l2.go = "SCQ_woman_1";
 		break;
 		//выбираем квест
 		case "SCQ_woman_1":
-			switch (npchar.quest.SeekCap.numQuest)
+			/*switch (npchar.quest.SeekCap.numQuest)
 			{
 				case "0":
 					dialog.text = "Мой муж занимается коммерцией - доставляет грузы торговцам по всей округе. Так вот, он ушёл в море уже больше трёх месяцев назад, и до сих пор не вернулся!";
@@ -1784,8 +1978,103 @@ void ProcessDialogEvent()
 					link.l1 = "Подождите, что-то я не очень понимаю, кто к кому попал...";
 					link.l1.go = "SCQ_Pirates";
 				break;
+			}*/
+			switch (npchar.quest.SeekCap.numQuest)
+			{
+				case "0":
+					dialog.text = "Дело в том, что мне очень скучно, и мне не с кем поразвлечься. Может... Сыграете со мной в прятки?";
+					link.l1 = "Прятки? И какие правила игры?";
+					link.l1.go = "SCQ_Prytki";
+				break;
+				case "1":
+					dialog.text = "Дело в том, что мне очень скучно, и мне не с кем поразвлечься. Может... Сыграете со мной в прятки?";
+					link.l1 = "Прятки? И какие правила игры?";
+					link.l1.go = "SCQ_Prytki";
+				break;
+				case "2":
+					dialog.text = "Дело в том, что мне очень скучно, и мне не с кем поразвлечься. Может... Сыграете со мной в прятки?";
+					link.l1 = "Прятки? И какие правила игры?";
+					link.l1.go = "SCQ_Prytki";
+				break;
 			}
 		break;
+		
+		//девушка играет с нами в прятки
+		case "SCQ_Prytki":
+			dialog.text = "Вы закрываете глаза и считаете до пяти, а я прячусь в пределах города, и нельзя заходить в дома. Если найдёте меня, то я обещаю, что вы не уйдёте без награды.";
+			link.l1 = "Нет, я не собираюсь играть в эти детские игры... Найди лучше кого-нибудь другого.";
+			link.l1.go = "SCQ_Prytki_Net";
+			link.l2 = "Ну давай поиграем, хе-хе.";
+			link.l2.go = "SCQ_Prytki_1";
+		break;
+		
+		case "SCQ_Prytki_Net":
+			DialogExit();
+			
+			npchar.lifeday = 0;
+			LAi_CharacterDisableDialog(npchar);
+		break;
+		
+		case "SCQ_Prytki_1":
+			dialog.text = "Отлично, а теперь закрывайте ваши прекрасные глаза, и начинайте считать.";
+			link.l1 = "Раз... Два... Три...";
+			link.l1.go = "SCQ_Prytki_2";
+			pchar.DevushkaVPrytki = npchar.id;
+		break;
+		
+		case "SCQ_Prytki_2":
+			DialogExit();
+			
+			SetLaunchFrameFormParam("На мгновение закрываем глаза...", "SCQ_Prytki_VremyPoshlo", 0, 2.5);
+			LaunchFrameForm();
+			InterfaceStates.Buttons.Save.enable = false;
+			
+			sld = CharacterFromID(pchar.DevushkaVPrytki);
+			if (rand(1) == 0)
+			{
+				PlaceCharacter(sld, RandPhraseSimple("goto", "patrol"), "random_must_be");
+			}
+			else
+			{
+				PlaceCharacter(sld, "reload", "random_must_be");
+			}
+			LAi_SetStayType(sld);
+		break;
+		
+		case "SCQ_Prytki_Dengi":		
+			dialog.text = "Ой, хи-хи-хи. А вы хорош"+GetSexPhrase("ий","ая")+" сыщи"+GetSexPhrase("к","ца")+", капитан, так уж и быть, вот ваши "+ sti(iMoney) +" пиастров.";
+			link.l1 = "Благодарю, красавица, "+GetSexPhrase("был рад","была рада")+" провести с вами время. До свидания.";
+			link.l1.go = "SCQ_Prytki_Dengi_Final";
+			DeleteAttribute(pchar, "showTimer");
+			ClearAllLogStrings();
+			InterfaceStates.Buttons.Save.enable = true;
+			
+			AddMoneyToCharacter(pchar, sti(iMoney));
+			AddCharacterExpToSkill(pchar, "Sneak", 30);
+			AddCharacterExpToSkill(pchar, "Fortune", 30);
+		break;
+		
+		case "SCQ_Prytki_Dengi_Final":
+			DialogExit();
+			npchar.lifeday = 0;
+			LAi_CharacterDisableDialog(npchar);
+			LAi_SetCitizenType(npchar);
+		break;
+		
+		/*case "SCQ_Prytki_Trah":
+			dialog.text = "Ой, хи-хи-хи. А вы хорош"+GetSexPhrase("ий","ая")+" сыщи"+GetSexPhrase("к","ца")+", капитан. Давай снимем комнату в таверне, я вознагражу тебя по достоинству.";
+			link.l1 = "Ну пойдём.";
+			link.l1.go = "SCQ_Prytki_Trah_2";
+			DeleteAttribute(pchar, "showTimer");
+			ClearAllLogStrings();
+			InterfaceStates.Buttons.Save.enable = true;
+		break;
+		
+		case "SCQ_Prytki_Trah_2":
+			DialogExit();
+			sld = CharacterFromID(pchar.DevushkaVPrytki);
+			LAi_SetActorType(sld);
+		break;*/
 
 		//жещина разыскивает мужа-торговца
 		case "SCQ_Hasband":
@@ -2023,10 +2312,7 @@ void ProcessDialogEvent()
 			sTitle = npchar.city + "SCQ_womanHasband";
 			CloseQuestHeader(sTitle);
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 		break;
 		case "SCQR_womanRevenge":
 			dialog.text = "Отлично! Ну что же, вот ваши " + FindRussianMoneyString(sti(npchar.quest.money)) + " и драгоценности. Прощайте.";
@@ -2047,10 +2333,7 @@ void ProcessDialogEvent()
 			sTitle = npchar.city + "SCQ_womanRevenge";
 			CloseQuestHeader(sTitle);
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 		break;
 		case "SCQR_womanPirates":
 			dialog.text = "Конечно, это он!!! Господи, капитан, как же я вам благодарна! Вот ваши " + FindRussianMoneyString(sti(npchar.quest.money)) + ". Я буду молиться за вас каждый день, пока жива!";
@@ -2066,10 +2349,7 @@ void ProcessDialogEvent()
 			sTitle = npchar.city + "SCQ_womanPirates";
 			CloseQuestHeader(sTitle);
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 		break;
 		//========= разыскиваемый капитан-работорговец ===========
 		case "CitizCap": //встреча на суше
@@ -2770,7 +3050,9 @@ void ProcessDialogEvent()
 			npchar.equip.gun = "mushket2x2";
 			EquipCharacterByItem(NPChar, "mushket2x2");
 			npchar.IsMushketer.MushketID = "mushket2x2";
-			npchar.MusketerDistance = 5;
+			npchar.MusketerDistance = 10.0;
+			npchar.isMusketer = true;
+			npchar.isMusketer.weapon = true;
 			npchar.greeting = "Gr_questOfficer";
 			npchar.Dialog.Filename = "Enc_Officer_dialog.c";
 			Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(Npchar.id);
@@ -2953,8 +3235,8 @@ void SetSeekCapCitizenParam(ref npchar, int iNation)
 	{
 		case "manSlave":	 sld.mapEnc.worldMapShip = "Galleon_red"; break;
 		case "manRapeWife":	 sld.mapEnc.worldMapShip = "Galleon_red"; break;
-		case "manFriend":	 sld.mapEnc.worldMapShip = "ranger";	  break;
-		case "womanHasband": sld.mapEnc.worldMapShip = "ranger";	  break;
+		case "manFriend":	 sld.mapEnc.worldMapShip = "Galleon_red"; break; //стояла модель кораблекрушенца ranger
+		case "womanHasband": sld.mapEnc.worldMapShip = "Galleon_red"; break; //стояла модель кораблекрушенца ranger
 		case "womanRevenge": sld.mapEnc.worldMapShip = "Galleon_red"; break;
 		case "womanPirates": sld.mapEnc.worldMapShip = "Galleon_red"; break;
 	}

@@ -1034,16 +1034,18 @@ void LAi_AllCharactersUpdate(float dltTime)
 					}
 					else
 					{	
-						if(chr.chr_ai.backuptype == officer)
+						if(!CheckAttribute(chr, "chr_ai.backuptype"))
 						{
-							DeleteAttribute(chr, "ai_type.backuptype");
-							LAi_type_officer_Init(chr);
+							//Log_TestInfo("Type restoration: warrior");
+							LAi_SetWarriorTypeNoGroup(chr);
 							LAi_SetFightMode(chr, true);
 						}
 						else
 						{
-							DeleteAttribute(chr, "ai_type.backuptype");
-							LAi_SetWarriorTypeNoGroup(chr);
+							//Log_TestInfo("Type restoration: officer");
+							DeleteAttribute(chr, "chr_ai.backuptype");
+							LAi_SetOfficerType(chr);
+							LAi_tmpl_SetFollow(chr, pchar, -1.0);
 							LAi_SetFightMode(chr, true);
 						}
 					}
@@ -1136,7 +1138,7 @@ void LAi_AllCharactersUpdate(float dltTime)
 							}
 							else
 							{
-									if(!CheckAttribute(pchar, "autofood") && pchar.foodquery > 0)
+								if(!CheckAttribute(pchar, "autofood") && pchar.foodquery > 0)
 								{
 									pchar.foodquery = sti(pchar.foodquery)-1;
 									EatSomeFood();
@@ -1149,7 +1151,7 @@ void LAi_AllCharactersUpdate(float dltTime)
 					}
 				}
 			}
-			if (sti(chr.index) == GetMainCharacterIndex() && CheckAttribute(pchar, "autofood") && !CheckAttribute(chr, "noeat"))
+			if (sti(chr.index) == GetMainCharacterIndex() && CheckAttribute(pchar, "autofood") && !CheckAttribute(pchar,"chr_ai.swift") &&  !CheckAttribute(chr, "noeat"))
 			{
 				if(chr_ai.energy < (LAi_GetCharacterMaxEnergy(chr) * (sti(PChar.autofood_use) * 0.01)) && LAi_IsFightMode(pchar))
 				{

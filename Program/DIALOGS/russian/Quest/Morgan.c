@@ -773,7 +773,7 @@ void ProcessDialogEvent()
 			link.l1.go = "exit";
 			sld = GetCharacter(NPC_GenerateCharacter("EdwardLoy", "officer_10", "man", "man", 30, PIRATE, -1, true));
 			FantomMakeCoolFighter(sld, 30, 90, 50, "blade25", "pistol3", 100);
-			FantomMakeCoolSailor(sld, SHIP_BRIGSW, "Морской волк", CANNON_TYPE_CANNON_LBS24, 90, 90, 90);
+			FantomMakeCoolSailor(sld, SHIP_BRIGSW, "Морской волк", CANNON_TYPE_CANNON_LBS20, 90, 90, 90);
 			sld.name = "Эдвард";
 			sld.lastname = "Лоу";
 			sld.rank = 30;
@@ -1359,7 +1359,7 @@ void ProcessDialogEvent()
 			RemoveItems(PChar, "OpenBook", 1);
 		break;
 		case "PL_Q7_GoodWork_6":
-			dialog.text = "Ну ладно, теперь тебе лучше заняться своими делами, если ты хочешь поработать на какую-нибудь державу - я не буду против. Как закончишь - приходи ко мне, продолжим наше сотрудничество. Только к англичанам не суйся, Мэдифорду слишком хорошо известно о твоих похождениях. Мы с ним, в некотором роде, дружны.";
+			dialog.text = "Ну ладно, теперь тебе лучше заняться своими делами, если ты хочешь поработать на какую-нибудь державу - я не буду против. Как закончишь - приходи ко мне, продолжим наше сотрудничество.";
 			link.l1 = "А если я не хочу связываться с властями?";
 			link.l1.go = "PL_Q7_GoodWork_7";
 		break;
@@ -1901,12 +1901,12 @@ void ProcessDialogEvent()
 			sld = &locations[sti(npchar.quest.locInd)];
 			if (CheckAttribute(sld, "private1.money")) sld.private1.money = 0;
 			if (CheckAttribute(sld, "private2.money")) sld.private2.money = 0;
-			dialog.text = "Я вижу, ты справил"+ GetSexPhrase("ся","ась") +" с задачей. Наш"+ GetSexPhrase("ел","ла") +" всё-таки ключ!";
-			link.l1 = "Наш"+ GetSexPhrase("ел","ла") +"! А где губернатор?";
+			dialog.text = "Я вижу, ты справил"+ GetSexPhrase("ся","ась") +" с задачей. Наш"+ GetSexPhrase("ёл","ла") +" всё-таки ключ!";
+			link.l1 = "Наш"+ GetSexPhrase("ёл","ла") +"! А где губернатор?";
 			link.l1.go = "PL_Q8_Panama2_1";
 		break;
 		case "PL_Q8_Panama2_1":
-			dialog.text = "Отправился на тот свет. Мне показалось, что он тебе не все сказал, и я допросил его с пристрастием. Но здоровье его подвело...";
+			dialog.text = "Отправился на тот свет. Мне показалось, что он тебе не всё сказал, и я допросил его с пристрастием. Но здоровье его подвело...";
 			link.l1 = "Хм, удалось узнать что-то важное?";
 			link.l1.go = "PL_Q8_Panama2_2";
 		break;

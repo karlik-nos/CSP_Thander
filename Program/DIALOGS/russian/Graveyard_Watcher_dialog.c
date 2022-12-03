@@ -70,14 +70,29 @@ void ProcessDialogEvent()
 
 				Link.l1 = pcharrepphrase(
                                 LinkRandPhrase("Разрази меня гром! ", "Тысяча чертей! ", "Чтоб тебе пусто было! ") + "Да я капитан "+ GetFullName(Pchar)+ LinkRandPhrase(", ты разве не слыхал"+NPCharSexPhrase(NPChar,"","а")+" обо мне"+NPCharSexPhrase(NPChar,", каналья?","?"), " и "+ GetSexPhrase("самый известный пират","самая известная женщина-пират") +" в этих водах! ", " и провалиться мне на этом месте, если это не так!"),
-                                LinkRandPhrase("Я " + GetFullName(Pchar) + ", капитан.", "Меня зовут " + GetFullName(Pchar) + ".", "Можешь называть меня капитан " + GetFullName(Pchar)));
+                                LinkRandPhrase("Я " + GetFullName(Pchar) + ", капитан.", "Меня зовут " + GetFullName(Pchar) + ".", "Можешь называть меня капитан " + GetFullName(Pchar) + "."));
 
                 //LinkRandPhrase("Я " + GetFullName(Pchar) + ", капитан.", "Меня зовут " + GetFullName(Pchar) + ".", "Можешь называть меня капитан " + GetFullName(Pchar));
 				Link.l1.go = "Meeting";
+				if (pchar.sex == "Skeleton")	//Проверка на скелета
+				{
+					if	(GetCharacterEquipSuitID(pchar) == "suit_1")
+					{
+						dialog.text = "Хоть ты и приоделся в эти лохмотья, но мои старые глаза не обманешь...";
+						link.l1 = "Неужели так плоха моя маскировка?",
+						link.l1.go = "UndeadObuchenie_2";
+					}
+					else
+					{
+						dialog.text = "Судя по твоей нелепой походке, ты не так давно встал из могилы. Но можешь не бояться меня, тебя я не обижу.";
+						link.l1 = "Удивительно, но это ТЫ должен МЕНЯ бояться, а не наоборот!";
+						link.l1.go = "UndeadObuchenie_11";
+					}
+				}
 			}
 			else
 			{
-				link.l1 = PCharRepPhrase("Хотел"+ GetSexPhrase("","а") +" кое-что узнать об этом городишке!", "Хотел"+ GetSexPhrase("","а") +" узнать кое-что о городе.");
+				link.l1 = PCharRepPhrase("Хотел"+ GetSexPhrase("","а") +" кое-что узнать о городишке по близости!", "Хотел"+ GetSexPhrase("","а") +" узнать кое-что о городе, который здесь недалеко.");
 				link.l1.go = "new question";
 				// Квестовый генератор священника. Квест №2. Warship -->
 				if(CheckAttribute(PChar, "GenQuest.ChurchQuest_2.AskPeople") && !CheckAttribute(NPChar, "GenQuest.ChurchQuest_2.AskedPeople") && NPChar.location == PChar.GenQuest.ChurchQuest_2.QuestTown + "_town")
@@ -95,7 +110,7 @@ void ProcessDialogEvent()
                                         +LinkRandPhrase(". Думал, тебя уже нет на этом свете!", ". И, наверное, "+ GetSexPhrase("как всегда пьян.","уже слегка навеселе.") +"", ". И, как вижу, ещё на свободе!")
                                         +LinkRandPhrase(" Ну, говори, чего тебе нужно?", " Чего тебе на этот раз?", " Опять тревожишь меня по пустякам?"),
                                         LinkRandPhrase(TimeGreeting() + ", капитан ", "Здравствуйте, "+GetAddress_Form(NPChar)+" ", "Приветствую вас, капитан ")+GetFullName(Pchar)
-                                        +LinkRandPhrase(". Что может быть нужно "+ GetSexPhrase("такому почтенному человеку","такой бравой девушке") +", как вы, от меня?", ". Зачем вы пришли?", ". Что на этот раз вы хотите узнать?")
+                                        +LinkRandPhrase(". Что вас интересует?", ". Зачем вы пришли?", ". Что на этот раз вы хотите узнать?")
 
                                         ),
 
@@ -210,6 +225,37 @@ void ProcessDialogEvent()
 			LAi_group_Attack(NPChar, Pchar);
 			if (rand(3) != 1) SetNationRelation2MainCharacter(sti(npchar.nation), RELATION_ENEMY);
 			AddDialogExitQuest("MainHeroFightModeOn");
+		break;
+		
+		case "UndeadObuchenie_2":
+			dialog.text = "Я прожил на этом кладбище практически всю свою жизнь. И могу с лёгкостью понять, кто передо мной, человек или нежить. Но не одежда выдаёт в тебе нежить, а твоя ПОХОДКА. Посмотри, как ты стоишь - неуверенно, сразу видно, что ты недавно встал из могилы. Проще говоря - новенький.";
+			link.l1 = "Да, мёртвыми глазами совсем по-другому видишь этот мир. И от этого меня качает из стороны в сторону.",
+			link.l1.go = "UndeadObuchenie_3";
+		break;
+		
+		case "UndeadObuchenie_3":
+			dialog.text = "Можешь не бояться, тут только я такой глазастый. Остальные жители этого острова даже не заметят подвоха, и будут тебя принимать за своего, то есть за человека. Но стоит тебе снять маскировку, как люди будут настроены к тебе враждебно. Понятно ведь тебе, да?";
+			link.l1 = "Это неприятно. Но... А есть ли у меня союзники?",
+			link.l1.go = "UndeadObuchenie_13";
+		break;
+		
+		case "UndeadObuchenie_11":
+			dialog.text = "Хе-хе, нет! К таким как ты я привык. Даже поддерживаю хорошие отношения с некоторой нежитью. Но я - исключение из правил. Тебе нужно быть осторожнее, так как остальные жители этого острова будут тебя бояться и... будут пытаться уничтожить тебя.";
+			link.l1 = "Это неприятно... Но тогда что мне делать?",
+			link.l1.go = "UndeadObuchenie_12";
+		break;
+		
+		case "UndeadObuchenie_12":
+			dialog.text = "Тебе нужно носить маскировку. Найти какие-нибудь лохмотья и ходить среди людей как вылитый свой.";
+			link.l1 = "А есть ли у меня союзники?",
+			link.l1.go = "UndeadObuchenie_13";
+		break;
+		
+		case "UndeadObuchenie_13":
+			dialog.text = "Конечно, практически любая нежить - твой друг. Можешь поискать своих сородичей в пещерах, они с радостью пойдут к тебе в команду на корабль.";
+			link.l1 = "Как же хорошо, что я к тебе заглянул. Буду дальше изучать этот мир, в этом проклятом теле. Прощай.",
+			link.l1.go = "exit";
+			NextDiag.TempNode = "First time";
 		break;
 	}
 }

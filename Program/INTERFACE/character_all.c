@@ -324,7 +324,7 @@ void SetButtonsState()
 void ShowInfoWindow()
 {
 	string sCurrentNode = GetCurrentNode();
-	string sHeader, sText1, sText2, sText3, sPicture;
+	string sHeader, sText1, sText2, sText3, sText4, sPicture;
 	string sGroup, sGroupPicture;
 	int iItem;
 
@@ -521,13 +521,68 @@ void ShowInfoWindow()
 		break;
 		//<--navy
 	}
-	CreateTooltip("#" + sHeader, sText1, argb(255,255,255,255), sText2, argb(255,255,192,192), sText3, argb(255,192,255,192), "", argb(255,255,255,255), sPicture, sGroup, sGroupPicture, 64, 64);
+	if (sCurrentNode == "TABLE_SKILL_1" || sCurrentNode == "TABLE_SKILL_2")
+	{
+		if (HasSubStr("Sailing",GameInterface.(CurTable).(CurRow).UserData.ID) && bRankRequirement)
+		{
+			sText3 = "Также, помимо требований навигации, присутствует и требование по уровню персонажа относительно класса корабля:\n7 и 6 класс = 1 уровень \n5 класс = 6 уровень \n4 класс = 12 уровень \n3 класс = 20 уровень \n2 класс = 26 уровень \n 1 класс = 33 уровень\n\nЗа каждый недостающий уровень требуются дополнительные 2 очка навигации."
+		}
+		sText4 = "";
+		if (CheckAttribute(xi_refCharacter,"chr_ai.Trauma") && HasSubStr("LeadershipFencingLightFencingHeavyPistolFortuneSneak",GameInterface.(CurTable).(CurRow).UserData.ID))
+		{
+			sText4 += "\nНа показатель данного умения действует штраф от травмы в -20 единиц.";
+		}
+		if (CheckAttribute(xi_refCharacter,"chr_ai.HeavyTrauma") && HasSubStr("LeadershipFencingLightFencingHeavyPistolFortuneSneak",GameInterface.(CurTable).(CurRow).UserData.ID))
+		{
+			sText4 += "\nНа показатель данного умения действует штраф от тяжёлой травмы в -30 единиц.";
+		}
+		if (CheckAttribute(xi_refCharacter,"HPminusDays"))
+		{
+			sText4 += "\nНа показатель данного умения действует штраф от ранения в -50 единиц.";
+		}
+		if (GetItemsWeight(xi_refCharacter)>GetMaxItemsWeight(xi_refCharacter))
+		{
+			sText4 += "\nНа показатель данного умения действует штраф от перегрузки.";
+		}
+		int sailSkill;
+        sailSkill = GetSummonSkillFromNameSimple(xi_refCharacter, SKILL_SAILING);
+        int shipClass = GetCharacterShipClass(xi_refCharacter);
+        int needSkill = GetShipClassNavySkill(shipClass);
+		if (bRankRequirement)
+		{
+			int needRank = (ChecKSufficientRankForClass(shipClass) - sti(xi_refCharacter.rank))*2;
+			if (needRank < 0) needRank = 0;
+			needSkill += needRank;
+		}
+
+        if (sailSkill < needSkill)
+        {
+			sText4 += "\nНа показатель данного умения действует штраф от недостатка навигации.";
+        }
+	}
+	if (sCurrentNode == "TABLE_SPECIAL" && HasSubStr("Charisma",GameInterface.(CurTable).(CurRow).UserData.ID))
+	{
+		sText3 = "Ниже показано количество уже нанятых и доступных к найму на текущий момент офицеров.\nРассчитывается как удвоенный показатель Лидерства + (чистый Авторитет/20)."
+		int numnum = (GetNotQuestPassengersQuantity(Pchar) + GetCompanionQuantity(Pchar) - 1);
+		sText4 = "Нанято: "+numnum+"\nВсего доступно к найму: "+GetCharacterMaxOfficersQty(Pchar);
+	}
+	CreateTooltip("#" + sHeader, sText1, argb(255,255,255,255), sText2, argb(255,255,192,192), sText3, argb(255,192,255,192), sText4, argb(255,255,196,196), sPicture, sGroup, sGroupPicture, 64, 64);
 
 }
 
 void HideInfoWindow()
 {
 	CloseTooltip();
+}
+
+int GetSummonSkillForSkillTable(ref _refCharacter, string skillName)//метод-дубль без бэк скилов, у оригинала почему-то иногда сносит крышу
+{
+    int sumSkill;
+
+    sumSkill = GetSummonSkillFromNameSimple(_refCharacter, skillName);
+    sumSkill = ApplayNavyPenaltyToSkill(_refCharacter, skillName, sumSkill);
+
+    return sumSkill;
 }
 
 void FillSkillTables()
@@ -629,7 +684,7 @@ void FillSkillTables()
 		skillVal = GetSkillValue(xi_refCharacter, SKILL_TYPE, skillName);
 		GameInterface.TABLE_SKILL_1.(row).td5.str = skillVal;
 		// рассчет драйна
-		diff = GetSummonSkillFromName(xi_refCharacter, skillName) - skillVal;
+		diff = GetSummonSkillForSkillTable(xi_refCharacter, skillName) - skillVal;
 
 		if (skillVal < SKILL_MAX)
 		{
@@ -689,7 +744,7 @@ void FillSkillTables()
 		skillVal = GetSkillValue(xi_refCharacter, SKILL_TYPE, skillName);
 		GameInterface.TABLE_SKILL_2.(row).td5.str = skillVal;
 		// рассчет драйна
-		diff = GetSummonSkillFromNameSimple(xi_refCharacter, skillName) - skillVal;
+		diff = GetSummonSkillForSkillTable(xi_refCharacter, skillName) - skillVal;
 		if (skillVal < SKILL_MAX)
 		{
 			GameInterface.TABLE_SKILL_2.(row).td3.str = makeint(GetSkillValueExp(xi_refCharacter, skillName) * 100.0 / makefloat(skillVal * GetCharacterExpRate(xi_refCharacter, skillName))) + "%";
@@ -873,7 +928,7 @@ string ShowStatValue(string type)
 			return value;
 		break;
 		case "energychar":
-			float fMultiplierE = 1.6666667;
+			float fMultiplierE = 1.30 + (GetCharacterSPECIALSimple(xi_refCharacter,SPECIAL_S)/10.0);//влияние силы на скорость восстановления энергии
 			if(CheckCharacterPerk(xi_refCharacter, "Energaiser")) // скрытый перк боссов и ГГ
 			{
 				fMultiplierE = fMultiplierE * 1.5;
@@ -1882,7 +1937,7 @@ void AcceptAddOfficer()
 
 				//Boyer mod
 				//default:
-					SetOfficersIndex(pchar, nCurScrollNum - 6, iChar);
+					SetOfficersIndex(pchar, -1, iChar);//назначаем в первый свободный слот, а не куда-то конкретно
 					bNeedFollow = true;
 				break;
 				//End Boyer add
@@ -1960,7 +2015,7 @@ void AcceptRemoveOfficer()
 		break;
 		//Boyer mod
 		//default:
-			RemoveOfficersIndex(pchar, GetOfficersIndex(pchar, nCurScrollNum - 6));
+			RemoveOfficersIndex(pchar, iChar);
 		break;
 		//End Boyer mod
 	}
@@ -2291,4 +2346,9 @@ void AcceptPerk()
     FillPerksTable(GameInterface.(CurTable).(CurRow).UserData.Type, false);
     // перерисуем все <--
 	ExitPerkMenu();
+	int iCurrentNode = nCurScrollNum;
+	FillCharactersScroll();
+	GameInterface.CHARACTERS_SCROLL.current = iCurrentNode;
+	SetCurrentNode("CHARACTERS_SCROLL");
+	SendMessage(&GameInterface,"lsl",MSG_INTERFACE_REFRESH_SCROLL,"CHARACTERS_SCROLL",-1);
 }

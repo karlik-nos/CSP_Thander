@@ -490,7 +490,7 @@ void SetStaticSounds (ref loc)
 
 }
 
-void SetSchemeForSea ()
+void SetSchemeForSea()
 {
 	ResetSoundScheme();
 
@@ -556,7 +556,7 @@ void SetSchemeForSea ()
 	ResumeAllSounds();
 }
 
-void SetSchemeForMap ()
+void SetSchemeForMap()
 {
 	ResetSoundScheme();
 	AddSoundScheme("sea_map");
@@ -770,7 +770,7 @@ void Sound_OnSeaAlarm(bool _seaAlarmed)
 
 	if (seaAlarmed)
 	{ //alarm on!
-		if(bCharVoice) AddSoundScheme("sea_battle_voice_SBV"); // LEO: Добавление схемы голосовых криков на корабле, в режиме боя
+		if(sti(InterfaceStates.CharVoice)==1) AddSoundScheme("sea_battle_voice_SBV"); // LEO: Добавление схемы голосовых криков на корабле, в режиме боя
 		SetMusic("music_sea_battle");
 	}
 	else

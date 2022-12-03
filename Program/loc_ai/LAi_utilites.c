@@ -692,11 +692,12 @@ void CreateHabitues(aref loc)
 					SetNPCModelUniq(chr, "pirate", MAN);
 					chr.City = Colonies[iColony].id;
 					chr.CityType = "citizen";
-					sTemp = "sit"+rand(10);
+					sTemp = LAi_FindFreeRandomLocator("sit");
 					FreeSitLocator(loc.id, sTemp);
-					ChangeCharacterAddressGroup(chr, loc.id,"sit", sTemp); // может не быть вовсе, если все места занятыa
-					LAi_SetSitType(chr);
+					ChangeCharacterAddressGroup(chr, loc.id, "sit", sTemp);
 					LAi_group_MoveCharacter(chr, slai_group);
+					if (findsubstr(sTemp, "_bar" , 0) != -1) LAi_SetBarmanType(chr);
+					else LAi_SetSitType(chr);
 					chr.dialog.filename = "Enc_Treasure_dialog.c";
 					chr.dialog.currentnode = "first time";
 					chr.greeting = "Gr_Smuggler Agent";
@@ -728,19 +729,12 @@ void CreateHabitues(aref loc)
 					SetNPCModelUniq(chr, "pirate", MAN);
 					chr.City = Colonies[iColony].id;
 					chr.CityType = "citizen";
-					sTemp = PlaceCharacter(chr, "sit", "random_free"); // может не быть вовсе, если все места заняты
-					ReSitCharacterOnFree(chr, loc.id, sTemp);
-
-					LAi_SetSitType(chr);
-	/// ---> Navarra
-					///	if (findsubstr(sTemp, "sit_ground" , 0) != -1)
-						if (findsubstr(chr.location.locator, "sit_ground" , 0) != -1)
-						{	LAi_SetGroundSitType(chr);	}
-					///	if (findsubstr(sTemp, "sit_bar" , 0) != -1)
-						if (findsubstr(chr.location.locator, "sit_bar" , 0) != -1)
-						{	LAi_SetBarmanType(chr);		}
-	/// <--- Navarra
+					sTemp = LAi_FindFreeRandomLocator("sit");
+					FreeSitLocator(loc.id, sTemp);
+					ChangeCharacterAddressGroup(chr, loc.id, "sit", sTemp);
 					LAi_group_MoveCharacter(chr, slai_group);
+					if (findsubstr(sTemp, "_bar" , 0) != -1) LAi_SetBarmanType(chr);
+					else LAi_SetSitType(chr);
 					chr.dialog.filename = "Enc_Treasure_dialog.c";
 					chr.dialog.currentnode = "first time";
 					chr.greeting = "Gr_Smuggler Agent";
@@ -1097,6 +1091,7 @@ void CreateBrothels(aref loc)
 						case "Panama":		 sld.quest.price = 900*(rand(4)+5); break;
 						case "Marigo":	     sld.quest.price = 700*(rand(4)+5); break;
 						case "Bridgetown":	 sld.quest.price = 400*(rand(4)+5); break;
+						case "Nassau":	 	 sld.quest.price = 450*(rand(4)+5); break;
 						case "FortFrance":	 sld.quest.price = 500*(rand(4)+5); break;
 						case "Charles":		 sld.quest.price = 300*(rand(4)+5); break;
 						case "SantoDomingo": sld.quest.price = 200*(rand(4)+5); break;

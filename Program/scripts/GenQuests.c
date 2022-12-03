@@ -2849,8 +2849,6 @@ void Set_TreasureBarrel()
 		if(irand == 19) trBarrel.items.coins = rand(10) + 7;
 
 		irand = drand(25);
-		if(irand == 3) trBarrel.items.indian18 = 1;
-		irand = drand(25);
 		if(irand == 6) trBarrel.items.indian20 = 1;
 		irand = drand(25);
 		if(irand == 9) trBarrel.items.indian21 = 1;
@@ -3542,7 +3540,7 @@ void CaptainComission_PirateAttack_DieHard(string qName)
 void CaptainComission_GaleonInit(ref chref)
 {
 	pchar.GenQuest.CaptainComission.Nation = chref.nation;
-	pchar.GenQuest.CaptainComission.City = GetQuestNationsCity(sti(chref.nation));
+	pchar.GenQuest.CaptainComission.City = GetQuestNationsPrison(sti(chref.nation));
 	pchar.GenQuest.CaptainComission.Name = GenerateRandomName_Generator(sti(chref.nation), "man");
 	pchar.GenQuest.CaptainComission.ShipName = chref.Back.Ship.Name;
 	pchar.GenQuest.CaptainComission.City1 = FindAlliedColonyForNationExceptColony(pchar.GenQuest.CaptainComission.City);
@@ -4793,7 +4791,7 @@ void Convict_LocExit(string qName)
 		if(pchar.GenQuest.Convict == "FightInShore")
 		{
 			AddQuestRecord("Convict", "6");
-			AddQuestUserData("Convict", "sSex", GetSexPhrase("слово джентльмена","'держать свое слово'"));
+			AddQuestUserData("Convict", "sSex", GetSexPhrase("слово джентльмена","'держать своё слово'"));
 			AddQuestUserData("Convict", "sSex1", GetSexPhrase("","а"));
 			AddQuestUserData("Convict", "sShoreName", XI_ConvertString("Shore" + pchar.GenQuest.Convict.ShoreLocation + "Acc"));
 		}
@@ -4805,7 +4803,7 @@ void Convict_LocExit(string qName)
 		if(pchar.GenQuest.Convict == "MayakFight")
 		{
 			AddQuestRecord("Convict", "13");
-			AddQuestUserData("Convict", "sSex", GetSexPhrase("слово джентльмена","'держать свое слово'"));
+			AddQuestUserData("Convict", "sSex", GetSexPhrase("слово джентльмена","'держать своё слово'"));
 			AddQuestUserData("Convict", "sSex1", GetSexPhrase("","а"));
 			AddQuestUserData("Convict", "sMayak", XI_ConvertString(pchar.GenQuest.Convict.Mayak + "Abl"));
 		}

@@ -220,7 +220,7 @@ void SetHalfPerksToChar(ref _ch, bool _isOfficer)
 void RemoveAllCharacterItems(ref _ch, bool _removemoney)
 {
 	// сносим нафик всю экипировку
-	if(_ch == GetMainCharacter())
+	if(IsMainCharacter(_ch))
 	{
 		StoreEquippedMaps(_ch);
 		_ch.MapsAtlasCount = 0;
@@ -1456,6 +1456,22 @@ int SelectQuestions()
 void PoormansInit()
 {
 	ref sld;
+	//нищий в Нассау
+	sld = GetCharacter(NPC_GenerateCharacter("Nassau_Poorman", "panhandler_"+(rand(5)+1), "man", "man", 5, ENGLAND, -1, false));
+	sld.city = "Nassau";
+	sld.location	= "Nassau_town";
+	sld.location.group = "goto";
+	sld.location.locator = "goto6";
+	sld.forStay.locator = "goto6"; //где генеримся в случае стояния
+	sld.forSit.locator0 = "goto15";
+	sld.forSit.locator1 = "goto17"; //три локатора, где генеримся в случае сидения
+	sld.forSit.locator2 = "goto4";
+	sld.Dialog.Filename = "Common_poorman.c";
+	LAi_SetPoorType(sld);
+	LAi_SetHP(sld, 50.0, 50.0);
+	LAi_SetLoginTime(sld, 9.0, 21.99);
+	sld.greeting = "Gr_poorman";
+	LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
 	//нищий в Сент-Джонсе
 	sld = GetCharacter(NPC_GenerateCharacter("SentJons_Poorman", "panhandler_"+(rand(5)+1), "man", "man", 5, ENGLAND, -1, false));
 	sld.city = "SentJons";
@@ -1745,7 +1761,7 @@ void PoormansInit()
 	sld.greeting = "Gr_poorman";
 	LAi_group_MoveCharacter(sld, "ENGLAND_CITIZENS");
 	//заказчик нищих
-	if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sld = GetCharacter(NPC_GenerateCharacter("PoorKillSponsor", "smuggler_boss", "man", "spy", 30, PIRATE, -1, false)); // LEO: Страдать превозмогаторам 07.12.2021
+	if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sld = GetCharacter(NPC_GenerateCharacter("PoorKillSponsor", "smuggler_boss", "man", "man_fast", 30, PIRATE, -1, false)); // LEO: Страдать превозмогаторам 07.12.2021
 	else sld = GetCharacter(NPC_GenerateCharacter("PoorKillSponsor", "smuggler_boss", "man", "man", 30, PIRATE, -1, false));
 	sld.name = "Оливер";
 	sld.lastname = "Траст";
@@ -2018,6 +2034,28 @@ string GetQuestNationsCity(int _nation)
 	}
 	if (howStore == 0) return "none";
 	iRes = storeArray[cRand(howStore-1)];
+	return colonies[iRes].id;
+}
+
+string GetQuestNationsPrison(int _nation)//ищем город определенной нации, проверять наличие тавернщика и тюремного босса
+{
+	int n, iRes;
+    int fortArray[MAX_COLONIES];
+    int howStore = 0;
+
+	for(n=0; n<MAX_COLONIES; n++)
+	{
+		if (colonies[n].nation != "none"  && colonies[n].id != "Panama" && sti(colonies[n].nation) == _nation && GiveArealByLocation(loadedLocation) != colonies[n].island) //не на свой остров
+		{
+			if (GetCharacterIndex(colonies[n].id + "_tavernkeeper") > 0 && !CheckAttribute(colonies[n], "HasNoFort"))
+			{
+				fortArray[howStore] = n;
+				howStore++;
+			}
+		}
+	}
+	if (howStore == 0) return "none";
+	iRes = fortArray[cRand(howStore-1)];
 	return colonies[iRes].id;
 }
 
@@ -2858,7 +2896,7 @@ void LoginDeadmansGod()
 	LAi_SetFightMode(pchar, false);
 	LAi_LockFightMode(pchar, false);
 	LAi_LocationFightDisable(loadedLocation, true);
-	if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) ref sld = GetCharacter(NPC_GenerateCharacter("DeadmansGod", "mictlantecuhtli", "skeleton", "spy", 100, PIRATE, 0, true));
+	if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) ref sld = GetCharacter(NPC_GenerateCharacter("DeadmansGod", "mictlantecuhtli", "skeleton", "man_fast", 100, PIRATE, 0, true));
 	else sld = GetCharacter(NPC_GenerateCharacter("DeadmansGod", "mictlantecuhtli", "skeleton", "man", 100, PIRATE, 0, true));
     FantomMakeCoolFighter(sld, 100, 100, 100, "toporAZ", "pistol5", 3000);
 	sld.name = "Миктлантекутли";
@@ -2908,7 +2946,7 @@ void TenoRoundTempleChestOpen()
 
 void LoginDeadmansGod2()
 {
-	if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) ref sld = GetCharacter(NPC_GenerateCharacter("DeadmansGod2", "mictlantumsamil", "skeleton", "spy", 60, PIRATE, 0, true)); // LEO: Превозмогаторам - страдать 01.12.2021
+	if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) ref sld = GetCharacter(NPC_GenerateCharacter("DeadmansGod2", "mictlantumsamil", "skeleton", "man_fast", 60, PIRATE, 0, true)); // LEO: Превозмогаторам - страдать 01.12.2021
 	else sld = GetCharacter(NPC_GenerateCharacter("DeadmansGod2", "mictlantumsamil", "skeleton", "man", 60, PIRATE, 0, true));
     FantomMakeCoolFighter(sld, 60, 100, 100, "blade201", "", 2500);
 	sld.name = "Юм";
@@ -2930,7 +2968,7 @@ void LoginUmSamilGuards()
 	chrDisableReloadToLocation = true;
 	for(int i = 0; i < 3; i++)
 	{
-		if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) ref sld = GetCharacter(NPC_GenerateCharacter("UmSamilGuard"+i, "Chavinavi_1", "skeleton", "spy", 55, PIRATE, 0, true)); // LEO: Превозмогаторам - страдать 01.12.2021
+		if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) ref sld = GetCharacter(NPC_GenerateCharacter("UmSamilGuard"+i, "Chavinavi_1", "skeleton", "man_fast", 55, PIRATE, 0, true)); // LEO: Превозмогаторам - страдать 01.12.2021
 		else sld = GetCharacter(NPC_GenerateCharacter("UmSamilGuard"+i, "Chavinavi_1", "skeleton", "man", 55, PIRATE, 0, true));
 		if (i == 0) FantomMakeCoolFighter(sld, 55, 90, 90, "blade37", "", 750);
 		if (i == 1) FantomMakeCoolFighter(sld, 55, 90, 90, "blade39", "", 750);

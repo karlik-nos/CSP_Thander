@@ -52,6 +52,14 @@ void ProcessDialogEvent()
 			}
 			Link.l2 = "Нет, у меня полный комплект.";
 			Link.l2.go = "Exit";
+			if (pchar.sex == "Skeleton")
+			{
+				dialog.text = LinkRandPhrase("Ик... А, чего?", "Я отдыхаю, не мешай!", RandSwear()+ "У меня муха в кружке!");
+				Link.l1 = "...";
+    			Link.l1.go = "exit";
+				DeleteAttribute(link, "l2");
+				NextDiag.TempNode = "First time";
+			}
 		break;
 
 		case "CitizenNotBlade":
@@ -90,6 +98,10 @@ void ProcessDialogEvent()
 			if (NPChar.id == "Andreas_Fickler")
 			{
 				dialog.text = "Что в-в-вы хотите, к-к-капитан "+pchar.name+"!";
+			}
+			if (NPChar.sex == "skeleton" && PChar.sex == "skeleton")
+			{
+				dialog.text = "Что вы хотите, мой повелитель?";
 			}
 			// диалог компаньона на корабле.
 			if (CheckAttribute(NPChar, "IsCompanionClone"))
@@ -151,6 +163,11 @@ void ProcessDialogEvent()
 			{
 				Link.l4 = "Офицер, я более не нуждаюсь в ваших услугах.";
 				Link.l4.go = "AsYouWish";
+				if (NPChar.sex == "skeleton" && PChar.sex == "skeleton")
+				{
+					Link.l4 = "Ты подвёл меня, сородич! Убирайся с глаз моих!";
+					Link.l4.go = "exit_fire_1";
+				}
 			}
 
 			for(iTemp=1; iTemp<=3; iTemp++) // Нужно, чтоб была свободная группа
@@ -865,7 +882,10 @@ void ProcessDialogEvent()
 
 	case "WantToGo_Stay_ForMoney":
 		Diag.TempNode = "Hired";
-		NPChar.greeting = "Gr_Officer";
+		if (NPChar.sex != "woman")
+		{
+			NPChar.greeting = "Gr_Officer";
+		}
 		AddMoneyToCharacter(Pchar, -(makeint(sti(NPChar.rank)*500)));
 		Npchar.loyality = makeint(Npchar.loyality) + 1;
             Diag.CurrentNode = Diag.TempNode;
@@ -1750,24 +1770,32 @@ void ProcessDialogEvent()
 			Link.l1.go = "Exit";
 		break;
         // boal 05.09.03 offecer need to go to abordage -->
-	      case "Boal_Stay":
-             //SetCharacterTask_Stay(Characters[Npchar.index]); // it's a mistic but here doesn't work :(
-             //Log_SetStringToLog(Npchar.id +" "+Npchar.index);
-              Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(Npchar.id);
-              AddDialogExitQuestFunction("LandEnc_OfficerStay");
-		      Diag.TempNode = "Hired";
-		      dialog.text = "Есть изменить дислокацию!";
-		      Link.l1 = "Вольно.";
-		      Link.l1.go = "Exit";
-		      Npchar.chr_ai.tmpl = LAI_TMPL_STAY;
-	      break;
-	      case "Boal_Follow":
-		      SetCharacterTask_FollowCharacter(Npchar, PChar); // it works here!!!
-		      Diag.TempNode = "Hired";
-		      dialog.text = "Есть изменить дислокацию!";
-		      Link.l1 = "Вольно.";
-		      Link.l1.go = "Exit";
-	      break;
+	    case "Boal_Stay":
+            //SetCharacterTask_Stay(Characters[Npchar.index]); // it's a mistic but here doesn't work :(
+            //Log_SetStringToLog(Npchar.id +" "+Npchar.index);
+            Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(Npchar.id);
+            AddDialogExitQuestFunction("LandEnc_OfficerStay");
+		    Diag.TempNode = "Hired";
+		    dialog.text = "Есть изменить дислокацию!";
+		    Link.l1 = "Вольно.";
+		    Link.l1.go = "Exit";
+		    Npchar.chr_ai.tmpl = LAI_TMPL_STAY;
+			if (NPChar.sex == "skeleton" && PChar.sex == "skeleton")
+			{
+				dialog.text = "Слушаюсь и повинуюсь, мой повелитель!";
+			}
+	    break;
+	    case "Boal_Follow":
+		    SetCharacterTask_FollowCharacter(Npchar, PChar); // it works here!!!
+		    Diag.TempNode = "Hired";
+		    dialog.text = "Есть изменить дислокацию!";
+		    Link.l1 = "Вольно.";
+		    Link.l1.go = "Exit";
+			if (NPChar.sex == "skeleton" && PChar.sex == "skeleton")
+			{
+				dialog.text = "Слушаюсь и повинуюсь, мой повелитель!";
+			}
+	    break;
         // boal 05.09.03 offecer need to go to abordage <--
 
 		//////////////////////////////    офицер-наместник -->
@@ -1882,7 +1910,7 @@ void ProcessDialogEvent()
 			Link.l2.go = "Companion_TaskChange";
 			// if(bBettaTestMode) // Только при бета-тесте
 			// {
-			    Link.l3 = "Я хочу, чтобы ты на время выш"+ GetSexPhrase("ел","ла") +" из состава моей эскадры и поискал удачу самостоятельно.";
+			    Link.l3 = "Я хочу, чтобы ты на время выш"+ NPCharSexPhrase(NPChar,"ел","ла") +" из состава моей эскадры и поискал удачу самостоятельно.";
 			    Link.l3.go = "CompanionTravel";
 			// }
 			Link.l8 = "Пока ничего.";
@@ -1891,15 +1919,15 @@ void ProcessDialogEvent()
 
 		case "Companion_TaskBoarding":
 			dialog.Text = "Что же вы желаете?";
-			Link.l1 = "Я хочу чтобы ты не брал корабли на абордаж. Побереги себя и свою команду.";
+			Link.l1 = "Я хочу чтобы ты не брал"+ NPCharSexPhrase(NPChar,"","а") +" корабли на абордаж. Побереги себя и свою команду.";
 			Link.l1.go = "Companion_TaskBoardingNo";
-			Link.l2 = "Мне нужно чтобы ты брал вражеские корабли на абордаж.";
+			Link.l2 = "Мне нужно чтобы ты брал"+ NPCharSexPhrase(NPChar,"","а") +" вражеские корабли на абордаж.";
 			Link.l2.go = "Companion_TaskBoardingYes";
 		break;
 
 		case "Companion_TaskChange":
 			dialog.Text = "Что же вы желаете?";
-			Link.l1 = "Я хочу чтобы ты не менял свой корабль после абордажа. Он слишком ценен.";
+			Link.l1 = "Я хочу чтобы ты не менял"+ NPCharSexPhrase(NPChar,"","а") +" свой корабль после абордажа. Он слишком ценен.";
 			Link.l1.go = "Companion_TaskChangeNo";
 			Link.l2 = "Когда будешь брать врагов на абордаж, посмотри, вдруг кораблик приличный будет, тогда бери себе.";
 			Link.l2.go = "Companion_TaskChangeYes";
@@ -1968,10 +1996,14 @@ void ProcessDialogEvent()
 				attrLoc = "l" + iTemp;
 				NPChar.Temp.(attr) = attr;
 				Link.(attrLoc) = "В " + XI_ConvertString("Colony" + attr + "Dat");
+				if (IsColonyEnemyToMainCharacter(attr)) {
+					Link.(attrLoc).go = "CompanionTravel_EnemyColony";
+					continue;
+				}
 				Link.(attrLoc).go = "CompanionTravelToColony_" + attr;
 			}
-				Link.l99 = "Я передумал"+ GetSexPhrase("","а") +". Ничего не нужно.";
-				Link.l99.go = "exit";
+			Link.l99 = "Я передумал"+ GetSexPhrase("","а") +". Ничего не нужно.";
+			Link.l99.go = "exit";
 		break;
 
 		case "TravelToPiratesTowns":
@@ -2133,10 +2165,10 @@ void ProcessDialogEvent()
 		int nFind = findSubStr(Dialog.CurrentNode, "CompanionTravelToColony_", 0);
 		string idxVal;
 		string nodName;
-		if(nFind == 0)
+		if (nFind == 0)
 		{
-            idxVal = strcut(Dialog.CurrentNode, 24, strlen(Dialog.CurrentNode)-1);
-            nodName = "CompanionTravelToColony_" + idxVal;
+			idxVal = strcut(Dialog.CurrentNode, 24, strlen(Dialog.CurrentNode) - 1);
+			nodName = "CompanionTravelToColony_" + idxVal;
 			for (i = 1; i < COMPANION_MAX; i++)
 			{
 				int cn;									// Companion index
@@ -2144,15 +2176,17 @@ void ProcessDialogEvent()
 				if (cn == -1) continue;
 				if (NPChar.name == characters[cn].name) NPChar.realcompanionidx = &characters[cn].index;
 			}
-			characters[sti(NPChar.realcompanionidx)].CompanionTravel.ToColonyID = NPChar.Temp.(idxVal);
-			characters[sti(NPChar.realcompanionidx)].CompanionTravel.Days = makeint(GetDistanceToColony2D(NPChar.Temp.(idxVal))/300+1.0);
-			dialog.Text = "Вы выбрали колонию "+XI_ConvertString("Colony" + characters[sti(NPChar.realcompanionidx)].CompanionTravel.ToColonyID + "Gen")+", капитан?";
+			aref rCTravel;
+			makearef(rCTravel, characters[sti(NPChar.realcompanionidx)].CompanionTravel);
+			rCTravel.ToColonyID = NPChar.Temp.(idxVal);
+			rCTravel.Days = makeint(GetDistanceToColony2D(NPChar.Temp.(idxVal)) / 300 + 1.0);
+			dialog.Text = "Вы выбрали колонию " + XI_ConvertString("Colony" + rCTravel.ToColonyID + "Gen") + ", капитан?";
 			Link.l1 = "Да, именно её.";
-            Link.l1.go = "CompanionTravel_PrepareStart";
-			Link.l2 = "Нет, я передумал"+ GetSexPhrase("","а")+", не бери в голову.";
-            Link.l2.go = "exit";
-            break;
-        }
+			Link.l1.go = "CompanionTravel_PrepareStart";
+			Link.l2 = "Нет, я передумал" + GetSexPhrase("", "а") + ", не бери в голову.";
+			Link.l2.go = "exit";
+			break;
+		}
 
 		case "CompanionTravel_EnemyColony":
 			dialog.Text = "Капитан, но я же не cмогу ждать вас в колонии, которая к нам враждебна!";
@@ -2242,7 +2276,7 @@ void ProcessDialogEvent()
 					Link.l1.go = "exit";
 					Diag.TempNode = "hired";
 					CompanionTravel_DeleteSpecialShipAttributes(NPChar);
-					Group_DeleteAtEnd(NPChar.CompanionTravel.GroupID); // Потрём группу
+					Group_DeleteGroup(NPChar.CompanionTravel.GroupID); // Потрём группу
 					SetCompanionIndex(PChar, -1, sti(NPChar.index));
 					PChar.CompanionTravel = sti(PChar.CompanionTravel) - 1; // Этого компаньона взяли обратно в эскадру
 					if(GetAttrValue(PChar, "CompanionTravel") == 0) CloseQuestHeader("CompanionTravel");
@@ -2278,7 +2312,7 @@ void ProcessDialogEvent()
 				Link.l1.go = "exit";
 				Diag.TempNode = "hired";
 				CompanionTravel_DeleteSpecialShipAttributes(NPChar);
-				Group_DeleteAtEnd(NPChar.CompanionTravel.GroupID);
+				Group_DeleteGroup(NPChar.CompanionTravel.GroupID);
 				SetCompanionIndex(PChar, -1, sti(NPChar.index));
 				PChar.CompanionTravel = sti(PChar.CompanionTravel) - 1; // Этого компаньона взяли обратно в эскадру
 				if(GetAttrValue(PChar, "CompanionTravel") == 0) CloseQuestHeader("CompanionTravel");

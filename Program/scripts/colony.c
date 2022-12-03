@@ -993,13 +993,13 @@ void TWN_ExitForPay() // мэр дает откуп - табличка приб�
 	int nBooty;
 	if (CheckAttribute(Pchar, "HalfOfPaymentByCity"))
 	{
-        nBooty = 700;
+        nBooty = 2000;
 		DeleteAttribute(Pchar, "HalfOfPaymentByCity");
-		//SetNull2StoreManPart(rColony, 6.0);
+		SetNull2StoreManPart(rColony, 3.0);
 	}
 	else
 	{
-        nBooty = 2000;
+        nBooty = 4000;
 		//SetNull2StoreManPart(rColony, 3.0);
 	}
 	if (CheckAttribute(rColony, "FortValue"))

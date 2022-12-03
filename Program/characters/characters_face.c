@@ -101,7 +101,7 @@ void FaceMaker(aref rCharacter)
 		case "officer_31":		rCharacter.FaceId = 454; break;
 		case "officer_32":		rCharacter.FaceId = 413; break;
 		case "officer_33":		rCharacter.FaceId = 451; break;
-		case "officer_34":		rCharacter.FaceId = 415; break;
+		case "officer_34":		rCharacter.FaceId = 416; break;
 		case "officer_35":		rCharacter.FaceId = 416; break;
 		case "officer_36":		rCharacter.FaceId = 418; break;
 		case "officer_37":		rCharacter.FaceId = 450; break;
@@ -140,6 +140,13 @@ void FaceMaker(aref rCharacter)
 		case "PKM_rab_3":		rCharacter.FaceId = 478; break;
 		case "PKM_rab_4":		rCharacter.FaceId = 478; break;
 		// <-- ПКМ рабы
+
+		// --> Нежить-офицеры
+		case "skel_2":		rCharacter.FaceId = 351; break;
+		case "skel_4":		rCharacter.FaceId = 352; break;
+		case "skel_5":		rCharacter.FaceId = 353; break;
+		case "skelt":		rCharacter.FaceId = 354; break;
+		// <-- Нежить-офицеры
 
 		// --> ОЗГи
 		case "OZG_1":		rCharacter.FaceId = 461; break;
@@ -415,12 +422,14 @@ void FaceMaker(aref rCharacter)
 		// ГПК 1.2.5 -->
 		case "PGG_Angellica":	rCharacter.FaceId = 242; break;
 		case "PGG_Rumba":		rCharacter.FaceId = 488; break;
+		case "PGG_Rumba_0":     rCharacter.FaceId = 488; break;
 
 		case "YokoDias":		rCharacter.FaceId = 243; break;
 		case "PGG_YokoDias_0":	rCharacter.FaceId = 243; break;
 
 		case "Jessika":			rCharacter.FaceId = 244; break;
 		// <-- ГПК 1.2.3
+		
 		//ОЗГи
 		case "ozg_carlos":		rCharacter.FaceId = 281; break; //Карлос Кассир
 		case "ozg_horn":		rCharacter.FaceId = 282; break; //Ганнибал Холм
@@ -434,6 +443,11 @@ void FaceMaker(aref rCharacter)
 		case "quest_mush_1":	rCharacter.FaceId = 292; break; //саксонец
 		case "quest_mush_2":	rCharacter.FaceId = 293; break; //пират
 		case "Lil_Jim_0":		rCharacter.FaceId = 294; break; //Маленький Джимми
+		case "Lil_Jim_1":		rCharacter.FaceId = 294; break; //Маленький Джимми
+		case "Lil_Jim_2":		rCharacter.FaceId = 294; break; //Маленький Джимми
+		case "Lil_Jim_3":		rCharacter.FaceId = 294; break; //Маленький Джимми
+		case "Lil_Jim_4":		rCharacter.FaceId = 294; break; //Маленький Джимми
+		case "Lil_Jim_5":		rCharacter.FaceId = 294; break; //Маленький Джимми
 		case "CCS_Mechanic":	rCharacter.FaceId = 295; break;
 		// временное решение для девиц из борделя
 		case "horse01": 		rCharacter.FaceId = 164; break;
@@ -538,25 +552,30 @@ string GetRandSkelModelClassic()
 }
 
 // boal 22.04.04 выбор модели зависимо от типа
-void SetCaptanModelByEncType(ref Chref, string sFantomType)
+string GetCaptainModelByNation(int iNation, string sFantomType)
 {
-    string ModelPirate = "Albermal"; // значит баг
+	if (iNation == PIRATE) sFantomType = "pirate"; // иначе баг
 
-	if (sti(Chref.nation) == PIRATE) sFantomType = "pirate"; // иначе баг
-
-    switch (sFantomType)
+	switch (sFantomType)
 	{
-		case "trade":
-            ModelPirate = "trader_" + (rand(15) + 1);
+	case "trade":
+		return "trader_" + (rand(15) + 1);
 		break;
-		case "war":
-			ModelPirate = "off_" + NationShortName(sti(Chref.nation)) + "_" + (rand(1) + 1);
+	case "war":
+		return "off_" + NationShortName(iNation) + "_" + (rand(1) + 1);
 		break;
-		case "pirate":
-            ModelPirate = "officer_" + (rand(63) + 1);
+	case "pirate":
+		return "officer_" + (rand(63) + 1);
 		break;
 	}
-	Chref.model = ModelPirate;
+
+	Log_Info("ERROR: wrong fantom type '" + sFantomType + "'");
+	return "Albermal";
+}
+
+void SetCaptanModelByEncType(ref Chref, string sFantomType)
+{
+	Chref.model = GetCaptainModelByNation(sti(Chref.nation), sFantomType);
 	FaceMaker(Chref);
 }
 

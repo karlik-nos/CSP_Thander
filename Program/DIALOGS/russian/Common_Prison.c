@@ -190,11 +190,11 @@ void ProcessDialogEvent()
 
 		case "UnexpectedInheritance":
 			dialog.Text = "Слушаю Вас.";
-			Link.l1 = "Дело в том, что мне стало известно о находках на территории форта необычных индейских идолов. Мой наниматель – коллекционер и не жалеет денег на языческие побрякушки, если вы понимаете о чем я.";
+			Link.l1 = "Дело в том, что мне стало известно о находках на территории форта необычных индейских идолов. Мой наниматель – коллекционер и не жалеет денег на языческие побрякушки, если вы понимаете, о чём я.";
 			Link.l1.go = "UnexpectedInheritance_1";
 		break;
 		case "UnexpectedInheritance_1":
-			dialog.Text = "Прекрасно вас понимаю капитан, в метрополии мода пошла на всю эту экзотику и перекупщики сейчас платят сущие гроши за находки, планируя нажиться. Действительно, солдаты, выполнявшие земляные работы, обнаружили кое – что интересное.";
+			dialog.Text = "Прекрасно вас понимаю, капитан. В метрополии мода пошла на всю эту экзотику и перекупщики сейчас платят сущие гроши за находки, планируя нажиться. Действительно, солдаты, выполнявшие земляные работы, обнаружили кое–что интересное.";
 			Link.l1 = "Мой наниматель не стеснён в деньгах. 12 тысяч вас устроит?";
 			Link.l1.go = "UnexpectedInheritance_2";
 		break;
@@ -207,7 +207,7 @@ void ProcessDialogEvent()
 			dialog.Text = "Француз? Дворянин? Ну что же, соотечественнику уступлю за 18 тысяч жалких песо.";
 			if (sti(pchar.money) >= 18000)
 			{
-				Link.l1 = "Прошу месье, ваши деньги. Оревуар!";
+				Link.l1 = "Прошу, месье, ваши деньги. До свидания!";
 				Link.l1.go = "UnexpectedInheritance_4";
 			}
 			else
@@ -217,7 +217,7 @@ void ProcessDialogEvent()
 			}
 		break;
 		case "UnexpectedInheritance_4":
-			dialog.Text = "Благодарю, в сундуке ещё были какие то бумаги, возьмите.";
+			dialog.Text = "Благодарю, в сундуке ещё были какие-то бумаги, возьмите.";
 			Log_Info("Вы получили пергамент с текстом на латыни и половинку карты");
 			Log_Info("Вы получили церемониальный сосуд");
 			PlaySound("interface\important_item.wav");
@@ -1182,10 +1182,7 @@ void ProcessDialogEvent()
 			AddQuestUserData("GivePrisonFree", "sName", pchar.questTemp.jailCanMove.Name);
 			CloseQuestHeader("GivePrisonFree");
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 
 			DeleteAttribute(pchar, "questTemp.jailCanMove.Item1");
 			DeleteAttribute(pchar, "questTemp.jailCanMove.Item2");
@@ -1224,10 +1221,7 @@ void ProcessDialogEvent()
 			AddQuestUserData("GivePrisonFree", "sSex", GetSexPhrase("","а"));
 			CloseQuestHeader("GivePrisonFree");
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 
 			DeleteAttribute(pchar, "questTemp.jailCanMove.Item1");
 			DeleteAttribute(pchar, "questTemp.jailCanMove.Item2");

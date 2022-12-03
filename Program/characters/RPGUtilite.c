@@ -2,6 +2,7 @@
 // метод для совместимости с .ИНИ файлом (секция SKILLCHANGER)
 #include "scripts\Pusher.c"
 #include "scripts\Utils2.c"
+string checkskillfortrauma = "LeadershipFencingLightFencingHeavyPistolFortuneSneak"
 
 // порог ранга
 int GetCharacterRankRate(ref _refCharacter)
@@ -270,6 +271,7 @@ void SetRandSPECIAL(ref _refCharacter)  // Для всех
                (4 + rand(6)),
                (4 + rand(6)),
                (2 + rand(8)));
+	if (CheckAttribute(_refCharacter,"id") && HasSubStr(_refCharacter.id,"Fort Commander"))  _refCharacter.SPECIAL.Perception = 10;
 }
 
  void SetRandSPECIAL_PGG(ref _refCharacter)  //WW для ПГГ
@@ -311,11 +313,11 @@ int ChecKSufficientRankForClass(int shipClass)
 {
 	switch (shipClass)
     {
-		case 1 : return 30; break;
-		case 2 : return 25; break;
-		case 3 : return 18; break;
-		case 4 : return 10; break;
-		case 5 : return 5; break;
+		case 1 : return 33; break;
+		case 2 : return 26; break;
+		case 3 : return 20; break;
+		case 4 : return 12; break;
+		case 5 : return 6; break;
 		case 6 : return 1; break;
 		case 7 : return 1; break;
 		else return 0;
@@ -375,8 +377,8 @@ int ApplayNavyPenaltyToSkill(ref _refCharacter, string skillName, int sumSkill)
 			sumSkill = sumSkill - sailSkill;
 	        if (sumSkill < 1) sumSkill = 1;
         }
-		if (CheckAttribute(_refCharacter,"chr_ai.Trauma")) sumSkill = sumSkill - 20; //штраф от травмы - Gregg
-		if (CheckAttribute(_refCharacter,"chr_ai.HeavyTrauma")) sumSkill = sumSkill - 30; //штраф от тяжелой травмы - Gregg
+		if (CheckAttribute(_refCharacter,"chr_ai.Trauma") && HasSubStr(checkskillfortrauma,skillname)) sumSkill = sumSkill - 20; //штраф от травмы - Gregg
+		if (CheckAttribute(_refCharacter,"chr_ai.HeavyTrauma") && HasSubStr(checkskillfortrauma,skillname)) sumSkill = sumSkill - 30; //штраф от тяжелой травмы - Gregg
     }
 	else
 	{
@@ -518,14 +520,14 @@ string GetSkillNameByIdx(int idx)
         case 4:    ret = SKILL_PISTOL;    break;
         case 5:    ret = SKILL_FORTUNE;   break;
         case 6:    ret = SKILL_LEADERSHIP; break;
-        case 7:    ret = SKILL_COMMERCE;   break;
+        case 7:    ret = SKILL_SNEAK;      break;
         case 8:    ret = SKILL_ACCURACY;   break;
         case 9:    ret = SKILL_CANNONS;    break;
         case 10:   ret = SKILL_SAILING;    break;
         case 11:   ret = SKILL_REPAIR;     break;
         case 12:   ret = SKILL_GRAPPLING;  break;
         case 13:   ret = SKILL_DEFENCE;    break;
-        case 14:   ret = SKILL_SNEAK;      break;
+        case 14:   ret = SKILL_COMMERCE;   break;
         case 15:   ret = SPECIAL_S;   break;
         case 16:   ret = SPECIAL_P;   break;
         case 17:   ret = SPECIAL_A;   break;
@@ -845,13 +847,6 @@ void ApplayNewSkill(ref _chref, string _skill, int _addValue)
                 Log_Info(""+ _chref.name + " "+_chref.lastname + " получает новый уровень!");
             }
         }
-		if (sti(_chref.index) == GetMainCharacterIndex())
-		{
-			if(sti(_chref.rank) == 10)
-			{
-				UnexpectedInheritance();
-			}
-		}
     }
 }
 
@@ -968,7 +963,7 @@ float GetCharacterExpRate(ref _chref, string _skill)
                 divBy = GetCharacterSPECIAL(_chref, SPECIAL_P)*0.5 + GetCharacterSPECIAL(_chref, SPECIAL_L)*0.5;
             break;
         }
-        _chref.skill.(skill_rate) = makefloat(MOD_EXP_RATE / (divBy * 2.8696 * pow(divBy,-0.457)));
+        _chref.skill.(skill_rate) = makefloat(MOD_EXP_RATE / (divBy * GetExpAcceleration(divBy)));
     }
     return  stf(_chref.skill.(skill_rate));
 }
@@ -1267,8 +1262,8 @@ int GetCharacterSkillSimple(ref _refCharacter, string skillName)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_FORTUNE, "DeSouzaCross", 30);			// {Крест Антонио де Соуза} 			(+30 к везению, +20 к авторитету, +10 к торговле)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_LEADERSHIP, "DeSouzaCross", 20);		// {Крест Антонио де Соуза} 			(+30 к везению, +20 к авторитету, +10 к торговле)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_COMMERCE, "DeSouzaCross", 10);		// {Крест Антонио де Соуза} 			(+30 к везению, +20 к авторитету, +10 к торговле)
-    	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SNEAK, "DHGlove", -15);		// {Темпоральный деформатор} 			(-15 к скрытности, +25 к авторитету при ношении)
-    	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_LEADERSHIP, "DHGlove", 25);		// {Темпоральный деформатор} 			(-15 к скрытности, +25 к авторитету при ношении)
+    	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SNEAK, "DHGlove", -15);				// {Темпоральный деформатор} 			(-15 к скрытности, +15 к авторитету при ношении)
+    	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_LEADERSHIP, "DHGlove", 15);			// {Темпоральный деформатор} 			(-15 к скрытности, +15 к авторитету при ношении)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_LEADERSHIP, "indian1", 10);			// {Оберег Тлальчитонатиу}				(+10 авторитет и скрытность, -20 пистолеты)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SNEAK, "indian1", 10);				// {Оберег Тлальчитонатиу}				(+10 авторитет и скрытность, -20 пистолеты)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_PISTOL, "indian1", -20);				// {Оберег Тлальчитонатиу}				(+10 авторитет и скрытность, -20 пистолеты)
@@ -1280,8 +1275,8 @@ int GetCharacterSkillSimple(ref _refCharacter, string skillName)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_LEADERSHIP, "indian15", 10);			// {Базальтовая голова}					(+10 авторитет и защита, -10 везение)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_DEFENCE, "indian15", 10);				// {Базальтовая голова}					(+10 авторитет и защита, -10 везение)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_FORTUNE, "indian15", -10);			// {Базальтовая голова}					(+10 авторитет и защита, -10 везение)
-    	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SAILING, "indian18", 20);				// {Идол Атлауа}						(+20 навигация, -20 скрытность)
-    	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SNEAK, "indian18", -20);				// {Идол Атлауа}						(+20 навигация, -20 скрытность)
+    	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SAILING, "indian18", 10);				// {Идол Атлауа}						(+10 навигация, -10 скрытность)
+    	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SNEAK, "indian18", -10);				// {Идол Атлауа}						(+10 навигация, -10 скрытность)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_ACCURACY, "indian19", 20);			// {Статуэтка Тлалока}					(+20 меткость, +10 орудия, -20 скрытность)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_CANNONS, "indian19", 10);				// {Статуэтка Тлалока}					(+20 меткость, +10 орудия, -20 скрытность)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SNEAK, "indian19", -20);				// {Статуэтка Тлалока}					(+20 меткость, +10 орудия, -20 скрытность)
@@ -1308,6 +1303,7 @@ int GetCharacterSkillSimple(ref _refCharacter, string skillName)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_LEADERSHIP, "hatWhisper", 5);			// {Карманное зеркало}					(+15 к скрытности)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_GRAPPLING, "hatWhisper", 5);			// {Карманное зеркало}					(+15 к скрытности)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SNEAK, "hatWhisper", -5);				// {Карманное зеркало}					(+15 к скрытности)
+    	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SAILING, "Dozor_Storm", 5);			// {Санта-Мария}						(+5 к навигации)
 
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_DEFENCE, "Totem_3", 5);				// {Тотем Кецалькоатля} 				(+5 защита)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_ACCURACY, "Totem_4", 5);				// {Тотем Мишкоатля}					(+5 меткость)
@@ -1315,7 +1311,6 @@ int GetCharacterSkillSimple(ref _refCharacter, string skillName)
 		skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_CANNONS, "Totem_11", 5); 				// {Тотем Камаштли}						(+5 орудия)
 		skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SAILING, "Totem_12", 5);				// {Тотем Синтеотля}					(+5 к навигации)
 		skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_REPAIR, "Totem_15", 5);				// {Тотем Шипе-Тотеку}					(+5 к починке)
-    	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SAILING, "Dozor_Storm", 15);			// {Санта-Мария}						(+15 к навигации)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_SNEAK, "glasses", 15);				// {Санта-Мария}						(+15 к навигации)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_PISTOL, "glasses", -5);				// {Санта-Мария}						(+15 к навигации)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_ACCURACY, "glasses", -5);				// {Санта-Мария}						(+15 к навигации)
@@ -1386,6 +1381,12 @@ void DelBakSkillAttr(ref _refCharacter) // boal оптимизация скил�
 {
     DeleteAttribute(_refCharacter, "BakSkill");
     DeleteAttribute(_refCharacter, "BakSkillCount");
+}
+// для коэффициента ускорения набора опыта (если ускорение не нужно ставим 1)
+float GetExpAcceleration(float modif)
+{
+	float curve = 2.864178 * pow(modif,-0.457);
+	return curve;
 }
 // сброс всех порогов (буфер расчета, пересчитывается от вещей +1)
 void ClearCharacterExpRate(ref _chref)
@@ -1723,6 +1724,10 @@ bool CheckForExchangeAllowed(ref _chref)
 
 int GetMaxItemsWeight(ref _chref)
 {
+	if (CheckAttribute(_chref, "UnlimitedWeight"))
+	{
+		return 9999999; // бесконечный переносимый
+	}
 	if (CheckAttribute(_chref, "Skill.Fencing"))
     {
         int iBonus = 0;
@@ -2632,6 +2637,7 @@ void SetAllAchievements(int level)
 	pchar.achievements.AchOrion = level; // Чокопай 100 ---
 	pchar.achievements.AchRabotorg = level; // Торгораб 100 ---
 	pchar.achievements.AchKondotier = level; // Шишкоёб 100 ---
+	pchar.achievements.AchDozor = level; // Дозорный 100
 	pchar.achievements.AchTich = level; // Чернобород 100 ---
 	pchar.achievements.AchRagnar = level; // Суровый викинг 100 ---
 	pchar.achievements.AchSalazar = level; // Тухлый испанец 100 ---
@@ -2656,9 +2662,9 @@ void SetAllAchievements(int level)
 	pchar.achievements.Nation_quest_S = level; // Выполнение национальной линейки квестов 100 ---
 	pchar.achievements.Nation_quest_P = level; // Выполнение национальной линейки квестов 100 ---
 
-	// Всего очков доступных для получения: 7600 (по 100-175 на каждое достижение) - мне лень пересчитывать (Калькулятор запили, Грегг, блеать! (c) LEOPARD :) )
-	// Гарантированно можно получить 6800 очков достижений, если исключать 4 линейки наций, линейки за персонажей и опционалки
-	// Всего достижений: 47
+	// Всего очков доступных для получения: 7700 (по 100-175 на каждое достижение) - мне лень пересчитывать (Калькулятор запили, Грегг, блеать! (c) LEOPARD :) )
+	// Гарантированно можно получить 6900 очков достижений, если исключать 4 линейки наций, линейки за персонажей и опционалки
+	// Всего достижений: 48
 	// При пересчёте возможных к получению в 1 партии был максимум в... 5150
 }
 
@@ -2780,7 +2786,7 @@ void initNewMainCharacter()
 			ch.HeroParam.Location = "PuertoPrincipe_port";
 		}
 	}
-	if(startherotype == 3 || startherotype == 4)
+	if(startherotype == 4 || startherotype == 5)
 	{
 		ch.HeroParam.Location = "Shore57";
 		ch.HeroParam.Group    = "reload";
@@ -2928,7 +2934,7 @@ void initNewMainCharacter()
     	pchar.quest.Tut_start.function                  = "Whisper_StartGame";
         Pchar.questTemp.CapBloodLine = false;
     }
-	if (startHeroType == 3 || startHeroType == 4)
+	if (startHeroType == 4 || startHeroType == 5)
     {
     	pchar.quest.Tut_start.win_condition.l1          = "location";
     	pchar.quest.Tut_start.win_condition.l1.location = "Shore57";
@@ -2936,7 +2942,7 @@ void initNewMainCharacter()
         Pchar.questTemp.CapBloodLine = false;
 		Pchar.questTemp.WhisperLine = false;
     }
-	if (startHeroType == 5 || startHeroType == 6)
+	if (startHeroType == 6 || startHeroType == 7)
     {
     	pchar.quest.Tut_start.win_condition.l1          = "location";
     	pchar.quest.Tut_start.win_condition.l1.location = "Shore_ship2";
@@ -2944,7 +2950,7 @@ void initNewMainCharacter()
         Pchar.questTemp.CapBloodLine = false;
 		Pchar.questTemp.WhisperLine = false;
     }
-	if (startHeroType > 6)
+	if (startHeroType > 7)
     {
     	pchar.quest.Tut_start.win_condition.l1          = "location";
     	pchar.quest.Tut_start.win_condition.l1.location = "Ship_deck_Low";

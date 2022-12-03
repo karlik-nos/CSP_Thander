@@ -38,6 +38,7 @@ bool Cannon_LoadBall()
 	{
 		AddCharacterGoodsCannon(aCharacter, iBallType, -1);
 		AddCharacterGoodsCannon(aCharacter, GOOD_POWDER, -1);
+		if (IsMainCharacter(aCharacter)) BI_UpdateLoadedProjectiles();
 		// boal <--
 		return true;
 	}
@@ -76,13 +77,15 @@ void Cannon_RecalculateParameters(int iCharacterIndex)
 	ref	rCharacter = GetCharacter(iCharacterIndex);
 	ref	rCannon = GetCannonByType(sti(rCharacter.Ship.Cannons.Type));
 	ref	rBall = GetGoodByType(sti(rCharacter.Ship.Cannons.Charge.Type));
+	int p = GetCharacterSPECIALSimple(rCharacter, SPECIAL_P)-3;
+	if (p < 0) p = 0;
 	if (CheckAttribute(rCharacter, "TmpPerks.LongRangeShoot"))
 	{
-		rCharacter.Ship.Cannons.SpeedV0 = stf(rCannon.SpeedV0) * stf(rBall.SpeedV0) * sqrt(AIShip_isPerksUse(rCharacter.TmpPerks.LongRangeShoot, 1.0, 1.15) + GetCharacterSPECIALSimple(rCharacter, SPECIAL_P) * 0.02); //slib
+		rCharacter.Ship.Cannons.SpeedV0 = stf(rCannon.SpeedV0) * stf(rBall.SpeedV0) * sqrt(AIShip_isPerksUse(rCharacter.TmpPerks.LongRangeShoot, 1.0, 1.15) + p * 0.03); //slib
 	}
 	else
 	{
-	    rCharacter.Ship.Cannons.SpeedV0 = stf(rCannon.SpeedV0) * stf(rBall.SpeedV0) * sqrt(1.0 +GetCharacterSPECIALSimple(rCharacter, SPECIAL_P) * 0.02);
+	    rCharacter.Ship.Cannons.SpeedV0 = stf(rCannon.SpeedV0) * stf(rBall.SpeedV0) * sqrt(1.0 + p * 0.03);
 	}
 	rCharacter.Ship.Cannons.FireAngMax = rCannon.FireAngMax;
 	rCharacter.Ship.Cannons.FireAngMin = rCannon.FireAngMin;
@@ -101,7 +104,9 @@ float Cannon_GetFireHeight()
 	float Y,DY;
 	Y = stf(rEnemyShip.Height.(sBallName).Y);
 	DY = stf(rEnemyShip.Height.(sBallName).DY);
-	return (Y + (frnd()-0.5) * DY);
+	Y = (Y + (frnd()-0.5) * DY);
+	
+	return Y;
 }
 
 // calculate recharge time for cannon
@@ -190,7 +195,7 @@ float Cannon_GetFireTime()
 
 void Cannon_FireCannon()
 {
-	float fX, fY, fZ, fSpeedV0, fDirAng, fHeightAng, fCannonDirAng, fMaxFireDistance;
+	float fX, fY, fZ, fSpeedV0, fFireDirection, fFireHeightAngle, fCannonDirAng, fMaxFireDistance, fAngle;
 
 	aref aCharacter = GetEventData();
 
@@ -200,12 +205,13 @@ void Cannon_FireCannon()
 	fY = GetEventData();
 	fZ = GetEventData();
 	fSpeedV0 = GetEventData();
-	fDirAng = GetEventData();
-	fHeightAng = GetEventData();
+	fFireDirection = GetEventData();
+	fFireHeightAngle = GetEventData();
 	fCannonDirAng = GetEventData();
 	fMaxFireDistance = GetEventData();
+	fAngle = GetEventData();
 	 // boal навел порядок по оптимизации
-	Ball_AddBall(aCharacter, fX, fY, fZ, fSpeedV0, fDirAng, fHeightAng, fCannonDirAng, fMaxFireDistance);
+	Ball_AddBall(aCharacter, fX, fY, fZ, fSpeedV0, fFireDirection, fFireHeightAngle, fCannonDirAng, fMaxFireDistance, fAngle);
 }
 
 // Damage 2 cannon from balls
@@ -246,9 +252,10 @@ float Cannon_DamageEvent()
 		CreateBlast(x,y,z);
 		CreateParticleSystem("blast_inv", x, y, z, 0.0, 0.0, 0.0, 0);
 		Play3DSound("cannon_explosion", x, y, z);
-		if (sti(aCharacter.index) == GetMainCharacterIndex())
+		if (IsMainCharacter(aCharacter))
 		{
 		    Log_Info(XI_ConvertString("Cannon_DamageEvent"));
+		    BI_UpdateCannons();
 		}
 		aCharacter.Ship.Cargo.RecalculateCargoLoad = true; // boal 27.07.06 пушки - груз
 	}
@@ -258,6 +265,7 @@ float Cannon_DamageEvent()
 
 int GetBortIntactCannonsNum(ref rCharacter, string sBort, int iNumCannonsOnBort)
 {
+	// if (rCharacter.ship.cannons=="") return 0; //фикс вылета от корабля кораблекрушения с 0 пушек // LEO: Нихуя это не фикс, это баг
 	string sBort_real = sBort;
 	float fDamage;
 
@@ -266,23 +274,20 @@ int GetBortIntactCannonsNum(ref rCharacter, string sBort, int iNumCannonsOnBort)
 	if(sBort == "fcannon") sBort_real = "cannonf";
 	if(sBort == "bcannon") sBort_real = "cannonb";
 
-	if (!CheckAttribute(rCharacter, "Ship.Cannons.Borts." + sBort_real + ".damages") ||
+	if (!CheckAttribute(rCharacter, "Ship.Cannons.Borts." + sBort_real + ".damages") &&
 	    !CheckAttribute(rCharacter, "Ship.Cannons.Borts." + sBort + ".damages")) return iNumCannonsOnBort;
 
-	aref arDamages;
-	if(CheckAttribute(rCharacter, "Ship.Cannons.Borts." + sBort_real + ".damages"))
+	if(!CheckAttribute(rCharacter, "Ship.Cannons.Borts." + sBort_real + ".damages"))
 	{
-		makearef(arDamages, rCharacter.Ship.Cannons.Borts.(sBort_real).damages);
-	}
-	else
-	{
-		makearef(arDamages, rCharacter.Ship.Cannons.Borts.(sBort).damages);
+		sBort_real = sBort;
 	}
 
+	string attr;
 	int iNumIntactCannons = 0;
 	for (int i=0; i<iNumCannonsOnBort; i++)
 	{
-		fDamage = stf(GetAttributeValue(GetAttributeN(arDamages, i)));
+		attr = "c"+i;
+		fDamage = stf(rCharacter.Ship.Cannons.Borts.(sBort_real).damages.(attr));
 		if (fDamage < 1.0) { iNumIntactCannons++; }
 	}
 	int iNumRealCannons = iNumIntactCannons;
