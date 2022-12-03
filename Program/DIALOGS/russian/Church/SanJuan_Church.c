@@ -146,7 +146,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_DralisVG");
 			
 			//Корабль 'Маёнез'
-			sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA_Mayonez", "off_spa_2", "man", "man", 10, SPAIN, -1, true);
+			sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA_Mayonez", "off_spa_2", "man", "man", 10, SPAIN, -1, true));
 			FantomMakeCoolSailor(sld, SHIP_BARQUE, "Маёнез", CANNON_TYPE_CULVERINE_LBS16, 30, 50, 30);	//Корабль
 			sld.AlwaysFriend = true;
 			Group_FindOrCreateGroup("PKM_SvtvA_Malta");

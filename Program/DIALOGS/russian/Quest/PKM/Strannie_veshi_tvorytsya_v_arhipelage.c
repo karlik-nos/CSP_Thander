@@ -20,8 +20,49 @@ void ProcessDialogEvent()
 		case "First time":
 			dialog.text = "Что? Тоже решил посмеяться над бедными женщинами!?";
 			link.l1 = "А что, собственно, происходит?";
-			link.l1.go = "Verni_detey_1";
-			PlayVoice("Kopcapkz\Voices\Quest\Dut_f_a_002.wav");
+			link.l1.go = "TEST_Verni_detey_1_TEST";
+			//PlayVoice("Kopcapkz\Voices\Quest\Dut_f_a_002.wav"); ПОТОМ НЕ ЗАБЫТЬ ВЕРНУТЬ!!!!!!!!!!!!! АААААААААААААААААААА
+		break;
+		
+		case "TEST_Verni_detey_1_TEST":		//ПОТОМ УДАЛИТЬ КЕЙС
+			dialog.text = "Режим теста активирован!";
+			link.l1 = "Слава поням!";
+			link.l1.go = "exit";
+			
+			//Корабль 'Маёнез'
+			sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA_Mayonez", "Maltese", "man", "man", 10, SPAIN, -1, true));
+			FantomMakeCoolFighter(sld, 10, 30, 30, "blade44", "pistol1", 50);
+			sld.name = "Жакуин";
+			sld.lastname = "де Массе";
+			sld.loyality = 20;
+			FantomMakeCoolSailor(sld, SHIP_BARQUE, "Маёнез", CANNON_TYPE_CULVERINE_LBS16, 30, 50, 30);	//Корабль
+			sld.AlwaysFriend = true;
+			Group_FindOrCreateGroup("PKM_SvtvA_Malta");
+			Group_SetType("PKM_SvtvA_Malta", "war");
+			Group_AddCharacter("PKM_SvtvA_Malta", "PKM_SvtvA_Mayonez");
+			Group_SetTaskAttack("PKM_SvtvA_Malta", "PKM_SvtvA_TL");
+
+			Group_SetGroupCommander("PKM_SvtvA_Malta", "PKM_SvtvA_Mayonez");
+			Group_SetAddress("PKM_SvtvA_Malta", "SentMartin", "quest_ships", "Quest_ship_7");
+			Group_LockTask("PKM_SvtvA_Malta");
+			
+			//Корабль 'Тёмный Ангел'
+			sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA_TA", "Animists1", "man", "man", 10, PIRATE, -1, true));
+			FantomMakeCoolFighter(sld, 12, 40, 50, "blade26", "pistol1", 80);
+			sld.name = "Тайная";
+			sld.lastname = "личность";
+			FantomMakeCoolSailor(sld, SHIP_LA_MARIANNA, "Тёмный Ангел", CANNON_TYPE_CULVERINE_LBS24, 60, 60, 60);	//Корабль
+			sld.AlwaysEnemy = true;
+			Group_FindOrCreateGroup("PKM_SvtvA_TL");
+			Group_SetType("PKM_SvtvA_TL", "war");
+			Group_AddCharacter("PKM_SvtvA_TL", "PKM_SvtvA_TA");
+			realships[sti(sld.ship.type)].HP = 6000;
+			realships[sti(sld.ship.type)].SpeedRate = 13;
+			realships[sti(sld.ship.type)].TurnRate  = 44;
+
+			Group_SetGroupCommander("PKM_SvtvA_TL", "PKM_SvtvA_TA");
+			Group_SetAddress("PKM_SvtvA_TL", "SentMartin", "quest_ships", "Quest_ship_7");
+			Group_LockTask("PKM_SvtvA_TL");
 		break;
 		
 		case "Verni_detey_1":
