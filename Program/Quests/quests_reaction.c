@@ -11339,6 +11339,7 @@ void QuestComplete(string sQuestName, string qname)
 		case "SCQ_Prytki_VremyVishlo":
 			DeleteAttribute(pchar, "showTimer");
 			ClearAllLogStrings();
+			Log_info("Время вышло, девушка ушла по своим делам");
 			sld = CharacterFromID(pchar.DevushkaVPrytki);
 			sld.lifeday = 0;
 			ChangeCharacterAddressGroup(sld, "none", "", "");
@@ -11348,6 +11349,7 @@ void QuestComplete(string sQuestName, string qname)
 		case "SCQ_Prytki_PokinuliZonu":
 			DeleteAttribute(pchar, "showTimer");
 			ClearAllLogStrings();
+			Log_info("Правило нарушено, девушка больше не играет с нами в прятки");
 			sld = CharacterFromID(pchar.DevushkaVPrytki);
 			sld.lifeday = 0;
 			ChangeCharacterAddressGroup(sld, "none", "", "");
