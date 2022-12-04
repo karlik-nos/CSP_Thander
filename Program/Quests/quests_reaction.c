@@ -10787,7 +10787,7 @@ void QuestComplete(string sQuestName, string qname)
 		case "PKM_SvtvA_DostavkaPisma_Gorod_2":		//Битва в городе
 			bDisableFastReload = false;
 			chrDisableReloadToLocation = false;
-			AddQuestRecord("PKM_Animists", "9.1");
+			AddQuestRecord("PKM_Animists", "9");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
 			AddQuestUserData("PKM_Animists", "sSex2", GetSexPhrase("ся","ась"));
 			pchar.questTemp.PKM_SvtvA_SanJuanChurch_1_Dobro = "Church1";
@@ -10800,7 +10800,7 @@ void QuestComplete(string sQuestName, string qname)
 		case "PKM_SvtvA_DostavkaPisma_Buhta_2":		//Битва в бухте без разговора
 			bDisableFastReload = false;
 			chrDisableReloadToLocation = false;
-			AddQuestRecord("PKM_Animists", "9.2");
+			AddQuestRecord("PKM_Animists", "10");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
 			AddQuestUserData("PKM_Animists", "sSex2", GetSexPhrase("ся","ась"));
 			pchar.questTemp.PKM_SvtvA_SanJuanChurch_1_Dobro = "Church1";
@@ -10812,7 +10812,7 @@ void QuestComplete(string sQuestName, string qname)
 		case "PKM_SvtvA_DostavkaPisma_Buhta_3":		//Битва в бухте с разговором и отказываемся отдавать письмо
 			bDisableFastReload = false;
 			chrDisableReloadToLocation = false;
-			AddQuestRecord("PKM_Animists", "10");
+			AddQuestRecord("PKM_Animists", "11");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("ёл","ла"));
 			pchar.questTemp.PKM_SvtvA_SanJuanChurch_1_Dobro = "Church1";
 			PChar.quest.PKM_SvtvA_SJ_B1.over = "yes";
@@ -10850,6 +10850,11 @@ void QuestComplete(string sQuestName, string qname)
 				GiveItem2Character(sld, "PKM_SvtvA_znachok");
 				AddItems(sld, "mineral3", rand(7)-4);
 			}		
+		break;
+		
+		case "PKM_SvtvA_Маёнез_потопили":		//Поражение
+			PChar.quest.PKM_SvtvA_TA_horosho.over = "yes";
+			
 		break;
 		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////

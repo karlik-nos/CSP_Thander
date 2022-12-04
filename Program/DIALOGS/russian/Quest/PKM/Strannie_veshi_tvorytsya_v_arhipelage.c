@@ -30,7 +30,7 @@ void ProcessDialogEvent()
 			link.l1.go = "exit";
 			
 			//Корабль 'Маёнез'
-			sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA_Mayonez", "Maltese", "man", "man", 10, SPAIN, -1, true));
+			sld = GetCharacter(NPC_GenerateCharacter("Maltese", "Maltese", "man", "man", 10, SPAIN, -1, true));
 			FantomMakeCoolFighter(sld, 10, 30, 30, "blade44", "pistol1", 50);
 			sld.name = "Жакуин";
 			sld.lastname = "де Массе";
@@ -39,10 +39,10 @@ void ProcessDialogEvent()
 			sld.AlwaysFriend = true;
 			Group_FindOrCreateGroup("PKM_SvtvA_Malta");
 			Group_SetType("PKM_SvtvA_Malta", "war");
-			Group_AddCharacter("PKM_SvtvA_Malta", "PKM_SvtvA_Mayonez");
+			Group_AddCharacter("PKM_SvtvA_Malta", "Maltese");
 			Group_SetTaskAttack("PKM_SvtvA_Malta", "PKM_SvtvA_TL");
 
-			Group_SetGroupCommander("PKM_SvtvA_Malta", "PKM_SvtvA_Mayonez");
+			Group_SetGroupCommander("PKM_SvtvA_Malta", "Maltese");
 			Group_SetAddress("PKM_SvtvA_Malta", "SentMartin", "quest_ships", "Quest_ship_7");
 			Group_LockTask("PKM_SvtvA_Malta");
 			
@@ -63,6 +63,16 @@ void ProcessDialogEvent()
 			Group_SetGroupCommander("PKM_SvtvA_TL", "PKM_SvtvA_TA");
 			Group_SetAddress("PKM_SvtvA_TL", "SentMartin", "quest_ships", "Quest_ship_7");
 			Group_LockTask("PKM_SvtvA_TL");
+			
+			//Условия задания
+			
+			PChar.quest.PKM_SvtvA_TA_ploho.win_condition.l1 = "NPC_Death";		//Поражение
+			PChar.quest.PKM_SvtvA_TA_ploho.win_condition.l1.character = "Maltese";
+			PChar.quest.PKM_SvtvA_TA_ploho.win_condition = "PKM_SvtvA_Маёнез_потопили";
+			
+			PChar.quest.PKM_SvtvA_TA_horosho.win_condition.l1 = "NPC_Death";		//Победа
+			PChar.quest.PKM_SvtvA_TA_horosho.win_condition.l1.character = "PKM_SvtvA_TA";
+			PChar.quest.PKM_SvtvA_TA_horosho.win_condition = "PKM_SvtvA_TA_horosho";
 		break;
 		
 		case "Verni_detey_1":
@@ -340,7 +350,7 @@ void ProcessDialogEvent()
 			LAi_LocationFightDisable(loadedLocation, false);
 			bDisableFastReload = false;
 			chrDisableReloadToLocation = false;
-			AddQuestRecord("PKM_Animists", "11");
+			AddQuestRecord("PKM_Animists", "12");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("ся","ась"));
 			pchar.questTemp.PKM_SvtvA_SanJuanChurch_1_Zlo = "Church1";
 			PChar.quest.PKM_SvtvA_SJ_B1.over = "yes";

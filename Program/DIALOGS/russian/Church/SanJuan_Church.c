@@ -65,7 +65,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1.go = "PKM_SvtvA_Ch1_6";
 			ChangeCharacterReputation(pchar, -15);
 			AddMoneyToCharacter(pchar, 1000);
-			AddQuestRecord("PKM_Animists", "12");
+			AddQuestRecord("PKM_Animists", "13");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
 		break;
 
@@ -81,7 +81,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			DialogExit();
 
 			ChangeCharacterReputation(pchar, -30);
-			AddQuestRecord("PKM_Animists", "13");
+			AddQuestRecord("PKM_Animists", "14");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
 			AddQuestUserData("PKM_Animists", "sSex2", GetSexPhrase("ся","ась"));
 			CloseQuestheader("PKM_Animists");
@@ -138,7 +138,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		
 		case "PKM_SvtvA_Ch1_9":
 			DialogExit();
-			AddQuestRecord("PKM_Animists", "14");
+			AddQuestRecord("PKM_Animists", "15");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
 			if (CheckAttribute(Pchar, "questTemp.PKM_SvtvA_DralisVG")) sStr = "причале";
 			else sStr = "пляже";
@@ -146,17 +146,41 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_DralisVG");
 			
 			//Корабль 'Маёнез'
-			sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA_Mayonez", "off_spa_2", "man", "man", 10, SPAIN, -1, true));
+			sld = GetCharacter(NPC_GenerateCharacter("Maltese", "Maltese", "man", "man", 10, SPAIN, -1, true));
+			FantomMakeCoolFighter(sld, 10, 30, 30, "blade44", "pistol1", 50);
+			sld.name = "Жакуин";
+			sld.lastname = "де Массе";
+			sld.loyality = 20;
 			FantomMakeCoolSailor(sld, SHIP_BARQUE, "Маёнез", CANNON_TYPE_CULVERINE_LBS16, 30, 50, 30);	//Корабль
 			sld.AlwaysFriend = true;
 			Group_FindOrCreateGroup("PKM_SvtvA_Malta");
-			Group_SetType("PKM_SvtvA_Malta", "trade");
-			Group_AddCharacter("PKM_SvtvA_Malta", "PKM_SvtvA_Mayonez");
+			Group_SetType("PKM_SvtvA_Malta", "war");
+			Group_AddCharacter("PKM_SvtvA_Malta", "Maltese");
+			Group_SetTaskAttack("PKM_SvtvA_Malta", "PKM_SvtvA_TL");
 
-			Group_SetGroupCommander("PKM_SvtvA_Malta", "PKM_SvtvA_Mayonez");
-			//Group_SetTaskAttack("PKM_SvtvA_Malta", PLAYER_GROUP);
-			Group_SetAddress("PKM_SvtvA_Malta", "SentMartin", "quest_ships", "Quest_ship_1");
+			Group_SetGroupCommander("PKM_SvtvA_Malta", "Maltese");
+			Group_SetAddress("PKM_SvtvA_Malta", "SentMartin", "quest_ships", "Quest_ship_7");
 			Group_LockTask("PKM_SvtvA_Malta");
+			
+			//Корабль 'Тёмный Ангел'
+			sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA_TA", "Animists1", "man", "man", 10, PIRATE, -1, true));
+			FantomMakeCoolFighter(sld, 12, 40, 50, "blade26", "pistol1", 80);
+			sld.name = "Тайная";
+			sld.lastname = "личность";
+			FantomMakeCoolSailor(sld, SHIP_LA_MARIANNA, "Тёмный Ангел", CANNON_TYPE_CULVERINE_LBS24, 60, 60, 60);	//Корабль
+			sld.AlwaysEnemy = true;
+			Group_FindOrCreateGroup("PKM_SvtvA_TL");
+			Group_SetType("PKM_SvtvA_TL", "war");
+			Group_AddCharacter("PKM_SvtvA_TL", "PKM_SvtvA_TA");
+			realships[sti(sld.ship.type)].HP = 6000;
+			realships[sti(sld.ship.type)].SpeedRate = 13;
+			realships[sti(sld.ship.type)].TurnRate  = 44;
+
+			Group_SetGroupCommander("PKM_SvtvA_TL", "PKM_SvtvA_TA");
+			Group_SetAddress("PKM_SvtvA_TL", "SentMartin", "quest_ships", "Quest_ship_7");
+			Group_LockTask("PKM_SvtvA_TL");
+			
+			
 		break;
 		
 		//Квест "Странные вещи творятся на архипелаге" (После сопровождения корабля мальтийских рыцарей)
