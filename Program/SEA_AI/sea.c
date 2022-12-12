@@ -1754,8 +1754,8 @@ ref CalculateGroupShipPos()
 			int iTemp = shipIndex % 3; 
 			switch (iTemp)
 			{
-				case 0: offset_sign = -1; break;
-				case 1: offset_sign = 0; break;
+				case 0: offset_sign = 0; break;
+				case 1: offset_sign = -1; break;
 				case 2: offset_sign = 1; break;
 			}
 //		2	5	8	11
