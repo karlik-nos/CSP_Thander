@@ -1740,7 +1740,7 @@ ref CalculateGroupShipPos()
 		if (CheckAttribute(aShipChar,"Do180Turn") && aShipChar.Do180Turn == true) 
 		{
 			if (shipIndex == 0) Group_SetDo180Turn(aShipChar.SeaAI.Group.Name); 
-			result[1] = rotation-180.0;
+			result[1] = rotation-PI;//радианы
 			aShipChar.Do180Turn = false;
 			offset_in_line = shipCount - 1 - offset_in_line;
 		}
@@ -1772,7 +1772,7 @@ ref CalculateGroupShipPos()
 			if (CheckAttribute(aShipChar,"Do180Turn") && aShipChar.Do180Turn == true) 
 			{
 				if (shipIndex == 0) Group_SetDo180Turn(aShipChar.SeaAI.Group.Name); 
-				result[1] = rotation-180.0;
+				result[1] = rotation-PI;//радианы
 				aShipChar.Do180Turn = false;
 				offset_in_line = makeint((shipCount - shipIndex)/2);
 				if (shipIndex == 0) offset_in_line -= 0.134;
