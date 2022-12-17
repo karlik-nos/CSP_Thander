@@ -515,7 +515,7 @@ void ProcessDialogEvent()
 
 		if (npchar.name == "Виспер" && !CheckAttribute(npchar, "PGGWhisperQuestStart") && !CheckAttribute(pchar,"GiantEvilSkeleton"))
 		{
-			if (GetCharacterShipClass(PChar) <= 4 && sti(npchar.Ship.Type) != SHIP_NOTUSED && pchar.rank >= 30)
+			if (GetCharacterShipClass(PChar) <= 4 && sti(npchar.Ship.Type) != SHIP_NOTUSED && pchar.rank >= 15)
 			{
 				NPChar.PGGWhisperQuestStart = true;
 				Dialog.Text = "Знаешь? Ты как нельзя вовремя, есть одно дело.";
