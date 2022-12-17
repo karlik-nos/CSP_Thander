@@ -438,6 +438,56 @@ int FindItem(string sItemID)
 	return NativeFindCharacter(&Items, GetOriginalItem(sItemID));
 }
 
+int BookReadTime(string sBook) //книги, расчёт длительности - Gregg
+{
+	int intel = GetCharacterSPECIALSimple(pchar, SPECIAL_I);
+	int time = 0;
+
+	if (HasSubStr(sBook, "book1_")) time = 4;
+	if (HasSubStr(sBook, "book2_")) time = 7;
+	if (HasSubStr(sBook, "book3_")) time = 15;
+	if (HasSubStr(sBook, "book4_")) time = 30;
+
+	return makeint(time * (1 + ((10 - intel) * 0.285)));
+}
+
+int BookBonus(string sBook)
+{
+	if (HasSubStr(sBook, "book1_")) return 800;
+	if (HasSubStr(sBook, "book2_")) return 1500;
+	if (HasSubStr(sBook, "book3_")) return 3500;
+	if (HasSubStr(sBook, "book4_")) return 7500;
+	return 0;
+}
+
+void TryReadBook()
+{
+	if (!CheckAttribute(pchar, "equip.book")) return;
+
+	string sBook = pchar.equip.book;
+	pchar.books.(sBook) = sti(pchar.books.(sBook)) - 1;
+
+	if (sti(pchar.books.(sBook)) <= 0)
+	{
+		aref arItm;
+		if (Items_FindItem(sBook, &arItm) < 0) return;
+
+		AddCharacterExpToSkill(pchar, arItm.skill, BookBonus(sBook));
+		int idLngFile = LanguageOpenFile("ItemsDescribe.txt");
+		Log_Info(GetFullName(pchar) + " изучил книгу '" + LanguageConvertString(idLngFile, arItm.name) + "' и увеличил навык '" + XI_ConvertString(arItm.skill) + "'");
+		LanguageCloseFile(idLngFile);
+
+		RemoveCharacterEquip(pchar, BOOK_ITEM_TYPE);
+		RemoveItems(pchar, sBook, 1);
+
+		pchar.questTemp.bookcount = sti(pchar.questTemp.bookcount) + 1;
+		// Открываем достижения
+		if(sti(pchar.questTemp.bookcount) >= 3) UnlockAchievement("books", 1);
+		if(sti(pchar.questTemp.bookcount) >= 6) UnlockAchievement("books", 2);
+		if(sti(pchar.questTemp.bookcount) >= 10) UnlockAchievement("books", 3);
+	}
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //	Warship 08.05.09 НОВАЯ СИСТЕМА ПРЕДМЕТОВ -->
 //      Ugeen --> 10.02.10 добавлена первичная генерация предметов и выбор из массива сгенерированных предметов

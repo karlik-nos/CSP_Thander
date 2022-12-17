@@ -1200,6 +1200,16 @@ bool ThisItemCanBeEquip(string sItemID)
 		return true;
 	}
 
+	if (sGroupID == BOOK_ITEM_TYPE)
+	{
+		string sId = rItem.id;
+		if (!CheckAttribute(xi_refCharacter, "books." + sId))
+		{
+			return true;
+		}
+		return sti(xi_refCharacter.books.(sId)) > 0;
+	}
+
 	if (sGroupID == BLADE_ITEM_TYPE && CheckAttribute(xi_refCharacter, "DontChangeBlade")) return false;
 	if (sGroupID == GUN_ITEM_TYPE && CheckAttribute(xi_refCharacter, "DontChangeGun")) return false;
 

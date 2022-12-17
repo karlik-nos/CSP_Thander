@@ -1305,25 +1305,6 @@ float GetCharacterRegenHPForBlooding(aref chr, bool useItms) // Новая фу�
 	return fMultiplier;
 }
 
-int BookTime(ref refchar, int tier)//книги, расчёт длительности - Gregg
-{
-	int Intel = GetCharacterSPECIALSimple(refchar, SPECIAL_I);
-	int time = 0;
-	switch (tier)
-	{
-		case 1: time = 4;
-		break;
-		case 2: time = 7;
-		break;
-		case 3: time = 15;
-		break;
-		case 4: time = 30;
-		break;
-	}
-	return makeint(time+((10-Intel)*(time*0.285)));
-}
-
-
 void EatSomeFood()
 {
 	bool bEnableFood = true;
