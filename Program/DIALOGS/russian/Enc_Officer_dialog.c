@@ -2279,6 +2279,9 @@ void ProcessDialogEvent()
 					Group_DeleteGroup(NPChar.CompanionTravel.GroupID); // Потрём группу
 					SetCompanionIndex(PChar, -1, sti(NPChar.index));
 					PChar.CompanionTravel = sti(PChar.CompanionTravel) - 1; // Этого компаньона взяли обратно в эскадру
+					AddQuestRecord("CompanionTravel", "2");
+					AddQuestUserData("CompanionTravel", "sCapName", GetFullName(NPChar)); 
+					AddQuestUserData("CompanionTravel", "sShipInfo", GetStrSmallRegister(XI_ConvertString(RealShips[sti(NPChar.Ship.Type)].Basename + "Dat")) + " '" + NPChar.Ship.name + "'");
 					if(GetAttrValue(PChar, "CompanionTravel") == 0) CloseQuestHeader("CompanionTravel");
 					DeleteAttribute(NPChar, "CompanionTravel");
 					for(iTemp=1; iTemp<=3; iTemp++) // Нужно, чтоб была свободная группа
@@ -2288,7 +2291,7 @@ void ProcessDialogEvent()
 						{
 							if (PChar.CompanionTravel.(attr).ID == NPChar.ID)
 							{
-								DeleteAttribute(PChar,"CompanionTravel."+(attr)+".ID");
+								DeleteAttribute(PChar,"CompanionTravel."+(attr));//фикс - удаляем всю ветку
 								DeleteAttribute(NPChar,"Tasks.Clone");
 							}
 						}
@@ -2315,7 +2318,10 @@ void ProcessDialogEvent()
 				Group_DeleteGroup(NPChar.CompanionTravel.GroupID);
 				SetCompanionIndex(PChar, -1, sti(NPChar.index));
 				PChar.CompanionTravel = sti(PChar.CompanionTravel) - 1; // Этого компаньона взяли обратно в эскадру
-				if(GetAttrValue(PChar, "CompanionTravel") == 0) CloseQuestHeader("CompanionTravel");
+				AddQuestRecord("CompanionTravel", "2");
+				AddQuestUserData("CompanionTravel", "sCapName", GetFullName(NPChar)); 
+				AddQuestUserData("CompanionTravel", "sShipInfo", GetStrSmallRegister(XI_ConvertString(RealShips[sti(NPChar.Ship.Type)].Basename + "Dat")) + " '" + NPChar.Ship.name + "'");
+				if(GetAttrValue(PChar, "CompanionTravel") == 0) CloseQuestHeader("CompanionTravel"); 
 				DeleteAttribute(NPChar, "CompanionTravel");
 				for(iTemp=1; iTemp<=3; iTemp++) // Нужно, чтоб была свободная группа
 				{
@@ -2324,7 +2330,7 @@ void ProcessDialogEvent()
 					{
 						if (PChar.CompanionTravel.(attr).ID == NPChar.ID)
 						{
-							DeleteAttribute(PChar,"CompanionTravel."+(attr)+".ID");
+							DeleteAttribute(PChar,"CompanionTravel."+(attr));
 							DeleteAttribute(NPChar,"Tasks.Clone");
 						}
 					}

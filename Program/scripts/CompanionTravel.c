@@ -39,17 +39,11 @@ void CompanionTravel_SetTraveller(ref _NPChar)
 	Group_LockTask(attrLoc);
 
 	// Записи в СЖ
-	/*ReOpenQuestHeader("CompanionTravel");
-	AddQuestRecord("CompanionTravel", "1");
-	AddQuestUserData("CompanionTravel", "sDays", PChar.CompanionTravel.(attr).Days);
-	AddQuestUserData("CompanionTravel", "sShipInfo", XI_ConvertString(RealShips[sti(sld.Ship.Type)].Basename + "Dat") + " '" + sld.Ship.name + "'");
-	AddQuestUserData("CompanionTravel", "sColony", XI_ConvertString("Colony" + sld.CompanionTravel.ToColonyID + "Dat"));*/
-	// Записи в СЖ
 	ReOpenQuestHeader("CompanionTravel");
 	AddQuestRecord("CompanionTravel", "1");
 	AddQuestUserData("CompanionTravel", "sDays", PChar.CompanionTravel.(attr).Days);
-	AddQuestUserData("CompanionTravel", "sShipInfo", XI_ConvertString(RealShips[sti(sld.Ship.Type)].Basename + "Gen") + " '" + sld.Ship.name + "'");
-
+	AddQuestUserData("CompanionTravel", "sShipInfo", GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].Basename + "Dat")) + " '" + sld.Ship.name + "'");
+	AddQuestUserData("CompanionTravel", "sCapName", GetFullName(sld)); 
 //xxxZohanxxx Путешествия -->
 	if (sld.CompanionTravel.ToColonyID == "Caiman")
 	{
@@ -98,7 +92,8 @@ void CompanionTravel_ProcessAllTravellers() // Этот метод вызыва�
 
 void CompanionTravel_DayUpdate(string sCompanion) // Обработка конкретного компаньона-путешественника
 {
-	string sID = PChar.CompanionTravel.(sCompanion).ID;
+	string sID
+	if (CheckAttribute(PChar, "CompanionTravel."+sCompanion+".ID")) sID = PChar.CompanionTravel.(sCompanion).ID; else {DeleteAttribute(PChar.CompanionTravel.(sCompanion)); return;}
 	int iDays = sti(PChar.CompanionTravel.(sCompanion).Days);
 	ref rCompanion = CharacterFromID(sID);
 	CompanionTravel_SetExperienceToTraveller(rCompanion); // Начисляем экспу
@@ -151,21 +146,25 @@ void CompanionTravel_DeleteCompanion(string sID, string sCompanion, bool WaitInC
 	DeleteAttribute(rTraveller, "CompanionTravel");
 	rTraveller.LifeDay = 0;
 	DeleteAttribute(PChar, "CompanionTravel."+sCompanion);
+	PChar.CompanionTravel = sti(PChar.CompanionTravel) - 1; // Тут счетчик уменьшаем
+	AddQuestRecord("CompanionTravel", "3");
+	AddQuestUserData("CompanionTravel", "sCapName", GetFullName(rTraveller)); 
+	AddQuestUserData("CompanionTravel", "sShipInfo", GetStrSmallRegister(XI_ConvertString(RealShips[sti(rTraveller.Ship.Type)].Basename + "Dat")) + " '" + rTraveller.Ship.name + "'");
+	string strReason; 
 	if(WaitInColony)
 	{
 		Log_TestInfo("Кэпа группы CompanionTravel_"+sCompanion+" слишком долго ждал в колонии и свалил.");
-		Log_Info(XI_ConvertString(RealShips[sti(rTraveller.Ship.Type)].Basename)+" ''"+rTraveller.Ship.name+"'' не дождался вас в колонии и покинул её.");
+		strReason = "не дождался вас в колонии и покинул её.";
 	}
 	else
 	{
 		Log_TestInfo("Судно кэпа группы CompanionTravel_"+sCompanion+" не дошло до места назначения.");
-		Log_Info(XI_ConvertString(RealShips[sti(rTraveller.Ship.Type)].Basename)+" ''"+rTraveller.Ship.name+"'' не добрался до места встречи.");
+		strReason = "не добрался до места встречи.");
 	}
-	// Поставить соответствующую ноду диалога
-
-	Group_DeleteAtEnd("CompanionTravel_"+sCompanion);
-	PChar.CompanionTravel = sti(PChar.CompanionTravel) - 1; // Тут счетчик уменьшаем
+	Log_Info(XI_ConvertString(RealShips[sti(rTraveller.Ship.Type)].Basename)+" ''"+rTraveller.Ship.name+"'' " + strReason); 
+	AddQuestUserData("CompanionTravel", "sReason", strReason);
 	if(GetAttrValue(PChar, "CompanionTravel") == 0) CloseQuestHeader("CompanionTravel");
+	Group_DeleteAtEnd("CompanionTravel_"+sCompanion);
 }
 
 void CompanionTravel_SetCompanionToColony(string sColony, string sGroupID, string sID) // Поставим компаньона в колонию
