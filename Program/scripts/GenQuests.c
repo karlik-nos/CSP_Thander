@@ -2222,6 +2222,7 @@ void EncGirl_DeathSimple(string qName)
 		CloseQuestHeader("JungleGirl");
 	}
 	ChangeCharacterReputation(pchar, -30);
+	pchar.quest.EncGirl_DeliveBack.over = "yes";
 	pchar.quest.DeleteGirlGroup.win_condition.l1 = "ExitFromLocation";
     pchar.quest.DeleteGirlGroup.win_condition.l1.location = pchar.location;
     pchar.quest.DeleteGirlGroup.function = "EncGirl_DeleteGirlGroup";
