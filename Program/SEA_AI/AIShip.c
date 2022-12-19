@@ -3581,7 +3581,7 @@ void Ship_UpdateParameters()
     		}
     		else
     		{
-    		    fTRFromSpeed = 1.0 - 0.5 * (1.0 - Clampf(fCurrentSpeedZ / fShipSpeed));
+    		    fTRFromSpeed = 1.0 - 0.75 * (1.0 - Clampf(fCurrentSpeedZ / fShipSpeed));
     		}
         }
 	}
@@ -3593,7 +3593,7 @@ void Ship_UpdateParameters()
 		}
 		else
 		{
-		    fTRFromSpeed = 1.0 - (0.5 - MOD_SKILL_ENEMY_RATE*0.005) * (1.0 - Clampf(fCurrentSpeedZ / fShipSpeed));
+		    fTRFromSpeed = 1.0 - (0.75 - MOD_SKILL_ENEMY_RATE*0.005) * (1.0 - Clampf(fCurrentSpeedZ / fShipSpeed));//чем медленнее текущая скорость корабля, тем медленнее он поворачивает
 		}
 	}
 	// boal зависимость от скорости на маневр <--
