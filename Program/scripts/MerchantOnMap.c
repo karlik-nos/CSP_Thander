@@ -341,13 +341,12 @@ void SetMerchantShip(ref Cap, int igoods)
 
 string All_GetColony();
 {
-
-
     int locnum = FindLocation(pchar.location);
     if (locnum != -1 )
     {
 		if(CheckAttribute(locations[locnum],"townsack")) // если в городе <-- ugeen fix
 		{
+			if (locations[locnum].townsack == "Bahames") locations[locnum].townsack = "Nassau";//TO DO - удалить эту подмену позже - просто фикс, чтоб обойтись без НИ
 			return locations[locnum].townsack;
 		}
 		else // а если в джунглях или на побережье?
