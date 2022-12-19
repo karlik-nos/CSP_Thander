@@ -571,9 +571,10 @@ float ShipSpeedBonusFromWeight(ref _refCharacter)
 {	// от загрузки трюма
     if(!CheckAttribute(_refCharacter, "Cargo")) RecalculateCargoLoad(_refCharacter);
 	ref rShip = GetRealShip(sti(_refCharacter.ship.type));
-	float fLoad = Clampf(stf(_refCharacter.Ship.Cargo.Load) / stf(rShip.Capacity));
-	float fTRFromWeight = Clampf(1.03 - stf(rShip.SpeedDependWeight) * fLoad);
-	return fTRFromWeight;
+	float fLoad = stf(_refCharacter.Ship.Cargo.Load);
+	float fCapacity = stf(ShipsTypes[sti(rShip.basetype)].Capacity);
+	float fSRFromWeight = Clampf(1.03 - stf(rShip.SpeedDependWeight) * fLoad / fCapacity);
+	return fSRFromWeight;
 }
 float ShipSpeedBonusFromHP(ref _refCharacter)
 {	// от повреждения корпуса
@@ -592,13 +593,13 @@ float ShipSpeedBonusFromPeople(ref _refCharacter)
 	float fCrewOpt = stf(rShip.OptCrew);
 	float fCrewCur = stf(_refCharacter.Ship.Crew.Quantity);
 	if (fCrewCur > fCrewMax) fCrewCur = fCrewMax;
-	float fTRFromPeople = Clampf(0.85 + ((GetCrewExp(_refCharacter, "Sailors") * fCrewCur) / (fCrewOpt * GetCrewExpRate())) * 0.25);
-	return fTRFromPeople;
+	float fSRFromPeople = Clampf(0.85 + ((GetCrewExp(_refCharacter, "Sailors") * fCrewCur) / (fCrewOpt * GetCrewExpRate())) * 0.25);
+	return fSRFromPeople;
 }
 float ShipSpeedBonusFromSails(ref _refCharacter)
 {	// от повреждения парусов
-	float fTRFromSailDamage = Bring2Range(0.1, 1.0, 0.1, 100.0, stf(_refCharacter.ship.sp)); //0.3
-	return fTRFromSailDamage;
+	float fSRFromSailDamage = Bring2Range(0.1, 1.0, 0.1, 100.0, stf(_refCharacter.ship.sp)); //0.3
+	return fSRFromSailDamage;
 }
 float ShipSpeedBonusFromSoiling(ref _refCharacter)
 {	// от загрязнения дна
@@ -680,9 +681,9 @@ float ShipTurnRateBonusFromWeight(ref _refCharacter)
 {	// от загрузки трюма
     if(!CheckAttribute(_refCharacter, "Cargo")) RecalculateCargoLoad(_refCharacter);
 	ref rShip = GetRealShip(sti(_refCharacter.ship.type));
-	float fLoad = Clampf(stf(_refCharacter.Ship.Cargo.Load) / stf(rShip.Capacity));
-	// в тактическом режиме влияние веса больше
-	float fTRFromWeight = Clampf(1.03 - (2 - iArcadeSails) * stf(rShip.TurnDependWeight) * fLoad);
+	float fLoad = stf(_refCharacter.Ship.Cargo.Load);
+	float fCapacity = stf(ShipsTypes[sti(rShip.basetype)].Capacity);
+	float fTRFromWeight = Clampf(1.03 - (2 - iArcadeSails) * stf(rShip.TurnDependWeight) * fLoad / fCapacity);
 	return fTRFromWeight;
 }
 float ShipTurnRateBonusFromHP(ref _refCharacter)

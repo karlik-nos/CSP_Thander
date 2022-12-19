@@ -1202,20 +1202,15 @@ string GetItemDescribe(string sItemID)
 	describeStr += "\nЦена " + GetItemPrice(sItemID) + " / Вес " + FloatToString(GetItemWeight(sItemID), 2) + newStr();
 	if (CheckAttribute(arItm, "groupID"))//Книги, процент прочитанности - Gregg
 	{
-		if(arItm.groupID == BOOK_ITEM_TYPE)
+		if (arItm.groupID == BOOK_ITEM_TYPE)
 		{
-			if (CheckAttribute(pchar,"booktype") && pchar.bookname == arItm.name)//сейчас читаем книгу
+			string sId = arItm.id;
+			if (CheckAttribute(pchar, "books." + sId))
 			{
-				float value = ((sti(pchar.booktime)*100)/sti(pchar.booktime.full)-100)*(-1.0);
-				string text = FloatToString(value,1);
-				describeStr += "Прочитано примерно "+text+"%.";
-			}
-			string sBookname = arItm.name;
-			if (checkattribute(pchar,"halfreadbook."+sBookname))//книга, которую сняли недочитав
-			{
-				float value1 = ((sti(pchar.halfreadbook.(sBookname).booktime)*100)/sti(pchar.halfreadbook.(sBookname).booktime.full)-100)*(-1.0);
-				string text1 = FloatToString(value1,1);
-				describeStr += "Прочитано примерно "+text1+"%.";
+				int readtime = BookReadTime(sId);
+				float value = 100 * (1.0 - stf(pchar.books.(sId)) / readtime);
+				string text = FloatToString(value, 1);
+				describeStr += "Прочитано примерно " + text + "%.";
 			}
 		}
 	}

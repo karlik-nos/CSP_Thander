@@ -676,7 +676,7 @@ void ProcessDialogEvent()
 			}
 		}
 		PChar.GenQuest.PGG_Quest.Island.Town = FindTownOnIsland(PChar.GenQuest.PGG_Quest.Island);
-		PChar.GenQuest.PGG_Quest.Days = GetMaxDaysFromIsland2Island(Islands[GetCharacterCurrentIsland(pchar)].id, PChar.GenQuest.PGG_Quest.Island)/2 + 1;
+		PChar.GenQuest.PGG_Quest.Days = GetMaxDaysFromIsland2Island(GetCharacterCurrentIslandId(pchar), PChar.GenQuest.PGG_Quest.Island) + 1;
 		PChar.GenQuest.PGG_Quest.Goods = GOOD_SLAVES + drand(2);
 		if(CheckAttribute(pchar, "BSStart") && !CheckAttribute(pchar, "BSInProgress"))	PChar.GenQuest.PGG_Quest.Goods = GOOD_GOLD;
 		if (CheckAttribute(NPChar, "PGGAi.ActiveQuest"))

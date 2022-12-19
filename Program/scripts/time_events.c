@@ -517,40 +517,10 @@ void CheckBook()//Проверка книги только на глобалке
 		DeleteAttribute(pchar,"bookreadtoday");
 		return;
 	}
+
 	if (IsEntity(&worldMap) != 0)//учёт чтения на глобалке
 	{
-		if (CheckAttribute(pchar,"booktype"))
-		{
-			if (sti(pchar.booktime) > 0)
-			{
-				pchar.booktime = sti(pchar.booktime)-1;
-				//if (sti(pchar.booktime) != 0)Log_Info("Осталось "+pchar.booktime+" дней по полного изучения книги.");
-				//if (sti(pchar.booktime) == 0)Log_Info("Последний день изучения книги!");
-			}
-			if (sti(pchar.booktime) <= 0)
-			{
-				if (pchar.booktype == "Defense") pchar.booktype = "Defence";
-				if (pchar.booktype == "Defenсe") pchar.booktype = "Defence";//Whut?
-				AddCharacterExpToSkill(pchar, pchar.booktype, sti(pchar.bookbonus));
-				int idLngFile = LanguageOpenFile("ItemsDescribe.txt");
-				Log_Info(GetFullName(pchar) + " изучил книгу ''"+LanguageConvertString(idLngFile, pchar.bookname)+"'' и увеличил навык ''"+XI_ConvertString(pchar.booktype)+"''");
-				LanguageCloseFile(idLngFile);
-				DeleteAttribute(pchar,"booktime");
-				DeleteAttribute(pchar,"booktime.full");
-				DeleteAttribute(pchar,"bookbonus");
-				DeleteAttribute(pchar,"booktype");
-				DeleteAttribute(pchar,"bookreadtoday");
-				string sEquipItem = GetCharacterEquipByGroup(pchar, BOOK_ITEM_TYPE);
-				RemoveCharacterEquip(pchar, BOOK_ITEM_TYPE);
-				RemoveItems(pchar, sEquipItem, 1);
-
-				pchar.questTemp.bookcount = sti(pchar.questTemp.bookcount) + 1;
-				// Открываем достижения
-				if(sti(pchar.questTemp.bookcount) >= 3) UnlockAchievement("books", 1);
-				if(sti(pchar.questTemp.bookcount) >= 6) UnlockAchievement("books", 2);
-				if(sti(pchar.questTemp.bookcount) >= 10) UnlockAchievement("books", 3);
-			}
-		}
+		TryReadBook();
 	}
 }
 
