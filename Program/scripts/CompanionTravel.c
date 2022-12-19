@@ -93,7 +93,7 @@ void CompanionTravel_ProcessAllTravellers() // Этот метод вызыва�
 void CompanionTravel_DayUpdate(string sCompanion) // Обработка конкретного компаньона-путешественника
 {
 	string sID
-	if (CheckAttribute(PChar, "CompanionTravel."+sCompanion+".ID")) sID = PChar.CompanionTravel.(sCompanion).ID; else {DeleteAttribute(PChar.CompanionTravel.(sCompanion)); return;}
+	if (CheckAttribute(PChar, "CompanionTravel."+sCompanion+".ID")) sID = PChar.CompanionTravel.(sCompanion).ID; else {DeleteAttribute(PChar,"CompanionTravel."+sCompanion); return;}
 	int iDays = sti(PChar.CompanionTravel.(sCompanion).Days);
 	ref rCompanion = CharacterFromID(sID);
 	CompanionTravel_SetExperienceToTraveller(rCompanion); // Начисляем экспу
