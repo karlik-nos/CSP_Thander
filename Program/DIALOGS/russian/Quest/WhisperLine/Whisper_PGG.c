@@ -246,6 +246,34 @@ void ProcessDialogEvent()
 			}
 			npchar.dialog.currentnode = "Quest_Whisper_report";
 			LocatorReloadEnterDisable("Santiago_Town", "basement1", true);
+			if (npchar.payment == true)
+			{
+				CheckForReleaseOfficer(sti(npchar.index));
+				RemovePassenger(pchar, npchar);
+				RemoveCharacterCompanion(pchar, npchar);
+				LAi_SetWarriorType(npchar);
+				npchar.location = "none";
+				npchar.PGGAi.location.town = GetCurrentTown();
+				npchar.PGGAi.IsPGG = true;
+				int n = 0;
+				int aShips[SHIP_SP_SANFELIPE];
+				for (i = 0; i <= SHIP_SP_SANFELIPE; i++)
+				{
+					if (CheckAttribute(&ShipsTypes[i], "Class") && sti(ShipsTypes[i].Class) == GetCharacterShipClass(PChar))
+					{
+						aShips[n] = i;
+						n++;
+					}
+				}
+				i = rand(n-1);
+				int iType = aShips[i];
+				PGG_DebugLog(npchar.id + " Changed ship");
+				npchar.Ship.Type = GenerateShipExt(iType, rand(1), npchar);
+				SetBaseShipData(npchar);
+				if (!CheckAttribute(npchar, "Ship.Name")) SetRandomNameToShip(npchar);
+				PGG_UpdateShipEquip(npchar);
+				npchar.PGGAi.OwnShip = true;	
+			}
 			DialogExit();
 		break;
 
