@@ -1729,9 +1729,9 @@ void PGG_OnInit_WaitInTavern(ref rTmpl)
 {
 	object oPrm;
 	ref chr = GetCharacter(sti(pchar.questTemp.PGG_Rumour));
-
 	oPrm.PsHero_Name = GetFullName(chr);
 	oPrm.Town_Name = XI_ConvertString("Colony" + chr.PGGAi.location.town + "Gen");
+	if (chr.sex == "woman") ttttstr = LanguageConvertString(LanguageOpenFile("RumourTexts.txt"), rTmpl.curtid+"W");
 	ttttstr = GetAssembledString(ttttstr, &oPrm);
 }
 
@@ -1741,6 +1741,7 @@ void PGG_OnInit_WorkOnMayor(ref rTmpl)
 	ref chr = GetCharacter(sti(pchar.questTemp.PGG_Rumour));
 
 	oPrm.PsHero_Name = GetHeroName(sti(chr.PGGAi.HeroNum));
+	if (chr.sex == "woman") ttttstr = LanguageConvertString(LanguageOpenFile("RumourTexts.txt"), rTmpl.curtid+"W");
 	ttttstr = GetAssembledString(ttttstr, &oPrm);
 
 	rTmpl.City = chr.PGGAi.location.town;
@@ -1750,11 +1751,11 @@ void PGG_OnInit_SailToIsland(ref rTmpl)
 {
 	object oPrm;
 	ref chr = GetCharacter(sti(pchar.questTemp.PGG_Rumour));
-
 	oPrm.PsHero_Name = GetFullName(chr);
 	oPrm.To = "в";
 	if (chr.PGGAi.Task.Target == "Tortuga") oPrm.To = "на";
 	oPrm.Town_Name = XI_ConvertString("Colony" + chr.PGGAi.Task.Target + "Acc");
+	if (chr.sex == "woman") ttttstr = LanguageConvertString(LanguageOpenFile("RumourTexts.txt"), rTmpl.curtid+"W");
 	ttttstr = GetAssembledString(ttttstr, &oPrm);
 
 	rTmpl.actualtime = sti(chr.PGGAi.Task.Target.days);
@@ -1770,6 +1771,7 @@ void PGG_OnInit_WorkOnStore(ref rTmpl)
 	oPrm.PsHero_Name = GetFullName(chr);
 	oPrm.Good = XI_ConvertString(Goods[iGood].name);
 	oPrm.Town_Name = XI_ConvertString("Colony" + chr.PGGAi.Task.Target + "Acc");
+	if (chr.sex == "woman") ttttstr = LanguageConvertString(LanguageOpenFile("RumourTexts.txt"), rTmpl.curtid+"W");
 	ttttstr = GetAssembledString(ttttstr, &oPrm);
 
 	rTmpl.actualtime = sti(chr.PGGAi.Task.Target.days);
@@ -1838,6 +1840,8 @@ string PGG_Event_WorkWithContra(ref rRum)
 
 	oPrm.PsHero_Name = GetFullName(chr);
 	oPrm.ContraPlace = GetConvertStr(sSmugglersLocation, "LocLables.txt");
+
+	if (chr.sex == "woman") rRum.text = LanguageConvertString(LanguageOpenFile("RumourTexts.txt"), rRum.curtid+"W");
 
 	return GetAssembledString(rRum.text, &oPrm);
 }
