@@ -178,7 +178,7 @@ void SetSmugglersTravelDestination(aref arDest)
 	DeleteAttribute(arDest, "destination");
 	arDest.destination.days = rand(2) + CalculateColonyDistance(sTown, sTargetTown);	//новый расчет дней
 	arDest.destination = sTargetTown;
-	arDest.destination.loc = GetIslandRandomShoreId(sTargetIsland, true);
+	arDest.destination.loc = GetIslandRandomShoreId(sTargetIsland);
 	//пишу стандартные аттрибуты, везде будут они.
 	arDest.destination.group = "reload"; 
 	arDest.destination.locator = "sea";
