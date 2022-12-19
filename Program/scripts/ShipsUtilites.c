@@ -2255,3 +2255,43 @@ int GetShootDistance(ref chref, string ball)
 	distance = distance * fKoefBallType * fKoefBallType;
 	return makeint(distance+0.5);
 }
+
+int GetShipTypeExt(int iClassMin, int iClassMax, string sShipType, int iNation)//нация -1 допускает любые нации, иначе только одну указанную		//sShipType = "" - любой тип, хоть военный, хоть торговый
+{
+	int iShips[SHIP_TYPES_QUANTITY];
+	int iShipsNum = 0;
+	aref aNation;
+	string sNation;
+	bool bOk;
+	int iClass;
+
+	for (int i=0; i<=SHIP_TYPES_QUANTITY; i++)
+	{
+		object rShip = GetShipByType(i);
+		if (!checkAttribute(rship, "class")) trace ("bad ship is: " + rship.name);
+
+		if (checkAttribute(rship, "QuestShip")) continue; //квестовые корабли Игнорим
+
+		iClass = MakeInt(rShip.Class);
+		if (iClass > iClassMin) { continue; }
+		if (iClass < iClassMax) { continue; }//по классу Игнорим
+
+		if (sti(rShip.CanEncounter) != true) { continue; }
+		if (sShipType == "" || sti(rShip.Type.(sShipType)) != true) { continue; }//по типу игнорим
+		bOk = false;
+		if(iNation != -1 && CheckAttribute(rShip, "nation"))
+		{
+			sNation = GetNationNameByType(iNation); 
+			if(rShip.nation.(sNation) != true ) { continue; }//по нации игнорим
+		}
+		iShips[iShipsNum] = i;
+		iShipsNum++;
+	}
+	if (iShipsNum==0)
+	{
+		Trace("Can't find ship type '" + sShipType + "' with ClassMin = " + iClassMin + " and ClassMax = " + iClassMax + " iNation = " + iNation);
+		return INVALID_SHIP_TYPE;
+	}
+
+	return iShips[rand(iShipsNum - 1)];
+}
