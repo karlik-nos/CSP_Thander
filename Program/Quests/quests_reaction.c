@@ -11344,6 +11344,7 @@ void QuestComplete(string sQuestName, string qname)
 			sld.lifeday = 0;
 			ChangeCharacterAddressGroup(sld, "none", "", "");
 			InterfaceStates.Buttons.Save.enable = true;
+			PChar.quest.SCQ_Prytki_PokinuliZonu.over = "yes";
 		break;
 		
 		case "SCQ_Prytki_PokinuliZonu":

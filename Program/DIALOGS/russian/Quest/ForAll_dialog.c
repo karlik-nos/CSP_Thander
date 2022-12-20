@@ -2048,6 +2048,7 @@ void ProcessDialogEvent()
 			link.l1.go = "SCQ_Prytki_Dengi_Final";
 			
 			Event("QuestDelayExit","sl", "", 0);
+			PChar.quest.SCQ_Prytki_PokinuliZonu.over = "yes";
 			DeleteAttribute(pchar, "showTimer");
 			ClearAllLogStrings();
 			InterfaceStates.Buttons.Save.enable = true;
