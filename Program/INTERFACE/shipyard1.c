@@ -21,9 +21,6 @@ int Tun_Mater2[10];//кол-во предмет
 int Tun_Mater3[10];//кол-во деньги	//gold
 string sAdd[10] = {"","\nкорпус: ","","\nмачты: ","\nскорость: ","\nманёвренность: ","\nбейдевинд: ","\nдэдвейт: ","\nкоманда: ","\nкалибр: "};
 
-int lastsort = 0;
-bool blastsort;
-
 void InitInterface_R(string iniName, ref _shipyarder)
 {
 	GameInterface.title = "titleShipyard";
@@ -436,6 +433,14 @@ void FillShipyardTable()
 	GameInterface.TABLE_SHIPYARD.hr.td6.scale = 0.9;
 	GameInterface.TABLE_SHIPYARD.select = 0;
 	GameInterface.TABLE_SHIPYARD.top = 0;
+//--> mod tablesort
+	GameInterface.TABLE_SHIPYARD.hr.td1.sorttype = "string";
+	GameInterface.TABLE_SHIPYARD.hr.td2.sorttype = "";//числа - любое значение кроме "string"
+	//GameInterface.TABLE_SHIPYARD.hr.td3.sorttype = "";//эту колонку не сортируем, не создаём атрибут!
+	GameInterface.TABLE_SHIPYARD.hr.td4.sorttype = "";
+	GameInterface.TABLE_SHIPYARD.hr.td5.sorttype = "";
+	GameInterface.TABLE_SHIPYARD.hr.td6.sorttype = "";
+//<-- mod tablesort
 
 	int	iStart = 0;
 	int iEnd = -1;
@@ -1003,19 +1008,10 @@ void OnTableClick()
 	int iRow = GetEventData();
 	int iColumn = GetEventData();
 
-	string sRow = "tr" + (iRow + 1);
+	//string sRow = "tr" + (iRow + 1);
 	if (sControl == "TABLE_SHIPYARD")
-		{
-		if (!SendMessage(&GameInterface,"lsl",MSG_INTERFACE_MSG_TO_NODE, sControl, 1 ))
-			{
-			if (iColumn == 3) return;//эти колонки не сортируем
-			if (lastsort == iColumn) {bLastSort = !bLastSort;} else {lastsort = iColumn; bLastSort = 1;}
-
-			if (iColumn == 1)
-				SortTable(sControl, iColumn, 1, bLastSort, -1);//текст
-			else
-				SortTable(sControl, iColumn, 0, !bLastSort, -1);//числа
-			}
+	{
+		if (!SendMessage(&GameInterface,"lsl",MSG_INTERFACE_MSG_TO_NODE, sControl, 1 )) SortTable(sControl, iColumn);
 		Table_UpdateWindow(sControl);
-		}
+	}
 }
