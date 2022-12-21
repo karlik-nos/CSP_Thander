@@ -895,31 +895,22 @@ void GenerateShipUpgradeParameters(ref rFantom)
 	}
 }
 
-// eddy. подбор типа корабля для фантома от ранга и нац. принадлежности
+// eddy. подбор типа корабля для фантома от ранга ГГ с учётом нац. принадлежности, и типа занятий
 void SetShipToFantom(ref _chr, string _type, bool _setgoods)
 {
 	int ShipType;
 	int Nation = sti(_chr.nation);
 	int Rank = sti(pchar.rank);
-	switch (_type)
-	{
-		case "trade":
-			if (Rank >= 1 && Rank <= 5){ShipType = 3 + rand(11);} // 6 класс
-			if (Rank >= 5 && Rank <= 10){ShipType = 3 + rand(24);} // 6 - 5 класс
-			if (Rank >= 10 && Rank <= 15){ShipType = 15 + rand(36);} // 5 - 4 класс
-			if (Rank >= 15 && Rank <= 20){ShipType = 28 + rand(55);} // 4 - 3 класс
-			if (Rank >= 20 && Rank <= 30){ShipType = 52 + rand(52);} // 3 - 2 класс
-			if (Rank > 30){	ShipType = 84 + rand(40);} // 2 - 1 класс
-		break;
-		case "pirate":
-			if (Rank >= 1 && Rank <= 5){ShipType = 3 + rand(11);} // 6 класс
-			if (Rank >= 5 && Rank <= 10){ShipType = 3 + rand(24);} // 6 - 5 класс
-			if (Rank >= 10 && Rank <= 15){ShipType = 15 + rand(36);} // 5 - 4 класс
-			if (Rank >= 15 && Rank <= 20){ShipType = 28 + rand(55);} // 4 - 3 класс
-			if (Rank >= 20 && Rank <= 30){ShipType = 52 + rand(52);} // 3 - 2 класс
-			if (Rank > 30){	ShipType = 84 + rand(40);} // 2 - 1 класс
-		break;-
-	}
+
+	if (Rank >= 1 && Rank <= 5) {iClassMin = 6; iClassMax = 6;} // 6 класс
+	if (Rank >= 5 && Rank <= 10) {iClassMin = 6; iClassMax = 5;} // 6 - 5 класс
+	if (Rank >= 10 && Rank <= 15) {iClassMin = 5; iClassMax = 4;} // 5 - 4 класс
+	if (Rank >= 15 && Rank <= 20) {iClassMin = 4; iClassMax = 3;} // 4 - 3 класс
+	if (Rank >= 20 && Rank <= 30) {iClassMin = 3; iClassMax = 2;} // 3 - 2 класс
+	if (Rank > 30) {iClassMin = 2; iClassMax = 1;} // 2 - 1 класс
+
+	ShipType = GetShipTypeExt(iClassMin, iClassMax, _type, Nation);
+
 	_chr.Ship.Type = GenerateShipExt(ShipType, true, _chr);
 	SetRandomNameToShip(_chr);
     SetBaseShipData(_chr);
