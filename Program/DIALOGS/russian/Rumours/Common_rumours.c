@@ -256,7 +256,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 			break;
 		}
 
-		if(!CheckAttribute(pchar,"SalasarEventKnow") && rand(30)==0)
+		if(!CheckAttribute(pchar,"SalasarEventKnow") && rand(20)==0 && pchar.rank >= 20)
 		{
 			dialog.text = "Ходят слухи, что каждый год 3 марта в 3 часа ночи на рифе Скелета в ущелье Дьявола на руинах домика смотрителя кладбища разгорается особенно яркое и пугающее сияние, от которого веет ужасом и безнадёжностью. Хотелось бы самому посмотреть, да слишком уж боязно...";
 			Log_Info("Это стоит запомнить. Значит... 3 марта, 3 часа ночи и каждый год.");
@@ -897,10 +897,7 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
     			AddQuestRecord("Gen_LoanTakeChest", "3");
                 CloseQuestHeader("Gen_LoanTakeChest");
 
-				pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-				if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-				if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-				if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+				AchievementsCounter_genquests(1);
 			}
 			else
 			{

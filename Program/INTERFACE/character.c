@@ -67,7 +67,7 @@ void IDoExit(int exitCode)
 	{
 		xi_refCharacter.skill.FreeSPECIAL = 0; // если не все распределил, сам дурак
 		DeleteAttribute(xi_refCharacter,"bchangepirates");
-		if (startherotype > 10)//Для уникальных стартов даём другое начало
+		if (startherotype > 9)//Для уникальных стартов даём другое начало
 		{
     		ref sld = characterFromID("Sailor_1");
     		LAi_SetActorTypeNoGroup(pchar);
@@ -671,7 +671,7 @@ string ShowStatValue(string type)
 			return value;
 		break;
 		case "energychar":
-			float fMultiplierE = 1.6666667;
+			float fMultiplierE = 1.30 + (GetCharacterSPECIALSimple(xi_refCharacter,SPECIAL_S)/10.0);//влияние силы на скорость восстановления энергии
 			if(CheckCharacterPerk(xi_refCharacter, "Energaiser")) // скрытый перк боссов и ГГ
 			{
 				fMultiplierE = fMultiplierE * 1.5;

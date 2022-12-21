@@ -549,6 +549,9 @@ void LAi_LoadLocation(string locationID, int locType)
 		Trace("Boarding: Boarding location not found, current loc <" + locationID + ">");
 	}
 	ReloadProgressEnd();
+	SetPerspectiveSettings();
+	//#20190815-01
+	SetPerspective2Settings();
 	PostEvent("LoadSceneSound", 500);
 	pchar.OfficerAttRange = 100.0;//автоагр абордажников на палубе
 }
@@ -671,6 +674,9 @@ void LAi_ReloadEndFade()
 		ref mchar       = GetMainCharacter();
 		float fDefenceSkill = 0.9 + MakeFloat(GetSummonSkillFromName(mchar, SKILL_DEFENCE)) / SKILL_MAX;
 		int deadCrew    = makeint((boarding_player_base_crew - crew) / fDefenceSkill + 0.3 + AIShip_isPerksUse(CheckOfficersPerk(mchar, "EmergentSurgeon"), 0.0, 0.9)); // бонус выжившим
+		if (deadCrew < 0) {
+			deadCrew = 0;
+		}
 		int deadCrewWOMedic = makeint(boarding_player_base_crew - crew); // без бонуса
 		float leaderSkill = GetSummonSkillFromNameToOld(mchar, SKILL_LEADERSHIP);
 		int iTemp;
@@ -1024,30 +1030,6 @@ void LAi_SetBoardingActors(string locID)
 				xhp = GetBoarding_player_hp(boarding_player_hp);
 				LAi_SetHP(chr, xhp, xhp);
 			}*/
-			if (IsCharacterPerkOn(chr, "Ciras") && rand(4)==0)
-			{
-				string cirnum;
-				switch (rand(4))
-				{
-					case 0: cirnum = "cirass1"; break;
-					case 1: cirnum = "cirass1"; break;
-					case 2: cirnum = "cirass2"; break;
-					case 3: cirnum = "cirass3"; break;
-					case 4: cirnum = "cirass4"; break;
-				}
-				if (CheckAttribute(chr, "HeroModel")) // все, у кого есть что одеть
-				{
-					switch (cirnum)
-					{
-						case "cirass1": chr.model = GetSubStringByNum(chr.HeroModel, 1); break;
-						case "cirass2": chr.model = GetSubStringByNum(chr.HeroModel, 2); break;
-						case "cirass3": chr.model = GetSubStringByNum(chr.HeroModel, 3); break;
-						case "cirass4": chr.model = GetSubStringByNum(chr.HeroModel, 4); break;
-					}
-				}
-				chr.cirassId = Items_FindItemIdx(cirnum);
-				Log_TestInfo("Персонаж "+chr.name+" получил кирасу "+cirnum);
-			}
 		}
 		//ставим своих мушкетеров -->
 		if (CheckOfficersPerk(mchr, "MusketsShoot") && !CheckAttribute(boarding_enemy, "GenQuest.CrewSkelMode"))
@@ -1160,6 +1142,12 @@ void LAi_SetBoardingActors(string locID)
 				}
 				model = "cirass" + xhp;
 				chr.cirassId  = Items_FindItemIdx(model);
+				if (!checkattribute(chr,"heromodel")) 
+				{
+					DeleteAttribute(chr,"VISUAL_CIRASS");
+					FaceMaker(chr);
+				}
+				CheckForCirass(chr);
 				Log_TestInfo("На капитане кираса " + model);
 		    }
 			//}
@@ -1180,30 +1168,6 @@ void LAi_SetBoardingActors(string locID)
 		}
 		chr.AboardFantom = true;
 		AddCharHP(chr, boarding_enemy_hp); // влияение опыта и морали в НР
-		if (IsCharacterPerkOn(chr, "Ciras") && rand(4)==0)
-		{
-			string cirnum1;
-			switch (rand(4))
-			{
-				case 0: cirnum1 = "cirass1"; break;
-				case 1: cirnum1 = "cirass1"; break;
-				case 2: cirnum1 = "cirass2"; break;
-				case 3: cirnum1 = "cirass3"; break;
-				case 4: cirnum1 = "cirass4"; break;
-			}
-			if (CheckAttribute(chr, "HeroModel")) // все, у кого есть что одеть
-			{
-				switch (cirnum1)
-				{
-					case "cirass1": chr.model = GetSubStringByNum(chr.HeroModel, 1); break;
-					case "cirass2": chr.model = GetSubStringByNum(chr.HeroModel, 2); break;
-					case "cirass3": chr.model = GetSubStringByNum(chr.HeroModel, 3); break;
-					case "cirass4": chr.model = GetSubStringByNum(chr.HeroModel, 4); break;
-				}
-			}
-			chr.cirassId = Items_FindItemIdx(cirnum1);
-			Log_TestInfo("Персонаж "+chr.name+" получил кирасу "+cirnum1);
-		}
 	}
 	//ставим вражеских мушкетеров -->
 	if (CheckCharacterPerk(boarding_enemy, "MusketsShoot") || IsFort)
@@ -1298,6 +1262,12 @@ string LAi_GetBoardingModel(ref rCharacter, ref ani)
 			ani = "man";
 			return model;
         }
+		if (rCharacter.sex == "skeleton")
+		{
+			model = GetRandSkelModelClassic();
+			ani = "man";
+			return model;
+		}
 		if (CheckAttribute(rCharacter, "OZG") == true)
         {
             model = "OZG_" + (rand(9) + 1);

@@ -269,7 +269,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "contract4":
-			dialog.text = "Вполне, капитан. Я согласен.";
+			dialog.text = "Вполне, капитан. Я соглас" + GetSexPhrase("ен.","сна.");
 			AddMoneyToCharacter(Pchar, -sti(NPChar.contractMoney));
 			SetCharacterPerk(NPChar, "EnergyPlus");
 			SetCharacterPerk(NPChar, "HPPlus");
@@ -614,7 +614,7 @@ void ProcessDialogEvent()
 			Link.l2.go = "Companion_TaskChange";
 			if(bBettaTestMode) // Только при бета-тесте
 			{
-			    Link.l3 = "Я хочу, чтобы ты на время выш"+ GetSexPhrase("ел","ла") +" из состава моей эскадры и поискал удачу самостоятельно.";
+			    Link.l3 = "Я хочу, чтобы ты на время выш"+ NPCharSexPhrase(NPChar,"ел","ла") +" из состава моей эскадры и поискал удачу самостоятельно.";
 			    Link.l3.go = "CompanionTravel";
 			}
 			Link.l8 = "Пока ничего.";
@@ -623,15 +623,15 @@ void ProcessDialogEvent()
 
 		case "Companion_TaskBoarding":
 			dialog.Text = "Что же вы желаете?";
-			Link.l1 = "Я хочу чтобы ты не брал корабли на абордаж. Побереги себя и свою команду.";
+			Link.l1 = "Я хочу чтобы ты не брал"+ NPCharSexPhrase(NPChar,"","а") +" корабли на абордаж. Побереги себя и свою команду.";
 			Link.l1.go = "Companion_TaskBoardingNo";
-			Link.l2 = "Мне нужно чтобы ты брал вражеские корабли на абордаж.";
+			Link.l2 = "Мне нужно чтобы ты брал"+ NPCharSexPhrase(NPChar,"","а") +" вражеские корабли на абордаж.";
 			Link.l2.go = "Companion_TaskBoardingYes";
 		break;
 
 		case "Companion_TaskChange":
 			dialog.Text = "Что же вы желаете?";
-			Link.l1 = "Я хочу чтобы ты не менял"+ GetSexPhrase("","а") +" свой корабль после абордажа. Он слишком ценен.";
+			Link.l1 = "Я хочу чтобы ты не менял"+ NPCharSexPhrase(NPChar,"","а") +" свой корабль после абордажа. Он слишком ценен.";
 			Link.l1.go = "Companion_TaskChangeNo";
 			Link.l2 = "Когда будешь брать врагов на абордаж, посмотри, вдруг кораблик приличный будет, тогда бери себе.";
 			Link.l2.go = "Companion_TaskChangeYes";
@@ -865,7 +865,7 @@ void ProcessDialogEvent()
 		break;
 		//Анджелика
 		case "Angellica_meet":
-			if (startherotype == 3 || startherotype == 4)
+			if (startherotype == 4 || startherotype == 5)
 			{
 				if(npchar.id == "Angellica")
 				{

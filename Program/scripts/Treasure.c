@@ -123,6 +123,7 @@ void GenerateMapsTreasure(ref item, int iProbability1, int iProbability2)
 	if(rand(iProbability2) == 1 && !CheckMainHeroMap("map_maine_2")) item.BoxTreasure.map_maine_2 = 1;
 	if(rand(iProbability1) == 1 && !CheckMainHeroMap("map_panama")) item.BoxTreasure.map_panama = 1;
 	if(rand(iProbability1) == 1 && !CheckMainHeroMap("map_maracaibo")) item.BoxTreasure.map_maracaibo = 1;
+	if(rand(iProbability1) == 1 && !CheckMainHeroMap("map_Bahames")) item.BoxTreasure.map_Bahames = 1;
 	if(rand(iProbability1) == 1 && !CheckMainHeroMap("map_cumana")) item.BoxTreasure.map_cumana = 1;
 }
 
@@ -820,7 +821,7 @@ void SetTreasureHunter(string temp)
 	arrayNPCModelHow = 0;
     for (i = 1; i <= j; i++)
     {
-        if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sld = GetCharacter(NPC_GenerateCharacter(sCapId + i, "Pirate_" + (rand(24) + 1), "man", "spy", sti(PChar.rank) + 5, PIRATE, 0, true));
+        if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sld = GetCharacter(NPC_GenerateCharacter(sCapId + i, "Pirate_" + (rand(24) + 1), "man", "man_fast", sti(PChar.rank) + 5, PIRATE, 0, true));
         else sld = GetCharacter(NPC_GenerateCharacter(sCapId + i, "Pirate_" + (rand(24) + 1), "man", "man", sti(PChar.rank) + 5, PIRATE, 0, true));
         SetFantomParamHunter(sld); //крутые парни
         sld.Dialog.CurrentNode = "TreasureHunter";
@@ -897,7 +898,7 @@ void SetPGGTreasureHunter(string temp)
 		}
 		else
 		{
-			if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations)sld = GetCharacter(NPC_GenerateCharacter(sCapId + i, "Pirate_" + (rand(24) + 1), "man", "spy", sti(PChar.rank) + 5, PIRATE, 0, true));
+			if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations)sld = GetCharacter(NPC_GenerateCharacter(sCapId + i, "Pirate_" + (rand(24) + 1), "man", "man_fast", sti(PChar.rank) + 5, PIRATE, 0, true));
 			else sld = GetCharacter(NPC_GenerateCharacter(sCapId + i, "Pirate_" + (rand(24) + 1), "man", "man", sti(PChar.rank) + 5, PIRATE, 0, true));
 			SetFantomParamHunter(sld); //крутые парни
 			sld.greeting = "Gr_HUNTER";
@@ -1013,7 +1014,7 @@ void  GhostShipOnMap()
 
         DeleteAttribute(rRealShip, "ShipSails.SailsColor");  // белый парус
 
-        sld.ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS36;
+        sld.ship.Cannons.Type = CANNON_TYPE_CANNON_LBS42;
 
         Character_SetAbordageEnable(sld, true);
     }
@@ -1196,7 +1197,7 @@ void GhostShipInit()
 {
 	ref sld;
 	//============> Капитан призрака
-	if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sld = GetCharacter(NPC_GenerateCharacter("GhostCapt", "PotCMobCap", "skeleton", "spy", 55, PIRATE, -1, true));
+	if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sld = GetCharacter(NPC_GenerateCharacter("GhostCapt", "PotCMobCap", "skeleton", "man_fast", 55, PIRATE, -1, true));
 	else sld = GetCharacter(NPC_GenerateCharacter("GhostCapt", "PotCMobCap", "skeleton", "man", 55, PIRATE, -1, true));
 	sld.dialog.filename      = "Quest\GhostShip_dialog.c";
 	sld.dialog.currentnode   = "GhostCapt";
@@ -1241,7 +1242,7 @@ void GhostShipInit()
 	rRealShip.EmblemedSails.normalTex =  "ships\parus_common_torn.tga";
 	rRealShip.ShipSails.SailsColor = argb(255,60,60,60);
 	rRealShip.MaxCaliber = 48;
-    rRealShip.Cannon     = CANNON_TYPE_CANNON_LBS48;
+    rRealShip.Cannon     = CANNON_TYPE_CANNON_LBS42;
     rRealShip.MaxCrew    = 525;
     rRealShip.OptCrew    = 400;
     rRealShip.Capacity   = 5000;

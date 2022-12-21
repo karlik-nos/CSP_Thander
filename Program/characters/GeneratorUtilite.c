@@ -6,70 +6,74 @@ int m_rank_bonus, e_rank_bonus;
 // генерим НПС приблизительного ранга
 void SetFantomParamFromRank(ref NPchar, int  rank, bool setEquip)
 {
-    SetRandSPECIAL(Npchar);
-    CalculateSkillsFromRank(Npchar, rank);
-    SetFantomHP(NPchar);
-    if (setEquip)
-    {
-	    LAi_NPC_Equip(NPchar, sti(NPchar.rank), true, true);
-    }
-	if (IsCharacterPerkOn(NPchar, "Ciras") && rand(4)==0)
-	{
-		string cirnum;
-		switch (rand(4))
-		{
-			case 0: cirnum = "cirass1"; break;
-			case 1: cirnum = "cirass1"; break;
-			case 2: cirnum = "cirass2"; break;
-			case 3: cirnum = "cirass3"; break;
-			case 4: cirnum = "cirass4"; break;
-		}
-		if (CheckAttribute(NPchar, "HeroModel")) // все, у кого есть что одеть
-        {
-			switch (cirnum)
-			{
-				case "cirass1": NPchar.model = GetSubStringByNum(NPchar.HeroModel, 1); break;
-				case "cirass2": NPchar.model = GetSubStringByNum(NPchar.HeroModel, 2); break;
-				case "cirass3": NPchar.model = GetSubStringByNum(NPchar.HeroModel, 3); break;
-				case "cirass4": NPchar.model = GetSubStringByNum(NPchar.HeroModel, 4); break;
-			}
-		}
-		NPchar.cirassId = Items_FindItemIdx(cirnum);
-		Log_TestInfo("Персонаж "+NPchar.name+" получил кирасу "+cirnum);
-	}
-	if (CheckAttribute(NPchar,"id"))
-	{
-		switch (NPchar.id)
-		{
-			case "Tichingitu": SetCharacterPerk(NPchar, "Buccaneer"); break;
-			case "Andreas_Fickler": SetCharacterPerk(NPchar, "Trader"); break;
-			case "OfMush1": SetCharacterPerk(NPchar, "Buccaneer"); break;
-			case "OfMush2": SetCharacterPerk(NPchar, "Buccaneer"); break;
-			case "OffMushketer": SetCharacterPerk(NPchar, "Buccaneer"); break;
-			case "zpqCaptainOf": SetCharacterPerk(NPchar, "Adventurer"); break;
-			case "Daniel": SetCharacterPerk(NPchar, "Grunt"); break;
-			case "W_Lejitos": SetCharacterPerk(NPchar, "Grunt"); break;
-			case "Jafarry": SetCharacterPerk(NPchar, "Fencer"); break;
-			case "Beatrice": SetCharacterPerk(NPchar, "SeaWolf"); break;
-			case "Angellica": SetCharacterPerk(NPchar, "SeaWolf"); break;
-			case "SharpOf": SetCharacterPerk(NPchar, "SeaWolf"); break;
-			case "W_Chinaman": SetCharacterPerk(NPchar, "SeaWolf"); break;
-			case "Mechanic1": SetCharacterPerk(NPchar, "Adventurer"); break;
-			case "DanielleOff": SetCharacterPerk(NPchar, "Fencer"); break;
-			case "SharleMary": SetCharacterPerk(NPchar, "Fencer"); break;
-			case "Sharp_Sibling": SetCharacterPerk(NPchar, "Fencer"); break;
-			case "James_Callow": SetCharacterPerk(NPchar, "Fencer"); break;
-			else {SetSpeciality(NPchar, PerksChars()); break;}
-		}
+	SetRandSPECIAL(Npchar);
+	CalculateSkillsFromRank(Npchar, rank);
+	SetFantomHP(NPchar);
 
+	if (setEquip) LAi_NPC_Equip(NPchar, sti(NPchar.rank), true, true); // выдаем эквип
+
+	if (IsCharacterPerkOn(NPchar, "Ciras") && rand(4)==0) SetFantomWearCirass(NPChar) // одеваем кирасу
+
+	if (!CheckAttribute(NPchar,"id")) { SetSpeciality(NPchar, PerksChars()); return; }
+
+	RemoveSpeciality(NPchar);
+	switch (NPchar.id)
+	{
+		case "Tichingitu": SetCharacterPerk(NPchar, "Buccaneer"); break;
+		case "Andreas_Fickler": SetCharacterPerk(NPchar, "Trader"); break;
+		case "OfMush1": SetCharacterPerk(NPchar, "Buccaneer"); break;
+		case "OfMush2": SetCharacterPerk(NPchar, "Buccaneer"); break;
+		case "OffMushketer": SetCharacterPerk(NPchar, "Buccaneer"); break;
+		case "zpqCaptainOf": SetCharacterPerk(NPchar, "Adventurer"); break;
+		case "Daniel": SetCharacterPerk(NPchar, "Grunt"); break;
+		case "W_Lejitos": SetCharacterPerk(NPchar, "Grunt"); break;
+		case "Jafarry": SetCharacterPerk(NPchar, "Fencer"); break;
+		case "Beatrice": SetCharacterPerk(NPchar, "SeaWolf"); break;
+		case "Angellica": SetCharacterPerk(NPchar, "SeaWolf"); break;
+		case "SharpOf": SetCharacterPerk(NPchar, "SeaWolf"); break;
+		case "W_Chinaman": SetCharacterPerk(NPchar, "SeaWolf"); break;
+		case "Mechanic1": SetCharacterPerk(NPchar, "Adventurer"); break;
+		case "DanielleOff": SetCharacterPerk(NPchar, "Fencer"); break;
+		case "Sharp_Sibling": SetCharacterPerk(NPchar, "Fencer"); break;
+		case "James_Callow": SetCharacterPerk(NPchar, "Fencer"); break;
+		case "PGG_Undead": SetCharacterPerk(NPchar, "Buccaneer"); break;
+		case "Undead_Jessika": SetCharacterPerk(NPchar, "Fencer"); break;
+		case "Undead_Indeech": SetCharacterPerk(NPchar, "SeaWolf"); break;
+		case "Undead_Blue": SetCharacterPerk(NPchar, "Grunt"); break;
+		case "Undead_Red": SetCharacterPerk(NPchar, "Adventurer"); break;
+		case "Undead_Green": SetCharacterPerk(NPchar, "SeaWolf"); break;
+		else: SetSpeciality(NPchar, PerksChars()); break;
 	}
-	else SetSpeciality(NPchar, PerksChars());
+}
+
+void SetFantomWearCirass(ref NPChar) {
+	string cirnum;
+	switch (rand(4))
+	{
+		case 0: cirnum = "cirass1"; break;
+		case 1: cirnum = "cirass1"; break;
+		case 2: cirnum = "cirass2"; break;
+		case 3: cirnum = "cirass3"; break;
+		case 4: cirnum = "cirass4"; break;
+	}
+	if (CheckAttribute(NPchar, "HeroModel")) // все, у кого есть что одеть
+	{
+		switch (cirnum)
+		{
+			case "cirass1": NPchar.model = GetSubStringByNum(NPchar.HeroModel, 1); break;
+			case "cirass2": NPchar.model = GetSubStringByNum(NPchar.HeroModel, 2); break;
+			case "cirass3": NPchar.model = GetSubStringByNum(NPchar.HeroModel, 3); break;
+			case "cirass4": NPchar.model = GetSubStringByNum(NPchar.HeroModel, 4); break;
+		}
+	}
+	NPchar.cirassId = Items_FindItemIdx(cirnum);
+	Log_TestInfo("Персонаж "+NPchar.name+" получил кирасу "+cirnum);
 }
 
 void SetFantomParamFromRank_PPG(ref NPchar, int  rank, bool setEquip)   //WW
 {
     SetRandSPECIAL_PGG(Npchar);
-    CalculateSkillsFromRank(Npchar, rank);
+    CalculateSkillsForRank(Npchar, rank);
     SetFantomHP(NPchar);
 	if (setEquip)
     {
@@ -140,11 +144,14 @@ void Train_PPG(ref NPchar, bool setEquip bool increaseRank)   //WW
 		LAi_NPC_Equip(NPchar, sti(NPchar.rank), true, true);
 	}
 	
-	if (!CheckAttribute(npchar,"ssbackup")) {npchar.ssbackup = npchar.special.strength;} //backup stats before buff
-	if (!CheckAttribute(npchar,"esbackup")) {npchar.esbackup = npchar.special.endurance;} 
-	if (!CheckAttribute(npchar,"isbackup")) {npchar.isbackup = npchar.special.intellect;}  
-	if (!CheckAttribute(npchar,"asbackup")) {npchar.asbackup = npchar.special.agility;} 
-	if (!CheckAttribute(npchar,"lsbackup")) {npchar.lsbackup = npchar.special.luck;} 
+	if (!CheckAttribute(npchar,"ssbackup")) //backup stats before buff
+	{
+		npchar.ssbackup = npchar.special.strength; 
+		npchar.esbackup = npchar.special.endurance;
+		npchar.isbackup = npchar.special.intellect;
+		npchar.asbackup = npchar.special.agility;
+		npchar.lsbackup = npchar.special.luck;
+	} 
 	
 	if (sti(NPchar.SPECIAL.Strength) < 10)
 	{
@@ -200,6 +207,11 @@ void Restore_PGG(ref npchar)
 	npchar.SPECIAL.Intellect  = sti(npchar.isbackup);
 	npchar.SPECIAL.Agility    = sti(npchar.asbackup);
 	npchar.SPECIAL.Luck       = sti(npchar.lsbackup);
+	DeleteAttribute(npchar, "ssbackup");
+	DeleteAttribute(npchar, "esbackup");
+	DeleteAttribute(npchar, "isbackup");
+	DeleteAttribute(npchar, "asbackup");
+	DeleteAttribute(npchar, "lsbackup");
 	CalculateSkillsForRank(npchar,sti(pchar.rank));
 	SetHealthToCharacter(npchar);
 	DeleteAttribute(npchar,"perks.list.AgileMan");
@@ -222,13 +234,14 @@ void CalculateSkillsForRank (ref npchar, int rank)
 	string TempStr;
 	if (rank <= 0) {Log_TestInfo("Wrong argument"); return;}
 	npchar.rank_exp = 0;
+	ClearCharacterExpRate(npchar);
 	npchar.rank = rank;
 	Correction = 0;
 	for (i = 1; i < 15; i++) // вычисления общего кол-ва скиллов на 1 ранге
 	{
 		TempStr = GetSkillNameByIdx(i);
 		TempF = MOD_EXP_RATE / GetCharacterExpRate(npchar,TempStr);
-		Correction += makeint(TempF + 0.5);
+		Correction += makeint(TempF);
 	}
 	ControlSum = GetCharacterRankRate(npchar) * (rank - 1) + Correction; // необходимое кол-во скиллов на нужном ранге
 	if (ControlSum >= 1400) // для высоких рангов
@@ -243,18 +256,16 @@ void CalculateSkillsForRank (ref npchar, int rank)
 		TempStr = GetSkillNameByTRIdx("SPECIALType", i);
 		CorrectionCoeff += sti(npchar.SPECIAL.(TempStr));
 	}
-	CorrectionCoeff = 70 / (70 - (70 - CorrectionCoeff)); // магия, уменьшает количество итераций требуемых для расчета
+	CorrectionCoeff = 70 / (70 - (70 - CorrectionCoeff)) / GetExpAcceleration(10 - (70 - CorrectionCoeff) / 7); // магия, уменьшает количество итераций требуемых для расчета
 	Log_TestInfo("Coeff:" + FloatToString(CorrectionCoeff,3));
 	
 	Log_TestInfo("ControlSum:" + ControlSum);
 	for (i = 1; i < 15; i++)
 	{	
-		TempStr = GetSkillNameByIdx(i) + "_exp";
-		npchar.skill.(TempStr) = 0;
 		TempStr = GetSkillNameByIdx(i);
 		TempF = MOD_EXP_RATE / GetCharacterExpRate(npchar,TempStr);
 		Log_TestInfo(TempStr + ":" + FloatToString(TempF,1));
-		npchar.skill.(TempStr) = makeint(sti(TempF) +  CorrectionCoeff * TempF / 10 * (rank - 1) * GetCharacterRankRate(npchar) / 14); 
+		npchar.skill.(TempStr) = makeint(makeint(TempF) +  CorrectionCoeff * TempF / 10 * (rank - 1) * GetCharacterRankRate(npchar) / 14); 
 	}
 	Log_TestInfo("Total amount of skills on 1 rank:" + Correction);
 	CorrectSkillParam(npchar);
@@ -265,19 +276,223 @@ void CalculateSkillsForRank (ref npchar, int rank)
                     sti(Npchar.skill.Commerce) + sti(Npchar.skill.Sneak);
 	Log_TestInfo("CorrectionSum:" + CorrectionSum);
 	Correction = ControlSum - CorrectionSum;
-	if(Correction < 0) {Log_TestInfo("Exception") return;}
 	Log_TestInfo("Correction2:" + Correction);
 	if (Correction == 0) {return; Log_TestInfo("Finalized after first calculation");}
 	while (Correction != 0)
 	{
-		for (i = 1; i < 15; i++) 
-		{	
-			if (Correction == 0) {Log_TestInfo("Finalized after correction"); return;}
-			TempStr = GetSkillNameByIdx(i);
-			if (npchar.skill.(TempStr) != SKILL_MAX)
+		if (Correction > 0)
+		{
+			for (i = 1; i < 15; i++) 
+			{	
+				if (Correction == 0) {Log_TestInfo("Finalized after correction"); return;}
+				TempStr = GetSkillNameByIdx(i);
+				if (npchar.skill.(TempStr) != SKILL_MAX)
+				{
+					npchar.skill.(TempStr) = sti(npchar.skill.(TempStr)) + 1;
+					Correction -= 1;
+				}
+			}
+		}
+		else
+		{
+			for (i = 1; i < 15; i++) 
+			{	
+				if (Correction == 0) {Log_TestInfo("Finalized after correction"); return;}
+				TempStr = GetSkillNameByIdx(i);
+				if (npchar.skill.(TempStr) != SKILL_MAX)
+				{
+					npchar.skill.(TempStr) = sti(npchar.skill.(TempStr)) - 1;
+					Correction += 1;
+				}
+			}
+		}
+	}
+	return;
+}
+
+// расчитать скиллы персонажу для заданного ранга и типа на основе ПИРАТЕС с коэффициентом динамики. (для офицеров)
+void CalculateTypeSkillsForRank (ref npchar, int rank, string type, float coeff)
+{
+	int i, BasePriority, BaseSidePriority, ControlSum, Correction, CorrectionSum; 
+	float TempF, CorrectionCoeff, Priority1, Priority2, Priority3, Priority4, Deviation;
+	string TempStr, TypeMainPriority, TypeSidePriority;
+	if (rank <= 0) {Log_TestInfo("Wrong argument"); return;}
+	npchar.rank_exp = 0;
+	ClearCharacterExpRate(npchar);
+	npchar.rank = rank;
+	Correction = 0;
+	for (i = 1; i < 15; i++) // вычисления общего кол-ва скиллов на 1 ранге
+	{
+		TempStr = GetSkillNameByIdx(i);
+		TempF = MOD_EXP_RATE / GetCharacterExpRate(npchar,TempStr);
+		Correction += makeint(TempF);
+	}
+
+	ControlSum = GetCharacterRankRate(npchar) * (rank - 1) + Correction; // необходимое кол-во скиллов на нужном ранге
+	if (ControlSum >= 1400) // для высоких рангов
+	{
+		SetSelfSkill(Npchar, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX);
+        SetShipSkill(Npchar, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX);
+		return;
+	}
+	CorrectionCoeff = 0;
+	for (i = 1; i < 8; i++)
+	{
+		TempStr = GetSkillNameByTRIdx("SPECIALType", i);
+		CorrectionCoeff += sti(npchar.SPECIAL.(TempStr));
+	}
+	CorrectionCoeff = 70 / (70 - (70 - CorrectionCoeff)) / GetExpAcceleration(10 - (70 - CorrectionCoeff) / 7); // магия, уменьшает количество итераций требуемых для расчета
+	//Log_TestInfo("Coeff:" + FloatToString(CorrectionCoeff,3));
+	//Log_TestInfo("ControlSum:" + ControlSum);
+	Deviation = 1 - coeff + frand(coeff * 2); // коэффициент динамики
+	//Log_TestInfo("Deviation:" + FloatToString(Deviation,2));
+	BasePriority = makeint(15 * Deviation); // для базового усиления профильного навыка
+	BaseSidePriority = makeint(5 * Deviation); // для базового усиления дополнительного навыка
+	TypeSidePriority = "unknown";
+	Priority3 = 1.5 * Deviation; // для упора на определенный основной навык
+	Priority4 = 1.4 * Deviation; // для упора на определенный дополнительный навык
+	switch(type)
+	{
+		case "boatswain":		
+			Priority1 = 0.8 - (Priority3 - 1.2) / 12 - (Priority4 - 1.2) / 12; //для личных умений
+			Priority2 = 1.2 - (Priority3 - 1.2) / 12 - (Priority4 - 1.2) / 12; // для корабельных умений
+			if (rand(1) == 1)
 			{
-				npchar.skill.(TempStr) = sti(npchar.skill.(TempStr)) + 1;
-				Correction -= 1;
+				TypeMainPriority = SKILL_GRAPPLING;
+				TypeSidePriority = SKILL_DEFENCE;	
+			}
+			else
+			{
+				TypeSidePriority = SKILL_GRAPPLING;
+				TypeMainPriority = SKILL_DEFENCE;	
+			}
+		break;
+		case "cannoner":
+			Priority1 = 0.8 - (Priority3 - 1.2) / 12 - (Priority4 - 1.2) / 12;
+			Priority2 = 1.2 - (Priority3 - 1.2) / 12 - (Priority4 - 1.2) / 12;
+			if (rand(1) == 1)
+			{
+				TypeMainPriority = SKILL_CANNONS;
+				TypeSidePriority = SKILL_ACCURACY;	
+			}
+			else
+			{
+				TypeSidePriority = SKILL_CANNONS;
+				TypeMainPriority = SKILL_ACCURACY;	
+			}
+		break;
+		case "treasurer":
+			Priority1 = 0.8 - (Priority3 - 1.2) / 12 - (Priority4 - 1.2) / 12;
+			Priority2 = 1.2 - (Priority3 - 1.2) / 12 - (Priority4 - 1.2) / 12;
+			if (rand(1) == 1)
+			{
+				TypeMainPriority = SKILL_REPAIR;
+				TypeSidePriority = SKILL_COMMERCE;	
+			}
+			else
+			{
+				TypeSidePriority = SKILL_REPAIR;
+				TypeMainPriority = SKILL_COMMERCE;	
+			}
+		break;
+		case "navigator":
+			Priority1 = 0.8 - (Priority3 - 1.2) / 13;
+			Priority2 = 1.2 - (Priority3 - 1.2) / 13;
+			TypeMainPriority = SKILL_SAILING;
+		break;
+		case "fighter": 
+			Priority1 = 1.2 - (Priority3 - 1.2) / 13;
+			Priority2 = 0.8 - (Priority3 - 1.2) / 13;
+			switch(rand(2))
+			{
+				case 0: TypeMainPriority = SKILL_F_LIGHT; break;
+				case 1:	TypeMainPriority = SKILL_FENCING; break;
+				case 2:	TypeMainPriority = SKILL_F_HEAVY; break;
+			}
+		break;
+	}
+	for (i = 1; i < 8; i++) // личные скиллы с учетом приоритета типа
+	{	
+		TempStr = GetSkillNameByIdx(i);
+		TempF = MOD_EXP_RATE / GetCharacterExpRate(npchar,TempStr);
+		//Log_TestInfo(TempStr + ":" + FloatToString(TempF,1));
+		npchar.skill.(TempStr) = makeint(makeint(TempF) +  CorrectionCoeff * TempF / 10 * (rank - 1) * GetCharacterRankRate(npchar) / 14 * Priority1); 
+	}
+	for (i = 8; i < 15; i++) // корабельные скиллы с учетом приоритета типа
+	{	
+		TempStr = GetSkillNameByIdx(i);
+		TempF = MOD_EXP_RATE / GetCharacterExpRate(npchar,TempStr);
+		//Log_TestInfo(TempStr + ":" + FloatToString(TempF,1));
+		npchar.skill.(TempStr) = makeint(makeint(TempF) +  CorrectionCoeff * TempF / 10 * (rank - 1) * GetCharacterRankRate(npchar) / 14 * Priority2); 
+	}
+	TempF = MOD_EXP_RATE / GetCharacterExpRate(npchar,TypeMainPriority);
+	npchar.skill.(TypeMainPriority) = makeint(makeint(TempF) +  CorrectionCoeff * TempF / 10 * (rank - 1) * GetCharacterRankRate(npchar) / 14 * Priority3); 
+	TempF = MOD_EXP_RATE / GetCharacterExpRate(npchar,TypeSidePriority);
+	npchar.skill.(TypeSidePriority) = makeint(makeint(TempF) +  CorrectionCoeff * TempF / 10 * (rank - 1) * GetCharacterRankRate(npchar) / 14 * Priority4); 
+	if(sti(npchar.skill.(TypeMainPriority)) + BasePriority <= SKILL_MAX)
+	{
+		npchar.skill.(TypeMainPriority) = sti(npchar.skill.(TypeMainPriority)) + BasePriority;
+		npchar.rank_exp = BasePriority;
+		ControlSum += BasePriority;
+	}
+	else
+	{
+		npchar.skill.(TypeMainPriority) = SKILL_MAX;
+		npchar.rank_exp = SKILL_MAX - sti(npchar.skill.(TypeMainPriority));
+		ControlSum += sti(npchar.rank_exp);
+	}
+	if(TypeSidePriority != "unknown")
+	{
+		if(sti(npchar.skill.(TypeSidePriority)) + BaseSidePriority <= SKILL_MAX)
+		{
+			npchar.skill.(TypeSidePriority) = sti(npchar.skill.(TypeSidePriority)) + BaseSidePriority;
+			npchar.rank_exp = sti(npchar.rank_exp) + BaseSidePriority;
+			ControlSum += BaseSidePriority;
+		}
+		else
+		{
+			npchar.skill.(TypeSidePriority) = SKILL_MAX;
+			npchar.rank_exp = sti(npchar.rank_exp) + SKILL_MAX - sti(npchar.skill.(TypeSidePriority));
+			ControlSum += SKILL_MAX - sti(npchar.skill.(TypeSidePriority));
+		}
+	}
+	//Log_TestInfo("Total amount of skills on 1 rank:" + Correction);
+	CorrectSkillParam(npchar);
+	CorrectionSum = sti(Npchar.skill.FencingLight) + sti(Npchar.skill.FencingHeavy) + sti(Npchar.skill.Fortune) +
+                    sti(Npchar.skill.Pistol) + sti(Npchar.skill.Leadership) + sti(Npchar.skill.Fencing) +
+                    sti(Npchar.skill.Sailing) + sti(Npchar.skill.Accuracy) + sti(Npchar.skill.Cannons) +
+                    sti(Npchar.skill.Grappling) + sti(Npchar.skill.Repair) + sti(Npchar.skill.Defence) +
+                    sti(Npchar.skill.Commerce) + sti(Npchar.skill.Sneak);
+	//Log_TestInfo("CorrectionSum:" + CorrectionSum);
+	Correction = ControlSum - CorrectionSum;
+	//Log_TestInfo("Correction2:" + Correction);
+	if (Correction == 0) {return; Log_TestInfo("Finalized after first calculation");}
+	while (Correction != 0)
+	{
+		if (Correction > 0)
+		{
+			for (i = 1; i < 15; i++) 
+			{	
+				if (Correction == 0) {Log_TestInfo("Finalized after correction"); return;}
+				TempStr = GetSkillNameByIdx(i);
+				if (npchar.skill.(TempStr) != SKILL_MAX)
+				{
+					npchar.skill.(TempStr) = sti(npchar.skill.(TempStr)) + 1;
+					Correction -= 1;
+				}
+			}
+		}
+		else
+		{
+			for (i = 1; i < 15; i++) 
+			{	
+				if (Correction == 0) {Log_TestInfo("Finalized after correction"); return;}
+				TempStr = GetSkillNameByIdx(i);
+				if (npchar.skill.(TempStr) != SKILL_MAX)
+				{
+					npchar.skill.(TempStr) = sti(npchar.skill.(TempStr)) - 1;
+					Correction += 1;
+				}
 			}
 		}
 	}
@@ -550,28 +765,28 @@ void Fantom_SetRandomSkills(ref rFantom, string sFantomType)
             aFSkills.Leadership = Fantom_CalcSkill(rFantom, SKILL_LEADERSHIP,iSClass, 0, 0, 0, 1, 1, 2, 2, 3, 4);
             aFSkills.Accuracy	= Fantom_CalcSkill(rFantom, SKILL_ACCURACY,	iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 5);
 			aFSkills.Cannons	= Fantom_CalcSkill(rFantom, SKILL_CANNONS,	iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 5);
-			aFSkills.Sailing	= Fantom_CalcSkill(rFantom, SKILL_SAILING,	iSClass, 0, 0, 0, 1, 1, 2, 3, 6, 7);
+			aFSkills.Sailing	= Fantom_CalcSkill(rFantom, SKILL_SAILING,	iSClass, 0, 0, 0, 1, 2, 3, 5, 6, 7);
 			aFSkills.Defence	= Fantom_CalcSkill(rFantom, SKILL_DEFENCE,	iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 5);
 		break;
 		case "war":
             aFSkills.Leadership = Fantom_CalcSkill(rFantom, SKILL_LEADERSHIP,iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 5);
             aFSkills.Accuracy	= Fantom_CalcSkill(rFantom, SKILL_ACCURACY,	iSClass, 0, 0, 0, 1, 2, 3, 4, 6, 7);
 			aFSkills.Cannons	= Fantom_CalcSkill(rFantom, SKILL_CANNONS,	iSClass, 0, 0, 0, 1, 2, 3, 4, 7, 8);
-			aFSkills.Sailing	= Fantom_CalcSkill(rFantom, SKILL_SAILING,	iSClass, 0, 0, 0, 1, 2, 3, 4, 6, 7);
+			aFSkills.Sailing	= Fantom_CalcSkill(rFantom, SKILL_SAILING,	iSClass, 0, 0, 0, 1, 3, 4, 6, 7, 8);
 			aFSkills.Defence	= Fantom_CalcSkill(rFantom, SKILL_DEFENCE,	iSClass, 0, 0, 0, 1, 2, 3, 4, 5, 7);
 		break;
 		case "pirate":
             aFSkills.Leadership = Fantom_CalcSkill(rFantom, SKILL_LEADERSHIP,iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 4);
             aFSkills.Accuracy	= Fantom_CalcSkill(rFantom, SKILL_ACCURACY,	iSClass, 0, 0, 0, 2, 3, 4, 5, 6, 7);
 			aFSkills.Cannons	= Fantom_CalcSkill(rFantom, SKILL_CANNONS,	iSClass, 0, 0, 0, 2, 3, 4, 5, 6, 7);
-			aFSkills.Sailing	= Fantom_CalcSkill(rFantom, SKILL_SAILING,	iSClass, 0, 0, 0, 2, 3, 4, 5, 7, 8);
+			aFSkills.Sailing	= Fantom_CalcSkill(rFantom, SKILL_SAILING,	iSClass, 0, 0, 0, 2, 3, 4, 6, 7, 8);
             aFSkills.Defence	= Fantom_CalcSkill(rFantom, SKILL_DEFENCE,	iSClass, 0, 0, 0, 1, 2, 3, 4, 5, 6);
 		break;
 		case "special":
             aFSkills.Leadership = Fantom_CalcSkill(rFantom, SKILL_LEADERSHIP,iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 4);
             aFSkills.Accuracy	= Fantom_CalcSkill(rFantom, SKILL_ACCURACY,	iSClass, 0, 0, 0, 2, 3, 4, 5, 6, 7);
 			aFSkills.Cannons	= Fantom_CalcSkill(rFantom, SKILL_CANNONS,	iSClass, 0, 0, 0, 2, 3, 4, 5, 6, 7);
-			aFSkills.Sailing	= Fantom_CalcSkill(rFantom, SKILL_SAILING,	iSClass, 0, 0, 0, 2, 3, 4, 5, 7, 8);
+			aFSkills.Sailing	= Fantom_CalcSkill(rFantom, SKILL_SAILING,	iSClass, 0, 0, 0, 2, 3, 5, 6, 8, 9);
             aFSkills.Defence	= Fantom_CalcSkill(rFantom, SKILL_DEFENCE,	iSClass, 0, 0, 0, 1, 2, 3, 4, 5, 6);
 		break;
 	}
@@ -863,6 +1078,7 @@ float Sea_ApplyMaxSpeedZ(aref arCharShip, float fWindDotShip) //float fTRFromSai
     //fMaxSpeedZ = (0.16 + fTRFromSailDamage / 1.2) * stf(arCharShip.MaxSpeedZ);
     fMaxSpeedZ = stf(arCharShip.MaxSpeedZ);
     fWindAgainstSpeed = stf(rShip.WindAgainstSpeed);// / 1.7; // мин fWindAgainstSpeed = 0.8 - мах 10.5
+	if (CheckAttribute(arCharShip,"GhostShipTuning")) fWindAgainstSpeed *= 1.05;
     //#20180207-01
     arCharShip.WindAgainstSpeed = rShip.WindAgainstSpeed;
     arCharShip.SpeedRate = rShip.SpeedRate;

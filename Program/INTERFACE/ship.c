@@ -262,7 +262,7 @@ void ProcessCommandExecute()
 		case "RESORT":
 			if(comName=="click")
 			{
-				ReSortCompanions();
+				SortCompanionsBy("speedrate");
 			}
 		break;
 
@@ -1296,6 +1296,7 @@ void CannonsMenuRefresh()
 		SetFormatedText("CANNONS_QTY_L", "0");
 	}
 	FillCannonsTable();
+	if (IsMainCharacter(xi_refCharacter)) BI_UpdateCannons();
 }
 void ExitCannonsMenu()
 {
@@ -1652,29 +1653,40 @@ int GetPartitionAmount(string _param)
     if (!CheckAttribute(Pchar, _param)) return 0;
     return sti(Pchar.(_param));
 }
-
+ 
 int cpos[7]={0,0,0,0,0,0,0};
 int cpostotal[7]={0,0,0,0,0,0,0};
 int cindex[7]={0,0,0,0,0,0,0};
-void ReSortCompanions()
+void SortCompanionsBy(string attrName) // сортируем по базовому атрибуту корабля
 {
-	int cn,iShipType;
+	int cn, notFoundCount;
 	int cq = GetCompanionQuantity(pchar);
-	if (cq > 1)
+	if (cq <= 1) return;
+	
+	for(int i = 1; i < cq; i++)
 	{
-		for(int i = 1; i <= cq-1; i++)
-		{
-			cn = GetCompanionIndex(pchar, i);
-			iShipType = sti(characters[cn].ship.type);
-			if(iShipType != SHIP_NOTUSED)
-			{
-				ref rBaseShip = GetRealShip(iShipType);
-				cpos[i-1] = makeint(stf(rBaseShip.speedrate)*100.0);
-				cindex[i-1] = GetCompanionIndex(pchar,i);
-			}
+		cn = GetCompanionIndex(pchar, i);
+		if (cn == -1 || sti(characters[cn].ship.type) == SHIP_NOTUSED) continue;
+
+		ref rBaseShip = GetRealShip(sti(characters[cn].ship.type));
+		if (!CheckAttribute(rBaseShip, attrName)) {
+			trace("ОШИБКА: не найден атрибут сортировки по '" + attrName + "' у корабля '" + rBaseShip.Name + "'");
+			notFoundCount++;
+			cpos[i-1] = notFoundCount;
+		} else {
+			cpos[i-1] = makeint(stf(rBaseShip.(attrName))*100.0);
 		}
+
+		cindex[i-1] = GetCompanionIndex(pchar,i);
 	}
-	else return;
+
+	if (cq == notFoundCount) // атрибут не найден ни на одном корабле
+	{
+		trace("ОШИБКА: неверный атрибут сортировки '" + attrName + "'");
+		SortCompanionsBy("speedrate") // просто сортируем по скорости
+		return;
+	}
+
 	for(i = 0; i < cq-1; i++)
 	{
 		int j = 0;
@@ -1686,11 +1698,13 @@ void ReSortCompanions()
 			j++;
 		}
 	}
-	for(i = 1; i <= cq-1; i++)
+
+	for(i = 1; i < cq; i++)
 	{
 		string compName = "id"+cpostotal[i-1];
 		pchar.Fellows.Companions.(compName) = cindex[i-1];
 		Event(EVENT_CHANGE_COMPANIONS,"");
 	}
+
 	IDoExit(RC_INTERFACE_TO_SHIP);
 }

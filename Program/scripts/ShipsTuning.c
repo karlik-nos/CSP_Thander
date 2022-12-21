@@ -1,16 +1,21 @@
+//0.HP.0.MAST.Speed.Turn.WAS.Capacity.Crew.Cannon
+string g_ShipBermudeTuningGoods[10] = {"","Mahogany","","Planks","Silk","Linen","Cotton","Sandal","Leather","Ebony"};
+string g_ShipBermudeTuningItems[10] = {"","jewelry17","","jewelry11","jewelry2","jewelry3","jewelry4","jewelry5","jewelry1","icollection"};
+
 void SetShipTuningF(ref chr, string sStat, float fBonus)
 {
 	ref rShip = &RealShips[sti(chr.ship.type)];
 	float value = stf(rShip.(sStat));
+	float defaultValue = value;
 	if (CheckAttribute(rShip, "Untuned." + sStat))
 	{
-		value = stf(rShip.Untuned.(sStat));
+		defaultValue = stf(rShip.Untuned.(sStat));
 	}
 	else
 	{
-		rShip.Untuned.(sStat) = value;
+		rShip.Untuned.(sStat) = defaultValue;
 	}
-	value = value + value * fBonus;
+	value = value + defaultValue * fBonus;
 	rShip.(sStat) = value;
 	chr.ship.(sStat) = value;
 }
@@ -19,15 +24,42 @@ void SetShipTuningI(ref chr, string sStat, float fBonus)
 {
 	ref rShip = &RealShips[sti(chr.ship.type)];
 	int value = sti(rShip.(sStat));
+	int defaultValue = value;
 	if (CheckAttribute(rShip, "Untuned." + sStat))
 	{
-		value = sti(rShip.Untuned.(sStat));
+		defaultValue = sti(rShip.Untuned.(sStat));
 	}
 	else
 	{
+		rShip.Untuned.(sStat) = defaultValue;
+	}
+	value = value + makeint(defaultValue * fBonus);
+	rShip.(sStat) = value;
+	chr.ship.(sStat) = value;
+}
+
+void SetShipTuningAdditiveF(ref chr, string sStat, float fBonus)
+{
+	ref rShip = &RealShips[sti(chr.ship.type)];
+	float value = stf(rShip.(sStat));
+	if (!CheckAttribute(rShip, "Untuned." + sStat))
+	{
 		rShip.Untuned.(sStat) = value;
 	}
-	value = value + makeint(value * fBonus);
+	value = value + fBonus;
+	rShip.(sStat) = value;
+	chr.ship.(sStat) = value;
+}
+
+void SetShipTuningAdditiveI(ref chr, string sStat, int fBonus)
+{
+	ref rShip = &RealShips[sti(chr.ship.type)];
+	int value = sti(rShip.(sStat));
+	if (!CheckAttribute(rShip, "Untuned." + sStat))
+	{
+		rShip.Untuned.(sStat) = value;
+	}
+	value = value + fBonus;
 	rShip.(sStat) = value;
 	chr.ship.(sStat) = value;
 }
@@ -36,14 +68,6 @@ void SetShipTuningMastMultiplier(ref chr, float fValue)
 {
 	ref rShip = &RealShips[sti(chr.ship.type)];
 	float value = stf(rShip.MastMultiplier);
-	if (CheckAttribute(rShip, "Untuned.MastMultiplier"))
-	{
-		value = stf(rShip.Untuned.MastMultiplier);
-	}
-	else
-	{
-		rShip.Untuned.MastMultiplier = value;
-	}
 	value = value - fValue;
 	rShip.MastMultiplier = value;
 	chr.ship.MastMultiplier = value;

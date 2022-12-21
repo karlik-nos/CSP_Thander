@@ -149,7 +149,7 @@ void QuestDuelGenerateCharacters()
 				}
 
 				sSex = "man";
-				if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sAnimation = "spy";
+				if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sAnimation = "man_fast";
 				else sAnimation = "man";
 				bEquip = true;
 			break;
@@ -167,7 +167,7 @@ void QuestDuelGenerateCharacters()
 				}
 
 				sSex = "man";
-				if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sAnimation = "spy";
+				if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sAnimation = "man_fast";
 				else sAnimation = "man";
 				bEquip = true;
 			break;
@@ -177,7 +177,7 @@ void QuestDuelGenerateCharacters()
 				sCharacter = "QuestDuel_Mercenary_" + rand(100000);
 				sModel = GetModelForQuestDuel(19, "officer");
 				sSex = "man";
-				if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sAnimation = "spy";
+				if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sAnimation = "man_fast";
 				else sAnimation = "man";
 				bEquip = true;
 			break;
@@ -196,7 +196,7 @@ void QuestDuelGenerateCharacters()
 				sCharacter = "QuestDuel_Relative_" + rand(100000);
 				sModel = GetModelForQuestDuel(11, "citiz");
 				sSex = "man";
-				if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sAnimation = "spy";
+				if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sAnimation = "man_fast";
 				else sAnimation = "man";
 				bEquip = true;
 			break;
@@ -207,7 +207,7 @@ void QuestDuelGenerateCharacters()
 				sCharacter = "QuestDuel_Relative_" + rand(100000);
 				sModel = GetModelForQuestDuel(11, "citiz");
 				sSex = "man";
-				if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sAnimation = "spy";
+				if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) sAnimation = "man_fast";
 				else sAnimation = "man";
 				bEquip = true;
 			break;
@@ -438,7 +438,7 @@ void QuestDuelMeeting(string qName)
 			}
 			else
 			{
-				chr.Dialog.CurrentNode = "Duelist_2_6";
+				chr.Dialog.CurrentNode = "Duelist_2_10";
 			}
 
 			LAi_ActorFollow(PChar, chr, "QuestDuelTalkMainCharacterWithDuelist", 25.0);
@@ -501,7 +501,7 @@ void QuestDuelBattleWithMercenaryWinner(string qName)
 
 	string sCharacter = PChar.GenerateQuestDuel.Characters.Duelist_2;
 	ref chr = CharacterFromID(sCharacter);
-	chr.Dialog.CurrentNode = "Duelist_2_5";
+	chr.Dialog.CurrentNode = "Duelist_2_8";
 
 	string sChar = PChar.GenerateQuestDuel.Characters.Duelist_1;
 	ref achr = CharacterFromID(sChar);
@@ -529,7 +529,7 @@ void QuestDuelBattleWithMercenaryEnd()
 
 	sCharacter = PChar.GenerateQuestDuel.Characters.Duelist_1;
 	chr = CharacterFromID(sCharacter);
-	chr.Dialog.CurrentNode = "Duelist_1_14";
+	chr.Dialog.CurrentNode = "Duelist_1_18";
 
 	LAi_SetActorType(chr);
 	LAi_SetActorType(PChar);
@@ -642,7 +642,7 @@ void QuestDuelBattleWithDuelistWinner(string qName)
 {
 	string sCharacter = PChar.GenerateQuestDuel.Characters.Duelist_1;
 	ref chr = CharacterFromID(sCharacter);
-	chr.Dialog.CurrentNode = "Duelist_1_16";
+	chr.Dialog.CurrentNode = "Duelist_1_20";
 
 	LAi_SetActorType(chr);
 	LAi_SetActorType(PChar);
@@ -1312,12 +1312,20 @@ void ShipWreckNoCapture(string qName)
 {
 	PChar.GenerateShipWreck.State = "none";
 	CloseQuestHeader("ShipWreck");
+	if (CheckAttribute(PChar, "quest.ShipWreckCapture")) {
+		DeleteAttribute(PChar, "quest.ShipWreckCapture")
+	}
+
+	ClearShipWreckQuest();
 }
 
 void ShipWreckCapture(string qName)
 {
 	AddQuestRecord("ShipWreck", "3");
 	CloseQuestHeader("ShipWreck");
+	if (CheckAttribute(PChar, "quest.ShipWreckNoCapture")) {
+		DeleteAttribute(PChar, "quest.ShipWreckNoCapture")
+	}
 
 	PChar.GenerateShipWreck.State = "none";
 	PChar.GenerateShipWreck.Block = true;
@@ -1921,7 +1929,5 @@ void ClearShipWreckQuest()
 	PChar.GenerateShipWreck.ValodyaToMoney = false;
 	DeleteAttribute(PChar,"VolodyaDebil.Convoy");
 	DeleteAttribute(PChar,"IdVolodiDebila");
-	if(CheckAttribute(PChar, "quest.ShipWreckCapture")) { DeleteAttribute(PChar, "quest.ShipWreckCapture"); }
-	if(CheckAttribute(PChar, "quest.ShipWreckNoCapture")) { DeleteAttribute(PChar, "quest.ShipWreckNoCapture"); }
 }
 

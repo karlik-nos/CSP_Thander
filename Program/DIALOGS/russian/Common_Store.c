@@ -84,7 +84,7 @@ void ProcessDialogEvent()
 				break;
             }
 			//Sinistra Пролог Анжелика Тич
-            if (pchar.questTemp.AnjelikaTichPrologue == "ATP")
+            if (CheckAttribute(pchar, "questTemp.AnjelikaTichPrologue") && pchar.questTemp.AnjelikaTichPrologue == "ATP")
             {
                 dialog.Text = "Здравствуйте, сеньорита! Желаете что-нибудь прикупить? Может быть вам нужна соль? У меня много соли! Ах... Какая соль!",
                 Link.l1 = "Сеньор, с вами всё в порядке?";
@@ -708,7 +708,7 @@ void ProcessDialogEvent()
 		case "business":
 			iTest = 0;
     		//квест Синей Птицы, начальный диалог
-			if (pchar.questTemp.BlueBird == "begin" && sti(npchar.nation) != PIRATE && npchar.city != "Panama")
+			if (pchar.questTemp.BlueBird == "begin" && sti(npchar.nation) != PIRATE && npchar.city != "Panama" && pchar.rank >= 10)
 			{
 				dialog.text = RandPhraseSimple("Капитан, прошу вас, помогите нам!!!", "Капитан, я прошу у вас помощи от имени всех торговцев!");
 				link.l1 = "Что случилось? Чем я могу вам помочь?";
@@ -1142,10 +1142,7 @@ void ProcessDialogEvent()
 			    AddQuestUserData("DELIVERY_TRADE_QUEST", "sTargetColony",XI_ConvertString("Colony"+pchar.CargoQuest.iTradeColony+"Dat"));
                 CloseQuestHeader("DELIVERY_TRADE_QUEST");
 
-				pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-				if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-				if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-				if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+				AchievementsCounter_genquests(1);
 
                 break;
             }
@@ -1186,10 +1183,7 @@ void ProcessDialogEvent()
 					AddQuestRecord("DELIVERY_TRADE_QUEST", "Late1Day");
 					CloseQuestHeader("DELIVERY_TRADE_QUEST");
 
-					pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-					if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-					if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-					if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+					AchievementsCounter_genquests(1);
 				}
 				else
 				{
@@ -1215,10 +1209,7 @@ void ProcessDialogEvent()
 					AddQuestUserData("DELIVERY_TRADE_QUEST", "sTargetColony",XI_ConvertString("Colony"+pchar.CargoQuest.iTradeColony+"Gen"));
 					CloseQuestHeader("DELIVERY_TRADE_QUEST");
 
-					pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-					if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-					if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-					if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+					AchievementsCounter_genquests(1);
 				}
 			}
 			SaveCurrentNpcQuestDateParam(Npchar, "Cooldown");
@@ -1267,11 +1258,7 @@ void ProcessDialogEvent()
 		    AddQuestUserData("DELIVERY_TRADE_QUEST", "sTargetColony",XI_ConvertString("Colony"+pchar.CargoQuest.iTradeColony+"Gen"));
             CloseQuestHeader("DELIVERY_TRADE_QUEST");
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
-
+			AchievementsCounter_genquests(1);
 		break;
 
 		case "generate_quest_not_closed":

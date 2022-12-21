@@ -78,7 +78,6 @@ void ProcessDialogEvent()
 			bDisableCharacterMenu = false;
 			pchar.SystemInfo.ChangePIRATES = true;
 			LaunchCharacter(pchar);
-			ChangeShowIntarface();
 			
 			sld = CharacterFromID("AT_pr_Rebekka")
 			LAi_SetActorType(sld);
@@ -240,7 +239,6 @@ void ProcessDialogEvent()
 			LAi_SetActorType(sld);
 			LAi_ActorTurnToCharacter(sld, CharacterFromID("AT_pr_devushka_na_rynke"));
 			locCameraToPos(-38.00, 7.00, 20.00, true);
-			ChangeShowIntarface();
 		break;
 		
 		case "Torgovets_2":
@@ -323,7 +321,6 @@ void ProcessDialogEvent()
 			DialogExit();
 			
 			LAi_SetActorType(pchar);
-			ChangeShowIntarface();
 			
 			sld = CharacterFromID("Gasten_Kotes")
 			LAi_SetActorType(sld);
@@ -361,6 +358,7 @@ void ProcessDialogEvent()
 		
 		case "Rebekka_posle_draki_3":
 			chrDisableReloadToLocation = false;
+			bDisableFastReload = true;
 			pchar.questTemp.AnjelikaTichPrologue2 = "ATP2";
 			
 			PChar.quest.AT_pr_Oba_ischezaut.win_condition.l1 = "ExitFromLocation";
@@ -463,7 +461,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Rebekka_v_grote_3":
-			dialog.text = "Понимаю. Но дело же не только в этом так? Смотри\n"+
+			dialog.text = "Понимаю. Но дело же не только в этом, так? Смотри\n"+
 							"Похоже, это вещи Аркадио? Того солдата, который вломился к нам в дом, требуя моей руки, и кольцо - то самое, которое он пытался вручить мне, до того, как ты его вытолкала.";
 			link.l1 = "Похоже. Да.";
 			link.l1.go = "Rebekka_v_grote_4";
@@ -549,7 +547,6 @@ void ProcessDialogEvent()
 		case "Pirate_v_grote_3":
 			DialogExit();
 			EndQuestMovie();
-			ChangeShowIntarface();
 			
 			sld = characterFromId("AT_pr_Rebekka");
 			LAi_SetActorType(sld);
@@ -799,12 +796,10 @@ void ProcessDialogEvent()
 		case "ATpr_SD_Koten_6_1":
 			dialog.text = "Вот, примерь.";
 			link.l1 = "Отвернись, переоденусь...";
-			link.l1.go = "ATpr_SD_Koten_6_2";
-			PlaySound("Interface\important_item.wav");
-			Log_info("Вы получили новый костюм");
+			link.l1.go = "ATpr_SD_Koten_6_3";
 		break;
 		
-		case "ATpr_SD_Koten_6_2":
+		/*case "ATpr_SD_Koten_6_2":
 			DialogExit();
 			SetLaunchFrameFormParam("Минута переодеваний...", "ATpr_Pereodevaemsya", 0, 2.0);
 			LaunchFrameForm();
@@ -812,15 +807,18 @@ void ProcessDialogEvent()
 			LAi_SetActorType(pchar);
 			sld = CharacterFromID("Gasten_Kotes")
 			LAi_SetActorType(sld);
-		break;
+		break;*/
 		
 		case "ATpr_SD_Koten_6_3":
 			dialog.text = "";
 			link.l1 = "Неплохо, неплохо. Пойдёт на первое время. Спасибо тебе, Гастен.";
 			link.l1.go = "ATpr_SD_Koten_7";
-			SetLaunchFrameFormParam("Минута переодеваний", "", 0, 2.0);
-			LaunchFrameForm();
-			WaitDate("", 0, 0, 0, 0, 1);
+			//SetLaunchFrameFormParam("Минута переодеваний", "", 0, 2.0);
+			//LaunchFrameForm();
+			//WaitDate("", 0, 0, 0, 0, 1);
+			
+			PlaySound("Interface\important_item.wav");
+			Log_info("Вы получили новый костюм");
 		break;
 		
 		case "ATpr_SD_Koten_7":

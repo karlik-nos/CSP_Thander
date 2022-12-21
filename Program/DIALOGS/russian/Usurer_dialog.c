@@ -203,11 +203,6 @@ void ProcessDialogEvent()
 			link.l2.go = "LoanUsurer";//(на кредитный генератор)
 			link.l3 = "Мне нужна кое-какая информация... В общем, есть вопрос.";
 			link.l3.go = "quests";//(перессылка в файл города)
-			if (CheckAttribute(npchar, "quest.usurersJewel.type") && !CheckCharacterItem(pchar, "UsurersJew"))
-			{
-				link.l4 = "Пожалуй, я отказываюсь от поисков камня. Не думаю, что я смогу его разыскать.";
-				link.l4.go = "jewelCancel";
-			}
 
 			//линейка ГПК, закладка миллиона на депозит
 			if (CheckAttribute(pchar, "questTemp.LSC.usurerId") && pchar.questTemp.LSC.usurerId == npchar.id)
@@ -280,6 +275,11 @@ void ProcessDialogEvent()
 			{
 				link.l6 = "Я наш"+ GetSexPhrase("ёл","ла") +" ваш " + npchar.quest.usurersJewel.type + ". Вот он.";
 				link.l6.go = "usurersJewel_R1";
+			}
+			if (CheckAttribute(npchar, "quest.usurersJewel.type") && !CheckCharacterItem(pchar, "UsurersJew"))
+			{
+				link.l6 = "Пожалуй, я отказываюсь от поисков камня. Не думаю, что я смогу его разыскать.";
+				link.l6.go = "jewelCancel";
 			}
 			//<<-- сдача квеста найти потерянный драгоценный камень
 			if(CheckAttribute(pchar,"GenQuest.EncGirl") && pchar.GenQuest.EncGirl == "toLoverFather" && pchar.GenQuest.EncGirl.LoverFather == "usurer_keeper")

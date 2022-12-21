@@ -135,7 +135,7 @@ void ProcessDialogEvent()
 						link.l1.go = "FoundLetter";
 					}
 					//базар о том, что нашёл причину заказа на нищих
-					if (pchar.questTemp.LSC == "toOliverTrast")
+					if (pchar.questTemp.LSC == "readyGoLSC" && GetCharacterFreeItem(pchar, "keyQuestLSC")==0)
 					{
 						link.l1 = "Ты знаешь, мне удалось распутать этот клубок!";
 						link.l1.go = "GoLSC";
@@ -477,6 +477,7 @@ void ProcessDialogEvent()
 		break;
 		//базар с основным после завала Оливера Траста
 		case "GoLSC":
+/*
             AddQuestRecord("ISS_PoorsMurder", "11");
             AddQuestUserData("ISS_PoorsMurder", "sSex", GetSexPhrase("ся","ась"));
             AddQuestUserData("ISS_PoorsMurder", "sName", pchar.questTemp.LSC.poorName);
@@ -489,7 +490,7 @@ void ProcessDialogEvent()
             Islands[n].MaxSeaHeight = 2.0;
             Islands[n].storm = true;
             Islands[n].tornado = true;
-
+*/
             dialog.text = "Отлично! Ну, расскажи, в чём все дело?";
             link.l1 = "Знаешь, ты оказался прав в предположении, которое "+ GetSexPhrase("высказал","высказала") +" в самом начале нашего общения. Все дело действительно в Тизере Дэне и его Острове.";
             link.l1.go = "GoLSC_1";

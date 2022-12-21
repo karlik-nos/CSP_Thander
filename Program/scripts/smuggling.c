@@ -421,6 +421,7 @@ void SetCoastalGuardPursuit()
 			Smuggler = GetCharacter(NPC_GenerateCharacter("Coastal_Captain0" + i, Model, "man", "man", 5, iNation, 3, true)); // 3 дня, потом сами пропадут
 			SetFantomParam(Smuggler);
 			SelectCoastalGuardShip(Smuggler);
+			DeleteAttribute(Smuggler,"OZG");
 			// 1.2.3 хардкор! Smuggler.Coastal_Captain = true; // если по нему палить, НЗГ не будет
 			Smuggler.AlwaysEnemy = true;
 			Smuggler.DontRansackCaptain = true;
@@ -587,4 +588,15 @@ int GetContrabandGoodsPrice(ref _refStore, int _Goods, int _PriceType, ref chref
 	}
 
     return MakeInt(priceModify * basePrice * tradeModify * skillModify * _qty * costModify * cModify + 0.5);
+}
+
+void ContrabandInterruptionSetStatus(bool status) {
+	for (i=1; i<=3+makeint(MOD_SKILL_ENEMY_RATE/2); i++) {
+		ref randSmug = &characters[GetCharacterIndex("Rand_Smug0"+i)];
+		if (status) {
+			randSmug.ContrabandInterruption = true;
+		} else {
+			DeleteAttribute(randSmug, "ContrabandInterruption");
+		}
+	}
 }

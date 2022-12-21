@@ -258,6 +258,29 @@ int GetSquadronGoods(ref _refCharacter,int _Goods)
 	return retVal;
 }
 
+int GetSquadronNeededGoods(ref _refCharacter,int _Goods)
+{
+	int i,cn;
+	ref chref;
+	ref rGood = &Goods[_Goods];
+	string sGood = rGood.name;
+	int retVal = 0;
+	if (CheckAttribute(_refCharacter, "TransferGoods." + sGood)) retVal = makeint(_refCharacter.TransferGoods.(sGood)); else _refCharacter.TransferGoods.(sGood) = 0;
+	for(i=1; i<COMPANION_MAX; i++)
+	{
+		cn = GetCompanionIndex(_refCharacter,i);
+		if(cn!=-1 && GetRemovable(&Characters[cn]))//fix грузим токо своим
+		{
+			chref = GetCharacter(cn);
+			if( GetShipRemovableEx(chref) )
+			{
+				if (CheckAttribute(chref, "TransferGoods." + sGood)) retVal += makeint(chref.TransferGoods.(sGood)); else chref.TransferGoods.(sGood) = 0;
+			}
+		}
+	}
+	return retVal;
+}
+
 void SetCharacterGoods(ref _refCharacter,int _Goods,int _Quantity)
 {
 	string goodsName = Goods[_Goods].name;
@@ -1113,12 +1136,36 @@ int RemoveCharacterCompanion(ref _refCharacter, ref refCompanion)
 			refCompanion.location.group = _refCharacter.location.group;
 			refCompanion.location.locator = _refCharacter.location.locator;
 			Event(EVENT_CHANGE_COMPANIONS,"");
-
+			DeleteSpacesInCompanions();
 			return i;
 		}
 	}
 	return -1;
 }
+
+void DeleteSpacesInCompanions() // закрываем "дырки" в интерфейсе при удалении компаньона
+{	
+	int shiftCounter = 0;
+	for(int i = 1; i < COMPANION_MAX; i++) // заменяем слоты по порядку
+	{
+		string sCompID = "id"+i;
+		int iOffID = pchar.Fellows.Companions.(sCompID);
+		if (iOffID == -1) {
+			shiftCounter++;
+			continue;
+		}
+
+		sCompID = "id"+(i - shiftCounter);
+		pchar.Fellows.Companions.(sCompID) = iOffID;
+	}
+
+	for(i = COMPANION_MAX - shiftCounter; i < COMPANION_MAX; i++) //дублирующие слоты освобождаем
+	{
+		sCompID = "id"+i;
+		pchar.Fellows.Companions.(sCompID) = -1;
+	}
+}
+
 int GetCompanionIndex(ref _refCharacter,int _CompanionNum)
 {
 	if(_CompanionNum < 0)
@@ -1374,6 +1421,19 @@ void UnlockAchievement(string ach_name, int level) // Открываем дос�
 	pchar.achievements.(ach_name) = level;
 	AddAchievementPoints(points);
 }
+
+int AchievementsCounter_genquests(int _add)
+{
+	pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + _add;
+	if(_add>0)
+	{
+	if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
+	if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
+	if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+	}
+	return sti(pchar.questTemp.genquestcount);
+}
+
 void SetBaseShipData(ref refCharacter)
 {
     int  i;
@@ -1431,7 +1491,10 @@ void SetBaseShipData(ref refCharacter)
 
 			if (!CheckAttribute(refShip,"Crew.Morale"))
 			{
-				refShip.Crew.Morale = 20 + rand(79);
+				if (!HasSubStr(refCharacter.id, "FortDefender"))
+					refShip.Crew.Morale = 20 + rand(79);
+				else
+					refShip.Crew.Morale = 100;
 			}
 			if (!CheckAttribute(refShip,"Crew.Quantity"))
 			{
@@ -1442,9 +1505,18 @@ void SetBaseShipData(ref refCharacter)
 			// новый опыт
 			if(!CheckAttribute(refCharacter, "ship.crew.Exp"))
 			{
-				refCharacter.Ship.Crew.Exp.Sailors   = 1 + rand(80);
-				refCharacter.Ship.Crew.Exp.Cannoners = 1 + rand(80);
-				refCharacter.Ship.Crew.Exp.Soldiers  = 1 + rand(80);
+				if (!HasSubStr(refCharacter.id, "FortDefender"))
+				{
+					refCharacter.Ship.Crew.Exp.Sailors   = 1 + rand(80);
+					refCharacter.Ship.Crew.Exp.Cannoners = 1 + rand(80);
+					refCharacter.Ship.Crew.Exp.Soldiers  = 1 + rand(80);
+				}
+				else
+				{
+					refCharacter.Ship.Crew.Exp.Sailors   = 100;
+					refCharacter.Ship.Crew.Exp.Cannoners = 100;
+					refCharacter.Ship.Crew.Exp.Soldiers  = 100;
+				}
 			}
 			int iGoodN = 0;
 			int iGoodR = 0;
@@ -1839,36 +1911,23 @@ bool TakeNItems(ref _refCharacter, string itemName, int n)
 	//<-
 
 	int price = GetItemPrice(itemName);
-	if(price == 0)
+	if(price == 0 &&
+			itemName != "Gold" &&
+			CheckAttribute(_refCharacter, "index") && 
+			sti(_refCharacter.index) == GetMainCharacterIndex() && 
+			IsEntity(_refCharacter) && 
+			n != 0) 
 	{
-		if(itemName != "Gold") // Warship. Для нового интерфейса обмена - проверка на золото
-		{
-			if(CheckAttribute(_refCharacter, "index"))
-			{
-				if(sti(_refCharacter.index) == GetMainCharacterIndex() && IsEntity(_refCharacter))
-				{
-					if(n > 0)
-					{
-						Log_Info(XI_ConvertString("You take item"));
-						AddMsgToCharacter(_refCharacter, MSGICON_GETITEM);
-					}
+		string itmActionString;
+		if (n > 0) itmActionString = XI_ConvertString("You take item");
+		else 			 itmActionString = XI_ConvertString("You give item");
 
-					if(n < 0)
-					{
-						Log_Info(XI_ConvertString("You give item"));
-					}
+		string itmName = GetConvertStr(arItm.name, "ItemsDescribe.txt");
+		Log_Info(itmActionString + ": " + itmName);
 
-					PlayStereoSound("interface\important_item.wav");
-				}
-			}
+		if(n > 0) AddMsgToCharacter(_refCharacter, MSGICON_GETITEM);
 
-			// Warship 08.05.09 - Не ясная мне логика. И и ИЛИ в одном выражении не поддерживаются скриптовым двигом
-			// Перенес вверх
-			/*if(n > 0 && IsOfficer(_refCharacter) || IsCompanion(_refCharacter))
-			{
-				AddMsgToCharacter(_refCharacter, MSGICON_GETITEM);
-			}*/
-		}
+		PlayStereoSound("interface\important_item.wav");
 	}
 
 	q = GetCharacterItem(_refCharacter, itemName);
@@ -2396,22 +2455,6 @@ string GetCharacterEquipPictureByGroup(ref chref, string groupID)
 
 void RemoveCharacterEquip(ref chref, string groupID)
 {
-	if (groupID == BOOK_ITEM_TYPE && IsMainCharacter(chref)) //Qwerry - запоминаем, какую книгу читал ГГ
-	{
-		string sBookname = chref.bookname;
-		chref.halfreadbook.(sBookname) = 1;
-		chref.halfreadbook.(sBookname).bookname = chref.bookname;
-		chref.halfreadbook.(sBookname).booktime = chref.booktime;
-		chref.halfreadbook.(sBookname).booktime.full = chref.booktime.full;
-		chref.halfreadbook.(sBookname).bookbonus = chref.bookbonus;
-		chref.halfreadbook.(sBookname).booktype = chref.booktype;
-		DeleteAttribute(chref,"booktime");
-		DeleteAttribute(chref,"booktime.full");
-		DeleteAttribute(chref,"bookbonus");
-		DeleteAttribute(chref,"booktime");
-		DeleteAttribute(chref,"booktype");
-		Log_Info("Прервано чтение книги.");
-	}
 	DeleteAttribute(chref,"equip."+groupID);
 	SetEquipedItemToCharacter(chref,groupID,"");
 	SetNewModelToChar(chref);
@@ -2726,49 +2769,17 @@ void EquipCharacterByItem(ref chref, string itemID)
 
 	if (groupName == BOOK_ITEM_TYPE && IsMainCharacter(chref)) // Книги, экипировка - Gregg
 	{
-		string sBookname = arItm.name;
-		if (checkattribute(chref, "halfreadbook."+sBookname)) //Qwerry - продолжение чтения книги
+		string sBook = arItm.id;
+		if (!CheckAttribute(chref, "books." + sBook))
 		{
-			chref.booktime = chref.halfreadbook.(sBookname).booktime;
-			chref.booktime.full = chref.halfreadbook.(sBookname).booktime.full;
-			chref.bookname = chref.halfreadbook.(sBookname).bookname;
-			chref.bookbonus = chref.halfreadbook.(sBookname).bookbonus;
-			chref.booktype = chref.halfreadbook.(sBookname).booktype;
-			DeleteAttribute(chref,"halfreadbook."+sBookname);//сразу стираем запомненное
+			chref.books.(sBook) = BookReadTime(sBook);
 		}
-		else
+
+		if (sti(chref.books.(sBook)) > 0)
 		{
-			chref.booktype = arItm.skill;
-			if(HasSubStr(arItm.id, "book1_"))
-			{
-				chref.booktime = BookTime(chref,1);//таймер
-				chref.booktime.full = sti(chref.booktime);//полное время
-				chref.bookname = arItm.name;//название книги
-				chref.bookbonus = 800;//экспа
-			}
-			if(HasSubStr(arItm.id, "book2_"))
-			{
-				chref.booktime = BookTime(chref,2);
-				chref.booktime.full = sti(chref.booktime);
-				chref.bookname = arItm.name;
-				chref.bookbonus = 1500;
-			}
-			if(HasSubStr(arItm.id, "book3_"))
-			{
-				chref.booktime = BookTime(chref,3);
-				chref.booktime.full = sti(chref.booktime);
-				chref.bookname = arItm.name;
-				chref.bookbonus = 3500;
-			}
-			if(HasSubStr(arItm.id, "book4_"))
-			{
-				chref.booktime = BookTime(chref,4);
-				chref.booktime.full = sti(chref.booktime);
-				chref.bookname = arItm.name;
-				chref.bookbonus = 7500;
-			}
+			chref.equip.book = sBook;
+			Log_Info("Начато чтение книги. Ориентировочно, это займёт " + chref.books.(sBook) + " дней.");
 		}
-		Log_Info("Начато чтение книги. Ориентировочно, это займёт "+chref.booktime+" дней.");
 	}
 }
  // to_do
@@ -3009,7 +3020,7 @@ float isEquippedArtefactUse(ref rChar, string sItem, float fOff, float fOn)
 
 int ChangeCharacterReputationABS(ref chref, float incr)
 {
-	if (chref != Pchar) return 0;
+	if (chref.index != Pchar.index) return 0;
 	int curVal = REPUTATION_NEUTRAL;
 	if (CheckAttribute(chref,"reputation") ) curVal = stf(chref.reputation);
 
@@ -3020,7 +3031,7 @@ int ChangeCharacterReputationABS(ref chref, float incr)
 // репутация стремится к нейтральной
 int ChangeCharacterReputationToNeutral(ref chref, float incr)
 {
-	if (chref != Pchar) return 0;
+	if (chref.index != Pchar.index) return 0;
 	int curVal = REPUTATION_NEUTRAL;
 	if (CheckAttribute(chref,"reputation") ) curVal = stf(chref.reputation);
 
@@ -3030,7 +3041,7 @@ int ChangeCharacterReputationToNeutral(ref chref, float incr)
 
 int ChangeCharacterReputation(ref chref, float incr)
 {
-	if (chref != Pchar) return 0;
+	if (chref.index != Pchar.index) return 0;
 	if (CheckAttribute(chref, "GenQuest.ReputationNotChange")) return sti(chref.reputation); //eddy. нужен флаг
 	float prevVal = REPUTATION_NEUTRAL;
 	if (CheckAttribute(chref,"reputation") )	prevVal = stf(chref.reputation);
@@ -3046,7 +3057,7 @@ int ChangeCharacterReputation(ref chref, float incr)
 	string newName = GetReputationName(makeint(newVal));
 	if (prevName!=newName)
 	{
-		string outString = XI_ConvertString("Your reputation")+" ";
+		string outString = XI_ConvertString("Your reputation");
 		if (incr>0)	{outString+=XI_ConvertString("increase");}
 		else	{outString+=XI_ConvertString("decrease");}
 		outString += " "+XI_ConvertString("to")+" "+XI_ConvertString(newName);
@@ -3771,6 +3782,7 @@ bool IsPCharHaveMushketerModel()
 	HasSubStr(sModel, "PGG_Espinosa") ||
 	HasSubStr(sModel, "PGG_Espinosa") ||
 	HasSubStr(sModel, "PGG_Skeletcap") ||
+	HasSubStr(sModel, "PGG_Skeletman") ||
 	HasSubStr(sModel, "PGG_Baltrop") ||
 	HasSubStr(sModel, "PGG_Nord") ||
 	HasSubStr(sModel, "PGG_Lejitos") ||
@@ -4071,4 +4083,26 @@ void SwapWeaponFight()
 void SwapWeaponFight2()
 {
 	pchar.mushket.timer = false;
+}
+
+#event_handler("Lilarcor_Talks", "Lilarcor_Talks");
+void Lilarcor_Talks()
+{
+	switch (pchar.equip.blade)
+	{
+		case "Lilarcor_Sword1": LAi_CharacterPlaySound(PChar, "Lilarcor_Bers_Sword1"); break;
+		case "Lilarcor_Sword2": LAi_CharacterPlaySound(PChar, "Lilarcor_Bers_Sword2"); break;
+		case "Lilarcor_Sword3": LAi_CharacterPlaySound(PChar, "Lilarcor_Bers_Sword3"); break;
+	}
+	ActivateCharacterPerk(pchar, "Rush");
+	pchar.perks.list.Rush.active = 3600;
+	pchar.perks.list.Rush.delay = 3600;
+	pchar.chr_ai.energy = pchar.chr_ai.energyMax;
+	log_info("Лиларкор вызвал в вас приступ неудержимой ярости!");
+}
+
+#event_handler("Lilarcor_Talks2", "Lilarcor_Talks2");
+void Lilarcor_Talks2()
+{
+	LAi_CharacterPlaySound(PChar, "Lilarcor_rnd");
 }

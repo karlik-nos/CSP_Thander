@@ -99,6 +99,14 @@ void DozorSetRiddleQuestion(int iType)
 
 void DozorPrepare()
 {
+	pchar.quest.DozorPrepare.win_condition.l1 = "Rank";
+	pchar.quest.DozorPrepare.win_condition.l1.value = 3;
+	pchar.quest.DozorPrepare.win_condition.l1.operation = ">=";
+	PChar.quest.DozorPrepare.function = "DozorPrepare_2";
+}
+
+void DozorPrepare_2()
+{
 	for(int d=1; d<=8; d++)
 	{
 		DozorSetRiddleQuestion(d);
@@ -301,8 +309,8 @@ void DozorTerksInGrot(string _tmp)
 	{
 		switch(i)
 		{
-			case 1: sLocator = "monster1"; sModel = "pirate_" + (rand(25)+1); break;
-			case 2: sLocator = "monster2"; sModel = "pirate_" + (rand(25)+1); break;
+			case 1: sLocator = "monster1"; sModel = "pirate_" + (rand(24)+1); break;
+			case 2: sLocator = "monster2"; sModel = "pirate_" + (rand(24)+1); break;
 			case 3: sLocator = "monster3"; sModel = "citiz_" + (rand(11)+1); break;
 		}
 
@@ -544,7 +552,7 @@ void DozorToMartiniqueShore()
 
 	int iRank = GetRank(PChar, 15) + MOD_SKILL_ENEMY_RATE;
 	ref sld = GetCharacter(NPC_GenerateCharacter("Dozor_Ship", "officer_4", "man", "man", iRank, PIRATE, -1, true));
-	FantomMakeCoolSailor(sld, SHIP_DERFFLINGER, "Дозорный", CANNON_TYPE_CULVERINE_LBS24, 70, 70, 70);
+	FantomMakeCoolSailor(sld, SHIP_DERFFLINGER, "Дозорный", CANNON_TYPE_CULVERINE_LBS16, 70, 70, 70); // LEO: Нихуя ты сделал изи флейт, прям БМС стайл. У него блять в ините 16 калибр, а нахуя ты ему 24фт воткнул? Изиблятьфлейт.жепеге
 	sld.name = "Джастин";
 	sld.lastname = "Батт";
 	sld.greeting = "Gr_UnpleasantCaptain";

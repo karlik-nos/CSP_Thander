@@ -274,7 +274,7 @@ void BSOnTheHorizon_SeaBattle()
 	for (i = 1; i < 7; i++)
 	{
 
-		sld = GetCharacter(NPC_GenerateCharacter("BSOnTheHorizon_enemyfleet"+i, "off_eng_"+(rand(1)+1), "man", "man", 999, ENGLAND, 3, true));
+		sld = GetCharacter(NPC_GenerateCharacter("BSOnTheHorizon_enemyfleet"+i, "off_eng_"+(rand(1)+1), "man", "man", 999, ENGLAND, -1, true));
 		if (i == 1)
 		{
 			sld.Ship.Type = GenerateShipExt(SHIP_FASTFRIGATE, true, sld);

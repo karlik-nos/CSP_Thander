@@ -692,11 +692,12 @@ void CreateHabitues(aref loc)
 					SetNPCModelUniq(chr, "pirate", MAN);
 					chr.City = Colonies[iColony].id;
 					chr.CityType = "citizen";
-					sTemp = "sit"+rand(10);
+					sTemp = LAi_FindFreeRandomLocator("sit");
 					FreeSitLocator(loc.id, sTemp);
-					ChangeCharacterAddressGroup(chr, loc.id,"sit", sTemp); // может не быть вовсе, если все места занятыa
-					LAi_SetSitType(chr);
+					ChangeCharacterAddressGroup(chr, loc.id, "sit", sTemp);
 					LAi_group_MoveCharacter(chr, slai_group);
+					if (findsubstr(sTemp, "_bar" , 0) != -1) LAi_SetBarmanType(chr);
+					else LAi_SetSitType(chr);
 					chr.dialog.filename = "Enc_Treasure_dialog.c";
 					chr.dialog.currentnode = "first time";
 					chr.greeting = "Gr_Smuggler Agent";
@@ -728,19 +729,12 @@ void CreateHabitues(aref loc)
 					SetNPCModelUniq(chr, "pirate", MAN);
 					chr.City = Colonies[iColony].id;
 					chr.CityType = "citizen";
-					sTemp = PlaceCharacter(chr, "sit", "random_free"); // может не быть вовсе, если все места заняты
-					ReSitCharacterOnFree(chr, loc.id, sTemp);
-
-					LAi_SetSitType(chr);
-	/// ---> Navarra
-					///	if (findsubstr(sTemp, "sit_ground" , 0) != -1)
-						if (findsubstr(chr.location.locator, "sit_ground" , 0) != -1)
-						{	LAi_SetGroundSitType(chr);	}
-					///	if (findsubstr(sTemp, "sit_bar" , 0) != -1)
-						if (findsubstr(chr.location.locator, "sit_bar" , 0) != -1)
-						{	LAi_SetBarmanType(chr);		}
-	/// <--- Navarra
+					sTemp = LAi_FindFreeRandomLocator("sit");
+					FreeSitLocator(loc.id, sTemp);
+					ChangeCharacterAddressGroup(chr, loc.id, "sit", sTemp);
 					LAi_group_MoveCharacter(chr, slai_group);
+					if (findsubstr(sTemp, "_bar" , 0) != -1) LAi_SetBarmanType(chr);
+					else LAi_SetSitType(chr);
 					chr.dialog.filename = "Enc_Treasure_dialog.c";
 					chr.dialog.currentnode = "first time";
 					chr.greeting = "Gr_Smuggler Agent";
@@ -1097,6 +1091,7 @@ void CreateBrothels(aref loc)
 						case "Panama":		 sld.quest.price = 900*(rand(4)+5); break;
 						case "Marigo":	     sld.quest.price = 700*(rand(4)+5); break;
 						case "Bridgetown":	 sld.quest.price = 400*(rand(4)+5); break;
+						case "Nassau":	 	 sld.quest.price = 450*(rand(4)+5); break;
 						case "FortFrance":	 sld.quest.price = 500*(rand(4)+5); break;
 						case "Charles":		 sld.quest.price = 300*(rand(4)+5); break;
 						case "SantoDomingo": sld.quest.price = 200*(rand(4)+5); break;
@@ -1147,7 +1142,6 @@ void CreatePearlVillage(aref loc)
 		ref chr;
 		int num, i, iMassive, iRank;
 		string sAnime;
-		string model[25];
 		loc.pearlVillage = false; //флаг не генерить пиплов
 		// ==> глава администрации
 		iRank = 20+rand(15);
@@ -1169,36 +1163,11 @@ void CreatePearlVillage(aref loc)
         pchar.GenQuestBox.(sTemp).box1.items.jewelry11 = rand(150) + rand(150);
         pchar.GenQuestBox.(sTemp).box2.items.jewelry12 = rand(250) + rand(250);
 		// ==> защитники, повоевать таки придётся
-		model[0] = "pirate_1";
-		model[1] = "pirate_2";
-		model[2] = "pirate_3";
-		model[3] = "pirate_4";
-		model[4] = "pirate_5";
-		model[5] = "pirate_6";
-		model[6] = "pirate_7";
-		model[7] = "pirate_8";
-		model[8] = "pirate_9";
-		model[9] = "pirate_10";
-		model[10] = "pirate_11";
-		model[11] = "pirate_12";
-		model[12] = "pirate_13";
-		model[13] = "pirate_14";
-		model[14] = "pirate_15";
-		model[15] = "pirate_16";
-		model[16] = "pirate_17";
-		model[17] = "pirate_18";
-		model[18] = "pirate_19";
-		model[19] = "pirate_20";
-		model[20] = "pirate_21";
-		model[21] = "pirate_22";
-		model[22] = "pirate_23";
-		model[23] = "pirate_24";
-		model[24] = "pirate_25";
 		num = rand(3) + 2;
 		for (i = 0; i < num; i++)
 		{
-			iMassive = rand(25);
-			chr = GetCharacter(NPC_GenerateCharacter("FightMan"+iPrefix+"_"+i, model[iMassive], "man", "man", 15, iPearNation, 30, true));
+			iMassive = 1 + rand(24);
+			chr = GetCharacter(NPC_GenerateCharacter("FightMan"+iPrefix+"_"+i, "pirate_" + iMassive, "man", "man", 15, iPearNation, 30, true));
 			SetFantomParamFromRank(chr, 15, true);
 			chr.dialog.Filename = "Pearl_dialog.c";
 			chr.dialog.currentnode = "PearlMan";
@@ -1210,6 +1179,7 @@ void CreatePearlVillage(aref loc)
 			SetFoodToCharacter(chr, 3, 20);
 		}
 		// ==> просто работники
+		string model[10];
 		model[0] = "indsair2";
 		model[1] = "indsar1";
 		model[2] = "barmen_1";

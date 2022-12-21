@@ -1438,7 +1438,7 @@ void WhisperWarDogSeaBattle()
 	sld.Ship.Type = GenerateShipExt(SHIP_WH_CORVETTE_QUEST, true, sld);
 	sld.Ship.name = "Пёс Войны";
 	//SetBaseShipData(sld);
-	sld.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS32;
+	sld.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS24;
 
 	ChangeCharacterAddressGroup(sld, "My_Deck", "reload", "reload1");
 	EquipCharacterByItem(sld, "blade_15");
@@ -2321,9 +2321,13 @@ void CaptureCapitol_ShoreBattle(string q)
 	pchar.CaptureCapitolSailors = iRnd;
 	pchar.CaptureCapitolPerSailor = perSailor;
 
+	float fCoeff = iRnd / stf(iRnd + sti(pchar.rank) + MOD_SKILL_ENEMY_RATE) // чтобы оверфлоу по персонажам в локации не было (макс 64)
+	int iMaxFriends = sti(fCoeff * MAX_CHARS_IN_LOC);
+	int iMaxEnemies = sti(MAX_CHARS_IN_LOC - iMaxFriends);
+
 	PChar.GenQuestFort.FarLocator = false;
 	sLoc = LAi_FindNPCLocator("officers");
-	for (i = 1; i < iRnd; i++)
+	for (i = 1; i < iRnd && i < (iMaxFriends - MAX_NUM_FIGHTERS); i++)
 	{
 		chr = SetFantomDefenceForts("officers", sLoc, PIRATE, relation);
 		FantomMakeCoolFighterWRankDepend(chr,sti(pchar.rank),25+rand(75),25+rand(75),50);
@@ -2340,7 +2344,7 @@ void CaptureCapitol_ShoreBattle(string q)
 	Pchar.GenQuestFort.FarLocator = true;
 	sLoc = LAi_FindNPCLocator("quest");
 	sLoc_2 = LAi_FindNPCLocator("reload");
-	for (i = 1; i < iRnd; i++)
+	for (i = 1; i < iRnd && i < iMaxEnemies; i++)
 	{
 		if (i % 2 == 0)
 		{
@@ -2534,8 +2538,9 @@ void QuestWhisper_Siege(string q)
 	LAi_SetStayTypeNoGroup(chr);
 	chr.talker = 10;
 
-	GiveItem2Character(chr, "blade_whisper");
-	EquipCharacterByItem(chr, "blade_whisper");
+	string sBlade = GetGeneratedItem("blade22");
+	GiveItem2Character(chr, sBlade);
+	EquipCharacterByItem(chr, sBlade);
 	GiveItem2Character(chr, "pistol_grapebok");
 	EquipCharacterByItem(chr, "pistol_grapebok");
 	GiveItem2Character(chr, "cirass5");
@@ -2656,11 +2661,6 @@ void QuestWhisper_Incq_4(string q)
 	LAi_ActorDialog(sld, pchar, "", -1, 0);
 
 	sld.HasNoFear = true;
-	GiveItem2Character(sld, "pistol7shotgun");
-	EquipCharacterByItem(sld, "pistol7shotgun");
-	sld.DontChangeGun = true;
-	TakeNItems(sld, "12_gauge", 50);
-    TakeNItems(sld, "grapeshot", 50);
 	DeleteAttribute(pchar, "PGGWhisperLetterSent");
 }
 

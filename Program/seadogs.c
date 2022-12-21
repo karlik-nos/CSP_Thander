@@ -851,7 +851,7 @@ void OnLoad()
 
 	ReloadProgressUpdate();
 
-	PerkLoad();
+	PerkLoad(false);
 
 	ReloadProgressUpdate();
 
@@ -890,6 +890,8 @@ void NewGame()
 	bYesBoardStatus=false;
 	DeleteClass(&IBoardingStatus);
 	DeleteAttribute(&IBoardingStatus,"");
+
+	for (i = 0; i < TOTAL_CHARACTERS; i++) InitCharacter(&Characters[i], i);
 
 	SetEventHandler("frame","NewGame_continue",1);
 }
@@ -1397,37 +1399,35 @@ void ProcessControls()
 		DeleteAttribute(pchar, "pause");
 		if (ControlName == "TimeScaleFaster" || ControlName == "TimeScaleFasterBA")
      	{
-			if (TimeScaleCounter >= 12)
-			{
-			    TimeScaleCounter += 4;
-			}
+			if (TimeScaleCounter >= 16){TimeScaleCounter += 16;}
 			else
 			{
-                if (TimeScaleCounter >= 4)
-				{
-				    TimeScaleCounter += 2;
-				}
+				if (TimeScaleCounter >= 8){TimeScaleCounter += 8;}
 				else
 				{
-					TimeScaleCounter++;
+					if (TimeScaleCounter >= 4){TimeScaleCounter += 4;}
+					else
+					{
+						if (TimeScaleCounter >= 2){TimeScaleCounter += 2;}
+						else {TimeScaleCounter++;}
+					}
 				}
 			}
 		}
      	else
      	{
-            if (TimeScaleCounter >= 16)
-			{
-			    TimeScaleCounter -= 4;
-			}
+			if (TimeScaleCounter > 16){TimeScaleCounter -= 16;}
 			else
 			{
-                if (TimeScaleCounter >= 6)
-				{
-				    TimeScaleCounter -= 2;
-				}
+				if (TimeScaleCounter > 8){TimeScaleCounter -= 8;}
 				else
 				{
-					TimeScaleCounter--;
+					if (TimeScaleCounter > 4){TimeScaleCounter -= 4;}
+					else
+					{
+						if (TimeScaleCounter > 2){TimeScaleCounter -= 2;}
+						else {TimeScaleCounter--;}
+					}
 				}
 			}
 		}
@@ -1437,22 +1437,22 @@ void ProcessControls()
 		}
         if (bDisableMapEnter)
         {
-            if (TimeScaleCounter > 28) TimeScaleCounter = 28;
+            if (TimeScaleCounter > 48) TimeScaleCounter = 48;
         }
         else
         {   // без боя
             if (bSeaActive && !bAbordageStarted )
             {
-            	if (TimeScaleCounter > 28) TimeScaleCounter = 28; // море
+            	if (TimeScaleCounter > 48) TimeScaleCounter = 48; // море
             }
             else
             {
-            	if (TimeScaleCounter > 28) TimeScaleCounter = 28; // суша
+            	if (TimeScaleCounter > 32) TimeScaleCounter = 32; // суша
             }
         }
         if (IsEntity(worldMap))
         {
-            if (TimeScaleCounter > 28) TimeScaleCounter = 28;
+            if (TimeScaleCounter > 32) TimeScaleCounter = 32;
         }
      	float newTimeScale = 1 + (TimeScaleCounter)*0.25; // GetSeaTimeScale()
      	if (newTimeScale < 0) //don't wanna crash the game

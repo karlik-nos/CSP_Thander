@@ -7,6 +7,7 @@
 #include "battle_interface\ActivePerksShow.c"
 #include "battle_interface\backgroundtask.c"
 #include "battle_interface\WmInterface.c"
+#include "battle_interface\BattleInterfaceUpdates.c"
 
 #define BI_ICONS_SHIPS_TEXTURE_NAME "battle_interface\icons.tga.tx"
 
@@ -132,6 +133,7 @@ void InitBattleInterface()
 	SetEventHandler("evntGetSRollSpeed","procGetSRollSpeed",0);
 	SetEventHandler("DoSailHole","ProcessSailDamage",0);
 	SetEventHandler("evntBISelectShip","procBISelectShip",0);
+	SetEventHandler("BI_CallUpdateShipsRollSpeed","BI_UpdateShipsRollSpeed", 0);
 
 	procLoadIntoNew(); // Проинитим таблицу активных перков
 	SetEventHandler("Control Activation","BI_ProcessControlPress",0);
@@ -140,6 +142,9 @@ void InitBattleInterface()
 	ResetTimeScale(); // boal
 	//#20190424-02
     ReconnectShips();
+	BI_UpdateLoadedProjectiles(); 
+	BI_UpdateCannons();
+	BI_UpdateShipsRollSpeed();
 }
 
 ref BI_GetFortRelation()
@@ -375,6 +380,7 @@ void DeleteBattleInterface()
 	DelEventHandler("Control Activation","BI_ProcessControlPress");
 	DelEventHandler("DoSailHole","ProcessSailDamage");
 	DelEventHandler("evntBISelectShip","procBISelectShip");
+	DelEventHandler("BI_CallUpdateShipsRollSpeed","BI_UpdateShipsRollSpeed");
 
 	// был сброс времени, выше поднял
 	//DeleteClass(&BattleInterface);
@@ -1403,32 +1409,9 @@ ref BI_GetChargeQuantity()
 	return &BI_ChargeState;
 }
 
-ref GetCurrentCharge()
+ref GetCurrentCharge() // вызывается каждый кадр
 {
-	BI_intNRetValue[0] = -1;
-
-	if( CheckAttribute(pchar,"Ship.Cannons.Charge.Type") )
-	{
-		switch(sti(pchar.Ship.Cannons.Charge.Type))
-		{
-		case GOOD_BALLS:
-			BI_intNRetValue[0] = 32;
-			BattleInterface.textinfo.Ammo.text = ""+sti(pchar.ship.cargo.goods.balls);
-			break;
-		case GOOD_GRAPES:
-			BI_intNRetValue[0] = 35;
-			BattleInterface.textinfo.Ammo.text = ""+sti(pchar.ship.cargo.goods.grapes);
-			break;
-		case GOOD_KNIPPELS:
-			BI_intNRetValue[0] = 34;
-			BattleInterface.textinfo.Ammo.text = ""+sti(pchar.ship.cargo.goods.knippels);
-			break;
-		case GOOD_BOMBS:
-			BI_intNRetValue[0] = 33;
-			BattleInterface.textinfo.Ammo.text = ""+sti(pchar.ship.cargo.goods.bombs);
-			break;
-		}
-	}
+	BI_intNRetValue[0] = BI_icons_ProjectilesUpdate;
 
 	float fState = Ship_GetSailState(pchar);
 	if( fState < 0.33 ) {
@@ -1452,18 +1435,8 @@ ref GetCurrentCharge()
 	BattleInterface.textinfo.Planks.text = /* XI_convertString("Powder") + ": " + */ sti(pchar.ship.cargo.goods.planks);
 	BI_intNRetValue[6] = sti(pchar.ship.cargo.goods.sailcloth == 0);
 	BattleInterface.textinfo.Sailcloth.text = /* XI_convertString("Powder") + ": " + */ sti(pchar.ship.cargo.goods.sailcloth);
-	BI_intNRetValue[7] = sti(GetCannonsNum(pchar) == 0);
-	int nShipType = sti(pchar.ship.type);
-    ref refBaseShip = GetRealShip(nShipType);
-	BattleInterface.textinfo.CannonsNumL.text = GetBortIntactCannonsNum(pchar, "lcannon", sti(refBaseShip.lcannon)) + "/" + GetBortCannonsMaxQty(pchar, "lcannon");
-	BattleInterface.textinfo.CannonsNumR.text = GetBortIntactCannonsNum(pchar, "rcannon", sti(refBaseShip.rcannon)) + "/" + GetBortCannonsMaxQty(pchar, "rcannon");
-	BattleInterface.textinfo.CannonsNumB.text = GetBortIntactCannonsNum(pchar, "bcannon", sti(refBaseShip.bcannon)) + "/" + GetBortCannonsMaxQty(pchar, "bcannon");
-	BattleInterface.textinfo.CannonsNumF.text = GetBortIntactCannonsNum(pchar, "fcannon", sti(refBaseShip.fcannon)) + "/" + GetBortCannonsMaxQty(pchar, "fcannon");
-	/*if (CheckAttribute(pchar,"perks.list.Turn180.delay")) BattleInterface.textinfo.Turn180CD.text = "Откат Манёвр. разворота: "+sti(pchar.perks.list.Turn180.delay)+" c.";
-	else BattleInterface.textinfo.Turn180CD.text = "";
-	if (CheckAttribute(pchar,"perks.list.ImmediateReload.delay")) BattleInterface.textinfo.ImmediateReloadCD.text = "Откат Предв. перезарядки: "+sti(pchar.perks.list.ImmediateReload.delay)+" c.";
-	else BattleInterface.textinfo.ImmediateReloadCD.text = "";*/ //инфа по перезарядке перков
-	//<---
+	BI_intNRetValue[7] = BI_CannonsUpdate;
+	
 	return &BI_intNRetValue;
 }
 
@@ -1637,19 +1610,20 @@ void SetShipPictureDataByShipTypeName(string sType)
 	case "sp_sanfelipe":		BI_intNRetValue[0] = 24+7*32;	BI_intNRetValue[1] = 24+7*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Исп. Мановар
 		// КВЕСТОВЫЕ (11 кораблей)
 	case "luggerquest":			BI_intNRetValue[0] = 26+7*32;	BI_intNRetValue[1] = 26+7*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Курьерский Люггер
-	case "xebekvml":			BI_intNRetValue[0] = 28+7*32;	BI_intNRetValue[1] = 28+7*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Щебека
-	case "brigqeen":			BI_intNRetValue[0] = 30+7*32;	BI_intNRetValue[1] = 30+7*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Бриг
-	case "brigsw":				BI_intNRetValue[0] = 0+8*32;	BI_intNRetValue[1] = 0+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Бриг
-	case "Clipper":				BI_intNRetValue[0] = 2+8*32;	BI_intNRetValue[1] = 2+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Корвет
-	case "corvette_quest":		BI_intNRetValue[0] = 4+8*32;	BI_intNRetValue[1] = 4+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Фрегат
-	case "Wh_corvette_quest":	BI_intNRetValue[0] = 6+8*32;	BI_intNRetValue[1] = 6+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Корвет
-	case "ArabellaShip":		BI_intNRetValue[0] = 8+8*32;	BI_intNRetValue[1] = 8+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Фрегат
-	case "frigatequeen":		BI_intNRetValue[0] = 10+8*32;	BI_intNRetValue[1] = 10+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Фрегат
-	case "Catherine":			BI_intNRetValue[0] = 12+8*32;	BI_intNRetValue[1] = 12+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Королева-Катрин
-	case "flyingdutchman":		BI_intNRetValue[0] = 14+8*32;	BI_intNRetValue[1] = 14+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Варшип
-	case "flyingdutchman_n":	BI_intNRetValue[0] = 16+8*32;	BI_intNRetValue[1] = 16+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Варшип
-	case "santisima":			BI_intNRetValue[0] = 18+8*32;	BI_intNRetValue[1] = 18+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Быстрый мановар
-	case "soleyru":				BI_intNRetValue[0] = 20+8*32;	BI_intNRetValue[1] = 20+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Сулей Руаяль
+	case "xebekvml":			BI_intNRetValue[0] = 28+7*32;	BI_intNRetValue[1] = 28+7*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Щебека СП
+	case "brigqeen":			BI_intNRetValue[0] = 30+7*32;	BI_intNRetValue[1] = 30+7*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Бриг Стрела
+	case "brigsw":				BI_intNRetValue[0] = 0+8*32;	BI_intNRetValue[1] = 0+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Бриг МВ
+	case "Clipper":				BI_intNRetValue[0] = 2+8*32;	BI_intNRetValue[1] = 2+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Клиппер
+	case "corvette_quest":		BI_intNRetValue[0] = 4+8*32;	BI_intNRetValue[1] = 4+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Фрегат ЧЖ
+	case "Wh_corvette_quest":	BI_intNRetValue[0] = 6+8*32;	BI_intNRetValue[1] = 6+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Корвет Пёс войны
+	case "Mefisto":	            BI_intNRetValue[0] = 8+8*32;	BI_intNRetValue[1] = 8+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Фрегат культистов
+	case "ArabellaShip":		BI_intNRetValue[0] = 10+8*32;	BI_intNRetValue[1] = 10+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Фрегат Арабелла
+	case "frigatequeen":		BI_intNRetValue[0] = 12+8*32;	BI_intNRetValue[1] = 12+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Фрегат МКА
+	case "Catherine":			BI_intNRetValue[0] = 14+8*32;	BI_intNRetValue[1] = 14+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Королева-Катрин
+	case "flyingdutchman":		BI_intNRetValue[0] = 16+8*32;	BI_intNRetValue[1] = 16+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Варшип ЛГ
+	case "flyingdutchman_n":	BI_intNRetValue[0] = 18+8*32;	BI_intNRetValue[1] = 18+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Варшип ЛГ
+	case "santisima":			BI_intNRetValue[0] = 20+8*32;	BI_intNRetValue[1] = 20+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Быстрый мановар
+	case "soleyru":				BI_intNRetValue[0] = 22+8*32;	BI_intNRetValue[1] = 22+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Сулей Руаяль
 	}
 	BI_intNRetValue[3] = false;
 }
@@ -3276,53 +3250,9 @@ ref procGetSRollSpeed()
 {
 	int chrIdx = GetEventData();
 	BI_g_fRetVal = 0.0;
-	if(chrIdx>=0) BI_g_fRetVal = GetRSRollSpeed(GetCharacter(chrIdx));
+	ref chref = GetCharacter(chrIdx);
+	if(CheckAttribute(chref, "Ship.RollSpeed")) BI_g_fRetVal = chref.Ship.RollSpeed;
 	return &BI_g_fRetVal;
-}
-// скорость подъема паруса
-float GetRSRollSpeed(ref chref)
-{
-	if (HasSubStr(chref.id, "_DriftCap_")) return 3.0;
-
-	int iShip = sti(chref.ship.type);
-	if( iShip<0 || iShip>=REAL_SHIPS_QUANTITY ) {return 0.0;}
-
-	float fRollSpeed = 0.5 + 0.05 * makefloat( GetSummonSkillFromNameToOld(chref,SKILL_SAILING) ); //fix skill
-	int crewQ = GetCrewQuantity(chref);
-	//int crewMin = sti(RealShips[iShip].MinCrew);
-	if (!CheckAttribute(&RealShips[iShip], "MaxCrew"))
-	{
-		Log_TestInfo("GetRSRollSpeed нет MaxCrew у корабля НПС ID=" + chref.id);
-		return 0.0;
-	}
- 	int crewMax = sti(RealShips[iShip].MaxCrew);
- 	int crewOpt = sti(RealShips[iShip].OptCrew);//boal
- 	if (crewMax < crewQ) crewQ  = crewMax; // boal
-	//if(crewQ < crewMin) fRollSpeed *= makefloat(crewQ)/makefloat(2*crewMin);
-	//fRollSpeed = fRollSpeed * (0.5 + makefloat(crewQ)/makefloat(2*crewMax)); // уменьшение скорости разворота от команды
-	//fRollSpeed = fRollSpeed * makefloat(crewQ)/makefloat(crewMax);
-	// опыт матросов
-	float  fExp;
-
-	if (crewOpt <= 0) crewOpt = 0; // fix для профилактики деления на ноль
-
-	fExp = 0.05 + stf(GetCrewExp(chref, "Sailors") * crewQ) / stf(crewOpt * GetCrewExpRate());
-	if (fExp > 1) fExp = 1;
-	fRollSpeed = fRollSpeed * fExp;
-	// мораль
-	float  fMorale = stf(stf(GetCharacterCrewMorale(chref)) / MORALE_MAX);
-	fRollSpeed = fRollSpeed * (0.7 + fMorale / 2.0);
-
-	if (iArcadeSails != 1)
-	{
-		fRollSpeed = fRollSpeed / 2.5;
-	}
-	if(CheckOfficersPerk(chref, "SailsMan"))
-	{
-		fRollSpeed = fRollSpeed * 1.1; // 10 процентов
-	}
-	if (CheckAttribute(&RealShips[iShip],"Tuning.SailsSpecial")) fRollSpeed = fRollSpeed * 1.25;
-	return fRollSpeed;
 }
 
 ref BI_GetLandData()

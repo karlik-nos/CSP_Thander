@@ -69,6 +69,7 @@ void Andre_Abel_Quest_Battle_With_Pirates_Squadron(string sQuest)	// Выпол�
 {
 	Log_TestInfo("Сгенерилась пиратская эскадра.");
 	ref rChar;
+	int iShipClass;
 	string sName, sLastName, sModel, sShipName;
 	PChar.Quest.Andre_Abel_Quest_Andre_Is_Dead.over = "yes";
 	Group_FindOrCreateGroup("Andre_Abel_Quest_Pirates_Ships");
@@ -100,7 +101,10 @@ void Andre_Abel_Quest_Battle_With_Pirates_Squadron(string sQuest)	// Выпол�
 
 		rChar = GetCharacter(NPC_GenerateCharacter("Andre_Abel_Quest_Pirate_" + i, sModel, "man", "man", 15, PIRATE, -1, true));
 		FantomMakeCoolFighter(rChar, 35, 40, 35, "blade24", "pistol3", 10);
-		FantomMakeCoolSailor(rChar, RandShipFromShipClass(PChar), sShipName, CANNON_TYPE_CANNON_LBS24, 75, 70, 65);
+		iShipClass = sti(RealShips[sti(pchar.Ship.Type)].Class);
+		if (iShipClass > 5) iShipClass = 5;//фикс тартановодов
+		FantomMakeCoolSailor(rChar, GetShipTypeExt(iShipClass, iShipClass, "war", -1), sShipName, CANNON_TYPE_CANNON_LBS24, 75, 70, 65);
+		Fantom_SetCannons(rChar, "pirate");//Заменяем пушки на подходящие кораблю
 		rChar.name = sName;
 		rChar.Lastname = sLastName;
 		//rChar.Abordage.Enable = false;

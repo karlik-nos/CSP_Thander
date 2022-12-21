@@ -35,7 +35,6 @@ int FindBetterFoodFromChr(ref chref, ref arFind)
 
 bool EnableFoodUsing(ref mc, aref arItm)
 {
-	bool bEnableUse = false;
 	if(CheckAttribute(arItm,"Food.energy") && !CheckAttribute(mc,"chr_ai.noeat"))
 	{
 		if(LAi_GetCharacterEnergy(mc) < LAi_GetCharacterMaxEnergy(mc))
@@ -69,9 +68,6 @@ bool EnableFoodUsing(ref mc, aref arItm)
 
 		}
 	}
-
-
-
 	return false;
 }
 
@@ -442,6 +438,56 @@ int FindItem(string sItemID)
 	return NativeFindCharacter(&Items, GetOriginalItem(sItemID));
 }
 
+int BookReadTime(string sBook) //книги, расчёт длительности - Gregg
+{
+	int intel = GetCharacterSPECIALSimple(pchar, SPECIAL_I);
+	int time = 0;
+
+	if (HasSubStr(sBook, "book1_")) time = 4;
+	if (HasSubStr(sBook, "book2_")) time = 7;
+	if (HasSubStr(sBook, "book3_")) time = 15;
+	if (HasSubStr(sBook, "book4_")) time = 30;
+
+	return makeint(time * (1 + ((10 - intel) * 0.285)));
+}
+
+int BookBonus(string sBook)
+{
+	if (HasSubStr(sBook, "book1_")) return 800;
+	if (HasSubStr(sBook, "book2_")) return 1500;
+	if (HasSubStr(sBook, "book3_")) return 3500;
+	if (HasSubStr(sBook, "book4_")) return 7500;
+	return 0;
+}
+
+void TryReadBook()
+{
+	if (!CheckAttribute(pchar, "equip.book")) return;
+
+	string sBook = pchar.equip.book;
+	pchar.books.(sBook) = sti(pchar.books.(sBook)) - 1;
+
+	if (sti(pchar.books.(sBook)) <= 0)
+	{
+		aref arItm;
+		if (Items_FindItem(sBook, &arItm) < 0) return;
+
+		AddCharacterExpToSkill(pchar, arItm.skill, BookBonus(sBook));
+		int idLngFile = LanguageOpenFile("ItemsDescribe.txt");
+		Log_Info(GetFullName(pchar) + " изучил книгу '" + LanguageConvertString(idLngFile, arItm.name) + "' и увеличил навык '" + XI_ConvertString(arItm.skill) + "'");
+		LanguageCloseFile(idLngFile);
+
+		RemoveCharacterEquip(pchar, BOOK_ITEM_TYPE);
+		RemoveItems(pchar, sBook, 1);
+
+		pchar.questTemp.bookcount = sti(pchar.questTemp.bookcount) + 1;
+		// Открываем достижения
+		if(sti(pchar.questTemp.bookcount) >= 3) UnlockAchievement("books", 1);
+		if(sti(pchar.questTemp.bookcount) >= 6) UnlockAchievement("books", 2);
+		if(sti(pchar.questTemp.bookcount) >= 10) UnlockAchievement("books", 3);
+	}
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //	Warship 08.05.09 НОВАЯ СИСТЕМА ПРЕДМЕТОВ -->
 //      Ugeen --> 10.02.10 добавлена первичная генерация предметов и выбор из массива сгенерированных предметов
@@ -562,6 +608,7 @@ int CalculateBladePrice(string fencingType, float dmg_min, float dmg_max, float 
 		break;
 	}
 
+	if (weight == 0.0) return 0; //вещи с нулевым весом квестовые и стоить должны нисколько
 	return sti(priceMod * dmg_min * dmg_max / weight);
 }
 
@@ -764,7 +811,12 @@ bool IsBlade(String _itemID)
 /////////////////////// ==> Items-методы
 int GetItemIndex(string _ItemID)
 {
-	return FindItem(_ItemID);
+	int result = FindItem(_ItemID);
+	if (result < 0)
+	{
+		trace("Item not found: " + _ItemID);
+	}
+	return result;
 }
 
 ref ItemsFromID(string _Items)
@@ -870,7 +922,7 @@ void QuestCheckEnterLocItem(aref _location, string _locator) /// <<<провер
 			if (pchar.sex == "Skeleton" && GetCharacterEquipSuitID(pchar)!= "suit_1")
 			{
 				sTemp = "skel_"+(rand(3)+1);
-				sld = GetCharacter(NPC_GenerateCharacter("Skelet_Drug", sTemp, "skeleton", "skeleton", 3, PIRATE, -1, true));
+				sld = GetCharacter(NPC_GenerateCharacter("Skelet_Drug", sTemp, "skeleton", "skeleton", sti(pchar.rank), PIRATE, -1, true));
 				LAi_SetActorType(sld);
 				PlaceCharacter(sld, "monsters", PChar.location);
 				LAi_ActorDialog(sld, pchar, "", -1, 0);
@@ -884,13 +936,13 @@ void QuestCheckEnterLocItem(aref _location, string _locator) /// <<<провер
 					sld.quest.crew = "true";
 					sld.quest.crew.qty = 10+rand(14)+(GetSummonSkillFromNameToOld(GetMainCharacter(),SKILL_LEADERSHIP) * 8); // WW 10-24 + 6-60 = 16-84 от авторитета
 					sld.quest.crew.type = rand(2);
-					sld.quest.crew.money = (30+rand(2)*10+rand(50))*(1+(sti(Pchar.rank)/4))+rand(100);	//Для нежити дешевле
+					sld.quest.crew.money = ((rand(4)+1))*(1+(sti(Pchar.rank)/4))+rand(100);	//Для нежити дешевле
 				}
 				bMonstersGen = true; //флаг генерации скелетов
-				for (i=1; i<=15; i++)
+				for (i=1; i<=16; i++)
 				{
 				sTemp = "skel_"+(rand(3)+1);
-				sld = GetCharacter(NPC_GenerateCharacter("Skelet_Drug_"+i, sTemp, "skeleton", "skeleton", 3, PIRATE, -1, true));
+				sld = GetCharacter(NPC_GenerateCharacter("Skelet_Drug_"+i, sTemp, "skeleton", "skeleton", sti(pchar.rank), PIRATE, -1, true));
 				PlaceCharacter(sld, "monsters", "random_free");
 				LAi_SetWarriorType(sld);
 				sld.lifeday = 0;

@@ -269,7 +269,7 @@ int InitItems()
 
 	makeref(itm,Items[n]);
 	itm.id = "Dozor_Storm";
-	itm.groupID = IDOLS_RIGHT_ITEM_TYPE;
+	itm.groupID = IDOLS_LEFT_ITEM_TYPE;
 	itm.name = "itmname_Dozor_Storm";
 	itm.describe = "itmdescr_Dozor_Storm";
 	itm.model = "";
@@ -2555,7 +2555,7 @@ int InitItems()
 	itm.picIndex = 11;
 	itm.picTexture = "ITEMS_14";
 	itm.price = 4900;
-	itm.Weight = 12.0;
+	itm.Weight = 22.0;
 	itm.dmg_min = 60.0;
 	itm.dmg_max = 140.0;
 	itm.piercing = 110.0;
@@ -3417,6 +3417,7 @@ int InitItems()
 	itm.picTexture = "ITEMS_12";
 	itm.price = 0;
 	itm.Weight = 0.1;
+	itm.ItemType = "QUESTITEMS";
 	n++;
 
     // eddy торговые грамоты <--
@@ -4940,6 +4941,22 @@ int InitItems()
 	itm.price = (rand(8)+7)*1200;
 	itm.Weight = 0.2;
 	itm.imageTga = "panama";
+	itm.imageType = "";
+	itm.MapIsland = "";
+	itm.ItemType = "MAP";
+	n++;
+
+	makeref(itm,Items[n]);
+	itm.id = "map_Bahames";
+	itm.groupID = MAPS_ITEM_TYPE;
+	itm.name = "itmname_map_Bahames";
+	itm.describe = "itmdescr_map_Bahames";
+	itm.model = "";
+	itm.picIndex = 12;
+	itm.picTexture = "ITEMS_20";
+	itm.price = (rand(8)+9)*1250;
+	itm.Weight = 0.2;
+	itm.imageTga = "Bahames";
 	itm.imageType = "";
 	itm.MapIsland = "";
 	itm.ItemType = "MAP";
@@ -7356,8 +7373,6 @@ int InitItems()
 	itm.model = "sapphire";
 	itm.picIndex = 10;
 	itm.picTexture = "ITEMS_9";
-//	itm.shown = false;
-	// boal 19.01.2004 -->
 	itm.price = 50;
 	itm.Weight = 2;
 
@@ -7380,7 +7395,6 @@ int InitItems()
     itm.Solder.rare = 0.01
     itm.Solder.min = 1;
     itm.Solder.max = 1;
-    // boal 19.01.2004 <--
 	itm.minlevel = 1;
 	itm.rare = 0.05;
 	n++;
@@ -7393,15 +7407,11 @@ int InitItems()
 	itm.model = "pursel";
 	itm.picIndex = 11;
 	itm.picTexture = "ITEMS_7";
-//	itm.shown = false;
-	// boal 19.01.2004 -->
 	itm.price = 75;
 	itm.Weight = 2;
-
     itm.Monster.rare = 0.005;
     itm.Monster.min = 1;
     itm.Monster.max = 1;
-    // boal 19.01.2004 <--
 	itm.minlevel = 1;
 	itm.rare = 0.001;
 	n++;
@@ -9247,13 +9257,13 @@ int InitItems()
 	InitGunExt(		 "pistol7shotgun", "t1", "grapeshot",       "12_gauge",  80.0, 200.0,  50.0, 180.0,  0.0,  0.0, 0, 1, 1, 2, 1, 1, 80, 52, 1);
 	InitGunExt(		 "pistol7shotgun", "t2", 	"bullet",       "12_gauge", 100.0, 300.0, 100.0, 300.0,  0.0,  0.0, 1, 0, 0, 2, 0, 0, 80, 52, 0);
 	InitGunExt(		 "pistol8", "t1", 	     "grapeshot",      "gunpowder",  50.0, 100.0,  50.0, 100.0,  5.0,  5.0, 1, 1, 1, 0, 1, 1, 50, 20, 1);
-	InitGunExt(		 "pistol8", "t2", 		   "harpoon",      "gunpowder", 150.0, 250.0, 150.0, 250.0,  20.0, 20.0,0, 1, 0, 0, 0, 0, 20, 35, 0);
-	InitGunExt(		 "pistol8", "t3", 		  "GunEchin",               "", 120.0, 220.0, 120.0, 220.0,  20.0, 20.0,0, 1, 1, 0, 0, 0, 20, 30, 0);
+	InitGunExt(		 "pistol8", "t2", 		   "harpoon",      "gunpowder", 150.0, 250.0, 150.0, 250.0,  20.0, 20.0,0, 1, 0, 0, 0, 0, 60, 30, 0);
+	InitGunExt(		 "pistol8", "t3", 		  "GunEchin",               "", 120.0, 220.0, 120.0, 220.0,  20.0, 20.0,0, 1, 1, 0, 0, 0, 40, 25, 0);
 	InitGunExt(		 "pistol9", "t1", 	     "cartridge",               "",  50.0, 160.0,  40.0, 140.0,  0.0,  0.0, 1, 0, 0, 0, 0, 0, 45, 25, 0);
 	InitGunExt(		 "pistol9", "t2", 		    "bullet",      "gunpowder",  50.0, 160.0,  40.0, 140.0,  0.0,  0.0, 1, 0, 0, 0, 0, 0, 45, 50, 1);
 	InitGunExt( 	 "pistol_grapebok", "t1","grapeshot",      "gunpowder",  30.0, 110.0,  30.0, 110.0,  0.0,  0.0, 0, 1, 1, 0, 1, 1, 40, 40, 1);
-	InitGunExt(		 "howdah", "t1",         "grapeshot",      "gunpowder",  50.0,  85.0,  40.0,  70.0,  5.0,  5.0, 1, 1, 1, 0, 0, 1, 50, 40, 1);
-    InitGunExt(		 "howdah", "t2",          "GunEchin",               "", 115.0, 215.0, 115.0, 215.0,  20.0, 20.0,0, 1, 1, 0, 0, 0, 20, 60, 0);
+	InitGunExt(		 "howdah", "t1",         "grapeshot",      "gunpowder",  50.0,  85.0,  40.0,  70.0,  5.0,  5.0, 1, 1, 1, 0, 0, 1, 45, 35, 1);
+    InitGunExt(		 "howdah", "t2",          "GunEchin",               "", 115.0, 215.0, 115.0, 215.0,  20.0, 20.0,0, 1, 1, 0, 0, 0, 35, 45, 0);
 
 	InitGunExt(		"mushket", "t1", 	             "cartridge",               "", 100.0, 150.0, 100.0, 150.0,  0.0,  0.0, 1, 0, 0, 0, 0, 0,  80,  20, 0);
 	InitGunExt(		"mushket", "t2", 		            "bullet",      "gunpowder", 100.0, 150.0, 100.0, 150.0,  0.0,  0.0, 1, 0, 0, 0, 0, 0,  80,  40, 1);

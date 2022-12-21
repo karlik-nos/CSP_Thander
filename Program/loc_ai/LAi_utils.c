@@ -309,6 +309,8 @@ float LAi_GetCharacterLuckLevel(aref character)
 //Применить повреждение к персонажу
 void LAi_ApplyCharacterDamage(aref chr, int dmg)
 {
+	if(CheckAttribute(chr, "chr_ai.type.bottle"))
+		chr.chr_ai.type.bottle = 0;
 	float damage    = MakeFloat(dmg);
 	bool  bIsOfficer = false;
 	//Офицерам ослабляем поврежрение
@@ -467,7 +469,7 @@ void LAi_CheckKillCharacter(aref chr)
 				if (sti(chr.index) == GetMainCharacterIndex())
 				{
 					chr.chr_ai.hp =  hitpoints;
-					Log_Info("Судьба дает вам второй шанс!");
+					Log_Info("Судьба даёт вам второй шанс!");
 					PlaySound("interface\heartbeat.wav");
 					//Сюда можно поставить юз звука
 					return;
@@ -508,7 +510,7 @@ void LAi_CheckKillCharacter(aref chr)
 
 		chr.chr_ai.hp = 0.0;
 		// boal dead can be searched 14.12.2003 -->
-		Dead_AddLoginedCharacter(chr); // записали еще живого в список трупов
+		Dead_AddLoginedCharacter(chr); // записали ещё живого в список трупов
 		// boal dead can be searched 14.12.2003 <--
 		SetCharacterTask_Dead(chr);
 		Postevent(EVENT_CHARACTER_DEAD, 1, "a", chr);
@@ -671,6 +673,20 @@ ref LAi_CreateFantomCharacterEx(string model, string ani, string group, string l
 	}
 	LAi_AddLoginedCharacter(chr);
 	// boal del lag Event("Fantom_FillSkills", "a", chr);
+	if (IsCharacterPerkOn(chr, "Ciras") && rand(4)==0)
+	{
+		string cirnum;
+		switch (rand(4))
+		{
+			case 0: cirnum = "cirass1"; break;
+			case 1: cirnum = "cirass1"; break;
+			case 2: cirnum = "cirass2"; break;
+			case 3: cirnum = "cirass3"; break;
+			case 4: cirnum = "cirass4"; break;
+		}
+		chr.cirassId = Items_FindItemIdx(cirnum);
+		Log_TestInfo("Персонаж "+chr.name+" получил кирасу "+cirnum);
+	}
 	if(!CreateCharacter(chr))
 	{
 		Trace("LAi_CreateFantomCharacter -> CreateCharacter return false");
@@ -692,30 +708,6 @@ ref LAi_CreateFantomCharacterEx(string model, string ani, string group, string l
 	if(SendMessage(chr, "lss", MSG_CHARACTER_ENTRY_TO_LOCATION, group, locator) == false)
 	{
 		Trace("LAi_CreateFantomCharacter -> can't teleportation character to <" + group + "::" + locator + ">");
-	}
-	if (IsCharacterPerkOn(chr, "Ciras") && rand(4)==0)
-	{
-		string cirnum;
-		switch (rand(4))
-		{
-			case 0: cirnum = "cirass1"; break;
-			case 1: cirnum = "cirass1"; break;
-			case 2: cirnum = "cirass2"; break;
-			case 3: cirnum = "cirass3"; break;
-			case 4: cirnum = "cirass4"; break;
-		}
-		if (CheckAttribute(chr, "HeroModel")) // все, у кого есть что одеть
-        {
-			switch (cirnum)
-			{
-				case "cirass1": chr.model = GetSubStringByNum(chr.HeroModel, 1); break;
-				case "cirass2": chr.model = GetSubStringByNum(chr.HeroModel, 2); break;
-				case "cirass3": chr.model = GetSubStringByNum(chr.HeroModel, 3); break;
-				case "cirass4": chr.model = GetSubStringByNum(chr.HeroModel, 4); break;
-			}
-		}
-		chr.cirassId = Items_FindItemIdx(cirnum);
-		Log_TestInfo("Персонаж "+chr.name+" получил кирасу "+cirnum);
 	}
 	return chr;
 }
@@ -904,8 +896,8 @@ void LAi_SetHuberSitAnimation(aref chr)
 object LAi_QuestFader;
 void LAi_Fade(string questFadeOut, string questFadeIn)
 {
-	if(questFadeOut != "") LAi_QuestDelay(questFadeOut, 0.5);
-	if(questFadeIn != "") LAi_QuestDelay(questFadeIn, 1.0);
+	if(questFadeOut != "") LAi_QuestDelay(questFadeOut, 0.55);
+	if(questFadeIn != "") LAi_QuestDelay(questFadeIn, 1.10);
 
 	if(IsEntity(&LAi_QuestFader))
 	{
@@ -1098,7 +1090,7 @@ void Dead_AddLoginedCharacter(aref chr)
                 //TakeNItems(chref, "Coins", Rand(9) + 3);
                 // обыск скелетов давал вылет, даем сразу в ГГ
                 TakeNItems(pchar, "Coins", Rand(9) + 3);
-                Log_Info("Собраны черные жемчужины");
+                Log_Info("Собраны чёрные жемчужины");
 		    }
 		    else
 		    // матрос с ЧЖ <--
@@ -1402,6 +1394,8 @@ bool LAi_CheckLocatorFree(string _group, string _locator)
 	if(!CheckAttribute(loadedLocation, at)) return false;
 	aref grp;
 	makearef(grp, loadedLocation.(at));
+	if (!CheckAttribute(grp, "x") || CheckAttribute(grp, "y" || CheckAttribute(grp, "z")))
+		trace("ERROR: cannot find xyz position for '" + at + "'")
 	float lx = stf(grp.x);
 	float ly = stf(grp.y);
 	float lz = stf(grp.z);
@@ -1531,24 +1525,22 @@ void MakeBloodingAttack(aref enemy, aref attacked, float coeff) // Кровот�
 void MakeSwiftAttack(aref enemy, aref attacked, float coeff) // Резкий удар
 {
 	float Swift = 0.0;
+	enemy.chr_ai.curen = stf(enemy.chr_ai.energy);
 	if(CheckAttribute(enemy, "chr_ai.Swift"))
 	{
 		Swift = stf(enemy.chr_ai.Swift);
 		if(Swift < 1.0) Swift = 1.0;
-		enemy.chr_ai.Swift = Swift + (1+rand(4)+coeff);
 	}
-	else
-	{
-		enemy.chr_ai.curen = stf(enemy.chr_ai.energy);
-		enemy.chr_ai.Swift = Swift + (1+rand(4)+coeff);
-	}
+	enemy.chr_ai.Swift = Swift + (1+rand(4)+coeff); // Продолжительность 1+(от 0 до 4)+коэфф
 	FXMarkCharacter(enemy,"FX_StanS");
+
 	//if(stf(enemy.chr_ai.Swift) > 200.0) enemy.chr_ai.Swift = 200.0;
 }
 
 void MushketStun(aref enemy) // Мушкетный стан - Gregg
 {
 	LAi_LockFightMode(enemy, true);
+	if(enemy.chr_ai.type == "officer") enemy.chr_ai.backuptype = enemy.chr_ai.type; // фикс слета группы у офицеров из-за двойного стана
 	LAi_SetActorTypeNoGroup(enemy);
 	float understun = 0.0;
 	if(CheckAttribute(enemy, "chr_ai.understun"))

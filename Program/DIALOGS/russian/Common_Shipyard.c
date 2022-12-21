@@ -1,6 +1,4 @@
 // boal 08/04/06 общий диалог верфи
-string Tun_Name1_Goods[8] = {"Mahogany","Planks","Silk","Linen","Cotton","Sandal","Leather","Ebony"};
-string Tun_Name2_Items[8] = {"jewelry17","jewelry9","jewelry2","jewelry3","jewelry4","jewelry5","jewelry1","icollection"};
 string sProf;
 #include "DIALOGS\russian\Rumours\Common_rumours.c"  //homo 25/06/06
 void ProcessDialogEvent()
@@ -89,9 +87,9 @@ void ProcessDialogEvent()
 		}
 		switch (iClass)
 		{
-			case 6: RealShips[sti(compref.Ship.Type)].HullArmor = 12+(rand(1)*hullarmor); break;
-			case 5: RealShips[sti(compref.Ship.Type)].HullArmor = 16+(rand(1)*hullarmor); break;
-			case 4: RealShips[sti(compref.Ship.Type)].HullArmor = 20+(rand(2)*hullarmor); break;
+			case 6: RealShips[sti(compref.Ship.Type)].HullArmor = 8+(rand(1)*hullarmor); break;
+			case 5: RealShips[sti(compref.Ship.Type)].HullArmor = 12+(rand(1)*hullarmor); break;
+			case 4: RealShips[sti(compref.Ship.Type)].HullArmor = 16+(rand(2)*hullarmor); break;
 			case 3: RealShips[sti(compref.Ship.Type)].HullArmor = 24+(rand(2)*hullarmor); break;
 			case 2: RealShips[sti(compref.Ship.Type)].HullArmor = 32+(rand(2)*hullarmor); break;
 			case 1: RealShips[sti(compref.Ship.Type)].HullArmor = 42+(rand(2)*hullarmor); break;
@@ -181,36 +179,6 @@ void ProcessDialogEvent()
 			}
 			else
 			{
-				//--->> квест украсть чертёж на верфи
-				//дача квеста
-				if (rand(1) && pchar.questTemp.different == "free" && GetNpcQuestPastDayWOInit(npchar, "questShipyardsMap") > 7 && !CheckAttribute(pchar, "questTemp.different.ShipyardsMap") && GetSummonSkillFromName(pchar, SKILL_SNEAK) > 25)
-				{
-					dialog.text = "Послушайте, у меня есть к вам одно важное дело. Надеюсь, сумеете мне помочь...";
-					link.l1 = "Давайте послушаем, что за дело.";
-					link.l1.go = "ShipyardsMap_1";
-					SaveCurrentNpcQuestDateParam(npchar, "questShipyardsMap");
-					break;
-				}
-				//<<--- квест украсть чертёж на верфи
-				/* автор - Jason (BlackMark Studio); перенос в CSP - Nathaniel ---------- */
-				/* 12.03.21 ------------------------------------------------------------- */
-				if (drand(4) == 2 && !CheckAttribute(pchar, "GenQuest.Findship.Shipyarder"))
-				{
-					if (!CheckAttribute(npchar, "Findship") || GetNpcQuestPastDayParam(npchar, "Findship") >= 20)
-					{
-						SelectFindship_ShipType(); //выбор типа корабля
-						pchar.GenQuest.Findship.Shipyarder.ShipBaseName = GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.Findship.Shipyarder.ShipType), "Name") + ""));
-						pchar.GenQuest.Findship.Shipyarder.City = npchar.city; //город квестодателя
-						dialog.text = "Да, у меня есть проблема, требующая решения. Мне поступил заказ. Моему клиенту как можно скорее требуется " + pchar.GenQuest.Findship.Shipyarder.ShipBaseName + ". Однако у меня на верфи сейчас такого корабля нет, сделать его за два месяца у меня тоже нет возможности\nЕсли вы сможете доставить мне такой корабль, я буду весьма вам благодарен и заплачу сумму, в полтора раза превышающую его продажную стоимость.";
-						link.l1 = "Мне это не интересно.";
-						link.l1.go = "Findship_exit";
-						link.l2 = "Интересное предложение!";
-						link.l2.go = "Findship";
-						SaveCurrentNpcQuestDateParam(npchar, "Findship");
-						break;
-					}
-				}
-
 				dialog.Text = pcharrepphrase("А, это опять ты? Ну да ладно, деньги не пахнут.",
 										TimeGreeting() + ", чем я могу помочь вам, " + GetAddress_Form(NPChar) + "?");
 				Link.l1 = pcharrepphrase("Вот-вот, я плачу - ты делаешь.",
@@ -272,6 +240,10 @@ void ProcessDialogEvent()
 				}
 				Link.l2 = "Я только хочу поговорить.";
 				Link.l2.go = "quests"; //(перессылка в файл города)
+
+				link.l15 = "Я лишь хотел"+ GetSexPhrase("","а") +" узнать, нет ли у вас работы, подходящей для меня? ";
+				link.l15.go = "AskQuest";
+
 				// -->
 				if (CheckAttribute(pchar, "GenQuest.LoanChest.TakeChest") && sti(pchar.GenQuest.LoanChest.TargetIdx) == sti(NPChar.index))
 				{
@@ -328,6 +300,43 @@ void ProcessDialogEvent()
 			}
 		break;
 
+		case "AskQuest":
+				//--->> квест украсть чертёж на верфи
+				if (rand(1) && pchar.questTemp.different == "free" && GetNpcQuestPastDayWOInit(npchar, "questShipyardsMap") > 7 && !CheckAttribute(pchar, "questTemp.different.ShipyardsMap") && GetSummonSkillFromName(pchar, SKILL_SNEAK) > 25)
+				{
+					dialog.text = "Послушайте, у меня есть к вам одно важное дело. Надеюсь, сумеете мне помочь...";
+					link.l1 = "Давайте послушаем, что за дело.";
+					link.l1.go = "ShipyardsMap_1";
+					SaveCurrentNpcQuestDateParam(npchar, "questShipyardsMap");
+					break;
+				}
+
+				/* автор - Jason (BlackMark Studio); перенос в CSP - Nathaniel ---------- */
+				if (drand(4) == 2 && !CheckAttribute(pchar, "GenQuest.Findship.Shipyarder"))
+				{
+					if (!CheckAttribute(npchar, "Findship") || GetNpcQuestPastDayParam(npchar, "Findship") >= 20)
+					{
+						SelectFindship_ShipType(); //выбор типа корабля
+						pchar.GenQuest.Findship.Shipyarder.ShipBaseName = GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.Findship.Shipyarder.ShipType), "Name") + ""));
+						pchar.GenQuest.Findship.Shipyarder.City = npchar.city; //город квестодателя
+						dialog.text = "Да, у меня есть проблема, требующая решения. Мне поступил заказ. Моему клиенту как можно скорее требуется " + pchar.GenQuest.Findship.Shipyarder.ShipBaseName + ". Однако у меня на верфи сейчас такого корабля нет, сделать его за два месяца у меня тоже нет возможности\nЕсли вы сможете доставить мне такой корабль, я буду весьма вам благодарен и заплачу сумму, в полтора раза превышающую его продажную стоимость.";
+						link.l1 = "Интересное предложение!";
+						link.l1.go = "Findship";
+						link.l2 = "Мне это не интересно.";
+						link.l2.go = "Findship_exit";
+						SaveCurrentNpcQuestDateParam(npchar, "Findship");
+						break;
+					}
+				}
+
+				dialog.Text = "Ну, удивили! Сюда же ко мне за помощью все приходят... Вы уверены, что вашему судну не нужен ремонт?";
+				link.l1 = pcharrepphrase("Это верно, я плачу - ты делаешь.",
+										"Мне и правда нужно воспользоваться услугами верфи.");
+				link.l1.go = "Shipyard";
+				link.l2	= "Не в этот раз, прощайте.";
+				link.l2.go = "exit";
+		break;
+
 		case "Meeting":
 				dialog.Text = "Хорошо, я рад встрече с новым клиентом. Моя верфь к вашим услугам.";
 				Link.l1 = "Великолепно, " + GetFullName(NPChar) + ". Давайте посмотрим то, что вы можете мне предложить.";
@@ -345,6 +354,9 @@ void ProcessDialogEvent()
 				link.l12.go = "SailsGerald";
 				Link.l2 = "Я только хочу поговорить.";
 				link.l2.go = "quests";
+
+				link.l15 = "Я лишь хотел"+ GetSexPhrase("","а") +" узнать, нет ли у вас работы, подходящей для меня? ";
+				link.l15.go = "AskQuest";
 				// -->
 				if (CheckAttribute(pchar, "GenQuest.LoanChest.TakeChest") && sti(pchar.GenQuest.LoanChest.TargetIdx) == sti(NPChar.index))
 				{
@@ -1147,42 +1159,42 @@ void ProcessDialogEvent()
 						dialog.text = "Да, этот чертёж имеет определённую ценность. Я готов заплатить вам за него " + FindRussianMoneyString(1500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ". Оплату произведу серебряными слитками. Не возражаете?";
 						link.l1 = "Нет, конечно! Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
-						NPChar.reputation = sti(NPChar.reputation) + 1;
+						NPChar.reputation = sti(NPChar.reputation) + 2;
 						TakeNItems(pchar, "jewelry17", makeint(1500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)/100));
 					break;
 					case 2:
 						dialog.text = "Да, этот чертёж имеет определённую ценность. Я готов заплатить вам за него " + FindRussianMoneyString(3000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ". Оплату произведу золотыми слитками. Не возражаете?";
 						link.l1 = "Нет, конечно! Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
-						NPChar.reputation = sti(NPChar.reputation) + 1;
+						NPChar.reputation = sti(NPChar.reputation) + 2;
 						TakeNItems(pchar, "jewelry5", makeint(3000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)/200));
 					break;
 					case 3:
 						dialog.text = "Да, этот чертёж имеет определённую ценность. Я готов заплатить вам за него " + FindRussianMoneyString(4500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ".";
 						link.l1 = "Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
-						NPChar.reputation = sti(NPChar.reputation) + 1;
+						NPChar.reputation = sti(NPChar.reputation) + 2;
 						AddMoneyToCharacter(pchar, 4500 * GetCharacterSPECIALSimple(PChar, SPECIAL_L));
 					break;
 					case 4:
 						dialog.text = "Да, этот чертёж имеет значительную ценность. Я готов заплатить вам за него " + FindRussianMoneyString(6000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L)) + ".";
 						link.l1 = "Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
-						NPChar.reputation = sti(NPChar.reputation) + 1;
+						NPChar.reputation = sti(NPChar.reputation) + 2;
 						AddMoneyToCharacter(pchar, 6000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L));
 					break;
 					case 5:
 						dialog.text = "О! Это очень, очень ценный чертёж! Я готов заплатить вам за него 60 000 золотом. Оплату произведу кредитными сундуками. Не возражаете?";
 						link.l1 = "Нет, конечно! Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
-						NPChar.reputation = sti(NPChar.reputation) + 2;
+						NPChar.reputation = sti(NPChar.reputation) + 5;
 						TakeNItems(pchar, "chest", 4);
 					break;
 					case 6:
 						dialog.text = "Да, этот чертёж имеет определённую ценность. Правда, денег в наличии у меня сейчас нет, поэтому я могу отдать вам один из сундуков с ремесленными материалами.";
 						link.l1 = "Ну, раз нет ничего другого, то давайте.";
 						link.l1.go = "ShipyardsMapOk_5";
-						NPChar.reputation = sti(NPChar.reputation) + 1;
+						NPChar.reputation = sti(NPChar.reputation) + 2;
 						TakeNItems(pchar, "Chest_Craftsmans", 1);
 						Log_info("Вы получили сундук ремесленника.")
 					break;
@@ -1207,10 +1219,7 @@ void ProcessDialogEvent()
 			AddQuestUserData("ShipyardsMap", "sCity", XI_ConvertString("Colony" + npchar.city + "Gen"));
 			CloseQuestHeader("ShipyardsMap");
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 		break;
 
 		case "ShipyardsMapOk_5":
@@ -1226,10 +1235,7 @@ void ProcessDialogEvent()
 			AddQuestUserData("ShipyardsMap", "iMoney", sti(pchar.questTemp.different.ShipyardsMap.chance)*1000);
 			CloseQuestHeader("ShipyardsMap");
 
-			pchar.questTemp.genquestcount = sti(pchar.questTemp.genquestcount) + 1;
-			if(sti(pchar.questTemp.genquestcount) >= 10) UnlockAchievement("gen_quests", 1);
-			if(sti(pchar.questTemp.genquestcount) >= 20) UnlockAchievement("gen_quests", 2);
-			if(sti(pchar.questTemp.genquestcount) >= 40) UnlockAchievement("gen_quests", 3);
+			AchievementsCounter_genquests(1);
 
 			DeleteAttribute(pchar, "questTemp.different.ShipyardsMap");
 		break;
@@ -1488,9 +1494,9 @@ string checkOrderMatherial(ref NPChar)
 	string sLeft = "";
 	int idLngFile = LanguageOpenFile("ItemsDescribe.txt");
 
-	for (int k=0;k<8;k++)
+	for (int k=1;k<10;k++)
 	{
-		sGood1 = Tun_Name1_Goods[k];
+		sGood1 = g_ShipBermudeTuningGoods[k];
 		amount = GetSquadronGoods(Pchar, FindGood(sGood1)) - sti(NPChar.questtemp.(sGood1));
 		if (amount < 0) amount = amount + sti(NPChar.questtemp.(sGood1)); else amount = sti(NPChar.questtemp.(sGood1));
 		RemoveCharacterGoods(Pchar, FindGood(sGood1), amount);
@@ -1498,7 +1504,7 @@ string checkOrderMatherial(ref NPChar)
 		amount = sti(NPChar.questtemp.(sGood1));
 		if (amount > 0) sLeft += XI_ConvertString(sGood1) + " - " + amount + "шт., ";
 
-		sItem2 = Tun_Name2_Items[k];
+		sItem2 = g_ShipBermudeTuningItems[k];
 		amount = GetCharacterItem(pchar, sItem2) - sti(NPChar.questtemp.(sItem2));
 		if (amount < 0) amount = amount + sti(NPChar.questtemp.(sItem2)); else amount = sti(NPChar.questtemp.(sItem2));
 		TakeNItems(pchar, sItem2, -amount);

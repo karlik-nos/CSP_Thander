@@ -14,6 +14,8 @@ void FillCharactersScroll()
 	int _curCharIdx;
 	ref _refCurChar;
 	aref pRef, pRef2;
+	bool bok1 = false;
+	bool bok2 = false;
 
  	DeleteAttribute(&GameInterface, "CHARACTERS_SCROLL");
 
@@ -46,6 +48,11 @@ void FillCharactersScroll()
 	pRef2.str2 = "#" + pchar.name;
 	pRef2.str3 = "#" + pchar.lastname;
 	if(checkAttribute(pchar, "chr_ai.HeavyTrauma")) pRef2.str4 = "#"+ "Ранен " + (sti(pchar.chr_ai.HeavyTrauma)*24-makeint(environment.time))+" ч"; // инфошка травмы ГГ - Gregg
+	if(checkAttribute(pchar,"perks.FreePoints_self") && sti(pchar.perks.FreePoints_self) > 0) bok1 = true;
+	else bok1 = false;
+	if(checkAttribute(pchar,"perks.FreePoints_ship") && sti(pchar.perks.FreePoints_ship) > 0) bok2 = true;
+	else bok2 = false;
+	if(bok1 || bok2) pRef2.str6 = "#"+ "*";
 	//pRef2.str4 = "#" + pchar.quest.OfficerPrice;
 	pRef2.str5 = "#" + pchar.rank;
 
@@ -85,6 +92,7 @@ void FillCharactersScroll()
 		_curCharIdx = sti(pRef.(PsgAttrName));
 		if(_curCharIdx!=-1)
 		{
+			ReplaceTreasureMapPartCopies(GetCharacter(_curCharIdx), PChar);
 			GameInterface.CHARACTERS_SCROLL.(attributeName).character = _curCharIdx;
 			GameInterface.CHARACTERS_SCROLL.(attributeName).img1 = GetFacePicName(GetCharacter(_curCharIdx));
 			GameInterface.CHARACTERS_SCROLL.(attributeName).tex1 = FindFaceGroupNum("CHARACTERS_SCROLL.ImagesGroup","FACE128_"+Characters[_curCharIdx].FaceID);
@@ -93,6 +101,11 @@ void FillCharactersScroll()
 			//pRef2.str4 = "#" + Characters[_curCharIdx].quest.OfficerPrice;
 			pRef2.str5 = "#" + Characters[_curCharIdx].rank;
 			if(checkAttribute(&Characters[_curCharIdx], "HPminusDaysNeedtoRestore")) pRef2.str4 = "#"+ "Ранен " + (sti(Characters[_curCharIdx].HPminusDaysNeedtoRestore)-sti(Characters[_curCharIdx].HPminusDays))+"д"; // инфошка контузии - Gregg
+			if(checkAttribute(&Characters[_curCharIdx],"perks.FreePoints_self") && sti(Characters[_curCharIdx].perks.FreePoints_self) > 0) bok1 = true;
+			else bok1 = false;
+			if(checkAttribute(&Characters[_curCharIdx],"perks.FreePoints_ship") && sti(Characters[_curCharIdx].perks.FreePoints_ship) > 0) bok2 = true;
+			else bok2 = false;
+			if(bok1 || bok2) pRef2.str6 = "#"+ "*";
 		}
 		else
 		{
@@ -138,9 +151,15 @@ void FillCharactersScroll()
 			//pRef2.str4 = "#" + Characters[_curCharIdx].quest.OfficerPrice;
 			pRef2.str5 = "#" + Characters[_curCharIdx].rank;
 			if(checkAttribute(&Characters[_curCharIdx], "HPminusDaysNeedtoRestore")) pRef2.str4 = "#"+ "Ранен " + (sti(Characters[_curCharIdx].HPminusDaysNeedtoRestore)-sti(Characters[_curCharIdx].HPminusDays))+"д"; // инфошка контузии - Gregg
+			if(checkAttribute(&Characters[_curCharIdx],"perks.FreePoints_self") && sti(Characters[_curCharIdx].perks.FreePoints_self) > 0) bok1 = true;
+			else bok1 = false;
+			if(checkAttribute(&Characters[_curCharIdx],"perks.FreePoints_ship") && sti(Characters[_curCharIdx].perks.FreePoints_ship) > 0) bok2 = true;
+			else bok2 = false;
+			if(bok1 || bok2) pRef2.str6 = "#"+ "*";
 		}
 		else
 		{
+			if (k!=z) continue;//только один пустой слот абордага в конце списка
 			GameInterface.CHARACTERS_SCROLL.(attributeName).character = "0";
 			GameInterface.CHARACTERS_SCROLL.(attributeName).img1 = "face";//"FACE128_" + PsgAttrName;
 			GameInterface.CHARACTERS_SCROLL.(attributeName).tex1 = FindFaceGroupNum("CHARACTERS_SCROLL.ImagesGroup","FACE128_"+PsgAttrName);
@@ -177,6 +196,11 @@ void FillCharactersScroll()
 					//pRef2.str4 = "#" + sti(Characters[_curCharIdx].quest.convoyquest.money);
 				}
 				if(checkAttribute(&Characters[_curCharIdx], "HPminusDaysNeedtoRestore")) pRef2.str4 = "#"+ "Ранен " + (sti(Characters[_curCharIdx].HPminusDaysNeedtoRestore)-sti(Characters[_curCharIdx].HPminusDays))+"д"; // инфошка контузии - Gregg
+				if(checkAttribute(&Characters[_curCharIdx],"perks.FreePoints_self") && sti(Characters[_curCharIdx].perks.FreePoints_self) > 0) bok1 = true;
+				else bok1 = false;
+				if(checkAttribute(&Characters[_curCharIdx],"perks.FreePoints_ship") && sti(Characters[_curCharIdx].perks.FreePoints_ship) > 0) bok2 = true;
+				else bok2 = false;
+				if(bok1 || bok2) pRef2.str6 = "#"+ "*";
 				pRef2.str5 = "#" + Characters[_curCharIdx].rank;
 				m++;
 			}
@@ -216,6 +240,11 @@ void FillCharactersScroll()
 				}
 			}
 			if(checkAttribute(&Characters[_curCharIdx], "HPminusDaysNeedtoRestore")) pRef2.str4 = "#"+ "Ранен " + (sti(Characters[_curCharIdx].HPminusDaysNeedtoRestore)-sti(Characters[_curCharIdx].HPminusDays))+"д"; // инфошка контузии - Gregg
+			if(checkAttribute(&Characters[_curCharIdx],"perks.FreePoints_self") && sti(Characters[_curCharIdx].perks.FreePoints_self) > 0) bok1 = true;
+			else bok1 = false;
+			if(checkAttribute(&Characters[_curCharIdx],"perks.FreePoints_ship") && sti(Characters[_curCharIdx].perks.FreePoints_ship) > 0) bok2 = true;
+			else bok2 = false;
+			if(bok1 || bok2) pRef2.str6 = "#"+ "*";
 			m++;
 		}
 		else

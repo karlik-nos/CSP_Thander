@@ -1076,12 +1076,12 @@ void CalculateInfoDataF6()
 	// Квестовые
 	// mc.Ship.Type = GenerateShipExt(SHIP_LUGGERQUEST, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_XEBEKVML, true, mc);
-	// mc.Ship.Type = GenerateShipExt(SHIP_BRIGQEEN, true, mc);
+	mc.Ship.Type = GenerateShipExt(SHIP_BRIGQEEN, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_BRIGSW, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_CLIPPER, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_CORVETTE_QUEST, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_WH_CORVETTE_QUEST, true, mc);
-	mc.Ship.Type = GenerateShipExt(SHIP_ARABELLA, true, mc);
+	// mc.Ship.Type = GenerateShipExt(SHIP_ARABELLA, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_FRIGATEQUEEN, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_CATHERINE, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_FLYINGDUTCHMAN, true, mc);
@@ -1095,10 +1095,18 @@ void CalculateInfoDataF6()
     VeryRealShip.ship.upgrades.sails = 3;
 
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS8;
+	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS12;
+	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS16;
+	mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS20;
+	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS24;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS32;
-	mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS42;
+	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS42;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS48;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS8;
+	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS12;
+	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS16;
+	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS20;
+	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS24;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS32;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CULVERINE_LBS36;
 	SetCrewQuantityFull(mc);
@@ -1107,12 +1115,12 @@ void CalculateInfoDataF6()
 	ChangeCrewExp(mc, "Cannoners", 100);
 	ChangeCrewExp(mc, "Soldiers", 100);
 
-	SetCharacterGoods(mc, GOOD_BALLS, 2000);
-	SetCharacterGoods(mc, GOOD_GRAPES, 2000);
-	SetCharacterGoods(mc, GOOD_KNIPPELS, 2000);
-	SetCharacterGoods(mc, GOOD_BOMBS, 2000);;
+	SetCharacterGoods(mc, GOOD_BALLS, 1500);
+	SetCharacterGoods(mc, GOOD_GRAPES, 1500);
+	SetCharacterGoods(mc, GOOD_KNIPPELS, 1500);
+	SetCharacterGoods(mc, GOOD_BOMBS, 1500);;
 	//SetCharacterGoods(mc, GOOD_FOOD, 2000);
-	SetCharacterGoods(mc, GOOD_FOOD, 10000);
+	SetCharacterGoods(mc, GOOD_FOOD, 7000);
 	SetCharacterGoods(mc, GOOD_MEDICAMENT, 1000);
 	SetCharacterGoods(mc, GOOD_POWDER, 3000);
 	SetCharacterGoods(mc, GOOD_WEAPON, 1500);
@@ -1127,7 +1135,7 @@ void CalculateInfoDataF6()
 	RemoveItems(mc, sEquipItem, 1);
 
 	AddMoneyToCharacter(mc, 1000000);
-	AddItems(mc, "spyglass4", 1);
+	AddItems(mc, "spyglass5", 1);
 	AddItems(mc, "pistol7", 1);
 	AddItems(mc, "Map_Best", 1);
 
@@ -1142,7 +1150,7 @@ void CalculateInfoDataF6()
 
 	AddItems(mc, "cirass5", 1);
 
-	EquipCharacterbyItem(mc, "spyglass4");
+	EquipCharacterbyItem(mc, "spyglass5");
 	EquipCharacterbyItem(mc, "pistol7");
 	GiveGunAmmunition(mc,"pistol7");
  	EquipCharacterbyItem(mc, sEquipItem);
@@ -2643,6 +2651,9 @@ void CalculateInfoDataF55()
 {
 	totalInfo = descF55;
 
+	TakeNItems(PChar, "jewelry11", 50);
+	TakeNItems(PChar, "chest", 12);
+
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 	
 	for (int z = 0; z < ITEMS_QUANTITY;z++)
@@ -2660,10 +2671,25 @@ void CalculateInfoDataF55()
 	Statistic_AddValue(PChar, "Cheats.F55", 1);
 }
 
-string descF56 = "Нет назначений";
+string descF56 = "Получить все предметы в игре (кроме квестовых) и бесконечный переносимый вес";
 void CalculateInfoDataF56()
 {
 	totalInfo = descF56;
+
+	ref mc = GetMainCharacter();
+	mc.UnlimitedWeight = true;
+	for (int i = 0; i < ITEMS_QUANTITY; i++) 
+	{
+		ref itm = &Items[i];
+
+		if (!CheckAttribute(itm, "id")) continue;
+		if (!CheckAttribute(itm, "Weight")) continue;
+		if (CheckAttribute(itm, "ItemType")) {
+			if (itm.ItemType == "QUESTITEMS") continue;
+		}
+
+		AddItems(mc, itm.id, 1);
+	}
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 
