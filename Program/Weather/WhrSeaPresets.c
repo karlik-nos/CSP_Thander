@@ -33,8 +33,9 @@ string WhrGetSeaPresetFromWind(float fWind)
 }
 
 //настройки пресетов
-void WhrSetSeaPreset(string sPreset)
+void WhrSetSeaPreset(int iCurWeatherNum, string sPreset)
 {
+	ref Whr = &Weathers[iCurWeatherNum];
 	Sea.MaxSeaDistance = 4000.0;
 	string sMoveSpeed1, sMoveSpeed2
 	float fAmp1, fAnimSpeed1, fScale1;
@@ -82,7 +83,7 @@ void WhrSetSeaPreset(string sPreset)
 				fFoamK = 0.5;
 				fReflection = 0.7;
 				fTransparency = 0.1;
-				iWaterColor = argb(0,0,80,120);
+				iWaterColor = argb(0,0,75,110);
 				if (CheckAttribute(&WeatherParams,"Rain") && sti(WeatherParams.Rain) == true){
 				iWaterColor = argb(0,0,55,80);
 				}
@@ -130,7 +131,7 @@ void WhrSetSeaPreset(string sPreset)
 				fFoamK = 0.5;
 				fReflection = 0.7;
 				fTransparency = 0.1;
-				iWaterColor = argb(0,0,80,120);
+				iWaterColor = argb(0,0,75,110);
 				if (CheckAttribute(&WeatherParams,"Rain") && sti(WeatherParams.Rain) == true){
 				iWaterColor = argb(0,0,55,80);
 				}
@@ -178,7 +179,7 @@ void WhrSetSeaPreset(string sPreset)
 				fFoamK = 0.5;
 				fReflection = 0.7;
 				fTransparency = 0.1;
-				iWaterColor = argb(0,0,80,120);
+				iWaterColor = argb(0,0,75,110);
 				if (CheckAttribute(&WeatherParams,"Rain") && sti(WeatherParams.Rain) == true){
 				iWaterColor = argb(0,0,55,80);
 				}
@@ -226,7 +227,7 @@ void WhrSetSeaPreset(string sPreset)
 				fFoamK = 0.5;
 				fReflection = 0.7;
 				fTransparency = 0.1;
-				iWaterColor = argb(0,0,70,110);
+				iWaterColor = argb(0,0,75,110);
 				if (CheckAttribute(&WeatherParams,"Rain") && sti(WeatherParams.Rain) == true){
 				iWaterColor = argb(0,0,55,80);
 				}
@@ -274,7 +275,7 @@ void WhrSetSeaPreset(string sPreset)
 				fFoamK = 0.2;
 				fReflection = 0.7;
 				fTransparency = 0.1;
-				iWaterColor = argb(0,0,80,120);
+				iWaterColor = argb(0,0,75,110);
 				if (CheckAttribute(&WeatherParams,"Rain") && sti(WeatherParams.Rain) == true){
 				iWaterColor = argb(0,0,55,80);
 				}
@@ -322,7 +323,7 @@ void WhrSetSeaPreset(string sPreset)
 				fFoamK = 0.2;
 				fReflection = 0.7;
 				fTransparency = 0.1;
-				iWaterColor = argb(0,0,80,120);
+				iWaterColor = argb(0,0,70,110);
 				if (CheckAttribute(&WeatherParams,"Rain") && sti(WeatherParams.Rain) == true){
 				iWaterColor = argb(0,0,55,80);
 				}
@@ -370,7 +371,7 @@ void WhrSetSeaPreset(string sPreset)
 				fFoamK = 0.2;
 				fReflection = 0.7;
 				fTransparency = 0.1;
-				iWaterColor = argb(0,0,80,120);
+				iWaterColor = argb(0,0,70,110);
 				if (CheckAttribute(&WeatherParams,"Rain") && sti(WeatherParams.Rain) == true){
 				iWaterColor = argb(0,0,55,80);
 				}
@@ -542,7 +543,7 @@ void WhrSetNewSea(float fWind)
 {
 	string sPreset = WhrGetSeaPresetFromWind(fWind);
 
-	WhrSetSeaPreset(sPreset);
+	WhrSetSeaPreset(iCurWeatherNum, sPreset);
 
 	Sea.Sea2.Amp1 = Whr_GetFloat(PSea, "Amp1");
 	Sea.Sea2.AnimSpeed1 = Whr_GetFloat(PSea, "AnimSpeed1");
