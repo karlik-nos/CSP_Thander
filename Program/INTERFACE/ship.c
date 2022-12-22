@@ -45,7 +45,7 @@ void InitInterface_R(string iniName, ref _chr) // _chr нужно для чит�
 	SetEventHandler("REMOVE_BUTTON", "REMOVE_BUTTON", 0);
 	SetEventHandler("REMOVE_ALL_BUTTON", "REMOVE_ALL_BUTTON", 0);
 	SetEventHandler("ExitPartitionWindow", "ExitPartitionWindow", 0);
-
+	SetEventHandler("OnTableClick", "OnTableClick", 0);
     XI_RegistryExitKey("IExit_F2");
     //////////////////
     EI_CreateFrame("SHIP_BIG_PICTURE_BORDER",156,78,366,313); // tak from SHIP_BIG_PICTURE
@@ -78,6 +78,13 @@ void InitInterface_R(string iniName, ref _chr) // _chr нужно для чит�
 	GameInterface.TABLE_LIST.hr.td5.str = "Вес пачки";
 	GameInterface.TABLE_LIST.hr.td5.scale = 0.9;
 	GameInterface.TABLE_LIST.select = 0;
+//--> mod tablesort
+	GameInterface.TABLE_LIST.hr.td1.sorttype = "string";
+	GameInterface.TABLE_LIST.hr.td2.sorttype = "";
+	GameInterface.TABLE_LIST.hr.td3.sorttype = "";
+	GameInterface.TABLE_LIST.hr.td4.sorttype = "";
+	GameInterface.TABLE_LIST.hr.td5.sorttype = "";
+//<-- mod tablesort
 	SetCurrentNode("SHIPS_SCROLL");
 	OnShipScrollChange();
 	sMessageMode = "";
@@ -142,7 +149,7 @@ void IDoExit(int exitCode)
 	DelEventHandler("REMOVE_BUTTON", "REMOVE_BUTTON");
 	DelEventHandler("REMOVE_ALL_BUTTON", "REMOVE_ALL_BUTTON");
 	DelEventHandler("ExitPartitionWindow", "ExitPartitionWindow");
-
+	DelEventHandler("OnTableClick", "OnTableClick");
 	interfaceResultCommand = exitCode;
 	if( CheckAttribute(&InterfaceStates,"ReloadMenuExit"))
 	{
@@ -1707,4 +1714,20 @@ void SortCompanionsBy(string attrName) // сортируем по базовом
 	}
 
 	IDoExit(RC_INTERFACE_TO_SHIP);
+}
+
+void OnTableClick()
+{
+	string sControl = GetEventData();
+	int iRow = GetEventData();
+	int iColumn = GetEventData();
+
+	//string sRow = "tr" + (iRow + 1);
+//--> mod tablesort
+	if (sControl == "TABLE_LIST")
+	{
+		if (!SendMessage(&GameInterface,"lsl",MSG_INTERFACE_MSG_TO_NODE, sControl, 1 )) SortTable(sControl, iColumn);
+		Table_UpdateWindow(sControl);
+	}
+//<-- mod tablesort
 }

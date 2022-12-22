@@ -435,8 +435,8 @@ void FillShipyardTable()
 	GameInterface.TABLE_SHIPYARD.top = 0;
 //--> mod tablesort
 	GameInterface.TABLE_SHIPYARD.hr.td1.sorttype = "string";
-	GameInterface.TABLE_SHIPYARD.hr.td2.sorttype = "";//числа - любое значение кроме "string"
-	//GameInterface.TABLE_SHIPYARD.hr.td3.sorttype = "";//эту колонку не сортируем, не создаём атрибут!
+	GameInterface.TABLE_SHIPYARD.hr.td2.sorttype = "";
+	GameInterface.TABLE_SHIPYARD.hr.td3.sorttype = "string";//нарушение сортировки 1 - 10 - 2, нужно проверять длину строки и дописывать в начале 0 коротким
 	GameInterface.TABLE_SHIPYARD.hr.td4.sorttype = "";
 	GameInterface.TABLE_SHIPYARD.hr.td5.sorttype = "";
 	GameInterface.TABLE_SHIPYARD.hr.td6.sorttype = "";

@@ -83,6 +83,7 @@ void InitInterface_R(string iniName, ref _shipyarder)
 	SetEventHandler("ExitChangeHullMenu", "ExitChangeHullMenu",0);
 	SetEventHandler("CheckButtonChange","procCheckBoxChange",0);
 	SetEventHandler("SelectShipyard","SelectShipyard",0);
+	SetEventHandler("OnTableClick", "OnTableClick", 0);
     //////////////////
     EI_CreateFrame("SHIP_BIG_PICTURE_BORDER",156,40,366,275); // tak from SHIP_BIG_PICTURE
     EI_CreateHLine("SHIP_BIG_PICTURE_BORDER", 161,246,361,1, 4);
@@ -161,6 +162,7 @@ void IDoExit(int exitCode)
 	DelEventHandler("ExitChangeHullMenu", "ExitChangeHullMenu");
 	DelEventHandler("CheckButtonChange","procCheckBoxChange");
 	DelEventHandler("SelectShipyard","SelectShipyard");
+	DelEventHandler("OnTableClick", "OnTableClick");
 
 	interfaceResultCommand = exitCode;
 	if( CheckAttribute(&InterfaceStates,"ReloadMenuExit"))
@@ -1051,6 +1053,14 @@ void FillShipyardTable()
 	GameInterface.TABLE_SHIPYARD.hr.td6.scale = 0.9;
 	GameInterface.TABLE_SHIPYARD.select = 0;
 	GameInterface.TABLE_SHIPYARD.top = 0;
+//--> mod tablesort
+	GameInterface.TABLE_SHIPYARD.hr.td1.sorttype = "string";
+	GameInterface.TABLE_SHIPYARD.hr.td2.sorttype = "string";
+	GameInterface.TABLE_SHIPYARD.hr.td3.sorttype = "";
+	GameInterface.TABLE_SHIPYARD.hr.td4.sorttype = "";
+	GameInterface.TABLE_SHIPYARD.hr.td5.sorttype = "";
+	GameInterface.TABLE_SHIPYARD.hr.td6.sorttype = "";
+//<-- mod tablesort
 
 	aref   arDest, arImt;
 	string sAttr;
@@ -1114,7 +1124,7 @@ string GetShipsType(ref refBaseShip)
 	string spectypes = "";
 	if (refBaseShip.Type.War == true) spectypes = "Военный";
 	if (refBaseShip.Type.Merchant == true) spectypes = "Торговый";
-	if (refBaseShip.Type.Merchant == true && refBaseShip.Type.War == true) spectypes = "Универс.";
+	if (refBaseShip.Type.Merchant == true && refBaseShip.Type.War == true) spectypes = "Универс";//не ставить точку - будет крашить сортировка в таблице
 	return spectypes;
 }
 
@@ -2750,3 +2760,18 @@ int CalculateHullChangePrice(int value)
 }
 
 // Lugger: Смена разцветки корпуса <--
+
+
+void OnTableClick()
+{
+	string sControl = GetEventData();
+	int iRow = GetEventData();
+	int iColumn = GetEventData();
+
+	//string sRow = "tr" + (iRow + 1);
+	if (sControl == "TABLE_SHIPYARD")
+	{
+		if (!SendMessage(&GameInterface,"lsl",MSG_INTERFACE_MSG_TO_NODE, sControl, 1 )) SortTable(sControl, iColumn);
+		Table_UpdateWindow(sControl);
+	}
+}
