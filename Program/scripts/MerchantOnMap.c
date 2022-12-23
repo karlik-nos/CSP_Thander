@@ -202,7 +202,7 @@ int SetShipTypeMerchant(ref Cap)
 		iClassMax = 5;
         irank = 0;
     }
-	iShip = GetShipTypeExt(iClassMin, iClassMax, "trade", sti(Cap.nation))
+	iShip = GetShipTypeExt(iClassMin, iClassMax, "Merchant", sti(Cap.nation))
     SetRandomNameToShip(Cap);
     Cap.Ship.Type = GenerateShipExt(iShip, 1, Cap);
     SetBaseShipData(Cap);
