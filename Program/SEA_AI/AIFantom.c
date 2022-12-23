@@ -908,8 +908,10 @@ void SetShipToFantom(ref _chr, string _type, bool _setgoods)
 	if (Rank >= 15 && Rank <= 20) {iClassMin = 4; iClassMax = 3;} // 4 - 3 класс
 	if (Rank >= 20 && Rank <= 30) {iClassMin = 3; iClassMax = 2;} // 3 - 2 класс
 	if (Rank > 30) {iClassMin = 2; iClassMax = 1;} // 2 - 1 класс
-
-	ShipType = GetShipTypeExt(iClassMin, iClassMax, _type, Nation);
+	string sType = "";
+	if (_type == "trade") sType = "merchant";
+	if (_type == "pirate") sType = "war";
+	ShipType = GetShipTypeExt(iClassMin, iClassMax, sType, Nation);
 
 	_chr.Ship.Type = GenerateShipExt(ShipType, true, _chr);
 	SetRandomNameToShip(_chr);
