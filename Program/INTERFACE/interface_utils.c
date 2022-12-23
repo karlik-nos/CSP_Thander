@@ -1207,11 +1207,10 @@ trace("SortTable(sControl = " + sControl + ", iColumn = " +  iColumn + ") iLines
 		{
 			sRow = "tr" + (n + 1);
 			sSortedString = GameInterface.(sControl).(sRow).(sColumn).str;
+			sSortedString = strreplace(sSortedString, ".", ",");//фикс краша из-за точек	подменяем их на запятые
 			sAdd = ""; iAdd = 0;
 			while (checkattribute(oSorted, sSortedString + sAdd)) {iAdd++; sAdd = DigitsToString(iAdd, 3);}//фикс Краша из-за дубликатов
 																//до 1000 одинаковых значений в одной таблице - дальше краш, увеличьте
-//TO DO		крашит при сортировке, если в тексте есть точка!	я хз, как тут быть
-//TO DO		получается, сортировку по датам не сделать таким способом, нужно в число переводить и сортировать как числа, либо придумывать сложные конвертации текста
 			sSortedString += sAdd;
 			oSorted.(sSortedString) = sRow;
 		}
