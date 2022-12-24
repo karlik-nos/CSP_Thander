@@ -2257,7 +2257,7 @@ int GetShootDistance(ref chref, string ball)
 	return makeint(distance+0.5);
 }
 
-int GetShipTypeExt(int iClassMin, int iClassMax, string sShipType, int iNation)//нация -1 допускает любые нации, иначе только одну указанную		//sShipType = "" - любой тип, хоть военный, хоть торговый
+int GetShipTypeExt(int iClassMin, int iClassMax, string sShipType, int iNation)//нация -1 допускает любые нации, иначе только одну указанную		//sShipType = "merchant"/"war",	"" - любой тип
 {
 	int iShips[SHIP_TYPES_QUANTITY];
 	int iShipsNum = 0;

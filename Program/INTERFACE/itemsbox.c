@@ -159,6 +159,11 @@ void InitInterface_RS(string iniName, ref itemsRef, string faceID)
 	else
 	{
 		GameInterface.strings.CharName = GetFullName(refCharacter);
+		if (sInterfaceType == INTERFACETYPE_DEADMAN)
+		{
+			CreateString(true, "CharName2", "", FONT_NORMAL, COLOR_MONEY, 645, 108, SCRIPT_ALIGN_RIGHT, 1.0);
+			GameInterface.strings.CharName2 = GetFullName(refToChar);//имя трупа показываем под картинкой черепа
+		}
 	}
 
 	SetCharWeight();

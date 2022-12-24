@@ -332,6 +332,10 @@ void Duel_Sea_End(string qName)
 void OnInit_DuelCoward(ref rTmpl)
 {
 	object oPrm;
+	if (pchar.sex == "woman") 
+	{
+		ttttstr = LanguageConvertString(LanguageOpenFile("RumourTexts.txt"), rTmpl.curtid+"W");
+	}
 
 	oPrm.Name = GetFullName(pchar);
 	ttttstr = GetAssembledString(ttttstr, &oPrm);
@@ -340,7 +344,10 @@ void OnInit_DuelCoward(ref rTmpl)
 string Event_DuelHero(ref rRum)
 {
 	object oPrm;
-
+	if (pchar.sex == "woman") 
+	{
+		rRum.text = LanguageConvertString(LanguageOpenFile("RumourTexts.txt"), rRum.curtid+"W");
+	}
 	oPrm.Name = GetFullName(pchar);
 	oPrm.Kill = Statistic_AddValue(pchar, "DuelKills", 0);
 	return GetAssembledString(rRum.text, &oPrm);

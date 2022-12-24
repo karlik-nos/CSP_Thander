@@ -870,7 +870,7 @@ void ProcessDialogEvent()
 		if (PChar.GenQuest.PGG_Quest.Island.Town == "" || PChar.GenQuest.PGG_Quest.Island.Town == "Caiman" ||
 			PChar.GenQuest.PGG_Quest.Island.Town == "Terks" || PChar.GenQuest.PGG_Quest.Island.Town == "Dominica")
 		{
-			sLoc = GetConvertStr(PChar.GenQuest.PGG_Quest.Island, "LocLables.txt") + "");
+			sLoc = GetConvertStr(PChar.GenQuest.PGG_Quest.Island, "LocLables.txt");
 		}
 		else
 		{
