@@ -482,8 +482,8 @@ void SimulatePGGLife()
 			sld = CharacterFromID("PsHero_"+i);
 			if (findsubstr(pchar.location, sld.PGGAi.location.town, 0) != -1 && !LAi_IsDead(sld) && sld.PGGAi.location != "Dead") //закрыл дополнительно.
 			{
-				if (IsCompanion(sld) || IsOfficer(sld) || CheckAttribute(sld, "PGGAi.Task.SetSail") || CheckAttribute(sld, "PGGAi.SeenToday") || sld.sex == "skeleton")
-				{
+				if (IsCompanion(sld) || IsOfficer(sld) || CheckAttribute(sld, "PGGAi.Task.SetSail") || CheckAttribute(sld, "PGGAi.SeenToday") || sld.sex == "skeleton" || sld.Dialog.CurrentNode == "TreasureHunterPGG")
+				{//фикс - если ПГГ уже выбран для спора за клад
 					continue;
 				}
 				else
