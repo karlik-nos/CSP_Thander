@@ -53,6 +53,53 @@ int Fantom_GenerateEncounterExt(string sGroupName, object oResult, int iEType, i
 	return iNumWarShips + iNumMerchantShips;
 }
 
+int Fantom_GenerateShips_ForEnc_v2(ref rEnc, int iEType, string sGroupName)//iEType вообще не нужен??? просто не ставить атрибут новой системы на эти типы энок и они будут работать по старой функции
+{																			//хотя - это бред. всё равно старую полностью вырежем
+	ref rFantom;
+	int iShipSum = 0;
+	if(iEType == ENCOUNTER_TYPE_BARREL || iEType == ENCOUNTER_TYPE_BOAT)
+	{
+		rFantom = GetFantomCharacter(iNumFantoms);
+
+		DeleteAttribute(rFantom, "relation");
+		DeleteAttribute(rFantom, "abordage_twice");
+		DeleteAttribute(rFantom, "QuestDate");
+		DeleteAttribute(rFantom, "ransom");
+
+		rFantom.SeaAI.Group.Name = sGroupName;
+		iNumFantoms++;
+		return 0;
+	}
+
+	aref arShips, arShipModes, arShipType;
+	makearef(arShips, rEnc.shiptypes);
+	makearef(arShipModes, rEnc.shipmodes);
+	int iShipType;
+	string sFantomType;
+
+	for (int i=0; i<GetAttributesNum(arShips); i++)
+	{
+		rFantom = GetFantomCharacter(iNumFantoms);
+
+		DeleteAttribute(rFantom, "relation");
+		DeleteAttribute(rFantom, "abordage_twice");
+		DeleteAttribute(rFantom, "QuestDate");
+		DeleteAttribute(rFantom, "ransom");
+		DeleteAttribute(rFantom, "DontRansackCaptain");
+
+		iShipType = GetAttributeValue(GetAttributeN(arShips, i));
+		sFantomType = GetAttributeValue(GetAttributeN(arShipModes, i));
+		rFantom.Ship.Type = GenerateShipExt(iShipType, 0, rFantom);
+		rFantom.Ship.Mode = sFantomType;
+		rFantom.SeaAI.Group.Name = sGroupName;
+		rFantom.Charge.Type = GOOD_BALLS;
+
+		iNumFantoms++;
+		iShipSum++;
+	}
+	return iShipSum;
+}
+
 int Fantom_GetShipTypeExt(int iClassMin, int iClassMax, string sShipType, string sGroupName, string sFantomType, int iEncounterType, int iNation)
 {
 	int iShips[FANTOM_SHIPS_QTY];

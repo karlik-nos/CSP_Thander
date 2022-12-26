@@ -920,7 +920,9 @@ void SeaLogin(ref Login)
 		iNation = sti(rEncounter.Nation);
 		}
 
-		int iNumFantomShips = Fantom_GenerateEncounterExt(sGName, &oResult, iEncounterType, iNumWarShips, iNumMerchantShips, iNation);
+		int iNumFantomShips;
+		if (checkattribute(rEncounter, "v2")) iNumFantomShips = Fantom_GenerateShips_ForEnc_v2(rEncounter, iEncounterType, sGName);
+			else iNumFantomShips = Fantom_GenerateEncounterExt(sGName, iEncounterType, iNumWarShips, iNumMerchantShips, iNation);
 
 		// Ugeen --> генерация параметров	для спецэнкаунтеров
 		if (iEncounterType == ENCOUNTER_TYPE_BARREL || iEncounterType == ENCOUNTER_TYPE_BOAT)
