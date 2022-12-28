@@ -27,7 +27,7 @@ float boarding_enemy_crew_per_chr = 1.0;
 int   boarding_enemy_crew_start   = 0; //sd
 
 ref    boarding_enemy;
-object boarding_adr[MAX_NUM_FIGHTERS+1];
+object boarding_adr[10];
 float  boarding_exp = 0;
 float  boarding_player_hp = 40;
 float  boarding_enemy_hp = 40;

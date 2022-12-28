@@ -901,6 +901,7 @@ void SetShipToFantom(ref _chr, string _type, bool _setgoods)
 	int ShipType;
 	int Nation = sti(_chr.nation);
 	int Rank = sti(pchar.rank);
+	int iClassMin, iClassMax;
 
 	if (Rank >= 1 && Rank <= 5) {iClassMin = 6; iClassMax = 6;} // 6 класс
 	if (Rank >= 5 && Rank <= 10) {iClassMin = 6; iClassMax = 5;} // 6 - 5 класс

@@ -74,7 +74,7 @@ void GoldFleet()
 		iChar = NPC_GenerateCharacter("GoldCap_"+k, "off_spa_2", "man", "man", 5, SPAIN, 31, true);
         makeref(sld, Characters[iChar]);
 		sld.Ship.Mode = "war";
-        if (k<3 || k>=(3+ngal))//3 СанФелипе(флагман + 2) впереди 	+ 6-7 усиленных фрегатов замыкают		//Qwerry,St. - ставлю галеоны в середину построения
+        if (k<3 || k==7 || k==8 || k>=(5+ngal))//3 СанФелипе(флагман + 2) впереди 	+ 4-5 усиленных фрегатов замыкают		//Qwerry,St. - ставлю галеоны в середину построения
         {
 			if(k < 3)  sld.ship.type = GenerateShipExt(SHIP_SP_SANFELIPE, 1, sld);
 				else sld.ship.type = GenerateShipExt(SHIP_DUTCHSHIP, 1, sld);//Qwerry,St. - меняю Алексис, потому что он не испанский в ините

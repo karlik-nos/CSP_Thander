@@ -14,17 +14,13 @@
 #include "sea_ai\AIIsland.c"
 #include "sea_ai\AISeaGoods.c"
 #include "sea_ai\AITasks\AITasks.c"
-
 #include "sea_ai\ShipBortFire.c"
 #include "sea_ai\ShipDead.c"
 #include "sea_ai\ShipWalk.c"
-
 #include "sea_ai\CoastFoam.c"
-
 #include "sea_ai\Telescope.c"
 
 #include "battle_interface\BattleInterface.c"
-
 
 #event_handler("Sea_FirstInit", "Sea_FirstInit");
 #event_handler("SeaLoad_GetPointer", "SeaLoad_GetPointer");
@@ -1042,7 +1038,7 @@ void SeaLogin(ref Login)
 				SetRandomNameToCharacter(rFantom);
 				SetRandomNameToShip(rFantom);
 
-				rFantom.GroupShipPos_event = "CalculateGroupShipPos";
+				//rFantom.GroupShipPos_event = "CalculateGroupShipPos";
 
 				SetSeaFantomParam(rFantom, rEncounter.Type); // все там
 
@@ -1246,10 +1242,6 @@ void Sea_LoginGroup(string sGroupID)
 			Trace("Error: Sea_LoginGroup sGroupID = " + sGroupID + ", I can't find any locators or position for this group, maybe you can check this???");
 		}
 	}
-	//Lipsar 2 ряда кораблей
-	/*if(iNumQuestShips > SHIPS_NUM_DOUBLE)
-       SendMessage(&AISea, "lsl", AI_MESSAGE_GROUP_SET_LINES, sGroupID, 2);*/
-   	//Lipsar
 
     // 1.2.3 - кильваторный строй, вместо каши в  Group_SetPursuitGroup -->
     if (CheckAttribute(rGroup, "location.neargroup"))
@@ -1273,7 +1265,7 @@ void Sea_LoginGroup(string sGroupID)
 	}
 	Group_SetGroupCommander(sGroupID, rGroupCommander.id);  // странная проверка и назначение, но было и пусть будет
 
-	&Characters[GetCharacterIndex(rGroupCommander.id)].GroupShipPos_event = "CalculateGroupShipPos";
+	//&Characters[GetCharacterIndex(rGroupCommander.id)].GroupShipPos_event = "CalculateGroupShipPos";
 
 	// set location near
 	if (CheckAttribute(rGroup, "location.neargroup"))
@@ -1748,7 +1740,6 @@ ref CalculateGroupShipPos()
 	{
 		if (shipcount > 11)	//делаем три колонны - Золотой Флот
 		{
-			//при тесте ЗФ спавнится в обратном порядке - в конце три сан-фелиппе, дальше алексисы, впереди галеоны		И флагман не выдвигается вперёд. строятся прямоугольником
 			offset_in_line = makeint((shipIndex + 2) / 3);
 			int iTemp = shipIndex % 3; 
 			switch (iTemp)

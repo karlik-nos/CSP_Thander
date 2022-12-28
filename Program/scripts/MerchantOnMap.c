@@ -167,16 +167,12 @@ bool MerchantPrepare(int Mnation)
         return true;
     }
     return false;
-
-
-
-
-
 }
 
 int SetShipTypeMerchant(ref Cap)
 {
     int iShip, hcrew, irank;
+	int iClassMin, iClassMax;
 
     if(makeint(pchar.rank) > 15)
     {
@@ -231,12 +227,12 @@ int SetShipTypeMerchant(ref Cap)
 void SetMerchantShip(ref Cap, int igoods)
 {
     int hcrew, irank;
-    int killMax;Ship
+    int killMax;
 
     irank = SetShipTypeMerchant(Cap);
     SetRandomNameToCharacter(Cap);
     SetCaptanModelByEncType(Cap, "trade");//
-    Cap.Ship.Mode = "Trade";
+    Cap.Ship.Mode = "trade";
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ref MerPrm;
     makeref(MerPrm, MerchantParam);
