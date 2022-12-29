@@ -877,7 +877,7 @@ void PiratesLine_q3_over(string qName)
             if(bShipOK == true)
             {
                 AddQuestRecord("Pir_Line_3_KillLoy", "17");
-                pchar.questTemp.piratesLine = "KillLoy_GoodWork"; //Лоу убит, бриг не захвачен
+                pchar.questTemp.piratesLine.T1 = "KillLoy_GoodWork"; //Лоу убит, бриг не захвачен
                 pchar.questTemp.KillLoy_GoodWork = true;
             }
             else //#20171229-02 Check companion ships
