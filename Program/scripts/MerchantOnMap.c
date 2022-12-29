@@ -167,6 +167,11 @@ bool MerchantPrepare(int Mnation)
         return true;
     }
     return false;
+
+
+
+
+
 }
 
 int SetShipTypeMerchant(ref Cap)

@@ -14,13 +14,17 @@
 #include "sea_ai\AIIsland.c"
 #include "sea_ai\AISeaGoods.c"
 #include "sea_ai\AITasks\AITasks.c"
+
 #include "sea_ai\ShipBortFire.c"
 #include "sea_ai\ShipDead.c"
 #include "sea_ai\ShipWalk.c"
+
 #include "sea_ai\CoastFoam.c"
+
 #include "sea_ai\Telescope.c"
 
 #include "battle_interface\BattleInterface.c"
+
 
 #event_handler("Sea_FirstInit", "Sea_FirstInit");
 #event_handler("SeaLoad_GetPointer", "SeaLoad_GetPointer");
@@ -138,9 +142,13 @@ void DeleteSeaEnvironment()
 
 	// delete masts fall modules
 		DeleteEntitiesByType("mast");
+		
+	// delete hulls fall modules
+	DeleteEntitiesByType("hull");	
 
  	// delete particle system
 	//	DeleteParticles();
+	ClearSeaFantoms();
 
 	// delete our group
 		Group_DeleteGroup(PLAYER_GROUP);
@@ -642,23 +650,6 @@ void SeaLogin(ref Login)
 	pchar.Ship.POS.Mode = SHIP_SAIL;
 	pchar.location = sIslandID;
 
-	// clear old fantom relations in our character
-		if (CheckAttribute(pchar, "Relation"))
-		{
-			aref	arRelations; makearef(arRelations, pchar.Relation);
-			int		iNumRelations = GetAttributesNum(arRelations);
-			for (i=0; i<iNumRelations; i++)
-			{
-				aref arRelation = GetAttributeN(arRelations, i);
-				string sRName = GetAttributeName(arRelation);
-				if (sti(sRName) >= FANTOM_CHARACTERS)
-				{
-					DeleteAttribute(arRelations, sRName);
-					iNumRelations--;
-					i--;
-				}
-			}
-		}
 
 	// Quest check
 	Event(EVENT_SEA_LOGIN, "");
@@ -921,7 +912,7 @@ void SeaLogin(ref Login)
 		// Ugeen --> генерация параметров	для спецэнкаунтеров
 		if (iEncounterType == ENCOUNTER_TYPE_BARREL || iEncounterType == ENCOUNTER_TYPE_BOAT)
 		{
-			iFantomIndex = FANTOM_CHARACTERS + iNumFantoms;
+			iFantomIndex = seaFantoms[seaFantomsNum - 1];
 			rFantom = &Characters[iFantomIndex];
 			rFantom.id = iFantomIndex;
 			rFantom.index = iFantomIndex;
@@ -1002,8 +993,9 @@ void SeaLogin(ref Login)
 		{
 			for (j=0; j<iNumFantomShips; j++)
 			{
-				iFantomIndex = FANTOM_CHARACTERS + iNumFantoms - iNumFantomShips + j;
+				iFantomIndex = seaFantoms[seaFantomsNum - iNumFantomShips + j];
 				rFantom = &Characters[iFantomIndex];
+				rFantom.SeaFantom = true;
                 DeleteAttribute(rFantom, "items"); // boal 28.07.04 фикс кучи сабель, когда идёт в плен
 				rFantom.id = "fenc_" + iFantomIndex;
                 // boal 26.02.2004 -->
@@ -1021,7 +1013,7 @@ void SeaLogin(ref Login)
                 rFantom.EncType      = rEncounter.Type; // тип  war, trade pirate
                 rFantom.RealEncounterType = iEncounterType;//boal
                 rFantom.EncGroupName = sGName;
-                rFantom.MainCaptanId = Characters[iFantomIndex - j].id;
+                rFantom.MainCaptanId = Characters[seaFantoms[seaFantomsNum - iNumFantomShips]].id;
 				rFantom.WatchFort = true; //следить за фортом
 				rFantom.AnalizeShips = true; //анализить враждебные корабли сразу же с загрузки и далее
 				if(rand(10) == 1) rFantom.DontRansackCaptain = true;
@@ -1098,12 +1090,7 @@ void SeaLogin(ref Login)
 
 				// add fantom
 				Group_AddCharacter(sGName, rFantom.id);
-			}
-
-			for (j = 0; j < iNumFantomShips; j++)
-			{
-				// add to sea
-				Ship_Add2Sea(FANTOM_CHARACTERS + iNumFantoms - iNumFantomShips + j, 0, rEncounter.Type);
+				Ship_Add2Sea(iFantomIndex, 0, rEncounter.Type);
 			}
 		}
 	}
@@ -1242,6 +1229,10 @@ void Sea_LoginGroup(string sGroupID)
 			Trace("Error: Sea_LoginGroup sGroupID = " + sGroupID + ", I can't find any locators or position for this group, maybe you can check this???");
 		}
 	}
+	//Lipsar 2 ряда кораблей
+	/*if(iNumQuestShips > SHIPS_NUM_DOUBLE)
+       SendMessage(&AISea, "lsl", AI_MESSAGE_GROUP_SET_LINES, sGroupID, 2);*/
+   	//Lipsar
 
     // 1.2.3 - кильваторный строй, вместо каши в  Group_SetPursuitGroup -->
     if (CheckAttribute(rGroup, "location.neargroup"))
@@ -1740,6 +1731,7 @@ ref CalculateGroupShipPos()
 	{
 		if (shipcount > 11)	//делаем три колонны - Золотой Флот
 		{
+			//при тесте ЗФ спавнится в обратном порядке - в конце три сан-фелиппе, дальше алексисы, впереди галеоны		И флагман не выдвигается вперёд. строятся прямоугольником
 			offset_in_line = makeint((shipIndex + 2) / 3);
 			int iTemp = shipIndex % 3; 
 			switch (iTemp)

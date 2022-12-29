@@ -1,12 +1,26 @@
 #define FANTOM_SHIPS_QTY 150
 #define INVALID_SHIP_TYPE			-1
 
-ref Fantom_GetNextFantom()
-{
-	iNumFantoms++;
-	return &Characters[FANTOM_CHARACTERS + iNumFantoms];
+int seaFantomsNum; // mitrokosta перенес из глобалов
+int seaFantoms[MAX_SHIPS_ON_SEA];
+
+ref CreateSeaFantom() {
+	int index = FindFirstEmptyCharacter();
+	seaFantoms[seaFantomsNum] = index;
+	seaFantomsNum++;
+	return GetCharacter(index);
 }
 
+void ClearSeaFantoms() {
+	for (int i = 0; i < seaFantomsNum; i++) {
+		int index = seaFantoms[i];
+		if (!CheckAttribute(GetCharacter(index),"lifeday")) continue;
+		InitCharacter(GetCharacter(index), index);
+		FreeCharacter(index);
+	}
+	
+	seaFantomsNum = 0;
+}
 // -> ugeen 26.01.09
 int Fantom_GenerateEncounterExt(string sGroupName, object oResult, int iEType, int iNumWarShips, int iNumMerchantShips, int iNation)
 {
@@ -21,7 +35,7 @@ int Fantom_GenerateEncounterExt(string sGroupName, object oResult, int iEType, i
 
 	if(iEType == ENCOUNTER_TYPE_BARREL || iEType == ENCOUNTER_TYPE_BOAT)
 	{
-		ref rFantom = GetFantomCharacter(iNumFantoms);
+		ref rFantom = CreateSeaFantom();
 
 		DeleteAttribute(rFantom, "relation");
 		DeleteAttribute(rFantom, "abordage_twice");
@@ -29,7 +43,6 @@ int Fantom_GenerateEncounterExt(string sGroupName, object oResult, int iEType, i
 		DeleteAttribute(rFantom, "ransom");
 
 		rFantom.SeaAI.Group.Name = sGroupName;
-		iNumFantoms++;
 		return 0;
 	}
 
@@ -99,7 +112,7 @@ int Fantom_GetShipTypeExt(int iClassMin, int iClassMax, string sShipType, string
 
 	int iBaseShipType = iShips[rand(iShipsNum - 1)];
 
-	ref rFantom = GetFantomCharacter(iNumFantoms);
+	ref rFantom = CreateSeaFantom();
 
 	DeleteAttribute(rFantom, "relation");
 	DeleteAttribute(rFantom, "abordage_twice");
@@ -111,7 +124,7 @@ int Fantom_GetShipTypeExt(int iClassMin, int iClassMax, string sShipType, string
 	rFantom.Ship.Mode = sFantomType;
 	rFantom.Charge.Type = GOOD_BALLS;
 
-	iNumFantoms++;
+
 
 	int iRealShipType = GenerateShipExt(iBaseShipType, 0, rFantom);
 
@@ -193,7 +206,7 @@ int Fantom_GetShipType(int iClassMin, int iClassMax, string sShipType)
 // мктод этот походу левый, тк перекрывается в сиа.с
 void Fantom_AddFantomCharacter(string sGroupName, int iShipType, string sFantomType, int iEncounterType)
 {
-	ref rFantom = GetFantomCharacter(iNumFantoms);
+	ref rFantom = CreateSeaFantom();
 
 
 
@@ -212,8 +225,6 @@ void Fantom_AddFantomCharacter(string sGroupName, int iShipType, string sFantomT
 	rFantom.Ship.Type = iShipType;
 	rFantom.Ship.Mode = sFantomType;
 	rFantom.Charge.Type = GOOD_BALLS;
-
-	iNumFantoms++;
 }
 // на деле этот метод бесполезен, тк золото в сундуке генерится в др месте, а то что, в к3 тут были распределения опыта и команды вообще позорище.
 void Fantom_SetRandomMoney(ref rFantom, string sFantomType)
@@ -901,7 +912,7 @@ void SetShipToFantom(ref _chr, string _type, bool _setgoods)
 	int ShipType;
 	int Nation = sti(_chr.nation);
 	int Rank = sti(pchar.rank);
-	int iClassMin, iClassMax;
+	int iClassMin,iClassMax;
 
 	if (Rank >= 1 && Rank <= 5) {iClassMin = 6; iClassMax = 6;} // 6 класс
 	if (Rank >= 5 && Rank <= 10) {iClassMin = 6; iClassMax = 5;} // 6 - 5 класс

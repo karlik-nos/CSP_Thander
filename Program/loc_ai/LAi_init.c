@@ -50,19 +50,6 @@ void LocAi_Init(ref loc)
 	SetEventHandler("Location_CharacterItemAction", "LAi_CharacterItemAction", 0);
 	LAi_IsInitedAI = true;
 	LAi_IsCapturedLocation = IsLocationCaptured(loc.id);
-	if(!actLoadFlag)
-	{
-		//Очистим фантомных персонажей
-		for(int i = 0; i < MAX_CHARS_IN_LOC; i++)
-		{
-			DeleteAttribute(&Characters[LOC_FANTOM_CHARACTERS + i], "");
-			Characters[LOC_FANTOM_CHARACTERS + i].index = LOC_FANTOM_CHARACTERS + i;
-			Characters[LOC_FANTOM_CHARACTERS + i].id = "";
-			Characters[LOC_FANTOM_CHARACTERS + i].location = "none";
-			Characters[LOC_FANTOM_CHARACTERS + i].location.locator = "";
-			Characters[LOC_FANTOM_CHARACTERS + i].location.group = "";
-		}
-	}
 	//Выставим адреса офицерам главного персонажа
 	bool isBoarding = false;
 	if(CheckAttribute(loc, "boarding") == true)
@@ -178,18 +165,6 @@ void LocAi_Release()
 	DelEventHandler("Location_CharacterColThreshold", "LAi_CharacterColThreshold");
 	DelEventHandler("Location_Character_EndAction", "LAi_Character_EndAction");
 	DelEventHandler("Location_CharacterItemAction", "LAi_CharacterItemAction");
-	//Очистим фантомных персонажей
-	for(i = 0; i < MAX_CHARS_IN_LOC; i++)
-	{
-		DeleteAttribute(&Characters[LOC_FANTOM_CHARACTERS + i], "");
-		Characters[LOC_FANTOM_CHARACTERS + i].index = LOC_FANTOM_CHARACTERS + i;
-		Characters[LOC_FANTOM_CHARACTERS + i].id = "";
-		Characters[LOC_FANTOM_CHARACTERS + i].location = "none";
-		Characters[LOC_FANTOM_CHARACTERS + i].location.locator = "";
-		Characters[LOC_FANTOM_CHARACTERS + i].location.group = "";
-		// убираем остатки захвата в городе boal
-		LAi_LoginInCaptureTown(&Characters[LOC_FANTOM_CHARACTERS + i], false);
-	}
 }
 
 
