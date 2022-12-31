@@ -316,7 +316,7 @@ void ProcessDialogEvent()
 				{
 					if (!CheckAttribute(npchar, "Findship") || GetNpcQuestPastDayParam(npchar, "Findship") >= 20)
 					{
-						SelectFindship_ShipType(); //выбор типа корабля
+						SelectFindship_ShipType(sti(npchar.nation)); //выбор типа корабля
 						pchar.GenQuest.Findship.Shipyarder.ShipBaseName = GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.Findship.Shipyarder.ShipType), "Name") + ""));
 						pchar.GenQuest.Findship.Shipyarder.City = npchar.city; //город квестодателя
 						dialog.text = "Да, у меня есть проблема, требующая решения. Мне поступил заказ. Моему клиенту как можно скорее требуется " + pchar.GenQuest.Findship.Shipyarder.ShipBaseName + ". Однако у меня на верфи сейчас такого корабля нет, сделать его за два месяца у меня тоже нет возможности\nЕсли вы сможете доставить мне такой корабль, я буду весьма вам благодарен и заплачу сумму, в полтора раза превышающую его продажную стоимость.";
@@ -1422,55 +1422,17 @@ bool CheckForFlyingDuchmanSails(ref _char)
 	return false;
 }
 
-void SelectFindship_ShipType()
+void SelectFindship_ShipType(int iNation)
 {
-	int iRank,g,pcharRank;
+	int iRank, pcharRank;
 	pcharRank = sti(pchar.rank);
-	iRank = 0;
-	if (pcharRank > 4) iRank = 1;
-	if (pcharRank > 9) iRank = 2;
-	if (pcharRank > 13) iRank = 3;
-	if (pcharRank > 17) iRank = 4;
-	if (pcharRank > 20) iRank = 5;
-	if (pcharRank > 25) iRank = 6;
-
-	switch (iRank)
-	{
-		case 0:
-			g = rand(11);
-			pchar.GenQuest.Findship.Shipyarder.ShipType = SHIP_BERMSLOOP + g;//ур 0-4, кор 3-14
-		break;
-
-		case 1:
-			g = rand(12);
-			pchar.GenQuest.Findship.Shipyarder.ShipType = SHIP_POLACCA + g;//ур 5-9, кор 15-27
-		break;
-
-		case 2:
-			g = rand(23);
-			pchar.GenQuest.Findship.Shipyarder.ShipType = SHIP_BRIG + g;//ур 10-13, кор 28-51
-		break;
-
-		case 3:
-			g = rand(31);
-			pchar.GenQuest.Findship.Shipyarder.ShipType = SHIP_PINNACE + g;//ур 14-17, кор 52-83
-		break;
-
-		case 4:
-			g = rand(10);
-			pchar.GenQuest.Findship.Shipyarder.ShipType = SHIP_GALEON50 + g;//ур 18-20, кор 84-94
-		break;
-
-		case 5:
-			g = rand(9);
-			pchar.GenQuest.Findship.Shipyarder.ShipType = SHIP_OXFORD + g;//ур 21-25, кор 95-104
-		break;
-
-		case 6:
-			g = rand(10);
-			pchar.GenQuest.Findship.Shipyarder.ShipType = SHIP_POSEIDON + g;//ур 26+, кор 105-116
-		break;
-	}
+	iRank = 6;
+	if (pcharRank > 4) iRank = 5;
+	if (pcharRank > 9) iRank = 4;
+	if (pcharRank > 14) iRank = 3;
+	if (pcharRank > 19) iRank = 2;
+	if (pcharRank > 25) iRank = 1;
+	pchar.GenQuest.Findship.Shipyarder.ShipType = GetShipTypeExtNotNation(iRank, iRank, "", iNation);
 }
 
 
