@@ -25,8 +25,8 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 		}
 
 		//квест шебеки Синяя Птица
-		if(CheckAttribute(NPChar, "city") && pchar.questTemp.BlueBird.City == npchar.city && pchar.questTemp.BlueBird == "returnMoney")
-		{
+		if(CheckAttribute(NPChar, "city") && pchar.questTemp.BlueBird.City == npchar.city && pchar.questTemp.BlueBird == "returnMoney" && sti(pchar.questTemp.BlueBird.count)<7)
+		{//после 7 флейтов перестаём пускать новые
 			Dialog.Text = BlueBurd_setTradeShip();
 			link.l1 = "Ага, понятно... Что ещё нового в городе?";
 			link.l1.go = "new question";
