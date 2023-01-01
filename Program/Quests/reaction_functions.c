@@ -5217,6 +5217,7 @@ void LSC_figtInResidence_1(string qName)
 
 void LSC_enterToPrison(string qName)
 {
+	pchar.quest.LSC_enterToPrison.over = "yes";//фикс, Механик в тюрьме только один раз
 	chrDisableReloadToLocation = true;
 	sld = characterFromId("Mechanic");
 	sld.dialog.currentnode = "inPrison";
