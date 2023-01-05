@@ -665,7 +665,7 @@ bool CheckGame()
 			else
 			{
 				bStartGame = 100; //признах запрета новой игры
-				sTemp += NewStr() + "Все, с меня хватит!";
+				sTemp += NewStr() + "Всё, с меня хватит!";
 			}
 		}
 		SetFormatedText("INFO_TEXT", sTemp);
@@ -792,7 +792,7 @@ void OpenCards();
 		else
 		{
 			bStartGame = 100; //признах запрета новой игры
-			sTemp += NewStr() + "Все, с меня хватит!";
+			sTemp += NewStr() + "Всё, с меня хватит!";
 		}
 	}
     SetFormatedText("INFO_TEXT", sTemp);
@@ -832,7 +832,7 @@ string CheckChardGames(string sTemp)
 			sTemp = "Ха-ха-ха! Ты, бы играть сначала научилась, девочка. Гони сюда мои денежки.";
 			AddMoneyToCharacter(pchar, -200000);
 		}
-		sTemp += NewStr() + "Все, хватит игр на сегодня.";
+		sTemp += NewStr() + "Всё, хватит игр на сегодня.";
 	}
 	return sTemp;
 }
@@ -850,13 +850,13 @@ string CheckBlackGames(string sTemp)
 		openExit = true;
 		if (iHeroWin == 3)
 		{
-			sTemp = RandSwear() + "Ладно, ты выиграл 3 раза. Впечатляющее везение!";
+			sTemp = RandSwear() + "Ладно, ты выиграл"+ GetSexPhrase("","а") +" 3 раза. Впечатляющее везение!";
 		}
 		else
 		{
 			sTemp = "Ха-ха-ха! Тебе явно стоит ещё подучиться.";
 		}
-		sTemp += NewStr() + "Все, хватит игр на сегодня.";
+		sTemp += NewStr() + "Всё, хватит игр на сегодня.";
 	}
 	return sTemp;
 }
