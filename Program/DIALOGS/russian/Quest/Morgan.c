@@ -1475,7 +1475,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "PL_Q8_ready":
-			if (GetQuestPastDayParam("questTemp.piratesLine") > 20)
+			if (GetQuestPastDayParam("questTemp.piratesLine") > 19)
 			{
 				dialog.text = "Ага, вот и ты приш"+ GetSexPhrase("ел","ла") +"! Это хорошо, так как время пришло. Я так понимаю, что ты готов"+ GetSexPhrase("","а") +"?";
 				link.l1 = "Да, адмирал. В полной боевой готовности.";
@@ -1484,6 +1484,7 @@ void ProcessDialogEvent()
 			else
 			{
 				dialog.text = "Зачем явил"+ GetSexPhrase("ся","ась") +"? Через 20 дней, я же сказал тебе!";
+				if (GetQuestPastDayParam("questTemp.piratesLine") == 19) dialog.text = "Зачем явил"+ GetSexPhrase("ся","ась") +"? Ещё один день остался.";
 				link.l1 = "Да, я помню. Просто хотел"+ GetSexPhrase("","а") +" увидеть...";
 				link.l1.go = "PL_Q8_NotReady1";
 			}
