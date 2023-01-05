@@ -517,10 +517,6 @@ void SimulatePGGLife()
 				ref chr;
 				if (findsubstr(pchar.location, "_town", 0) != -1)
 				{
-					if (findsubstr(pchar.location, "LaVega", 0) != -1 || findsubstr(pchar.location, "LeFransua", 0) != -1 || findsubstr(pchar.location, "FortOrange", 0) != -1 || findsubstr(pchar.location, "PuertoPrincipe", 0) != -1)
-					{
-						LAi_ActorGoToLocation(sld, "reload", "reload5", sld.PGGAi.location.town.backup, "", "", "PGGLeft", -1);
-					}
 					LAi_ActorGoToLocation(sld, "reload", "reload4_back", sld.PGGAi.location.town.backup, "", "", "PGGLeft", -1);
 
 					sld.PGGOfficers = 2+sti(sld.rank)/15;
