@@ -1532,7 +1532,7 @@ void ProcessDialogEvent()
 			characters[GetCharacterIndex("PortoBello_Mayor")].dialog.captureNode = "PQ8_MayorPortoBello"; //капитулянтская нода мэра
 			//Морган
 			FantomMakeCoolSailor(npchar, SHIP_BATTLESHIP, "Ужасающий", CANNON_TYPE_CANNON_LBS32, 90, 90, 90);
-            pchar.nation = PIRATE;
+            //pchar.nation = PIRATE;//фикс - чтобы не убегать из ПортРояля с боем
             LAi_SetActorType(NPChar);
             LAi_ActorSetStayMode(NPChar);
 			//LAi_SetImmortal(NPChar, false);
