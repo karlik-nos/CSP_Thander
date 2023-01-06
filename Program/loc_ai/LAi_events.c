@@ -197,6 +197,8 @@ void LAi_CharacterAttack()
 	aref enemy = GetEventData();
 	string attackType = GetEventData();
 	bool isBlocked = GetEventData();
+	bool isSaberGun = GetEventData();
+	int blckTime = GetEventData();
 	//#20200522-01
 	bool blockSave = isBlocked;
 	/*if(attack.id == pchar.id)
@@ -229,15 +231,15 @@ void LAi_CharacterAttack()
            }
 		}
 	}*/
-	/*if(isBlocked == true)  // to_do
+	if(isBlocked == true)  // to_do
 	{
-		float blckTime = 9999.0;
-        if(CheckAttribute(enemy, "chr_ai.BlockInitTime")) {
-            blckTime = GetTimeStamp() - stf(enemy.chr_ai.BlockInitTime);
-        }
+		/*if(sti(enemy.index) == GetMainCharacterIndex())
+		{
+			trace("Block "+blckTime);
+		}*/
 		if(CheckCharacterPerk(attack, "sliding"))
 		{
-			int iRand = rand(100);
+			int iRand = rand(99);
 			if(iRand < 20)
 			{
 				if(blckTime < SLIDING_BLK_THRESH)
@@ -274,8 +276,8 @@ void LAi_CharacterAttack()
 		{
 			if(attackType == "break" && blckTime > DEFAULT_BLK_THRESH) blockSave = false;
 		}
-	}*/
-	if(isBlocked == true)  // to_do
+	}
+	/*if(isBlocked == true)  // to_do
     {
         if(CheckCharacterPerk(attack, "sliding"))
         {
@@ -285,7 +287,7 @@ void LAi_CharacterAttack()
                 isBlocked = false;
             }
         }
-    }
+    }*/
 	//Реакция груп на атаку
 	LAi_group_Attack(attack, enemy);
 	//Начисление повреждений
