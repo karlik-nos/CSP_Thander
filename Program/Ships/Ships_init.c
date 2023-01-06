@@ -4695,10 +4695,10 @@ void InitShips()
 	refShip.Capacity        			= 2500;
 	refShip.MaxCannonDiff						= 3;
 	refShip.CannonsQuantity						= 32;
-	refShip.rcannon 							= 13;
-	refShip.lcannon 							= 13;
-	refShip.fcannon 							= 2;
-	refShip.bcannon 							= 4;
+	refShip.rcannon 							= 15;
+	refShip.lcannon 							= 15;
+	refShip.fcannon 							= 0;
+	refShip.bcannon 							= 2;
 	refShip.MaxCrew         				= 230;
 	refShip.MinCrew         				= 46;
 	refShip.SpeedRate				= 15.4;
