@@ -109,7 +109,16 @@ void LocAi_Init(ref loc)
 				if (loc.id.label == "Tavern") bTavern = true; else bTavern = false;
 				if(bHasLocs)
 				{
-					if (bTavern) {if (rand(1) || locIndex > 3) continue;}//если это таверна, не пускаем внутрь больше 3 офов. И рандомим кого пускать: 50% для каждого офа. Может вообще никого не пустить
+					if (bTavern) //если это таверна, не пускаем внутрь больше 3 офов. И рандомим кого пускать: 50% для каждого офа. Может вообще никого не пустить
+					{
+						if (rand(1) || locIndex > 3) 
+						{
+							Characters[idx].location = "none";
+							Characters[idx].location.group = "";
+							Characters[idx].location.locator = "";
+							continue;
+						}
+					}
                     Characters[idx].location = pchar.location;
                     Characters[idx].location.group = "officers";
                     sOfficerLoc = pchar.location.locator + "_" + k;
