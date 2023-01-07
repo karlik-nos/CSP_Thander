@@ -90,9 +90,9 @@ void ProcessDialogEvent()
 			case 6: RealShips[sti(compref.Ship.Type)].HullArmor = 8+(rand(1)*hullarmor); break;
 			case 5: RealShips[sti(compref.Ship.Type)].HullArmor = 12+(rand(1)*hullarmor); break;
 			case 4: RealShips[sti(compref.Ship.Type)].HullArmor = 16+(rand(2)*hullarmor); break;
-			case 3: RealShips[sti(compref.Ship.Type)].HullArmor = 24+(rand(2)*hullarmor); break;
-			case 2: RealShips[sti(compref.Ship.Type)].HullArmor = 32+(rand(2)*hullarmor); break;
-			case 1: RealShips[sti(compref.Ship.Type)].HullArmor = 42+(rand(2)*hullarmor); break;
+			case 3: RealShips[sti(compref.Ship.Type)].HullArmor = 22+(rand(2)*hullarmor); break;
+			case 2: RealShips[sti(compref.Ship.Type)].HullArmor = 28+(rand(2)*hullarmor); break;
+			case 1: RealShips[sti(compref.Ship.Type)].HullArmor = 34+(rand(2)*hullarmor); break;
 		}
 
 		NPChar.reputation = sti(NPChar.reputation) + (8 - iClass);//минимальная репа ~12. две единицы репы ~ одна единица навыка корабела

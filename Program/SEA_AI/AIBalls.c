@@ -108,8 +108,8 @@ void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0,
 	AIBalls.TimeSpeedMultiply = rCannon.TimeSpeedMultiply;
 	AIBalls.MaxFireDistance   = fMaxFireDistance;
 	AIBalls.RawAng = fAngle;
-	float fTempDispersionY = Degree2Radian(5.0); // LEO: Важные параметры разброса снарядов - (15.0)
-	float fTempDispersionX = Degree2Radian(6.5); // (5.0)
+	float fTempDispersionY = Degree2Radian(9.0); //отклонение по горизонтали	//LEO: Важные параметры разброса снарядов, ванильное: 15.0
+	float fTempDispersionX = Degree2Radian(6.5); //отклонение по вертикали		//(5.0)
 
 	//float fDamage2Cannons = 100.0;
 
