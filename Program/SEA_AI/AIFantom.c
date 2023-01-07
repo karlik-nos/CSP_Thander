@@ -72,7 +72,7 @@ int Fantom_GenerateShips_ForEnc_v2(ref rEnc, int iEType, string sGroupName)//iET
 	int iShipSum = 0;
 	if(iEType == ENCOUNTER_TYPE_BARREL || iEType == ENCOUNTER_TYPE_BOAT)
 	{
-		rFantom = GetFantomCharacter(iNumFantoms);
+		rFantom = CreateSeaFantom();
 
 		DeleteAttribute(rFantom, "relation");
 		DeleteAttribute(rFantom, "abordage_twice");
@@ -92,7 +92,7 @@ int Fantom_GenerateShips_ForEnc_v2(ref rEnc, int iEType, string sGroupName)//iET
 
 	for (int i=0; i<GetAttributesNum(arShips); i++)
 	{
-		rFantom = GetFantomCharacter(iNumFantoms);
+		rFantom = CreateSeaFantom();
 
 		DeleteAttribute(rFantom, "relation");
 		DeleteAttribute(rFantom, "abordage_twice");
