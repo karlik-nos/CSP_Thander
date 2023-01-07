@@ -2202,25 +2202,10 @@ void Ship_ApplyHullHitpointsWithCannon(ref rOurCharacter, float fHP, int iKillSt
 	if (CheckAttribute(&RealShips[sti(rOurCharacter.Ship.Type)], "Tuning.HullSpecial")) fMinus = fMinus+0.35;
 
 	int fMinusC = sti(RealShips[sti(rOurCharacter.Ship.Type)].HullArmor);
-	/*int shipclass = sti(RealShips[sti(rOurCharacter.Ship.Type)].Class);
-	switch (shipclass)
-	{
-		case 6: fMinusC = 12;
-		break;
-		case 5: fMinusC = 16;
-		break;
-		case 4: fMinusC = 20;
-		break;
-		case 3: fMinusC = 24;
-		break;
-		case 2: fMinusC = 32;
-		break;
-		case 1: fMinusC = 42;
-		break;
-	}*/
-	float fDam = fHP * (1.0 + fPlus - fMinus);
+	float fDam = fHP * (1.0 + fPlus);
 	//Log_Info("До снижения "+fDam);
-	fDam = fDam - fMinusC;
+	fDam = fDam - fMinusC;//броню вычитаем до процентов защиты
+	fDam = fDam *(1-fMinus);
 	//Log_Info("После снижения "+fDam);
 	if (fDam < 1.0) fDam = 1;
 	fCurHP = stf(rOurCharacter.Ship.HP) - fDam;

@@ -79,6 +79,7 @@ void LocAi_Init(ref loc)
 		    float posY;
 		    float posZ;
 		    GetCharacterPos(pchar, &posX, &posY, &posZ);
+			bool bTavern = false;
 			for(i = 1; i <=MAX_NUM_FIGHTERS; i++)
 			{
 				idx = GetOfficersIndex(pchar, i);
@@ -92,8 +93,19 @@ void LocAi_Init(ref loc)
 				if (Characters[idx].location == pchar.location)) continue; // fix
 				DeleteAttribute(&Characters[idx], "location");
 				int k = locIndex % 3 + 1;
+				if (loc.id.label == "Tavern") bTavern = true; else bTavern = false;
 				if(bHasLocs)
 				{
+					if (bTavern) //если это таверна, не пускаем внутрь больше 3 офов. И рандомим кого пускать: 50% для каждого офа. Может вообще никого не пустить
+					{
+						if (rand(1) || locIndex > 3) 
+						{
+							Characters[idx].location = "none";
+							Characters[idx].location.group = "";
+							Characters[idx].location.locator = "";
+							continue;
+						}
+					}
                     Characters[idx].location = pchar.location;
                     Characters[idx].location.group = "officers";
                     sOfficerLoc = pchar.location.locator + "_" + k;

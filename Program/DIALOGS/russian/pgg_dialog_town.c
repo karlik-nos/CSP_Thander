@@ -701,7 +701,7 @@ void ProcessDialogEvent()
 		}
 		link.l1.go = "Quest_1_Work_1";
 
-		if(NPChar.name == "Виспер" && !CheckAttribute(NPChar, "PGGWhisperQuestEnd"))
+		if(NPChar.name == "Виспер" && !CheckAttribute(NPChar, "PGGWhisperQuestEnd")  && !CheckAttribute(PChar, "PGGWhisperComplete"))//фикс - QuestEnd - отказ от квеста, Complete - успешное выполнение
 		{
 			NPChar.PGGWhisperQuestStart = true;
 			DeleteAttribute(pchar, "GenQuest.PGG_Quest");
