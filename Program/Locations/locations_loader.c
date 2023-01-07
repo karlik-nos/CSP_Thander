@@ -1354,13 +1354,11 @@ void LocLoadShips(ref Location)
 		{
 			if (!CheckAttribute(pchar,"JustGotIntoLSC"))
 			{
-				if (CreateEntity(&locShips[locNumShips], "ship"))
+				if (CreateEntity(&locShips[n], "ship"))
 				{
 					makearef(locator,Location.locators.reload.boat);
 
-					rCharacter = GetCharacter(BOAT_CHARACTER); // boal
-					//Boyer fix #20170331-05 BOAT_CHARACTER to be same nation as PC so flag is correct, instead of always ENGLAND
-					rCharacter.nation = rplayer.nation;
+					rCharacter = CharacterFromId("BoatChar"); // boal && ugeen
 					rShip = GetRealShip(sti(rCharacter.Ship.Type));
 					rCharacter.Ship.TexturePath = "";
 					rCharacter.Ship.Pos.x = stf(locator.x);
@@ -1368,9 +1366,13 @@ void LocLoadShips(ref Location)
 					rCharacter.Ship.Ang.y = GetAngleY(stf(locator.vZ.x),stf(locator.vZ.z));
 					rCharacter.Ship.stopped = true;
 					rCharacter.Ship.Speed.z = 0.0;
+					rCharacter.nation = sti(rPlayer.nation); // ugeen --> для флага на шлюпке
+					if (!CheckAttribute(rPlayer, "Flags.Pirate")) rCharacter.Flags.Pirate = rand(2);
+					else 										  rCharacter.Flags.Pirate = rPlayer.Flags.Pirate;
 					Ship_SetLightsAndFlares(rCharacter);
 					Ship_PrepareShipForLocation(rCharacter);
-					SendMessage(&locShips[locNumShips],"laa",MSG_SHIP_CREATE,&rCharacter,&rShip);
+					SendMessage(&locShips[n],"laa",MSG_SHIP_CREATE,&rCharacter,&rShip);
+					iShips[locNumShips] = rCharacter.index;
 					locNumShips++;
 				}
 			}
@@ -1555,7 +1557,7 @@ bool CheckFP(ref loc)
 
 bool isDynamicLightsEnabled(string modelPath)
 {
-	// Костылики из-за того, что движок не воспринимает иначе
+	/*// Костылики из-за того, что движок не воспринимает иначе
 	bool isDisabled = HasSubstr(modelPath, "decks") ||
 		HasSubstr(modelPath, "EstateRooms") ||
 		HasSubstr(modelPath, "Fort_Inside") ||
@@ -1564,5 +1566,6 @@ bool isDynamicLightsEnabled(string modelPath)
 		HasSubstr(modelPath, "LostShipsCityInsides") ||
 		HasSubstr(modelPath, "TenochtitlanInside") ||
 		HasSubstr(modelPath, "UnderWater");
-	return !isDisabled;
+	return !isDisabled;*/
+	return true;
 }

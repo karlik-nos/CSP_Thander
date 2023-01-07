@@ -623,6 +623,7 @@ bool LAi_CharacterLogoff(aref chr)
 void LAi_AddLoginedCharacter(aref chr)
 {
 	int index = sti(chr.index);
+	SetArraySize(&LAi_loginedcharacters,MAX_CHARS_IN_LOC);
 	LAi_loginedcharacters[LAi_numloginedcharacters] = index;
 	LAi_numloginedcharacters = LAi_numloginedcharacters + 1;
 }

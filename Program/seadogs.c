@@ -798,6 +798,16 @@ void OnLoad()
 	InitParticles();
 	ReloadProgressUpdate();
 	//ImportFuncTest();
+	
+	if (firstFreeCharacter == -1) {
+		for (int i = GlobalCharacters; i < MAX_CHARACTERS; i++) {
+			ref chr = GetCharacter(i);
+			if (!CheckAttribute(chr, "id") || chr.id == "0") {
+				FreeCharacter(i);
+			}
+		}
+		trace("Освободили " + (firstFreeCharacter + 1));
+	}
 
 	WeatherInit();
 	ReloadProgressUpdate();

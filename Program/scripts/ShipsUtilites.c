@@ -494,25 +494,7 @@ void EmptyAllFantomShips()
 		    FreeShipFromShipyard(chr);
 		}
 	}
-	for (i = FANTOM_CHARACTERS; i < TOTAL_CHARACTERS; i++) // фантомы в море
-	{
-        chr = &Characters[i];
-        if (CheckAttribute(chr, "ship.type") && chr.ship.type != SHIP_NOTUSED)
-        {
-            RealShips[sti(chr.ship.type)].lock = true;
-        }
-		else
-		{
-			/*if (CheckAttribute(chr,"id"))
-			{
-				if (HasSubStr(chr.id,"ShipWreck_") || HasSubStr(chr.id,"Convict")) {}
-				else InitCharacter(&Characters[i], i);
-			}
-			else InitCharacter(&Characters[i], i);	//ugeen : чистим нафиг все атрибуты пустых фантомов (переиничиваем)*/
-			//if (CheckAttribute(chr,"location") && chr.location == "none") InitCharacter(&Characters[i], i);
-			if (CheckAttribute(chr,"lifeday") && sti(chr.lifeday) == 0) InitCharacter(&Characters[i], i);
-		}
-	}
+  
 	// теперь сборка мусора
 	for (i = 0; i < REAL_SHIPS_QUANTITY; i++)
 	{

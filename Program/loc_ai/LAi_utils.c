@@ -574,27 +574,16 @@ ref LAi_CreateFantomCharacter(string model, string group, string locator)
 //Создать фантомного персонажа
 ref LAi_CreateFantomCharacterEx(string model, string ani, string group, string locator)
 {
-	//Ищем свободное место для персонажа
-	for(int i = 0; i < MAX_CHARS_IN_LOC; i++)
-	{
-		if(CheckAttribute(&Characters[LOC_FANTOM_CHARACTERS + i], "id") == false) break;
-		if(Characters[LOC_FANTOM_CHARACTERS + i].id == "") break;
-	}
-	if(i >= MAX_CHARS_IN_LOC)
-	{
-		for(i = 0; i < MAX_CHARS_IN_LOC; i++)
-		{
-			if(!IsEntity(&Characters[LOC_FANTOM_CHARACTERS + i])) break;
-		}
-		if(i >= MAX_CHARS_IN_LOC) i = 0;
-	}
-	ref chr = &Characters[LOC_FANTOM_CHARACTERS + i];
-
+	// --> mitrokosta переделка, убрал "фантомов". выигрыш в перформансе мизерный, зато привет раздвоению
+	int index = FindFirstEmptyCharacter();
+	ref chr = GetCharacter(index);
+	InitCharacter(chr, index);
+	chr.lifeday = 0; // сотрется при смене локации
+	// <--
 	//Заполняем поля персонажа
-	chr.id = "Location fantom character <" + i + ">";
-	chr.index = LOC_FANTOM_CHARACTERS + i;
+	chr.id = "Location fantom character <" + index + ">";						   
 	//address
-	if(IsEntity(loadedLocation) != true)
+	if(IsEntity(&loadedLocation) != true)
 	{
 		chr.location = "none";
 	}else{
