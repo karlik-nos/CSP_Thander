@@ -29,9 +29,6 @@ String sInterfaceType;
 
 int iLinesCount = 0;
 
-int lastsort = 0;//мало??? - нужно для каждой таблицы запоминать, если в интерфейсе их может быть несколько???
-bool blastsort;
-
 int chestsnum;
 int curchest = 1;
 aref box1;
@@ -126,6 +123,13 @@ void InitInterface_RS(string iniName, ref itemsRef, string faceID)
 	GameInterface.TABLE_LIST.hr.td4.textoffset = "0, 2";
 	GameInterface.TABLE_LIST.hr.td5.str = "Кол-во";
 	GameInterface.TABLE_LIST.hr.td5.scale = 0.9;
+//--> mod tablesort
+	GameInterface.TABLE_LIST.hr.td1.sorttype = "";//числа - любое значение кроме "string"
+	GameInterface.TABLE_LIST.hr.td2.sorttype = "";
+	GameInterface.TABLE_LIST.hr.td3.sorttype = "string";
+	GameInterface.TABLE_LIST.hr.td4.sorttype = "";
+	GameInterface.TABLE_LIST.hr.td5.sorttype = "";
+//<-- mod tablesort
 
 	FillCharactersScroll();
 
@@ -1151,20 +1155,9 @@ void OnTableClick()
 	int iRow = GetEventData();
 	int iColumn = GetEventData();
 
-	string sRow = "tr" + (iRow + 1);
+	//string sRow = "tr" + (iRow + 1);
 //--> mod tablesort
-	if (!SendMessage(&GameInterface,"lsl",MSG_INTERFACE_MSG_TO_NODE, sControl, 1 ))
-		{
-		if (lastsort == iColumn) {bLastSort = !bLastSort;} else {lastsort = iColumn; bLastSort = 1;}//запоминаем сортировку и меняем направление сортировки, если это повторный клик по колонке
-//todo - разобраться, как заблокировать активацию двойного клика на заголовке - подменять его на ординарные как-то
-//todo - устанавливать стрелочку направления сортировки по запомненным значениям переменных - но тут нужно как-то узнавать ширину колонок таблицы, чтобы пересчитать координаты???
-//todo - не забыть, что может быть несколько таблиц на одном интерфейсе - надо ещё и последнюю таблицы запоминать и сбрасывать(?) сортировку при смене или запоминать для каждой?
-		if (iColumn == 3)
-			SortTable(sControl, iColumn, 1, bLastSort, iLinesCount);//3 колонка - текстовая
-		else
-			SortTable(sControl, iColumn, 0, !bLastSort, iLinesCount);//остальные колонки - числа
-		}
-//вызывать направление сортировки разными действиями - ЛКМ/ПКМ??
+	if (!SendMessage(&GameInterface,"lsl",MSG_INTERFACE_MSG_TO_NODE, sControl, 1 )) SortTable(sControl, iColumn);
 //<-- mod tablesort
 	Table_UpdateWindow(sControl);
 }

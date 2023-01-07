@@ -39,6 +39,14 @@ void InitInterface_R(string iniName, ref pStore)
 	GameInterface.TABLE_LIST.hr.td5.scale = 0.9;
 	GameInterface.TABLE_LIST.hr.td6.str = "Вес";
 	GameInterface.TABLE_LIST.hr.td6.scale = 0.9;
+//--> mod tablesort
+	GameInterface.TABLE_LIST.hr.td1.sorttype = "";
+	GameInterface.TABLE_LIST.hr.td2.sorttype = "";
+	GameInterface.TABLE_LIST.hr.td3.sorttype = "string";
+	GameInterface.TABLE_LIST.hr.td4.sorttype = "";
+	GameInterface.TABLE_LIST.hr.td5.sorttype = "";
+	GameInterface.TABLE_LIST.hr.td6.sorttype = "";
+//<-- mod tablesort
 
     FillShipsScroll();
 
@@ -525,14 +533,14 @@ void CS_TableSelectChange()
 
 void OnTableClick()
 {
-/*
 	string sControl = GetEventData();
 	int iRow = GetEventData();
 	int iColumn = GetEventData();
 	sCurRow = "tr" + (iRow+1);
-
-    Table_UpdateWindow(sControl);
-*/
+//--> mod tablesort
+	if (!SendMessage(&GameInterface,"lsl",MSG_INTERFACE_MSG_TO_NODE, sControl, 1 )) SortTable(sControl, iColumn);
+//<-- mod tablesort
+	Table_UpdateWindow(sControl);
 }
 
 void FillShipsScroll()

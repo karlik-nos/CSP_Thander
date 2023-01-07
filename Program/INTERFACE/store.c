@@ -79,6 +79,17 @@ void InitInterface_R(string iniName, ref pStore)
 	GameInterface.TABLE_LIST.hr.td8.scale = 0.8;
 	GameInterface.TABLE_LIST.hr.td9.str = "Общий вес";
 	GameInterface.TABLE_LIST.hr.td9.scale = 0.8;
+//--> mod tablesort
+	GameInterface.TABLE_LIST.hr.td1.sorttype = "";
+	GameInterface.TABLE_LIST.hr.td2.sorttype = "";
+	GameInterface.TABLE_LIST.hr.td3.sorttype = "";
+	GameInterface.TABLE_LIST.hr.td4.sorttype = "string";
+	GameInterface.TABLE_LIST.hr.td5.sorttype = "";
+	GameInterface.TABLE_LIST.hr.td6.sorttype = "";
+	GameInterface.TABLE_LIST.hr.td7.sorttype = "";
+	GameInterface.TABLE_LIST.hr.td8.sorttype = "";
+	GameInterface.TABLE_LIST.hr.td9.sorttype = "";
+//<-- mod tablesort
 
 	FillShipsScroll();
 
@@ -419,8 +430,10 @@ void OnTableClick()
 	int iRow = GetEventData();
 	int iColumn = GetEventData();
 
-	string sRow = "tr" + (iRow + 1);
-	//Log_InfoOwn("OnTableClick  " + sRow + "   " + iColumn);
+	//string sRow = "tr" + (iRow + 1);
+//--> mod tablesort
+	if (!SendMessage(&GameInterface,"lsl",MSG_INTERFACE_MSG_TO_NODE, sControl, 1 )) SortTable(sControl, iColumn);
+//<-- mod tablesort
 	Table_UpdateWindow(sControl);
 }
 
