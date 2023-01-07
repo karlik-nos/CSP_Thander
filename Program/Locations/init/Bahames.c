@@ -230,7 +230,7 @@ int LocationInitBahames(int n)
 	locations[n].image = "loading\jonny_load\inside\Tavern05.tga";
 	locations[n].habitues = 1;
 	//Town sack
-	locations[n].townsack = "Bahames";
+	locations[n].townsack = "Nassau";
 	locations[n].lockWeather = "Inside";
 	//Sound
 	locations[n].type = "tavern";

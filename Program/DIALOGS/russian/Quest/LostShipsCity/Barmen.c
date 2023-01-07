@@ -1041,6 +1041,17 @@ void ProcessDialogEvent()
 		break;
 		case "TradeCheck2":
 			npchar.amount = GetStrSmallRegister(dialogEditStrings[1]);
+			string sGoodX
+			switch (sti(npchar.GoodType))
+			{
+				case 1:	sGoodX = "Food"; break;
+				case 2:	sGoodX = "Wine"; break;
+				case 3:	sGoodX = "Ale"; break;
+				case 4:	sGoodX = "Rum"; break;
+				case 5:	sGoodX = "Fruits"; break;
+			}
+			npchar.amount = func_min((sti(npchar.amount),sti(pchar.Ship.Cargo.Goods.(sGoodX)));//фикс, нельзя продать больше, чем привёз
+			npchar.amount = func_max((sti(npchar.amount),1);
 			switch (sti(npchar.GoodType))
 			{
 				case 1:

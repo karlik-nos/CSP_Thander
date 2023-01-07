@@ -1472,11 +1472,13 @@ bool BI_SetSeaState()
     return bMapEnter;
 }
 
-void SetShipPictureDataByShipTypeName(string sType)
+//void SetShipPictureDataByShipTypeName(string sType)
+void SetShipPictureDataByShipTypeName(int N)
 {
-	switch(sType)
+	BI_intNRetValue[0] = (N%16)*2 + (N/16)*32; BI_intNRetValue[1] = BI_intNRetValue[0] + 1;
+/*	switch(sType)
 	{
-	// 7-й КЛАСС	(3 корабля)
+	// 7-й КЛАСС	(3 корабля)						
 	case "tartane":				BI_intNRetValue[0] = 0+0*32;	BI_intNRetValue[1] = 0+0*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Тартана
 	case "plot":				BI_intNRetValue[0] = 2+0*32;	BI_intNRetValue[1] = 2+0*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Плот
     case "wartartane":			BI_intNRetValue[0] = 4+0*32;	BI_intNRetValue[1] = 4+0*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Баркас
@@ -1626,6 +1628,8 @@ void SetShipPictureDataByShipTypeName(string sType)
 	case "santisima":			BI_intNRetValue[0] = 22+8*32;	BI_intNRetValue[1] = 22+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Быстрый мановар
 	case "soleyru":				BI_intNRetValue[0] = 24+8*32;	BI_intNRetValue[1] = 24+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Сулей Руаяль
 	}
+*/
+	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;
 	BI_intNRetValue[3] = false;
 }
 
@@ -1633,7 +1637,8 @@ void SetShipPictureDataByShipType(int st)
 {
 	if(st>=0 && st<SHIP_TYPES_QUANTITY)
 	{
-		SetShipPictureDataByShipTypeName( ShipsTypes[st].name );
+//		SetShipPictureDataByShipTypeName( ShipsTypes[st].name );
+		SetShipPictureDataByShipTypeName( st );
 	}
 }
 

@@ -142,9 +142,13 @@ void DeleteSeaEnvironment()
 
 	// delete masts fall modules
 		DeleteEntitiesByType("mast");
+		
+	// delete hulls fall modules
+	DeleteEntitiesByType("hull");	
 
  	// delete particle system
 	//	DeleteParticles();
+	ClearSeaFantoms();
 
 	// delete our group
 		Group_DeleteGroup(PLAYER_GROUP);
@@ -646,23 +650,6 @@ void SeaLogin(ref Login)
 	pchar.Ship.POS.Mode = SHIP_SAIL;
 	pchar.location = sIslandID;
 
-	// clear old fantom relations in our character
-		if (CheckAttribute(pchar, "Relation"))
-		{
-			aref	arRelations; makearef(arRelations, pchar.Relation);
-			int		iNumRelations = GetAttributesNum(arRelations);
-			for (i=0; i<iNumRelations; i++)
-			{
-				aref arRelation = GetAttributeN(arRelations, i);
-				string sRName = GetAttributeName(arRelation);
-				if (sti(sRName) >= FANTOM_CHARACTERS)
-				{
-					DeleteAttribute(arRelations, sRName);
-					iNumRelations--;
-					i--;
-				}
-			}
-		}
 
 	// Quest check
 	Event(EVENT_SEA_LOGIN, "");
@@ -920,17 +907,14 @@ void SeaLogin(ref Login)
 		iNation = sti(rEncounter.Nation);
 		}
 
-		int iNumFantomShips = Fantom_GenerateEncounterExt(sGName, &oResult, iEncounterType, iNumWarShips, iNumMerchantShips, iNation);
-
-		//Lipsar 2 ряда кораблей
-		/*if(iEncounterType != ENCOUNTER_TYPE_ALONE && iNumFantomShips > SHIPS_NUM_DOUBLE)
-            SendMessage(&AISea, "lsl", AI_MESSAGE_GROUP_SET_LINES, sGName, 2);
-		//Lipsar*/
+		int iNumFantomShips;
+		if (checkattribute(rEncounter, "v2")) iNumFantomShips = Fantom_GenerateShips_ForEnc_v2(rEncounter, iEncounterType, sGName);
+			else iNumFantomShips = Fantom_GenerateEncounterExt(sGName, iEncounterType, iNumWarShips, iNumMerchantShips, iNation);
 
 		// Ugeen --> генерация параметров	для спецэнкаунтеров
 		if (iEncounterType == ENCOUNTER_TYPE_BARREL || iEncounterType == ENCOUNTER_TYPE_BOAT)
 		{
-			iFantomIndex = FANTOM_CHARACTERS + iNumFantoms;
+			iFantomIndex = seaFantoms[seaFantomsNum - 1];
 			rFantom = &Characters[iFantomIndex];
 			rFantom.id = iFantomIndex;
 			rFantom.index = iFantomIndex;
@@ -1011,8 +995,9 @@ void SeaLogin(ref Login)
 		{
 			for (j=0; j<iNumFantomShips; j++)
 			{
-				iFantomIndex = FANTOM_CHARACTERS + iNumFantoms - iNumFantomShips + j;
+				iFantomIndex = seaFantoms[seaFantomsNum - iNumFantomShips + j];
 				rFantom = &Characters[iFantomIndex];
+				rFantom.SeaFantom = true;
                 DeleteAttribute(rFantom, "items"); // boal 28.07.04 фикс кучи сабель, когда идёт в плен
 				rFantom.id = "fenc_" + iFantomIndex;
                 // boal 26.02.2004 -->
@@ -1030,7 +1015,7 @@ void SeaLogin(ref Login)
                 rFantom.EncType      = rEncounter.Type; // тип  war, trade pirate
                 rFantom.RealEncounterType = iEncounterType;//boal
                 rFantom.EncGroupName = sGName;
-                rFantom.MainCaptanId = Characters[iFantomIndex - j].id;
+                rFantom.MainCaptanId = Characters[seaFantoms[seaFantomsNum - iNumFantomShips]].id;
 				rFantom.WatchFort = true; //следить за фортом
 				rFantom.AnalizeShips = true; //анализить враждебные корабли сразу же с загрузки и далее
 				if(rand(10) == 1) rFantom.DontRansackCaptain = true;
@@ -1046,6 +1031,8 @@ void SeaLogin(ref Login)
 
 				SetRandomNameToCharacter(rFantom);
 				SetRandomNameToShip(rFantom);
+
+				//rFantom.GroupShipPos_event = "CalculateGroupShipPos";
 
 				SetSeaFantomParam(rFantom, rEncounter.Type); // все там
 
@@ -1105,12 +1092,7 @@ void SeaLogin(ref Login)
 
 				// add fantom
 				Group_AddCharacter(sGName, rFantom.id);
-			}
-
-			for (j = 0; j < iNumFantomShips; j++)
-			{
-				// add to sea
-				Ship_Add2Sea(FANTOM_CHARACTERS + iNumFantoms - iNumFantomShips + j, 0, rEncounter.Type);
+				Ship_Add2Sea(iFantomIndex, 0, rEncounter.Type);
 			}
 		}
 	}
@@ -1275,6 +1257,8 @@ void Sea_LoginGroup(string sGroupID)
 		return;
 	}
 	Group_SetGroupCommander(sGroupID, rGroupCommander.id);  // странная проверка и назначение, но было и пусть будет
+
+	//&Characters[GetCharacterIndex(rGroupCommander.id)].GroupShipPos_event = "CalculateGroupShipPos";
 
 	// set location near
 	if (CheckAttribute(rGroup, "location.neargroup"))

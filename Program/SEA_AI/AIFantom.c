@@ -1,12 +1,26 @@
 #define FANTOM_SHIPS_QTY 150
 #define INVALID_SHIP_TYPE			-1
 
-ref Fantom_GetNextFantom()
-{
-	iNumFantoms++;
-	return &Characters[FANTOM_CHARACTERS + iNumFantoms];
+int seaFantomsNum; // mitrokosta перенес из глобалов
+int seaFantoms[MAX_SHIPS_ON_SEA];
+
+ref CreateSeaFantom() {
+	int index = FindFirstEmptyCharacter();
+	seaFantoms[seaFantomsNum] = index;
+	seaFantomsNum++;
+	return GetCharacter(index);
 }
 
+void ClearSeaFantoms() {
+	for (int i = 0; i < seaFantomsNum; i++) {
+		int index = seaFantoms[i];
+		if (!CheckAttribute(GetCharacter(index),"lifeday")) continue;
+		InitCharacter(GetCharacter(index), index);
+		FreeCharacter(index);
+	}
+	
+	seaFantomsNum = 0;
+}
 // -> ugeen 26.01.09
 int Fantom_GenerateEncounterExt(string sGroupName, object oResult, int iEType, int iNumWarShips, int iNumMerchantShips, int iNation)
 {
@@ -21,7 +35,7 @@ int Fantom_GenerateEncounterExt(string sGroupName, object oResult, int iEType, i
 
 	if(iEType == ENCOUNTER_TYPE_BARREL || iEType == ENCOUNTER_TYPE_BOAT)
 	{
-		ref rFantom = GetFantomCharacter(iNumFantoms);
+		ref rFantom = CreateSeaFantom();
 
 		DeleteAttribute(rFantom, "relation");
 		DeleteAttribute(rFantom, "abordage_twice");
@@ -29,7 +43,6 @@ int Fantom_GenerateEncounterExt(string sGroupName, object oResult, int iEType, i
 		DeleteAttribute(rFantom, "ransom");
 
 		rFantom.SeaAI.Group.Name = sGroupName;
-		iNumFantoms++;
 		return 0;
 	}
 
@@ -51,6 +64,53 @@ int Fantom_GenerateEncounterExt(string sGroupName, object oResult, int iEType, i
 	}
 
 	return iNumWarShips + iNumMerchantShips;
+}
+
+int Fantom_GenerateShips_ForEnc_v2(ref rEnc, int iEType, string sGroupName)//iEType вообще не нужен??? просто не ставить атрибут новой системы на эти типы энок и они будут работать по старой функции
+{																			//хотя - это бред. всё равно старую полностью вырежем
+	ref rFantom;
+	int iShipSum = 0;
+	if(iEType == ENCOUNTER_TYPE_BARREL || iEType == ENCOUNTER_TYPE_BOAT)
+	{
+		rFantom = CreateSeaFantom();
+
+		DeleteAttribute(rFantom, "relation");
+		DeleteAttribute(rFantom, "abordage_twice");
+		DeleteAttribute(rFantom, "QuestDate");
+		DeleteAttribute(rFantom, "ransom");
+
+		rFantom.SeaAI.Group.Name = sGroupName;
+		iNumFantoms++;
+		return 0;
+	}
+
+	aref arShips, arShipModes, arShipType;
+	makearef(arShips, rEnc.shiptypes);
+	makearef(arShipModes, rEnc.shipmodes);
+	int iShipType;
+	string sFantomType;
+
+	for (int i=0; i<GetAttributesNum(arShips); i++)
+	{
+		rFantom = CreateSeaFantom();
+
+		DeleteAttribute(rFantom, "relation");
+		DeleteAttribute(rFantom, "abordage_twice");
+		DeleteAttribute(rFantom, "QuestDate");
+		DeleteAttribute(rFantom, "ransom");
+		DeleteAttribute(rFantom, "DontRansackCaptain");
+
+		iShipType = GetAttributeValue(GetAttributeN(arShips, i));
+		sFantomType = GetAttributeValue(GetAttributeN(arShipModes, i));
+		rFantom.Ship.Type = GenerateShipExt(iShipType, 0, rFantom);
+		rFantom.Ship.Mode = sFantomType;
+		rFantom.SeaAI.Group.Name = sGroupName;
+		rFantom.Charge.Type = GOOD_BALLS;
+
+		iNumFantoms++;
+		iShipSum++;
+	}
+	return iShipSum;
 }
 
 int Fantom_GetShipTypeExt(int iClassMin, int iClassMax, string sShipType, string sGroupName, string sFantomType, int iEncounterType, int iNation)
@@ -99,7 +159,7 @@ int Fantom_GetShipTypeExt(int iClassMin, int iClassMax, string sShipType, string
 
 	int iBaseShipType = iShips[rand(iShipsNum - 1)];
 
-	ref rFantom = GetFantomCharacter(iNumFantoms);
+	ref rFantom = CreateSeaFantom();
 
 	DeleteAttribute(rFantom, "relation");
 	DeleteAttribute(rFantom, "abordage_twice");
@@ -111,7 +171,7 @@ int Fantom_GetShipTypeExt(int iClassMin, int iClassMax, string sShipType, string
 	rFantom.Ship.Mode = sFantomType;
 	rFantom.Charge.Type = GOOD_BALLS;
 
-	iNumFantoms++;
+
 
 	int iRealShipType = GenerateShipExt(iBaseShipType, 0, rFantom);
 
@@ -193,7 +253,7 @@ int Fantom_GetShipType(int iClassMin, int iClassMax, string sShipType)
 // мктод этот походу левый, тк перекрывается в сиа.с
 void Fantom_AddFantomCharacter(string sGroupName, int iShipType, string sFantomType, int iEncounterType)
 {
-	ref rFantom = GetFantomCharacter(iNumFantoms);
+	ref rFantom = CreateSeaFantom();
 
 
 
@@ -212,8 +272,6 @@ void Fantom_AddFantomCharacter(string sGroupName, int iShipType, string sFantomT
 	rFantom.Ship.Type = iShipType;
 	rFantom.Ship.Mode = sFantomType;
 	rFantom.Charge.Type = GOOD_BALLS;
-
-	iNumFantoms++;
 }
 // на деле этот метод бесполезен, тк золото в сундуке генерится в др месте, а то что, в к3 тут были распределения опыта и команды вообще позорище.
 void Fantom_SetRandomMoney(ref rFantom, string sFantomType)
@@ -895,31 +953,25 @@ void GenerateShipUpgradeParameters(ref rFantom)
 	}
 }
 
-// eddy. подбор типа корабля для фантома от ранга и нац. принадлежности
+// eddy. подбор типа корабля для фантома от ранга ГГ с учётом нац. принадлежности, и типа занятий
 void SetShipToFantom(ref _chr, string _type, bool _setgoods)
 {
 	int ShipType;
 	int Nation = sti(_chr.nation);
 	int Rank = sti(pchar.rank);
-	switch (_type)
-	{
-		case "trade":
-			if (Rank >= 1 && Rank <= 5){ShipType = 3 + rand(11);} // 6 класс
-			if (Rank >= 5 && Rank <= 10){ShipType = 3 + rand(24);} // 6 - 5 класс
-			if (Rank >= 10 && Rank <= 15){ShipType = 15 + rand(36);} // 5 - 4 класс
-			if (Rank >= 15 && Rank <= 20){ShipType = 28 + rand(55);} // 4 - 3 класс
-			if (Rank >= 20 && Rank <= 30){ShipType = 52 + rand(52);} // 3 - 2 класс
-			if (Rank > 30){	ShipType = 84 + rand(40);} // 2 - 1 класс
-		break;
-		case "pirate":
-			if (Rank >= 1 && Rank <= 5){ShipType = 3 + rand(11);} // 6 класс
-			if (Rank >= 5 && Rank <= 10){ShipType = 3 + rand(24);} // 6 - 5 класс
-			if (Rank >= 10 && Rank <= 15){ShipType = 15 + rand(36);} // 5 - 4 класс
-			if (Rank >= 15 && Rank <= 20){ShipType = 28 + rand(55);} // 4 - 3 класс
-			if (Rank >= 20 && Rank <= 30){ShipType = 52 + rand(52);} // 3 - 2 класс
-			if (Rank > 30){	ShipType = 84 + rand(40);} // 2 - 1 класс
-		break;-
-	}
+	int iClassMin,iClassMax;
+
+	if (Rank >= 1 && Rank <= 5) {iClassMin = 6; iClassMax = 6;} // 6 класс
+	if (Rank >= 5 && Rank <= 10) {iClassMin = 6; iClassMax = 5;} // 6 - 5 класс
+	if (Rank >= 10 && Rank <= 15) {iClassMin = 5; iClassMax = 4;} // 5 - 4 класс
+	if (Rank >= 15 && Rank <= 20) {iClassMin = 4; iClassMax = 3;} // 4 - 3 класс
+	if (Rank >= 20 && Rank <= 30) {iClassMin = 3; iClassMax = 2;} // 3 - 2 класс
+	if (Rank > 30) {iClassMin = 2; iClassMax = 1;} // 2 - 1 класс
+	string sType = "";
+	if (_type == "trade") sType = "merchant";
+	if (_type == "pirate") sType = "war";
+	ShipType = GetShipTypeExt(iClassMin, iClassMax, sType, Nation);
+
 	_chr.Ship.Type = GenerateShipExt(ShipType, true, _chr);
 	SetRandomNameToShip(_chr);
     SetBaseShipData(_chr);

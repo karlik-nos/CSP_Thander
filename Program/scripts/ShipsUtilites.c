@@ -47,23 +47,17 @@ int GenerateShip(int iBaseType, bool isStolen)
 {
 	int iShip = CreateBaseShip(iBaseType);
 
-	if (iShip == -1)
-	{
-		return SHIP_NOTUSED;
-	}
+  	if (iShip == -1) return SHIP_NOTUSED;
 
 	ref rRealShip = GetRealShip(iShip);
-	ref rBaseShip = GetShipByType(sti(rRealShip.BaseType));
-    //Boyer change for ERAS2 #20170318-49
-    if(CheckAttribute(rRealShip, "hullNums")) {
+    if(CheckAttribute(rRealShip, "hullNums")) 
+	{
         int nHulls = sti(rRealShip.hullNums);
         nHulls -= 1;
         if(nHulls < 0) nHulls = 0;
         rRealShip.ship.upgrades.hull = 1 + rand(nHulls);
     }
-    else {
-        rRealShip.ship.upgrades.hull = 1 + rand(2);
-    }
+    else {rRealShip.ship.upgrades.hull = 1 + rand(2);}
 	rRealShip.ship.upgrades.sails = 1 + rand(2);  // только визуальная разница
 
 	rRealShip.MastMultiplier = stf(stf(rRealShip.MastMultiplier)-0.3+makefloat(0.02*rand(30)));
@@ -80,13 +74,6 @@ int GenerateShip(int iBaseType, bool isStolen)
     rRealShip.MaxCrew         = makeint(sti(rRealShip.OptCrew) * 1.25 + 0.5);  // 25 процентов перегруза
     rRealShip.MinCrew         = GenerateShipStatI(sti(rRealShip.MinCrew), SHIP_STAT_RANGE_GENERATION);
 
-	// to_do del -->
-	rRealShip.BoardingCrew    = 0;
-	rRealShip.GunnerCrew      = 0;
-	rRealShip.CannonerCrew    = 0;
-	rRealShip.SailorCrew      = sti(rRealShip.OptCrew);
-    // to_do del <--
-
 	rRealShip.Price	= GetShipPriceByTTH(iShip, &NullCharacter);
 	if (sti(rRealShip.Price) <= 0) rRealShip.Price = 100;
 
@@ -95,11 +82,9 @@ int GenerateShip(int iBaseType, bool isStolen)
 	return iShip;
 }
 
-// -> added by ugeen 25.01.09 (на основе GenerateShip(.....)) - рандомизируем кол-во стволов на борту
-// 31.01.09 - добавил бонусы к корабельным статам если кол-во орудий на борту < базового
 int GenerateShipExt(int iBaseType, bool isStolen, ref chr)
 {
-	string  attr, sCity;
+	string  attr;
 	int 	i;
 	aref 	refShip;
 	float	fStatRange = SHIP_STAT_RANGE_GENERATION;
@@ -107,39 +92,31 @@ int GenerateShipExt(int iBaseType, bool isStolen, ref chr)
 
 	int iShip = CreateBaseShip(iBaseType);
 
-	if (iShip == -1)
-	{
-		return SHIP_NOTUSED;
-	}
+	if (iShip == -1) return SHIP_NOTUSED;
 
 	ref rRealShip = GetRealShip(iShip);
-	ref rBaseShip = GetShipByType(sti(rRealShip.BaseType));
-	//Boyer change for ERAS2 #20170318-49
-    if(CheckAttribute(rRealShip, "hullNums")) {
+    if(CheckAttribute(rRealShip, "hullNums")) 
+	{
         int nHulls = sti(rRealShip.hullNums);
         nHulls -= 1;
         if(nHulls < 0) nHulls = 0;
         rRealShip.ship.upgrades.hull = 1 + rand(nHulls);
     }
-    else {
-        rRealShip.ship.upgrades.hull = 1 + rand(2);
-    }
+    else {rRealShip.ship.upgrades.hull = 1 + rand(2);}
 	rRealShip.ship.upgrades.sails = 1 + rand(2);  // только визуальная разница
 
 	if (!CheckAttribute(rRealShip, "QuestShip"))
 		rRealShip.MastMultiplier = stf(stf(rRealShip.MastMultiplier)-0.3+makefloat(0.02*rand(30)));
 
-	// ugeen --> если кораблик генерится на верфи, разброс статов более узкий
-	if (CheckAttribute(chr, "City"))
+	if (CheckAttribute(chr, "City"))// ugeen --> если кораблик генерится на верфи, разброс статов более узкий
 	{
-		sCity = chr.City;
+		string  sCity = chr.City;
 		if(CheckCharacterID(chr, sCity + "_shipyarder"))
 		{
 			fStatRange 	= SHIP_STAT_RANGE_GENERATION_SHIPYARD;
 			isShipyard 	= true;
 		}
 	}
-	// ugeen
 
 	if (!CheckAttribute(rRealShip, "isFort"))
 	{
@@ -150,10 +127,7 @@ int GenerateShipExt(int iBaseType, bool isStolen, ref chr)
 		makearef(refShip, chr.Ship);
 		ResetShipCannonsDamages(chr);
 
-		if (!CheckAttribute(refShip,"soiling"))
-		{
-			refShip.soiling = 0;
-		}
+		if (!CheckAttribute(refShip,"soiling")) refShip.soiling = 0;
 
 		// куда-нить запишем максимально возможное кол-во орудий (потом нужно будет, если захотим проапгрейдиться на этот счет)
 		rRealShip.CannonsQuantityMax = sti(rRealShip.CannonsQuantity);
@@ -236,6 +210,19 @@ int GenerateShipExt(int iBaseType, bool isStolen, ref chr)
 			rRealShip.HP               = GenerateShipStatI(sti(rRealShip.HP), fStatRange);
 			rRealShip.WindAgainstSpeed = GenerateShipStatF(stf(rRealShip.WindAgainstSpeed), fStatRange);
 		}
+		else
+		{
+			switch (sti(rRealShip.Class))//уникам максимальную броню, чтоб игроки не сливали
+			{
+				case 7: rRealShip.HullArmor = 5; break;
+				case 6: rRealShip.HullArmor = 9; break;
+				case 5: rRealShip.HullArmor = 13; break;
+				case 4: rRealShip.HullArmor = 18; break;
+				case 3: rRealShip.HullArmor = 24; break;
+				case 2: rRealShip.HullArmor = 30; break;
+				case 1: rRealShip.HullArmor = 36; break;
+			}
+		}
 	}
 
 	if(!CheckAttribute(rRealShip, "QuestShip"))
@@ -245,13 +232,6 @@ int GenerateShipExt(int iBaseType, bool isStolen, ref chr)
 		rRealShip.MaxCrew         = makeint(sti(rRealShip.OptCrew) * 1.25 + 0.5);  // 25 процентов перегруза
 		rRealShip.MinCrew         = GenerateShipStatI(sti(rRealShip.MinCrew), fStatRange);
 	}
-
-	// to_do del -->
-	rRealShip.BoardingCrew    = 0;
-	rRealShip.GunnerCrew      = 0;
-	rRealShip.CannonerCrew    = 0;
-	rRealShip.SailorCrew      = sti(rRealShip.OptCrew);
-	// to_do del <--
 
 	if (!CheckAttribute(rRealShip, "QuestShip"))
 		SetCabinTypeEx(rRealShip, sti(rRealShip.Class)); //Выдача случайной каюты по классу не квестовым - Gregg
@@ -394,9 +374,9 @@ int CreateBaseShip(int iBaseType)
 		case 6: rRealShip.HullArmor = 8+(rand(1)*hullarmor); break;
 		case 5: rRealShip.HullArmor = 12+(rand(1)*hullarmor); break;
 		case 4: rRealShip.HullArmor = 16+(rand(2)*hullarmor); break;
-		case 3: rRealShip.HullArmor = 24+(rand(2)*hullarmor); break;
-		case 2: rRealShip.HullArmor = 32+(rand(2)*hullarmor); break;
-		case 1: rRealShip.HullArmor = 42+(rand(2)*hullarmor); break;
+		case 3: rRealShip.HullArmor = 22+(rand(2)*hullarmor); break;
+		case 2: rRealShip.HullArmor = 28+(rand(2)*hullarmor); break;
+		case 1: rRealShip.HullArmor = 34+(rand(2)*hullarmor); break;
 	}
 
     rRealShip.BaseName = rRealShip.name; // запоминалка для нужд, тк далее идёт "странное"
@@ -492,25 +472,6 @@ void EmptyAllFantomShips()
 		if (CheckAttribute(chr, "shipyard"))
 		{
 		    FreeShipFromShipyard(chr);
-		}
-	}
-	for (i = FANTOM_CHARACTERS; i < TOTAL_CHARACTERS; i++) // фантомы в море
-	{
-        chr = &Characters[i];
-        if (CheckAttribute(chr, "ship.type") && chr.ship.type != SHIP_NOTUSED)
-        {
-            RealShips[sti(chr.ship.type)].lock = true;
-        }
-		else
-		{
-			/*if (CheckAttribute(chr,"id"))
-			{
-				if (HasSubStr(chr.id,"ShipWreck_") || HasSubStr(chr.id,"Convict")) {}
-				else InitCharacter(&Characters[i], i);
-			}
-			else InitCharacter(&Characters[i], i);	//ugeen : чистим нафиг все атрибуты пустых фантомов (переиничиваем)*/
-			//if (CheckAttribute(chr,"location") && chr.location == "none") InitCharacter(&Characters[i], i);
-			if (CheckAttribute(chr,"lifeday") && sti(chr.lifeday) == 0) InitCharacter(&Characters[i], i);
 		}
 	}
 	// теперь сборка мусора
@@ -2090,36 +2051,32 @@ int GenerateShipTop(int iBaseType, bool isStolen, ref chr)
 
 	int iShip = CreateBaseShip(iBaseType);
 
-	if (iShip == -1)
-	{
-		return SHIP_NOTUSED;
-	}
+	if (iShip == -1) return SHIP_NOTUSED;
 
 	ref rRealShip = GetRealShip(iShip);
 	ref rBaseShip = GetShipByType(sti(rRealShip.BaseType));
-	//Boyer change for ERAS2 #20170318-49
-    if(CheckAttribute(rRealShip, "hullNums")) {
+
+    if(CheckAttribute(rRealShip, "hullNums")) 
+	{
         int nHulls = sti(rRealShip.hullNums);
         nHulls -= 1;
         if(nHulls < 0) nHulls = 0;
         rRealShip.ship.upgrades.hull = 1 + rand(nHulls);
     }
-    else {
-        rRealShip.ship.upgrades.hull = 1 + rand(2);
-    }
+    else {rRealShip.ship.upgrades.hull = 1 + rand(2);}
 	rRealShip.ship.upgrades.sails = 1 + rand(2);  // только визуальная разница
 	rRealShip.MastMultiplier = 1.3;
 
 	int hullarmor;//реворк брони корпуса
 	switch (sti(rRealShip.Class))
 	{
-		case 7: rRealShip.HullArmor = 8; break;
-		case 6: rRealShip.HullArmor = 16; break;
-		case 5: rRealShip.HullArmor = 20; break;
-		case 4: rRealShip.HullArmor = 24; break;
-		case 3: rRealShip.HullArmor = 28; break;
-		case 2: rRealShip.HullArmor = 36; break;
-		case 1: rRealShip.HullArmor = 46; break;
+		case 7: rRealShip.HullArmor = 5; break;
+		case 6: rRealShip.HullArmor = 9; break;
+		case 5: rRealShip.HullArmor = 13; break;
+		case 4: rRealShip.HullArmor = 18; break;
+		case 3: rRealShip.HullArmor = 24; break;
+		case 2: rRealShip.HullArmor = 30; break;
+		case 1: rRealShip.HullArmor = 36; break;
 	}
 
 	if (!CheckAttribute(rRealShip, "isFort"))
@@ -2257,7 +2214,7 @@ int GetShootDistance(ref chref, string ball)
 	return makeint(distance+0.5);
 }
 
-int GetShipTypeExt(int iClassMin, int iClassMax, string sShipType, int iNation)//нация -1 допускает любые нации, иначе только одну указанную		//sShipType = "" - любой тип, хоть военный, хоть торговый
+int GetShipTypeExt(int iClassMin, int iClassMax, string sShipType, int iNation)//нация -1 допускает любые нации, иначе только одну указанную		//sShipType = "merchant"/"war",	"" - любой тип
 {
 	int iShips[SHIP_TYPES_QUANTITY];
 	int iShipsNum = 0;
@@ -2284,6 +2241,46 @@ int GetShipTypeExt(int iClassMin, int iClassMax, string sShipType, int iNation)/
 		{
 			sNation = GetNationNameByType(iNation); 
 			if(rShip.nation.(sNation) != true ) { continue; }//по нации игнорим
+		}
+		iShips[iShipsNum] = i;
+		iShipsNum++;
+	}
+	if (iShipsNum==0)
+	{
+		Trace("Can't find ship type '" + sShipType + "' with ClassMin = " + iClassMin + " and ClassMax = " + iClassMax + " iNation = " + iNation);
+		return INVALID_SHIP_TYPE;
+	}
+
+	return iShips[rand(iShipsNum - 1)];
+}
+
+int GetShipTypeExtNotNation(int iClassMin, int iClassMax, string sShipType, int iNation)//нация - исключает выбор указанной нации		//sShipType = "merchant"/"war",	"" - любой тип
+{
+	int iShips[SHIP_TYPES_QUANTITY];
+	int iShipsNum = 0;
+	aref aNation;
+	string sNation;
+	bool bOk;
+	int iClass;
+
+	for (int i=0; i<=SHIP_TYPES_QUANTITY; i++)
+	{
+		object rShip = GetShipByType(i);
+		if (!checkAttribute(rship, "class")) trace ("bad ship is: " + rship.name);
+
+		if (checkAttribute(rship, "QuestShip")) continue; //квестовые корабли Игнорим
+
+		iClass = MakeInt(rShip.Class);
+		if (iClass > iClassMin) { continue; }
+		if (iClass < iClassMax) { continue; }//по классу Игнорим
+
+		if (sti(rShip.CanEncounter) != true) { continue; }
+		if (sShipType == "" || sti(rShip.Type.(sShipType)) != true) { continue; }//по типу игнорим
+		bOk = false;
+		if (CheckAttribute(rShip, "nation"))
+		{
+			sNation = GetNationNameByType(iNation); 
+			if (rShip.nation.(sNation) == true ) { continue; }//игнорим, если есть указанная нация. Специально для квестов по поиску кораблей, чтоб нельзя было в том же городе заказать
 		}
 		iShips[iShipsNum] = i;
 		iShipsNum++;

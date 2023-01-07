@@ -161,6 +161,7 @@ void GenerateMaps(aref ch, int iProbability1, int iProbability2)
 	if(rand(iProbability2) == 1 && !CheckMainHeroMap("map_maine_2")) AddItems(ch, "map_maine_2", 1);
 	if(rand(iProbability1) == 1 && !CheckMainHeroMap("map_panama")) AddItems(ch, "map_panama", 1);
 	if(rand(iProbability1) == 1 && !CheckMainHeroMap("map_Bahames")) AddItems(ch, "map_Bahames", 1);
+	if(rand(iProbability1) == 1 && !CheckMainHeroMap("map_maracaibo")) AddItems(ch, "map_maracaibo", 1);
 	if(rand(iProbability1) == 1 && !CheckMainHeroMap("map_cumana")) AddItems(ch, "map_cumana", 1);
 }
 
@@ -799,23 +800,33 @@ int SearchForMaxShip(aref chr, int isLock, int _tmp)
 	return rndShip;
 }
 
-int FindFirstEmptyCharacter()
-{
-	for(int i = GlobalCharacters; i<TOTAL_CHARACTERS; i++)
-	{
-		if (characters[i].id == "0")
-		{
-			if (i >= MAX_CHARACTERS) MAX_CHARACTERS = i+1; //сдвигаем планку НПС
-			//#20170912-02 Fix for RealShips/Character sails
-			DeleteAttribute(&characters[i], "ship.sails");
-			//#20170918-01 Fix for Abordage.Enable
-			DeleteAttribute(&characters[i], "Abordage.Enable");
-			return i;
-		}
-	}
+// --> mitrokosta оптимизация поиска пустых персонажей
+ 
+int freeCharacters[TOTAL_CHARACTERS];
+int firstFreeCharacter = -1;
 
-	return -1;
+int FindFirstEmptyCharacter() {
+							  
+	if (firstFreeCharacter == -1) {
+		if (MAX_CHARACTERS == TOTAL_CHARACTERS) {
+			return -1; // капут, массив заполнен
+		}
+		
+		firstFreeCharacter++;
+		freeCharacters[firstFreeCharacter] = MAX_CHARACTERS;
+		MAX_CHARACTERS++;
+	}
+	
+	int freeIndex = firstFreeCharacter;
+	firstFreeCharacter--;
+	return freeCharacters[freeIndex];
 }
+
+void FreeCharacter(int index) {
+	firstFreeCharacter++;
+	freeCharacters[firstFreeCharacter] = index;
+}
+// <--
 
 void AddGeometryToLocation(string LocationID, string ModelName)
 {
@@ -1174,6 +1185,11 @@ void EmptyAllFantomCharacter()
 	int cn = -1;
 	for (int i=GlobalCharacters; i<MAX_CHARACTERS; i++)
 	{
+		// mitrokosta фикс бесконечных переинитов
+		if (!CheckAttribute(&characters[i], "id") || characters[i].id == "0") {
+			continue;
+		}
+		
 		// отдельный код зачистки boal -->
 		if (LAi_IsDead(&characters[i]) && !CheckAttribute(&characters[i], "RebirthPhantom"))
 		{
@@ -1185,12 +1201,14 @@ void EmptyAllFantomCharacter()
 						if(cn != -1)
 						{
 							InitCharacter(&characters[cn], cn);
+	  						FreeCharacter(cn); // mitrokosta освободить в пул, иначе будет утечка
 						}
 					}
 				}
 				else
 				{
      				InitCharacter(&characters[i], i);
+	   		    	FreeCharacter(i); // mitrokosta освободить в пул, иначе будет утечка
 				}
 		}
 		else
@@ -1200,6 +1218,7 @@ void EmptyAllFantomCharacter()
 				characters[i].location != pchar.location) // не трем, если ГГ в локации,иначе горожане пропадают на лету
 			{ // время вышло
 				InitCharacter(&characters[i], i);  // тут проверку на компаньонов не нужно, тк они все одинаковые по времени
+	   		    FreeCharacter(i); // mitrokosta освободить в пул, иначе будет утечка
 			}
 		}
 		// boal <--

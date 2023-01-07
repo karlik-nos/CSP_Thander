@@ -9629,19 +9629,19 @@ void QuestComplete(string sQuestName, string qname)
 		Lai_SetPlayerType(pchar);
 	break;
 	case "ChangeLukesHome":
-			sld = CharacterFromID("Old Friend");
-			sld.City = RandomCityEnemy();
-			Log_TestInfo(sld.City);
-			ChangeCharacterAddressGroup(sld,RandomHouse(sld),"goto","goto1");
-			LAi_SetActorType(sld);
-			LAi_ActorDialog(sld, Pchar,"", 20.0,10.0)
-			Pchar.Luke.City = sld.City;
-			DeleteAttribute(Pchar,"Quest.Luke");
-			AddQuestRecord("Silence_Price","4");
-			AddQuestUserData("Silence_Price","sSex",GetSexPhrase("ся","ась"));
-			Pchar.quest.GetSpawnPirate.win_condition.l1 = "ExitFromLocation";
-			Pchar.quest.GetSpawnPirate.win_condition.l1.location = Pchar.location;
-			Pchar.quest.GetSpawnPirate.function = "GetSpawnPirate";
+		sld = CharacterFromID("Old Friend");
+		sld.City = RandomCityEnemy();
+		Log_TestInfo(sld.City);
+		ChangeCharacterAddressGroup(sld,RandomHouse(sld),"goto","goto1");
+		LAi_SetActorType(sld);
+		LAi_ActorDialog(sld, Pchar,"", 20.0,10.0)
+		Pchar.Luke.City = sld.City;
+		DeleteAttribute(Pchar,"Quest.Luke");
+		AddQuestRecord("Silence_Price","4");
+		AddQuestUserData("Silence_Price","sSex",GetSexPhrase("ся","ась"));
+		Pchar.quest.GetSpawnPirate.win_condition.l1 = "Location";
+		Pchar.quest.GetSpawnPirate.win_condition.l1.location = "LaVega_town";
+		Pchar.quest.GetSpawnPirate.function = "GetSpawnPirate";
 	break;
 	case "PirateGoOut":
 		sld = CharacterFromID("Anri");
@@ -11344,6 +11344,7 @@ void QuestComplete(string sQuestName, string qname)
 			sld.lifeday = 0;
 			ChangeCharacterAddressGroup(sld, "none", "", "");
 			InterfaceStates.Buttons.Save.enable = true;
+			PChar.quest.SCQ_Prytki_PokinuliZonu.over = "yes";
 		break;
 		
 		case "SCQ_Prytki_PokinuliZonu":

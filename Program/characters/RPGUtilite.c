@@ -1530,7 +1530,7 @@ void AddCharacterExpToSkillSquadron(ref _refCharacter, string _skill, float _add
     int cn,i;
 	ref chref;
 
-	for(i=0; i<7; i++)
+	for(i=0; i<COMPANION_MAX; i++)
 	{
 		cn = GetCompanionIndex(_refCharacter,i);
 		if(cn!=-1)
