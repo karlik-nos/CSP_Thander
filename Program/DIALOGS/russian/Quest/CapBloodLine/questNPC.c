@@ -848,7 +848,7 @@ void ProcessDialogEvent()
 
         n = FindLocation("CommonStoneHouse");
         locations[n].private1.items.indian1 = 1;
-        locations[n].private1.items.EngTradeLicence = 1;
+        locations[n].private1.items.HolTradeLicence = 1;
         locations[n].private1.items.potionrum = 1;
         locations[n].private1.money = 6000;
 
@@ -873,7 +873,7 @@ void ProcessDialogEvent()
         ChangeCharacterAddressGroup(sld, "CommonStoneHouse", "barmen","stay");
 
         pchar.quest.MoneyForDieke.win_condition.l1 = "item";
-        pchar.quest.MoneyForDieke.win_condition.l1.item= "EngTradeLicence";
+        pchar.quest.MoneyForDieke.win_condition.l1.item = "HolTradeLicence";
         pchar.quest.MoneyForDieke.function = "MoneyForDieke";
         AddQuestRecord("DiekeQuest", "3");
 
