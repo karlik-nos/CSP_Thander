@@ -1614,18 +1614,19 @@ void SetShipPictureDataByShipTypeName(int N)
 	case "luggerquest":			BI_intNRetValue[0] = 26+7*32;	BI_intNRetValue[1] = 26+7*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Курьерский Люггер
 	case "xebekvml":			BI_intNRetValue[0] = 28+7*32;	BI_intNRetValue[1] = 28+7*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Щебека СП
 	case "brigqeen":			BI_intNRetValue[0] = 30+7*32;	BI_intNRetValue[1] = 30+7*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Бриг Стрела
-	case "brigsw":				BI_intNRetValue[0] = 0+8*32;	BI_intNRetValue[1] = 0+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Бриг МВ
-	case "Clipper":				BI_intNRetValue[0] = 2+8*32;	BI_intNRetValue[1] = 2+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Клиппер
-	case "corvette_quest":		BI_intNRetValue[0] = 4+8*32;	BI_intNRetValue[1] = 4+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Фрегат ЧЖ
-	case "Wh_corvette_quest":	BI_intNRetValue[0] = 6+8*32;	BI_intNRetValue[1] = 6+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Корвет Пёс войны
-	case "Mefisto":	            BI_intNRetValue[0] = 8+8*32;	BI_intNRetValue[1] = 8+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Фрегат культистов
-	case "ArabellaShip":		BI_intNRetValue[0] = 10+8*32;	BI_intNRetValue[1] = 10+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Фрегат Арабелла
-	case "frigatequeen":		BI_intNRetValue[0] = 12+8*32;	BI_intNRetValue[1] = 12+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Фрегат МКА
-	case "Catherine":			BI_intNRetValue[0] = 14+8*32;	BI_intNRetValue[1] = 14+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Королева-Катрин
-	case "flyingdutchman":		BI_intNRetValue[0] = 16+8*32;	BI_intNRetValue[1] = 16+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Варшип ЛГ
-	case "flyingdutchman_n":	BI_intNRetValue[0] = 18+8*32;	BI_intNRetValue[1] = 18+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Варшип ЛГ
-	case "santisima":			BI_intNRetValue[0] = 20+8*32;	BI_intNRetValue[1] = 20+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Быстрый мановар
-	case "soleyru":				BI_intNRetValue[0] = 22+8*32;	BI_intNRetValue[1] = 22+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Сулей Руаяль
+	case "brigqueen":			BI_intNRetValue[0] = 0+8*32;	BI_intNRetValue[1] = 0+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Бриг Шарпоносец
+	case "brigsw":				BI_intNRetValue[0] = 2+8*32;	BI_intNRetValue[1] = 2+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Бриг МВ
+	case "Clipper":				BI_intNRetValue[0] = 4+8*32;	BI_intNRetValue[1] = 4+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Клиппер
+	case "corvette_quest":		BI_intNRetValue[0] = 6+8*32;	BI_intNRetValue[1] = 6+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Фрегат ЧЖ
+	case "Wh_corvette_quest":	BI_intNRetValue[0] = 8+8*32;	BI_intNRetValue[1] = 8+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Корвет Пёс войны
+	case "Mefisto":	            BI_intNRetValue[0] = 10+8*32;	BI_intNRetValue[1] = 10+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Фрегат культистов
+	case "ArabellaShip":		BI_intNRetValue[0] = 12+8*32;	BI_intNRetValue[1] = 12+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Фрегат Арабелла
+	case "frigatequeen":		BI_intNRetValue[0] = 14+8*32;	BI_intNRetValue[1] = 14+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Фрегат МКА
+	case "Catherine":			BI_intNRetValue[0] = 16+8*32;	BI_intNRetValue[1] = 16+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Королева-Катрин
+	case "flyingdutchman":		BI_intNRetValue[0] = 18+8*32;	BI_intNRetValue[1] = 18+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Варшип ЛГ
+	case "flyingdutchman_n":	BI_intNRetValue[0] = 20+8*32;	BI_intNRetValue[1] = 20+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Варшип ЛГ
+	case "santisima":			BI_intNRetValue[0] = 22+8*32;	BI_intNRetValue[1] = 22+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Быстрый мановар
+	case "soleyru":				BI_intNRetValue[0] = 24+8*32;	BI_intNRetValue[1] = 24+8*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Сулей Руаяль
 	}
 */
 	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;
