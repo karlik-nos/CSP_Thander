@@ -670,7 +670,7 @@ void ProcessDialogEvent()
 			DialogExit();
 			NextDiag.CurrentNode = "Second Time";
 			if (npchar.sex != "woman")	npchar.Dialog.FileName = "PGG_dialog.c";
-			else	npchar.Dialog.FileName = "pgg_dialog_town.c";
+			else	npchar.Dialog.FileName = "PGG_dialog.c";
 			//PGG_ChangeRelation2MainCharacter(npchar, 25);
 			DoQuestFunctionDelay("DarkHuman_Amatike", 1.0);
 			//LAi_SetWarriorType(npchar);
