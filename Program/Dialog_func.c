@@ -536,6 +536,9 @@ string GetPortByCityName(string city) // имена портов по город
 		case "Beliz":
             return "Beliz_town";
 		break;
+		case "Nassau":
+            return "Nassau_town";
+		break;
 	}
 	return "";
 }

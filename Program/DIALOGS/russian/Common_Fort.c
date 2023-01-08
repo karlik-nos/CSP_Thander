@@ -80,7 +80,7 @@ void ProcessDialogEvent()
 						}
 						else //если причалил не в городе
 						{
-							link.l1 = "Я бросил якорь у " + XI_ConvertString(GetIslandByCityName(npchar.city)+"Gen") + " под флагом " + NationNameGenitive(sti(pchar.nation)) + ". Что тебе ещё не ясно?";
+							link.l1 = "Я бросил"+ GetSexPhrase("","а") +" якорь у " + XI_ConvertString(GetIslandByCityName(npchar.city)+"Gen") + " под флагом " + NationNameGenitive(sti(pchar.nation)) + ". Что тебе ещё не ясно?";
 						}
 						if (GetSummonSkillFromName(pchar, SKILL_SNEAK) < (10+rand(50)+rand(50)))
 						{

@@ -152,7 +152,7 @@ float LAi_CalcDamageForBlade(aref attack, aref enemy, string attackType, bool is
 					kAttackDmg = 3.0;
 				}
 				if (fencing_type != "FencingHeavy") kAttackDmg *= 0.7;
-				if (!CheckCharacterPerk(attack, "HardHitter")) kAttackDmg /= 2.0;
+				//if (!CheckCharacterPerk(attack, "HardHitter")) kAttackDmg /= 2.0;
 			break;
 
 			case "feintc":  // фикс после изучения ядра //Атакующие продолжение финта
@@ -254,7 +254,7 @@ float LAi_CalcDamageForBlade(aref attack, aref enemy, string attackType, bool is
 				{
 					kAttackDmg = 3.0;
 				}
-				if (!CheckCharacterPerk(attack, "HardHitter")) kAttackDmg /= 2.0;
+				//if (!CheckCharacterPerk(attack, "HardHitter")) kAttackDmg /= 2.0;
 			break;
 
 			case "feintc":  // фикс после изучения ядра //Атакующие продолжение финта
@@ -373,7 +373,7 @@ float LAi_CalcUseEnergyForBlade(aref character, string actionType)
 			energy = 14.0;
 		break;
 		case "break":
-			energy = 25.0;
+			energy = 30.0;
 		break;
 		// case "feint":
 			// energy = 7.0;
@@ -771,7 +771,7 @@ void LAi_ApplyCharacterAttackDamage(aref attack, aref enemy, string attackType, 
 		{
 			case "FencingLight":
 				//--->Функционал лёгкого оружия - Gregg
-				CheckForBlooding(attack,enemy,true,attackType);
+				CheckForBlooding(attack,enemy,true);
 				CheckForSwift(attack,enemy,false);
 				CheckForStun(attack,enemy);
 				cirign = CheckForCirassBreak(attack,enemy,false);
@@ -779,7 +779,7 @@ void LAi_ApplyCharacterAttackDamage(aref attack, aref enemy, string attackType, 
 			break;
 			case "Fencing":
 				//--->Функционал среднего оружия - Gregg
-				CheckForBlooding(attack,enemy,false,attackType);
+				CheckForBlooding(attack,enemy,false);
 				CheckForSwift(attack,enemy,true);
 				CheckForStun(attack,enemy);
 				cirign = CheckForCirassBreak(attack,enemy,false);
@@ -787,7 +787,7 @@ void LAi_ApplyCharacterAttackDamage(aref attack, aref enemy, string attackType, 
 			break;
 			case "FencingHeavy":
 				//--->Функционал тяжёлого оружия - Gregg
-				CheckForBlooding(attack,enemy,false,attackType);
+				CheckForBlooding(attack,enemy,false);
 				CheckForSwift(attack,enemy,false);
 				CheckForStun(attack,enemy);
 				CheckForTrauma(attack,enemy);
@@ -994,7 +994,7 @@ void LAi_ApplyCharacterAttackDamage(aref attack, aref enemy, string attackType, 
 
 }
 
-void CheckForBlooding(ref attack, ref enemy, bool type, string attackType)
+void CheckForBlooding(ref attack, ref enemy, bool type)
 {
 	int valueB = sti(attack.chr_ai.special.valueB);
 	if (type)
@@ -1018,44 +1018,44 @@ void CheckForBlooding(ref attack, ref enemy, bool type, string attackType)
 			}
 		}
 		if (!HasSubStr(attack.equip.blade, "blade32") && attackType == "force")//выпад*/
-		if (attackType == "force")//выпад
+		/*if (attackType == "force")//выпад
+		{*/
+		float coeff = makefloat(GetCharacterSkillSimple(attack,"FencingLight"))/20;
+		if ((2.5+valueB+coeff)*10>rand(999))
 		{
-			float coeff = makefloat(GetCharacterSkillSimple(attack,"FencingLight"))/20;
-			if ((2.5+valueB+coeff)*10>rand(999))
+			if(CheckAttribute(enemy, "sex") && enemy.model.animation != "Terminator" && enemy.sex != "skeleton")
 			{
-				if(CheckAttribute(enemy, "sex") && enemy.model.animation != "Terminator" && enemy.sex != "skeleton")
+				if(sti(attack.index) == GetMainCharacterIndex())
 				{
-					if(sti(attack.index) == GetMainCharacterIndex())
-					{
-						Log_Info("Вы вызвали кровотечение.");
-						PlaySound("interface\Krovotok_"+rand(4)+".wav");
-						pchar.questTemp.bloodingcount = sti(pchar.questTemp.bloodingcount) + 1;
-					}
-					if(sti(enemy.index) == GetMainCharacterIndex())
-					{
-						if(IsEquipCharacterByArtefact(enemy, "talisman9") && rand(9)>0) {log_info("Кровотечение предотвращено.") return;}
-						Log_Info("Вам нанесли кровоточащую рану.");
-						PlaySound("interface\Krovotok_"+rand(4)+".wav");
-					}
-					MakeBloodingAttack(enemy, attack, coeff);
+					Log_Info("Вы вызвали кровотечение.");
+					PlaySound("interface\Krovotok_"+rand(4)+".wav");
+					pchar.questTemp.bloodingcount = sti(pchar.questTemp.bloodingcount) + 1;
 				}
-				else
+				if(sti(enemy.index) == GetMainCharacterIndex())
 				{
-					if(sti(attack.index) == GetMainCharacterIndex())
-					{
-						Log_Info("Вы нанесли глубокую рану.");
-						PlaySound("interface\Krovotok_"+rand(4)+".wav");
-						pchar.questTemp.bloodingcount = sti(pchar.questTemp.bloodingcount) + 1;
-					}
-					if(sti(enemy.index) == GetMainCharacterIndex())
-					{
-						Log_Info("Вам нанесли глубокую рану.");
-						PlaySound("interface\Krovotok_"+rand(4)+".wav");
-					}
-					LAi_ApplyCharacterAdditionalDamage(enemy, MakeInt(5+(coeff*2)));
+					if(IsEquipCharacterByArtefact(enemy, "talisman9") && rand(9)>0) {log_info("Кровотечение предотвращено.") return;}
+					Log_Info("Вам нанесли кровоточащую рану.");
+					PlaySound("interface\Krovotok_"+rand(4)+".wav");
 				}
+				MakeBloodingAttack(enemy, attack, coeff);
+			}
+			else
+			{
+				if(sti(attack.index) == GetMainCharacterIndex())
+				{
+					Log_Info("Вы нанесли глубокую рану.");
+					PlaySound("interface\Krovotok_"+rand(4)+".wav");
+					pchar.questTemp.bloodingcount = sti(pchar.questTemp.bloodingcount) + 1;
+				}
+				if(sti(enemy.index) == GetMainCharacterIndex())
+				{
+					Log_Info("Вам нанесли глубокую рану.");
+					PlaySound("interface\Krovotok_"+rand(4)+".wav");
+				}
+				LAi_ApplyCharacterAdditionalDamage(enemy, MakeInt(5+(coeff*2)));
 			}
 		}
+		//}
 	}
 	else
 	{
@@ -1240,6 +1240,7 @@ bool CheckForBlockBreak(ref attack, ref enemy, bool type)
 {
 	bool blockSave = true;
 	int valueBB = sti(attack.chr_ai.special.valueBB);
+	if (CheckCharacterPerk(attack, "HardHitter")) valueBB += 5;
 	if (type)
 	{
 		float coeff = makefloat(GetCharacterSkillSimple(attack,"FencingHeavy"))/20;
@@ -1298,6 +1299,7 @@ bool CheckForBlockBreak(ref attack, ref enemy, bool type)
 bool CheckForCirassBreak(ref attack, ref enemy, bool type)
 {
 	int valueCB = sti(attack.chr_ai.special.valueCB);
+	if (CheckCharacterPerk(attack, "HardHitter")) valueCB += 5;
 	bool cirign = false;
 	if (type)
 	{

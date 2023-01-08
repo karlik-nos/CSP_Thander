@@ -445,10 +445,19 @@ void BlueBirdFleut_board(string qName)
 	pchar.Quest.BlueBirdFleut_over1.over = "yes";
 	pchar.Quest.BlueBirdFleut_over2.over = "yes";
 	pchar.Quest.BlueBirdFleut_over3.over = "yes";
-	pchar.questTemp.BlueBird.count = sti(pchar.questTemp.BlueBird.count) + 1; //счетчик потопленных флейтов
-	AddQuestRecord("Xebeca_BlueBird", "13");
-	AddQuestUserData("Xebeca_BlueBird", "sSex", GetSexPhrase("ым","ой"));
-	AddQuestUserData("Xebeca_BlueBird", "sIsland", XI_ConvertString(pchar.questTemp.BlueBird.Island + "Gen"));
+	int iFleits = sti(pchar.questTemp.BlueBird.count) + 1; //счетчик потопленных флейтов
+	pchar.questTemp.BlueBird.count = iFleits;
+	if (iFleits > 4) 
+	{
+		Log_Info("Потоплено " + iFleits + " флейтов. Этого должно хватить, чтобы торговцы изменили своё решение.");
+		AddQuestRecord("Xebeca_BlueBird", "13F");
+	}
+	else 
+	{
+		AddQuestRecord("Xebeca_BlueBird", "13");
+		AddQuestUserData("Xebeca_BlueBird", "sSex", GetSexPhrase("ым","ой"));
+		AddQuestUserData("Xebeca_BlueBird", "sIsland", XI_ConvertString(pchar.questTemp.BlueBird.Island + "Gen"));
+	}
 	pchar.questTemp.BlueBird = "returnMoney"; //иначе ивент на слухе не сработает
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -877,7 +886,7 @@ void PiratesLine_q3_over(string qName)
             if(bShipOK == true)
             {
                 AddQuestRecord("Pir_Line_3_KillLoy", "17");
-                pchar.questTemp.piratesLine = "KillLoy_GoodWork"; //Лоу убит, бриг не захвачен
+                pchar.questTemp.piratesLine.T1 = "KillLoy_GoodWork"; //Лоу убит, бриг не захвачен
                 pchar.questTemp.KillLoy_GoodWork = true;
             }
             else //#20171229-02 Check companion ships
@@ -5208,6 +5217,7 @@ void LSC_figtInResidence_1(string qName)
 
 void LSC_enterToPrison(string qName)
 {
+	pchar.quest.LSC_enterToPrison.over = "yes";//фикс, Механик в тюрьме только один раз
 	chrDisableReloadToLocation = true;
 	sld = characterFromId("Mechanic");
 	sld.dialog.currentnode = "inPrison";

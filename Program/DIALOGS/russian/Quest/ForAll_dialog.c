@@ -19,9 +19,8 @@ void ProcessDialogEvent()
 	if(fLuck < 1.1) { fLuck = 1.1; }
 	fLuck /= 10;
 
-	int iMoney = iRang * 1000 * fLuck * fRandom + drand(100);
-	if(iMoney < 1000) { iMoney = 1000 + drand1(500); }
-	if(iMoney > 20000) { iMoney = 20000 + drand2(100); }
+	int iMoney = iRang * 500 * fLuck * fRandom + drand(100);
+	if(iMoney > 10000) { iMoney = 10000 + drand2(100); }
 
 	switch(Dialog.CurrentNode)
 	{
@@ -1668,6 +1667,7 @@ void ProcessDialogEvent()
 				Link.l1 = "Это было несложно. Желаю вам удачи!";
 				Link.l1.go = "SCQ_Proverka_Znani_Final";
 				
+				Event("QuestDelayExit","sl", "", 0);
 				DeleteAttribute(pchar, "showTimer");
 				ClearAllLogStrings();
 				
@@ -1682,6 +1682,7 @@ void ProcessDialogEvent()
 				Link.l1 = "Ну и вали.";
 				Link.l1.go = "SCQ_Proverka_Znani_Final";
 				
+				Event("QuestDelayExit","sl", "", 0);
 				DeleteAttribute(pchar, "showTimer");
 				ClearAllLogStrings();
 			}
@@ -2045,6 +2046,9 @@ void ProcessDialogEvent()
 			dialog.text = "Ой, хи-хи-хи. А вы хорош"+GetSexPhrase("ий","ая")+" сыщи"+GetSexPhrase("к","ца")+", капитан, так уж и быть, вот ваши "+ sti(iMoney) +" пиастров.";
 			link.l1 = "Благодарю, красавица, "+GetSexPhrase("был рад","была рада")+" провести с вами время. До свидания.";
 			link.l1.go = "SCQ_Prytki_Dengi_Final";
+			
+			Event("QuestDelayExit","sl", "", 0);
+			PChar.quest.SCQ_Prytki_PokinuliZonu.over = "yes";
 			DeleteAttribute(pchar, "showTimer");
 			ClearAllLogStrings();
 			InterfaceStates.Buttons.Save.enable = true;

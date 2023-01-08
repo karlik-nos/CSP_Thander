@@ -338,6 +338,7 @@ void CleanAllCabinBoxes()
     }
 }
 
+/*	//устарел и нигде не используется. ссылается на старые номера кораблей
 // Метод вернет случайный тип корабля, который зависит от класса шипа персонажа
 int RandShipFromShipClass(ref _ch)
 {
@@ -375,7 +376,7 @@ int RandShipFromShipClass(ref _ch)
 	}
 	return iShipType;
 }
-
+*/
 // Проверка, есть ли у ГГ казначей
 bool IsPCharHaveTreasurer()
 {

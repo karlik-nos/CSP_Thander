@@ -463,6 +463,7 @@ void BSCourtlyPassions_dungeon(string _quest)
 {
 	WaitDate("",0,0,0,24 - sti(environment.time),5);
 	LAi_LocationDisableMonGenTimer("FortFrance_dungeon", 3);//Лок спавна скелетов
+	LAi_LocationDisableToughSkeletonTimer("FortFrance_dungeon", 3); //ПК не пускать
 	DoQuestFunctionDelay("LockWeapons", 0);
 	chrDisableReloadToLocation = true;
 	sld = GetCharacter(NPC_GenerateCharacter("BS_Vein", "BS_Vein", "man", "man", 99, PIRATE, -1, true));
@@ -1951,7 +1952,7 @@ void BSHangover_Cave(string q)
 {
 	chrDisableReloadToLocation = true;
 	LAi_LocationDisableMonGenTimer("barbados_cave", 3);
-	pchar.DisableToughSkeleton = true;
+	LAi_LocationDisableToughSkeletonTimer("barbados_cave", 3); //ПК не пускать
 
 	sld = CharacterFromID("BS_Silver");
 	ChangeCharacterAddressGroup(sld, pchar.location, "item", "berglar1");
@@ -2029,7 +2030,7 @@ void BSHangover_CaveEntrance(string qName)
 	PChar.quest.BSUrka_SeaBattleEnded.over = "yes";
 	pchar.quest.BSCourtlyPassions_DontStart.over = "yes";
 	chrDisableReloadToLocation = true;
-	DeleteAttribute(pchar, "DisableToughSkeleton");
+	LAi_LocationDisableToughSkeletonTimer("barbados_cave", -1);
 
 	for (int i = 1; i <= 4; i++)
 	{

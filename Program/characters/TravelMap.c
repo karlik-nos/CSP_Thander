@@ -178,7 +178,7 @@ void SetSmugglersTravelDestination(aref arDest)
 	DeleteAttribute(arDest, "destination");
 	arDest.destination.days = rand(2) + CalculateColonyDistance(sTown, sTargetTown);	//новый расчет дней
 	arDest.destination = sTargetTown;
-	arDest.destination.loc = GetIslandRandomShoreId(sTargetIsland, true);
+	arDest.destination.loc = GetIslandRandomShoreId(sTargetIsland);
 	//пишу стандартные аттрибуты, везде будут они.
 	arDest.destination.group = "reload"; 
 	arDest.destination.locator = "sea";
@@ -327,31 +327,21 @@ void CalculateColonyXZDistance(string sFromColony, int iX, int iZ)
 int CalculateColonyDistance(string sFromColony, string sToColony)
 {
     int from_x, from_z;
-    int iX, iZ;
+    int to_x, to_z;
 
-    CalculateColonyXZDistance(&sFromColony, &iX, &iZ);
+    CalculateColonyXZDistance(&sFromColony, &from_x, &from_z);
+	CalculateColonyXZDistance(&sToColony, &to_x, &to_z);
 
-    from_x = iX;
-    from_z = iZ;
-
-    int iToColony = FindColony(sToColony);
-    ref rColony = GetColonyByIndex(iToColony);
-
-    iX = sti(rColony.map.x);
-    iZ = sti(rColony.map.y);
-
-    int ipX = from_x - iX;
-    int ipZ = from_z - iZ;
-    if(ipX < 0)
+    int ipX = from_x - to_x;
+    int ipZ = from_z - to_z;
+    if (ipX < 0)
     {
         ipX = -ipX;
     }
-    if(ipZ < 0)
+    if (ipZ < 0)
     {
         ipZ = -ipZ;
     }
-    iX = 0;
-    iZ = 0;
 
     int iDist = (ipX * ipX) + (ipZ * ipZ);
     iDist = sti(sqrt(iDist) + 0.5);

@@ -1119,14 +1119,14 @@ void ContinueGame()
 	{
         if (iRate*6 > iMoneyP)
     	{
-    	    ResultStr = "Ты на мели, я выиграл"+NPCharSexPhrase(npchar, "", "а")+"!" + NewStr() + "Все, с меня хватит!";
+    	    ResultStr = "Ты на мели, я выиграл"+NPCharSexPhrase(npchar, "", "а")+"!" + NewStr() + "Всё, с меня хватит!";
 			SetFormatedText("INFO_TEXT",ResultStr);
     	    EndGameCount(-1);
     	    iHeroLose++;
     	}
 		else//if (iRate*6 > iMoneyN)
 	    {
-	        ResultStr = "Я на мели, ты выиграл"+ GetSexPhrase("","а") +"!" + NewStr() + "Все, с меня хватит!";
+	        ResultStr = "Я на мели, ты выиграл"+ GetSexPhrase("","а") +"!" + NewStr() + "Всё, с меня хватит!";
 	        SetFormatedText("INFO_TEXT",ResultStr);
 	        EndGameCount(1);
 	        iHeroWin++;
@@ -1161,7 +1161,7 @@ void NewNextGame()
 			{
 				ResultStr = "Не везёт тебе. Значит не судьба нам вместе ходить.";
 			}
-			ResultStr += NewStr() + "Все, я наигрался.";
+			ResultStr += NewStr() + "Всё, я наигрался.";
 			bLockClick = true;
 		}
 	}
@@ -1174,7 +1174,7 @@ void NewNextGame()
 		}
 		else
 		{
-			ResultStr += NewStr() + "Все, с меня хватит!";
+			ResultStr += NewStr() + "Всё, с меня хватит!";
 			bLockClick = true;
 		}
 	}

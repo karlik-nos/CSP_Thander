@@ -2455,22 +2455,6 @@ string GetCharacterEquipPictureByGroup(ref chref, string groupID)
 
 void RemoveCharacterEquip(ref chref, string groupID)
 {
-	if (groupID == BOOK_ITEM_TYPE && IsMainCharacter(chref)) //Qwerry - запоминаем, какую книгу читал ГГ
-	{
-		string sBookname = chref.bookname;
-		chref.halfreadbook.(sBookname) = 1;
-		chref.halfreadbook.(sBookname).bookname = chref.bookname;
-		chref.halfreadbook.(sBookname).booktime = chref.booktime;
-		chref.halfreadbook.(sBookname).booktime.full = chref.booktime.full;
-		chref.halfreadbook.(sBookname).bookbonus = chref.bookbonus;
-		chref.halfreadbook.(sBookname).booktype = chref.booktype;
-		DeleteAttribute(chref,"booktime");
-		DeleteAttribute(chref,"booktime.full");
-		DeleteAttribute(chref,"bookbonus");
-		DeleteAttribute(chref,"booktime");
-		DeleteAttribute(chref,"booktype");
-		Log_Info("Прервано чтение книги.");
-	}
 	DeleteAttribute(chref,"equip."+groupID);
 	SetEquipedItemToCharacter(chref,groupID,"");
 	SetNewModelToChar(chref);
@@ -2785,49 +2769,17 @@ void EquipCharacterByItem(ref chref, string itemID)
 
 	if (groupName == BOOK_ITEM_TYPE && IsMainCharacter(chref)) // Книги, экипировка - Gregg
 	{
-		string sBookname = arItm.name;
-		if (checkattribute(chref, "halfreadbook."+sBookname)) //Qwerry - продолжение чтения книги
+		string sBook = arItm.id;
+		if (!CheckAttribute(chref, "books." + sBook))
 		{
-			chref.booktime = chref.halfreadbook.(sBookname).booktime;
-			chref.booktime.full = chref.halfreadbook.(sBookname).booktime.full;
-			chref.bookname = chref.halfreadbook.(sBookname).bookname;
-			chref.bookbonus = chref.halfreadbook.(sBookname).bookbonus;
-			chref.booktype = chref.halfreadbook.(sBookname).booktype;
-			DeleteAttribute(chref,"halfreadbook."+sBookname);//сразу стираем запомненное
+			chref.books.(sBook) = BookReadTime(sBook);
 		}
-		else
+
+		if (sti(chref.books.(sBook)) > 0)
 		{
-			chref.booktype = arItm.skill;
-			if(HasSubStr(arItm.id, "book1_"))
-			{
-				chref.booktime = BookTime(chref,1);//таймер
-				chref.booktime.full = sti(chref.booktime);//полное время
-				chref.bookname = arItm.name;//название книги
-				chref.bookbonus = 800;//экспа
-			}
-			if(HasSubStr(arItm.id, "book2_"))
-			{
-				chref.booktime = BookTime(chref,2);
-				chref.booktime.full = sti(chref.booktime);
-				chref.bookname = arItm.name;
-				chref.bookbonus = 1500;
-			}
-			if(HasSubStr(arItm.id, "book3_"))
-			{
-				chref.booktime = BookTime(chref,3);
-				chref.booktime.full = sti(chref.booktime);
-				chref.bookname = arItm.name;
-				chref.bookbonus = 3500;
-			}
-			if(HasSubStr(arItm.id, "book4_"))
-			{
-				chref.booktime = BookTime(chref,4);
-				chref.booktime.full = sti(chref.booktime);
-				chref.bookname = arItm.name;
-				chref.bookbonus = 7500;
-			}
+			chref.equip.book = sBook;
+			Log_Info("Начато чтение книги. Ориентировочно, это займёт " + chref.books.(sBook) + " дней.");
 		}
-		Log_Info("Начато чтение книги. Ориентировочно, это займёт "+chref.booktime+" дней.");
 	}
 }
  // to_do

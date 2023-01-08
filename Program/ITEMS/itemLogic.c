@@ -879,7 +879,7 @@ void spawnToughSkeleton(aref _location)
 		if (GetNpcQuestPastDayParam(_location, "ToughSkeletonTimer") <= sti(_location.ToughSkeletonTimer)) return;//в этой локации запрещена генерация проклятого кэпа
 			else DeleteAttribute(_location, "ToughSkeletonTimer");
 	}
-	if (drand(100) < 16 && CheckAttribute(_location, "locators.monsters") && !bMonstersGen && _location.type == "cave" && !CheckAttribute(pchar, "cursed.waitingSkull") && !CheckAttribute(pchar, "DisableToughSkeleton") && pchar.rank >= 3 && pchar.sex != "skeleton")
+	if (drand(100) < 50 && CheckAttribute(_location, "locators.monsters") && !bMonstersGen && _location.type == "cave" && !CheckAttribute(pchar, "cursed.waitingSkull") && pchar.rank >= 3 && pchar.sex != "skeleton")
 	{
 		if (!CheckAttribute(pchar, "cursed.quest") || GetQuestPastDayParam("pchar.questTemp.Cursed") >= 90)
 		{

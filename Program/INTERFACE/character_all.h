@@ -133,7 +133,7 @@ void FillCharactersScroll()
 		}
 	}
 	if (z < MAX_NUM_FIGHTERS) z = z + 1;
-
+	bool bNeedEmptySlot = true;
 	for(int k=1; k<=z; k++)
 	{
 		attributeName = "pic" + (m+1);
@@ -159,7 +159,7 @@ void FillCharactersScroll()
 		}
 		else
 		{
-			if (k!=z) continue;//только один пустой слот абордага в конце списка
+			if (!bNeedEmptySlot) continue;
 			GameInterface.CHARACTERS_SCROLL.(attributeName).character = "0";
 			GameInterface.CHARACTERS_SCROLL.(attributeName).img1 = "face";//"FACE128_" + PsgAttrName;
 			GameInterface.CHARACTERS_SCROLL.(attributeName).tex1 = FindFaceGroupNum("CHARACTERS_SCROLL.ImagesGroup","FACE128_"+PsgAttrName);
@@ -167,6 +167,7 @@ void FillCharactersScroll()
 			pRef2.str3 = "#" + " ";
 			pRef2.str4 = "#" + XI_ConvertString("not assigned");
 			pRef2.str5 = "#" + " ";
+			bNeedEmptySlot = false;//один пустой слот абордага уже нарисовали
 		}
 		m++;
 	}

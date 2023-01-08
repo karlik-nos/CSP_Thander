@@ -646,3 +646,20 @@ void Group_CheckTask()
 		break;
 	}
 }
+
+void Group_SetDo180Turn(string sGroupID)
+{
+	if (sGroupID == PLAYER_GROUP) //вообще-то надо на любую группу распространить
+	{
+		for(int i=0; i<COMPANION_MAX; i++)//но тогда нужно здесь увеличить число, так как у неписей может быть больше 8
+		{
+			int cn = GetCompanionIndex(pchar,i);//а здесь командующий группы нужен
+			if(cn!=-1)
+			{
+				ref chref = GetCharacter(cn);
+				chref.Do180Turn = true;
+			}
+		}
+	}
+	return;
+}

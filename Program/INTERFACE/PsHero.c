@@ -9,9 +9,6 @@ ref chr;
 
 int iSelected; // курсор в таблице
 
-int lastsort = 0;
-bool blastsort;
-
 void InitInterface(string iniName)
 {
  	StartAboveForm(true);
@@ -114,7 +111,19 @@ void FillTable()
 	GameInterface.TABLE_HERO.hr.td9.scale = 1.0;
 	GameInterface.TABLE_HERO.hr.td10.str = "Пиастры";
 	GameInterface.TABLE_HERO.hr.td10.scale = 1.0;
-
+//--> mod tablesort
+	//GameInterface.TABLE_HERO.hr.td1.sorttype = "string";//эту колонку не сортируем, не создаём атрибут!
+	GameInterface.TABLE_HERO.hr.td2.sorttype = "string";
+	GameInterface.TABLE_HERO.hr.td3.sorttype = "";//числа - любое значение кроме "string"
+	GameInterface.TABLE_HERO.hr.td4.sorttype = "";
+	GameInterface.TABLE_HERO.hr.td5.sorttype = "string";
+	GameInterface.TABLE_HERO.hr.td6.sorttype = "string";
+	GameInterface.TABLE_HERO.hr.td7.sorttype = "string";
+	GameInterface.TABLE_HERO.hr.td8.sorttype = "";
+	GameInterface.TABLE_HERO.hr.td9.sorttype = "";
+	GameInterface.TABLE_HERO.hr.td10.sorttype = "";
+	GameInterface.TABLE_HERO.hr.td10.sortdir = "dec";
+//<-- mod tablesort
 	for (i = 1; i <= PsHeroQty; i++)
 	{
 		chr = CharacterFromID("PsHero_" + i);
@@ -203,7 +212,7 @@ void TableSelectChange()
 	string sControl = GetEventData();
 	iSelected = GetEventData();
     CurTable = sControl;
-    CurRow   =  "tr" + (iSelected);
+    CurRow   =  "tr" + (iSelected);//разве не +1?
 }
 
 void ShowPGGInfo()
@@ -263,23 +272,10 @@ void OnTableClick()
 	int iRow = GetEventData();
 	int iColumn = GetEventData();
 
-	string sRow = "tr" + (iRow + 1);
+	//string sRow = "tr" + (iRow + 1);
 //--> mod tablesort
-	if (!SendMessage(&GameInterface,"lsl",MSG_INTERFACE_MSG_TO_NODE, sControl, 1 ))
-		{
-		if (iColumn == 1) return;//эти колонки не сортируем
-
-		if (lastsort == iColumn) {bLastSort = !bLastSort;} else {lastsort = iColumn; bLastSort = 1;}//запоминаем сортировку и меняем направление сортировки, если это повторный клик по колонке
-//todo - разобраться, как заблокировать активацию двойного клика на заголовке - подменять его на ординарные как-то
-//todo - устанавливать стрелочку направления сортировки по запомненным значениям переменных - но тут нужно как-то узнавать ширину колонок таблицы, чтобы пересчитать координаты???
-//todo - не забыть, что может быть несколько таблиц на одном интерфейсе - надо ещё и последнюю таблицы запоминать и сбрасывать(?) сортировку при смене или запоминать для каждой?
-
-		if (iColumn == 3 || iColumn == 4 || iColumn == 8 || iColumn == 9 || iColumn == 10)
-			SortTable(sControl, iColumn, 0, !bLastSort, -1);//числа		//работает и без указания числа строк, вроде бы
-		else
-			SortTable(sControl, iColumn, 1, bLastSort, -1);//текст
-		}
-//вызывать направление сортировки разными действиями - ЛКМ/ПКМ??
+	if (!SendMessage(&GameInterface,"lsl",MSG_INTERFACE_MSG_TO_NODE, sControl, 1 )) SortTable(sControl, iColumn);
+//TO DO - разобраться, как заблокировать активацию двойного клика на заголовке - подменять его на ординарные как-то
 //<-- mod tablesort
 	Table_UpdateWindow(sControl);
 }

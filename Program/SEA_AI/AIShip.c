@@ -769,11 +769,7 @@ void Ship_Add2Sea(int iCharacterIndex, bool bFromCoast, string sFantomType)
 	rCharacter.Tmp.fWatchFort.Qty = 15;
     // boal <--
 
-	if (iCharacterIndex == GetMainCharacterIndex()) { // NK 04-09-16 clears timer attribute, -21 for updatetime
-		rCharacter.seatime = 0;
-		rCharacter.lastupdateseatime = 0;
-	}
-	if (iCharacterIndex >= FANTOM_CHARACTERS)
+	if (CheckAttribute(GetCharacter(iCharacterIndex), "SeaFantom"))
 	{
 		SetBaseShipData(rCharacter);
 		Ship_SetFantomData(rCharacter);
@@ -2206,25 +2202,10 @@ void Ship_ApplyHullHitpointsWithCannon(ref rOurCharacter, float fHP, int iKillSt
 	if (CheckAttribute(&RealShips[sti(rOurCharacter.Ship.Type)], "Tuning.HullSpecial")) fMinus = fMinus+0.35;
 
 	int fMinusC = sti(RealShips[sti(rOurCharacter.Ship.Type)].HullArmor);
-	/*int shipclass = sti(RealShips[sti(rOurCharacter.Ship.Type)].Class);
-	switch (shipclass)
-	{
-		case 6: fMinusC = 12;
-		break;
-		case 5: fMinusC = 16;
-		break;
-		case 4: fMinusC = 20;
-		break;
-		case 3: fMinusC = 24;
-		break;
-		case 2: fMinusC = 32;
-		break;
-		case 1: fMinusC = 42;
-		break;
-	}*/
-	float fDam = fHP * (1.0 + fPlus - fMinus);
+	float fDam = fHP * (1.0 + fPlus);
 	//Log_Info("До снижения "+fDam);
-	fDam = fDam - fMinusC;
+	fDam = fDam - fMinusC;//броню вычитаем до процентов защиты
+	fDam = fDam *(1-fMinus);
 	//Log_Info("После снижения "+fDam);
 	if (fDam < 1.0) fDam = 1;
 	fCurHP = stf(rOurCharacter.Ship.HP) - fDam;
@@ -3581,7 +3562,7 @@ void Ship_UpdateParameters()
     		}
     		else
     		{
-    		    fTRFromSpeed = 1.0 - 0.5 * (1.0 - Clampf(fCurrentSpeedZ / fShipSpeed));
+    		    fTRFromSpeed = 1.0 - 0.75 * (1.0 - Clampf(fCurrentSpeedZ / fShipSpeed));
     		}
         }
 	}
@@ -3593,7 +3574,7 @@ void Ship_UpdateParameters()
 		}
 		else
 		{
-		    fTRFromSpeed = 1.0 - (0.5 - MOD_SKILL_ENEMY_RATE*0.005) * (1.0 - Clampf(fCurrentSpeedZ / fShipSpeed));
+		    fTRFromSpeed = 1.0 - (0.75 - MOD_SKILL_ENEMY_RATE*0.005) * (1.0 - Clampf(fCurrentSpeedZ / fShipSpeed));//чем медленнее текущая скорость корабля, тем медленнее он поворачивает
 		}
 	}
 	// boal зависимость от скорости на маневр <--

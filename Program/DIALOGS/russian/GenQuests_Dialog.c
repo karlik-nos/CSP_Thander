@@ -3169,11 +3169,12 @@ void ProcessDialogEvent()
 		break;
 
 		case "CaptainComission_305":
-			sTemp = GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.CaptainComission.ShipTypeVictim),"Name") + "Gen"));
+			string sTempAcc = GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.CaptainComission.ShipTypeVictim),"Name") + "Acc"));
+			sTemp = GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.CaptainComission.ShipTypeVictim),"Name") + "Gen"));//здесь нужен винительный падеж? его нет в коммон ини пока что
 			dialog.text = "Ну хорошо, чтоб не водить вас за нос, расскажу всё по порядку.\n" +
 				"Во время одного из патрульных рейдов мне повстречалось судно, шедшее под флагом " + NationNameGenitive(sti(pchar.GenQuest.CaptainComission.Nation)) + ". Приказ лечь в дрейф был проигнорирован. " +
 				"Когда после короткой погони мы настигли " + sTemp + " '" + pchar.GenQuest.CaptainComission.VictimShipName + "', беглецы подняли пиратский флаг. Поскольку дело было уже далеко от форта, пришлось принимать бой в одиночку. Нам повредили утлегарь, поэтому абордажа избежать не удалось.\n" +
-				"Мы уже приготовились было к смерти, но, благодаря Пресвятой Деве Марии и взводу мушкетёров, нам удалось перебить пиратов. Каково же было наше ликование, когда обнаружилось, что трюм " + sTemp + " под завязку набит " + GetStrSmallRegister(XI_ConvertString(Goods[sti(pchar.GenQuest.CaptainComission.Goods)].Name + "Abl")) + ". " +
+				"Мы уже приготовились было к смерти, но, благодаря Пресвятой Деве Марии и взводу мушкетёров, нам удалось перебить пиратов. Каково же было наше ликование, когда обнаружилось, что трюм " + sTempAcc + " под завязку набит " + GetStrSmallRegister(XI_ConvertString(Goods[sti(pchar.GenQuest.CaptainComission.Goods)].Name + "Abl")) + ". " +
 				"Мы решили, что это Знак Божий и достойная компенсация за наши раны и смерть товарищей...\nК тому времени уже сгустились сумерки. Мы завели " + sTemp +" в ближайшую бухту, содержимое трюма вывезли на берег и надёжно спрятали, а " + sTemp + " отогнали подальше в море и взорвали. Наутро я отрапортовал по службе о потоплении пиратского судна, но ни слова не упомянул о содержимом трюма.";
 			link.l1 = "Но видать, кто-то всё-таки проболтался...";
 			link.l1.go = "CaptainComission_307";
