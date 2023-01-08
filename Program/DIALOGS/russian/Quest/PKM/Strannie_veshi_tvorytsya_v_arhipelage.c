@@ -72,7 +72,7 @@ void ProcessDialogEvent()
 			
 			PChar.quest.PKM_SvtvA_TA_horosho.win_condition.l1 = "NPC_Death";		//Победа
 			PChar.quest.PKM_SvtvA_TA_horosho.win_condition.l1.character = "PKM_SvtvA_TA";
-			PChar.quest.PKM_SvtvA_TA_horosho.win_condition = "PKM_SvtvA_TA_horosho";
+			PChar.quest.PKM_SvtvA_TA_horosho.win_condition = "PKM_SvtvA_Ангела_потопили";
 		break;
 		
 		case "Verni_detey_1":

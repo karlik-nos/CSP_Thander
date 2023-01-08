@@ -10855,6 +10855,19 @@ void QuestComplete(string sQuestName, string qname)
 		case "PKM_SvtvA_Маёнез_потопили":		//Поражение
 			PChar.quest.PKM_SvtvA_TA_horosho.over = "yes";
 			
+			AddQuestRecord("PKM_Animists", "16");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("ен","на"));
+			CloseQuestHeader("PKM_Animists");
+		break;
+		
+		case "PKM_SvtvA_Ангела_потопили":		//Победа
+			//PChar.quest.PKM_SvtvA_TA_ploho.over = "yes";
+			
+			AddQuestRecord("PKM_Animists", "17");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
+			AddQuestUserData("PKM_Animists", "sSex2", GetSexPhrase("ёл","ла"));
+			
+			
 		break;
 		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
