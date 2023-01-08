@@ -1184,7 +1184,7 @@ void ProcessDialogEvent()
 						AddMoneyToCharacter(pchar, 6000 * GetCharacterSPECIALSimple(PChar, SPECIAL_L));
 					break;
 					case 5:
-						dialog.text = "О! Это очень, очень ценный чертёж! Я готов заплатить вам за него 60 000 золотом. Оплату произведу кредитными сундуками. Не возражаете?";
+						dialog.text = "О! Это очень, очень ценный чертёж! Я готов заплатить вам за него 60000 золотом. Оплату произведу кредитными сундуками. Не возражаете?";
 						link.l1 = "Нет, конечно! Прекрасно!";
 						link.l1.go = "ShipyardsMapOk_5";
 						NPChar.reputation = sti(NPChar.reputation) + 5;
