@@ -752,7 +752,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "contract4":
-			dialog.text = "Вполне, капитан. Я согласен.";
+			dialog.text = "Вполне, капитан. Я соглас"+NPCharSexPhrase(NPChar,"ен","на")+".";
 			AddMoneyToCharacter(Pchar, -sti(NPChar.contractMoney));
 			SetCharacterPerk(NPChar, "EnergyPlus");
 			SetCharacterPerk(NPChar, "HPPlus");
@@ -779,7 +779,7 @@ void ProcessDialogEvent()
 				//pchar.quest.(immortal_officer).function = "Remove_Contract_Officer";
 			}
 			// DeleteAttribute(NPChar, "contractMoney");//Mett: это можно заблокировать по желанию, мб потом понадобиться для перерасчёта суммы контракта
-			Link.l1 = "Вот и отлично! Договорились";
+			Link.l1 = "Вот и отлично! Договорились.";
 			Link.l1.go = "Exit";
 		break;
 		
