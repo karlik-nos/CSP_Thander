@@ -205,7 +205,7 @@ void ProcessDialogEvent()
 			//Старт за Шарпов
 			if (CheckAttribute(pchar, "questTemp.Sharp.Entered_Shore"))
 			{
-				dialog.Text = "Если верить подсказкам на карте, сокровища должны быть где-то неподалеку.";
+				dialog.Text = "Если верить подсказкам на карте, сокровища должны быть где-то неподалёку.";
 				bMonstersGen = true;
 				DeleteAttribute(pchar, "questTemp.Sharp.Entered_Shore");
 				Link.l1 = "Нужно отыскать грот.";
