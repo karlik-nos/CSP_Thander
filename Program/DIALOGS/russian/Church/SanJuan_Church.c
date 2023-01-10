@@ -154,6 +154,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			LAi_SetHP(sld, 300.0, 300.0);
 			sld.name = "Жак";
 			sld.lastname = "де Массе";
+			sld.FaceId = 296;
 			sld.loyality = 20;
 			FantomMakeCoolSailor(sld, SHIP_BARQUE, "Маёнез", CANNON_TYPE_CULVERINE_LBS16, 30, 50, 30);	//Корабль
 			sld.AlwaysFriend = true;
@@ -171,6 +172,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			FantomMakeCoolFighter(sld, 12, 40, 50, "blade26", "pistol1", 80);
 			sld.name = "Тайная";
 			sld.lastname = "личность";
+			sld.FaceId = 297;
 			FantomMakeCoolSailor(sld, SHIP_LA_MARIANNA, "Тёмный Ангел", CANNON_TYPE_CULVERINE_LBS24, 60, 60, 60);	//Корабль
 			sld.AlwaysEnemy = true;
 			Group_FindOrCreateGroup("PKM_SvtvA_TL");
