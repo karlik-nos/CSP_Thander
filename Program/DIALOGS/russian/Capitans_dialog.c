@@ -203,7 +203,10 @@ void ProcessDialogEvent()
 			DialogExit();
 			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_Znakomstvo_s_Malta");
 			pchar.questTemp.PKM_SvtvA_Znakomstvo_s_Malta2 = true;
+			pchar.questTemp.PKM_SvtvA_Dostavka_Malty = true;
 			SetCompanionIndex(pchar, -1, sti(NPChar.index));
+			AddQuestRecord("PKM_Animists", "18");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("ся","ась"));
 		break;
 		//<-- Квест ***Странные вещи творятся на архипелаге*** Sinistra
 		//--> Квест ***Клан Ламбрини*** Sinistra
