@@ -9,10 +9,15 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1 = HeroStringReactionRepeat(RandPhraseSimple("Я "+ GetSexPhrase("передумал","передумала") +"...", "Не сейчас, падре..."), "Да, пока особо и нечего сказать...",
                       "Задам, задам... Только позже...", "Простите, святой отец...", npchar, Dialog.CurrentNode);
 			link.l1.go = "exit";
-			if (pchar.questTemp.PKM_SvtvA_FortFranceChurch_1 == "Church1")		//Квест "Странные вещи творятся на архипелаге"
+			if (CheckAttribute(pchar, "questTemp.PKM_SvtvA_FortFranceChurch_1"))	//Квест "Странные вещи творятся на архипелаге"
             {
                 link.l1 = "Святой отец, я слышал, что вы тоже разыскиваете загадочный чёрный фрегат, который похитил детей на Сан Мартине.";
                 link.l1.go = "PKM_SvtvA_Ch1_1";
+            }
+			if (CheckAttribute(pchar, "questTemp.PKM_SvtvA_PismoKlermon"))	//Квест "Странные вещи творятся на архипелаге"
+            {
+                link.l1 = "У меня письмо для вас.";
+                link.l1.go = "PKM_SvtvA_Ch2_1";
             }
 		break;
 		
@@ -66,6 +71,35 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			PChar.quest.PKM_SvtvA_SJ_B3.win_condition.l1.location = "Shore45";
 			PChar.quest.PKM_SvtvA_SJ_B3.win_condition = "PKM_SvtvA_DostavkaPisma_Buhta_1";
 		break;
+		
+		case "PKM_SvtvA_Ch2_1":
+			dialog.text = "Ага! А я всё гадал, успел ли падре Домингес отослать его или нет.";
+			link.l1 = "Что вы хотите этим сказать?";
+			link.l1.go = "PKM_SvtvA_Ch2_2";
+			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_PismoKlermon");
+		break;
+		case "PKM_SvtvA_Ch2_2":
+			dialog.text = "А, вы, наверное, ещё не знаете - человек, вручивший вам это письмо, был похищен. Боюсь, что случилось то, чего я так боялся.";
+			link.l1 = "И что же это такое?";
+			link.l1.go = "PKM_SvtvA_Ch2_3";
+			
+			sld = characterFromID("SanJuan_Priest");
+			sld.name = "падре";
+			sld.lastname = "Робано";
+		break;
+		case "PKM_SvtvA_Ch2_3":
+			dialog.text = "Несколько лет назад в Италии было разгромлено логово служителей сатаны. К сожалению, главе ордена удалось бежать, и он обосновался в архипелаге\nТеперь, судя по пропаже детей и священника высокого ранга, он собирается провести один древний ритуал, и мы должны помешать ему!";
+			link.l1 = "И какова моя роль во всём этом?";
+			link.l1.go = "PKM_SvtvA_Ch2_4";
+		break;
+		case "PKM_SvtvA_Ch2_4":
+			dialog.text = "Мне бы хотелось, чтобы вы взяли на себя роль карающего меча Господня. Я понимаю, что вы человек деловой, поэтому, как вы посмотрите на 50000 пиастров в качестве вознаграждения, за эту услугу?";
+			link.l1 = "Что же, неплохо, совсем неплохо...";
+			link.l1.go = "exit";
+			AddDialogExitQuest("PKM_SvtvA_Нападение_в_церкви");
+		break;
+		
+		
 	}
 	UnloadSegment(NPChar.FileDialog2);  // если где-то выход внутри switch  по return не забыть сделать анлод
 }

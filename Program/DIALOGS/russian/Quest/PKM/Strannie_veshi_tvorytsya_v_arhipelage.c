@@ -340,7 +340,46 @@ void ProcessDialogEvent()
 			LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);
 			LAi_group_SetCheck("EnemyFight", "PKM_SvtvA_Zasada2_Pobeda");
 			LAi_SetFightMode(pchar, true);
-			pchar.questTemp.PKM_SvtvA_PismoKlermon = true;
+		break;
+		
+		case "Сатанист_крыса":
+			dialog.text = "Умрите! Сатана идёт! Вам не остановить его!";
+			link.l1 = "Дьявол! Вам помощник - сатанист!";
+			link.l1.go = "Сатанист_крыса_2";
+			
+			for (i=1; i<=5; i++)
+			{
+				sld = GetCharacter(NPC_GenerateCharacter("Satanist_"+i, "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				sld.SaveItemsForDead = true;
+				sld.DontChangeBlade = true;
+				sld.DontChangeGun = true;
+				sld.DeleteFood = true;
+				LAi_SetActorType(sld);
+				ChangeCharacterAddressGroup(sld, pchar.location, "reload",  "reload1_back");
+				GiveItem2Character(sld, "PKM_SvtvA_znachok");
+				AddItems(sld, "mineral3", rand(7)-4);
+			}
+		break;
+		
+		case "Сатанист_крыса_2":
+			DialogExit();
+			
+			LAi_LocationFightDisable(loadedLocation, false);
+			sld = CharacterFromID("Satanist_Krisa")
+			LAi_SetWarriorType(sld);
+			LAi_group_MoveCharacter(sld, "EnemyFight");
+			for (i=1; i<=5; i++)
+			{
+				sld = CharacterFromID("Satanist_"+i)
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+			}
+			LAi_group_SetRelation("EnemyFight", "", LAI_GROUP_ENEMY);
+			LAi_group_FightGroups("EnemyFight", "", false);
+			//LAi_group_SetCheck("EnemyFight", "PKM_SvtvA_Нападение_в_церкви_Победа");
+			LAi_SetFightMode(pchar, true);
+			
+
 		break;
 		
 	}

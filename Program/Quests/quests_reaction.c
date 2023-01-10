@@ -10908,6 +10908,31 @@ void QuestComplete(string sQuestName, string qname)
 			bDisableFastReload = false;
 			chrDisableReloadToLocation = false;
 			
+			pchar.questTemp.PKM_SvtvA_PismoKlermon = true;
+			
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Krisa", "Priest_3", "man", "man", 10, PIRATE, -1, true));  //Предатель
+			FantomMakeCoolFighter(sld, 10, 50, 50, "blade5", "", 60); 
+			sld.name = "отец";
+			sld.lastname = "Гаррет";
+			LAi_SetActorType(sld);
+			sld.SaveItemsForDead = true;
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
+			ChangeCharacterAddressGroup(sld, "FortFrance_church", "barmen", "bar1");
+		break;
+		
+		case "PKM_SvtvA_Нападение_в_церкви":
+			sld = CharacterFromID("Satanist_Krisa");
+			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";		//Название файла диалога
+			sld.dialog.currentnode = "Сатанист_крыса";
+			LAi_ActorDialogNow(sld, Pchar, "", -1);
+		break;
+		
+		case "PKM_SvtvA_Нападение_в_церкви_Победа":
+			
 		break;
 		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
