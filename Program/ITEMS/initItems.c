@@ -9242,6 +9242,17 @@ int InitItems()
 	itm.ItemType = "QUESTITEMS";
 	n++;
 	
+	makeref(itm,Items[n]);	//Нежить "Говорящий клинок"
+	itm.id = "UP_PismoZagadka";	//Загадочная записка
+	itm.name = "itmname_UP_PismoZagadka";
+	itm.describe = "itmdescr_UP_PismoZagadka";
+	itm.picIndex = 10;
+	itm.picTexture = "ITEMS_12";
+	itm.price = 0;
+	itm.weight = 0.1;
+	itm.ItemType = "QUESTITEMS";
+	n++;
+	
 	makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
 	itm.id = "PKM_SvtvA_amulet";	//Амулет главного сатаниста
 	itm.name = "itmname_PKM_SvtvA_amulet";
@@ -9289,17 +9300,6 @@ int InitItems()
 	itm.name = "itmname_PKM_SvtvA_pismo3";
 	itm.describe = "itmdescr_PKM_SvtvA_pismo3";
 	itm.picIndex = 7;
-	itm.picTexture = "ITEMS_12";
-	itm.price = 0;
-	itm.weight = 0.1;
-	itm.ItemType = "QUESTITEMS";
-	n++;
-	
-	makeref(itm,Items[n]);	//Нежить "Говорящий клинок"
-	itm.id = "UP_PismoZagadka";	//Загадочная записка
-	itm.name = "itmname_UP_PismoZagadka";
-	itm.describe = "itmdescr_UP_PismoZagadka";
-	itm.picIndex = 10;
 	itm.picTexture = "ITEMS_12";
 	itm.price = 0;
 	itm.weight = 0.1;
