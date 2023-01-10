@@ -384,11 +384,6 @@ void ProcessDialogEvent()
 				sld = CharacterFromID("Satanist_"+i)
 				LAi_SetWarriorType(sld);
 				LAi_group_MoveCharacter(sld, "EnemyFight");
-				TakeNItems(sld, "food1", -10);
-				TakeNItems(sld, "food2", -10);
-				TakeNItems(sld, "food3", -10);
-				TakeNItems(sld, "food4", -10);
-				TakeNItems(sld, "food5", -10);
 			}
 			LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
 			LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);

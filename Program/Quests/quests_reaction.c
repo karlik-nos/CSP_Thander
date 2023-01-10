@@ -10875,6 +10875,7 @@ void QuestComplete(string sQuestName, string qname)
 			sld = GetCharacter(NPC_GenerateCharacter("Satanist_1", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
 			sld.DontChangeBlade = true;
 			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
 			sld.name = "Загадочный человек";
 			sld.lastname = "";
 			LAi_SetActorType(sld);
@@ -10890,6 +10891,7 @@ void QuestComplete(string sQuestName, string qname)
 				sld = GetCharacter(NPC_GenerateCharacter("Satanist_"+i, "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
 				sld.DontChangeBlade = true;
 				sld.DontChangeGun = true;
+				sld.DeleteFood = true;
 				LAi_SetActorType(sld);
 				LAi_CharacterDisableDialog(sld);
 				ChangeCharacterAddressGroup(sld, pchar.location, "patrol",  "patrol17");
