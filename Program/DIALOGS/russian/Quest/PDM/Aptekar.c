@@ -121,7 +121,7 @@ void ProcessDialogEvent()
 		
 		case "Markus_3":
 			dialog.text = "Ах да, конечно. Держите, "+Plata1+" пиастров ваши. Сейчас бы мне поспать...";
-			link.l1 = "Выздоравливайте, "+GetAddress_Form(NPChar)+", а теперь я покину вас.";
+			link.l1 = "Выздоравливайте, минхер, а теперь я покину вас.";
 			link.l1.go = "exit";
 			AddMoneyToCharacter(pchar, sti(Plata1));
 			AddCharacterExpToSkill(pchar, "Leadership", 60);
