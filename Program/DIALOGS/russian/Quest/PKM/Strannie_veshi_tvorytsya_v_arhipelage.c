@@ -29,56 +29,7 @@ void ProcessDialogEvent()
 			link.l1 = "Слава поням!";
 			link.l1.go = "exit";
 			
-			//Корабль 'Маёнез'
-			sld = GetCharacter(NPC_GenerateCharacter("Maltese", "Maltese", "man", "man", 10, SPAIN, -1, true));
-			FantomMakeCoolFighter(sld, 10, 30, 30, "blade44", "pistol1", 50);
-			SetSPECIAL(sld, 10, 6, 8, 10, 6, 5, 6);
-			SetSelfSkill(sld, 18, 21, 70, 3, 40);
-			SetShipSkill(sld, 60, 12, 18, 17, 32, 41, 60, 31, 26);
-			LAi_SetHP(sld, 300.0, 300.0);
-			sld.name = "Жак";
-			sld.lastname = "де Массе";
-			sld.FaceId = 296;
-			sld.loyality = 20;
-			FantomMakeCoolSailor(sld, SHIP_BARQUE, "Маёнез", CANNON_TYPE_CULVERINE_LBS16, 30, 50, 30);	//Корабль
-			sld.AlwaysFriend = true;
-			Group_FindOrCreateGroup("PKM_SvtvA_Malta");
-			Group_SetType("PKM_SvtvA_Malta", "war");
-			Group_AddCharacter("PKM_SvtvA_Malta", "Maltese");
-			Group_SetTaskAttack("PKM_SvtvA_Malta", "PKM_SvtvA_TL");
-
-			Group_SetGroupCommander("PKM_SvtvA_Malta", "Maltese");
-			Group_SetAddress("PKM_SvtvA_Malta", "SentMartin", "quest_ships", "Quest_ship_7");
-			Group_LockTask("PKM_SvtvA_Malta");
-			
-			//Корабль 'Тёмный Ангел'
-			sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA_TA", "Animists1", "man", "man", 10, PIRATE, -1, true));
-			FantomMakeCoolFighter(sld, 12, 40, 50, "blade26", "pistol1", 80);
-			sld.name = "Тайная";
-			sld.lastname = "личность";
-			sld.FaceId = 297;
-			FantomMakeCoolSailor(sld, SHIP_LA_MARIANNA, "Тёмный Ангел", CANNON_TYPE_CULVERINE_LBS24, 60, 60, 60);	//Корабль
-			sld.AlwaysEnemy = true;
-			Group_FindOrCreateGroup("PKM_SvtvA_TL");
-			Group_SetType("PKM_SvtvA_TL", "war");
-			Group_AddCharacter("PKM_SvtvA_TL", "PKM_SvtvA_TA");
-			realships[sti(sld.ship.type)].HP = 6000;
-			realships[sti(sld.ship.type)].SpeedRate = 13;
-			realships[sti(sld.ship.type)].TurnRate  = 44;
-
-			Group_SetGroupCommander("PKM_SvtvA_TL", "PKM_SvtvA_TA");
-			Group_SetAddress("PKM_SvtvA_TL", "SentMartin", "quest_ships", "Quest_ship_7");
-			Group_LockTask("PKM_SvtvA_TL");
-			
-			//Условия задания
-			
-			PChar.quest.PKM_SvtvA_TA_ploho.win_condition.l1 = "NPC_Death";		//Поражение
-			PChar.quest.PKM_SvtvA_TA_ploho.win_condition.l1.character = "Maltese";
-			PChar.quest.PKM_SvtvA_TA_ploho.win_condition = "PKM_SvtvA_Маёнез_потопили";
-			
-			PChar.quest.PKM_SvtvA_TA_horosho.win_condition.l1 = "NPC_Death";		//Победа
-			PChar.quest.PKM_SvtvA_TA_horosho.win_condition.l1.character = "PKM_SvtvA_TA";
-			PChar.quest.PKM_SvtvA_TA_horosho.win_condition = "PKM_SvtvA_Ангела_потопили";
+			pchar.questTemp.PKM_SvtvA_Dostavka_Malty = true;
 		break;
 		
 		case "Verni_detey_1":

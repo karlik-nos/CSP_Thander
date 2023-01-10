@@ -191,7 +191,15 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			Group_SetAddress("PKM_SvtvA_TL", "SentMartin", "quest_ships", "Quest_ship_7");
 			Group_LockTask("PKM_SvtvA_TL");
 			
+			//Условия задания
 			
+			PChar.quest.PKM_SvtvA_TA_ploho.win_condition.l1 = "NPC_Death";		//Поражение
+			PChar.quest.PKM_SvtvA_TA_ploho.win_condition.l1.character = "Maltese";
+			PChar.quest.PKM_SvtvA_TA_ploho.win_condition = "PKM_SvtvA_Маёнез_потопили";
+			
+			PChar.quest.PKM_SvtvA_TA_horosho.win_condition.l1 = "NPC_Death";		//Победа
+			PChar.quest.PKM_SvtvA_TA_horosho.win_condition.l1.character = "PKM_SvtvA_TA";
+			PChar.quest.PKM_SvtvA_TA_horosho.win_condition = "PKM_SvtvA_Ангела_потопили";
 		break;
 		
 		//Квест "Странные вещи творятся на архипелаге" (После сопровождения корабля мальтийских рыцарей)
