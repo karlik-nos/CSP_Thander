@@ -364,10 +364,32 @@ void ProcessDialogEvent()
 			PChar.quest.PKM_SvtvA_SJ_B3.over = "yes";
 		break;
 		
-		case "Знакомство_с_Мальтийцем_1":
-			dialog.text = "Капитан, даже не знаю, как вас благодарить! Если бы не вы, мой корабль и вся его команда уже лежали бы в морской пучине. Меня зовут Жакуин де Массе.";
-			link.l1 = "Очень приятно, Жак. А я "+GetFullName(pchar)+".";
-			link.l1.go = "exit";	
+		case "Satanist_zasada2":
+			dialog.text = "Не думаю, что ты куда-нибудь пойдёшь! Живо отдавай письмо!";
+			link.l1 = "А, может быть, выпьем по кружечке эля и пойдём каждый своей дорогой? Нет? Я так и знал"+ GetSexPhrase("","а") +".";
+			link.l1.go = "Satanist_zasada2_2";	
+		break;
+		
+		case "Satanist_zasada2_2":
+			dialog.text = "Хватит паясничать! Я считаю до трёх, и если вы не отдаёте нам письмо, то можете пенять на себя. Раз...";
+			link.l1 = "Три!";
+			link.l1.go = "Satanist_zasada2_3";
+		break;
+		
+		case "Satanist_zasada2_3":
+			DialogExit();
+			LAi_LocationFightDisable(loadedLocation, false);
+			for (i=1; i<=3; i++)
+			{
+				sld = CharacterFromID("Satanist_"+i)
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+			}
+			LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+			LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);
+			LAi_group_SetCheck("EnemyFight", "PKM_SvtvA_Zasada2_Pobeda");
+			LAi_SetFightMode(pchar, true);
+			pchar.questTemp.PKM_SvtvA_PismoKlermon = true;
 		break;
 		
 	}

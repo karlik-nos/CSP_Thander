@@ -10868,6 +10868,46 @@ void QuestComplete(string sQuestName, string qname)
 			pchar.questTemp.PKM_SvtvA_Znakomstvo_s_Malta = true;
 		break;
 		
+		case "PKM_SvtvA_Zasada2":
+			LAi_LocationFightDisable(loadedLocation, true);
+			bDisableFastReload = true;
+			chrDisableReloadToLocation = true;
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_1", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.name = "Загадочный человек";
+			sld.lastname = "";
+			LAi_SetActorType(sld);
+			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "Satanist_zasada2";
+			ChangeCharacterAddressGroup(sld, pchar.location, "patrol",  "patrol17");
+			LAi_ActorDialog(sld, pchar, "", 1.4, 0);
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
+			for (i=2; i<=3; i++)
+			{
+				sld = GetCharacter(NPC_GenerateCharacter("Satanist_"+i, "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				sld.DontChangeBlade = true;
+				sld.DontChangeGun = true;
+				LAi_SetActorType(sld);
+				LAi_CharacterDisableDialog(sld);
+				ChangeCharacterAddressGroup(sld, pchar.location, "patrol",  "patrol17");
+				LAi_ActorFollow(sld, characterFromID("Satanist_1"), "", -1);
+				sld.SaveItemsForDead = true;
+				GiveItem2Character(sld, "PKM_SvtvA_znachok");
+				AddItems(sld, "mineral3", rand(7)-4);
+			}
+		break;
+		
+		case "PKM_SvtvA_Zasada2_Pobeda":
+			AddQuestRecord("PKM_Animists", "20");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
+			
+		break;
+		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////   	КВЕСТЫ "Пираты Карибского Моря" КОНЕЦ
 /////////////////////////////////////////////////////////////////////////////////////////////////////////

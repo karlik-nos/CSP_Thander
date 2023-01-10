@@ -224,6 +224,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			sld = CharacterFromID("Maltese");
 			RemoveCharacterCompanion(pchar, sld);
 			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_Znakomstvo_s_Malta2");
+			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_Dostavka_Malty");
 			
 			PChar.quest.PKM_SvtvA_Zasada2.win_condition.l1 = "location";
 			PChar.quest.PKM_SvtvA_Zasada2.win_condition.l1.location = "SanJuan_town";
