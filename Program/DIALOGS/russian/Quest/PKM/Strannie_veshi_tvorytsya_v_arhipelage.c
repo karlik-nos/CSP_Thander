@@ -32,7 +32,11 @@ void ProcessDialogEvent()
 			//Корабль 'Маёнез'
 			sld = GetCharacter(NPC_GenerateCharacter("Maltese", "Maltese", "man", "man", 10, SPAIN, -1, true));
 			FantomMakeCoolFighter(sld, 10, 30, 30, "blade44", "pistol1", 50);
-			sld.name = "Жакуин";
+			SetSPECIAL(sld, 10, 6, 8, 10, 6, 5, 6);
+			SetSelfSkill(sld, 18, 21, 70, 3, 40);
+			SetShipSkill(sld, 60, 12, 18, 17, 32, 41, 60, 31, 26);
+			LAi_SetHP(sld, 300.0, 300.0);
+			sld.name = "Жак";
 			sld.lastname = "де Массе";
 			sld.loyality = 20;
 			FantomMakeCoolSailor(sld, SHIP_BARQUE, "Маёнез", CANNON_TYPE_CULVERINE_LBS16, 30, 50, 30);	//Корабль
@@ -356,6 +360,12 @@ void ProcessDialogEvent()
 			PChar.quest.PKM_SvtvA_SJ_B1.over = "yes";
 			PChar.quest.PKM_SvtvA_SJ_B2.over = "yes";
 			PChar.quest.PKM_SvtvA_SJ_B3.over = "yes";
+		break;
+		
+		case "Знакомство_с_Мальтийцем_1":
+			dialog.text = "Капитан, даже не знаю, как вас благодарить! Если бы не вы, мой корабль и вся его команда уже лежали бы в морской пучине. Меня зовут Жакуин де Массе.";
+			link.l1 = "Очень приятно, Жак. А я "+GetFullName(pchar)+".";
+			link.l1.go = "exit";	
 		break;
 		
 	}

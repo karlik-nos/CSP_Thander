@@ -10861,13 +10861,11 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 		
 		case "PKM_SvtvA_Ангела_потопили":		//Победа
-			//PChar.quest.PKM_SvtvA_TA_ploho.over = "yes";
-			
 			AddQuestRecord("PKM_Animists", "17");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
 			AddQuestUserData("PKM_Animists", "sSex2", GetSexPhrase("ёл","ла"));
 			
-			
+			pchar.questTemp.PKM_SvtvA_Znakomstvo_s_Malta = true;
 		break;
 		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////

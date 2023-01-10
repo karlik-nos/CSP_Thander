@@ -92,6 +92,22 @@ void ProcessDialogEvent()
     			link.l1.go = "quests";
                 link.l2 = "Ничего особенного, просто "+ GetSexPhrase("зашёл","зашла") +" поприветствовать вас!";
     			link.l2.go = "exit";
+				//--> Квест ***Странные вещи творятся на архипелаге*** Sinistra
+				if (CheckAttribute(pchar, "questTemp.PKM_SvtvA_Znakomstvo_s_Malta") && (npchar.id == "Maltese"))
+				{
+					dialog.text = "Капитан, даже не знаю, как вас благодарить! Если бы не вы, мой корабль и вся его команда уже лежали бы в морской пучине. Меня зовут Жакуин де Массе, рыцарь мальтийского ордена.";
+					link.l1 = "Очень приятно, Жак. А я "+GetFullName(pchar)+".";
+					link.l1.go = "PKM_SvtvA_ZsM_1";
+					DeleteAttribute(link, "l2");
+				}
+				if (CheckAttribute(pchar, "questTemp.PKM_SvtvA_Znakomstvo_s_Malta2") && (npchar.id == "Maltese"))
+				{
+					dialog.text = "Во имя всех святых! Нам нельзя терять время, нужно спешить на Пуэрто Рико.";
+					link.l1 = "Да, Жак, ты прав.";
+					link.l1.go = "exit";
+					DeleteAttribute(link, "l2");
+				}
+				//<-- Квест ***Странные вещи творятся на архипелаге*** Sinistra
             }
             else
             {
@@ -171,6 +187,23 @@ void ProcessDialogEvent()
 			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_SprositKapitanov_v_more");
 			AddQuestRecord("PKM_Animists", "5");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
+		break;
+		
+		case "PKM_SvtvA_ZsM_1":
+			dialog.text = "Так это вы тот самый капитан, о котором меня предупредили посредством голубиной почты.";
+			link.l1 = "Вы правы в своих догадках. У меня указание сопроводить вас до Пуэрто Рико.";
+			link.l1.go = "PKM_SvtvA_ZsM_2";
+		break;
+		case "PKM_SvtvA_ZsM_2":
+			dialog.text = "Хорошо. В таком случае, мы можем отправиться в путь.";
+			link.l1 = "Отлично! Тогда не будем мешкать!";
+			link.l1.go = "PKM_SvtvA_ZsM_3";
+		break;
+		case "PKM_SvtvA_ZsM_3":
+			DialogExit();
+			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_Znakomstvo_s_Malta");
+			pchar.questTemp.PKM_SvtvA_Znakomstvo_s_Malta2 = true;
+			SetCompanionIndex(pchar, -1, sti(NPChar.index));
 		break;
 		//<-- Квест ***Странные вещи творятся на архипелаге*** Sinistra
 		//--> Квест ***Клан Ламбрини*** Sinistra
