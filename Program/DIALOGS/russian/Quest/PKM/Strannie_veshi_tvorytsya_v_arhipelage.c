@@ -367,19 +367,19 @@ void ProcessDialogEvent()
 			LAi_LocationFightDisable(loadedLocation, false);
 			sld = CharacterFromID("Satanist_Krisa")
 			LAi_SetWarriorType(sld);
-			LAi_group_MoveCharacter(sld, "EnemyFight");
+			LAi_group_MoveCharacter(sld, "Satanist");
 			for (i=1; i<=5; i++)
 			{
 				sld = CharacterFromID("Satanist_"+i)
 				LAi_SetWarriorType(sld);
-				LAi_group_MoveCharacter(sld, "EnemyFight");
+				LAi_group_MoveCharacter(sld, "Satanist");
 			}
-			LAi_group_SetRelation("EnemyFight", "", LAI_GROUP_ENEMY);
-			LAi_group_FightGroups("EnemyFight", "", false);
-			//LAi_group_SetCheck("EnemyFight", "PKM_SvtvA_Нападение_в_церкви_Победа");
+			LAi_group_SetRelation("Satanist", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+			LAi_group_FightGroups("Satanist", LAI_GROUP_PLAYER, false);
+			//LAi_group_SetCheck("Satanist", "PKM_SvtvA_Нападение_в_церкви_Победа");
 			LAi_SetFightMode(pchar, true);
 			
-
+			DoQuestFunctionDelay("PKM_SvtvA_Malta_na_pomosh", 15.0);
 		break;
 		
 	}

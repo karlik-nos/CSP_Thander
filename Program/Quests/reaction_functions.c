@@ -10750,9 +10750,23 @@ void LambriniPGG_Tavern(string qName)
 
 //Sinistra "Странные вещи творятся на архипелаге" -->
 
-void Sinistra(string qName)
-{
-	Log_info("ffffУ вас нет ключа");
+void PKM_SvtvA_Malta_na_pomosh(string qName)
+{	
+	sld = GetCharacter(NPC_GenerateCharacter("Maltese", "Maltese", "man", "man", 10, SPAIN, -1, true));
+	FantomMakeCoolFighter(sld, 10, 30, 30, "blade44", "pistol1", 50);
+	SetSPECIAL(sld, 10, 6, 8, 10, 6, 5, 6);
+	SetSelfSkill(sld, 18, 21, 70, 3, 40);
+	SetShipSkill(sld, 60, 12, 18, 17, 32, 41, 60, 31, 26);
+	LAi_SetHP(sld, 300.0, 300.0);
+	sld.name = "Жак";
+	sld.lastname = "де Массе";
+	sld.FaceId = 296;
+	sld.loyality = 20;
+	LAi_SetWarriorType(sld);
+	LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
+	ChangeCharacterAddressGroup(sld, pchar.location, "reload",  "reload1_back");
+	
+	Log_info("Жак де Массе пришёл к вам на помощь!");
 }
 
 //Sinistra "Странные вещи творятся на архипелаге" <--

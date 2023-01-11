@@ -10911,7 +10911,7 @@ void QuestComplete(string sQuestName, string qname)
 			pchar.questTemp.PKM_SvtvA_PismoKlermon = true;
 			
 			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Krisa", "Priest_3", "man", "man", 10, PIRATE, -1, true));  //Предатель
-			FantomMakeCoolFighter(sld, 10, 50, 50, "blade5", "", 60); 
+			FantomMakeCoolFighter(sld, sti(pchar.rank), 50, 50, "blade5", "", 120); 
 			sld.name = "отец";
 			sld.lastname = "Гаррет";
 			LAi_SetActorType(sld);
