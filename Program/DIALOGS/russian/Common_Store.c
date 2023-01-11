@@ -1006,15 +1006,15 @@ void ProcessDialogEvent()
 							NPChar.sTemp3 = "";
 							if (npchar.iTradeIsland1 != Characters[sti(npchar.storeMan1)].city)
 							{
-								NPChar.sTemp1 = ", что на " + XI_ConvertString(npchar.iTradeIsland1+"Dat");
+								NPChar.sTemp1 = ", что на " + XI_ConvertString(npchar.iTradeIsland1+"Voc");
 							}
 							if (npchar.iTradeIsland2 != Characters[sti(npchar.storeMan2)].city)
 							{
-								NPChar.sTemp2 = ", что на " + XI_ConvertString(npchar.iTradeIsland2+"Dat");
+								NPChar.sTemp2 = ", что на " + XI_ConvertString(npchar.iTradeIsland2+"Voc");
 							}
 							if (npchar.iTradeIsland3 != Characters[sti(npchar.storeMan3)].city)
 							{
-								NPChar.sTemp3 = ", что на " + XI_ConvertString(npchar.iTradeIsland3+"Dat");
+								NPChar.sTemp3 = ", что на " + XI_ConvertString(npchar.iTradeIsland3+"Voc");
 							}
 
 							//dialog.text =  "Одну минуту, сейчас найду свой журнал\nВот, что мне нужно сейчас доставить. Груз " + GetGoodsNameAlt(sti(npchar.iTradeGoods1))+ " в количестве " + FindRussianQtyString(sti(npchar.iQuantityGoods1)) + " в город " + NPChar.sNation1 + NPChar.sTemp1 + " за " +  FindRussianDaysString(makeint(sti(npchar.iDaysExpired1))) +", вознаграждение - " +FindRussianMoneyString(sti(npchar.iMoney1)) + ". Ещё есть груз " + GetGoodsNameAlt(sti(npchar.iTradeGoods2))+ " в количестве " + FindRussianQtyString(sti(npchar.iQuantityGoods2)) + " в город " + NPChar.sNation2 + NPChar.sTemp2 + " за " +  FindRussianDaysString(makeint(sti(npchar.iDaysExpired2))) +", вознаграждение - " +FindRussianMoneyString(sti(npchar.iMoney2)) + ". А также груз " + GetGoodsNameAlt(sti(npchar.iTradeGoods3))+ " в количестве " + FindRussianQtyString(sti(npchar.iQuantityGoods3)) + " в город " + NPChar.sNation3 + NPChar.sTemp3 + " за " +  FindRussianDaysString(makeint(sti(npchar.iDaysExpired3))) +", вознаграждение - " +FindRussianMoneyString(sti(npchar.iMoney3)) + ".";

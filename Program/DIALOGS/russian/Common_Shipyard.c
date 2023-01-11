@@ -1089,7 +1089,7 @@ void ProcessDialogEvent()
 			AddQuestRecord("ShipyardsMap", "1");
 			AddQuestUserData("ShipyardsMap", "sSex", GetSexPhrase("","а"));
 			AddQuestUserData("ShipyardsMap", "sCity", XI_ConvertString("Colony" + npchar.city + "Gen"));
-			AddQuestUserData("ShipyardsMap", "sTarget", XI_ConvertString("Colony" + pchar.questTemp.different.ShipyardsMap.city + "Dat"));
+			AddQuestUserData("ShipyardsMap", "sTarget", XI_ConvertString("Colony" + pchar.questTemp.different.ShipyardsMap.city + "Voc"));
 			AddQuestUserData("ShipyardsMap", "sShip", pchar.questTemp.different.ShipyardsMap.what);
 		break;
 
