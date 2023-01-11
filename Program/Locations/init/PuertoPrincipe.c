@@ -140,6 +140,7 @@ int LocationInitPuertoPrincipe(int n)
 	//Always
 	Locations[n].filespath.models = "locations\SmugglerLair\Town";
 	Locations[n].models.always.QCtown = "sml";
+	Locations[n].models.always.palm = "sml_palm";
 	Locations[n].models.always.locators = "sml_l";
 	Locations[n].models.always.grassPatch = "sml_g";
 	Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";
