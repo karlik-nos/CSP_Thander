@@ -504,7 +504,7 @@ void SimulatePGGLife()
 			}
 			else
 			{
-				Log_TestInfo("ПГГ бродит неподалеку");
+				Log_TestInfo("ПГГ бродит неподалёку");
 				sld = CharacterFromID(pchar.chosenHero);
 				LAi_SetActorTypeNoGroup(sld);
 				sld.PGGAi.SeenToday = true;
@@ -517,10 +517,6 @@ void SimulatePGGLife()
 				ref chr;
 				if (findsubstr(pchar.location, "_town", 0) != -1)
 				{
-					if (findsubstr(pchar.location, "LaVega", 0) != -1 || findsubstr(pchar.location, "LeFransua", 0) != -1 || findsubstr(pchar.location, "FortOrange", 0) != -1 || findsubstr(pchar.location, "PuertoPrincipe", 0) != -1)
-					{
-						LAi_ActorGoToLocation(sld, "reload", "reload5", sld.PGGAi.location.town.backup, "", "", "PGGLeft", -1);
-					}
 					LAi_ActorGoToLocation(sld, "reload", "reload4_back", sld.PGGAi.location.town.backup, "", "", "PGGLeft", -1);
 
 					sld.PGGOfficers = 2+sti(sld.rank)/15;
@@ -623,6 +619,7 @@ bool LAi_CharacterLogoff(aref chr)
 void LAi_AddLoginedCharacter(aref chr)
 {
 	int index = sti(chr.index);
+	SetArraySize(&LAi_loginedcharacters,MAX_CHARS_IN_LOC);
 	LAi_loginedcharacters[LAi_numloginedcharacters] = index;
 	LAi_numloginedcharacters = LAi_numloginedcharacters + 1;
 }

@@ -88,7 +88,7 @@ void ProcessDialogEvent()
                 {
     			    Dialog.text = TimeGreeting() + ", "+ GetAddress_Form(NPChar)+"! Я капитан "+ GetFullName(NPChar) +". Что привело вас на борт моего корабля?";
     			}
-    			link.l1 = "Меня зовут " + GetFullName(Pchar) + ". У меня есть  к вам дело!";
+    			link.l1 = "Меня зовут " + GetFullName(Pchar) + ". У меня есть к вам дело!";
     			link.l1.go = "quests";
                 link.l2 = "Ничего особенного, просто "+ GetSexPhrase("зашёл","зашла") +" поприветствовать вас!";
     			link.l2.go = "exit";

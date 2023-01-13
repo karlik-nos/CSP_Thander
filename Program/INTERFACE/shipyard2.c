@@ -64,6 +64,7 @@ void InitInterface_R(string iniName, ref _shipyarder)
 	SetEventHandler("CheckButtonChange", "ProcessFilter", 0);
 	SetEventHandler("TableSelectChange", "TableSelectChange", 0);
 	SetEventHandler("ExitMsgMenu", "ExitMsgMenu", 0);
+	SetEventHandler("OnTableClick", "OnTableClick", 0);
 
 	EI_CreateFrame("SHIP_BIG_PICTURE_BORDER",156,40,366,275); // tak from SHIP_BIG_PICTURE
 	EI_CreateHLine("SHIP_BIG_PICTURE_BORDER", 161,246,361,1, 4);
@@ -111,6 +112,7 @@ void IDoExit(int exitCode)
 	DelEventHandler("CheckButtonChange", "ProcessFilter");
 	DelEventHandler("TableSelectChange", "TableSelectChange");
 	DelEventHandler("ExitMsgMenu", "ExitMsgMenu");
+	DelEventHandler("OnTableClick", "OnTableClick");
 
 	interfaceResultCommand = exitCode;
 	if( CheckAttribute(&InterfaceStates,"ReloadMenuExit"))
@@ -441,6 +443,14 @@ void FillShipyardTable()
 	GameInterface.TABLE_SHIPYARD.hr.td6.scale = 0.9;
 	GameInterface.TABLE_SHIPYARD.select = 0;
 	GameInterface.TABLE_SHIPYARD.top = 0;
+//--> mod tablesort
+	GameInterface.TABLE_SHIPYARD.hr.td1.sorttype = "string";
+	GameInterface.TABLE_SHIPYARD.hr.td2.sorttype = "";
+	GameInterface.TABLE_SHIPYARD.hr.td3.sorttype = "string";
+	GameInterface.TABLE_SHIPYARD.hr.td4.sorttype = "";
+	GameInterface.TABLE_SHIPYARD.hr.td5.sorttype = "";
+	GameInterface.TABLE_SHIPYARD.hr.td6.sorttype = "";
+//<-- mod tablesort
 
 	int	iStart = 0;
 	int iEnd = -1;
@@ -952,4 +962,18 @@ void CalcTuningPrice()
 	Tun_Mater2[i] = makeint((7-shipClass)/2 * fQuestShip);
 	if (Tun_Mater2[i] < 1) Tun_Mater2[i] = 1;
 	Tun_Mater3[i] = makeint((100 * cannonQ * MOD_SKILL_ENEMY_RATE + 4000 * ((7-shipClass) * MOD_SKILL_ENEMY_RATE)) * fQuestShip);
+}
+
+void OnTableClick()
+{
+	string sControl = GetEventData();
+	int iRow = GetEventData();
+	int iColumn = GetEventData();
+
+	//string sRow = "tr" + (iRow + 1);
+	if (sControl == "TABLE_SHIPYARD")
+	{
+		if (!SendMessage(&GameInterface,"lsl",MSG_INTERFACE_MSG_TO_NODE, sControl, 1 )) SortTable(sControl, iColumn);
+		Table_UpdateWindow(sControl);
+	}
 }

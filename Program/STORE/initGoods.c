@@ -19,7 +19,7 @@ void InitGoods()
 	Goods[GOOD_GRAPES].Cost			= 12;
 	Goods[GOOD_GRAPES].Weight		= 1;
 	Goods[GOOD_GRAPES].Units		= 20;
-	Goods[GOOD_GRAPES].SpeedV0		= 0.55;
+	Goods[GOOD_GRAPES].SpeedV0		= 0.55;//30%
 	Goods[GOOD_GRAPES].DamageHull	= 0.01;
 	Goods[GOOD_GRAPES].DamageRig	= 0.0;
 	Goods[GOOD_GRAPES].DamageCrew	= 0.2;
@@ -31,7 +31,7 @@ void InitGoods()
 	Goods[GOOD_KNIPPELS].Cost		= 26;
 	Goods[GOOD_KNIPPELS].Weight		= 2;
 	Goods[GOOD_KNIPPELS].Units		= 20;
-	Goods[GOOD_KNIPPELS].SpeedV0	= 0.9;
+	Goods[GOOD_KNIPPELS].SpeedV0	= 0.9;//81%
 	Goods[GOOD_KNIPPELS].DamageHull = 0.01;
 	Goods[GOOD_KNIPPELS].DamageRig	= 1.0;
 	Goods[GOOD_KNIPPELS].DamageCrew = 0.04;
@@ -43,7 +43,7 @@ void InitGoods()
 	Goods[GOOD_BOMBS].Cost			= 60;
 	Goods[GOOD_BOMBS].Weight		= 2;
 	Goods[GOOD_BOMBS].Units			= 20;
-	Goods[GOOD_BOMBS].SpeedV0		= 0.65;
+	Goods[GOOD_BOMBS].SpeedV0		= 0.7;//49%
 	Goods[GOOD_BOMBS].DamageHull	= 2.5;
 	Goods[GOOD_BOMBS].DamageRig		= 0.0;
 	Goods[GOOD_BOMBS].DamageCrew	= 0.06;

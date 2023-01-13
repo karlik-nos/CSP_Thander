@@ -1,6 +1,6 @@
 #define SAILS_COLOR_QUANTITY				9
-#define SHIP_TYPES_QUANTITY					141
-#define SHIP_TYPES_QUANTITY_WITH_FORT		142	// must be (SHIP_TYPES_QUANTITY + 1)
+#define SHIP_TYPES_QUANTITY					142
+#define SHIP_TYPES_QUANTITY_WITH_FORT		143	// must be (SHIP_TYPES_QUANTITY + 1)
 
 //====================================================================================================================================================================================================================
 //7
@@ -146,23 +146,24 @@
 #define SHIP_LUGGERQUEST     	   	125
 #define SHIP_XEBEKVML				126
 #define SHIP_BRIGQEEN				127
-#define SHIP_BRIGSW					128
-#define SHIP_CLIPPER				129
-#define SHIP_CORVETTE_QUEST			130
-#define SHIP_WH_CORVETTE_QUEST		131
-#define SHIP_MEFISTO        		132
-#define SHIP_ARABELLA				133
-#define SHIP_FRIGATEQUEEN			134
-#define SHIP_CATHERINE				135
-#define SHIP_FLYINGDUTCHMAN			136
-#define SHIP_FLYINGDUTCHMAN_N		137
-#define SHIP_SANTISIMA		 	   	138
-#define SHIP_SOLEYRU				139
+#define SHIP_BRIGQUEEN				128
+#define SHIP_BRIGSW					129
+#define SHIP_CLIPPER				130
+#define SHIP_CORVETTE_QUEST			131
+#define SHIP_WH_CORVETTE_QUEST		132
+#define SHIP_MEFISTO        		133
+#define SHIP_ARABELLA				134
+#define SHIP_FRIGATEQUEEN			135
+#define SHIP_CATHERINE				136
+#define SHIP_FLYINGDUTCHMAN			137
+#define SHIP_FLYINGDUTCHMAN_N		138
+#define SHIP_SANTISIMA		 	   	139
+#define SHIP_SOLEYRU				140
 //====================================================================================================================================================================================================================
 
 //	ЛОДКА + ФОРТ
-#define SHIP_BOAT          	  	   140
-#define SHIP_FORT           	   141
+#define SHIP_BOAT          	  	   141
+#define SHIP_FORT           	   142
 
 
 #define SHIP_NOTUSED			 1000

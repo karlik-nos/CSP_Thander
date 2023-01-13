@@ -91,10 +91,8 @@ object	Render;
 //--------------------------------------------------------------------
 int     GlobalCharacters = 0;  // номер, с которого идут фантомы
 int     MAX_CHARACTERS   = 10;
-#define LOC_FANTOM_CHARACTERS		870	//32 max
-#define FANTOM_CHARACTERS           1040
-#define TOTAL_CHARACTERS			2000  // прописать в BOAT_CHARACTER  TOTAL_CHARACTERS - 1
-#define BOAT_CHARACTER              1999
+
+#define TOTAL_CHARACTERS			2000
 
 #define MAX_LOCATIONS		870 // boal //700
 #define MAX_ISLANDS   34
@@ -157,14 +155,9 @@ float GridStepPC = 0.1;
 float MaxWaveDistance = 4000.0;//4000.0;//3000.0;//2000.0;//1000.0
 float LodScale = 0.7;//0.7;//1.2;//2.0;//4.0
 
-ref GetFantomCharacter(int iIndex)
-{
-	return &Characters[FANTOM_CHARACTERS + iIndex];
-}
-
 ref GetCharacter(int iIndex)
 {
-	if (iIndex < 0 || iIndex >= TOTAL_CHARACTERS)
+	if (iIndex < 0 || iIndex >= MAX_CHARACTERS)
 	{
 		trace("Incorrect Index for a character! Wrong Index is " + iIndex);
 		if (MOD_BETTATESTMODE	==	"On") Log_TestInfo("ОШИБКА: Неверный индекс для персонажа! Неправильный индекс " + iIndex);

@@ -939,7 +939,7 @@ float _GetAttackFactor(string sBladeID, ref rBlade, string sType, ref kPerk)
 		case "break":
 		kAttackDmg = 3.0;
 		if (bAltBalanceProHits && rBlade.FencingType != "FencingHeavy") kAttackDmg *= 0.7;
-		if (!CheckCharacterPerk(xi_refCharacter, "HardHitter")) kAttackDmg /= 2.0;
+		//if (!CheckCharacterPerk(xi_refCharacter, "HardHitter")) kAttackDmg /= 2.0;
 		break;
 
 		case "fient":
