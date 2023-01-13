@@ -773,7 +773,7 @@ void Ship_Add2Sea(int iCharacterIndex, bool bFromCoast, string sFantomType)
 		rCharacter.seatime = 0;
 		rCharacter.lastupdateseatime = 0;
 	}
-	if (iCharacterIndex >= FANTOM_CHARACTERS)
+	if (CheckAttribute(GetCharacter(iCharacterIndex), "SeaFantom"))
 	{
 		SetBaseShipData(rCharacter);
 		Ship_SetFantomData(rCharacter);
