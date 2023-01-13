@@ -10911,9 +10911,9 @@ void QuestComplete(string sQuestName, string qname)
 			pchar.questTemp.PKM_SvtvA_PismoKlermon = true;
 			
 			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Krisa", "Priest_3", "man", "man", 10, PIRATE, -1, true));  //Предатель
-			FantomMakeCoolFighter(sld, sti(pchar.rank), 50, 50, "blade5", "", 120); 
+			FantomMakeCoolFighter(sld, sti(pchar.rank), 50, 50, "blade5", "", 120);
 			sld.name = "отец";
-			sld.lastname = "Гаррет";
+			sld.lastname = "Гарет";
 			LAi_SetActorType(sld);
 			sld.SaveItemsForDead = true;
 			sld.DontChangeBlade = true;
@@ -10926,13 +10926,19 @@ void QuestComplete(string sQuestName, string qname)
 		
 		case "PKM_SvtvA_Нападение_в_церкви":
 			sld = CharacterFromID("Satanist_Krisa");
-			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";		//Название файла диалога
+			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
 			sld.dialog.currentnode = "Сатанист_крыса";
 			LAi_ActorDialogNow(sld, Pchar, "", -1);
 		break;
 		
 		case "PKM_SvtvA_Нападение_в_церкви_Победа":
+			LAi_LocationFightDisable(loadedLocation, true);
+			LAi_SetFightMode(pchar, false);
 			
+			sld = CharacterFromID("FortFrance_Priest");
+			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "Победа_в Церкви";
+			LAi_ActorDialogNow(sld, Pchar, "", -1);
 		break;
 		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -350,6 +350,7 @@ void ProcessDialogEvent()
 			for (i=1; i<=5; i++)
 			{
 				sld = GetCharacter(NPC_GenerateCharacter("Satanist_"+i, "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				sld.FaceId = 297;
 				sld.SaveItemsForDead = true;
 				sld.DontChangeBlade = true;
 				sld.DontChangeGun = true;
@@ -376,10 +377,71 @@ void ProcessDialogEvent()
 			}
 			LAi_group_SetRelation("Satanist", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
 			LAi_group_FightGroups("Satanist", LAI_GROUP_PLAYER, false);
-			//LAi_group_SetCheck("Satanist", "PKM_SvtvA_Нападение_в_церкви_Победа");
+			LAi_group_SetCheck("Satanist", "PKM_SvtvA_Нападение_в_церкви_Победа");
 			LAi_SetFightMode(pchar, true);
 			
 			DoQuestFunctionDelay("PKM_SvtvA_Malta_na_pomosh", 15.0);
+		break;
+		
+		case "Победа_в Церкви":
+			dialog.text = "Кто бы мог подумать, отец Гарет поклонялся Князю Тьмы... Кто бы мог подумать...";
+			link.l1 = "Зато теперь я знаю, из-за кого у меня было столько неприятностей! Это он докладывал этим монахам обо всех моих передвижениях.";
+			link.l1.go = "Победа_в Церкви_2";
+		break;
+		
+		case "Победа_в Церкви_2":
+			dialog.text = "Монахам?! Нет, это не монахи. Это слуги Дьявола!";
+			link.l1 = "Хм... Прошу прощения за оговорку, я имел"+GetSexPhrase("","а")+" в виду их одежды.";
+			link.l1.go = "Победа_в Церкви_3";
+		break;
+		
+		case "Победа_в Церкви_3":
+			dialog.text = "Да, вы правы. Но сначала нам нужно узнать, где находится логово язычников. Думаю, что лучше всего будет, если вы отправитесь в Сан-Хуан и попробуете узнать там дополнительную информацию.";
+			link.l1 = "Тогда благословите меня.";
+			link.l1.go = "Победа_в Церкви_4";
+		break;
+		
+		case "Победа_в Церкви_4":
+			dialog.text = "Это ещё не всё. Я бы хотел представить одного человека...";
+			link.l1 = "";
+			link.l1.go = "Победа_в Церкви_5";
+		break;
+		
+		case "Победа_в Церкви_5":
+			DialogExit();
+			StartInstantDialog("Maltese", "Победа_в Церкви_7", "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c");
+		break;
+		
+		case "Победа_в Церкви_6":
+			dialog.text = "Мы уже встречались, капитан "+pchar.name+".";
+			link.l1 = "Жак! Как же ты вовремя здесь оказался! Од"+GetSexPhrase("ин","на")+" бы здесь я не справил"+GetSexPhrase("ся","ась")+", твоя помощь оказалась здесь очень кстати.";
+			link.l1.go = "Победа_в Церкви_7";
+		break;
+		
+		case "Победа_в Церкви_7":
+			dialog.text = "Я рад, что оказался вам полезен. Но давайте перейдём к делу.\nНесколько лет назад я принимал участие в разгроме язычников в Италии...";
+			link.l1 = "А, и теперь ты прибыл сюда, чтобы завершить начатое дело?";
+			link.l1.go = "Победа_в Церкви_8";
+		break;
+		
+		case "Победа_в Церкви_8":
+			dialog.text = "Именно так. И, если вы не возражаете, я присоединюсь к вам.";
+			link.l1 = "Что ж, ты знаешь врага в лицо, ты умеешь сражаться, не вижу причин для отказа.";
+			link.l1.go = "Победа_в Церкви_9";
+		break;
+		
+		case "Победа_в Церкви_9":
+			dialog.text = "Рад вашему согласию. Что же, приказывайте, капитан.";
+			link.l1 = "На Пуэрто Рико! Нам необходима дополнительная информация.";
+			link.l1.go = "Победа_в Церкви_10";
+		break;
+		
+		case "Победа_в Церкви_10":
+			sld = CharacterFromID("FortFrance_Priest");
+			sld.dialog.filename = "Common_church.c";
+			sld.dialog.currentnode = "First time";
+			
+			
 		break;
 		
 	}
