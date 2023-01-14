@@ -10934,11 +10934,26 @@ void QuestComplete(string sQuestName, string qname)
 		case "PKM_SvtvA_Нападение_в_церкви_Победа":
 			LAi_LocationFightDisable(loadedLocation, true);
 			LAi_SetFightMode(pchar, false);
+			bDisableFastReload = true;
+			chrDisableReloadToLocation = true;
+			LAi_SetActorType(pchar);
 			
 			sld = CharacterFromID("FortFrance_Priest");
-			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
-			sld.dialog.currentnode = "Победа_в Церкви";
-			LAi_ActorDialogNow(sld, Pchar, "", -1);
+			LAi_SetActorType(sld);
+			LAi_ActorFollow(sld, pchar, "", -1);
+			
+			sld = CharacterFromID("Maltese");
+			LAi_SetActorType(sld);
+			LAi_ActorFollow(sld, pchar, "", -1);
+			
+			DoQuestFunctionDelay("PKM_SvtvA_Malta_na_pomosh_2", 1.5);
+		break;
+		
+		case "PKM_SvtvA_PriestVernuDialog":
+			sld = CharacterFromID("FortFrance_Priest");
+			LAi_SetPriestType(sld);
+			sld.dialog.filename = "Common_church.c";
+			sld.dialog.currentnode = "First time";
 		break;
 		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////

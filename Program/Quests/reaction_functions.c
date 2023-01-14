@@ -10768,6 +10768,15 @@ void PKM_SvtvA_Malta_na_pomosh(string qName)
 	
 	Log_info("Жак де Массе пришёл к вам на помощь!");
 }
+void PKM_SvtvA_Malta_na_pomosh_2(string qName)
+{	
+	LAi_SetPlayerType(pchar);
+	sld = CharacterFromID("FortFrance_Priest");
+	LAi_SetActorType(sld);
+	sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+	sld.dialog.currentnode = "Победа_в Церкви";
+	LAi_ActorDialogNow(sld, Pchar, "", -1);
+}
 
 //Sinistra "Странные вещи творятся на архипелаге" <--
 

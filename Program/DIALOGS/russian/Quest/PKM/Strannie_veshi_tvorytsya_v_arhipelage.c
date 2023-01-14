@@ -409,7 +409,7 @@ void ProcessDialogEvent()
 		
 		case "Победа_в Церкви_5":
 			DialogExit();
-			StartInstantDialog("Maltese", "Победа_в Церкви_7", "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c");
+			StartInstantDialog("Maltese", "Победа_в Церкви_6", "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c");
 		break;
 		
 		case "Победа_в Церкви_6":
@@ -437,11 +437,39 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Победа_в Церкви_10":
+			DialogExit();
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
+		
+			sld = CharacterFromID("Maltese");
+			sld.Dialog.Filename = "Enc_Officer_dialog.c";
+			sld.quest.meeting = true;
+			Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(sld.id);
+			sld.OfficerWantToGo.DontGo = true;
+			sld.loyality = MAX_LOYALITY;
+			AddPassenger(pchar, sld, false);
+			sld.location = "None";
+			sld.Dialog.CurrentNode = "hired";
+			sld.Payment = true;
+			sld.FaceId = 296;
+		
 			sld = CharacterFromID("FortFrance_Priest");
-			sld.dialog.filename = "Common_church.c";
-			sld.dialog.currentnode = "First time";
+			LAi_SetPriestType(sld);
+			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "Победа_в Церкви_11";
 			
+			PChar.quest.PKM_SvtvA_PriestVernuDialog.win_condition.l1 = "ExitFromLocation";
+			PChar.quest.PKM_SvtvA_PriestVernuDialog.win_condition.l1.location = PChar.location;
+			PChar.quest.PKM_SvtvA_PriestVernuDialog.win_condition = "PKM_SvtvA_PriestVernuDialog";
 			
+			AddQuestRecord("PKM_Animists", "21");
+		break;
+		
+		case "Победа_в Церкви_11":
+			dialog.text = "Можете не беспокоиться за меня, я здесь приберусь. Вам же лучше заняться поисками логова язычников.";
+			link.l1 = "Да, я как раз собирал"+GetSexPhrase("ся","ась")+" уходить.";
+			link.l1.go = "exit";
+			NextDiag.TempNode = "Победа_в Церкви_11";
 		break;
 		
 	}
