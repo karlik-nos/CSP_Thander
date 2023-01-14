@@ -773,7 +773,7 @@ void Ship_Add2Sea(int iCharacterIndex, bool bFromCoast, string sFantomType)
 		rCharacter.seatime = 0;
 		rCharacter.lastupdateseatime = 0;
 	}
-	if (iCharacterIndex >= FANTOM_CHARACTERS)
+	if (CheckAttribute(GetCharacter(iCharacterIndex), "SeaFantom"))
 	{
 		SetBaseShipData(rCharacter);
 		Ship_SetFantomData(rCharacter);
@@ -1246,8 +1246,9 @@ void Ship_CheckSituation()
 		if (bIsDefender)
 		{
 			ref rTargetedChar = GetCharacter(sti(rCharacter.SeaAI.Task.Target));
-			int attackChar = sti(rTargetedChar.Ship.LastBallCharacter);
-			if (attackChar == -1) attackChar = sti(rCharacter.Ship.LastBallCharacter);
+			int attackChar;
+			if(CheckAttribute(rTargetedChar,"Ship.LastBallCharacter")) attackChar = sti(rTargetedChar.Ship.LastBallCharacter);
+			else attackChar = sti(rCharacter.Ship.LastBallCharacter);
 			if (attackChar != -1)
 			{
 				Group_SetEnemyToCharacter(sGroupID, attackChar);
@@ -1257,6 +1258,7 @@ void Ship_CheckSituation()
 				DoQuestCheckDelay("NationUpdate", 0.5);
 				return;
 			}
+			else return;
 		}//<---Lipsar ИИ сторожей
 		if (CheckAttribute(rCharacter, "SeaAI.Task.Target"))
 		{
