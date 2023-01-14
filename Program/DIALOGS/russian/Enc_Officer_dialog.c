@@ -1403,8 +1403,8 @@ void ProcessDialogEvent()
 			if (sti(Pchar.money) >= sti(NPChar.rank)*500)
 			{
 				Link.l4 = "Постой... Не хочу отпускать тебя с пустыми руками. Вот держи "+sti(NPChar.rank)*500+" золотых, пригодятся, пока будешь искать новую работу.";
+				Link.l4.go = "Im_kind_A2";
 			}
-			Link.l4.go = "Im_kind_A2";
 		break;
 
 		case "Return_items_A2":
