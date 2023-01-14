@@ -9,7 +9,7 @@ void InitInterface_GM(string iniName)
 
     BLI_DisableShow();
 
-    SetTimeScale(0.0);
+    /* SetTimeScale(0.0); */
 	locCameraSleep(true);
 
 	EngineLayersOffOn(true);
@@ -28,12 +28,16 @@ void InitInterface_GM(string iniName)
     ProcessFrame();
 	
 	SetFormatedText("TIME_TEXT", (iTime+1)+FindHourString(iTime+1) + " и " + (iTimeM+1) + FindMinuteString(iTimeM+1));
+	SetFormatedText("HOURS", "Часы");
+	SetFormatedText("MINUTES", "Минуты");
 
     SetFormatedText("CAPTION", "Отдых");
 }
 
 void ProcessFrame()
 {
+	SetSelectable("TIME_CHECK2", false);
+	
 	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "TIME_CHECK", 3, 1))
 	{
 		days = false;
@@ -41,6 +45,7 @@ void ProcessFrame()
 		SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"SLIDE", 0,0);
 		SetSelectable("SLIDE2", false);
 		SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"SLIDE2", 0,0);
+		SetFormatedText("TIME_TEXT", "");
 	}
 	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "TIME_CHECK", 3, 2))
 	{
@@ -49,12 +54,16 @@ void ProcessFrame()
 		SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"SLIDE", 0,0);
 		SetSelectable("SLIDE2", false);
 		SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"SLIDE2", 0,0);
+		SetFormatedText("TIME_TEXT", "");
 	}
 	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "TIME_CHECK", 3, 3))
 	{
 		days = false;
 		SetSelectable("SLIDE", true);
-		SetSelectable("SLIDE2", true);
+		SetSelectable("TIME_CHECK2", true);
+		if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "TIME_CHECK2", 3, 1) == 1) SetSelectable("SLIDE2", true);
+		else SetSelectable("SLIDE2", false);
+		SetFormatedText("HOURS", "Часы");
 	}
 	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "TIME_CHECK", 3, 4))
 	{
@@ -62,6 +71,7 @@ void ProcessFrame()
 		SetSelectable("SLIDE", true);
 		SetSelectable("SLIDE2", false);
 		SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"SLIDE2", 0,0);
+		SetFormatedText("HOURS", "Дни");
 	}
 	SetWariable();
 }
@@ -142,6 +152,7 @@ void SetWariable()
 	
 	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "TIME_CHECK", 3, 3))
 	{
+		if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "TIME_CHECK2", 3, 1) == 0) iTimeM = -1;
 		string sHours = sti(worldMap.date.hour)+(iTime+1);
 		string sMinutes = sti(sMinuts) + (iTimeM+1);
 		if (sti(sMinutes) > 59) 
