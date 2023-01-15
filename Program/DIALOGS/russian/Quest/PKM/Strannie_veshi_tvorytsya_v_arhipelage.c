@@ -458,9 +458,15 @@ void ProcessDialogEvent()
 			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
 			sld.dialog.currentnode = "Победа_в Церкви_11";
 			
+			sld = CharacterFromID("SanJuan_Priest");
+			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "Падре_Робано";			
+			
 			PChar.quest.PKM_SvtvA_PriestVernuDialog.win_condition.l1 = "ExitFromLocation";
 			PChar.quest.PKM_SvtvA_PriestVernuDialog.win_condition.l1.location = PChar.location;
 			PChar.quest.PKM_SvtvA_PriestVernuDialog.win_condition = "PKM_SvtvA_PriestVernuDialog";
+			
+			pchar.questTemp.PKM_SvtvA_PoiskPadre_Tavern = true;
 			
 			AddQuestRecord("PKM_Animists", "21");
 		break;
@@ -470,6 +476,47 @@ void ProcessDialogEvent()
 			link.l1 = "Да, я как раз собирал"+GetSexPhrase("ся","ась")+" уходить.";
 			link.l1.go = "exit";
 			NextDiag.TempNode = "Победа_в Церкви_11";
+		break;
+		
+		case "Падре_Робано":
+			dialog.text = "Падре Домингес был похищен какими-то странными людьми? Что мне делать, что же мне делать...";
+			link.l1 = "Дьявол! Мне перестаёт всё это нравиться!";
+			link.l1.go = "Падре_Робано_2";
+			locCameraFromToPos(2.00, 3.00, -2.00, true, -4.00, -0.20, -12.50);
+		break;
+		
+		case "Падре_Робано_2":
+			dialog.text = "Прекратите богохульствовать в доме Господнем!";
+			link.l1 = "Да ну? И что мне будет если я ещё что-нибудь скажу? Во, например: Чёрт! Сатана!";
+			link.l1.go = "Падре_Робано_3";
+		break;
+		
+		case "Падре_Робано_3":
+			dialog.text = "";
+			link.l1 = "Ух-х-х... Что это было?!";
+			link.l1.go = "Падре_Робано_4";
+			LAi_SetActorType(pchar);
+			LAi_ActorAnimation(pchar, "hit_fire", "", 2);
+			LAi_SetAfraidDead(pchar);
+			DoQuestFunctionDelay("PKM_SvtvA_Gospod_nakazal", 1.15);
+			LaunchBlood(pchar, 1.0, true);
+			LaunchBlood(pchar, 2.0, true);
+			LAi_SetCurHP(pchar, 1.0);
+		break;
+		
+		case "Падре_Робано_4":
+			dialog.text = "Чудо! Это было чудо! Господь по какой-то причине решил напомнить вам о своём существовании таким способом!\nО! Я сегодня, сейчас же, прочитаю 20 раз 'Отче наш' по этому поводу, и велю отслужить дополнительную службу!";
+			link.l1 = "Кха-кха. Делай как знаешь, а я пожалуй пойду.";
+			link.l1.go = "Падре_Робано_5";
+		break;
+		
+		case "Падре_Робано_5":
+			DialogExit();
+			
+			LAi_SetPlayerType(pchar);
+			sld = CharacterFromID("SanJuan_Priest");
+			sld.dialog.filename = "Common_church.c";
+			sld.dialog.currentnode = "First time";
 		break;
 		
 	}

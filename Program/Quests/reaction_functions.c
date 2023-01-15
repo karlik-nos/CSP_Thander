@@ -10777,6 +10777,10 @@ void PKM_SvtvA_Malta_na_pomosh_2(string qName)
 	sld.dialog.currentnode = "Победа_в Церкви";
 	LAi_ActorDialogNow(sld, Pchar, "", -1);
 }
+void PKM_SvtvA_Gospod_nakazal(string qName)
+{	
+	LAi_SetActorType(pchar);
+}
 
 //Sinistra "Странные вещи творятся на архипелаге" <--
 
