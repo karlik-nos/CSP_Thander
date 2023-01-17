@@ -1433,7 +1433,7 @@ void QuestComplete(string sQuestName, string qname)
             attrName = "";
             if (pchar.CargoQuest.iTradeIsland != pchar.CargoQuest.iTradeColony)
             {
-                attrName = ", что находится на " + XI_ConvertString(pchar.CargoQuest.iTradeIsland+"Dat");
+                attrName = ", что находится на " + XI_ConvertString(pchar.CargoQuest.iTradeIsland+"Voc");
             }
             AddQuestUserData("DELIVERY_TRADE_QUEST", "island", attrName);
     		AddQuestUserData("DELIVERY_TRADE_QUEST", "sTermsDelivery", FindRussianDaysString(makeint(pchar.CargoQuest.iDaysExpired)));
@@ -1681,7 +1681,7 @@ void QuestComplete(string sQuestName, string qname)
             ReOpenQuestHeader("convoy_quest");
 			AddQuestRecord("convoy_quest", "1");
 			AddQuestUserData("convoy_quest", "sSex", GetSexPhrase("ся","ась"));
-			sTemp = XI_ConvertString("Colony" + pchar.quest.destination + "Gen") + ", что на " + XI_ConvertString(GetIslandByCityName(pchar.quest.destination) + "Dat") + ",";
+			sTemp = XI_ConvertString("Colony" + pchar.quest.destination + "Gen") + ", что на " + XI_ConvertString(GetIslandByCityName(pchar.quest.destination) + "Voc") + ",";
 			AddQuestUserData("convoy_quest", "sCity", sTemp);
 			AddQuestUserData("convoy_quest", "sDay", FindRussianDaysString(sti(pchar.ConvoyQuest.iDay)));
             AddQuestUserData("convoy_quest", "sMoney", FindRussianMoneyString(sti(pchar.ConvoyQuest.convoymoney)));
