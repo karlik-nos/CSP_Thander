@@ -2285,7 +2285,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "CaptainComission_6_21":
-			dialog.text = "Мне не оставляют выбора... Нужную сумму - 150 000 золотых, я уже собрал. Хочу просить вас доставить её в " + XI_ConvertString("Colony" + pchar.GenQuest.CaptainComission.PiratesCity + "Acc") + " и привезти " + GetStrSmallRegister(XI_ConvertString("Family" + pchar.GenQuest.CaptainComission.FamilyType + "Gen")) + " сюда. За услугу готов заплатить 40 000, которые вы получите по возвращении.";
+			dialog.text = "Мне не оставляют выбора... Нужную сумму - 150000 золотых, я уже собрал. Хочу просить вас доставить её в " + XI_ConvertString("Colony" + pchar.GenQuest.CaptainComission.PiratesCity + "Acc") + " и привезти " + GetStrSmallRegister(XI_ConvertString("Family" + pchar.GenQuest.CaptainComission.FamilyType + "Gen")) + " сюда. За услугу готов заплатить 40000, которые вы получите по возвращении.";
 			link.l1 = "Хорошо, я готов"+ GetSexPhrase("","а") +" этим заняться.";
 			link.l1.go = "CaptainComission_6_22";
 			link.l2 = "К сожалению, у меня несколько другие планы.";
@@ -2411,7 +2411,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "CaptainComission_30":
-			dialog.text = "Спасибо, капитан, вы оказали неоценимую услугу всей нашей семье. Вот ваше вознаграждение... Здесь три сундука - это как раз 40 000 пиастров. Извините, но я поспешу ему навстречу.";
+			dialog.text = "Спасибо, капитан, вы оказали неоценимую услугу всей нашей семье. Вот ваше вознаграждение... Здесь три сундука - это как раз 40000 пиастров. Извините, но я поспешу ему навстречу.";
 			link.l1 = "Конечно-конечно, счастливой встречи и всего наилучшего.";
 			link.l1.go = "CaptainComission_30_1";
 			if(CheckAttribute(pchar, "GenQuest.CaptainComission.SlaveAddMoney"))

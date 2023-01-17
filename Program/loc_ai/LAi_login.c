@@ -504,7 +504,7 @@ void SimulatePGGLife()
 			}
 			else
 			{
-				Log_TestInfo("ПГГ бродит неподалеку");
+				Log_TestInfo("ПГГ бродит неподалёку");
 				sld = CharacterFromID(pchar.chosenHero);
 				LAi_SetActorTypeNoGroup(sld);
 				sld.PGGAi.SeenToday = true;

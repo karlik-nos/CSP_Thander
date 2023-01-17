@@ -1557,7 +1557,7 @@ bool CheckFP(ref loc)
 
 bool isDynamicLightsEnabled(string modelPath)
 {
-	/*// Костылики из-за того, что движок не воспринимает иначе
+	// Костылики из-за того, что движок не воспринимает иначе
 	bool isDisabled = HasSubstr(modelPath, "decks") ||
 		HasSubstr(modelPath, "EstateRooms") ||
 		HasSubstr(modelPath, "Fort_Inside") ||
@@ -1566,6 +1566,6 @@ bool isDynamicLightsEnabled(string modelPath)
 		HasSubstr(modelPath, "LostShipsCityInsides") ||
 		HasSubstr(modelPath, "TenochtitlanInside") ||
 		HasSubstr(modelPath, "UnderWater");
-	return !isDisabled;*/
-	return true;
+	return !isDisabled;
+	//return true;
 }

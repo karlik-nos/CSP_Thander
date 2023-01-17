@@ -114,44 +114,36 @@ void WorldSituationsUpdate()
 			if(pchar.repairDefenders != GetDataMonth())
 			{
 				pchar.repairDefenders = GetDataMonth();
-			ref _rChar;//Lipsar ---> Ремонт сторожей
-			for (int i = 0; i< MAX_COLONIES; i++)
-			{
-
-				if (Colonies[i].island == sIslandID)
-				{
-					if (colonies[i].nation != "none" && colonies[i].id != "Caiman" && !CheckAttribute(&colonies[i], "HasNoFort") && !CheckAttribute(&colonies[i], "Siege") && !CheckAttribute(&colonies[i], "DontSetShipInPort"))
+				int iCounter = 0;
+				ref _rChar;//Lipsar ---> Ремонт сторожей
+				for (int j=GlobalCharacters; j<MAX_CHARACTERS; j++)
 					{
-						bool FortDefender;
-						ref FortChref = GetFortCommander(colonies[i].id);
-							for (int j=GlobalCharacters; j<MAX_CHARACTERS; j++)
+						
+						if (CheckAttribute(&characters[j], "fortDefender") && CheckAttribute(&characters[j], "IslandShips"))
 							{
-								if (CheckAttribute(&characters[j], "fortDefender") && CheckAttribute(&characters[j], "IslandShips"))
+								iCounter++;
+								_rChar = &characters[j];
+								if(!bSeaActive && iCounter < MOD_DEFENDERS_RATE * 23)
 								{
-									_rChar = &characters[j];
-									if(!bSeaActive)
-									{
-										DeleteAttribute(_rChar, "ship.masts");
-										DeleteAttribute(_rChar, "ship.sails");
-										_rChar.Ship.HP = GetCharacterShipHP(_rChar);
-										_rChar.Ship.SP = 100;
-										SetCrewQuantityFull(_rChar);
-										SetCharacterGoods(_rChar, GOOD_BALLS, 2000);
-										SetCharacterGoods(_rChar, GOOD_GRAPES, 2000);
-										SetCharacterGoods(_rChar, GOOD_KNIPPELS, 2000);
-										SetCharacterGoods(_rChar, GOOD_BOMBS, 2000);
-										SetCharacterGoods(_rChar, GOOD_POWDER, 8000);
-										SetCharacterGoods(_rChar, GOOD_FOOD, 2000);
-										SetCharacterGoods(_rChar, GOOD_WEAPON, 1500);
-										SetCharacterGoods(_rChar, GOOD_MEDICAMENT, 1000);
-										SetCharacterGoods(_rChar, GOOD_PLANKS, 800);
-										SetCharacterGoods(_rChar, GOOD_SAILCLOTH, 800);
-									}
+									DeleteAttribute(_rChar, "ship.masts");
+									DeleteAttribute(_rChar, "ship.sails");
+									_rChar.Ship.HP = GetCharacterShipHP(_rChar);
+									_rChar.Ship.SP = 100;
+									SetCrewQuantityFull(_rChar);
+									SetCharacterGoods(_rChar, GOOD_BALLS, 2000);
+									SetCharacterGoods(_rChar, GOOD_GRAPES, 2000);
+									SetCharacterGoods(_rChar, GOOD_KNIPPELS, 2000);
+									SetCharacterGoods(_rChar, GOOD_BOMBS, 2000);
+									SetCharacterGoods(_rChar, GOOD_POWDER, 8000);
+									SetCharacterGoods(_rChar, GOOD_FOOD, 2000);
+									SetCharacterGoods(_rChar, GOOD_WEAPON, 1500);
+									SetCharacterGoods(_rChar, GOOD_MEDICAMENT, 1000);
+									SetCharacterGoods(_rChar, GOOD_PLANKS, 800);
+									SetCharacterGoods(_rChar, GOOD_SAILCLOTH, 800);
 								}
 							}
+							if (iCounter == MOD_DEFENDERS_RATE * 23) break;
 					}
-				}
-			}
 			Log_TestInfo("Ремонт сторожей");//Lipsar <--- Ремонт сторожей
 			}
 		break;

@@ -769,6 +769,10 @@ void Ship_Add2Sea(int iCharacterIndex, bool bFromCoast, string sFantomType)
 	rCharacter.Tmp.fWatchFort.Qty = 15;
     // boal <--
 
+	if (iCharacterIndex == GetMainCharacterIndex()) { // NK 04-09-16 clears timer attribute, -21 for updatetime
+		rCharacter.seatime = 0;
+		rCharacter.lastupdateseatime = 0;
+	}
 	if (CheckAttribute(GetCharacter(iCharacterIndex), "SeaFantom"))
 	{
 		SetBaseShipData(rCharacter);
@@ -1241,21 +1245,10 @@ void Ship_CheckSituation()
 		//Lipsar --->ИИ сторожей
 		if (bIsDefender)
 		{
-			int attackChar = sti(rCharacter.Ship.LastBallCharacter);
-			if (attackChar == -1)
-			{
-				if (GetNationRelation2MainCharacter(sti(rCharacter.nation)) == RELATION_ENEMY)
-					attackChar = GetMainCharacterIndex();
-				else
-				{
-					if (CheckAttribute(PChar, "Ship.LastBallCharacter") && (PChar.Ship.LastBallCharacter != -1))
-					{
-						if (GetNationRelation2Character(sti(rCharacter.nation), PChar.Ship.LastBallCharacter) == RELATION_ENEMY)
-							attackChar = PChar.Ship.LastBallCharacter;
-					}
-				}
-			}
-
+			ref rTargetedChar = GetCharacter(sti(rCharacter.SeaAI.Task.Target));
+			int attackChar;
+			if(CheckAttribute(rTargetedChar,"Ship.LastBallCharacter")) attackChar = sti(rTargetedChar.Ship.LastBallCharacter);
+			else attackChar = sti(rCharacter.Ship.LastBallCharacter);
 			if (attackChar != -1)
 			{
 				Group_SetEnemyToCharacter(sGroupID, attackChar);
@@ -1265,6 +1258,7 @@ void Ship_CheckSituation()
 				DoQuestCheckDelay("NationUpdate", 0.5);
 				return;
 			}
+			else return;
 		}//<---Lipsar ИИ сторожей
 		if (CheckAttribute(rCharacter, "SeaAI.Task.Target"))
 		{
@@ -2202,10 +2196,25 @@ void Ship_ApplyHullHitpointsWithCannon(ref rOurCharacter, float fHP, int iKillSt
 	if (CheckAttribute(&RealShips[sti(rOurCharacter.Ship.Type)], "Tuning.HullSpecial")) fMinus = fMinus+0.35;
 
 	int fMinusC = sti(RealShips[sti(rOurCharacter.Ship.Type)].HullArmor);
-	float fDam = fHP * (1.0 + fPlus);
+	/*int shipclass = sti(RealShips[sti(rOurCharacter.Ship.Type)].Class);
+	switch (shipclass)
+	{
+		case 6: fMinusC = 12;
+		break;
+		case 5: fMinusC = 16;
+		break;
+		case 4: fMinusC = 20;
+		break;
+		case 3: fMinusC = 24;
+		break;
+		case 2: fMinusC = 32;
+		break;
+		case 1: fMinusC = 42;
+		break;
+	}*/
+	float fDam = fHP * (1.0 + fPlus - fMinus);
 	//Log_Info("До снижения "+fDam);
-	fDam = fDam - fMinusC;//броню вычитаем до процентов защиты
-	fDam = fDam *(1-fMinus);
+	fDam = fDam - fMinusC;
 	//Log_Info("После снижения "+fDam);
 	if (fDam < 1.0) fDam = 1;
 	fCurHP = stf(rOurCharacter.Ship.HP) - fDam;

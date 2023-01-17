@@ -1934,7 +1934,7 @@ void BurntShipQuest_FillStartParams(ref _npchar)
 	if (rank >= 20 && rank < 30) temp = 2;
 	if (rank >= 30) temp = 1;
 	shipType = GetShipTypeExtNotNation(temp, temp, "", sti(_npchar.Nation));
-	ref rBaseShip = GetShipByType(shipType);
+	rBaseShip = GetShipByType(shipType);
 	temp = 0;
 	if (rBaseShip.Type.Merchant == true) temp++;//для торговых и универсальных рандом от 1 до 2, для военных от 0 до 1
 	switch(temp+rand(1))

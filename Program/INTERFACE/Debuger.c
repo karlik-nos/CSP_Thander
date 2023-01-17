@@ -756,7 +756,7 @@ void ProcCommand()
 }
 
 ////////////////////////////////////////////////////////////////////////
-string descF1 = "Золото + 500 000";
+string descF1 = "Золото + 500000";
 
 void CalculateInfoDataF1()
 {
