@@ -2607,7 +2607,7 @@ void SetEquipedItemToCharacter(ref chref, string groupID, string itemID)
 	case MAPS_ITEM_TYPE:
 		if(CheckAttribute(chref, "MapsAtlasCount"))
 		{
-			if(CheckAttribute(arItm, "MapIsland"))
+			if(CheckAttribute(arItm, "MapIsland") && arItm.id != "map_LSC")//фикс - карта ГПК не входит в сумму
 			{
 				chref.MapsAtlasCount = sti(chref.MapsAtlasCount) + 1;
 				if(sti(chref.MapsAtlasCount) == MAPS_IN_ATLAS && !CheckCharacterPerk(chref, "MapMaker"))  // даем скрытый перк если собрали все карты островов
