@@ -1167,12 +1167,11 @@ void SortTable(string sControl,int iColumn)
 	bool bAsc = true;
 	if (checkattribute(&GameInterface, sControl + ".hr." + sColumn + ".sortdir"))
 		{if(GameInterface.(sControl).hr.(sColumn).sortdir == "dec") bAsc = false;}
-//атрибут .sortdir = "dec" указываем, если нужно, чтобы при первом клике сортировалось в обратном направлении
+	//атрибут .sortdir = "dec" указываем, если нужно, чтобы при первом клике сортировалось в обратном направлении
 
 	aref aRows;
 	makearef(aRows, GameInterface.(sControl));
-	//int iLinesCount = GetAttributesNum(aRows) - 4;//вычитаем единички за счёт:	.hr	.select .selectcol	.top
-//в коде заполнения таблиц не должно быть пустых строк - проверить везде, чтобы все фильтрации выполнялись до первой записи в строчку
+	//в коде заполнения таблиц не должно быть пустых строк - проверить везде, чтобы все фильтрации выполнялись до первой записи в строчку
 	int iLinesCount = 0;
 	for (n = 0; n < GetAttributesNum(aRows); n++)
 	{
@@ -1196,8 +1195,16 @@ void SortTable(string sControl,int iColumn)
 
 trace("SortTable(sControl = " + sControl + ", iColumn = " +  iColumn + ") iLinesCount = " + iLinesCount + ", bIsString = " + bIsString + ", bAsc = " + bAsc);
 
-	string sRow, sNewRow, sSortedString;
+	string sRow, sNewRow, sSortedString, sLast;
 	aref aCurRow, aNextRow, aRow;
+
+	if (sti(GameInterface.(sControl).select))
+	{
+		sRow = "tr" + GameInterface.(sControl).select;
+		sLast = GameInterface.(sControl).(sRow).index;//запоминаем номер выбранной строки, чтобы выделить её же после сортировки
+//TO DO везде нужно заполнять индекс или ещё что-то
+	}
+
 	if (bIsString)//строки
 	{
 		object oSorted, oTableCopy;
@@ -1229,7 +1236,7 @@ trace("SortTable(sControl = " + sControl + ", iColumn = " +  iColumn + ") iLines
 			makearef(aNextRow, aTableCopy.(sNewRow));
 			CopyAttributes(aCurRow, aNextRow);
 		}
-		if (!bAsc) ReverseTable(sControl, iLinesCount);//нужна было сортировка по убыванию
+		if (!bAsc) ReverseTable(sControl, iLinesCount); //нужна было сортировка по убыванию
 	}
 	else//числа
 	{
@@ -1271,6 +1278,7 @@ trace("SortTable(sControl = " + sControl + ", iColumn = " +  iColumn + ") iLines
 		DeleteAttribute(&GameInterface, sControl + "." + sRow);//удаляем пузырёк, будет портить число строк в таблице
 	}
 	DrawSortDir(sControl, iColumn, bAsc);
+	ResetSelectedRow(sControl, sLast, iLinesCount)
 }
 
 void DrawSortDir(string sControl, int iColumn, bool bAsc)
@@ -1283,7 +1291,7 @@ void DrawSortDir(string sControl, int iColumn, bool bAsc)
 	GameInterface.(sControl).hr.(sColumn).icon.offset = "0,8";//смещаем на половину высоты ниже границы между заголовком и первой строкой	//Тут проблема - есть же таблицы, где заголовок спрятан - проверить
 	if 	(bAsc) 	GameInterface.(sControl).hr.(sColumn).icon.image  = "upbutton";
 		else	GameInterface.(sControl).hr.(sColumn).icon.image  = "downbutton"; //при изменении картинки - менять и чуть выше, искать: 	.icon.image  == "
-	GameInterface.(sControl).hr.sortedColumn = iColumn;//обязательно в hr, по числу атрибутов определяем число строк
+	GameInterface.(sControl).hr.sortedColumn = iColumn;
 }
 
 void ReverseTable(string sControl,int iLinesCount)
@@ -1302,6 +1310,32 @@ void ReverseTable(string sControl,int iLinesCount)
 		CopyAttributes(aFirstRow, aLastRow);
 		CopyAttributes(aLastRow, aRow);
 	}
+	n = iLinesCount + 1 - sti(GameInterface.(sControl).select);
+	GameInterface.(sControl).select = n;
+/*	if (n<5) n=5;//пока что убираю. неоднозначное решение
+	GameInterface.(sControl).top = n-5;*/
 	DeleteAttribute(&GameInterface, sControl + "." + sRow);//удаляем пузырёк, будет портить число строк в таблице
+}
+
+void ResetSelectedRow(string sControl, string sLastIdx, int iLinesCount)
+{
+	string sRow;
+	if (sti(GameInterface.(sControl).select))//не меняем, если было 0, т.е. ничего не выделено?		- проверить, что действительно не выбирает, а не ставит первую строку
+	{
+		for (int n = 1; n <= iLinesCount; n++)
+		{
+			sRow = "tr" + n;
+			if (GameInterface.(sControl).(sRow).index == sLastIdx)
+			{
+				GameInterface.(sControl).select = n;
+/*				if (n<5) n=5;
+//TO DO Задавать отступ для каждой таблицы индивидуально? Как-то определять, сколько строчек в таблице показывается? Или это вообще не нужно? 
+//top должен быть поближе к верху. сортируем, чтобы видеть вверху максимум искомый и все соседние. менять top только если не влезает? или вообще игнорить переключение top?
+				GameInterface.(sControl).top = n-5;//и в реверсе тот же код отступа
+*/
+				break;
+			}
+		}
+	}
 }
 //<-- mod tablesort

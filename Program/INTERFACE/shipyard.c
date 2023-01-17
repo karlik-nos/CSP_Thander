@@ -1097,6 +1097,7 @@ void FillShipyardTable()
 
 		k++;
 		GameInterface.TABLE_SHIPYARD.(row).sShipId = sAttr;
+		GameInterface.TABLE_SHIPYARD.(row).index = i;
         GameInterface.TABLE_SHIPYARD.(row).td1.icon.texture = "interfaces\\ships\\" + sShip + ".tga.tx";
 		GameInterface.TABLE_SHIPYARD.(row).td1.icon.uv = "0,0,1,1";
 		GameInterface.TABLE_SHIPYARD.(row).td1.icon.width = 46;
