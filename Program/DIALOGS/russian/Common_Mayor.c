@@ -2225,8 +2225,9 @@ void ProcessDialogEvent()
     			dialog.text = "Пожалуй, можно уладить наш инцидент таким способом.";
     		    link.l1 = "Замечательно!";
     		    link.l1.go = "Exit";
-    		    AddMoneyToCharacter(pchar, -ChangeCharacterHunterScore(Pchar, NationShortName(sti(NPChar.nation)) + "hunter", 0) * 6000);
-    		    ChangeCharacterHunterScore(Pchar, NationShortName(sti(NPChar.nation)) + "hunter", -100);
+				int iTemp = ChangeCharacterHunterScore(Pchar, NationShortName(sti(NPChar.nation)) + "hunter", 0);
+    		    AddMoneyToCharacter(pchar, -iTemp * 6000);
+    		    ChangeCharacterHunterScore(Pchar, NationShortName(sti(NPChar.nation)) + "hunter", -iTemp);//За сколько заплатили, столько и снижаем. Ровно до нуля. 
     		    AddCharacterExpToSkill(pchar, SKILL_FORTUNE, 100);
             }
             else

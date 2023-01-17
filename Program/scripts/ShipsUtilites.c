@@ -2235,7 +2235,7 @@ int GetShipTypeExt(int iClassMin, int iClassMax, string sShipType, int iNation)/
 		if (iClass < iClassMax) { continue; }//по классу Игнорим
 
 		if (sti(rShip.CanEncounter) != true) { continue; }
-		if (sShipType == "" || sti(rShip.Type.(sShipType)) != true) { continue; }//по типу игнорим
+		if (sShipType != "" && sti(rShip.Type.(sShipType)) != true) { continue; }//по типу игнорим
 		bOk = false;
 		if(iNation != -1 && CheckAttribute(rShip, "nation"))
 		{
@@ -2275,7 +2275,7 @@ int GetShipTypeExtNotNation(int iClassMin, int iClassMax, string sShipType, int 
 		if (iClass < iClassMax) { continue; }//по классу Игнорим
 
 		if (sti(rShip.CanEncounter) != true) { continue; }
-		if (sShipType == "" || sti(rShip.Type.(sShipType)) != true) { continue; }//по типу игнорим
+		if (sShipType != "" && sti(rShip.Type.(sShipType)) != true) { continue; }//по типу игнорим
 		bOk = false;
 		if (CheckAttribute(rShip, "nation"))
 		{
