@@ -2506,7 +2506,7 @@ void PDMQuestsInit()
 	//******Проклятый идол Sinistra******
 	//Джеймс Кэллоу
 	pchar.quest.PDM_CI_SpawnJC.win_condition.l1 = "Rank";
-	pchar.quest.PDM_CI_SpawnJC.win_condition.l1.value = 5;
+	pchar.quest.PDM_CI_SpawnJC.win_condition.l1.value = 4;
 	pchar.quest.PDM_CI_SpawnJC.win_condition.l1.operation = ">=";
 	PChar.quest.PDM_CI_SpawnJC.win_condition = "PDM_CI_SpawnJC";
 
@@ -2604,7 +2604,7 @@ void KSMQuestsInit()
 	//******Спасение на рифах******
 	//Джеймс Аллока
 	pchar.quest.KSM_Snr_Alloka_Spawn.win_condition.l1 = "Rank";
-	pchar.quest.KSM_Snr_Alloka_Spawn.win_condition.l1.value = 5;
+	pchar.quest.KSM_Snr_Alloka_Spawn.win_condition.l1.value = 4;
 	pchar.quest.KSM_Snr_Alloka_Spawn.win_condition.l1.operation = ">=";
 	PChar.quest.KSM_Snr_Alloka_Spawn.win_condition = "KSM_Snr_Alloka_Spawn";
 }
