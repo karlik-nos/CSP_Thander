@@ -10679,10 +10679,8 @@ void PDM_CL_Ubrat_Lodku(string qName)
 	int Sila = 70 + MOD_SKILL_ENEMY_RATE * 3;
 	int DopHP = 60 + MOD_SKILL_ENEMY_RATE * 12;
 
-	sld = CharacterFromID("PDM_CL_Antonio")
-	ChangeCharacterAddressGroup(sld, "Maracaibo_town", "none", "");
 	sld = CharacterFromID("PDM_CL_Anto2")
-	ChangeCharacterAddressGroup(sld, "Maracaibo_town", "none", "");
+	ChangeCharacterAddressGroup(sld, "none", "", "");
 	Group_SetAddress("PDM_el_tib", "none", "", "");
 
 	sld = GetCharacter(NPC_GenerateCharacter("PDM_CL_Antonio3", "SpaOfficer2", "man", "man", Rank, SPAIN, -1, false));

@@ -10466,15 +10466,12 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 
 		case "PDM_CL_Antonio_Ubit":
-			sld = CharacterFromID("PDM_CL_Antonio")
-			ChangeCharacterAddressGroup(sld, "Maracaibo_town", "none", "");
 			sld = CharacterFromID("PDM_CL_Anto2")
-			ChangeCharacterAddressGroup(sld, "Maracaibo_town", "none", "");
+			ChangeCharacterAddressGroup(sld, "none", "", "");
 			Group_SetAddress("PDM_el_tib", "none", "", "");
 			sld = CharacterFromID("PDM_Octavio_Lambrini")
 			sld.Dialog.Filename = "Quest/PDM/Clan_Lambrini.c";
 			sld.dialog.currentnode   = "Octavio_2_1";
-			DeleteAttribute(pchar, "questTemp.PDM_CL_Tavern");
 			DeleteAttribute(pchar, "questTemp.PDM_CL_Ishem");
 			AddQuestRecord("PDM_Clan_Lambrini", "3");
 			AddQuestUserData("PDM_Clan_Lambrini", "sSex", GetSexPhrase("ен","на"));
