@@ -276,8 +276,7 @@ void PGG_DailyUpdateEx(int i)
 				DeleteAttribute(chr, "PGGAi.Rebirth");
 				DeleteAttribute(chr, "Ship");
 				chr.Ship.Type = SHIP_NOTUSED;
-				if (chr.sex != "woman")	chr.Dialog.FileName = "PGG_dialog.c";
-				else	chr.Dialog.FileName = "pgg_dialog_town.c";
+				chr.Dialog.FileName = "PGG_dialog.c";
 				chr.Dialog.CurrentNode = "Second Time";
 
 				chr.PGGAi.DontUpdate = true;
@@ -1924,24 +1923,23 @@ bool PGG_CheckForQuestOffer(ref chr)
 {
 	bool retVal = false;
 
-	if (rand(2) == 1 || CheckAttribute(chr, "PGGWhisperQuestStart")) return retVal; // пусть сам ГГ тоже подходит, а не только ПГГ достает, второй заход в таврену может вынудить подойти ПГГ
-	//не забыть вернуть вероятности и условия
+	if (rand(2) == 1 || CheckAttribute(chr, "PGGWhisperQuestStart")) return retVal;
 	int iTst = 110 - PGG_ChangeRelation2MainCharacter(chr, 0); //зависит от отношения, лучше = чаще
-	// пусть будет честный тест
 	if (bBettaTestMode && CheckAttribute(PChar, "PGGAlwaysQuest")) iTst = 10; //в версии нет этого аттрибута
 
-	int iDays = GetQuestPastDayParam("QuestOffer");
 	bool bOkWhisper = !CheckAttribute(pchar,"GiantEvilSkeleton") && chr.name == "Виспер";
-	bool bOk = PGG_IsQuestAvaible() || bOkWhisper);
+	bool bOkShip = sti(chr.Ship.Type) != SHIP_NOTUSED && sti(PChar.Ship.Type) != SHIP_NOTUSED && GetCharacterShipClass(PChar) <= 4;
+	bool bOkRnd = rand(100) > iTst;
+	bool bOkDaysPassed = iDays > 25 + drand(10);
+	bool bOkCompanionsMax = GetCompanionQuantity(PChar) < COMPANION_MAX;
+	bool bOk = PGG_IsQuestAvaible() || bOkWhisper;
 
-	if (sti(chr.Ship.Type) != SHIP_NOTUSED && sti(PChar.Ship.Type) != SHIP_NOTUSED && rand(100) > iTst && iDays > 25 + drand(10))
+	int iDays = GetQuestPastDayParam("QuestOffer");
+	if (bOk && bOkShip && bOkRnd && bOkDaysPassed && bOkCompanionsMax)																					
 	{
-		if (GetCharacterShipClass(PChar) <= 4 && GetCompanionQuantity(PChar) < COMPANION_MAX && bOk)
-		{
-			chr.PGGAi.ActiveQuest.QstNumber = 0;
-			retVal = true;
-			SaveCurrentQuestDateParam("QuestOffer"); // какое-то время ПГГ не будут докучать нам
-		}
+		chr.PGGAi.ActiveQuest.QstNumber = 0;
+		retVal = true;
+		SaveCurrentQuestDateParam("QuestOffer"); // какое-то время ПГГ не будут докучать нам
 	}
 
 	if (retVal)
@@ -1956,7 +1954,7 @@ bool PGG_CheckForQuestOffer(ref chr)
 		chr.PGGAi.ActiveQuest = 1;
 		LAi_SetActorType(chr);
 		LAi_ActorDialog(chr, pchar, "", 2.0, 0);
-		DoQuestCheckDelay("OpenTheDoors", 5.0);      // fix
+		DoQuestCheckDelay("OpenTheDoors", 5.0);
 	}
 	return retVal;
 }
@@ -1982,23 +1980,22 @@ void PGG_Q1RemoveShip(string qName)
 
 	Group_SetAddress("PGGQuest", "None", "", "");
 	Group_DelCharacter("PGGQuest", chr.id);
-//	Group_DeleteGroup("PGGQuest");
-	//#20180927-01
+
 	if (CheckAttribute(PChar, "GenQuest.PGG_Quest.Stage") && sti(PChar.GenQuest.PGG_Quest.Stage) < 2 && sti(PChar.GenQuest.PGG_Quest.Stage) >= -1)
 	{
 		chr.Dialog.CurrentNode = "Second Time";
-		//#20180927-01
 		int nRelChange = -10;
-		if(sti(PChar.GenQuest.PGG_Quest.Stage) == -1)
-            nRelChange = -20;
+		if(sti(PChar.GenQuest.PGG_Quest.Stage) == -1) nRelChange = -20;
 		PGG_ChangeRelation2MainCharacter(chr, nRelChange);
-		DeleteAttribute(chr, "PGGAi.ActiveQuest");
-		DeleteAttribute(PChar, "GenQuest.PGG_Quest");
 		if (chr.sex != "woman")CloseQuestHeader("Gen_PGGQuest1");
 		else CloseQuestHeader("Gen_PGGQuest1woman");
 	}
+	
+	DeleteAttribute(chr, "PGGAi.ActiveQuest");
+	DeleteAttribute(PChar, "GenQuest.PGG_Quest");
 	DeleteAttribute(chr, "AlwaysFriend");
 }
+
 void PGG_Q1AcceptedQuestDeleteFantom(string qName)
 {
 	ref chr = CharacterFromID(PChar.GenQuest.PGG_Quest.PGGid);

@@ -10586,7 +10586,7 @@ void QuestComplete(string sQuestName, string qname)
 				PGG_ChangeRelation2MainCharacter(CharacterFromID(pchar.LambriniPGG), -200);
 			}
 			sld = CharacterFromID(pchar.LambriniPGG);
-			sld.dialog.filename = "pgg_dialog_town.c";
+			sld.dialog.filename = "PGG_dialog.c";
 			sld.dialog.currentnode = "First time";
 			DeleteAttribute(sld, "PGGAi.DontUpdate");
 			DeleteAttribute(sld, "LambiniAsoleda");

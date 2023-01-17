@@ -223,7 +223,7 @@ void ProcessDialogEvent()
 
 		case "Quest_Whisper_end":
 			LocatorReloadEnterDisable("Santiago_Town", "basement1", false);
-			npchar.dialog.filename = "pgg_dialog_town.c";
+			npchar.dialog.filename = "PGG_dialog.c";
 			npchar.dialog.currentnode = "First time";
 			npchar.PGGWhisperQuestEnd = true;
 			DialogExit();
@@ -246,7 +246,7 @@ void ProcessDialogEvent()
 			}
 			npchar.dialog.currentnode = "Quest_Whisper_report";
 			LocatorReloadEnterDisable("Santiago_Town", "basement1", true);
-			if (npchar.payment == true)
+			if (CheckAttribute(NPChar, "payment") && npchar.payment == true)
 			{
 				CheckForReleaseOfficer(sti(npchar.index));
 				RemovePassenger(pchar, npchar);
@@ -431,7 +431,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Quest_Whisper_Finish_NoHire":
-			npchar.dialog.filename = "pgg_dialog_town.c";
+			npchar.dialog.filename = "PGG_dialog.c";
 			npchar.dialog.currentnode = "First time";
 			LAi_SetActorTypeNoGroup(npchar);
 			LAi_ActorGoToLocation(npchar, "reload", "reload1_back", "none", "", "", "", -1);

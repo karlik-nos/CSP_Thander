@@ -10913,6 +10913,8 @@ void ReloadMyGun(string qName)
 // Нежданное наследство
 void UnexpectedInheritance()
 {
+	if (GetCharacterIndex("UI_girl") != -1) return;
+	
 	sld = GetCharacter(NPC_GenerateCharacter("UI_girl", "girl_1", "woman", "woman", 1, FRANCE, -1, false));
 	LAI_SetStayType(sld);
 	sld.talker = 10;
