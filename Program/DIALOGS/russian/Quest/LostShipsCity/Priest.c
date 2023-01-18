@@ -317,7 +317,7 @@ void ProcessDialogEvent()
 			}
 			if (!CheckAttribute(NextDiag, NodeName+".l3") && pchar.questTemp.LSC == "toSeekOldCitizen")
 			{
-				link.l3 = "Скажите, падре, вы давно здесь живете?";
+				link.l3 = "Скажите, падре, вы давно здесь живёте?";
 				link.l3.go = "ansewer_3";
 			}
 			link.l10 = "Нет вопросов. Извините, святой отец...";
@@ -408,7 +408,7 @@ void ProcessDialogEvent()
 
 		//достать свечки
 		case "askCandles":
-			dialog.text = "Да, "+ GetSexPhrase("сын мой","дочь моя") +". Приход нуждается в свечах, а у нас в Городе что-то давно не было поступлений этого товара. Помоги мне, принеси 400 свечей.";
+			dialog.text = "Да, "+ GetSexPhrase("сын мой","дочь моя") +". Приход нуждается в свечах, а у нас в Городе что-то давно не был поступлений этого товара. Помоги мне, принеси 400 свечей.";
 			link.l1 = "И где мне их взять?";
 			link.l1.go = "askCandles_1";
 		break;
@@ -419,7 +419,7 @@ void ProcessDialogEvent()
 		break;
 		case "askCandles_2":
 			dialog.text = "Ищи прилежно, "+ GetSexPhrase("сын мой","дочь моя") +", награда будет достойной.";
-			link.l1 = "Я понял"+ GetSexPhrase("","а") +", падре. Всё будет сделано.";
+			link.l1 = "Я понял"+ GetSexPhrase("","а") +", падре. Все будет сделано.";
 			link.l1.go = "exit";
 			npchar.quest.takeCandles = "seek";
 			npchar.quest.takeCandles.Qty = 0; //кол-во свечей

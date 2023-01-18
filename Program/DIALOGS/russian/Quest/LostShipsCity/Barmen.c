@@ -261,7 +261,7 @@ void ProcessDialogEvent()
 			}
 			if (!CheckAttribute(NextDiag, NodeName+".l4"))
 			{
-				link.l4 = "Как вы здесь живете, чёрт возьми?..";
+				link.l4 = "Как вы здесь живёте, чёрт возьми?..";
 				link.l4.go = "ansewer_4";
 			}
 			if (!CheckAttribute(NextDiag, NodeName+".l6"))
