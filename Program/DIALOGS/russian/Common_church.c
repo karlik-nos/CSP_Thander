@@ -1726,7 +1726,7 @@ void Church_GenQuest1_InitStartParam(ref chr)
 	//string sColony = FindNonEnemyColonyForAdventure(GetCityNation(PChar.GenQuest.ChurchQuest_1.QuestTown), PChar.GenQuest.ChurchQuest_1.QuestTown, true);
 	PChar.GenQuest.ChurchQuest_1.IslandId = colonies[FindColony(PChar.GenQuest.ChurchQuest_1.QuestTown)].Island;
 	PChar.GenQuest.ChurchQuest_1.ToColony = sColony;
-	PChar.GenQuest.ChurchQuest_1.ToIsland = colonies[FindColony(sColony)].Island;
+	PChar.GenQuest.ChurchQuest_1.ToIsland = colonies[FindColony(sColony)].IslandLable;
 	PChar.GenQuest.ChurchQuest_1.ToName = characters[GetCharacterIndex(sColony + "_Priest")].Name;
 
 	// Чтоб жизнь мёдом не казалась... Какие сцены будут в квесте, определяем в самом начале.
