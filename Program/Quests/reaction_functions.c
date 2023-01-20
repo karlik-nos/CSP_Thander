@@ -10410,13 +10410,13 @@ void PDM_Callow_RodjerProdolg(string qName)
     FantomMakeCoolFighter(sld, sti(pchar.rank), 15 + MOD_SKILL_ENEMY_RATE * 4, 15 + MOD_SKILL_ENEMY_RATE * 4, "blade36", "", 25 + MOD_SKILL_ENEMY_RATE * 4);
 	sld.SaveItemsForDead = true;
 	sld.DontChangeBlade = true;
+	sld.DeleteFood = true;
 	TakeItemFromCharacter(sld, "spyglass3");
-	TakeNItems(sld, "food1", -10);
 	AddMoneyToCharacter(sld, 5000);
 	AddItems(sld, "jewelry2", 10);
 	AddItems(sld, "jewelry5", 10);
 	AddItems(sld, "jewelry17", 10);
-	AddItems(sld, "mineral5", 10);
+	AddItems(sld, "mineral5", 3);
 	ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto2");
 	LAi_SetActorType(sld);
 	sld.dialog.filename   = "Quest/PDM/Cursed_Idol.c";
