@@ -36,7 +36,7 @@ void Andre_Abel_Quest_Delete_Andre_From_Tavern(string sQuest)	// Убираем 
 //	rChar.Dialog.CurrentNode = "Andre_Abel_To_Sea_1";
 }
 
-void Andre_Abel_Quest_15_Days_Is_Left(string sQuest)	// Не успели в Порт-о-Принс за 15 дней
+void Andre_Abel_Quest_5_Days_Is_Left(string sQuest)	// Не успели в Порт-о-Принс за 5 дней
 {
 	ref rChar = CharacterFromID("Andre_Abel");
 	rChar.LifeDay = 0;
@@ -60,7 +60,7 @@ void Andre_Abel_Quest_Andre_Is_Dead(string sQuest)	// Андрэ Абеля по
 	AddQuestUserData("Andre_Abel_Quest", "sSex", GetSexPhrase("","ла"));
 	CloseQuestHeader("Andre_Abel_Quest");
 	DeleteAttribute(pchar,"QuestTemp.AndreAbelQuest");
-	PChar.Quest.Andre_Abel_Quest_15_Days_Is_Left.over = "yes";
+	PChar.Quest.Andre_Abel_Quest_5_Days_Is_Left.over = "yes";
 	PChar.Quest.Andre_Abel_Quest_Speak_In_PortPax.over = "yes";
 	PChar.Quest.Andre_Abel_Quest_Battle_With_Pirates_Squadron.over = "yes";
 }
