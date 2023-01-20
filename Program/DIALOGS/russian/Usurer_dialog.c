@@ -1926,7 +1926,7 @@ void ProcessDialogEvent()
 		case "TakeMoreslaves1":
 			dialog.Text = "Вижу у вас больше 'чёрного дерева', чем мы договаривались. Хотите я возьму у вас всё, сверх нашей договорённости?";
 			Link.l1 = "Хм... Да, забирайте всё!";
-            Link.l1.go = "TakeMoreslaves2";
+            		Link.l1.go = "TakeMoreslaves2";
 			Link.l2 = "Нет, уважаемый, остальное для моих личных целей."
 			Link.l2.go = "Takeslaves";
 		break;
@@ -1935,7 +1935,7 @@ void ProcessDialogEvent()
 			amount = GetSquadronGoods(Pchar, GOOD_SLAVES);
 			dialog.Text = "Отлично! Мои люди их заберут... Насчёт таможни и коменданта форта не беспокойтесь. У меня этот бизнес поставлен на широкую ногу, так что проблем не будет, и в контрабанде вас никто не обвинит.";
 			Link.l1 = "Смотрю, у вас здесь уже всё схвачено! Как насчёт оплаты?";
-            Link.l1.go = "TakesMorelaves3";
+            		Link.l1.go = "TakesMorelaves3";
 			RemoveCharacterGoods(Pchar, GOOD_SLAVES, amount);
 		break;
 
@@ -1943,14 +1943,14 @@ void ProcessDialogEvent()
 			AddMoneyToCharacter(pchar, makeint(GetSquadronGoods(Pchar, GOOD_SLAVES) * 250));
 			dialog.Text = "Пожалуйста, получите... Я слов на ветер не бросаю. Держитесь за меня, капитан, и скоро у вас будет столько пиастров, что для их перевозки понадобится целый галеон!";
 			Link.l1 = "Хорошо бы... Ну а что дальше?";
-            Link.l1.go = "Takeslaves_2";
+            		Link.l1.go = "Takeslaves_2";
 		break;
 
 		case "Takeslaves":
 			amount = sti(pchar.questTemp.Slavetrader.iSlaveQuantity);
 			dialog.Text = "Отлично! Мои люди их заберут... Насчёт таможни и коменданта форта не беспокойтесь. У меня этот бизнес поставлен на широкую ногу, так что проблем не будет, и в контрабанде вас никто не обвинит.";
 			Link.l1 = "Смотрю, у вас здесь уже всё схвачено! Как насчёт оплаты?";
-            Link.l1.go = "Takeslaves_1";
+            		Link.l1.go = "Takeslaves_1";
 			RemoveCharacterGoods(Pchar, GOOD_SLAVES, amount);
 		break;
 
@@ -1958,13 +1958,13 @@ void ProcessDialogEvent()
 			AddMoneyToCharacter(pchar, makeint(pchar.questTemp.Slavetrader.iSlaveMoney));
 			dialog.Text = "Пожалуйста, получите... Я слов на ветер не бросаю. Держитесь за меня, капитан, и скоро у вас будет столько пиастров, что для их перевозки понадобится целый галеон!";
 			Link.l1 = "Хорошо бы... Ну а что дальше?";
-            Link.l1.go = "Takeslaves_2";
+            		Link.l1.go = "Takeslaves_2";
 		break;
 
 		case "Takeslaves_2":
 			dialog.Text = "Дальше? А дальше - зайдите недели через три, у меня как раз зреет солидный заказ. Думаю, к тому времени всё уже сложится.";
 			Link.l1 = "Договорились. До встречи...";
-            Link.l1.go = "exit";
+            		Link.l1.go = "exit";
 			AddQuestRecord("Slavetrader", "2");
 			AddQuestUserData("Slavetrader", "sName", GetFullName(npchar));
 			pchar.questTemp.Slavetrader = "wait";
