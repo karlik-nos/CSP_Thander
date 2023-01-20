@@ -1917,8 +1917,8 @@ void ProcessDialogEvent()
 			else
 			{
 				Link.l1 = "Удалось. Вся партия у меня в трюмах.";
-				if(amount == 0) Link.l1.go = "Takeslaves";
-				else Link.l1.go = "TakeMoreslaves1";
+				if(amount != 0 && (GetSquadronGoods(Pchar, GOOD_SLAVES) <= makeint(sti(pchar.questTemp.Slavetrader.iSlaveQuantity) * 1.5))) Link.l1.go = "TakeMoreslaves1";
+				else Link.l1.go = "Takeslaves";
 			}
 
 		break;
