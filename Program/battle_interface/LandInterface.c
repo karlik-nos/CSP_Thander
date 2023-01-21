@@ -1094,7 +1094,7 @@ void BLI_SetPossibleCommands()
 		// boal запрет всех переходов
 		if (chrDisableReloadToLocation) bTmpBool = false;
 		if (!CheckAttribute(loadedLocation,"fastreload")) bTmpBool = false;  // в каюте некуда переходить
-		if (bTmpBool) // все ещё можно переходить, провер§ем город враг
+		if (bTmpBool) // всё ещё можно переходить, провер§ем город враг
 		{
 		    string sNation = Colonies[FindColony(loadedLocation.fastreload)].nation;
 			if (sNation != "none")

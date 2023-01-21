@@ -10410,13 +10410,13 @@ void PDM_Callow_RodjerProdolg(string qName)
     FantomMakeCoolFighter(sld, sti(pchar.rank), 15 + MOD_SKILL_ENEMY_RATE * 4, 15 + MOD_SKILL_ENEMY_RATE * 4, "blade36", "", 25 + MOD_SKILL_ENEMY_RATE * 4);
 	sld.SaveItemsForDead = true;
 	sld.DontChangeBlade = true;
+	sld.DeleteFood = true;
 	TakeItemFromCharacter(sld, "spyglass3");
-	TakeNItems(sld, "food1", -10);
 	AddMoneyToCharacter(sld, 5000);
 	AddItems(sld, "jewelry2", 10);
 	AddItems(sld, "jewelry5", 10);
 	AddItems(sld, "jewelry17", 10);
-	AddItems(sld, "mineral5", 10);
+	AddItems(sld, "mineral5", 3);
 	ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto2");
 	LAi_SetActorType(sld);
 	sld.dialog.filename   = "Quest/PDM/Cursed_Idol.c";
@@ -10679,10 +10679,8 @@ void PDM_CL_Ubrat_Lodku(string qName)
 	int Sila = 70 + MOD_SKILL_ENEMY_RATE * 3;
 	int DopHP = 60 + MOD_SKILL_ENEMY_RATE * 12;
 
-	sld = CharacterFromID("PDM_CL_Antonio")
-	ChangeCharacterAddressGroup(sld, "Maracaibo_town", "none", "");
 	sld = CharacterFromID("PDM_CL_Anto2")
-	ChangeCharacterAddressGroup(sld, "Maracaibo_town", "none", "");
+	ChangeCharacterAddressGroup(sld, "none", "", "");
 	Group_SetAddress("PDM_el_tib", "none", "", "");
 
 	sld = GetCharacter(NPC_GenerateCharacter("PDM_CL_Antonio3", "SpaOfficer2", "man", "man", Rank, SPAIN, -1, false));

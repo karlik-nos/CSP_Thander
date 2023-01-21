@@ -1054,6 +1054,15 @@ void Dead_AddLoginedCharacter(aref chr)
 				count = GetCharacterItem(chref, itemID);
 				RemoveItems(chref, itemID, count);
 			}
+			//Sinistra - еду на костёр
+			if (CheckAttribute(chr, "DeleteFood"))
+			{
+				TakeNItems(chref, "food1", -10);
+				TakeNItems(chref, "food2", -10);
+				TakeNItems(chref, "food3", -10);
+				TakeNItems(chref, "food4", -10);
+				TakeNItems(chref, "food5", -10);
+			}
 
 	        //BLI_UpdateOfficers();// fix проверки на офов, не пропадала иконка
 			// Генерим предметы

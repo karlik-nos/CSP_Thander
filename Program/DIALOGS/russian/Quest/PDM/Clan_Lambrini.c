@@ -257,20 +257,6 @@ void ProcessDialogEvent()
 			link.l1.go = "exit";
 			NextDiag.TempNode = "Octavio_1_10_EsheRaz";
 
-			sld = GetCharacter(NPC_GenerateCharacter("PDM_CL_Antonio", "SpaOfficer2", "man", "man", Rank, SPAIN, -1, false));
-			sld.name = "Антонио";
-			sld.lastname = "де Гальвес";
-			sld.Dialog.Filename = "Quest/PDM/Clan_Lambrini.c";
-			sld.dialog.currentnode   = "Antonio_1_1";
-			sld.greeting = "GR_Spainguard";
-			FantomMakeCoolFighter(sld, Rank, Sila, Sila, "blade30", "pistol2", DopHP);
-			sld.SaveItemsForDead = true;
-			LAi_SetWarriorType(sld);
-			LAi_SetLoginTime(sld, 12.0, 16.00);
-			LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
-			sld.city = "Maracaibo";
-			ChangeCharacterAddressGroup(sld,"Maracaibo_town","goto","goto13");
-
 			sld = GetCharacter(NPC_GenerateCharacter("PDM_CL_Anto2", "SpaOfficer2", "man", "man", Rank, SPAIN, -1, false));	//ВТОРОЙ
 			sld.name = "Антонио";
 			sld.lastname = "де Гальвес";
@@ -328,7 +314,6 @@ void ProcessDialogEvent()
 			PChar.quest.PDM_CL_Antonio_Ubit2.win_condition = "PDM_CL_Antonio_Ubit";
 
 			pchar.questTemp.PDM_CL_Ishem = "Ishem";
-			pchar.questTemp.PDM_CL_Tavern = "Tavern";
 
 			SetQuestHeader("PDM_Clan_Lambrini");
 			AddQuestRecord("PDM_Clan_Lambrini", "1");
@@ -496,7 +481,6 @@ void ProcessDialogEvent()
 			sld = CharacterFromID("PDM_Octavio_Lambrini")
 			sld.Dialog.Filename = "Quest/PDM/Clan_Lambrini.c";
 			sld.dialog.currentnode   = "Octavio_3_1";
-			DeleteAttribute(pchar, "questTemp.PDM_CL_Tavern");
 			DeleteAttribute(pchar, "questTemp.PDM_CL_Ishem");
 			PChar.quest.PDM_CL_Antonio_Ubit.over = "yes";
 			AddQuestRecord("PDM_Clan_Lambrini", "4");

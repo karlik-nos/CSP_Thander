@@ -209,7 +209,7 @@ void ProcessDialogEvent()
 											"! Похоже, собирается шторм","! Поднимается сильный ветер") +", не правда ли?"));
 
 			link.l1 = NPCharRepPhrase(npchar,
-			            pcharrepphrase(LinkRandPhrase("Ты все ещё жив, ", "И я тебе "+ GetSexPhrase("рад","рада") +", ","Мы с тобой знали времена и получше, ")
+			            pcharrepphrase(LinkRandPhrase("Ты всё ещё жив, ", "И я тебе "+ GetSexPhrase("рад","рада") +", ","Мы с тобой знали времена и получше, ")
 									  +LinkRandPhrase("каналья!","дружище!","морской волк!") +" А я "+ GetSexPhrase("думал","думала") +", "
 									  +LinkRandPhrase("твоя жена уже сгрызла тебя с элем!","тебя сожрали термиты!", "твоя старуха сжила тебя со свету!"),
 						               LinkRandPhrase("Добрый день, ","Доброго здоровья, ","Привет, ") + GetAddress_FormToNPC(NPChar)+" " +GetFullName(Npchar)
@@ -708,7 +708,7 @@ void ProcessDialogEvent()
 		case "business":
 			iTest = 0;
     		//квест Синей Птицы, начальный диалог
-			if (pchar.questTemp.BlueBird == "begin" && sti(npchar.nation) != PIRATE && npchar.city != "Panama" && pchar.rank >= 10)
+			if (pchar.questTemp.BlueBird == "begin" && sti(npchar.nation) != PIRATE && npchar.city != "Panama" && pchar.rank >= 4)
 			{
 				dialog.text = RandPhraseSimple("Капитан, прошу вас, помогите нам!!!", "Капитан, я прошу у вас помощи от имени всех торговцев!");
 				link.l1 = "Что случилось? Чем я могу вам помочь?";

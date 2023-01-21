@@ -139,7 +139,7 @@ void ProcessDialogEvent()
 		case "DMCitiz":
 			NextDiag.TempNode = "DMCitiz";
 			dialog.text = LinkRandPhrase("Что вам нужно у нас в городе?", "Гости в нашем городе появляются очень редко. А вы что хотели?", "Не сказал бы, что мы рады вас приветствовать. Что вам нужно в Дес-Мойнесе?");
-			link.l1 = "Посмотреть, как живете...";
+			link.l1 = "Посмотреть, как живёте...";
 			link.l1.go = "DesMoinesCitizen_1";
 			if (pchar.questTemp.MC == "toByeBye")
 			{
