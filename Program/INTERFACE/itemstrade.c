@@ -379,6 +379,7 @@ void AddToTable()
 		//// {*} BUHO END ADDITION
 
 		GameInterface.TABLE_LIST.(row).id = sItem;
+		GameInterface.TABLE_LIST.(row).index = n;
 		GameInterface.TABLE_LIST.(row).td1.str = leftQty;
 		GameInterface.TABLE_LIST.(row).td2.str = FloatToString(GetItemWeight(sItem) * leftQty, 1);
 		GameInterface.TABLE_LIST.(row).td7.str = FloatToString(GetItemWeight(sItem), 1);
