@@ -2635,7 +2635,6 @@ void PGG_Q1FightOnShore()
 	{
 		chr = CharacterFromID(PChar.GenQuest.PGG_Quest.PGGid);
 		ChangeCharacterAddressGroup(chr,pchar.location, "officers", "sea_1");
-		SetCharacterPerk(chr,PerksChars());
 		LAi_SetWarriorType(chr);
 		LAi_SetImmortal(chr, false);
 		if (relation != "PGGTemp") LAi_SetCheckMinHP(chr, 1, true, "PGG_CheckHP");
@@ -2644,18 +2643,14 @@ void PGG_Q1FightOnShore()
 		iRnd = 10 + drand(15) + MOD_SKILL_ENEMY_RATE;
 		PChar.GenQuest.PGG_Quest.GrpID.Qty = iRnd;
 		PChar.GenQuestFort.FarLocator = false;
-		sLoc = LAi_FindNPCLocator("officers");
+		sLoc = LAi_FindNPCLocator("officers_sea");
 		for (i = 1; i < iRnd; i++)
 		{
-			if (i % 3 != 0)
-			{
 			chr = SetFantomDefenceForts("officers", sLoc, PIRATE, relation);
-			}
-			else
-			{
-			chr = SetFantomDefenceForts("enc02", "",PIRATE, relation);
-			}
-			FantomMakeCoolFighterWRankDepend(chr,sti(pchar.rank),25+rand(75),25+rand(75),50);
+			chr.id = "ally" + i;
+			SetCharacterPerk(chr,PerksChars());
+			FantomMakeCoolFighterWRankDepend(chr,sti(pchar.rank),25+drand(75),25+drand(75),50);
+			
 		}
 		Pchar.GenQuestFort.FarLocator = true;
 	}
@@ -2677,7 +2672,7 @@ void PGG_Q1FightOnShore()
 		}
 		chr.id = "pirate_" + i;
 		SetCharacterPerk(chr,PerksChars());
-		FantomMakeCoolFighterWRankDepend(chr,sti(pchar.rank),25+rand(75),25+rand(75),50);
+		FantomMakeCoolFighterWRankDepend(chr,sti(pchar.rank),25+drand(75),25+drand(75),50);
 	}
 	//натравим.
 	LAi_group_SetHearRadius("PGGTmp", 100.0);
