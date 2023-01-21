@@ -474,7 +474,7 @@ void ProcessDialogEvent()
 		break;
 		case "DH_mercenary_temple_afterstash_1":
 			dialog.Text = "Что? ";
-			Link.l1 = "Все готовы выдвигаться, нельзя терять времени. Корабль все ещё ждёт нас, а альтернативный путь ... займёт слишком много времени. ";
+			Link.l1 = "Все готовы выдвигаться, нельзя терять времени. Корабль всё ещё ждёт нас, а альтернативный путь ... займёт слишком много времени. ";
 			Link.l1.go = "DH_mercenary_temple_afterstash_2";
 		break;
 		case "DH_mercenary_temple_afterstash_2":

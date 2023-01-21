@@ -636,7 +636,7 @@ void ProcessDialogEvent()
 			link.l1.go = "InSanJuanAgain_2";
 		break;
 		case "InSanJuanAgain_2":
-            dialog.text = "И вы все ещё любите меня?..";
+            dialog.text = "И вы всё ещё любите меня?..";
             link.l1 = "Изабелла, дорогая, как вы можете спрашивать такое?! Я без ума от вас!";
 			link.l1.go = "InSanJuanAgain_3";
 		break;
