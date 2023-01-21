@@ -10306,7 +10306,7 @@ void PirateComeToIsabella(string qName)
 	sld = CharacterFromID("Anri");
 	sld.NextDiag.CurrentNode = "Isabella_1";
 	LAi_SetStayType(sld);
-	ChangeCharacterAddressGroup(sld, "Shore32", "smugglers", LAi_FindNearestFreeLocator2Pchar("smugglers"));
+	ChangeCharacterAddressGroup(sld, "Shore32", "smugglers", "smuggler01");
 	Locations[FindLocation("Shore32")].DisableEncounters = true;
 	LAi_SetActorType(sld);
 	LAi_LocationDisableOfficersGen("Shore32", true);
