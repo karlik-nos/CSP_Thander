@@ -1045,7 +1045,7 @@ void LAi_AllCharactersUpdate(float dltTime)
 							//Log_TestInfo("Type restoration: officer");
 							DeleteAttribute(chr, "chr_ai.backuptype");
 							LAi_SetOfficerType(chr);
-							LAi_tmpl_SetFollow(chr, pchar, -1.0);
+							LAi_type_officer_FindTarget(chr);
 							LAi_SetFightMode(chr, true);
 						}
 					}
