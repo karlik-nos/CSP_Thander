@@ -911,6 +911,7 @@ void ProcessDialogEvent()
 			AddQuestUserData(PGGQuestID, "sSex", GetSexPhrase("","а"));
 		}
 		AddQuestUserData(PGGQuestID, "sShipName", NPChar.Ship.Name);
+		AddQuestUserData(PGGQuestID, "sPGGName", GetFullName(NPChar));
 
 		NextDiag.CurrentNode = "Quest_1_Work_2";
 		DialogExit();
