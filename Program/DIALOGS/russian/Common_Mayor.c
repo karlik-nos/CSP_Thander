@@ -57,6 +57,7 @@ void ProcessDialogEvent()
 
 	switch (Dialog.CurrentNode)
 	{
+		string sNationname = GetNationNameByType(sti(npchar.nation));
 		case "Exit":
 			NextDiag.CurrentNode = NextDiag.TempNode;
 			DialogExit();
