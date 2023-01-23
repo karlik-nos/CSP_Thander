@@ -514,6 +514,32 @@ void ProcessDialogEvent()
 			AddQuestRecord("Andre_Abel_Quest", "16");
 			AddQuestUserData("Andre_Abel_Quest", "sText", "К счастью, меня в очередной раз выручили деньги");
 		break;
+		case "Give Patent":
+			dialog.text = "О, да это же сам" + GetSexPhrase(" ","а ") + pchar.name + " " + pchar.lastname + ". Я уже заждался вас!";
+			link.l1 = "Приветствую, уважаемый " + npchar.name + " " + npchar.lastname + ". Спасибо за столь радушный приём. Чем вам обязан" + GetSexPhrase("?","а?");
+			link.l1.go = "Give Money";
+		break;
+		case "Give Money":
+			dialog.text = "Вы отличились, помогая нам в делах, и за это примите небольшое денежное вознаграждение и моё предложение стать капером на службе у нашей нации!";
+			link.l1 = "Какая щедрость, очень вам благодар" + GetSexPhrase("ен! ", "на! ") + "С радостью приму ваше прделожение стать капером.";
+			link.l2 = "Какая щедрость, очень вам благодар" + GetSexPhrase("ен! ", "на! ") + "Но я отклоню ваше предложение."
+			link.l1.go = "Accept";
+			link.l2.go = "Refuse";
+			AddMoneyToCharacter(pchar,100000);
+		break;
+		case "Accept":
+			dialog.text = "Отлично! Тогда вот ваш каперский патент, надеюсь ваша служба принесёт ещё больше побед и славы!";
+			link.l1 = "";
+			link.l1.go = "Exit";
+			pchar.PatentNation = NationShortName(sti(npchar.nation));
+			GiveItem2Character(pchar, "patent_" + pchar.PatentNation);
+			EquipCharacterbyItem(pchar, "patent_" + pchar.PatentNation);
+		break;
+		case "Refuse":
+			dialog.text = "Как жаль, как жаль... Но ничего страшного, я уверен, что вы найдёте себя в другом деле! Удачи вам.";
+			link.l1 = "Спасибо и прощайте.";
+			link.l1.go = "Exit";
+		break;
 	}
 }
 

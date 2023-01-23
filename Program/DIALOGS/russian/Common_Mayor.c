@@ -1514,6 +1514,7 @@ void ProcessDialogEvent()
 								dialog.text = "Что? Вы ещё живы, капитан?";
 								link.l1 = "Так вы знали, что по джунглям бродит скелет, который мог взорвать любого встречного? Ну вы и сволочь!";
 								link.l1.go = "All_Execute_1";
+								pchar.(sNationname).quest.mayor = sti(pchar.(sNationname).quest.mayor) + 1;
 								AddCharacterExpToSkill(PChar, "Leadership", 500);
 								AddCharacterExpToSkill(PChar, "Sneak", 500);
 							}
@@ -1551,6 +1552,7 @@ void ProcessDialogEvent()
 							dialog.text = RandPhraseSimple("Вы сумели разыскать лазутчика?", "Скажите, вражеский агент вами найден?");
 							link.l1 = "Да, я наш"+ GetSexPhrase("ел","ла") +" его в одном из домов города, где он прятался, и убил"+ GetSexPhrase("","а") +".";
 							link.l1.go = "All_Execute";
+							pchar.(sNationname).quest.mayor = sti(pchar.(sNationname).quest.mayor) + 1;
 							AddCharacterExpToSkill(PChar, "Leadership", 60);
 							AddCharacterExpToSkill(PChar, "Sneak", 20);
 						break;
@@ -1607,6 +1609,7 @@ void ProcessDialogEvent()
 								AddCharacterExpToSkill(PChar, "Leadership", 100);
 								AddCharacterExpToSkill(PChar, "Sneak", 200);
 							}
+							pchar.(sNationname).quest.mayor = sti(pchar.(sNationname).quest.mayor) + 1;
 							TakeItemFromCharacter(pchar, "sicretLetter");
 							DeleteAttribute(ItemsFromID("sicretLetter"), "City");
 							DeleteAttribute(ItemsFromID("sicretLetter"), "Mayor");
@@ -1637,6 +1640,7 @@ void ProcessDialogEvent()
 							dialog.text = RandPhraseSimple("Вы сумели обуздать контрабанду?", "Скажите, вы уничтожили контрабандистов?");
 							link.l1 = "Да, я настиг"+ GetSexPhrase("","ла") +" их в бухте " + sTemp + " и всех перебил"+ GetSexPhrase("","а") +".";
 							link.l1.go = "All_Execute";
+							pchar.(sNationname).quest.mayor = sti(pchar.(sNationname).quest.mayor) + 1;
 							AddCharacterExpToSkill(PChar, "Leadership", 50);
 							AddCharacterExpToSkill(PChar, SKILL_SNEAK, 100);
 						break;
@@ -1664,6 +1668,7 @@ void ProcessDialogEvent()
 							dialog.text = RandPhraseSimple("Скажите мне только одно - этот проклятый пират жив или мёртв?", "Скажите, этот чёртов пират жив или нет?");
 							link.l1 = "Он и его команда - покойники, а его корабль на дне, " + GetAddress_FormToNPC(NPChar) + ".";
 							link.l1.go = "All_Execute";
+							pchar.(sNationname).quest.mayor = sti(pchar.(sNationname).quest.mayor) + 1;
 							AddCharacterExpToSkill(PChar, "Leadership", 50);
 							AddCharacterExpToSkill(PChar, SKILL_FORTUNE, 50);
 							AddCharacterExpToSkill(PChar, SKILL_SNEAK, 50);
@@ -1688,7 +1693,7 @@ void ProcessDialogEvent()
 				//<<------ взятые квесты ------------
 				break;
 			}
-			//==> раздача патентов
+			/*//==> раздача патентов
 			sTemp = npchar.city;
 			if (CheckAttribute(pchar, "GenQuest.MayorQuestsList." + sTemp) && sti(pchar.GenQuest.MayorQuestsList.(sTemp)) > (5 + rand(5)) && !CheckCharacterItem(Pchar, "patent_" + NationShortName(sti(NPChar.nation))) )
             {
@@ -1709,7 +1714,7 @@ void ProcessDialogEvent()
     			pchar.GenQuest.MayorQuestsList.(sTemp) = 0;
 				break;
 			}
-//navy -->
+//navy -->*/
 			//занят ПГГ
 			i = CheckAvailableTaskForNPC(NPChar, PGG_TASK_WORKONMAYOR);
 			if  (GetCharacterSPECIALSimple(PChar, SPECIAL_C) >= dRand(11))   i = -1;       //WW   харизма героя перебивает работу у ПГГ
@@ -2562,6 +2567,7 @@ void ProcessDialogEvent()
 		break;
 		case "All_Execute":
 			QuestName = pchar.GenQuest.questName;
+			pchar.(sNationname).quest.mayor = sti(pchar.(sNationname).quest.mayor) + 1;
 			dialog.text = RandPhraseSimple("Прекрасная новость! Ну что же, пора подвести итоги. Ваш гонорар составляет " + FindRussianMoneyString(sti(pchar.GenQuest.(QuestName).Money)) + ". Извольте получить.",
 				"Великолепно! Так будет лучше для всех... Итак, рад вручить вам положенное вознаграждение - " + FindRussianMoneyString(sti(pchar.GenQuest.(QuestName).Money))  + ". Извольте получить.");
 			link.l1 = "Спасибо, " + GetAddress_FormToNPC(NPChar) + ", " + RandPhraseSimple("приятно иметь с вами дело!", "я приятно удивлён"+ GetSexPhrase("","а") +" чёткостью взаиморасчетов.");

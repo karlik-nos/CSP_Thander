@@ -3204,3 +3204,13 @@ void MaryCelesteInit()
 
 	trace("Бригантина Мэри Селест вышла из " + character.fromCity + " и направилась в " + character.toShore);
 }
+void MayorQuestCounter()
+{
+	for(int i = 0; i<4; i++)
+	{
+		string sNationname = GetNationNameByType(i);
+		pchar.(sNationname).quest.mayor = 0;
+		pchar.(sNationname).quest.mayor.done = false;
+	}
+}
+		

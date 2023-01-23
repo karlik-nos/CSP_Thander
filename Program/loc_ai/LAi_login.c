@@ -308,6 +308,7 @@ void LAi_CharacterPostLogin(ref location)
 		CheckLootCollector();
 		CheckBSFinish();
 		CheckWoundedOfficers();
+		GovernorManInviting();
 	}
 }
 
@@ -715,3 +716,23 @@ void GenerateSpySeeker(ref location)
 	}
 }
 //Евент с искателем лазутчиков Lipsar//
+void GovernorManInviting()
+{
+	string sNationname;
+	for(int i = 0; i < 4; i++)
+	{
+		sNationname = GetNationNameByType(i));
+	if(sti(pchar.(sNationname).quest.mayor) >= 10 && !CheckAttribute(pchar, "EquipedPatentId") && findsubstr(pchar.location, "_town", 0) != -1 && sti(pchar.(sNationname).quest.mayor.done) == 0)
+		{
+			int iChar = NPC_GenerateCharacter(sNationname+"_Governor_Man", "off_"+NationShortName(i)+"_1", "man", "man", sti(pchar.rank), i, 1, 0);
+			ref rChar = GetCharacter(iChar);
+			rChar.nation = i;
+			rChar.dialog.filename = "Governor_Man.c";
+			LAi_Setimmortal(rChar, true);
+			ChangeCharacterAddressGroup(rChar, pchar.location, "reload", LAi_FindNearestFreeLocator2Pchar("reload"));
+			LAi_SetActorType(rChar);
+			chrDisableReloadToLocation = true;
+			LAi_ActorDialog(rChar, pchar, "", 15.0, 1.0);
+		}
+	}
+}
