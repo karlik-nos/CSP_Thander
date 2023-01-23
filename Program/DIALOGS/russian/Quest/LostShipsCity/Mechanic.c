@@ -504,7 +504,7 @@ void ProcessDialogEvent()
 			NextDiag.TempNode = "readyArmor";
 		break;
 		case "readyArmor":
-			if (GetQuestPastDayParam("questTemp.LSC.immersions") > 1)
+			if (GetQuestPastDayParam("questTemp.LSC.immersions") > 0)
 			{
 				dialog.text = "Всё в порядке, костюм исправен и заправлен воздухом. В общем, все готово к погружению. Желаю удачи.";
 				link.l1 = "Спасибо.";
