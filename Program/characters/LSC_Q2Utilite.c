@@ -651,6 +651,8 @@ void initStartState2Character(ref ch)
 	pchar.quest.MC_startInCaracas.function = "MC_startInCaracas";
 	//ситуации в море
 	ch.CanGenerateShipSituation = true;
+	//считаем кол во квестов у губеров
+	MayorQuestCounter();
 }
 
 //==> eddy. квестовая обработка 'ноль часов'.
