@@ -872,85 +872,26 @@ void Fantom_SetUpgrade(ref rFantom, string sFantomType)
 	}
 }
 
-void GenerateShipUpgradeParameters(ref rFantom)
+void GenerateShipUpgradeParameters(ref rFantom)//бермудки не должны идти группами. Каждая должна генерится сама по себе
 {
-	int i = rand(100);
-
-	if(i < 30)
+	int iP = 0;
+	int iT = 0; 
+	int iW = 0;
+	string sFantomType = rFantom.Ship.Mode;
+	switch (sFantomType)
 	{
-		SetShipBermudeTuningSpeedRate(rFantom);
-		return;
+		case "pirate":	iP = 20; break;//допшансы конкретных бермудок от типа фантома
+		case "trade":	iT = 20; break;
+		case "war":		iW = 20; break;
 	}
-	if((i >= 30) && (i < 45))
-	{
-		SetShipBermudeTuningSpeedRate(rFantom);
-		if(rand(1) == 0)
-		{
-			SetShipBermudeTuningTurnRate(rFantom);
-		}
-		else
-		{
-			SetShipBermudeTuningWindAgainstSpeed(rFantom);
-		}
-		return;
-	}
-	if((i >= 45) && (i < 60))
-	{
-		SetShipBermudeTuningSpeedRate(rFantom);
-		SetShipBermudeTuningTurnRate(rFantom);
-		SetShipBermudeTuningWindAgainstSpeed(rFantom);
-		if(rand(1) == 0)
-		{
-			SetShipBermudeTuningCapacity(rFantom);
-		}
-		else
-		{
-			SetShipBermudeTuningMaxCrew(rFantom);
-		}
-		return;
-	}
-	if((i >= 60) && (i < 75))
-	{
-		SetShipBermudeTuningSpeedRate(rFantom);
-		SetShipBermudeTuningTurnRate(rFantom);
-		SetShipBermudeTuningWindAgainstSpeed(rFantom);
-		SetShipBermudeTuningCapacity(rFantom);
-		SetShipBermudeTuningMaxCrew(rFantom);
-		if(rand(1) == 0)
-		{
-			SetShipBermudeTuningMaxCaliber(rFantom);
-		}
-		else
-		{
-			SetShipBermudeTuningHP(rFantom);
-			SetShipBermudeTuningMastMultiplier(rFantom);
-		}
-		return;
-	}
-	if((i >= 75) && (i < 80))
-	{
-		SetShipBermudeTuningSpeedRate(rFantom);
-		SetShipBermudeTuningTurnRate(rFantom);
-		SetShipBermudeTuningWindAgainstSpeed(rFantom);
-		SetShipBermudeTuningCapacity(rFantom);
-		SetShipBermudeTuningMaxCrew(rFantom);
-		SetShipBermudeTuningMaxCaliber(rFantom);
-		SetShipBermudeTuningHP(rFantom);
-		SetShipBermudeTuningMastMultiplier(rFantom);
-		return;
-	}
-	if(i >=80)
-	{
-		int irand = rand(8);
-		if(irand == 0) SetShipBermudeTuningSpeedRate(rFantom);
-		if(irand == 1) SetShipBermudeTuningTurnRate(rFantom);
-		if(irand == 2) SetShipBermudeTuningWindAgainstSpeed(rFantom);
-		if(irand == 3) SetShipBermudeTuningCapacity(rFantom);
-		if(irand == 4) SetShipBermudeTuningMaxCrew(rFantom);
-		if(irand == 5) SetShipBermudeTuningMaxCaliber(rFantom);
-		if(irand == 6) SetShipBermudeTuningHP(rFantom);
-		if(irand == 7) SetShipBermudeTuningMastMultiplier(rFantom);
-	}
+	if ( rand(100) > 15 ) SetShipBermudeTuningSpeedRate(rFantom); //85% для всех типов - и кто прошёл рандом в предыдущих функциях
+	if ( rand(100) > (60-iW) ) SetShipBermudeTuningTurnRate(rFantom);  
+	if ( rand(100) > (60-iP) ) SetShipBermudeTuningWindAgainstSpeed(rFantom);
+	if ( rand(100) > (80-iT) ) SetShipBermudeTuningCapacity(rFantom);
+	if ( rand(100) > (80-iP-iW) ) SetShipBermudeTuningMaxCrew(rFantom);
+	if ( rand(100) > (90-iP-iW) ) SetShipBermudeTuningMaxCaliber(rFantom);//например, повышенный шанс пиратам и военным. 30% вместо 10% у торговцев
+	if ( rand(100) > (90-iW) ) SetShipBermudeTuningHP(rFantom);
+	if ( rand(100) > (90-iT) ) SetShipBermudeTuningMastMultiplier(rFantom);
 }
 
 // eddy. подбор типа корабля для фантома от ранга ГГ с учётом нац. принадлежности, и типа занятий
