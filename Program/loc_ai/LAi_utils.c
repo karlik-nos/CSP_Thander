@@ -1392,7 +1392,7 @@ bool LAi_CheckLocatorFree(string _group, string _locator)
 	if(!CheckAttribute(loadedLocation, at)) return false;
 	aref grp;
 	makearef(grp, loadedLocation.(at));
-	if (!CheckAttribute(grp, "x") || CheckAttribute(grp, "y" || CheckAttribute(grp, "z")))
+	if (!CheckAttribute(grp, "x") || !CheckAttribute(grp, "y") || !CheckAttribute(grp, "z"))
 		{trace("ERROR: cannot find xyz position for '" + at + "'"); return false;}
 	float lx = stf(grp.x);
 	float ly = stf(grp.y);
