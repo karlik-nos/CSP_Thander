@@ -258,7 +258,7 @@
 #QUEST	DELIVERY_TRADE_QUEST
 Доставка грузов для магазинов
 #TEXT	1
-Из магазина @<sBaseColony> мне поручено доставить груз @<sGoodGen> в количестве @<sGoodQty> в магазин города @<sTargetColony>@<island>. Доставку нужно успеть осуществить в течение @<sTermsDelivery>, награда составляет @<sMoney>.
+Из магазина @<sBaseColony> мне поручено доставить груз @<sGoodGen> в количестве @<sGoodQty> в магазин города @<sTargetColony>@<island>. Доставку нужно успеть осуществить за @<sTermsDelivery>, награда составляет @<sMoney>.
 #TEXT	2
 Задание по доставке груза @<sGoodGen> в магазин @<sTargetColony> выполнено точно и в срок.
 #TEXT   3
