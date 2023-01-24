@@ -155,6 +155,11 @@ void ProcessDialogEvent()
 				Всё, всё по лору и все довольны без лишнего нытья.
 				*/
 			}
+			if(CheckAttribute(npchar,"patent.othertime") && !CheckAttribute(pchar, "EquipedPatentId"))
+			{
+				link.l16 = "Приветствую вас, " + npchar.name + " " + npchar.lastname + ". Я бы хотел вернутся к вопросу о патенте.";
+				link.l16.go = "Other time patent";
+			}
 		break;
 
 		case "build_ship":
@@ -534,11 +539,20 @@ void ProcessDialogEvent()
 			pchar.PatentNation = NationShortName(sti(npchar.nation));
 			GiveItem2Character(pchar, "patent_" + pchar.PatentNation);
 			EquipCharacterbyItem(pchar, "patent_" + pchar.PatentNation);
+			if(CheckAttribute(npchar,"patent.othertime")) DeleteAttribute(npchar,"patent.othertime"));
 		break;
 		case "Refuse":
-			dialog.text = "Как жаль, как жаль... Но ничего страшного, я уверен, что вы найдёте себя в другом деле! Удачи вам.";
-			link.l1 = "Спасибо и прощайте.";
+			dialog.text = "Как жаль, как жаль... Но ничего страшного, я уверен, что вы найдёте себя в другом деле! Но вы можете придти ко мне снова, если передумаете, помните об этом.";
+			link.l1 = "Спасибо, я буду помнить об этой возможности.";
 			link.l1.go = "Exit";
+			npchar.patent.othertime = true;
+		break;
+		case "Other time patent":
+			dialog.text = "О, вы вернулись. Решили, что всё таки хотите получить патент?";
+			link.l1 = "Да, я решил принять ваше предложение";
+			link.l2 = "Я всё таки ещё подумаю, досвидания";
+			link.l1.go = "Accept";
+			link.l2.go = "Refuse";
 		break;
 	}
 }
