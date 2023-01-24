@@ -1930,11 +1930,11 @@ bool PGG_CheckForQuestOffer(ref chr)
 	bool bOkWhisper = !CheckAttribute(pchar,"GiantEvilSkeleton") && chr.name == "Виспер";
 	bool bOkShip = sti(chr.Ship.Type) != SHIP_NOTUSED && sti(PChar.Ship.Type) != SHIP_NOTUSED && GetCharacterShipClass(PChar) <= 4;
 	bool bOkRnd = rand(100) > iTst;
+	int  iDays = GetQuestPastDayParam("QuestOffer");
 	bool bOkDaysPassed = iDays > 25 + drand(10);
 	bool bOkCompanionsMax = GetCompanionQuantity(PChar) < COMPANION_MAX;
 	bool bOk = PGG_IsQuestAvaible() || bOkWhisper;
 
-	int iDays = GetQuestPastDayParam("QuestOffer");
 	if (bOk && bOkShip && bOkRnd && bOkDaysPassed && bOkCompanionsMax)																					
 	{
 		chr.PGGAi.ActiveQuest.QstNumber = 0;

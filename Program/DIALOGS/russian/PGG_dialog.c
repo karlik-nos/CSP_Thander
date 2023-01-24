@@ -712,8 +712,7 @@ void ProcessDialogEvent()
 		chrDisableReloadToLocation = false;
 		SaveCurrentQuestDateParam("QuestTalk");
 
-		Dialog.Text = "Поосторожнее!!! О! Я знаю тебя, ты " + GetFullName(PChar) + 
-			". Известная личность! Наслышан" + NPCharSexPhrase(NPChar, "", "а") + ", наслышан" + NPCharSexPhrase(NPChar, "", "а") + ".";
+		Dialog.Text = "Поосторожнее!!! О! Кажется, я знаю тебя, ты - известная личность! Наслышан" + NPCharSexPhrase(NPChar, "", "а") + ", наслышан" + NPCharSexPhrase(NPChar, "", "а") + ".";
 
 		if (CheckAttribute(NPChar, "meeting") && sti(NPChar.meeting))
 		{
