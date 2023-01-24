@@ -860,19 +860,19 @@ void Fantom_SetUpgrade(ref rFantom, string sFantomType)
 		case "pirate":   // апгрейдим параметр(ы)  шипа пиратских случаек
 			if(i < (7 - iSClass)*4)
 			{
-				GenerateShipUpgradeParameters(rFantom);
+				GenerateShipBermudes(rFantom);
 			}
 		break;
 		case "hunter":   // апгрейдим параметр(ы) шипа ДУ или ОЗГов
 			if(i < ((7 - iSClass)*4 +10))
 			{
-				GenerateShipUpgradeParameters(rFantom);
+				GenerateShipBermudes(rFantom);
 			}
 		break;
 	}
 }
 
-void GenerateShipUpgradeParameters(ref rFantom)//бермудки не должны идти группами. Каждая должна генерится сама по себе
+void GenerateShipBermudes(ref rFantom)//бермудки не должны идти группами. Каждая должна генерится сама по себе
 {
 	int iP = 0;
 	int iT = 0; 
