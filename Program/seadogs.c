@@ -2130,7 +2130,7 @@ bool CheckSaveGameEnabled()
 			{
 				if (Pchar.questTemp.CapBloodLine == false)
 				{
-					string sNation = Colonies[FindColony(loadedLocation.fastreload)].nation;
+					string sNation = Colonies[FindColony(Locations[idxLoadLoc].fastreload)].nation;//фикс ошибок в логах?
 					if (sNation != "none" && sNation != "4")
 					{
 						int i = sti(sNation);

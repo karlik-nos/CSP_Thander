@@ -893,7 +893,7 @@ void FillCharactersScroll()
 			}
 		}
 	}
-	if (HasSubStr(loadedLocation.id,"_bank"))
+	if (HasSubStr(loadedLocation.id,"_bank") && Pchar.SystemInfo.CabinType != "")//фикс - ошибки в логе, если ГГ без корабля и каюты
 	{
 		ref cabinloc = &locations[FindLocation(Pchar.SystemInfo.CabinType)];
 		chestsnum = 0;
@@ -972,8 +972,8 @@ void AddToTable(ref rChar)
 	//{
 		sList = "tr" + n;
 		rItem = &Items[FindItem("Gold")];
-		GameInterface.TABLE_LIST.(sList).index = n;
 		GameInterface.TABLE_LIST.(sList).id = "Gold";
+		GameInterface.TABLE_LIST.(sList).index = n;
 		GameInterface.TABLE_LIST.(sList).td1.str = iLeftQty;
 		GameInterface.TABLE_LIST.(sList).td1.scale = 0.8;
 		GameInterface.TABLE_LIST.(sList).td2.str = "-";
@@ -1086,7 +1086,6 @@ void AddToTable(ref rChar)
 
 		sList = "tr" + n;
 		GameInterface.TABLE_LIST.(sList).id = sItem;
-		GameInterface.TABLE_LIST.(sList).index = n;
 		GameInterface.TABLE_LIST.(sList).td1.str = iLeftQty;
 		GameInterface.TABLE_LIST.(sList).td2.str = FloatToString(GetItemWeight(sItem) * iLeftQty, 1);
 		GameInterface.TABLE_LIST.(sList).td3.icon.group = rItem.picTexture;

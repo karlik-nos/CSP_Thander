@@ -22,7 +22,7 @@ void ClearSeaFantoms() {
 	seaFantomsNum = 0;
 }
 // -> ugeen 26.01.09
-int Fantom_GenerateEncounterExt(string sGroupName, object oResult, int iEType, int iNumWarShips, int iNumMerchantShips, int iNation)
+int Fantom_GenerateEncounterExt(string sGroupName, int iEType, int iNumWarShips, int iNumMerchantShips, int iNation)
 {
 	aref	aWar, aMerchant;
 	ref		rEnc;
