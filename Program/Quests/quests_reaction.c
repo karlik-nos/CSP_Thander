@@ -1690,7 +1690,7 @@ void QuestComplete(string sQuestName, string qname)
 			pchar.quest.generate_convoy_quest_completed.win_condition.l1 = "Location";
 			pchar.quest.generate_convoy_quest_completed.win_condition.l1.location = attrName;
 			pchar.quest.generate_convoy_quest_completed.win_condition = "generate_convoy_quest_completed";
-			if (rand(2) == 1) TraderHunterOnMap();
+			if (rand(2) == 1) QuestHunterOnMap();
 		break;
  		////////////////////////////////////////////////////////////////////////
 		//  Конец    Сопровождение торговца

@@ -72,7 +72,7 @@ void ProcessDialogEvent()
         	Pchar.quest.Romantic_Brother_port.win_condition.l1.location  = "SanJuan_town";
         	Pchar.quest.Romantic_Brother_port.win_condition              = "Romantic_Brother_port";
             // немного весёлой жизни
-            TraderHunterOnMap();
+            QuestHunterOnMap();
             LAi_SetActorType(npchar);
             LAi_ActorRunToLocation(npchar, "reload", "reload1_back", "none", "", "", "", -1);
 			chrDisableReloadToLocation = false;

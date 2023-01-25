@@ -1223,7 +1223,7 @@ void ProcessDialogEvent()
 			TakeNItems(pchar, "Chest", sti(pchar.GenQuest.LoanChest.Chest));
 			SetTimerCondition("LoanChestTimer", 0, 0, sti(pchar.GenQuest.LoanChest.Time), false);
 			// немного весёлой жизни
-            TraderHunterOnMap();
+            QuestHunterOnMap();
             chr  = &Characters[sti(pchar.GenQuest.LoanChest.TargetIdx)];
 			sTemp = "";
 			if (npchar.city != chr.city)
