@@ -2764,7 +2764,7 @@ string GetSpyLocation(ref npchar)
 			if (arCommon.label != "Sea")
 			{
 				int locationId2 = FindLocation(LocId);
-				if (!CheckAttribute(Locations[locationId2],"reload")) continue;
+				if (!CheckAttribute(Locations[locationId2],"reload") || !CheckAttribute(Locations[locationId2],"islandId")) continue;
 				makearef(arRld2, Locations[locationId2].reload);
 				islandId2 = Locations[locationId2].islandId;
 
