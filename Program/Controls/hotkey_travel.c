@@ -36,8 +36,11 @@ void HKT_Button(string sHKB) // быстрый переход
 	if(bOk)
 	{
 		if (sHKB == "Fast_port")
-			PlayerFastTravel(curLocIdx, sCityID + "_town", "reload1");
-			else PlayerFastTravel(curLocIdx, sCityID + locID, "");
+		{
+			if (Colonies[FindColony(sCityID)].nation != PIRATE) PlayerFastTravel(curLocIdx, sCityID + "_town", "reload1");
+			else PlayerFastTravel(curLocIdx, sCityID + "_port", "reload1");
+		}
+		else PlayerFastTravel(curLocIdx, sCityID + locID, "");
 	}
 	else
 	{
