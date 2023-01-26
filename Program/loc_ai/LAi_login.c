@@ -682,7 +682,7 @@ void GenerateSpySeeker(ref location)
 	bool bOK2 = !CheckAttribute(pchar, "GenQuest.questName");
 	if(!CheckAttribute(pchar, "SpySeeker.dayrandom")) pchar.SpySeeker.dayrandom = 0;
 	if(pchar.questTemp.CapBloodLine == true) return;
-	if(HasSubStr(location.id, "Common") && rand(1000) > 750 && pchar.dayrandom != pchar.SpySeeker.dayrandom && !HasSubStr(location.id, "Crypt") && GetCityNation(location.fastreload) != 4 && Characters[GetFortCommanderIDX(colonies[findcolony(location.fastreload)])].fort.mode != FORT_DEAD)
+	if(HasSubStr(location.id, "Common") && rand(1000) > 750 && pchar.dayrandom != pchar.SpySeeker.dayrandom && !HasSubStr(location.id, "Crypt") && GetCityNation(location.fastreload) != 4 && Characters[GetFortCommanderIDX(colonies[findcolony(location.fastreload)].id)].fort.mode != FORT_DEAD)
 	{
 		if(bOK || bOK2)
 		{
