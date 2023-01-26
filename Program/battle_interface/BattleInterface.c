@@ -972,7 +972,7 @@ void AddShipToInterface(int charIndex)
 	}
 	if (idx < 0)
 	{
-		for(i = 0; i < 4; i++)
+		for(i = 0; i < COMPANION_MAX; i++)
 		{
 			if (GetCompanionIndex(mainChRef, i) >= 0 && GetRemovable(GetCharacter(GetCompanionIndex(mainChRef, i))))
 			{
