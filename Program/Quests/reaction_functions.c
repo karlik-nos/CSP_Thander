@@ -9913,11 +9913,12 @@ void Miko_die(string qName)
 
 void Headhunter_Jahunters(string qName)//наймиты Джа в бухте
 {
+	int iTemp = sti(pchar.rank) + MOD_SKILL_ENEMY_RATE + 5;
 	chrDisableReloadToLocation = true;
 	for (i=1; i<=6; i++)
 	{
-		if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations)ref sld = GetCharacter(NPC_GenerateCharacter("JaHunters"+i, "officer_17", "man", "man_fast", 25, PIRATE, -1, true)); // LEO: Превозмогаторам страдать 08.12.2021
-		else sld = GetCharacter(NPC_GenerateCharacter("JaHunters"+i, "officer_17", "man", "man", 25, PIRATE, -1, true));
+		if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations)ref sld = GetCharacter(NPC_GenerateCharacter("JaHunters"+i, "officer_17", "man", "man_fast", iTemp, PIRATE, -1, true)); // LEO: Превозмогаторам страдать 08.12.2021
+		else sld = GetCharacter(NPC_GenerateCharacter("JaHunters"+i, "officer_17", "man", "man", iTemp, PIRATE, -1, true));
 		FantomMakeCoolFighter(sld, 25, 60, 60, "topor2", "pistol6", 70);
 		LAi_SetActorType(sld);
 		if (i == 1)
@@ -9937,7 +9938,7 @@ void Headhunter_Jahunters(string qName)//наймиты Джа в бухте
 		}
 		LAi_group_MoveCharacter(sld, "EnemyFight");
 	}
-	sld = GetCharacter(NPC_GenerateCharacter("JaMush", "mushketer_1", "man", "mushketer", 35, PIRATE, -1, true));
+	sld = GetCharacter(NPC_GenerateCharacter("JaMush", "mushketer_1", "man", "mushketer", iTemp, PIRATE, -1, true));
     FantomMakeCoolFighter(sld, iTemp, 80, 80, "", "mushket", 100);
 	ChangeCharacterAddressGroup(sld, "shore55", "goto", "goto2");
 	LAi_group_MoveCharacter(sld, "EnemyFight");
