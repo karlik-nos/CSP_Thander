@@ -743,7 +743,7 @@ void ProcessDialogEvent()
 	//=========== Первый квест ==========
 	case "Quest_1_Meeting":
 		sld = GetRealShip(sti(NPChar.Ship.Type));
-		Dialog.Text = "Я - " + GetFullName(NPChar) + ", капитан " + xiStr(sld.BaseName + "Acc") + " " + NPChar.Ship.Name + 
+		Dialog.Text = "Я - " + GetFullName(NPChar) + ", капитан " + xiStr(sld.BaseName + "Gen") + " " + NPChar.Ship.Name + 
 		NPCharSexPhrase(NPChar, 
 			NPCharRepPhrase(NPChar, ". Самый известный корсар всего испанского Мэйна.", ". Обычный моряк."), 
 			NPCharRepPhrase(NPChar, ". Самая известная покорительница морей на всех Карибах.", " Самая обычная девушка-пират.")
