@@ -1413,8 +1413,8 @@ bool SetReloadIcons()
                     objLandInterface.UserIcons.port.tex = 1;
                     objLandInterface.UserIcons.port.name = "reloadtoport";
                     string townsack = Locations[idxloc].townsack;
-                    if(Colonies[FindColony(townsack)].nation != PIRATE) objLandInterface.UserIcons.port.location = townsack+"_town";
-		    else objLandInterface.UserIcons.port.location = townsack+"_port";
+                    if(Colonies[FindColony(townsack)].nation != PIRATE || HasSubStr(townsack,"Pirates")) objLandInterface.UserIcons.port.location = townsack+"_town";
+					else objLandInterface.UserIcons.port.location = townsack+"_port";
                     objLandInterface.UserIcons.port.locator = "reload1";
                     objLandInterface.UserIcons.port.note = GetNodeForIcon(1, 10);
                     bUse = true;
