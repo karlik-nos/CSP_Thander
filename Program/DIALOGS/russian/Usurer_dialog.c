@@ -1447,7 +1447,9 @@ void ProcessDialogEvent()
 		break;
 
 		case "result":
-			Pchar.QuestTemp.Deposits.(NPC_Area).Interest = makeint((GetSummonSkillFromName(pchar, "Commerce")+GetSummonSkillFromName(pchar, "Leadership"))/10.0/4.0 + 0.66) + 1;
+			bool isPatentSameNation = pchar.PatentNation == NationShortName(sti(npchar.nation));
+			int iPercents = makeint((GetSummonSkillFromName(pchar, "Commerce")+GetSummonSkillFromName(pchar, "Leadership"))/10.0/4.0 + 0.66) + 1;
+			Pchar.QuestTemp.Deposits.(NPC_Area).Interest = iPercents + CheckAttribute(pchar,"EquipedPatentID") *  isPatentSameNation * iPercents;
 			Pchar.QuestTemp.Deposits.(NPC_Area).Sum = dialogEditStrings[3];
 			iTemp = sti(dialogEditStrings[3]);
 			if (iTemp <= 0)
