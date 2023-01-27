@@ -8967,15 +8967,13 @@ void sharp_pre(string qName)
 {
 	chrDisableReloadToLocation = true;
 	LAi_group_Delete("EnemyFight");
-
-
-    	for (i=1; i<=5; i++)
-    	{
+    for (i=1; i<=5; i++)
+    {
 		sld = GetCharacter(NPC_GenerateCharacter("sh_pre_"+i, "pirate_"+i, "man", "man", 15, PIRATE, 0, true));
 		FantomMakeCoolFighter(sld, 15, 70, 70, RandPhraseSimple("blade21","blade31"), RandPhraseSimple("pistol3", "pistol6"), 20);
 		LAi_SetWarriorType(sld);
 		LAi_group_MoveCharacter(sld, "EnemyFight");
-		ChangeCharacterAddressGroup(sld, "Shore9", "goto", "goto4");
+		ChangeCharacterAddressGroup(sld, locations[FindLoadedLocation()].id, "goto", "goto4");
 		LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
 		LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, true);
 		LAi_group_SetCheck("EnemyFight", "OpenTheDoors");
