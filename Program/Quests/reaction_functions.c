@@ -607,7 +607,7 @@ void SeaPearl_DieHard(string qName)
 
 void SharpSeekSpy_loginSpy(string qName)
 {
-	if (rand(1) && !IsDay())
+	if (!IsDay())
 	{
 		LAi_group_Delete("EnemyFight");
 		AddQuestRecord("SharpPearl_SeekSpy", "3");
