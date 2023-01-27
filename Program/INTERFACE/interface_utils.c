@@ -1202,7 +1202,7 @@ trace("SortTable(sControl = " + sControl + ", iColumn = " +  iColumn + ") iLines
 	{
 		sRow = "tr" + GameInterface.(sControl).select;
 		sLast = GameInterface.(sControl).(sRow).index;//запоминаем номер выбранной строки, чтобы выделить её же после сортировки
-//TO DO везде нужно заполнять индекс или ещё что-то
+//TO DO везде нужно заполнять индекс
 	}
 
 	if (bIsString)//строки
@@ -1310,17 +1310,18 @@ void ReverseTable(string sControl,int iLinesCount)
 		CopyAttributes(aFirstRow, aLastRow);
 		CopyAttributes(aLastRow, aRow);
 	}
-	n = iLinesCount + 1 - sti(GameInterface.(sControl).select);
-	GameInterface.(sControl).select = n;
-/*	if (n<5) n=5;//пока что убираю. неоднозначное решение
-	GameInterface.(sControl).top = n-5;*/
+	if (sti(GameInterface.(sControl).select))//не меняем, если было 0
+	{
+		n = iLinesCount + 1 - sti(GameInterface.(sControl).select);
+		GameInterface.(sControl).select = n;
+	}
 	DeleteAttribute(&GameInterface, sControl + "." + sRow);//удаляем пузырёк, будет портить число строк в таблице
 }
 
 void ResetSelectedRow(string sControl, string sLastIdx, int iLinesCount)
 {
 	string sRow;
-	if (sti(GameInterface.(sControl).select))//не меняем, если было 0, т.е. ничего не выделено?		- проверить, что действительно не выбирает, а не ставит первую строку
+	if (sti(GameInterface.(sControl).select))//не меняем, если было 0, т.е. ничего не выделено
 	{
 		for (int n = 1; n <= iLinesCount; n++)
 		{
@@ -1328,11 +1329,6 @@ void ResetSelectedRow(string sControl, string sLastIdx, int iLinesCount)
 			if (GameInterface.(sControl).(sRow).index == sLastIdx)
 			{
 				GameInterface.(sControl).select = n;
-/*				if (n<5) n=5;
-//TO DO Задавать отступ для каждой таблицы индивидуально? Как-то определять, сколько строчек в таблице показывается? Или это вообще не нужно? 
-//top должен быть поближе к верху. сортируем, чтобы видеть вверху максимум искомый и все соседние. менять top только если не влезает? или вообще игнорить переключение top?
-				GameInterface.(sControl).top = n-5;//и в реверсе тот же код отступа
-*/
 				break;
 			}
 		}
