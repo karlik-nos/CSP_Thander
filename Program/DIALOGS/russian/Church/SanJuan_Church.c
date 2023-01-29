@@ -157,7 +157,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			SetSelfSkill(sld, 18, 21, 70, 3, 40);
 			SetShipSkill(sld, 60, 12, 18, 17, 32, 41, 60, 31, 26);
 			LAi_SetHP(sld, 300.0, 300.0);
-			sld.name = "Жак";
+			sld.name = "Жаквин";
 			sld.lastname = "де Массе";
 			sld.FaceId = 296;
 			sld.loyality = 20;

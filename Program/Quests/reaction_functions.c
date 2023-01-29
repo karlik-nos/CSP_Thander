@@ -10758,7 +10758,7 @@ void PKM_SvtvA_Malta_na_pomosh(string qName)
 	SetSelfSkill(sld, 18, 21, 70, 3, 40);
 	SetShipSkill(sld, 60, 12, 18, 17, 32, 41, 60, 31, 26);
 	LAi_SetHP(sld, 300.0, 300.0);
-	sld.name = "Жак";
+	sld.name = "Жаквин";
 	sld.lastname = "де Массе";
 	sld.FaceId = 296;
 	sld.loyality = 20;
@@ -10766,7 +10766,7 @@ void PKM_SvtvA_Malta_na_pomosh(string qName)
 	LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
 	ChangeCharacterAddressGroup(sld, pchar.location, "reload",  "reload1_back");
 	
-	Log_info("Жак де Массе пришёл к вам на помощь!");
+	Log_info("Жаквин де Массе пришёл к вам на помощь!");
 }
 void PKM_SvtvA_Malta_na_pomosh_2(string qName)
 {	

@@ -96,14 +96,14 @@ void ProcessDialogEvent()
 				if (CheckAttribute(pchar, "questTemp.PKM_SvtvA_Znakomstvo_s_Malta") && (npchar.id == "Maltese"))
 				{
 					dialog.text = "Капитан, даже не знаю, как вас благодарить! Если бы не вы, мой корабль и вся его команда уже лежали бы в морской пучине. Меня зовут Жакуин де Массе, рыцарь мальтийского ордена.";
-					link.l1 = "Очень приятно, Жак. А я "+GetFullName(pchar)+".";
+					link.l1 = "Очень приятно, Жаквин. А я "+GetFullName(pchar)+".";
 					link.l1.go = "PKM_SvtvA_ZsM_1";
 					DeleteAttribute(link, "l2");
 				}
 				if (CheckAttribute(pchar, "questTemp.PKM_SvtvA_Znakomstvo_s_Malta2") && (npchar.id == "Maltese"))
 				{
 					dialog.text = "Во имя всех святых! Нам нельзя терять время, нужно спешить на Пуэрто Рико.";
-					link.l1 = "Да, Жак, ты прав.";
+					link.l1 = "Да, Жаквин, ты прав.";
 					link.l1.go = "exit";
 					DeleteAttribute(link, "l2");
 				}
