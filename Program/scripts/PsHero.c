@@ -2703,35 +2703,35 @@ void PGG_Q1AfterShoreFight()
 	PChar.GenQuest.PGG_Quest.Goods.Taken = 500 + drand(500) + MakeInt(GetSquadronFreeSpace(PChar, sti(PChar.GenQuest.PGG_Quest.Goods)) / (3 + drand(2)))
 	chr = CharacterFromID(PChar.GenQuest.PGG_Quest.PGGid);
 	LAi_RemoveCheckMinHP(chr); //fix
+	if(CheckAttribute(PChar,"GenQuest.PGG_Quest.PGGid.Dead"))
+	{
+		SetCharacterGoods(PChar, sti(PChar.GenQuest.PGG_Quest.Goods), sti(PChar.GenQuest.PGG_Quest.Goods.Taken) + GetCargoGoods(PChar, sti(PChar.GenQuest.PGG_Quest.Goods)));
+		chrDisableReloadToLocation = false;
+		PChar.Quest.PGGQuest1_EndExitSea.Over = "Yes";
+		PChar.Quest.PGGQuest1_EndExitLoc.Over = "Yes";
+		PChar.Quest.PGGQuest1_Time2Late_01.Over = "Yes";
+		PChar.Quest.PGGQuest1_Time2Late_02.Over = "Yes";
+		DeleteAttribute(PChar, "DisableBIFace");
+		DeleteAttribute(PChar,"Quest.PGGQuest1.SeaBattle");
+		DeleteAttribute(chr, "PGGAi.ActiveQuest");
+		DeleteAttribute(chr, "AlwaysFriend");
+		DeleteAttribute(PChar, "GenQuest.PGG_Quest");
+		DeleteAttribute(PChar,"PGG_FightOnShore");
+		DeleteAttribute(loadedLocation,"disableencounters");
+		DeleteAttribute(PChar,"GenQuest.PGG_Quest.PGGid.Dead");
+		return;
+	}
 	if(!CheckAttribute(PChar,"PGG_EnemyPP"))
 	{
-		if (!CheckAttribute(PChar, "Quest.PGGQuest1_PGGDead.PGG_Dead"))
-		{
-			DoQuestCheckDelay("hide_weapon", 2.0);
-			PChar.Quest.PGGQuest1_PGGDead.Over = "yes";
-			chr.Dialog.CurrentNode = "Quest_1_SharePrise";
-			LAi_SetImmortal(chr, false);
-			LAi_SetActorType(chr);
-			LAi_ActorFollow(chr,pchar, "", 8.0);
-			LAi_SetStayType(chr);
-			LAi_SetActorType(chr);
-			LAi_ActorDialog(chr, pchar, "", 20.0, 0);
-		}
-		else
-		{
-			SetCharacterGoods(PChar, sti(PChar.GenQuest.PGG_Quest.Goods), sti(PChar.GenQuest.PGG_Quest.Goods.Taken) + GetCargoGoods(PChar, sti(PChar.GenQuest.PGG_Quest.Goods)));
-			chrDisableReloadToLocation = false;
-			PChar.Quest.PGGQuest1_EndExitSea.Over = "Yes";
-			PChar.Quest.PGGQuest1_EndExitLoc.Over = "Yes";
-			PChar.Quest.PGGQuest1_Time2Late_01.Over = "Yes";
-			PChar.Quest.PGGQuest1_Time2Late_02.Over = "Yes";
-			DeleteAttribute(PChar,"GenQuest.PGG_Quest.PGGid.Dead");
-			DeleteAttribute(PChar, "DisableBIFace");
-			DeleteAttribute(PChar,"Quest.PGGQuest1.SeaBattle");
-			DeleteAttribute(chr, "PGGAi.ActiveQuest");
-			DeleteAttribute(chr, "AlwaysFriend");
-			DeleteAttribute(PChar, "GenQuest.PGG_Quest");
-		}
+		DoQuestCheckDelay("hide_weapon", 2.0);
+		PChar.Quest.PGGQuest1_PGGDead.Over = "yes";
+		chr.Dialog.CurrentNode = "Quest_1_SharePrise";
+		LAi_SetImmortal(chr, false);
+		LAi_SetActorType(chr);
+		LAi_ActorFollow(chr,pchar, "", 8.0);
+		LAi_SetStayType(chr);
+		LAi_SetActorType(chr);
+		LAi_ActorDialog(chr, pchar, "", 20.0, 0);
 	}
 	else
 	{
