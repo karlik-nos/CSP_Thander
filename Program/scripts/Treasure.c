@@ -699,7 +699,7 @@ void SetTreasureBoxFromMap()
 		if(MOD_SKILL_ENEMY_RATE == 10)
 			Map_CreateFastWarriorTreasure();
 		else
-			QuestHunterOnMap();
+			TraderHunterOnMap();
         if( CheckAttribute(Pchar,"location.from_sea") )
         {
             if (rand(2) == 1) //33 процента
@@ -770,8 +770,8 @@ void SetTreasureBoxFromMap()
 }
 //  Карты сокровищ  ГЕНЕРАТОР <--
 
-// погодня за ГГ на карте, ускоренная от цены фрахта
-void TraderHunterOnMap()
+// погодня за ГГ на карте
+void  TraderHunterOnMap()
 {
     // немного веселой жизни
     ref  sld;
@@ -800,38 +800,6 @@ void TraderHunterOnMap()
     Group_SetTaskAttackInMap(sGroup, PLAYER_GROUP);
     Group_LockTask(sGroup);
 	Map_CreateFastTradeHunter("", sCapId + "1", 8);
-}
-
-// погодня за ГГ на карте
-void QuestHunterOnMap()
-{
-    // немного веселой жизни
-    ref  sld;
-    int  i;
-
-    string sCapId = "TraderHunter";
-    string sGroup = "Sea_" + sCapId + "1";
-
-	Group_DeleteGroup(sGroup);
-	Group_FindOrCreateGroup(sGroup);
-    for (i = 1; i <= GetCompanionQuantity(pchar); i++)
-    {
-        sld = GetCharacter(NPC_GenerateCharacter(sCapId + i, "off_hol_2", "man", "man", sti(PChar.rank) + 5, PIRATE, 15, true));
-        SetShipHunter(sld);
-        SetFantomParamHunter(sld); //крутые парни
-        SetCaptanModelByEncType(sld, "war");
-        sld.AlwaysEnemy = true;
-        sld.DontRansackCaptain = true;
-        sld.mapEnc.type = "war";
-        sld.mapEnc.Name = "Джентльмены удачи";
-		sld.hunter = "pirate";
-        Group_AddCharacter(sGroup, sCapId + i);
-    }
-
-    Group_SetGroupCommander(sGroup, sCapId+ "1");
-    Group_SetTaskAttackInMap(sGroup, PLAYER_GROUP);
-    Group_LockTask(sGroup);
-	Map_CreateQuestHunter("", sCapId + "1", 8);
 }
 
 void SetTreasureHunter(string temp)

@@ -275,7 +275,7 @@ void ProcessDialogEvent()
 			LAi_SetActorType(NPChar);
             LAi_ActorGoToLocation(NPChar, "reload", "reload1", "SanJuan_houseS1Bedroom", "goto", "goto4", "Romantic_TalkInChurch_end", 20.0);
             // немного весёлой жизни
-            QuestHunterOnMap();
+            TraderHunterOnMap();
 		break;
 
 		case "WaitShip":

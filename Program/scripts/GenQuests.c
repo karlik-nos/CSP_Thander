@@ -1658,7 +1658,7 @@ void PiratesOnUninhabited_InTreasureLoc(String _quest)
 		Log_TestInfo("Пираты на необитайке: пришли поздно, ничего не найдем");
 	}
 
-	QuestHunterOnMap(); // Немного веселой жизни
+	TraderHunterOnMap(); // Немного веселой жизни
 }
 
 // Зарубили пиратов, можно лезть в сундук
