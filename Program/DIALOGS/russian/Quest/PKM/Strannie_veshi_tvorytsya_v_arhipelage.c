@@ -440,6 +440,7 @@ void ProcessDialogEvent()
 			DialogExit();
 			bDisableFastReload = false;
 			chrDisableReloadToLocation = false;
+			PChar.quest.PKM_SvtvA_MalteseMertv.over = "yes";
 		
 			sld = CharacterFromID("Maltese");
 			sld.Dialog.Filename = "Enc_Officer_dialog.c";
@@ -452,6 +453,8 @@ void ProcessDialogEvent()
 			sld.Dialog.CurrentNode = "hired";
 			sld.Payment = true;
 			sld.FaceId = 296;
+			sld.rank = 15;
+			LAi_SetHP(sld, 400.0, 400.0);
 		
 			sld = CharacterFromID("FortFrance_Priest");
 			LAi_SetPriestType(sld);
@@ -501,7 +504,7 @@ void ProcessDialogEvent()
 			DoQuestFunctionDelay("PKM_SvtvA_Gospod_nakazal", 1.15);
 			LaunchBlood(pchar, 1.0, true);
 			LaunchBlood(pchar, 2.0, true);
-			LAi_SetCurHP(pchar, 1.0);
+			LAi_SetCurHP(pchar, 40.0);
 		break;
 		
 		case "Падре_Робано_4":
