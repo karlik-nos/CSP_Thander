@@ -156,7 +156,7 @@ void wdmEvent_AddQuestEncounters()
 				}
 				encID = "";
 				int iPrise = 0;
-				if (checkattribute(pchar, "cargoquest" && sti(pchar.CargoQuest.iMoney) > 50000) 
+				if (checkattribute(pchar, "cargoquest" && sti(pchar.CargoQuest.iMoney) > 50000)) 
 					{	iPrise = Makeint(sti(pchar.CargoQuest.iMoney) / 50000)* 0.1;	}
 //это косяк - если одновременно с фрахтом сделать ещё что-то, вызывающее погоню ДУ, то у них всех будет увеличенная скорость. Нужно давать отдельное название таким ускоряющимся ДУ. 
 //это косяк2 - погоня должна зависеть не от награды, которую игрок ещё не получил, а от ценности груза. Не хочешь проблем с ДУ - вози кирпичи. Или хотя бы должно это дополнительно учитываться. 
