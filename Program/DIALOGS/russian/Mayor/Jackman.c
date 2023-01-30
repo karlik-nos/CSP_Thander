@@ -416,6 +416,7 @@ void ProcessDialogEvent()
 			}
 		break;
 		case "PL_SEAWOLF_2":
+			pchar.questTemp.BrigSW_gift = true;
 			dialog.text = "Поэтому с чистым сердцем отдаю тебе 'Морского Волка', владей по праву! Хотел бы я иметь "+ GetSexPhrase("такого парня","такую лихую деваху") +", как ты, в своей команде!";
 			link.l1 = "Благодарю от всего сердца, Джекман!";
 			link.l1.go = "exit";
