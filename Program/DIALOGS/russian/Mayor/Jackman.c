@@ -251,7 +251,7 @@ void ProcessDialogEvent()
 				link.l1 = "Кажется, у нас есть с тобой общее дело. Эдвард Лоу.";
 				link.l1.go = "PL_Q3_2";
 			}
-			if (CheckAttribute(pchar,"pchar.questTemp.piratesLine.T1") && pchar.questTemp.piratesLine.T1 == "KillLoy_GoodWork" && !CheckAttribute(npchar, "quest.PQ3"))
+			if (CheckAttribute(pchar,"questTemp.piratesLine.T1") && pchar.questTemp.piratesLine.T1 == "KillLoy_GoodWork" && !CheckAttribute(npchar, "quest.PQ3"))
 			{
 				dialog.text = "Вернул"+ GetSexPhrase("ся","ась") +"! Да не с пустыми руками!";
 				link.l1 = "Готов"+ GetSexPhrase("","а") +" сообщить, что Эдвард Лоу умер с ужасом в глазах и твоим именем в ушах.";
@@ -416,6 +416,7 @@ void ProcessDialogEvent()
 			}
 		break;
 		case "PL_SEAWOLF_2":
+			pchar.questTemp.BrigSW_gift = true;
 			dialog.text = "Поэтому с чистым сердцем отдаю тебе 'Морского Волка', владей по праву! Хотел бы я иметь "+ GetSexPhrase("такого парня","такую лихую деваху") +", как ты, в своей команде!";
 			link.l1 = "Благодарю от всего сердца, Джекман!";
 			link.l1.go = "exit";

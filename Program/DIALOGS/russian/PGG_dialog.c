@@ -712,8 +712,7 @@ void ProcessDialogEvent()
 		chrDisableReloadToLocation = false;
 		SaveCurrentQuestDateParam("QuestTalk");
 
-		Dialog.Text = "Поосторожнее!!! О! Я знаю тебя, ты " + GetFullName(PChar) + 
-			". Известная личность! Наслышан" + NPCharSexPhrase(NPChar, "", "а") + ", наслышан" + NPCharSexPhrase(NPChar, "", "а") + ".";
+		Dialog.Text = "Поосторожнее!!! О! Кажется, я знаю тебя, ты - известная личность! Наслышан" + NPCharSexPhrase(NPChar, "", "а") + ", наслышан" + NPCharSexPhrase(NPChar, "", "а") + ".";
 
 		if (CheckAttribute(NPChar, "meeting") && sti(NPChar.meeting))
 		{
@@ -951,7 +950,7 @@ void ProcessDialogEvent()
 		} else {
 			Dialog.Text = RandPhraseSimple(
 				"Добро пожаловать на борт, капитан!",
-				"Ну, вот и славно, теперь я уверен - лишних ушей нет, мои матросы уже в курсе."
+				"Ну, вот и славно, теперь я уверен+ GetSexPhrase("","а") +" - лишних ушей нет, мои матросы уже в курсе."
 			) + " Предложение такое – взять немного бесхозного добра.";
 		}
 		link.l1 = RandPhraseSimple(

@@ -1159,7 +1159,7 @@ void ProcessDialogEvent()
 						{
 							if (!CheckAttribute(PChar, "QuestTemp.AndreAbelQuest_StartQuest") && PChar.location == "FortFrance_tavern" && sti(pchar.rank) > 4) // не взята пиратская линейка
 							{
-								dialog.text = "Поговори вон с тем парнем, справа от лесницы. У него какие то проблемы";
+								dialog.text = "Поговори вон с тем парнем, справа от лестницы. У него какие то проблемы";
 								link.l1 = "Спасибо, вот я и наш"+GetSexPhrase("ел","ла")+" работу";
 								link.l1.go = "exit";
 								Log_TestInfo("Сопровождение флейта 'Орион' - сгенерился квестодатель в sit, sit7");

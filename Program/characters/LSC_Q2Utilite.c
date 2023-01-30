@@ -651,6 +651,8 @@ void initStartState2Character(ref ch)
 	pchar.quest.MC_startInCaracas.function = "MC_startInCaracas";
 	//ситуации в море
 	ch.CanGenerateShipSituation = true;
+	//считаем кол во квестов у губеров
+	MayorQuestCounter();
 }
 
 //==> eddy. квестовая обработка 'ноль часов'.
@@ -3204,3 +3206,13 @@ void MaryCelesteInit()
 
 	trace("Бригантина Мэри Селест вышла из " + character.fromCity + " и направилась в " + character.toShore);
 }
+void MayorQuestCounter()
+{
+	for(int i = 0; i<4; i++)
+	{
+		string sNationname = GetNationNameByType(i);
+		pchar.(sNationname).quest.mayor = 0;
+		pchar.(sNationname).quest.mayor.done = false;
+	}
+}
+		

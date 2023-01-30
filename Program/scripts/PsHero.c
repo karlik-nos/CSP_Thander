@@ -1930,11 +1930,11 @@ bool PGG_CheckForQuestOffer(ref chr)
 	bool bOkWhisper = !CheckAttribute(pchar,"GiantEvilSkeleton") && chr.name == "Виспер";
 	bool bOkShip = sti(chr.Ship.Type) != SHIP_NOTUSED && sti(PChar.Ship.Type) != SHIP_NOTUSED && GetCharacterShipClass(PChar) <= 4;
 	bool bOkRnd = rand(100) > iTst;
+	int  iDays = GetQuestPastDayParam("QuestOffer");
 	bool bOkDaysPassed = iDays > 25 + drand(10);
 	bool bOkCompanionsMax = GetCompanionQuantity(PChar) < COMPANION_MAX;
 	bool bOk = PGG_IsQuestAvaible() || bOkWhisper;
 
-	int iDays = GetQuestPastDayParam("QuestOffer");
 	if (bOk && bOkShip && bOkRnd && bOkDaysPassed && bOkCompanionsMax)																					
 	{
 		chr.PGGAi.ActiveQuest.QstNumber = 0;
@@ -2256,12 +2256,12 @@ void PGG_Q1PGGDead(string qName)
 	}
 	else
 	{
-		PChar.GenQuest.PGG_Quest.PGGid.Dead = 1;
 		if (chr.sex != "woman")AddQuestRecord("Gen_PGGQuest1", "q1_PGGDead");
 		else AddQuestRecord("Gen_PGGQuest1woman", "q1_PGGDead");
 		if (chr.sex != "woman")AddQuestUserData("Gen_PGGQuest1", "sPsName", GetFullName(chr));
 		else AddQuestUserData("Gen_PGGQuest1woman", "sPsName", GetFullName(chr));
 	}
+	PChar.GenQuest.PGG_Quest.PGGid.Dead = 1;
 	DeleteAttribute(chr, "PGGAi.ActiveQuest");
 	PChar.Quest.PGGQuest1_GroupDead.Over = "yes";
 	PChar.Quest.PGGQuest1_Time2Late.Over = "yes";
@@ -2631,6 +2631,7 @@ void PGG_Q1FightOnShore()
 
 	chrDisableReloadToLocation = true;
 	//our
+	iRnd = 10 + drand(15) + MOD_SKILL_ENEMY_RATE;
 	if (!CheckAttribute(PChar, "GenQuest.PGG_Quest.PGGid.Dead"))
 	{
 		chr = CharacterFromID(PChar.GenQuest.PGG_Quest.PGGid);
@@ -2639,8 +2640,11 @@ void PGG_Q1FightOnShore()
 		LAi_SetImmortal(chr, false);
 		if (relation != "PGGTemp") LAi_SetCheckMinHP(chr, 1, true, "PGG_CheckHP");
 		LAi_group_MoveCharacter(chr, relation);
-
-		iRnd = 10 + drand(15) + MOD_SKILL_ENEMY_RATE;
+	}
+	else
+	{
+		iRnd = makeint(iRnd/2);
+	}
 		PChar.GenQuest.PGG_Quest.GrpID.Qty = iRnd;
 		PChar.GenQuestFort.FarLocator = false;
 		sLoc = LAi_FindNPCLocator("officers_sea");
@@ -2653,7 +2657,6 @@ void PGG_Q1FightOnShore()
 			
 		}
 		Pchar.GenQuestFort.FarLocator = true;
-	}
 
 	//enemy
 	iRnd = 15 + drand(15) + MOD_SKILL_ENEMY_RATE + GetOfficersQuantity(pchar);
@@ -2700,10 +2703,26 @@ void PGG_Q1AfterShoreFight()
 	PChar.GenQuest.PGG_Quest.Goods.Taken = 500 + drand(500) + MakeInt(GetSquadronFreeSpace(PChar, sti(PChar.GenQuest.PGG_Quest.Goods)) / (3 + drand(2)))
 	chr = CharacterFromID(PChar.GenQuest.PGG_Quest.PGGid);
 	LAi_RemoveCheckMinHP(chr); //fix
+	if(CheckAttribute(PChar,"GenQuest.PGG_Quest.PGGid.Dead"))
+	{
+		SetCharacterGoods(PChar, sti(PChar.GenQuest.PGG_Quest.Goods), sti(PChar.GenQuest.PGG_Quest.Goods.Taken) + GetCargoGoods(PChar, sti(PChar.GenQuest.PGG_Quest.Goods)));
+		chrDisableReloadToLocation = false;
+		PChar.Quest.PGGQuest1_EndExitSea.Over = "Yes";
+		PChar.Quest.PGGQuest1_EndExitLoc.Over = "Yes";
+		PChar.Quest.PGGQuest1_Time2Late_01.Over = "Yes";
+		PChar.Quest.PGGQuest1_Time2Late_02.Over = "Yes";
+		DeleteAttribute(PChar, "DisableBIFace");
+		DeleteAttribute(PChar,"Quest.PGGQuest1.SeaBattle");
+		DeleteAttribute(chr, "PGGAi.ActiveQuest");
+		DeleteAttribute(chr, "AlwaysFriend");
+		DeleteAttribute(PChar, "GenQuest.PGG_Quest");
+		DeleteAttribute(PChar,"PGG_FightOnShore");
+		DeleteAttribute(loadedLocation,"disableencounters");
+		DeleteAttribute(PChar,"GenQuest.PGG_Quest.PGGid.Dead");
+		return;
+	}
 	if(!CheckAttribute(PChar,"PGG_EnemyPP"))
 	{
-	if (!CheckAttribute(PChar, "Quest.PGGQuest1_PGGDead.PGG_Dead"))
-	{
 		DoQuestCheckDelay("hide_weapon", 2.0);
 		PChar.Quest.PGGQuest1_PGGDead.Over = "yes";
 		chr.Dialog.CurrentNode = "Quest_1_SharePrise";
@@ -2713,20 +2732,6 @@ void PGG_Q1AfterShoreFight()
 		LAi_SetStayType(chr);
 		LAi_SetActorType(chr);
 		LAi_ActorDialog(chr, pchar, "", 20.0, 0);
-	}
-	else
-	{
-		DoQuestCheckDelay("hide_weapon", 2.0);
-		ChangeCharacterAddressGroup(chr,pchar.location,"reload", "sea");
-		PChar.Quest.PGGQuest1_PGGDead.Over = "yes";
-		chr.Dialog.CurrentNode = "Quest_1_SharePrise";
-		LAi_SetImmortal(chr, false);
-		LAi_SetActorType(chr);
-		LAi_ActorFollow(chr,pchar, "", 8.0);
-		LAi_SetStayType(chr);
-		LAi_SetActorType(chr);
-		LAi_ActorDialog(chr, pchar, "", 20.0, 0);
-	}
 	}
 	else
 	{

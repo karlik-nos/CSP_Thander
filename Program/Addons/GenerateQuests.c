@@ -1253,6 +1253,7 @@ void ShipWreckInSeaWaitEndToSea()
 	AddQuestRecord("ShipWreck", "1");
 	AddQuestUserData("ShipWreck", "sCharacter", GetNameLugger(chr, "f"));
 	AddQuestUserData("ShipWreck", "sShipName", chr.Ship.Name);
+	AddQuestUserData("ShipWreck", "sSex1", GetSexPhrase("отпетым мерзавцем", "отпетой мерзавкой"));
 	AddQuestUserData("ShipWreck", "sMoney", sti(PChar.GenerateShipWreck.Money));
 
 	LAi_SetWarriorType(chr);
@@ -1286,6 +1287,7 @@ void ShipWreckBattleWithSailor()
 void ShipWreckBattleWithSailorWinner(string qName)
 {
 	AddQuestRecord("ShipWreck", "2");
+	AddQuestUserData("ShipWreck", "sSex2", GetSexPhrase("", "а"));
 	chrDisableReloadToLocation = false;
 
 	string sCharacter = PChar.GenerateShipWreck.CharacterID;
@@ -1383,6 +1385,7 @@ void ShipWreckInTownSuccess()
 	ChangeCharacterReputation(PChar, 10);
 
 	AddQuestRecord("ShipWreck", "4");
+	AddQuestUserData("ShipWreck", "sSex2", GetSexPhrase("", "а"));
 	CloseQuestHeader("ShipWreck");
 
 	PChar.GenerateShipWreck.Block = true;
@@ -1610,6 +1613,7 @@ void ShipWreckBanditsOneTypeEnd()
 
 		AddQuestRecord("ShipWreck", sNotice);
 		AddQuestUserData("ShipWreck", "sNavigator", GetNameLugger(chr, "f"));
+		AddQuestUserData("ShipWreck", "sSex2", GetSexPhrase("", "а"));
 		PChar.GenerateShipWreck.GoodsChange.Yes = false;
 	}
 
@@ -1769,6 +1773,7 @@ void ShipWreckBanditsNewCapAdd()
 	Ship_FlagRefresh(chr);
 
 	AddQuestRecord("ShipWreck", "6");
+
 	CloseQuestHeader("ShipWreck");
 
 	PChar.GenerateShipWreck.Block = true;
