@@ -73,7 +73,7 @@ void InitInterface_R(string iniName, ref _shipyarder)
 	SetFormatedText("HERO_RANK",refNPCShipyard.Rank);
 
 	SetFormatedText("HERO_SKILL","" + iYarderSkill);
-	SetFormatedText("HERO_QBORDERS", iQBorders*100/9 + "%");
+	SetFormatedText("HERO_QBORDERS", iQBorders*10 + "%");
 	SetFormatedText("HERO_SHIPPOINTS",iFreeSP + "/" + iShipPoints);
 	SetFormatedText("HERO_TUNPOINTS",iFreeTP + "/" + iTunPoints);
 

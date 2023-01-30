@@ -845,6 +845,7 @@ void ProcessDialogEvent()
 		break;
 		case "Helen_Bastard_exit":
 			pchar.HelenQuest = 1;
+			AddDialogExitQuest("MainHeroFightModeOn");
 			DialogExit();
 			LAi_SetImmortal(NPChar,false);
 			LAi_group_MoveCharacter(npchar, "EnemyFight");

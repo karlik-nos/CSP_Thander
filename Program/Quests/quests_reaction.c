@@ -9826,7 +9826,20 @@ void QuestComplete(string sQuestName, string qname)
 			LAi_ActorDialog(sld, pchar, "", -1, 0);
 			Locations[FindLocation("PortRoyal_town")].reload.l23.disable = false;   //открывает архитектора
         break;
+//========================  Дозор  =======================
+		case "DozorPrepare_2":
+			for(int d=1; d<=8; d++)	{DozorSetRiddleQuestion(d);}
 
+			ref chr = GetCharacter(NPC_GenerateCharacter("Fabian Gronholm", "usurer_5", "man", "man", 1, PIRATE, -1, false));
+			chr.name = "Фабиан";
+			chr.lastname = "Гронхольм";
+			chr.Dialog.FileName = "DamnedDestiny\Dozor\Fabian_Gronholm.c";
+			chr.Dialog.CurrentNode = "First Time";
+			chr.greeting = "cit_quest";
+			LAi_SetStayType(chr);
+			LAi_SetImmortal(chr, true);
+			ChangeCharacterAddressGroup(chr, "Pirates_town", "officers", "reload6_3");
+		break;
 //========================  Квест "Проклятый идол".  =======================
 
 		case "PDM_CI_SpawnJC":

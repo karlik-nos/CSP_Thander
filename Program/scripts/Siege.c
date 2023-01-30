@@ -650,7 +650,7 @@ void  EndOfTheSiege(string tmp)
     if(idist == -1 || idist > 60 || tmp != "")
     {
         // чистим слухи
-        for (l = 0; l <= 4; l++)
+        for (l = 1; l <= 4; l++)
         {
             tmpName = "tmpID"+l;
             if (CheckAttribute(aData, tmpName))

@@ -450,7 +450,7 @@ void ProcessDialogEvent()
 			link.l1.go = "LizBegin_4";
 		break;
 		case "LizBegin_4":
-			dialog.text = "Зачем ему нужен этот фрегат?";
+			dialog.text = "Зачем ему нужен этот галеон?";
 			link.l1 = "Дело в том, юная леди, что жители города связывают с этим галеоном... возникновение внезапной эпидемии, поразившей город.";
 			link.l1.go = "LizBegin_5";
 		break;

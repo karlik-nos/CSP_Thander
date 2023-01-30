@@ -1988,6 +1988,7 @@ int GetCurrentLocationNation()
 
 void SetRandomNameToCharacter(ref rCharacter)
 {
+	if (rCharacter.sex == "crab") {rCharacter.name = "Краб"; rCharacter.lastname = "№" + (1+rand(998)); return;}
 	int iNation = sti(rCharacter.nation);
 	if (iNation == -1) iNation = PIRATE;
 	while (iNation == PIRATE) { iNation = rand(MAX_NATIONS - 2); }
@@ -2095,6 +2096,7 @@ string GenerateRandomName(int iNation, string sSex)
 
 void SetRandomNameToCharacter_Generator(ref rCharacter)
 {
+	if (rCharacter.sex == "crab") {rCharacter.name = "Краб"; rCharacter.lastname = "№" + (1+rand(998)); return;}
 	int iNation = sti(rCharacter.nation);
 	if (iNation == -1) iNation = PIRATE;
 	while (iNation == PIRATE) { iNation = rand(MAX_NATIONS - 2); }

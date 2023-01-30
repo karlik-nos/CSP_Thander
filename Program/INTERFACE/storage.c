@@ -17,6 +17,7 @@ int 	iShipQty, iStoreQty, iShipPrice, iStorePrice, iUnits;
 float 	fWeight;
 int  	iCurGoodsIdx;
 bool 	ok; // for if
+string sCurRow;
 
 void InitInterface_R(string iniName, ref pStore)
 {
@@ -356,7 +357,7 @@ void GiveGoods(int inc)
 	if (inc > GetCargoGoods(refCharacter, idx)) inc = GetCargoGoods(refCharacter, idx);
 	if (inc > 0)
 	{
-		if (makeint(inc*sti(Goods[idx].weight)/sti(Goods[idx].units)) > iMaxGoodsStore - GetStorageUsedWeight(refStore)) inc = makeint((iMaxGoodsStore - GetStorageUsedWeight(refStore))/sti(Goods[idx].weight*sti(Goods[idx].units));
+		if (makeint(inc*sti(Goods[idx].weight)/sti(Goods[idx].units)) > iMaxGoodsStore - GetStorageUsedWeight(refStore)) inc = makeint((iMaxGoodsStore - GetStorageUsedWeight(refStore))/sti(Goods[idx].weight*sti(Goods[idx].units)));
 		SetStorageGoods(refStore, idx,  inc+sti(GetStorageGoodsQuantity(refStore, idx)));
 		qty = inc;
 		if (qty > 0)

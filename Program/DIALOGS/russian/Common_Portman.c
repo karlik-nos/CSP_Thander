@@ -1413,10 +1413,10 @@ void ProcessDialogEvent()
 				license_expires = rand(2);
 		break;
 		case "CapitainList":
+			makearef(arCapBase, npchar.quest.capitainsList);
 			if (GetAttributesNum(arCapBase) > 0)
 			{
 				dialog.text = "Есть отметившиеся капитаны. Кто конкретно вас интересует?";
-				makearef(arCapBase, npchar.quest.capitainsList);
 				for (i=0; i<GetAttributesNum(arCapBase); i++)
 				{
 					arCapLocal = GetAttributeN(arCapBase, i);

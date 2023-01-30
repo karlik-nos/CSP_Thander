@@ -251,7 +251,7 @@ string GetQuestBookDataDigit()
 {
 	string result = "";
 
-	result = GetTimeString() + " " + GetCurrentDate();
+	result = GetStringDate(GetDataYear(), GetDataMonth(), GetDataDay()) + " " + GetTimeString();
 
     return result;
 }

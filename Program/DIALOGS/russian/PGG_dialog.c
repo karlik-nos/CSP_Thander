@@ -712,8 +712,7 @@ void ProcessDialogEvent()
 		chrDisableReloadToLocation = false;
 		SaveCurrentQuestDateParam("QuestTalk");
 
-		Dialog.Text = "Поосторожнее!!! О! Я знаю тебя, ты " + GetFullName(PChar) + 
-			". Известная личность! Наслышан" + NPCharSexPhrase(NPChar, "", "а") + ", наслышан" + NPCharSexPhrase(NPChar, "", "а") + ".";
+		Dialog.Text = "Поосторожнее!!! О! Кажется, я знаю тебя, ты - известная личность! Наслышан" + NPCharSexPhrase(NPChar, "", "а") + ", наслышан" + NPCharSexPhrase(NPChar, "", "а") + ".";
 
 		if (CheckAttribute(NPChar, "meeting") && sti(NPChar.meeting))
 		{
@@ -743,7 +742,7 @@ void ProcessDialogEvent()
 	//=========== Первый квест ==========
 	case "Quest_1_Meeting":
 		sld = GetRealShip(sti(NPChar.Ship.Type));
-		Dialog.Text = "Я - " + GetFullName(NPChar) + ", капитан " + xiStr(sld.BaseName + "Acc") + " " + NPChar.Ship.Name + 
+		Dialog.Text = "Я - " + GetFullName(NPChar) + ", капитан " + xiStr(sld.BaseName + "Gen") + " " + NPChar.Ship.Name + 
 		NPCharSexPhrase(NPChar, 
 			NPCharRepPhrase(NPChar, ". Самый известный корсар всего испанского Мэйна.", ". Обычный моряк."), 
 			NPCharRepPhrase(NPChar, ". Самая известная покорительница морей на всех Карибах.", " Самая обычная девушка-пират.")
@@ -951,7 +950,7 @@ void ProcessDialogEvent()
 		} else {
 			Dialog.Text = RandPhraseSimple(
 				"Добро пожаловать на борт, капитан!",
-				"Ну, вот и славно, теперь я уверен - лишних ушей нет, мои матросы уже в курсе."
+				"Ну, вот и славно, теперь я уверен+ GetSexPhrase("","а") +" - лишних ушей нет, мои матросы уже в курсе."
 			) + " Предложение такое – взять немного бесхозного добра.";
 		}
 		link.l1 = RandPhraseSimple(

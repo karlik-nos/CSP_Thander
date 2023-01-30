@@ -7,7 +7,7 @@ int iTunPoints = 8;
 int iTimeMake, iShipPoints, iQBorders, iPriceOrder;
 int iQMAX, iQMIN, iFreeSP, iFreeTP;
 bool Tune_Sheme[10] = {0,0,0,0,0,0,0,0,0,0};//элементы 0(заголовок таблицы) и 2(паруса) пропускаем. просто для удобства
-float Ship_Sheme[11] = {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,-10.0};//тип флоат, чтоб не преобразовывать лишний раз при умножении на коэффициент, по факту - целые
+float Ship_Sheme[11] = {10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0};//тип флоат, чтоб не преобразовывать лишний раз при умножении на коэффициент, по факту - целые
 int CannonTypes[16] = {1000,7,0,8,1,9,2,10,3,11,4,12,5,13,6,14};// #define CANNON_TYPE_CULVERINE_LBS8	0, #define CANNON_TYPE_CANNON_LBS8		7
 
 string CurTable, CurRow, sNation;
@@ -82,7 +82,7 @@ void InitInterface_R(string iniName, ref _shipyarder)
 	SetFormatedText("HERO_RANK",refNPCShipyard.Rank);
 
 	SetFormatedText("HERO_SKILL","" + iYarderSkill);
-	SetFormatedText("HERO_QBORDERS", iQBorders*100/9 + "%");
+	SetFormatedText("HERO_QBORDERS", iQBorders*10 + "%");
 	SetFormatedText("HERO_SHIPPOINTS",iFreeSP + "/" + iShipPoints);
 	SetFormatedText("HERO_TUNPOINTS",iFreeTP + "/" + iTunPoints);
 
