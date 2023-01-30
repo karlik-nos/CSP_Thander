@@ -976,15 +976,15 @@ void ProcessDialogEvent()
 							int iGetMaxDays3 = GetMaxDaysFromIsland2Island(GetArealByCityName(NPChar.city),GetArealByCityName(Characters[sti(npchar.storeMan3)].city));
 							if(CheckOfficersPerk(pchar,"Trader"))
 							{
-								npchar.iDaysExpired1 = (iGetMaxDays1/2 - drand(MakeInt(iGetMaxDays1/20 * 4))) * 2 + 1 + drand(MakeInt(iGetMaxDays1/8 * 3) - 1));
-								npchar.iDaysExpired2 = (iGetMaxDays2/2 - drand1(MakeInt(iGetMaxDays2/20 * 4))) * 2 + 1 + drand1(MakeInt(iGetMaxDays2/8 * 3) - 1));
-								npchar.iDaysExpired3 = (iGetMaxDays3/2 - drand2(MakeInt(iGetMaxDays3/20 * 4))) * 2 + 1 + drand2(MakeInt(iGetMaxDays3/8 * 3) - 1));
+								npchar.iDaysExpired1 = iGetMaxDays1 - drand(MakeInt(iGetMaxDays1/2.5)) + 1 + drand(MakeInt(3*iGetMaxDays1/8) - 1));
+								npchar.iDaysExpired2 = iGetMaxDays2 - drand1(MakeInt(iGetMaxDays2/2.5)) + 1 + drand1(MakeInt(3*iGetMaxDays2/8) - 1));
+								npchar.iDaysExpired3 = iGetMaxDays3 - drand2(MakeInt(iGetMaxDays3/2.5)) + 1 + drand2(MakeInt(3*iGetMaxDays3/8) - 1));
 							}
 							else //Lipsar переделал формулы (ВСЕ(Почти))
 							{
-								npchar.iDaysExpired1 = iGetMaxDays1/2 - MakeInt(iGetMaxDays1/20 * 4) + 1 + drand(MakeInt(iGetMaxDays1/8 * 3) - 1));
-								npchar.iDaysExpired2 = iGetMaxDays2/2 - MakeInt(iGetMaxDays2/20 * 4) + 1 + drand1(MakeInt(iGetMaxDays2/8 * 3) - 1));
-								npchar.iDaysExpired3 = iGetMaxDays3/2 - MakeInt(iGetMaxDays3/20 * 4) + 1 + drand2(MakeInt(iGetMaxDays3/8 * 3) - 1));
+								npchar.iDaysExpired1 = 2*iGetMaxDays1/3 + 1 + drand(MakeInt(3*iGetMaxDays1/8) - 1));
+								npchar.iDaysExpired2 = 2*iGetMaxDays2/3 + 1 + drand1(MakeInt(3*iGetMaxDays2/8) - 1));
+								npchar.iDaysExpired3 = 2*iGetMaxDays3/3 + 1 + drand2(MakeInt(3*iGetMaxDays3/8) - 1));
 							}
 
 							if(CheckOfficersPerk(pchar,"Trader"))
