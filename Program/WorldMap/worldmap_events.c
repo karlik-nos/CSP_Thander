@@ -104,6 +104,7 @@ void wdmEvent_AddQuestEncounters()
 				worldMap.(encPath).quest.event = "Map_TraderSucces";
 				worldMap.(encPath).quest.chrID = at.characterID;
 			}
+			
 			if(at.type == "warrior")
 			{
 				if(!GenerateMapEncounter_Alone(at.characterID, &idx))
@@ -125,6 +126,7 @@ void wdmEvent_AddQuestEncounters()
 				worldMap.(encPath).quest.event = "Map_WarriorEnd";
 				worldMap.(encPath).quest.chrID = at.characterID;
 			}
+			
 			if(at.type == "coolwarrior")//быстрый энкаутер Lipsar взял из ккс
 			{
 				if(!GenerateMapEncounter_Alone(at.characterID, &idx))
@@ -146,8 +148,10 @@ void wdmEvent_AddQuestEncounters()
 				worldMap.(encPath).quest.event = "Map_WarriorEnd";
 				worldMap.(encPath).quest.chrID = at.characterID;
 			}
-			if(at.type == "tradehunter")//быстрый энкаутер по фрахту Lipsar
+			
+			//быстрый энкаутер по фрахту Lipsar
 //на самом деле, тот же энкаунтер у охотников за кладами, по квесту Изабеллы х2, конвой пассажира, доставка сундуков ростовщика, конвой торговца, пираты на необитайке, карта сокровищ
+			if(at.type == "tradehunter")
 			{
 				if(!GenerateMapEncounter_Alone(at.characterID, &idx))
 				{
@@ -156,10 +160,8 @@ void wdmEvent_AddQuestEncounters()
 				}
 				encID = "";
 				int iPrise = 0;
-				if (checkattribute(pchar, "cargoquest" && sti(pchar.CargoQuest.iMoney) > 50000)) 
-					{	iPrise = Makeint(sti(pchar.CargoQuest.iMoney) / 50000)* 0.1;	}
-//это косяк - если одновременно с фрахтом сделать ещё что-то, вызывающее погоню ДУ, то у них всех будет увеличенная скорость. Нужно давать отдельное название таким ускоряющимся ДУ. 
-//это косяк2 - погоня должна зависеть не от награды, которую игрок ещё не получил, а от ценности груза. Не хочешь проблем с ДУ - вози кирпичи. Или хотя бы должно это дополнительно учитываться. 
+				if (checkattribute(pchar, "cargoquest") && sti(pchar.CargoQuest.iMoney) > 50000)
+				{iPrise = Makeint(sti(pchar.CargoQuest.iMoney) / 50000)* 0.1;}
 
 				if(!wdmCreateRealFollowShipByIndex(1.2 + iPrise, idx, &encID, sti(at.TimeOut)))
 				{
@@ -170,6 +172,7 @@ void wdmEvent_AddQuestEncounters()
 				worldMap.(encPath).quest.event = "Map_WarriorEnd";
 				worldMap.(encPath).quest.chrID = at.characterID;
 			}
+			
 			if(at.type == "shipwrecked")//медленный энкаутер торговца Lipsar по аналогии из ккс
 			{
 				if(!GenerateMapEncounter_Alone(at.characterID, &idx))
@@ -177,20 +180,17 @@ void wdmEvent_AddQuestEncounters()
 					PostEvent("Map_WarriorEnd", 100, "s", at.characterID);
 					return;
 				}
-				//Создаём в карте энкоунтера
 				encID = "";
-				//if(!wdmCreateFollowShipByIndex(1.0, idx, &encID, at.beginlocator, sti(at.TimeOut)))
 				if(!wdmCreateMerchantShipByIndex(0.2, idx, &encID,"","", sti(at.TimeOut)))
 				{
 					PostEvent("Map_WarriorEnd", 100, "s", at.characterID);
 					return;
 				}
-				//Путь до энкоунтера
 				encPath = "encounters." + encID;
-				//Сохраняем принадлежность к квестовым энкоунтеров
 				worldMap.(encPath).quest.event = "Map_WarriorEnd";
 				worldMap.(encPath).quest.chrID = at.characterID;
 			}
+			
 			if(at.type == "hunter")//энка ОЗГ Lipsar по аналогии из ккс
 			{
 				if(!GenerateMapEncounter_Alone(at.characterID, &idx))
@@ -200,7 +200,6 @@ void wdmEvent_AddQuestEncounters()
 				}
 				//Создаём в карте энкоунтера
 				encID = "";
-				//if(!wdmCreateFollowShipByIndex(1.0, idx, &encID, at.beginlocator, sti(at.TimeOut)))
 				ref refChar = CharacterFromID(at.characterID);
 				string sRep = NationShortName(sti(refChar.nation))+"hunter";
 				if(!wdmCreateRealFollowShipByIndex(1.1 + sti(pchar.reputation.(sRep))/100, idx, &encID, sti(at.TimeOut)))
@@ -215,6 +214,7 @@ void wdmEvent_AddQuestEncounters()
 				worldMap.(encPath).quest.event = "Map_WarriorEnd";
 				worldMap.(encPath).quest.chrID = at.characterID;
 			}
+			
 			if(at.type == "battle")
 			{
 				//wdmQuestCreateBattle(at.characterID, sti(at.iEnemyNation), sti(at.TimeOut));
