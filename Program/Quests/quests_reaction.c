@@ -9830,7 +9830,7 @@ void QuestComplete(string sQuestName, string qname)
 		case "DozorPrepare_2":
 			for(int d=1; d<=8; d++)	{DozorSetRiddleQuestion(d);}
 
-			ref chr = GetCharacter(NPC_GenerateCharacter("Fabian Gronholm", "usurer_5", "man", "man", 1, PIRATE, -1, false));
+			chr = GetCharacter(NPC_GenerateCharacter("Fabian Gronholm", "usurer_5", "man", "man", 1, PIRATE, -1, false));
 			chr.name = "Фабиан";
 			chr.lastname = "Гронхольм";
 			chr.Dialog.FileName = "DamnedDestiny\Dozor\Fabian_Gronholm.c";
