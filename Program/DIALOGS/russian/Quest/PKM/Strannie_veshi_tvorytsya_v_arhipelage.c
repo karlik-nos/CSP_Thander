@@ -504,7 +504,7 @@ void ProcessDialogEvent()
 			DoQuestFunctionDelay("PKM_SvtvA_Gospod_nakazal", 1.15);
 			LaunchBlood(pchar, 1.0, true);
 			LaunchBlood(pchar, 2.0, true);
-			LAi_SetCurHP(pchar, 40.0);
+			LAi_SetCurHP(pchar, 30.0);
 		break;
 		
 		case "Падре_Робано_4":
@@ -520,6 +520,18 @@ void ProcessDialogEvent()
 			sld = CharacterFromID("SanJuan_Priest");
 			sld.dialog.filename = "Common_church.c";
 			sld.dialog.currentnode = "First time";
+		break;
+		
+		case "Джордано_1":
+			dialog.text = "Ты принёс новости от Учителя? Он сказал, что он пошлёт своего человека.";
+			link.l1 = "Да, я от Учителя, только, может быть, ты не будешь орать об этом на всю улицу, сосунок?";
+			link.l1.go = "Джордано_2";
+		break;
+		
+		case "Джордано_2":
+			dialog.text = "Ты принёс новости от Учителя? Он сказал, что он пошлёт своего человека.";
+			link.l1 = "Да, я от Учителя, только, может быть, ты не будешь орать об этом на всю улицу, сосунок?";
+			link.l1.go = "Джордано_2";
 		break;
 		
 	}
