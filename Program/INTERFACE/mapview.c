@@ -250,7 +250,7 @@ void DoTeleport(float x, float y, string mapid)
 				if (CC(x,y,sti(shorename.(shore_numname).X),sti(shorename.(shore_numname).Y),gridsize) && loadedLocation.id != shore_name)
 				{
 					pchar.quest.waithours = 1+rand(1);
-					if (!HasSubStr(shore_name,"Entr"))
+					if (!HasSubStr(shore_name,"Entr") && !HasSubStr(shore_name,"ExitTown"))
 					{
 						setCharacterShipLocation(pchar, shore_name);
 						setWDMPointXZ(shore_name);

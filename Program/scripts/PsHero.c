@@ -276,8 +276,7 @@ void PGG_DailyUpdateEx(int i)
 				DeleteAttribute(chr, "PGGAi.Rebirth");
 				DeleteAttribute(chr, "Ship");
 				chr.Ship.Type = SHIP_NOTUSED;
-				if (chr.sex != "woman")	chr.Dialog.FileName = "PGG_dialog.c";
-				else	chr.Dialog.FileName = "pgg_dialog_town.c";
+				chr.Dialog.FileName = "PGG_dialog.c";
 				chr.Dialog.CurrentNode = "Second Time";
 
 				chr.PGGAi.DontUpdate = true;
@@ -1924,24 +1923,23 @@ bool PGG_CheckForQuestOffer(ref chr)
 {
 	bool retVal = false;
 
-	if (rand(2) == 1 || CheckAttribute(chr, "PGGWhisperQuestStart")) return retVal; // пусть сам ГГ тоже подходит, а не только ПГГ достает, второй заход в таврену может вынудить подойти ПГГ
-	//не забыть вернуть вероятности и условия
+	if (rand(2) == 1 || CheckAttribute(chr, "PGGWhisperQuestStart")) return retVal;
 	int iTst = 110 - PGG_ChangeRelation2MainCharacter(chr, 0); //зависит от отношения, лучше = чаще
-	// пусть будет честный тест
 	if (bBettaTestMode && CheckAttribute(PChar, "PGGAlwaysQuest")) iTst = 10; //в версии нет этого аттрибута
 
-	int iDays = GetQuestPastDayParam("QuestOffer");
 	bool bOkWhisper = !CheckAttribute(pchar,"GiantEvilSkeleton") && chr.name == "Виспер";
-	bool bOk = PGG_IsQuestAvaible() || bOkWhisper);
+	bool bOkShip = sti(chr.Ship.Type) != SHIP_NOTUSED && sti(PChar.Ship.Type) != SHIP_NOTUSED && GetCharacterShipClass(PChar) <= 4;
+	bool bOkRnd = rand(100) > iTst;
+	int  iDays = GetQuestPastDayParam("QuestOffer");
+	bool bOkDaysPassed = iDays > 25 + drand(10);
+	bool bOkCompanionsMax = GetCompanionQuantity(PChar) < COMPANION_MAX;
+	bool bOk = PGG_IsQuestAvaible() || bOkWhisper;
 
-	if (sti(chr.Ship.Type) != SHIP_NOTUSED && sti(PChar.Ship.Type) != SHIP_NOTUSED && rand(100) > iTst && iDays > 25 + drand(10))
+	if (bOk && bOkShip && bOkRnd && bOkDaysPassed && bOkCompanionsMax)																					
 	{
-		if (GetCharacterShipClass(PChar) <= 4 && GetCompanionQuantity(PChar) < COMPANION_MAX && bOk)
-		{
-			chr.PGGAi.ActiveQuest.QstNumber = 0;
-			retVal = true;
-			SaveCurrentQuestDateParam("QuestOffer"); // какое-то время ПГГ не будут докучать нам
-		}
+		chr.PGGAi.ActiveQuest.QstNumber = 0;
+		retVal = true;
+		SaveCurrentQuestDateParam("QuestOffer"); // какое-то время ПГГ не будут докучать нам
 	}
 
 	if (retVal)
@@ -1956,7 +1954,7 @@ bool PGG_CheckForQuestOffer(ref chr)
 		chr.PGGAi.ActiveQuest = 1;
 		LAi_SetActorType(chr);
 		LAi_ActorDialog(chr, pchar, "", 2.0, 0);
-		DoQuestCheckDelay("OpenTheDoors", 5.0);      // fix
+		DoQuestCheckDelay("OpenTheDoors", 5.0);
 	}
 	return retVal;
 }
@@ -1982,23 +1980,22 @@ void PGG_Q1RemoveShip(string qName)
 
 	Group_SetAddress("PGGQuest", "None", "", "");
 	Group_DelCharacter("PGGQuest", chr.id);
-//	Group_DeleteGroup("PGGQuest");
-	//#20180927-01
+
 	if (CheckAttribute(PChar, "GenQuest.PGG_Quest.Stage") && sti(PChar.GenQuest.PGG_Quest.Stage) < 2 && sti(PChar.GenQuest.PGG_Quest.Stage) >= -1)
 	{
 		chr.Dialog.CurrentNode = "Second Time";
-		//#20180927-01
 		int nRelChange = -10;
-		if(sti(PChar.GenQuest.PGG_Quest.Stage) == -1)
-            nRelChange = -20;
+		if(sti(PChar.GenQuest.PGG_Quest.Stage) == -1) nRelChange = -20;
 		PGG_ChangeRelation2MainCharacter(chr, nRelChange);
-		DeleteAttribute(chr, "PGGAi.ActiveQuest");
-		DeleteAttribute(PChar, "GenQuest.PGG_Quest");
 		if (chr.sex != "woman")CloseQuestHeader("Gen_PGGQuest1");
 		else CloseQuestHeader("Gen_PGGQuest1woman");
 	}
+	
+	DeleteAttribute(chr, "PGGAi.ActiveQuest");
+	DeleteAttribute(PChar, "GenQuest.PGG_Quest");
 	DeleteAttribute(chr, "AlwaysFriend");
 }
+
 void PGG_Q1AcceptedQuestDeleteFantom(string qName)
 {
 	ref chr = CharacterFromID(PChar.GenQuest.PGG_Quest.PGGid);
@@ -2259,12 +2256,12 @@ void PGG_Q1PGGDead(string qName)
 	}
 	else
 	{
-		PChar.GenQuest.PGG_Quest.PGGid.Dead = 1;
 		if (chr.sex != "woman")AddQuestRecord("Gen_PGGQuest1", "q1_PGGDead");
 		else AddQuestRecord("Gen_PGGQuest1woman", "q1_PGGDead");
 		if (chr.sex != "woman")AddQuestUserData("Gen_PGGQuest1", "sPsName", GetFullName(chr));
 		else AddQuestUserData("Gen_PGGQuest1woman", "sPsName", GetFullName(chr));
 	}
+	PChar.GenQuest.PGG_Quest.PGGid.Dead = 1;
 	DeleteAttribute(chr, "PGGAi.ActiveQuest");
 	PChar.Quest.PGGQuest1_GroupDead.Over = "yes";
 	PChar.Quest.PGGQuest1_Time2Late.Over = "yes";
@@ -2634,34 +2631,32 @@ void PGG_Q1FightOnShore()
 
 	chrDisableReloadToLocation = true;
 	//our
+	iRnd = 10 + drand(15) + MOD_SKILL_ENEMY_RATE;
 	if (!CheckAttribute(PChar, "GenQuest.PGG_Quest.PGGid.Dead"))
 	{
 		chr = CharacterFromID(PChar.GenQuest.PGG_Quest.PGGid);
 		ChangeCharacterAddressGroup(chr,pchar.location, "officers", "sea_1");
-		SetCharacterPerk(chr,PerksChars());
 		LAi_SetWarriorType(chr);
 		LAi_SetImmortal(chr, false);
 		if (relation != "PGGTemp") LAi_SetCheckMinHP(chr, 1, true, "PGG_CheckHP");
 		LAi_group_MoveCharacter(chr, relation);
-
-		iRnd = 10 + drand(15) + MOD_SKILL_ENEMY_RATE;
+	}
+	else
+	{
+		iRnd = makeint(iRnd/2);
+	}
 		PChar.GenQuest.PGG_Quest.GrpID.Qty = iRnd;
 		PChar.GenQuestFort.FarLocator = false;
-		sLoc = LAi_FindNPCLocator("officers");
+		sLoc = LAi_FindNPCLocator("officers_sea");
 		for (i = 1; i < iRnd; i++)
 		{
-			if (i % 3 != 0)
-			{
 			chr = SetFantomDefenceForts("officers", sLoc, PIRATE, relation);
-			}
-			else
-			{
-			chr = SetFantomDefenceForts("enc02", "",PIRATE, relation);
-			}
-			FantomMakeCoolFighterWRankDepend(chr,sti(pchar.rank),25+rand(75),25+rand(75),50);
+			chr.id = "ally" + i;
+			SetCharacterPerk(chr,PerksChars());
+			FantomMakeCoolFighterWRankDepend(chr,sti(pchar.rank),25+drand(75),25+drand(75),50);
+			
 		}
 		Pchar.GenQuestFort.FarLocator = true;
-	}
 
 	//enemy
 	iRnd = 15 + drand(15) + MOD_SKILL_ENEMY_RATE + GetOfficersQuantity(pchar);
@@ -2680,7 +2675,7 @@ void PGG_Q1FightOnShore()
 		}
 		chr.id = "pirate_" + i;
 		SetCharacterPerk(chr,PerksChars());
-		FantomMakeCoolFighterWRankDepend(chr,sti(pchar.rank),25+rand(75),25+rand(75),50);
+		FantomMakeCoolFighterWRankDepend(chr,sti(pchar.rank),25+drand(75),25+drand(75),50);
 	}
 	//натравим.
 	LAi_group_SetHearRadius("PGGTmp", 100.0);
@@ -2708,10 +2703,26 @@ void PGG_Q1AfterShoreFight()
 	PChar.GenQuest.PGG_Quest.Goods.Taken = 500 + drand(500) + MakeInt(GetSquadronFreeSpace(PChar, sti(PChar.GenQuest.PGG_Quest.Goods)) / (3 + drand(2)))
 	chr = CharacterFromID(PChar.GenQuest.PGG_Quest.PGGid);
 	LAi_RemoveCheckMinHP(chr); //fix
+	if(CheckAttribute(PChar,"GenQuest.PGG_Quest.PGGid.Dead"))
+	{
+		SetCharacterGoods(PChar, sti(PChar.GenQuest.PGG_Quest.Goods), sti(PChar.GenQuest.PGG_Quest.Goods.Taken) + GetCargoGoods(PChar, sti(PChar.GenQuest.PGG_Quest.Goods)));
+		chrDisableReloadToLocation = false;
+		PChar.Quest.PGGQuest1_EndExitSea.Over = "Yes";
+		PChar.Quest.PGGQuest1_EndExitLoc.Over = "Yes";
+		PChar.Quest.PGGQuest1_Time2Late_01.Over = "Yes";
+		PChar.Quest.PGGQuest1_Time2Late_02.Over = "Yes";
+		DeleteAttribute(PChar, "DisableBIFace");
+		DeleteAttribute(PChar,"Quest.PGGQuest1.SeaBattle");
+		DeleteAttribute(chr, "PGGAi.ActiveQuest");
+		DeleteAttribute(chr, "AlwaysFriend");
+		DeleteAttribute(PChar, "GenQuest.PGG_Quest");
+		DeleteAttribute(PChar,"PGG_FightOnShore");
+		DeleteAttribute(loadedLocation,"disableencounters");
+		DeleteAttribute(PChar,"GenQuest.PGG_Quest.PGGid.Dead");
+		return;
+	}
 	if(!CheckAttribute(PChar,"PGG_EnemyPP"))
 	{
-	if (!CheckAttribute(PChar, "Quest.PGGQuest1_PGGDead.PGG_Dead"))
-	{
 		DoQuestCheckDelay("hide_weapon", 2.0);
 		PChar.Quest.PGGQuest1_PGGDead.Over = "yes";
 		chr.Dialog.CurrentNode = "Quest_1_SharePrise";
@@ -2721,20 +2732,6 @@ void PGG_Q1AfterShoreFight()
 		LAi_SetStayType(chr);
 		LAi_SetActorType(chr);
 		LAi_ActorDialog(chr, pchar, "", 20.0, 0);
-	}
-	else
-	{
-		DoQuestCheckDelay("hide_weapon", 2.0);
-		ChangeCharacterAddressGroup(chr,pchar.location,"reload", "sea");
-		PChar.Quest.PGGQuest1_PGGDead.Over = "yes";
-		chr.Dialog.CurrentNode = "Quest_1_SharePrise";
-		LAi_SetImmortal(chr, false);
-		LAi_SetActorType(chr);
-		LAi_ActorFollow(chr,pchar, "", 8.0);
-		LAi_SetStayType(chr);
-		LAi_SetActorType(chr);
-		LAi_ActorDialog(chr, pchar, "", 20.0, 0);
-	}
 	}
 	else
 	{

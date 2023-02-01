@@ -653,6 +653,8 @@ void initStartState2Character(ref ch)
 	pchar.quest.MC_startInCaracas.function = "MC_startInCaracas";
 	//ситуации в море
 	ch.CanGenerateShipSituation = true;
+	//считаем кол во квестов у губеров
+	MayorQuestCounter();
 }
 
 //==> eddy. квестовая обработка 'ноль часов'.
@@ -1818,11 +1820,11 @@ string Sharp_choiceAction()
 		sBack = GetSharpRumour_toCityTarget();
 		pchar.questTemp.Sharp.count = sti(pchar.questTemp.Sharp.count) + 1; //счетчик
 		AddQuestRecord("SharpPearl", "2");
-		AddQuestUserData("SharpPearl", "sOldTarget", XI_ConvertString("Colony" + sCity + "Dat"));
+		AddQuestUserData("SharpPearl", "sOldTarget", XI_ConvertString("Colony" + sCity + "Voc"));
 		AddQuestUserData("SharpPearl", "sTarget", XI_ConvertString("Colony" + pchar.questTemp.Sharp.City + "Acc"));
 		if (GetIslandByCityName(pchar.questTemp.Sharp.City) != pchar.questTemp.Sharp.City)
 		{
-			AddQuestUserData("SharpPearl", "sAreal", ", что находится на " + XI_ConvertString(GetIslandByCityName(pchar.questTemp.Sharp.City) + "Dat"));
+			AddQuestUserData("SharpPearl", "sAreal", ", что находится на " + XI_ConvertString(GetIslandByCityName(pchar.questTemp.Sharp.City) + "Voc"));
 		}
 		//запускаем опять Шарпа на карту
 		sld = characterFromId("Sharp");
@@ -1969,7 +1971,7 @@ string BlueBurd_setTradeShip()
 	makearef(aName, pchar.questTemp.BlueBird);
 	SetRandomNameToShip(aName);
 	AddQuestRecord("Xebeca_BlueBird", "10");
-	AddQuestUserData("Xebeca_BlueBird", "sCity", XI_ConvertString("Colony" + pchar.questTemp.BlueBird.City + "Dat"));
+	AddQuestUserData("Xebeca_BlueBird", "sCity", XI_ConvertString("Colony" + pchar.questTemp.BlueBird.City + "Voc"));
 	AddQuestUserData("Xebeca_BlueBird", "sShipName", "'" + aName.Ship.Name + "'");
 	AddQuestUserData("Xebeca_BlueBird", "sCity_2", XI_ConvertString("Colony" + pchar.questTemp.BlueBird.City + "Gen"));
 	AddQuestUserData("Xebeca_BlueBird", "sTradeName", GetFullName(characterFromId(pchar.questTemp.BlueBird.City + "_trader")));
@@ -2300,7 +2302,7 @@ void PortmansBook_writeQuestBook(ref rid)
 		AddQuestUserData(sTitle, "sTargetCity", XI_ConvertString("Colony" + sld.quest.targetCity + "Acc"));
 		if (GetIslandByCityName(sld.quest.targetCity) != sld.quest.targetCity)
 		{
-			AddQuestUserData(sTitle, "sAreal", ", что находится на " + XI_ConvertString(GetIslandByCityName(sld.quest.targetCity) + "Dat"));
+			AddQuestUserData(sTitle, "sAreal", ", что находится на " + XI_ConvertString(GetIslandByCityName(sld.quest.targetCity) + "Voc"));
 		}
 	}
 }
@@ -2360,7 +2362,7 @@ void PortmansSeekShip_writeQuestBook(ref rid)
 		AddQuestUserData(sTitle, "sTargetCity", XI_ConvertString("Colony" + sld.quest.targetCity + "Acc"));
 		if (GetIslandByCityName(sld.quest.targetCity) != sld.quest.targetCity)
 		{
-			AddQuestUserData(sTitle, "sAreal", ", что находится на " + XI_ConvertString(GetIslandByCityName(sld.quest.targetCity) + "Dat"));
+			AddQuestUserData(sTitle, "sAreal", ", что находится на " + XI_ConvertString(GetIslandByCityName(sld.quest.targetCity) + "Voc"));
 		}
 	}
 }
@@ -2432,7 +2434,7 @@ void CitizSeekCap_writeQuestBook(ref rid)
 		AddQuestUserData(sTitle, "sTargetCity", XI_ConvertString("Colony" + sld.quest.targetCity + "Acc"));
 		if (GetIslandByCityName(sld.quest.targetCity) != sld.quest.targetCity)
 		{
-			AddQuestUserData(sTitle, "sAreal", ", что находится на " + XI_ConvertString(GetIslandByCityName(sld.quest.targetCity) + "Dat"));
+			AddQuestUserData(sTitle, "sAreal", ", что находится на " + XI_ConvertString(GetIslandByCityName(sld.quest.targetCity) + "Voc"));
 		}
 	}
 }
@@ -3206,3 +3208,13 @@ void MaryCelesteInit()
 
 	trace("Бригантина Мэри Селест вышла из " + character.fromCity + " и направилась в " + character.toShore);
 }
+void MayorQuestCounter()
+{
+	for(int i = 0; i<4; i++)
+	{
+		string sNationname = GetNationNameByType(i);
+		pchar.(sNationname).quest.mayor = 0;
+		pchar.(sNationname).quest.mayor.done = false;
+	}
+}
+		

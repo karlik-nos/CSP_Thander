@@ -37,7 +37,7 @@ void ProcessDialogEvent()
 		case "prepare_convoy_quest_3":
 			LookShipPassenger();
 			GenerateConvoyPassengerQuest(npchar);
-			dialog.text = "Мне нужно, чтобы меня доставили в таверну " + XI_ConvertString("Colony" + npchar.GenQuest.GetPassenger_Destination + "Gen") + ", что на " + XI_ConvertString(GetIslandByCityName(npchar.GenQuest.GetPassenger_Destination) + "Dat") +
+			dialog.text = "Мне нужно, чтобы меня доставили в таверну " + XI_ConvertString("Colony" + npchar.GenQuest.GetPassenger_Destination + "Gen") + ", что на " + XI_ConvertString(GetIslandByCityName(npchar.GenQuest.GetPassenger_Destination) + "Voc") +
                           ", за " + FindRussianDaysString(sti(npchar.GenQuest.GetPassenger_Time)) + ", и за это я заплачу вам " + FindRussianMoneyString(sti(npchar.GenQuest.GetPassenger_Money)) + ". Что скажете?";
 			link.l1 = "Я "+ GetSexPhrase("согласен","согласна") +".";
 			link.l1.go = "convoy_agreeded";
@@ -61,7 +61,7 @@ void ProcessDialogEvent()
 		case "convoy_agreeded":
 			sTitle = npchar.index + "convoy_passenger";
 			AddQuestRecordEx(sTitle, "Gen_convoy_passenger", "1");
-			sTemp = XI_ConvertString("Colony" + npchar.GenQuest.GetPassenger_Destination + "Gen") + ", что на " + XI_ConvertString(GetIslandByCityName(npchar.GenQuest.GetPassenger_Destination) + "Dat") + ",";
+			sTemp = XI_ConvertString("Colony" + npchar.GenQuest.GetPassenger_Destination + "Gen") + ", что на " + XI_ConvertString(GetIslandByCityName(npchar.GenQuest.GetPassenger_Destination) + "Voc") + ",";
 			AddQuestUserDataForTitle(sTitle, "sCity", sTemp);
 			AddQuestUserDataForTitle(sTitle, "sName", GetFullName(npchar));
 			AddQuestUserData(sTitle, "sCity", sTemp);

@@ -188,6 +188,12 @@ string RandExclamation()
 //                Выбор фраз для диалога
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // boal 13.03.2004 -->
+string IfPhraseSimple(bool cond, string v1, string v2)
+{
+	if (cond) return v1;
+	else return v2;
+}
+
 string RandPhraseSimple(string Var1, string Var2);
 {
 	int RandP;

@@ -1245,12 +1245,13 @@ void Ship_CheckSituation()
 		//Lipsar --->ИИ сторожей
 		if (bIsDefender)
 		{
-			ref rTargetedChar = GetCharacter(sti(rCharacter.SeaAI.Task.Target));
+			ref rTargetedChar = GetFortCommander(rCharacter.IslandShips);
 			int attackChar;
 			if(CheckAttribute(rTargetedChar,"Ship.LastBallCharacter")) attackChar = sti(rTargetedChar.Ship.LastBallCharacter);
 			else attackChar = sti(rCharacter.Ship.LastBallCharacter);
 			if (attackChar != -1)
 			{
+				if(CheckAttribute(Characters[attackChar],"IslandShips")) return;
 				Group_SetEnemyToCharacter(sGroupID, attackChar);
 				SetCharacterRelationBoth(sti(rCharacter.index), attackChar, RELATION_ENEMY);
 				Group_SetTaskAttack(sGroupID, Ship_GetGroupID(GetCharacter(attackChar)));

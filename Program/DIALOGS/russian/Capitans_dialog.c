@@ -268,12 +268,8 @@ void ProcessDialogEvent()
 			sld = CharacterFromID("PDM_Octavio_Lambrini")
 			sld.Dialog.Filename = "Quest/PDM/Clan_Lambrini.c";
 			sld.dialog.currentnode   = "Octavio_3_1";
-			DeleteAttribute(pchar, "questTemp.PDM_CL_Tavern");
 			DeleteAttribute(pchar, "questTemp.PDM_CL_Ishem");
 			PChar.quest.PDM_CL_Antonio_Ubit.over = "yes";
-			sld = CharacterFromID("PDM_CL_Antonio")
-			sld.Dialog.Filename = "Quest/PDM/Clan_Lambrini.c";
-			sld.dialog.currentnode   = "Antonio_1_12";
 			AddQuestRecord("PDM_Clan_Lambrini", "4");
 			AddQuestUserData("PDM_Clan_Lambrini", "sSex", GetSexPhrase("","а"));
 			AddQuestUserData("PDM_Clan_Lambrini", "sSex2", GetSexPhrase("ся","ась"));

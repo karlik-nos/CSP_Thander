@@ -57,6 +57,7 @@ void ProcessDialogEvent()
 
 	switch (Dialog.CurrentNode)
 	{
+		string sNationname = GetNationNameByType(sti(npchar.nation));
 		case "Exit":
 			NextDiag.CurrentNode = NextDiag.TempNode;
 			DialogExit();
@@ -1514,6 +1515,7 @@ void ProcessDialogEvent()
 								dialog.text = "Что? Вы ещё живы, капитан?";
 								link.l1 = "Так вы знали, что по джунглям бродит скелет, который мог взорвать любого встречного? Ну вы и сволочь!";
 								link.l1.go = "All_Execute_1";
+								pchar.(sNationname).quest.mayor = sti(pchar.(sNationname).quest.mayor) + 1;
 								AddCharacterExpToSkill(PChar, "Leadership", 500);
 								AddCharacterExpToSkill(PChar, "Sneak", 500);
 							}
@@ -1551,6 +1553,7 @@ void ProcessDialogEvent()
 							dialog.text = RandPhraseSimple("Вы сумели разыскать лазутчика?", "Скажите, вражеский агент вами найден?");
 							link.l1 = "Да, я наш"+ GetSexPhrase("ел","ла") +" его в одном из домов города, где он прятался, и убил"+ GetSexPhrase("","а") +".";
 							link.l1.go = "All_Execute";
+							pchar.(sNationname).quest.mayor = sti(pchar.(sNationname).quest.mayor) + 1;
 							AddCharacterExpToSkill(PChar, "Leadership", 60);
 							AddCharacterExpToSkill(PChar, "Sneak", 20);
 						break;
@@ -1607,6 +1610,7 @@ void ProcessDialogEvent()
 								AddCharacterExpToSkill(PChar, "Leadership", 100);
 								AddCharacterExpToSkill(PChar, "Sneak", 200);
 							}
+							pchar.(sNationname).quest.mayor = sti(pchar.(sNationname).quest.mayor) + 1;
 							TakeItemFromCharacter(pchar, "sicretLetter");
 							DeleteAttribute(ItemsFromID("sicretLetter"), "City");
 							DeleteAttribute(ItemsFromID("sicretLetter"), "Mayor");
@@ -1637,6 +1641,7 @@ void ProcessDialogEvent()
 							dialog.text = RandPhraseSimple("Вы сумели обуздать контрабанду?", "Скажите, вы уничтожили контрабандистов?");
 							link.l1 = "Да, я настиг"+ GetSexPhrase("","ла") +" их в бухте " + sTemp + " и всех перебил"+ GetSexPhrase("","а") +".";
 							link.l1.go = "All_Execute";
+							pchar.(sNationname).quest.mayor = sti(pchar.(sNationname).quest.mayor) + 1;
 							AddCharacterExpToSkill(PChar, "Leadership", 50);
 							AddCharacterExpToSkill(PChar, SKILL_SNEAK, 100);
 						break;
@@ -1664,6 +1669,7 @@ void ProcessDialogEvent()
 							dialog.text = RandPhraseSimple("Скажите мне только одно - этот проклятый пират жив или мёртв?", "Скажите, этот чёртов пират жив или нет?");
 							link.l1 = "Он и его команда - покойники, а его корабль на дне, " + GetAddress_FormToNPC(NPChar) + ".";
 							link.l1.go = "All_Execute";
+							pchar.(sNationname).quest.mayor = sti(pchar.(sNationname).quest.mayor) + 1;
 							AddCharacterExpToSkill(PChar, "Leadership", 50);
 							AddCharacterExpToSkill(PChar, SKILL_FORTUNE, 50);
 							AddCharacterExpToSkill(PChar, SKILL_SNEAK, 50);
@@ -1688,7 +1694,7 @@ void ProcessDialogEvent()
 				//<<------ взятые квесты ------------
 				break;
 			}
-			//==> раздача патентов
+			/*//==> раздача патентов
 			sTemp = npchar.city;
 			if (CheckAttribute(pchar, "GenQuest.MayorQuestsList." + sTemp) && sti(pchar.GenQuest.MayorQuestsList.(sTemp)) > (5 + rand(5)) && !CheckCharacterItem(Pchar, "patent_" + NationShortName(sti(NPChar.nation))) )
             {
@@ -1709,7 +1715,7 @@ void ProcessDialogEvent()
     			pchar.GenQuest.MayorQuestsList.(sTemp) = 0;
 				break;
 			}
-//navy -->
+//navy -->*/
 			//занят ПГГ
 			i = CheckAvailableTaskForNPC(NPChar, PGG_TASK_WORKONMAYOR);
 			if  (GetCharacterSPECIALSimple(PChar, SPECIAL_C) >= dRand(11))   i = -1;       //WW   харизма героя перебивает работу у ПГГ
@@ -1795,9 +1801,9 @@ void ProcessDialogEvent()
 								pchar.GenQuest.Intelligence.Terms = dRand(10) + (42 - MOD_SKILL_ENEMY_RATE); //сроки выполнения задания
 								pchar.GenQuest.Intelligence.Money = ((dRand(4) + 6) * 1000) + (sti(pchar.rank) * 1000 + 10000); //вознаграждение
 								pchar.GenQuest.Intelligence.City = sTemp;
-								sTemp = ", что на " + XI_ConvertString(colonies[FindColony(pchar.GenQuest.Intelligence.City)].islandLable+"Dat");
+								sTemp = ", что на " + XI_ConvertString(colonies[FindColony(pchar.GenQuest.Intelligence.City)].islandLable+"Gen");
 								dialog.text = "У меня есть для вас задание, сопряжённое с серьёзным риском. Мне нужно, чтобы вы пробрались в " + XI_ConvertString("Colony"+pchar.GenQuest.Intelligence.City+"Acc") + sTemp + ", встретились там с указанным человеком и доставили мне то, что он вам даст.";
-								link.l1 = "Хм, не сказал"+ GetSexPhrase("","а") +" бы, что в " + XI_ConvertString("Colony"+pchar.GenQuest.Intelligence.City+"Dat") + " будут рады меня видеть...";
+								link.l1 = "Хм, не сказал"+ GetSexPhrase("","а") +" бы, что в " + XI_ConvertString("Colony"+pchar.GenQuest.Intelligence.City+"Gen") + " будут рады меня видеть...";
 								link.l1.go = "Intelligence";
 							}
 						break;
@@ -2225,8 +2231,9 @@ void ProcessDialogEvent()
     			dialog.text = "Пожалуй, можно уладить наш инцидент таким способом.";
     		    link.l1 = "Замечательно!";
     		    link.l1.go = "Exit";
-    		    AddMoneyToCharacter(pchar, -ChangeCharacterHunterScore(Pchar, NationShortName(sti(NPChar.nation)) + "hunter", 0) * 6000);
-    		    ChangeCharacterHunterScore(Pchar, NationShortName(sti(NPChar.nation)) + "hunter", -100);
+				int iTemp = ChangeCharacterHunterScore(Pchar, NationShortName(sti(NPChar.nation)) + "hunter", 0);
+    		    AddMoneyToCharacter(pchar, -iTemp * 6000);
+    		    ChangeCharacterHunterScore(Pchar, NationShortName(sti(NPChar.nation)) + "hunter", -iTemp);//За сколько заплатили, столько и снижаем. Ровно до нуля. 
     		    AddCharacterExpToSkill(pchar, SKILL_FORTUNE, 100);
             }
             else
@@ -2408,7 +2415,7 @@ void ProcessDialogEvent()
 					case 4:	sTemp += "_PortMan";	break;
 				}
 				pchar.GenQuest.Intelligence.SpyId = sTemp; //Id нашего шпиона в городе
-				dialog.text = "Прекрасно! Теперь по делу. В " + XI_ConvertString("Colony"+pchar.GenQuest.Intelligence.City+"Dat") + " вам необходимо разыскать местного " + GetWorkTypeOfMan(&characters[GetCharacterIndex(sTemp)], "Gen") +
+				dialog.text = "Прекрасно! Теперь по делу. В " + XI_ConvertString("Colony"+pchar.GenQuest.Intelligence.City+"Voc") + " вам необходимо разыскать местного " + GetWorkTypeOfMan(&characters[GetCharacterIndex(sTemp)], "Gen") +
 					", его зовут " + GetFullName(&characters[GetCharacterIndex(sTemp)]) + ". Ему вы назовёте моё имя, и получите пакет документов. На доставку этого пакета лично мне в руки я даю вам " + FindRussianDaysString(sti(pchar.GenQuest.Intelligence.Terms)) + ". И имейте в виду, что всё нужно сделать тихо. В случае вашего обнаружения в городе, агент не будет подвергать себя риску и не пойдёт на контакт. Вам всё ясно?";
 				link.l1 = "Да, я всё понял"+ GetSexPhrase("","а") +", " + GetAddress_FormToNPC(NPChar) + ". Немедленно приступаю к выполнению задания.";
 				link.l1.go = "exit";
@@ -2561,6 +2568,7 @@ void ProcessDialogEvent()
 		break;
 		case "All_Execute":
 			QuestName = pchar.GenQuest.questName;
+			pchar.(sNationname).quest.mayor = sti(pchar.(sNationname).quest.mayor) + 1;
 			dialog.text = RandPhraseSimple("Прекрасная новость! Ну что же, пора подвести итоги. Ваш гонорар составляет " + FindRussianMoneyString(sti(pchar.GenQuest.(QuestName).Money)) + ". Извольте получить.",
 				"Великолепно! Так будет лучше для всех... Итак, рад вручить вам положенное вознаграждение - " + FindRussianMoneyString(sti(pchar.GenQuest.(QuestName).Money))  + ". Извольте получить.");
 			link.l1 = "Спасибо, " + GetAddress_FormToNPC(NPChar) + ", " + RandPhraseSimple("приятно иметь с вами дело!", "я приятно удивлён"+ GetSexPhrase("","а") +" чёткостью взаиморасчетов.");
@@ -2756,7 +2764,7 @@ string GetSpyLocation(ref npchar)
 			if (arCommon.label != "Sea")
 			{
 				int locationId2 = FindLocation(LocId);
-				if (!CheckAttribute(Locations[locationId2],"reload")) continue;
+				if (!CheckAttribute(Locations[locationId2],"reload") || !CheckAttribute(Locations[locationId2],"islandId")) continue;
 				makearef(arRld2, Locations[locationId2].reload);
 				islandId2 = Locations[locationId2].islandId;
 

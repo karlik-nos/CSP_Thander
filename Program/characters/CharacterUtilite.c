@@ -1988,6 +1988,7 @@ int GetCurrentLocationNation()
 
 void SetRandomNameToCharacter(ref rCharacter)
 {
+	if (rCharacter.sex == "crab") {rCharacter.name = "Краб"; rCharacter.lastname = "№" + (1+rand(998)); return;}
 	int iNation = sti(rCharacter.nation);
 	if (iNation == -1) iNation = PIRATE;
 	while (iNation == PIRATE) { iNation = rand(MAX_NATIONS - 2); }
@@ -2095,6 +2096,7 @@ string GenerateRandomName(int iNation, string sSex)
 
 void SetRandomNameToCharacter_Generator(ref rCharacter)
 {
+	if (rCharacter.sex == "crab") {rCharacter.name = "Краб"; rCharacter.lastname = "№" + (1+rand(998)); return;}
 	int iNation = sti(rCharacter.nation);
 	if (iNation == -1) iNation = PIRATE;
 	while (iNation == PIRATE) { iNation = rand(MAX_NATIONS - 2); }
@@ -2607,7 +2609,7 @@ void SetEquipedItemToCharacter(ref chref, string groupID, string itemID)
 	case MAPS_ITEM_TYPE:
 		if(CheckAttribute(chref, "MapsAtlasCount"))
 		{
-			if(CheckAttribute(arItm, "MapIsland"))
+			if(CheckAttribute(arItm, "MapIsland") && arItm.id != "map_LSC")//фикс - карта ГПК не входит в сумму
 			{
 				chref.MapsAtlasCount = sti(chref.MapsAtlasCount) + 1;
 				if(sti(chref.MapsAtlasCount) == MAPS_IN_ATLAS && !CheckCharacterPerk(chref, "MapMaker"))  // даем скрытый перк если собрали все карты островов

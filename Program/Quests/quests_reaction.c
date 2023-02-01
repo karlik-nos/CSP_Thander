@@ -1433,7 +1433,7 @@ void QuestComplete(string sQuestName, string qname)
             attrName = "";
             if (pchar.CargoQuest.iTradeIsland != pchar.CargoQuest.iTradeColony)
             {
-                attrName = ", что находится на " + XI_ConvertString(pchar.CargoQuest.iTradeIsland+"Dat");
+                attrName = ", что находится на " + XI_ConvertString(pchar.CargoQuest.iTradeIsland+"Voc");
             }
             AddQuestUserData("DELIVERY_TRADE_QUEST", "island", attrName);
     		AddQuestUserData("DELIVERY_TRADE_QUEST", "sTermsDelivery", FindRussianDaysString(makeint(pchar.CargoQuest.iDaysExpired)));
@@ -1681,7 +1681,7 @@ void QuestComplete(string sQuestName, string qname)
             ReOpenQuestHeader("convoy_quest");
 			AddQuestRecord("convoy_quest", "1");
 			AddQuestUserData("convoy_quest", "sSex", GetSexPhrase("ся","ась"));
-			sTemp = XI_ConvertString("Colony" + pchar.quest.destination + "Gen") + ", что на " + XI_ConvertString(GetIslandByCityName(pchar.quest.destination) + "Dat") + ",";
+			sTemp = XI_ConvertString("Colony" + pchar.quest.destination + "Gen") + ", что на " + XI_ConvertString(GetIslandByCityName(pchar.quest.destination) + "Voc") + ",";
 			AddQuestUserData("convoy_quest", "sCity", sTemp);
 			AddQuestUserData("convoy_quest", "sDay", FindRussianDaysString(sti(pchar.ConvoyQuest.iDay)));
             AddQuestUserData("convoy_quest", "sMoney", FindRussianMoneyString(sti(pchar.ConvoyQuest.convoymoney)));
@@ -9826,7 +9826,20 @@ void QuestComplete(string sQuestName, string qname)
 			LAi_ActorDialog(sld, pchar, "", -1, 0);
 			Locations[FindLocation("PortRoyal_town")].reload.l23.disable = false;   //открывает архитектора
         break;
+//========================  Дозор  =======================
+		case "DozorPrepare_2":
+			for(int d=1; d<=8; d++)	{DozorSetRiddleQuestion(d);}
 
+			chr = GetCharacter(NPC_GenerateCharacter("Fabian Gronholm", "usurer_5", "man", "man", 1, PIRATE, -1, false));
+			chr.name = "Фабиан";
+			chr.lastname = "Гронхольм";
+			chr.Dialog.FileName = "DamnedDestiny\Dozor\Fabian_Gronholm.c";
+			chr.Dialog.CurrentNode = "First Time";
+			chr.greeting = "cit_quest";
+			LAi_SetStayType(chr);
+			LAi_SetImmortal(chr, true);
+			ChangeCharacterAddressGroup(chr, "Pirates_town", "officers", "reload6_3");
+		break;
 //========================  Квест "Проклятый идол".  =======================
 
 		case "PDM_CI_SpawnJC":
@@ -10466,15 +10479,12 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 
 		case "PDM_CL_Antonio_Ubit":
-			sld = CharacterFromID("PDM_CL_Antonio")
-			ChangeCharacterAddressGroup(sld, "Maracaibo_town", "none", "");
 			sld = CharacterFromID("PDM_CL_Anto2")
-			ChangeCharacterAddressGroup(sld, "Maracaibo_town", "none", "");
+			ChangeCharacterAddressGroup(sld, "none", "", "");
 			Group_SetAddress("PDM_el_tib", "none", "", "");
 			sld = CharacterFromID("PDM_Octavio_Lambrini")
 			sld.Dialog.Filename = "Quest/PDM/Clan_Lambrini.c";
 			sld.dialog.currentnode   = "Octavio_2_1";
-			DeleteAttribute(pchar, "questTemp.PDM_CL_Tavern");
 			DeleteAttribute(pchar, "questTemp.PDM_CL_Ishem");
 			AddQuestRecord("PDM_Clan_Lambrini", "3");
 			AddQuestUserData("PDM_Clan_Lambrini", "sSex", GetSexPhrase("ен","на"));
@@ -10586,7 +10596,7 @@ void QuestComplete(string sQuestName, string qname)
 				PGG_ChangeRelation2MainCharacter(CharacterFromID(pchar.LambriniPGG), -200);
 			}
 			sld = CharacterFromID(pchar.LambriniPGG);
-			sld.dialog.filename = "pgg_dialog_town.c";
+			sld.dialog.filename = "PGG_dialog.c";
 			sld.dialog.currentnode = "First time";
 			DeleteAttribute(sld, "PGGAi.DontUpdate");
 			DeleteAttribute(sld, "LambiniAsoleda");

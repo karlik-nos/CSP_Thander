@@ -715,25 +715,9 @@ void ProcessDialogEvent()
 		break;
 
 		case "shipyard1":
-			ok = (rColony.from_sea == "") || (Pchar.location.from_sea == rColony.from_sea);
-			if (sti(Pchar.Ship.Type) == SHIP_NOTUSED || ok)
-			{
-				NextDiag.CurrentNode = NextDiag.TempNode;
-				DialogExit();
-				LaunchShipyard1(npchar);
-			}
-			else
-			{
-				dialog.text = NPCharRepPhrase(npchar, pcharrepphrase("Дуришь меня? А где же твой корабль? У пирса его нет!",
-																	 "Клянусь дьяволом, тебе не обмануть меня! У пирса нет твоего корабля!"),
-													  pcharrepphrase("Я не вижу вашего корабля в порту, капитан " +GetFullName(pchar)+ ". Надеюсь, это не 'Летучий голландец'?",
-																	 "Капитан, удобнее чинить корабль в доке. Пришвартуйте корабль и приходите."));
-				link.l1 = NPCharRepPhrase(npchar, pcharrepphrase("" +RandSwear()+"Какая неприятность!!! Ладно, старый проныра, ещё увидимся!",
-																 "Я не хотел"+ GetSexPhrase("","а") +" вас обмануть " +GetFullName(npchar)+ ", корабль на другой стороне острова."),
-												  pcharrepphrase("Нет. Мой корабль называется Black Perl. Что это ты побелел? Ха-ха! Шутка!",
-																 "Спасибо за совет, обязательно им воспользуюсь."));
-				link.l1.go = "exit";
-			}
+			NextDiag.CurrentNode = NextDiag.TempNode;
+			DialogExit();
+			LaunchShipyard1(npchar);
 		break;
 
 		case "Cannons":
@@ -1089,7 +1073,7 @@ void ProcessDialogEvent()
 			AddQuestRecord("ShipyardsMap", "1");
 			AddQuestUserData("ShipyardsMap", "sSex", GetSexPhrase("","а"));
 			AddQuestUserData("ShipyardsMap", "sCity", XI_ConvertString("Colony" + npchar.city + "Gen"));
-			AddQuestUserData("ShipyardsMap", "sTarget", XI_ConvertString("Colony" + pchar.questTemp.different.ShipyardsMap.city + "Dat"));
+			AddQuestUserData("ShipyardsMap", "sTarget", XI_ConvertString("Colony" + pchar.questTemp.different.ShipyardsMap.city + "Voc"));
 			AddQuestUserData("ShipyardsMap", "sShip", pchar.questTemp.different.ShipyardsMap.what);
 		break;
 

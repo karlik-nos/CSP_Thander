@@ -607,7 +607,7 @@ void SeaPearl_DieHard(string qName)
 
 void SharpSeekSpy_loginSpy(string qName)
 {
-	if (rand(1) && !IsDay())
+	if (!IsDay())
 	{
 		LAi_group_Delete("EnemyFight");
 		AddQuestRecord("SharpPearl_SeekSpy", "3");
@@ -653,10 +653,6 @@ void SharpSeekSpy_loginSpy(string qName)
 		Group_LockTask(sGroup);
 		Map_CreateWarrior("", sld.id, 8);
 	}
-	else
-	{
-		SetTimerFunction("SharpSeekSpy_again", 0, 0, 3);
-	}
 }
 
 void SharpSeekSpy_script(string qName)
@@ -672,13 +668,6 @@ void SharpSeekSpy_script(string qName)
 	{
 		pchar.questTemp.Sharp.SeekSpy = "over";
 	}
-}
-
-void SharpSeekSpy_again(string qName)
-{
-	pchar.quest.SharpSeekSpy_loginSpy.win_condition.l1 = "location";
-	pchar.quest.SharpSeekSpy_loginSpy.win_condition.l1.location = "Shore55";
-	pchar.quest.SharpSeekSpy_loginSpy.function = "SharpSeekSpy_loginSpy";
 }
 
 void SharpSeekSpy_caveDialog()
@@ -8971,15 +8960,13 @@ void sharp_pre(string qName)
 {
 	chrDisableReloadToLocation = true;
 	LAi_group_Delete("EnemyFight");
-
-
-    	for (i=1; i<=5; i++)
-    	{
+    for (i=1; i<=5; i++)
+    {
 		sld = GetCharacter(NPC_GenerateCharacter("sh_pre_"+i, "pirate_"+i, "man", "man", 15, PIRATE, 0, true));
 		FantomMakeCoolFighter(sld, 15, 70, 70, RandPhraseSimple("blade21","blade31"), RandPhraseSimple("pistol3", "pistol6"), 20);
 		LAi_SetWarriorType(sld);
 		LAi_group_MoveCharacter(sld, "EnemyFight");
-		ChangeCharacterAddressGroup(sld, "Shore9", "goto", "goto4");
+		ChangeCharacterAddressGroup(sld, locations[FindLoadedLocation()].id, "goto", "goto4");
 		LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
 		LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, true);
 		LAi_group_SetCheck("EnemyFight", "OpenTheDoors");
@@ -9926,11 +9913,12 @@ void Miko_die(string qName)
 
 void Headhunter_Jahunters(string qName)//наймиты Джа в бухте
 {
+	int iTemp = sti(pchar.rank) + MOD_SKILL_ENEMY_RATE + 5;
 	chrDisableReloadToLocation = true;
 	for (i=1; i<=6; i++)
 	{
-		if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations)ref sld = GetCharacter(NPC_GenerateCharacter("JaHunters"+i, "officer_17", "man", "man_fast", 25, PIRATE, -1, true)); // LEO: Превозмогаторам страдать 08.12.2021
-		else sld = GetCharacter(NPC_GenerateCharacter("JaHunters"+i, "officer_17", "man", "man", 25, PIRATE, -1, true));
+		if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations)ref sld = GetCharacter(NPC_GenerateCharacter("JaHunters"+i, "officer_17", "man", "man_fast", iTemp, PIRATE, -1, true)); // LEO: Превозмогаторам страдать 08.12.2021
+		else sld = GetCharacter(NPC_GenerateCharacter("JaHunters"+i, "officer_17", "man", "man", iTemp, PIRATE, -1, true));
 		FantomMakeCoolFighter(sld, 25, 60, 60, "topor2", "pistol6", 70);
 		LAi_SetActorType(sld);
 		if (i == 1)
@@ -9950,7 +9938,7 @@ void Headhunter_Jahunters(string qName)//наймиты Джа в бухте
 		}
 		LAi_group_MoveCharacter(sld, "EnemyFight");
 	}
-	sld = GetCharacter(NPC_GenerateCharacter("JaMush", "mushketer_1", "man", "mushketer", 35, PIRATE, -1, true));
+	sld = GetCharacter(NPC_GenerateCharacter("JaMush", "mushketer_1", "man", "mushketer", iTemp, PIRATE, -1, true));
     FantomMakeCoolFighter(sld, iTemp, 80, 80, "", "mushket", 100);
 	ChangeCharacterAddressGroup(sld, "shore55", "goto", "goto2");
 	LAi_group_MoveCharacter(sld, "EnemyFight");
@@ -10306,7 +10294,7 @@ void PirateComeToIsabella(string qName)
 	sld = CharacterFromID("Anri");
 	sld.NextDiag.CurrentNode = "Isabella_1";
 	LAi_SetStayType(sld);
-	ChangeCharacterAddressGroup(sld, "Shore32", "smugglers", LAi_FindNearestFreeLocator2Pchar("smugglers"));
+	ChangeCharacterAddressGroup(sld, "Shore32", "smugglers", "smuggler01");
 	Locations[FindLocation("Shore32")].DisableEncounters = true;
 	LAi_SetActorType(sld);
 	LAi_LocationDisableOfficersGen("Shore32", true);
@@ -10410,13 +10398,13 @@ void PDM_Callow_RodjerProdolg(string qName)
     FantomMakeCoolFighter(sld, sti(pchar.rank), 15 + MOD_SKILL_ENEMY_RATE * 4, 15 + MOD_SKILL_ENEMY_RATE * 4, "blade36", "", 25 + MOD_SKILL_ENEMY_RATE * 4);
 	sld.SaveItemsForDead = true;
 	sld.DontChangeBlade = true;
+	sld.DeleteFood = true;
 	TakeItemFromCharacter(sld, "spyglass3");
-	TakeNItems(sld, "food1", -10);
 	AddMoneyToCharacter(sld, 5000);
 	AddItems(sld, "jewelry2", 10);
 	AddItems(sld, "jewelry5", 10);
 	AddItems(sld, "jewelry17", 10);
-	AddItems(sld, "mineral5", 10);
+	AddItems(sld, "mineral5", 3);
 	ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto2");
 	LAi_SetActorType(sld);
 	sld.dialog.filename   = "Quest/PDM/Cursed_Idol.c";
@@ -10679,10 +10667,8 @@ void PDM_CL_Ubrat_Lodku(string qName)
 	int Sila = 70 + MOD_SKILL_ENEMY_RATE * 3;
 	int DopHP = 60 + MOD_SKILL_ENEMY_RATE * 12;
 
-	sld = CharacterFromID("PDM_CL_Antonio")
-	ChangeCharacterAddressGroup(sld, "Maracaibo_town", "none", "");
 	sld = CharacterFromID("PDM_CL_Anto2")
-	ChangeCharacterAddressGroup(sld, "Maracaibo_town", "none", "");
+	ChangeCharacterAddressGroup(sld, "none", "", "");
 	Group_SetAddress("PDM_el_tib", "none", "", "");
 
 	sld = GetCharacter(NPC_GenerateCharacter("PDM_CL_Antonio3", "SpaOfficer2", "man", "man", Rank, SPAIN, -1, false));
@@ -10953,6 +10939,8 @@ void ReloadMyGun(string qName)
 // Нежданное наследство
 void UnexpectedInheritance()
 {
+	if (GetCharacterIndex("UI_girl") != -1) return;
+	
 	sld = GetCharacter(NPC_GenerateCharacter("UI_girl", "girl_1", "woman", "woman", 1, FRANCE, -1, false));
 	LAI_SetStayType(sld);
 	sld.talker = 10;

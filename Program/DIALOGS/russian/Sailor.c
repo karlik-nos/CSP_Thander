@@ -13,14 +13,15 @@ void ProcessDialogEvent()
 	makearef(Link, Dialog.Links);
 	makearef(NextDiag, NPChar.Dialog);
 
-	// вызов диалога по городам -->
-    NPChar.FileDialog2 = "DIALOGS\" + LanguageGetLanguage() + "\Citizen\" + NPChar.City + "_Citizen.c";
-    if (LoadSegment(NPChar.FileDialog2))
+	if (CheckAttribute(npchar, "City"))//фикс ошибок в логе. у наёмных скелетов в пещере нет города.
 	{
-        ProcessCommonDialog(NPChar, Link, NextDiag);
-		UnloadSegment(NPChar.FileDialog2);
+		NPChar.FileDialog2 = "DIALOGS\" + LanguageGetLanguage() + "\Citizen\" + NPChar.City + "_Citizen.c";
+	    if (LoadSegment(NPChar.FileDialog2))// вызов диалога по городам <--
+		{
+	        ProcessCommonDialog(NPChar, Link, NextDiag);
+			UnloadSegment(NPChar.FileDialog2);
+		}
 	}
-    // вызов диалога по городам <--
 
 	ProcessCommonDialogRumors(NPChar, Link, NextDiag);
 
@@ -46,20 +47,16 @@ void ProcessDialogEvent()
 					link.l2.go = "exit";
 					npchar.quest.meeting = "1";
 					DeleteAttribute(npchar, "talker"); //снимаем говорилку
-					if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton" && pchar.questTemp.UP_SkeletyVPeshere != "SVP")	//Sinistra Нежить
-					{
-						dialog.text = "Приветствую тебя в нашей уютной пещере! Чувствуй себя как дома.";
-						link.l1 = "У меня есть к тебе предложение.";
-						link.l1.go = "crew";
-						link.l2 = "Благодарю, сородич. Я тут осмотрюсь.";
-						link.l2.go = "UP_Skelet_Vihod";
-					}
-					if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton" && pchar.questTemp.UP_SkeletyVPeshere == "SVP")	//Sinistra Нежить
+					if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")
 					{
 						dialog.text = "Приветствую тебя в нашей уютной пещере! Чувствуй себя как дома.";
 						link.l1 = "Благодарю, сородич. Я тут осмотрюсь.";
 						link.l1.go = "UP_Skelet_Vihod";
-						DeleteAttribute(link, "l2");
+						if (!checkattribute(pchar, "questTemp.UP_SkeletyVPeshere")	//Sinistra Нежить
+						{
+							link.l2 = "У меня есть к тебе предложение.";
+							link.l2.go = "crew";
+						}
 					}
 					break;
 				}

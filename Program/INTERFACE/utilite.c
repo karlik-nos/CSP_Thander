@@ -1337,6 +1337,7 @@ void Table_Clear(string sTableControl, bool bClearHeader, bool bClearContent, bo
 {
 	if (bClearHeader)
 	{
+		DeleteAttribute(&GameInterface, sTableControl + ".hr");
 	}
 
 	if (bClearContent)

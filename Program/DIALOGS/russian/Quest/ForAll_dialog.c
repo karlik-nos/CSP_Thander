@@ -228,8 +228,7 @@ void ProcessDialogEvent()
 			link.l1.go = "GiveKeyMan_7";
 		break;
 		case "GiveKeyMan_7":
-			npchar.quest.price = makeint((6666 * ((sti(pchar.rank))/2)*MOD_SKILL_ENEMY_RATE*(100-(GetCharacterSkill(pchar, SKILL_LEADERSHIP)/2)))/100);
-			Log_Info(""+npchar.quest.price);
+			npchar.quest.price = makeint((6666 * ((sti(pchar.rank))/2.0)*MOD_SKILL_ENEMY_RATE*(100-(GetCharacterSkill(pchar, SKILL_LEADERSHIP)/2)))/100);
 			if (sti(pchar.money) >= sti(npchar.quest.price))
 			{
 				dialog.text = "М-м... хорошо! Я хочу за этот ключ " + FindRussianMoneyString(sti(npchar.quest.price)) + ".";
@@ -251,8 +250,7 @@ void ProcessDialogEvent()
 			NextDiag.TempNode = "GiveKeyMan_NoMoney";
 		break;
 		case "GiveKeyMan_NoMoney":
-			npchar.quest.price = makeint((6666 * ((sti(pchar.rank))/2)*MOD_SKILL_ENEMY_RATE*(100-(GetCharacterSkill(pchar, SKILL_LEADERSHIP)/2)))/100);
-			Log_Info(""+npchar.quest.price);
+			npchar.quest.price = makeint((6666 * ((sti(pchar.rank))/2.0)*MOD_SKILL_ENEMY_RATE*(100-(GetCharacterSkill(pchar, SKILL_LEADERSHIP)/2)))/100);
 			if (sti(pchar.money) >= sti(npchar.quest.price))
 			{
 				dialog.text = "Ну вот, уже лучше, как говорится... Давай вернёмся к нашему разговору о ключе. В общем, я готов его тебе сделать, предположим, за " + FindRussianMoneyString(sti(npchar.quest.price)) + ".";
@@ -1545,123 +1543,144 @@ void ProcessDialogEvent()
 		break;
 		
 		case "SCQ_ProverkaZnaniy_3":
-			Log_info("Вам нужно повторить текст за 12 секунд");
-			SetShowTimer(12.0);
-			DoQuestCheckDelay("SCQ_Zachet_VremyVishlo", 11.6);
+			Log_info("Вам нужно повторить текст за 16 секунд");
+			SetShowTimer(16.0);
+			DoQuestCheckDelay("SCQ_Zachet_VremyVishlo", 15.6);
 			pchar.StudentZachet = npchar.id;
 			int Phrase;
-			Phrase = rand(19);
+			Phrase = rand(23);
 			Link.l1.edit = 1;
 			Link.l1 = "";
 			link.l1.go = "SCQ_ProverkaZnaniy_4";
 			if (Phrase == 0)
 			{
-				dialog.text = "actum atque tractatum";
+				dialog.text = "актум атке трактатум висэма";
 			break;
 			}
 			if (Phrase == 1)
 			{
-				dialog.text = "abeunt studia in mores";
+				dialog.text = "абеунт студиа ин морес фиат";
 			break;
 			}
 			if (Phrase == 2)
 			{
-				dialog.text = "cuncta supercilio moventis";
+				dialog.text = "кункта суперсилио мовентиса";
 			break;
 			}
 			if (Phrase == 3)
 			{
-				dialog.text = "decies repetitia placebit";
+				dialog.text = "десиэс репетитиа пласебитум";
 			break;
 			}
 			if (Phrase == 4)
 			{
-				dialog.text = "et fabula partem veri habet";
+				dialog.text = "эт фабула партэм верис абет";
 			break;
 			}
 			if (Phrase == 5)
 			{
-				dialog.text = "homo homini lupus est";
+				dialog.text = "омо омини лопус эст донграт";
 			break;
 			}
 			if (Phrase == 6)
 			{
-				dialog.text = "letum non omnia finit";
+				dialog.text = "летум нон омниа финит денов";
 			break;
 			}
 			if (Phrase == 7)
 			{
-				dialog.text = "memento quia pulvis es";
+				dialog.text = "мементо куя пульвис эспунир";
 			break;
 			}
 			if (Phrase == 8)
 			{
-				dialog.text = "nec sutor ultra crepidam";
+				dialog.text = "нек сутор ультра крепидам ов";
 			break;
 			}
 			if (Phrase == 9)
 			{
-				dialog.text = "omnis ars imitatio est naturae";
+				dialog.text = "омнис арс имитатио эс натур";
 			break;
 			}
 			if (Phrase == 10)
 			{
-				dialog.text = "porta itineri longissima";
+				dialog.text = "порта ди итинэри лонгиссима";
 			break;
 			}
 			if (Phrase == 11)
 			{
-				dialog.text = "repetitio est mater studiorum";
+				dialog.text = "репетитио эст матэр студиорум";
 			break;
 			}
 			if (Phrase == 12)
 			{
-				dialog.text = "sero venientibus ossa";
+				dialog.text = "сиро до венинтибус осса сапит";
 			break;
 			}
 			if (Phrase == 13)
 			{
-				dialog.text = "silentium est aurum";
+				dialog.text = "силентиум эст аурум нихил кур";
 			break;
 			}
 			if (Phrase == 14)
 			{
-				dialog.text = "sudore et sanguine";
+				dialog.text = "судорэ эт сангуине перикулум";
 			break;
 			}
 			if (Phrase == 15)
 			{
-				dialog.text = "tempus edax rerum";
+				dialog.text = "тэмпус эдакс рерум веритас нэ";
 			break;
 			}
 			if (Phrase == 16)
 			{
-				dialog.text = "te amo est verum";
+				dialog.text = "тэ амо эст верум турбинэм бис";
 			break;
 			}
 			if (Phrase == 17)
 			{
-				dialog.text = "usus est optimus magister";
+				dialog.text = "усус эс оптимус магистэр патри";
 			break;
 			}
 			if (Phrase == 18)
 			{
-				dialog.text = "ut tensio sic vis";
+				dialog.text = "ут тенсио сик вис поэна неготи";
 			break;
 			}
 			if (Phrase == 19)
 			{
-				dialog.text = "vinum verba ministrat";
+				dialog.text = "винум верба министрат меридим";
+			break;
+			}
+			if (Phrase == 20)
+			{
+				dialog.text = "ансия философи анима беллум";
+			break;
+			}
+			if (Phrase == 21)
+			{
+				dialog.text = "аннус орибилис плувиалис мунди";
+			break;
+			}
+			if (Phrase == 22)
+			{
+				dialog.text = "игнис эт акья кауса ситио уби";
+			break;
+			}
+			if (Phrase == 23)
+			{
+				dialog.text = "ингустис амиси аппарент камера";
 			break;
 			}
 		break;
 		
 		case "SCQ_ProverkaZnaniy_4":
-			if ("actum atque tractatum" == GetStrSmallRegister(dialogEditStrings[1]) || "abeunt studia in mores" == GetStrSmallRegister(dialogEditStrings[1]) || "cuncta supercilio moventis" == GetStrSmallRegister(dialogEditStrings[1]) || "decies repetitia placebit" == GetStrSmallRegister(dialogEditStrings[1]) 
-				|| "et fabula partem veri habet" == GetStrSmallRegister(dialogEditStrings[1]) || "homo homini lupus est" == GetStrSmallRegister(dialogEditStrings[1]) || "letum non omnia finit" == GetStrSmallRegister(dialogEditStrings[1]) || "memento quia pulvis es" == GetStrSmallRegister(dialogEditStrings[1])
-				|| "nec sutor ultra crepidam" == GetStrSmallRegister(dialogEditStrings[1]) || "omnis ars imitatio est naturae" == GetStrSmallRegister(dialogEditStrings[1]) || "porta itineri longissima" == GetStrSmallRegister(dialogEditStrings[1]) || "repetitio est mater studiorum" == GetStrSmallRegister(dialogEditStrings[1])
-				|| "sero venientibus ossa" == GetStrSmallRegister(dialogEditStrings[1]) || "silentium est aurum" == GetStrSmallRegister(dialogEditStrings[1]) || "sudore et sanguine" == GetStrSmallRegister(dialogEditStrings[1]) || "tempus edax rerum" == GetStrSmallRegister(dialogEditStrings[1])
-				|| "te amo est verum" == GetStrSmallRegister(dialogEditStrings[1]) || "usus est optimus magister" == GetStrSmallRegister(dialogEditStrings[1]) || "ut tensio sic vis" == GetStrSmallRegister(dialogEditStrings[1]) || "vinum verba ministrat" == GetStrSmallRegister(dialogEditStrings[1]))
+			if ("актум атке трактатум висэ" == GetStrSmallRegister(dialogEditStrings[1]) || "абеунт студиа ин морес фиат" == GetStrSmallRegister(dialogEditStrings[1]) || "кункта суперсилио мовентиса" == GetStrSmallRegister(dialogEditStrings[1]) || "десиэс репетитиа пласебитум" == GetStrSmallRegister(dialogEditStrings[1]) 
+				|| "эт фабула партэм верис абет" == GetStrSmallRegister(dialogEditStrings[1]) || "омо омини лопус эст донграт" == GetStrSmallRegister(dialogEditStrings[1]) || "летум нон омниа финит денов" == GetStrSmallRegister(dialogEditStrings[1]) || "мементо куя пульвис эспунир" == GetStrSmallRegister(dialogEditStrings[1])
+				|| "нек сутор ультра крепидам ов" == GetStrSmallRegister(dialogEditStrings[1]) || "омнис арс имитатио эс натур" == GetStrSmallRegister(dialogEditStrings[1]) || "порта ди итинэри лонгиссима" == GetStrSmallRegister(dialogEditStrings[1]) || "репетитио эст матэр студиорум" == GetStrSmallRegister(dialogEditStrings[1])
+				|| "сиро до венинтибус осса сапит" == GetStrSmallRegister(dialogEditStrings[1]) || "силентиум эст аурум нихил кур" == GetStrSmallRegister(dialogEditStrings[1]) || "судорэ эт сангуине перикулум" == GetStrSmallRegister(dialogEditStrings[1]) || "тэмпус эдакс рерум веритас нэ" == GetStrSmallRegister(dialogEditStrings[1])
+				|| "тэ амо эст верум турбинэм бис" == GetStrSmallRegister(dialogEditStrings[1]) || "усус эс оптимус магистэр патри" == GetStrSmallRegister(dialogEditStrings[1]) || "ут тенсио сик вис поэна неготи" == GetStrSmallRegister(dialogEditStrings[1]) || "винум верба министрат меридим" == GetStrSmallRegister(dialogEditStrings[1])
+				|| "ансия философи анима беллум" == GetStrSmallRegister(dialogEditStrings[1]) || "аннус орибилис плувиалис мунди" == GetStrSmallRegister(dialogEditStrings[1]) || "игнис эт акья кауса ситио уби" == GetStrSmallRegister(dialogEditStrings[1]) || "ингустис амиси аппарент камера" == GetStrSmallRegister(dialogEditStrings[1]))
 			{
 				Dialog.text = "Невероятно, вы прекрасно владеете латынью! Теперь я замотивирован сдать зачёт, и у меня точно всё получится! Спасибо вам, "+GetSexPhrase("капитан","девушка")+", вот ваша награда, "+ sti(iMoney) +" пиастров.";
 				Link.l1 = "Это было несложно. Желаю вам удачи!";

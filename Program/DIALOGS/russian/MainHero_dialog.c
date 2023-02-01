@@ -1583,7 +1583,7 @@ void PirateProcess()
     PChar.GenQuest.VideoAVI        = "Pirate";
     PChar.GenQuest.VideoAfterQuest = "pir_flag_rise";
 
-    DoQuestCheckDelay("PostVideo_Start", 0); WasteTime(1);
+    //DoQuestCheckDelay("PostVideo_Start", 0); WasteTime(1);
 }
 
 void EnglandProcess()
@@ -1593,7 +1593,7 @@ void EnglandProcess()
     PChar.GenQuest.VideoAVI        = "England";
     PChar.GenQuest.VideoAfterQuest = "eng_flag_rise";
 
-    DoQuestCheckDelay("PostVideo_Start", 0); WasteTime(1);
+    //DoQuestCheckDelay("PostVideo_Start", 0); WasteTime(1);
 }
 
 void FranceProcess()
@@ -1602,7 +1602,7 @@ void FranceProcess()
     PChar.GenQuest.VideoAVI        = "France";
     PChar.GenQuest.VideoAfterQuest = "fra_flag_rise";
 
-    DoQuestCheckDelay("PostVideo_Start", 0); WasteTime(1);
+    //DoQuestCheckDelay("PostVideo_Start", 0); WasteTime(1);
 }
 
 void SpainProcess()
@@ -1611,7 +1611,7 @@ void SpainProcess()
     PChar.GenQuest.VideoAVI        = "Spain";
     PChar.GenQuest.VideoAfterQuest = "spa_flag_rise";
 
-    DoQuestCheckDelay("PostVideo_Start", 0); WasteTime(1);
+    //DoQuestCheckDelay("PostVideo_Start", 0); WasteTime(1);
 }
 
 void HollandProcess()
@@ -1620,6 +1620,6 @@ void HollandProcess()
     PChar.GenQuest.VideoAVI        = "Holland";
     PChar.GenQuest.VideoAfterQuest = "hol_flag_rise";
 
-    DoQuestCheckDelay("PostVideo_Start", 0); WasteTime(1);
+    //DoQuestCheckDelay("PostVideo_Start", 0); WasteTime(1);
 }
 

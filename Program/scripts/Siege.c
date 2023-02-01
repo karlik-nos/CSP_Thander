@@ -269,7 +269,7 @@ void EndSiegeMap()
     pchar.quest.(sQuest).win_condition = "ClearSiege";
     pchar.quest.(sQuest).function= "SiegeClear";
     //--> слухи
-    SiegeRumourEx("Говорят, что "+NationNameSK(sti(aData.nation))+"ая эскадра, разорившая наш город, все ещё в водах нашей колонии. Эх, если бы нашёлся храбрый капитан, который рискнул бы напасть на них...", aData.Colony, sti(aData.conation), -1, 5, 3, "citizen,habitue,trader,tavern");
+    SiegeRumourEx("Говорят, что "+NationNameSK(sti(aData.nation))+"ая эскадра, разорившая наш город, всё ещё в водах нашей колонии. Эх, если бы нашёлся храбрый капитан, который рискнул бы напасть на них...", aData.Colony, sti(aData.conation), -1, 5, 3, "citizen,habitue,trader,tavern");
     //<-- слухи
 
 }
@@ -650,7 +650,7 @@ void  EndOfTheSiege(string tmp)
     if(idist == -1 || idist > 60 || tmp != "")
     {
         // чистим слухи
-        for (l = 0; l <= 4; l++)
+        for (l = 1; l <= 4; l++)
         {
             tmpName = "tmpID"+l;
             if (CheckAttribute(aData, tmpName))

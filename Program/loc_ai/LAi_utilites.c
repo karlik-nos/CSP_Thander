@@ -1192,25 +1192,26 @@ void CreatePearlVillage(aref loc)
 		model[9] = "barmen_9";
 		//Boyer change
 		num = rand(3) + 2;
-		for (i = 0; i < num; i++)
+		chr = GetCharacter(NPC_GenerateCharacter("WorkMan"+iPrefix+"_"+0, model[rand(1)], "man", "man", 7, iPearNation, 30, false));
+		chr.dialog.Filename = "Pearl_dialog.c";
+		chr.dialog.currentnode = "IndPearlMan";
+		chr.greeting = "Gr_PearlIndian";
+		chr.name = LinkRandPhrase("Венету", "Соколиный глаз", "Гойко Митич");
+		chr.lastname = "";
+		chr.CityType = "citizen";
+		chr.city = "SantaCatalina";
+		PlaceCharacter(chr, "goto", "random");
+		LAi_SetCitizenType(chr);
+		LAi_group_MoveCharacter(chr, "PearlGroup_"+iPrefix);
+		SetFoodToCharacter(chr, 3, 20);
+		for (i = 1; i < num; i++)
 		{
-			iMassive = rand(9);
+			iMassive = rand(7) + 2;
 			sAnime = "man"
-			if (model[iMassive] == "indsair2" || model[iMassive] == "indsar1") sAnime = "man";
 			chr = GetCharacter(NPC_GenerateCharacter("WorkMan"+iPrefix+"_"+i, model[iMassive], "man", sAnime, 7, iPearNation, 30, false));
 			chr.dialog.Filename = "Pearl_dialog.c";
 			chr.dialog.currentnode = "PearlMan";
-			if (model[iMassive] == "indsair2" || model[iMassive] == "indsar1")
-			{
-				chr.name = LinkRandPhrase("Венету", "Соколиный глаз", "Гойко Митич");
-				chr.lastname = "";
-				chr.dialog.currentnode = "IndPearlMan";
-				chr.greeting = "Gr_PearlIndian";
-			}
-			else
-			{
-				chr.greeting = "cit_common";
-			}
+			chr.greeting = "cit_common";
 			chr.CityType = "citizen";
 			chr.city = "SantaCatalina"; //НЗГ Санта-Каталины
 

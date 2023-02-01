@@ -1097,6 +1097,7 @@ void FillShipyardTable()
 
 		k++;
 		GameInterface.TABLE_SHIPYARD.(row).sShipId = sAttr;
+		GameInterface.TABLE_SHIPYARD.(row).index = i;
         GameInterface.TABLE_SHIPYARD.(row).td1.icon.texture = "interfaces\\ships\\" + sShip + ".tga.tx";
 		GameInterface.TABLE_SHIPYARD.(row).td1.icon.uv = "0,0,1,1";
 		GameInterface.TABLE_SHIPYARD.(row).td1.icon.width = 46;
@@ -1222,7 +1223,7 @@ void SetButtionsAccess()
     else
     {
         SetSelectable("BUTTON_BUY", false);
-
+		if (!checkAttribute(xi_refCharacter, "ship.soiling") xi_refCharacter.ship.soiling = 0;//фикс ошибок в логах
         if (GetHullPercent(xi_refCharacter) < 100 || GetSailPercent(xi_refCharacter) < 100 || sti(xi_refCharacter.ship.soiling) > 0)
         {
             SetSelectable("BUTTON_REPAIR", true);
@@ -1555,7 +1556,7 @@ void SendCrewToPchar(ref chref)
 	if (GetCrewQuantity(pchar) < GetMaxCrewQuantity(pchar))
 	{
 		int crewn = GetMaxCrewQuantity(pchar) - GetCrewQuantity(pchar);
-		float fTemp =  stf(GetCrewQuantity(pchar) + crewn);
+		float fTemp =  stf(GetMaxCrewQuantity(pchar));
 		float fTemp2 =  stf(GetCrewQuantity(pchar) + GetCrewQuantity(chref));
 
 		if (GetCrewQuantity(chref)>crewn)
@@ -1589,6 +1590,8 @@ void SendCrewToPchar(ref chref)
 		}
 		else
 		{
+			if (fTemp2 != 0)//фикс - убираем из лога ошибки деления на ноль
+			{
 			pchar.Ship.Crew.Exp.Sailors   = (stf(pchar.Ship.Crew.Exp.Sailors)*GetCrewQuantity(pchar) +
 												stf(chref.Ship.Crew.Exp.Sailors)*GetCrewQuantity(chref)) / fTemp2;
 			pchar.Ship.Crew.Exp.Cannoners   = (stf(pchar.Ship.Crew.Exp.Cannoners)*GetCrewQuantity(pchar) +
@@ -1600,6 +1603,7 @@ void SendCrewToPchar(ref chref)
 														stf(chref.Ship.Crew.morale)*GetCrewQuantity(chref)) / fTemp2;
 			SetCrewQuantity(pchar,GetCrewQuantity(pchar)+GetCrewQuantity(chref));
 			Log_Info("Команда с проданного корабля перешла на ваш корабль.");
+			}
 		}
 	}
 	else
@@ -1622,7 +1626,7 @@ int SendCrewToShip(ref chref, ref chreff, int crewnum)
 {
 	int crewn = GetMaxCrewQuantity(chreff) - GetCrewQuantity(chreff);
 	if (crewn == 0) return crewnum;
-	float fTemp =  stf(GetCrewQuantity(chreff) + crewn);
+	float fTemp =  stf(GetMaxCrewQuantity(chreff));
 	float fTemp2 =  stf(GetCrewQuantity(chreff) + crewnum);
 
 	if (crewnum>crewn)
@@ -1642,6 +1646,8 @@ int SendCrewToShip(ref chref, ref chreff, int crewnum)
 	}
 	else
 	{
+		if (fTemp2 != 0)//фикс - убираем из лога ошибки деления на ноль
+		{
 		chreff.Ship.Crew.Exp.Sailors   = (stf(chreff.Ship.Crew.Exp.Sailors)*GetCrewQuantity(chreff) +
 											stf(chref.Ship.Crew.Exp.Sailors)*crewnum) / fTemp2;
 		chreff.Ship.Crew.Exp.Cannoners   = (stf(chreff.Ship.Crew.Exp.Cannoners)*GetCrewQuantity(chreff) +
@@ -1654,6 +1660,7 @@ int SendCrewToShip(ref chref, ref chreff, int crewnum)
 		SetCrewQuantity(chreff,GetCrewQuantity(chreff)+crewnum);
 		Log_Info("Команда с проданного корабля перешла на корабль компаньона "+chreff.name+" "+chreff.lastname+".");
 		crewn = 0;
+		}
 	}
 	return crewn;
 }
@@ -1681,7 +1688,7 @@ void SendOptCrewToPchar(ref chref)
 	if (GetCrewQuantity(pchar) < GetOptCrewQuantity(pchar))
 	{
 		int crewn = GetOptCrewQuantity(pchar) - GetCrewQuantity(pchar);
-		float fTemp =  stf(GetCrewQuantity(pchar) + crewn);
+		float fTemp =  stf(GetOptCrewQuantity(pchar));
 		float fTemp2 =  stf(GetCrewQuantity(pchar) + GetCrewQuantity(chref));
 
 		if (GetCrewQuantity(chref)>crewn)
@@ -1715,6 +1722,8 @@ void SendOptCrewToPchar(ref chref)
 		}
 		else
 		{
+			if (fTemp2 != 0)//фикс - убираем из лога ошибки деления на ноль
+			{
 			pchar.Ship.Crew.Exp.Sailors   = (stf(pchar.Ship.Crew.Exp.Sailors)*GetCrewQuantity(pchar) +
 												stf(chref.Ship.Crew.Exp.Sailors)*GetCrewQuantity(chref)) / fTemp2;
 			pchar.Ship.Crew.Exp.Cannoners   = (stf(pchar.Ship.Crew.Exp.Cannoners)*GetCrewQuantity(pchar) +
@@ -1726,6 +1735,7 @@ void SendOptCrewToPchar(ref chref)
 														stf(chref.Ship.Crew.morale)*GetCrewQuantity(chref)) / fTemp2;
 			SetCrewQuantity(pchar,GetCrewQuantity(pchar)+GetCrewQuantity(chref));
 			Log_Info("Команда с проданного корабля перешла на ваш корабль.");
+			}
 		}
 	}
 	else
@@ -1749,7 +1759,7 @@ int SendOptCrewToShip(ref chref, ref chreff, int crewnum)
 	if (GetCrewQuantity(chreff) >= GetOptCrewQuantity(chreff)) return crewnum;
 	int crewn = GetOptCrewQuantity(chreff) - GetCrewQuantity(chreff);
 	if (crewn == 0) return crewnum;
-	float fTemp =  stf(GetCrewQuantity(chreff) + crewn);
+	float fTemp =  stf(GetOptCrewQuantity(chreff));
 	float fTemp2 =  stf(GetCrewQuantity(chreff) + crewnum);
 
 	if (crewnum>crewn)
@@ -1769,6 +1779,8 @@ int SendOptCrewToShip(ref chref, ref chreff, int crewnum)
 	}
 	else
 	{
+		if (fTemp2 != 0)//фикс - убираем из лога ошибки деления на ноль
+		{
 		chreff.Ship.Crew.Exp.Sailors   = (stf(chreff.Ship.Crew.Exp.Sailors)*GetCrewQuantity(chreff) +
 											stf(chref.Ship.Crew.Exp.Sailors)*crewnum) / fTemp2;
 		chreff.Ship.Crew.Exp.Cannoners   = (stf(chreff.Ship.Crew.Exp.Cannoners)*GetCrewQuantity(chreff) +
@@ -1781,6 +1793,7 @@ int SendOptCrewToShip(ref chref, ref chreff, int crewnum)
 		SetCrewQuantity(chreff,GetCrewQuantity(chreff)+crewnum);
 		Log_Info("Команда с проданного корабля перешла на корабль компаньона "+chreff.name+" "+chreff.lastname+".");
 		crewn = 0;
+		}
 	}
 	return crewn;
 }

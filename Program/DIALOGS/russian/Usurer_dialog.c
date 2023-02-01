@@ -697,13 +697,13 @@ void ProcessDialogEvent()
 		break;
 		case "StepPL5First_3":
 			pchar.questTemp.piratesLine.Q5.city_2 = GetQuestNationsCity(SPAIN);
-			dialog.text = "Да вроде бы собирался на север Мейна курс держать, к испанцам. А куда точно - не ведаю... Хотя подождите, что-то он говорил о " + XI_ConvertString("Colony" + pchar.questTemp.piratesLine.Q5.city_2 + "Dat") + ". Но сами понимаете, что за достоверность не ручаюсь.";
+			dialog.text = "Да вроде бы собирался на север Мейна курс держать, к испанцам. А куда точно - не ведаю... Хотя подождите, что-то он говорил о " + XI_ConvertString("Colony" + pchar.questTemp.piratesLine.Q5.city_2 + "Voc") + ". Но сами понимаете, что за достоверность не ручаюсь.";
 			link.l1 = "Понял"+ GetSexPhrase("","а") +". Спасибо.";
 			link.l1.go = "exit";
 			AddQuestRecord("Pir_Line_5_Hunter", "4");
 			AddQuestUserData("Pir_Line_5_Hunter", "sCity1", XI_ConvertString("Colony" + pchar.questTemp.piratesLine.Q5.city_1 + "Gen"));
 			AddQuestUserData("Pir_Line_5_Hunter", "sCity2", XI_ConvertString("Colony" + pchar.questTemp.piratesLine.Q5.city_2 + "Acc"));
-			AddQuestUserData("Pir_Line_5_Hunter", "sIsland", XI_ConvertString(GetIslandByCityName(pchar.questTemp.piratesLine.Q5.city_2) + "Dat"));
+			AddQuestUserData("Pir_Line_5_Hunter", "sIsland", XI_ConvertString(GetIslandByCityName(pchar.questTemp.piratesLine.Q5.city_2) + "Voc"));
 			pchar.questTemp.piratesLine = "PL5Hunter_toSecond";
 		break;
 
@@ -726,7 +726,7 @@ void ProcessDialogEvent()
 			link.l1.go = "exit";
 			AddQuestRecord("Pir_Line_5_Hunter", "6");
 			AddQuestUserData("Pir_Line_5_Hunter", "sCity", XI_ConvertString("Colony" + pchar.questTemp.piratesLine.Q5.city_3));
-			AddQuestUserData("Pir_Line_5_Hunter", "sIsland", XI_ConvertString(GetIslandByCityName(pchar.questTemp.piratesLine.Q5.city_3) + "Dat"));
+			AddQuestUserData("Pir_Line_5_Hunter", "sIsland", XI_ConvertString(GetIslandByCityName(pchar.questTemp.piratesLine.Q5.city_3) + "Voc"));
 			pchar.questTemp.piratesLine = "PL5Hunter_toThird";
 		break;
 
@@ -747,13 +747,13 @@ void ProcessDialogEvent()
 			link.l1.go = "StepPL5Third_4";
 		break;
 		case "StepPL5Third_4":
-			dialog.text = "Конечно. Видите ли, дело в том, что в " + XI_ConvertString("Colony" + pchar.questTemp.piratesLine.Q5.city_4 + "Dat") + " недавно был ограблен ростовщик.";
+			dialog.text = "Конечно. Видите ли, дело в том, что в " + XI_ConvertString("Colony" + pchar.questTemp.piratesLine.Q5.city_4 + "Voc") + " недавно был ограблен ростовщик.";
 			link.l1 = "А-а-а, я вас понял"+ GetSexPhrase("","а") +"! Спасибо огромное.";
 			link.l1.go = "exit";
 			AddQuestRecord("Pir_Line_5_Hunter", "8");
 			AddQuestUserData("Pir_Line_5_Hunter", "sCity1", XI_ConvertString("Colony" + pchar.questTemp.piratesLine.Q5.city_3 + "Gen"));
 			AddQuestUserData("Pir_Line_5_Hunter", "sCity2", XI_ConvertString("Colony" + pchar.questTemp.piratesLine.Q5.city_4 + "Gen"));
-			AddQuestUserData("Pir_Line_5_Hunter", "sIsland", XI_ConvertString(GetIslandByCityName(pchar.questTemp.piratesLine.Q5.city_4) + "Dat"));
+			AddQuestUserData("Pir_Line_5_Hunter", "sIsland", XI_ConvertString(GetIslandByCityName(pchar.questTemp.piratesLine.Q5.city_4) + "Voc"));
 			pchar.questTemp.piratesLine = "PL5Hunter_toFourth";
 		break;
 
@@ -1022,10 +1022,10 @@ void ProcessDialogEvent()
 							sTemp = "";
 							if (npchar.city != chr.city)
 							{
-								sTemp = ", что на " + XI_ConvertString(GetIslandByCityName(chr.city)+"Dat");
+								sTemp = ", что на " + XI_ConvertString(GetIslandByCityName(chr.city)+"Voc");
 							}
                             dialog.text = "Да, вы вовремя. Есть у меня щекотливый вопрос, требующий решения. "+
-                                     GetFullName(chr) + ", живущий в " + XI_ConvertString("Colony"+chr.city+"Dat") + sTemp + ", задолжал мне " + FindRussianMoneyString(sti(pchar.GenQuest.Loan.FindCitizenMoney)) +
+                                     GetFullName(chr) + ", живущий в " + XI_ConvertString("Colony"+chr.city+"Voc") + sTemp + ", задолжал мне " + FindRussianMoneyString(sti(pchar.GenQuest.Loan.FindCitizenMoney)) +
                                      ". Если вы вернёте мне всю сумму, то набежавшие проценты можете оставить себе. Они, кстати, составляют " + FindRussianMoneyString(sti(pchar.GenQuest.Loan.FindCitizenPercent)) + ".";
                             link.l1 = "Я берусь!";
                 			link.l1.go = "LoanUsurer_GiveWork_1";
@@ -1046,7 +1046,7 @@ void ProcessDialogEvent()
 							sTemp = "";
 							if (npchar.city != chr.city)
 							{
-								sTemp = ", что на " + XI_ConvertString(GetIslandByCityName(chr.city)+"Dat");
+								sTemp = ", что на " + XI_ConvertString(GetIslandByCityName(chr.city)+"Voc");
 							}
                             dialog.text = "Мне нужен проверенный человек для важной миссии. Нужно доставить кредит - " + pchar.GenQuest.LoanChest.Chest +
 									" сундука с золотом в "+ XI_ConvertString("Colony"+chr.city+"Acc") + sTemp + " для человека по имени " +
@@ -1076,12 +1076,12 @@ void ProcessDialogEvent()
 			sTemp = "";
 			if (npchar.city != chr.city)
 			{
-				sTemp = ", что на " + XI_ConvertString(GetIslandByCityName(chr.city)+"Dat");
+				sTemp = ", что на " + XI_ConvertString(GetIslandByCityName(chr.city)+"Voc");
 			}
 			ReOpenQuestHeader("Gen_LoanFindCitizen");
             AddQuestRecord("Gen_LoanFindCitizen", "1");
             AddQuestUserData("Gen_LoanFindCitizen", "sName", GetFullName(chr));
-            AddQuestUserData("Gen_LoanFindCitizen", "sCity", XI_ConvertString("Colony"+chr.city+"Dat") + sTemp);
+            AddQuestUserData("Gen_LoanFindCitizen", "sCity", XI_ConvertString("Colony"+chr.city+"Voc") + sTemp);
 			AddQuestUserData("Gen_LoanFindCitizen", "sFromCity", XI_ConvertString("Colony"+Npchar.city+"Gen"));
 			AddQuestUserData("Gen_LoanFindCitizen", "sMoney", FindRussianMoneyString(sti(pchar.GenQuest.Loan.FindCitizenMoney)));
 			AddQuestUserData("Gen_LoanFindCitizen", "sMyMoney", FindRussianMoneyString(sti(pchar.GenQuest.Loan.FindCitizenPercent)));
@@ -1228,7 +1228,7 @@ void ProcessDialogEvent()
 			sTemp = "";
 			if (npchar.city != chr.city)
 			{
-				sTemp = ", что на " + XI_ConvertString(GetIslandByCityName(chr.city)+"Dat");
+				sTemp = ", что на " + XI_ConvertString(GetIslandByCityName(chr.city)+"Voc");
 			}
 			ReOpenQuestHeader("Gen_LoanTakeChest");
             AddQuestRecord("Gen_LoanTakeChest", "1");
@@ -1447,7 +1447,9 @@ void ProcessDialogEvent()
 		break;
 
 		case "result":
-			Pchar.QuestTemp.Deposits.(NPC_Area).Interest = makeint((GetSummonSkillFromName(pchar, "Commerce")+GetSummonSkillFromName(pchar, "Leadership"))/10.0/4.0 + 0.66) + 1;
+			bool isPatentSameNation = pchar.PatentNation == NationShortName(sti(npchar.nation));
+			int iPercents = makeint((GetSummonSkillFromName(pchar, "Commerce")+GetSummonSkillFromName(pchar, "Leadership"))/10.0/4.0 + 0.66) + 1;
+			Pchar.QuestTemp.Deposits.(NPC_Area).Interest = iPercents + CheckAttribute(pchar,"EquipedPatentID") *  isPatentSameNation * iPercents;
 			Pchar.QuestTemp.Deposits.(NPC_Area).Sum = dialogEditStrings[3];
 			iTemp = sti(dialogEditStrings[3]);
 			if (iTemp <= 0)
@@ -1917,15 +1919,40 @@ void ProcessDialogEvent()
 			else
 			{
 				Link.l1 = "Удалось. Вся партия у меня в трюмах.";
-            	Link.l1.go = "Takeslaves";
+				if(amount != 0 && (GetSquadronGoods(Pchar, GOOD_SLAVES) <= makeint(sti(pchar.questTemp.Slavetrader.iSlaveQuantity) * 1.5))) Link.l1.go = "TakeMoreslaves1";
+				else Link.l1.go = "Takeslaves";
 			}
+
+		break;
+
+		case "TakeMoreslaves1":
+			dialog.Text = "Вижу у вас больше 'чёрного дерева', чем мы договаривались. Хотите я возьму у вас всё, сверх нашей договорённости?";
+			Link.l1 = "Хм... Да, забирайте всё!";
+			Link.l1.go = "TakeMoreslaves2";
+			Link.l2 = "Нет, уважаемый, остальное для моих личных целей."
+			Link.l2.go = "Takeslaves";
+		break;
+
+		case "TakeMoreslaves2":
+			amount = GetSquadronGoods(Pchar, GOOD_SLAVES);
+			dialog.Text = "Отлично! Мои люди их заберут... Насчёт таможни и коменданта форта не беспокойтесь. У меня этот бизнес поставлен на широкую ногу, так что проблем не будет, и в контрабанде вас никто не обвинит.";
+			Link.l1 = "Смотрю, у вас здесь уже всё схвачено! Как насчёт оплаты?";
+			Link.l1.go = "TakesMoreslaves3";
+			RemoveCharacterGoods(Pchar, GOOD_SLAVES, amount);
+		break;
+
+		case "TakeMoreslaves3":
+			AddMoneyToCharacter(pchar, makeint(GetSquadronGoods(Pchar, GOOD_SLAVES) * 250));
+			dialog.Text = "Пожалуйста, получите... Я слов на ветер не бросаю. Держитесь за меня, капитан, и скоро у вас будет столько пиастров, что для их перевозки понадобится целый галеон!";
+			Link.l1 = "Хорошо бы... Ну а что дальше?";
+			Link.l1.go = "Takeslaves_2";
 		break;
 
 		case "Takeslaves":
 			amount = sti(pchar.questTemp.Slavetrader.iSlaveQuantity);
 			dialog.Text = "Отлично! Мои люди их заберут... Насчёт таможни и коменданта форта не беспокойтесь. У меня этот бизнес поставлен на широкую ногу, так что проблем не будет, и в контрабанде вас никто не обвинит.";
 			Link.l1 = "Смотрю, у вас здесь уже всё схвачено! Как насчёт оплаты?";
-            Link.l1.go = "Takeslaves_1";
+			Link.l1.go = "Takeslaves_1";
 			RemoveCharacterGoods(Pchar, GOOD_SLAVES, amount);
 		break;
 
@@ -2010,7 +2037,7 @@ void ProcessDialogEvent()
 			AddQuestUserData("Slavetrader", "sName", GetFullName(npchar));
 			AddQuestUserData("Slavetrader", "sShipName", pchar.questTemp.Slavetrader.ShipName);
 			AddQuestUserData("Slavetrader", "sShoreName", XI_ConvertString(pchar.questTemp.Slavetrader.Island.Shore + "Abl"));
-			AddQuestUserData("Slavetrader", "sShoreType", XI_ConvertString(GetIslandByArealName(pchar.questTemp.Slavetrader.Island) + "Dat"));
+			AddQuestUserData("Slavetrader", "sShoreType", XI_ConvertString(GetIslandByArealName(pchar.questTemp.Slavetrader.Island) + "Voc"));
 			pchar.quest.Slavetrader_ShipsAttack.win_condition.l1 = "location";
             pchar.quest.Slavetrader_ShipsAttack.win_condition.l1.location = pchar.questTemp.Slavetrader.Island;//отправляем в локацию
             pchar.quest.Slavetrader_ShipsAttack.function = "Slavetrader_CreateSlaveShips";//создание кораблей
