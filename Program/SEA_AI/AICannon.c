@@ -1,4 +1,5 @@
-#define MAX_CANNON_DAMAGE_DISTANCE				3.0
+#define MAX_CANNON_DAMAGE_DISTANCE	2.0 //дальность расчета урона по пушке, если снаряд попал ближе этого числа(в метрах?), то расчёт идёт
+
 
 void DeleteCannonsEnvironment()
 {
