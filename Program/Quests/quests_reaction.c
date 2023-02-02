@@ -10971,6 +10971,21 @@ void QuestComplete(string sQuestName, string qname)
 			Log_info("Жаквин погиб!");
 		break;
 		
+		case "PKM_SvtvA_IdemSledom":
+			pchar.GenQuestBox.CommonRoom_MH4.box2.items.icollection = 1;
+			
+			PChar.quest.PKM_SvtvA_IdemSledom.win_condition.l1 = "Timer";
+			PChar.quest.PKM_SvtvA_IdemSledom.win_condition.l1.date.hour = sti(GetTime() + 1);
+			PChar.quest.PKM_SvtvA_IdemSledom.win_condition.l1.date.day = GetAddingDataDay(0, 0, 0);
+			PChar.quest.PKM_SvtvA_IdemSledom.win_condition.l1.date.month = GetAddingDataMonth(0, 0, 0);
+			PChar.quest.PKM_SvtvA_IdemSledom.win_condition.l1.date.year = GetAddingDataYear(0, 0, 0);
+			PChar.quest.PKM_SvtvA_IdemSledom.win_condition = "PKM_SvtvA_IdemSledom2";
+		break;
+		
+		case "PKM_SvtvA_IdemSledom2":
+			DeleteAttribute(&locations[FindLocation("CommonRoom_MH4")], "box2");
+		break;
+		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////   	КВЕСТЫ "Пираты Карибского Моря" КОНЕЦ
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
