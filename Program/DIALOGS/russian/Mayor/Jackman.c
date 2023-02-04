@@ -257,6 +257,18 @@ void ProcessDialogEvent()
 				link.l1 = "Готов"+ GetSexPhrase("","а") +" сообщить, что Эдвард Лоу умер с ужасом в глазах и твоим именем в ушах.";
 				link.l1.go = "PL_SEAWOLF";
 			}
+			if(CheckAttribute(pchar, "questTemp.piratesLine") && pchar.questTemp.piratesLine == "waiting_Q6") 
+			{
+				dialog.text = "О-о-о, кого я вижу?! Глазам не верю!";
+				link.l1 = "Морган послал к тебе сказать, что капитан Гудли мертв.";
+				link.l1.go = "PL_Q6_1";
+			}
+			if(CheckAttribute(pchar, "questTemp.piratesLine") && pchar.questTemp.piratesLine == "PL_Q6_AfterBattle") 
+			{
+				dialog.text = "Джон уже рассказал мне о твоей операции с "+ GetSexPhrase("двойником","'сеcтричкой'") +". Тебе удалось узнать что-нибудь конкретное?";
+				link.l1 = "Поговорить удалось, да и только. Он"+ GetSexPhrase("","а") +" слишком торопил"+ GetSexPhrase("ся","ась") +", видать, боял"+ GetSexPhrase("ся","ась") +" сболтнуть что-то лишнее.";
+				link.l1.go = "PL_Q6_after_1";
+			}
 			if (pchar.questTemp.piratesLine == "Panama_backToShip")
 			{
 				dialog.text = "А, рад тебя видеть, " + pchar.name + ". Ну, что скажешь?";
@@ -546,11 +558,6 @@ void ProcessDialogEvent()
 			Group_SetTaskNone("LidsGroup");
 		break;
 
-		case "PL_Q6_after":
-			dialog.text = "Джон уже рассказал мне о твоей операции с "+ GetSexPhrase("двойником","'сеcтричкой'") +". Тебе удалось узнать что-нибудь конкретное?";
-			link.l1 = "Поговорить удалось, да и только. Он"+ GetSexPhrase("","а") +" слишком торопил"+ GetSexPhrase("ся","ась") +", видать, боял"+ GetSexPhrase("ся","ась") +" сболтнуть что-то лишнее.";
-			link.l1.go = "PL_Q6_after_1";
-		break;
 		case "PL_Q6_after_1":
 			dialog.text = "Это плохо. За тобой шлейф какой-то тянется, сплошные курьёзы. Пока удача на твоей стороне, но стоит тебе оступиться - и тогда конец! Морган тебе не поможет.";
 			link.l1 = "Я понимаю. "+ GetSexPhrase("Двойник","'Сестричка'") +" явно что-то знал"+ GetSexPhrase("","а") +"... Надо пытаться выяснить, кто за всем этим стоит.";
