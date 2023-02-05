@@ -162,12 +162,12 @@ void WhrCreateSeaEnvironment()
 		WhrSetNewSea(fWeatherSpeed);
 		Sea.Sea2.FoamEnable = true;
 		Sea.Sea2.Reflection = 0.8;
-		if( GetTime() >= 23.0 || GetTime() < 7.0 ) {
+		if( GetTime() >= 23.0 || GetTime() < 6.0 ) {
 			Sea.Sea2.Transparency = 0.5;
-			Sea.Sea2.Reflection = 0.1;
-			Sea.Sea2.WaterColor = argb(0,0,20,40);
+			Sea.Sea2.Reflection = 0.3;
+			Sea.Sea2.WaterColor = argb(0,0,30,40);
 		} else {
-		if( GetTime() >= 7.0 && GetTime() < 9.0 ) {
+		if( GetTime() >= 6.0 && GetTime() < 9.0 ) {
 			Sea.Sea2.Transparency = 1.4;
 			Sea.Sea2.WaterColor = argb(0,0,120,140);
 		} else {
