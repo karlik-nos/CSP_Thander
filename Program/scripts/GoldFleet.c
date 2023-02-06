@@ -8,7 +8,7 @@ void GoldFleet()
     ref sld, chref;
     int iChar = NPC_GenerateCharacter("Head_of_Gold_Squadron", "off_spa_2", "man", "man", 5, SPAIN, 31, true);
     makeref(chref, Characters[iChar]);
-    chref.ship.type = GenerateShipExt(SHIP_SP_SANFELIPE, 1, chref);
+    chref.ship.type = GenerateShipExt(SHIP_SANFELIPE, 1, chref);
 	//SetBaseShipData(chref);	//Qwerry,St. - убираю, всё кроме морали должно в других функциях выдаваться
 	SetShipBermudeTuningMaxCrew(chref);
 	SetShipBermudeTuningHP(chref);
@@ -76,7 +76,7 @@ void GoldFleet()
 		sld.Ship.Mode = "war";
         if (k<3 || k==7 || k==8 || k>=(5+ngal))//3 СанФелипе(флагман + 2) впереди 	+ 4-5 усиленных фрегатов замыкают		//Qwerry,St. - ставлю галеоны в середину построения
         {
-			if(k < 3)  sld.ship.type = GenerateShipExt(SHIP_SP_SANFELIPE, 1, sld);
+			if(k < 3)  sld.ship.type = GenerateShipExt(SHIP_SANFELIPE, 1, sld);
 				else sld.ship.type = GenerateShipExt(SHIP_DUTCHSHIP, 1, sld);//Qwerry,St. - меняю Алексис, потому что он не испанский в ините
     	    //SetBaseShipData(sld);
 

@@ -347,7 +347,7 @@ int RandShipFromShipClass(ref _ch)
 	switch(iShipClass)
 	{
 		case 1:
-			iShipType = SHIP_WARSHIP + rand(2);
+			iShipType = SHIP_INGERMANLAND + rand(2);
 			break;
 
 		case 2:

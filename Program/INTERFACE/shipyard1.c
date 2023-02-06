@@ -447,10 +447,10 @@ void FillShipyardTable()
 	switch (FIS_FilterState)
 	{
 	case 7:
-		{iStart = SHIP_BERMSLOOP; iEnd = SHIP_SP_SANFELIPE;}
+		{iStart = SHIP_BERMSLOOP; iEnd = SHIP_OCEAN;}
 	break;
 	case 1:
-		{iStart = SHIP_POSEIDON; iEnd = SHIP_SP_SANFELIPE;}
+		{iStart = SHIP_POSEIDON; iEnd = SHIP_OCEAN;}
 	break;
 	case 2:
 		{iStart = SHIP_GALEON50; iEnd = SHIP_HEAVYLINESHIP;}
@@ -459,13 +459,13 @@ void FillShipyardTable()
 		{iStart = SHIP_PINNACE; iEnd = SHIP_CARRACA;}
 	break;
 	case 4:
-		{iStart = SHIP_BRIG; iEnd = SHIP_LYDIA;}
+		{iStart = SHIP_BRIG; iEnd = SHIP_HERCULES;}
 	break;
 	case 5:
 		{iStart = SHIP_POLACCA; iEnd = SHIP_SHNYAVA;}
 	break;
 	case 6:
-		{iStart = SHIP_BERMSLOOP; iEnd = SHIP_SOPHIE;}
+		{iStart = SHIP_BERMSLOOP; iEnd = SHIP_VEINARD;}
 	break;
 	}
 	iEnd++;
@@ -482,7 +482,7 @@ void FillShipyardTable()
 
 		if (ShipsTypes[i].nation.(sNation))
 		{
-			if (i>=SHIP_FR_TRINITY && !isCapital) continue;//мановары только в столицах
+			if (i>=SHIP_TRINITY && !isCapital) continue;//мановары только в столицах
 		}
 		else continue;//пропускаем корабли без нации верфиста
 
@@ -496,7 +496,7 @@ void FillShipyardTable()
 		GameInterface.TABLE_SHIPYARD.(row).td1.icon.offset = "0, 1";
 		GameInterface.TABLE_SHIPYARD.(row).td1.textoffset = "51,0";
 
-		if (i >= SHIP_FR_TRINITY)
+		if (i >= SHIP_TRINITY)
 		{
 			switch (sNation)
 			{
@@ -590,7 +590,7 @@ void SetButtionsAccess()
 		if (iRank<19 && iClass<3) {SetSelectable("BUTTON_BUY", false); sText = "c 19 ранга";}
 		if (iRank<29 && iClass<2) {SetSelectable("BUTTON_BUY", false); sText = "c 29 ранга";}
 	}
-	if (refNPCShipyard.id != "Pirates_shipyarder" && sti(RealShips[iShip].basetype) >= SHIP_FR_TRINITY && !CheckCharacterItem(Pchar, "patent_" + NationShortName(sti(refNPCShipyard.nation))) && sText == "Заказать")
+	if (refNPCShipyard.id != "Pirates_shipyarder" && sti(RealShips[iShip].basetype) >= SHIP_TRINITY && !CheckCharacterItem(Pchar, "patent_" + NationShortName(sti(refNPCShipyard.nation))) && sText == "Заказать")
 	{SetSelectable("BUTTON_BUY", false); sText = "нет патента";}
 	SendMessage(&GameInterface,"lsls",MSG_INTERFACE_MSG_TO_NODE,"BUTTON_BUY", 0, "#" + sText);
 }
