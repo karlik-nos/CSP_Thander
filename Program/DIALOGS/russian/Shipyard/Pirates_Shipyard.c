@@ -2106,7 +2106,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 
 		case "WarDogUpgrade_6_1":
 			sld = GetCharacter(NPC_GenerateCharacter("W_Titanic", "off_eng_1", "man", "man", 99, ENGLAND, -1, true));
-			FantomMakeCoolestSailor(sld, SHIP_BATTLEMANOWAR, "Титаник", CANNON_TYPE_CANNON_LBS48, 100, 100, 100);
+			FantomMakeCoolestSailor(sld, SHIP_PRINCE, "Титаник", CANNON_TYPE_CANNON_LBS48, 100, 100, 100);
 			ref W_Titanic = &RealShips[sti(sld.Ship.Type)];
 			W_Titanic.HP = 30000;
 			W_Titanic.MastMultiplier = 0.01;

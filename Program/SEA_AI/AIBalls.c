@@ -85,25 +85,16 @@ int ballNumber;
 void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0, float fDirAng, float fHeightAng, float fCannonDirAng, float fMaxFireDistance, float fAngle)
 {
 	int iCannonType = sti(aCharacter.Ship.Cannons.Type);
-	ref rCannon 	= GetCannonByType(iCannonType);
-	int nShipType 	= sti(aCharacter.ship.type);
-	ref refBaseShip = GetRealShip(nShipType);
+	ref rCannon = GetCannonByType(iCannonType);
+	float fCannonHeightMultiply = stf(rCannon.HeightMultiply);
 
 	EntityUpdate(0);
 	AIBalls.CannonType = iCannonType;
 	AIBalls.x = fX;
 	AIBalls.y = fY;
 	AIBalls.z = fZ;
-	AIBalls.CharacterIndex	= aCharacter.Index;
-	AIBalls.Type 			= Goods[sti(aCharacter.Ship.Cannons.Charge.Type)].Name;
-	AIBalls.SizeMultiply = rCannon.SizeMultiply;
-	AIBalls.TimeSpeedMultiply = rCannon.TimeSpeedMultiply;
-	AIBalls.MaxFireDistance = fMaxFireDistance;
-	AIBalls.RawAng = fAngle;
-	float fTempDispersionY = Degree2Radian(9.0); //отклонение по горизонтали	//LEO: Важные параметры разброса снарядов, ванильное: 15.0
-	float fTempDispersionX = Degree2Radian(6.5); //отклонение по вертикали		//(5.0)
-	float fCannonHeightMultiply = stf(rCannon.HeightMultiply);
-/*
+	AIBalls.CharacterIndex    = aCharacter.Index;
+	AIBalls.Type = Goods[sti(aCharacter.Ship.Cannons.Charge.Type)].Name;
 	if(SeaCameras.Camera != "SeaDeckCamera")
 	{
 		if(AIBalls.Type == GOOD_KNIPPELS)
@@ -112,51 +103,85 @@ void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0,
 		}
 		fCannonHeightMultiply *= 0.3;//высота траектории
 	}
-*/
-	AIBalls.HeightMultiply = fCannonHeightMultiply;
+	AIBalls.HeightMultiply    = fCannonHeightMultiply;
+	AIBalls.SizeMultiply      = rCannon.SizeMultiply;
+	AIBalls.TimeSpeedMultiply = rCannon.TimeSpeedMultiply;
+	AIBalls.MaxFireDistance   = fMaxFireDistance;
+	AIBalls.RawAng = fAngle;
+	float fTempDispersionY = Degree2Radian(9.0); //отклонение по горизонтали	//LEO: Важные параметры разброса снарядов, ванильное: 15.0
+	float fTempDispersionX = Degree2Radian(6.5); //отклонение по вертикали		//(5.0)
 
-	int iCannonCaliber = GetCannonCaliber(iCannonType);
-	float fCannonsNum = stf(refBaseShip.CannonsQuantity);
-	float fCannonsSkill = stf(aCharacter.TmpSkill.Cannons);
+	//float fDamage2Cannons = 100.0;
 
-	float fCannonsNumPenalty = (fCannonsNum/35 - 1)/10;//-0.06 .. 0.2					//больше пушек - меньше меткость
-	float fCaliberPenalty = (iCannonCaliber - 6 - fCannonsSkill*20)/160;//-0.1...0.2	//крупные калибры менее точные, но навык обращения с пушками срезает штраф
-	float fAccuracy = (1.5 - stf(aCharacter.TmpSkill.Accuracy))/2 + fCaliberPenalty + fCannonsNumPenalty; //(0.25 .. 0.75) + (-0.06 .. 0.2) + (-0.1...0.2)
-	float fAccurB2R = Bring2Range(0.33, 0.75, 0.25, 0.75, fAccuracy);
+	float fCannons = stf(aCharacter.TmpSkill.Cannons)*10;
+
+	int nShipType = sti(aCharacter.ship.type);
+	ref refBaseShip = GetRealShip(nShipType);
+	int iCannonsNum = sti(refBaseShip.CannonsQuantity);
 	
-	AIBalls.Dir 	= fDirAng   + fAccurB2R	* fTempDispersionY * (frnd() - 0.5);//горизонтальная_наводка + разброс
-	AIBalls.SpdV0 = 10*fSpeedV0 + fAccuracy * fTempDispersionY * (frnd() - 0.5);//скорость_снаряда + разброс_скорости
-	AIBalls.Ang 	=fHeightAng + fAccuracy * fTempDispersionX * (frnd() - 0.5);//вертикальная_наводка + разброс 
+	float fCannonsNumPenalty = (MakeFloat(iCannonsNum)/35 - 1)/(10);//-0.06...0.2
+	float fCaliberPenalty = (GetCannonCaliber(iCannonType) - 6 - fCannons*2)/160;//-0.05...0.15
+    float fAccuracy = (1.5 - stf(aCharacter.TmpSkill.Accuracy))/2 + fCaliberPenalty + fCannonsNumPenalty;
+	
+	fCannons = 15.0 + MOD_SKILL_ENEMY_RATE - fCannons;//сложность влияет на частоту нанесения урона! И на неписей тоже распространяется???
 
-	AIBalls.Event = "";
-	EntityUpdate(1);
-	AIBalls.Add = "";
-
-	float fCannons = 15.0 + MOD_SKILL_ENEMY_RATE - fCannonsSkill*10;//сложность влияет на частоту нанесения урона!
-	if (fCannons > 0.0 && RealShips[nShipType].BaseName != "fort") // fix
+	if (fCannons > 0.0 && RealShips[sti(aCharacter.ship.type)].BaseName != "fort") // fix
 	{
 		if (fCannons > rand(200) && !IsEquipCharacterByArtefact(aCharacter, "talisman3"))//урон в 2 раза реже
 		{
-			fCannons = (frnd() + 3 * (1.65 - fCannonsSkill)) * 5;//уменьшаю рандомный разброс урона, и сам урон примерно в 2 раза
-			SendMessage(&AISea, "laffff", AI_MESSAGE_CANNONS_BOOM_CHECK, aCharacter, fCannons, fx, fy, fz);
+            fCannons = (frnd() + 3.0*(1.65 - stf(aCharacter.TmpSkill.Cannons))) * 5;//уменьшаю рандомный разброс урона, и сам урон примерно в 2 раза
+			SendMessage(&AISea, "laffff", AI_MESSAGE_CANNONS_BOOM_CHECK, aCharacter, fCannons, fx, fy, fz);  // fDamage2Cannons  там много делителей, потому много
 		}
 	}
 
-	string sParticleName = "cancloud_fire";
-	if (iCannonCaliber > 42) {sParticleName = "Bombard";}
+	float fK = Bring2Range(0.33, 0.75, 0.25, 0.75, fAccuracy);
+	
+	AIBalls.Dir = fDirAng + fK * fTempDispersionY * (frnd() +frnd() - 1);//горизонтальная_наводка + разброс
+	AIBalls.SpdV0 = fSpeedV0 + fAccuracy * (10.0 * fTempDispersionY) * (frnd() - 0.5);//скорость_снаряда + разброс_скорости
+	AIBalls.Ang = fHeightAng + fAccuracy * (fTempDispersionX) * (frnd() + frnd() - 1);//вертикальная_наводка + разброс 
+
+	AIBalls.Event = "";
+
+	EntityUpdate(1);
+	AIBalls.Add = "";
+
+	string sParticleName = "cancloud_fire";		// if (sti(aCharacter.ship.type) < SHIP_CORVETTE)
+
+	if (iCannonType >= CANNON_TYPE_CANNON_LBS48)
+    {
+        sParticleName = "Bombard";
+    }
 	else
 	{
-		if (iCannonCaliber > 24) {sParticleName = "cancloud_fire_big";}
-			else {sParticleName = "cancloud_fire";}
+		if (iCannonType >= CANNON_TYPE_CANNON_LBS24)
+		{
+			sParticleName = "cancloud_fire_big";
+		}
+		else
+		{
+			sParticleName = "cancloud_fire";
+		}
+		if (iCannonType >= CANNON_TYPE_CULVERINE_LBS24)
+		{
+			sParticleName = "cancloud_fire_big";
+		}
+		else
+		{
+			sParticleName = "cancloud_fire";
+		}
 	}
 	//if (rand(1) == 0) // boal оптимизация дыма
 	CreateParticleSystem(sParticleName, fX, fY, fZ, -fHeightAng - (fCannonHeightMultiply - 1.0) * 0.1, fDirAng, 0.0, 5);
 	
 	if (sti(InterfaceStates.EnabledAltSoundsGun) != 0) 
-		{Play3DSound(rCannon.Sound+"_alt", fX, fY, fZ);}
-	else {Play3DSound(rCannon.Sound, fX, fY, fZ);}
+	{
+		Play3DSound(rCannon.Sound+"_alt", fX, fY, fZ);
+	}
+	else 
+	{
+		Play3DSound(rCannon.Sound, fX, fY, fZ);
+	}
 }
-
 
 void Ball_WaterHitEvent()
 {

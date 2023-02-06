@@ -3159,7 +3159,7 @@ void SlavetraderGalleonInWorld()
 	sName = pchar.questTemp.Slavetrader.ShipName;
 	sld = GetCharacter(NPC_GenerateCharacter("GaleonCap", "", "man", "man", 45, SPAIN, -1, true));
  	SetCaptanModelByEncType(sld, "war");
-	FantomMakeCoolSailor(sld, SHIP_WARSHIP, sName, CANNON_TYPE_CANNON_LBS32, 100, 100, 100);
+	FantomMakeCoolSailor(sld, SHIP_INGERMANLAND, sName, CANNON_TYPE_CANNON_LBS32, 100, 100, 100);
 	FantomMakeCoolFighter(sld, 45, 100, 100, "blade28", "pistol5", 100);//создание фантома кэпа
 	sld.Ship.Mode = "war";
 	DeleteAttribute(sld, "SinkTenPercent");

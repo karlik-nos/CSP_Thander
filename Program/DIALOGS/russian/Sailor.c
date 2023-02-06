@@ -52,7 +52,7 @@ void ProcessDialogEvent()
 						dialog.text = "Приветствую тебя в нашей уютной пещере! Чувствуй себя как дома.";
 						link.l1 = "Благодарю, сородич. Я тут осмотрюсь.";
 						link.l1.go = "UP_Skelet_Vihod";
-						if (!checkattribute(pchar, "questTemp.UP_SkeletyVPeshere")	//Sinistra Нежить
+						if (!checkattribute(pchar, "questTemp.UP_SkeletyVPeshere"))//Sinistra Нежить
 						{
 							link.l2 = "У меня есть к тебе предложение.";
 							link.l2.go = "crew";
@@ -76,7 +76,7 @@ void ProcessDialogEvent()
 					DeleteAttribute(link, "l2");
 					DeleteAttribute(link, "l3");
 				}
-				if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")	//Sinistra Нежить
+				if (pchar.sex == "Skeleton" && npchar.sex == "Skeleton")//Sinistra Нежить
 				{
 					dialog.text = "Приветствую тебя в нашей уютной пещере! Чувствуй себя как дома.";
 					link.l1 = "Благодарю, сородич. Я тут осмотрюсь.";

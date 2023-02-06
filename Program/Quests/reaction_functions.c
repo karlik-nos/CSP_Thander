@@ -1335,7 +1335,7 @@ void PQ7_setBattleShip(string qName)
 		sld.DeckDialogNode = "QuestCap_PL7_inDeck";
 		sld.greeting = "CapSinkShip";
 		FantomMakeCoolFighter(sld, 40, 90, 90, "blade32", "pistol4", 200);
-		FantomMakeCoolSailor(sld, SHIP_BATTLESHIP, "Неуловимый", CANNON_TYPE_CULVERINE_LBS32, 90, 90, 90);
+		FantomMakeCoolSailor(sld, SHIP_REDOUTABLE, "Неуловимый", CANNON_TYPE_CULVERINE_LBS32, 90, 90, 90);
 		DeleteAttribute(sld, "SinkTenPercent");
 		DeleteAttribute(sld, "SaveItemsForDead");
 		DeleteAttribute(sld, "DontClearDead");
@@ -9463,7 +9463,7 @@ void Headhunter_CreateRatpinasse(string qName)//создание пинаса А
 	else sld = GetCharacter(NPC_GenerateCharacter("RatSeaOfficer", "officer_15", "man", "man", 35, FRANCE, -1, true));//создание кэпа
 	sld.name = "Первый помощник";
 	sld.lastname = "Барнс";
-	FantomMakeCoolSailor(sld, SHIP_JAMAICASHIP, "Аделаида", CANNON_TYPE_CANNON_LBS16, 100, 100, 100);//создание кораблей
+	FantomMakeCoolSailor(sld, SHIP_EASTINDIAMAN, "Аделаида", CANNON_TYPE_CANNON_LBS16, 100, 100, 100);//создание кораблей
 	FantomMakeCoolFighter(sld, 35, 80, 80, "blade15", "pistol2", 90);//создание фантома кэпа
 	if (bHardBoss) sld.AlwaysReload = true;//перезарядка независимо от Дозарядки
 	sld.DontRansackCaptain = true;
@@ -9606,7 +9606,7 @@ void Headhunter_CreateRatTruepinasse(string qName)//создание пинас�
 	sld.lastname = "Грин";
 	sld.DontRansackCaptain = true;
 	sld.HeroModel = "ozg_piRat,ozg_piRat_1,ozg_piRat_2,ozg_piRat_3,ozg_piRat_4,ozg_piRat_5";
-	FantomMakeCoolSailor(sld, SHIP_JAMAICASHIP, "Аделаида", CANNON_TYPE_CANNON_LBS16, 80, 80, 80);//создание кораблей
+	FantomMakeCoolSailor(sld, SHIP_EASTINDIAMAN, "Аделаида", CANNON_TYPE_CANNON_LBS16, 80, 80, 80);//создание кораблей
 	FantomMakeCoolFighter(sld, 25, 70, 70, "blade15", "pistol6", 100);//создание фантома кэпа
 	if (bHardBoss) sld.AlwaysReload = true;//перезарядка независимо от Дозарядки
 	DeleteAttribute(sld, "SaveItemsForDead");
@@ -9960,7 +9960,7 @@ void Create_Ja(string qName)//cоздаем Фрегат "Ахерон" с Дж�
 	sld.HeroModel = "QuestCaptain,QuestCaptain_1,QuestCaptain_2,QuestCaptain_3,QuestCaptain_4,QuestCaptain_5,QuestCaptain,QuestCaptain,QuestCaptain";
 	// Прописка всех моделей для кирас. <--
 	FantomMakeCoolFighter(sld, 35, 75, 75, "blade14", "pistol6", 100);
-	FantomMakeCoolestSailor(sld, SHIP_CONSTITUTION, "Ахерон", CANNON_TYPE_CANNON_LBS32, 80, 80, 80); // LEO: убрал оверапы калибров
+	FantomMakeCoolestSailor(sld, SHIP_CONSTITUTION_H, "Ахерон", CANNON_TYPE_CANNON_LBS32, 80, 80, 80); // LEO: убрал оверапы калибров
 	DeleteAttribute(sld, "SinkTenPercent");
 	DeleteAttribute(sld, "AboardToFinalDeck");
 	sld.AlwaysSandbankManeuver = true;

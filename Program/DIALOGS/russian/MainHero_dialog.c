@@ -73,7 +73,7 @@ void ProcessDialogEvent()
 
 			mc = GetMainCharacter();
 
-			mc.Ship.Type = GenerateShipExt(SHIP_SOPHIE, true, mc);
+			mc.Ship.Type = GenerateShipExt(SHIP_VEINARD, true, mc);
 			mc.Ship.name="Чёрная Вдова";
 			SetBaseShipData(mc);
 			mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS12;
@@ -1388,7 +1388,7 @@ void ProcessDialogEvent()
 			//initMainCharacterItem();
             mc = GetMainCharacter();
 
-			mc.Ship.Type = GenerateShipExt(SHIP_SOPHIE, true, mc);
+			mc.Ship.Type = GenerateShipExt(SHIP_VEINARD, true, mc);
 			mc.Ship.name="Чёрная Вдова";
 			SetBaseShipData(mc);
 			mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS12;
