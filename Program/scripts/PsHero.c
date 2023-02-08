@@ -2133,7 +2133,7 @@ void PGG_Q1PlaceShipsNearIsland()
 	iNation = sti(PChar.GenQuest.PGG_Quest.Nation);
 	iLifeDay = sti(PChar.GenQuest.PGG_Quest.Days);
 
-	iRnd = 3 + drand3(2);
+	iRnd = 3 + rand(2);
 	for (i = 0; i < iRnd; i++)
 	{
 		sCharId = "RandQuestCap_0" + i;
@@ -2178,7 +2178,7 @@ ref PGG_Q1CreateWarShip(string sCharId)
 	Fantom_SetCannons(chr, chr.EncType);
 	Fantom_SetBalls(chr, chr.EncType);
 	Fantom_SetGoods(chr, chr.EncType);
-	int iSpace = GetCharacterFreeSpace(chr, iGoods) / (5 + drand2(3));
+	int iSpace = GetCharacterFreeSpace(chr, iGoods) / (1 + rand(9));
 	if (!CheckAttribute(PChar, "GenQuest.PGG_Quest.Goods.Qty")) PChar.GenQuest.PGG_Quest.Goods.Qty = 0;
 	PChar.GenQuest.PGG_Quest.Goods.Qty = sti(PChar.GenQuest.PGG_Quest.Goods.Qty) + iSpace;
 	Fantom_SetCharacterGoods(chr, iGoods, iSpace, 1);
@@ -2207,7 +2207,7 @@ ref PGG_Q1CreateTradeShip(string sCharId)
 
 	Fantom_SetCannons(chr, chr.EncType);
 	Fantom_SetBalls(chr, chr.EncType);
-	int iSpace = GetCharacterFreeSpace(chr, iGoods) / (2 + drand(1));
+	int iSpace = GetCharacterFreeSpace(chr, iGoods) / (1 + rand(1));
 	if (!CheckAttribute(PChar, "GenQuest.PGG_Quest.Goods.Qty")) PChar.GenQuest.PGG_Quest.Goods.Qty = 0;
 	PChar.GenQuest.PGG_Quest.Goods.Qty = sti(PChar.GenQuest.PGG_Quest.Goods.Qty) + iSpace;
 	Fantom_SetCharacterGoods(chr, iGoods, iSpace, 1);
