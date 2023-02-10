@@ -127,7 +127,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		case "Barmen_check":
 			if (IsEquipCharacterByItem(Pchar, "patent_eng") || IsEquipCharacterByItem(Pchar, "patent_fra") || IsEquipCharacterByItem(Pchar, "patent_spa") || IsEquipCharacterByItem(Pchar, "patent_hol"))
 			{
-				dialog.text = "Вы не принадлежите к Береговому братству - вы патентованный капер. Я не могу вам доверится, извините.";
+				dialog.text = "Вы не принадлежите к Береговому братству - вы патентованный капер. Я не могу вам довериться, извините.";
 				link.l1 = "Эх, жаль!";
 				link.l1.go = "exit";
 				CloseQuestHeader("Headhunt");
@@ -248,7 +248,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		case "Givetaskhunt_2":
 			if (IsEquipCharacterByItem(Pchar, "patent_eng") || IsEquipCharacterByItem(Pchar, "patent_fra") || IsEquipCharacterByItem(Pchar, "patent_spa") || IsEquipCharacterByItem(Pchar, "patent_hol"))
 			{
-				dialog.text = "Вы более не принадлежите к Береговому братству - теперь вы патентованный капер. Я не могу вам доверится, извините.";
+				dialog.text = "Вы более не принадлежите к Береговому братству - теперь вы патентованный капер. Я не могу вам довериться, извините.";
 				link.l1 = "Эх, жаль!";
 				link.l1.go = "exit";
 				CloseQuestHeader("Headhunt");
@@ -293,7 +293,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		case "Givetaskhunt_3_1":
 			if (IsEquipCharacterByItem(Pchar, "patent_eng") || IsEquipCharacterByItem(Pchar, "patent_fra") || IsEquipCharacterByItem(Pchar, "patent_spa") || IsEquipCharacterByItem(Pchar, "patent_hol"))
 			{
-				dialog.text = "Вы более не принадлежите к Береговому братству - теперь вы патентованный капер. Я не могу вам доверится, извините.";
+				dialog.text = "Вы более не принадлежите к Береговому братству - теперь вы патентованный капер. Я не могу вам довериться, извините.";
 				link.l1 = "Эх, жаль!";
 				link.l1.go = "exit";
 				CloseQuestHeader("Headhunt");
@@ -343,7 +343,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		case "Givetaskhunt_4":
 			if (IsEquipCharacterByItem(Pchar, "patent_eng") || IsEquipCharacterByItem(Pchar, "patent_fra") || IsEquipCharacterByItem(Pchar, "patent_spa") || IsEquipCharacterByItem(Pchar, "patent_hol"))
 			{
-				dialog.text = "Вы более не принадлежите к Береговому братству - теперь вы патентованный капер. Я не могу вам доверится, извините.";
+				dialog.text = "Вы более не принадлежите к Береговому братству - теперь вы патентованный капер. Я не могу вам довериться, извините.";
 				link.l1 = "Эх, жаль!";
 				link.l1.go = "exit";
 				CloseQuestHeader("Headhunt");
