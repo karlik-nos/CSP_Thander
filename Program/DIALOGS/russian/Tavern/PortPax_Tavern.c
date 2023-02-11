@@ -29,9 +29,16 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			AddQuestRecord("PKM_Animists", "27");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
 			
-			sld = CharacterFromID("PortPaxJailOff");
+			sld = CharacterFromID("PortPaxJailOff");	//ПЕРЕДЕЛАТЬ (НЕ РАБОТАЕТ)
 			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
 			sld.dialog.currentnode = "Разговор с тюремщиком";
+			
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Uchitel", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, false));
+			sld.FaceId = 297;
+			LAi_SetStayType(sld);
+			sld.Dialog.Filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "Учитель_Смерть";
+			ChangeCharacterAddressGroup(sld, "PortPax_prison", "goto",  "goto9");
 		break;
 	}
 	UnloadSegment(NPChar.FileDialog2);  // если где-то выход внутри switch  по return не забыть сделать анлод

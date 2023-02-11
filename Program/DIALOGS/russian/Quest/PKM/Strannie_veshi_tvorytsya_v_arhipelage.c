@@ -588,8 +588,91 @@ void ProcessDialogEvent()
 		
 		case "Разговор с тюремщиком_3":
 			dialog.text = "Каким это ещё делом? О чём вы вообще говорите?!";
-			link.l1 = "Но, позвольте! Я занимаюсь делом государственной важности!";
+			if (pchar.reputation <= 35)
+			{
+				link.l1 = "(доставая пистолет) Вы сейчас же проводите меня к пленнику, или, клянусь Богом, я убью вас!";
+				link.l1.go = "Угроза тюремщику_1";
+			}
+		break;
+		
+		case "Угроза тюремщику_1":
+			dialog.text = "Вы за это ответите!";
+			link.l1 = "Возможно, но сейчас вы мой пленник. Так что сидите спокойно, пока я не освобожу заключённого.";
 			link.l1.go = "exit";
+			pchar.questTemp.jailCanMove = true;
+			NextDiag.TempNode = "Угроза тюремщику_2";
+			
+			AddQuestRecord("PKM_Animists", "28");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
+		break;
+		
+		case "Угроза тюремщику_2":
+			dialog.text = "Что вы ещё хотите?";
+			link.l1 = "Ничего. Сиди и не дёргайся.";
+			link.l1.go = "exit";
+			NextDiag.TempNode = "Угроза тюремщику_2";
+		break;
+		
+		case "Учитель_Смерть":
+			dialog.text = "Что вам от меня нужно?!";
+			link.l1 = "Скажи, где находится ваше логово, и я позволю умереть тебе быстро.";
+			link.l1.go = "Учитель_Смерть_1";
+		break;
+		
+		case "Учитель_Смерть_1":
+			dialog.text = "Вы пытаетесь испугать меня?! За мной стоит Князь Тьмы! Я не боюсь смерти!";
+			link.l1 = "Хм... действительно...";
+			link.l1.go = "Учитель_Смерть_2";
+		break;
+		
+		case "Учитель_Смерть_2":
+			dialog.text = "Что значит смерть для меня! Для меня, кто собирается занять достойное место у подножия трона своего повелителя!";
+			link.l1 = "Возможно, смерти ты и не боишься. А как насчёт пожизненного заключения в этой клетке?";
+			link.l1.go = "Учитель_Смерть_3";
+		break;
+		
+		case "Учитель_Смерть_3":
+			dialog.text = "...";
+			link.l1 = "А ведь это ещё вполне уютная камера, я могу походатайствовать о том, чтобы тебя перевели в более мрачное и сырое место.";
+			link.l1.go = "Учитель_Смерть_4";
+		break;
+		
+		case "Учитель_Смерть_4":
+			dialog.text = "...";
+			link.l1 = "Ледяная вода на полу, не дающая ни минуты отдыха, гниющая плоть... Заманчиво звучит, чёрт меня побери!";
+			link.l1.go = "Учитель_Смерть_5";
+		break;
+		
+		case "Учитель_Смерть_5":
+			dialog.text = "Стойте! Я всё расскажу. Что вам надо?";
+			link.l1 = "Где находится ваше логово?";
+			link.l1.go = "Учитель_Смерть_6";
+		break;
+		
+		case "Учитель_Смерть_6":
+			dialog.text = "На острове Мария Галанте, возле...";
+			link.l1 = "";
+			link.l1.go = "Учитель_Смерть_7";
+		break;
+		
+		case "Учитель_Смерть_7":
+			dialog.text = "Кха... не-е-е-ет... гхм...";
+			link.l1 = "Что за?!";
+			link.l1.go = "Учитель_Смерть_8";
+			LAi_KillCharacter(npchar);
+		break;
+		
+		case "Учитель_Смерть_8":
+			DialogExit();
+			
+			AddQuestRecord("PKM_Animists", "32");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
+			
+			PChar.quest.PKM_SvtvA_TuremchikDialog.win_condition.l1 = "ExitFromLocation";  //Выход из локации
+			PChar.quest.PKM_SvtvA_TuremchikDialog.win_condition.l1.location = PChar.location;
+			PChar.quest.PKM_SvtvA_TuremchikDialog.win_condition = "PKM_SvtvA_TuremchikDialog";
+			
+			//ПРОДОЛЖЕНИЕ СЮДА ПИСАТЬ (смена пещеры)
 		break;
 		
 	}

@@ -10986,6 +10986,12 @@ void QuestComplete(string sQuestName, string qname)
 			DeleteAttribute(&locations[FindLocation("CommonRoom_MH4")], "box2");
 		break;
 		
+		case "PKM_SvtvA_TuremchikDialog":
+			sld = CharacterFromID("PortPaxJailOff");
+			sld.dialog.filename = "Common_Prison.c";
+			sld.dialog.currentnode = "First_officer";
+		break;
+		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////   	КВЕСТЫ "Пираты Карибского Моря" КОНЕЦ
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
