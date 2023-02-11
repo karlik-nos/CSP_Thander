@@ -12099,6 +12099,20 @@ void QuestComplete(string sQuestName, string qname)
 			LAi_SetActorType(sld);
 			LAi_ActorDialog(sld, pchar, "", 1.0, 0);
 		break;
+		
+		case "MG_ObezyanaKill":
+			SetTimerCondition("MG_ObezyanaSkelet", 0, 0, 3, false);
+		break;
+		
+		case "MG_ObezyanaSkelet":
+			sld = GetCharacter(NPC_GenerateCharacter("MG_Obezyana", "Koata1", "monkey", "monkey", 1, PIRATE, -1, false));
+			LAi_SetHP(sld, 1.0, 1.0);
+			sld.name = "Джеки";
+			sld.lastname = "";
+			LAi_SetWarriorType(sld);
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, "Guadeloupe_deadlock", "monsters", "monster6");
+		break;
 	}
 }
 

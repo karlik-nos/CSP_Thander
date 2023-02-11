@@ -2678,6 +2678,7 @@ void VSEnpcInit()
 	LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
 	sld.city = "SantoDomingo";
 	ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","goto","goto2");
+	
 	//Глаша уборщица в резиденции Мариго
 	sld = GetCharacter(NPC_GenerateCharacter("CleanUpGrandmatha", "BaynesWife", "woman", "towngirl", 1, Holland, -1, false));
 	ChangeCharacterAddressGroup(sld, "Marigo_hall", "goto", "goto11");
@@ -2689,11 +2690,25 @@ void VSEnpcInit()
 	sld.city = "Marigo";
 	sld.dialog.filename = "Janitor.c";
 	sld.dialog.currentnode = "First";
+	
 	//Девушка с нежданным наследством
 	pchar.quest.CSP_NN_SpawnGirl.win_condition.l1 = "Rank";
 	pchar.quest.CSP_NN_SpawnGirl.win_condition.l1.value = 10;
 	pchar.quest.CSP_NN_SpawnGirl.win_condition.l1.operation = ">=";
 	PChar.quest.CSP_NN_SpawnGirl.function = "UnexpectedInheritance";
+	
+	//Джеки
+	sld = GetCharacter(NPC_GenerateCharacter("MG_Obezyana", "Koata1", "monkey", "monkey", 1, PIRATE, -1, false));
+	LAi_SetHP(sld, 1.0, 1.0);
+	sld.name = "Джеки";
+	sld.lastname = "";
+	LAi_SetWarriorType(sld);
+	LAi_CharacterDisableDialog(sld);
+	ChangeCharacterAddressGroup(sld, "Guadeloupe_deadlock", "monsters", "monster6");
+	
+	PChar.quest.MG_ObezyanaKill.win_condition.l1 = "NPC_Death";
+	PChar.quest.MG_ObezyanaKill.win_condition.l1.character = "MG_Obezyana";
+	PChar.quest.MG_ObezyanaKill.win_condition = "MG_ObezyanaKill";
 }
 void OfficerGirlInit()
 {
