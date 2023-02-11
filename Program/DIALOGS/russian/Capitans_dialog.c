@@ -1075,6 +1075,7 @@ void ProcessDialogEvent()
 			LAi_group_MoveCharacter(npchar, "EnemyFight");
 			LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
 			LAi_LocationFightDisable(loadedLocation, false);
+			AddDialogExitQuest("MainHeroFightModeOn");
 
 			for(int i=0;i<MAX_CHARACTERS;i++)
 			{

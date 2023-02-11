@@ -1066,6 +1066,7 @@ void PQ5_afterFight(string qName)
 	AddQuestUserData("Pir_Line_5_Hunter", "sCity", XI_ConvertString("Colony" + pchar.questTemp.piratesLine.Q5.city_4 + "Gen"));
 	pchar.questTemp.piratesLine = "PL5Hunter_toMorgan";
 	chrDisableReloadToLocation = false;
+	pchar.questTemp.piratesLine.PLQ5Money = true;
 	Pchar.quest.PQ5_inPortPoyalTavern.win_condition.l1 = "location";
 	Pchar.quest.PQ5_inPortPoyalTavern.win_condition.l1.location = "PortRoyal_tavern";
 	Pchar.quest.PQ5_inPortPoyalTavern.function = "PQ5_inPortPoyalTavern";
