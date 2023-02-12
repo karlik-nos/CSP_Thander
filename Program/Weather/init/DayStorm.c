@@ -18,8 +18,8 @@ int Whr_InitDayStorm(int n)
 	Weathers[n].Lights = false;
 	Weathers[n].Night = false;
 
-	Weathers[n].Shadow.Density.Head = argb(255,96,96,96);
-	Weathers[n].Shadow.Density.Foot = argb(255,96,96,64);
+	Weathers[n].Shadow.Density.Head = argb(255,26,26,26);
+	Weathers[n].Shadow.Density.Foot = argb(255,26,26,24);
 
 	Weathers[n].Lightning.Enable = true;
 	Weathers[n].Lightning.Texture = "weather\lightning\lightning_storm.tga";
@@ -80,7 +80,7 @@ int Whr_InitDayStorm(int n)
 	Weathers[n].Rainbow.Texture = "weather\rainbow\rainbow.tga";
 
 	Weathers[n].Sun.Color = argb(0,60,60,60);
-	Weathers[n].Sun.Ambient = argb(0,20,20,15);
+	Weathers[n].Sun.Ambient = argb(0,50,50,55);
 	Weathers[n].Sun.AzimuthAngle = Degree2Radian(90.0);
 	Weathers[n].Sun.HeightAngle = 0.95;
 	Weathers[n].Sun.Glow.Enable = false;
@@ -193,8 +193,8 @@ int Whr_InitDayStorm(int n)
 	Weathers[n].Lights = false;
 	Weathers[n].Night = false;
 
-	Weathers[n].Shadow.Density.Head = argb(255,96,96,96);
-	Weathers[n].Shadow.Density.Foot = argb(255,96,96,64);
+	Weathers[n].Shadow.Density.Head = argb(255,26,26,26);
+	Weathers[n].Shadow.Density.Foot = argb(255,26,26,14);
 
 	Weathers[n].Lightning.Enable = true;
 	Weathers[n].Lightning.Texture = "weather\lightning\lightning_storm.tga";
@@ -255,7 +255,7 @@ int Whr_InitDayStorm(int n)
 	Weathers[n].Rainbow.Texture = "weather\rainbow\rainbow.tga";
 
 	Weathers[n].Sun.Color = argb(0,60,60,50);
-	Weathers[n].Sun.Ambient = argb(0,25,25,25);
+	Weathers[n].Sun.Ambient = argb(0,55,55,45);
 	Weathers[n].Sun.AzimuthAngle = Degree2Radian(90.0);
 	Weathers[n].Sun.HeightAngle = 0.95;
 	Weathers[n].Sun.Glow.Enable = false;
@@ -368,8 +368,8 @@ int Whr_InitDayStorm(int n)
 	Weathers[n].Lights = false;
 	Weathers[n].Night = false;
 
-	Weathers[n].Shadow.Density.Head = argb(255,96,96,96);
-	Weathers[n].Shadow.Density.Foot = argb(255,96,96,64);
+	Weathers[n].Shadow.Density.Head = argb(255,26,26,26);
+	Weathers[n].Shadow.Density.Foot = argb(255,26,26,24);
 
 	Weathers[n].Lightning.Enable = true;
 	Weathers[n].Lightning.Texture = "weather\lightning\lightning_storm.tga";
@@ -429,8 +429,8 @@ int Whr_InitDayStorm(int n)
 	Weathers[n].Rainbow.Enable = false;
 	Weathers[n].Rainbow.Texture = "weather\rainbow\rainbow.tga";
 
-	Weathers[n].Sun.Color = argb(0,85,75,70);
-	Weathers[n].Sun.Ambient = argb(0,40,40,40);
+	Weathers[n].Sun.Color = argb(0,65,55,50);
+	Weathers[n].Sun.Ambient = argb(0,50,50,50);
 	Weathers[n].Sun.AzimuthAngle = Degree2Radian(90.0);
 	Weathers[n].Sun.HeightAngle = 0.95;
 	Weathers[n].Sun.Glow.Enable = false;
@@ -544,8 +544,8 @@ int Whr_InitDayStorm(int n)
 	Weathers[n].Lights = 1;
 	Weathers[n].Night = true;
 
-	Weathers[n].Shadow.Density.Head = argb(255,96,96,96);
-	Weathers[n].Shadow.Density.Foot = argb(255,96,96,64);
+	Weathers[n].Shadow.Density.Head = argb(255,26,26,26);
+	Weathers[n].Shadow.Density.Foot = argb(255,26,26,24);
 
 	Weathers[n].Lightning.Enable = true;
 	Weathers[n].Lightning.Texture = "weather\lightning\lightning_storm.tga";
