@@ -290,6 +290,7 @@ void TakeAllGoods2()
 		idx = -1;
 		for (i = 0; i< GOODS_QUANTITY; i++)
 		{
+			if(i == GOOD_SLAVES) continue; // рабов низзя на склад!!
 			if (GetCargoGoods(refCharacter, i) > 0)
 			{
 				if (fMaxCost < stf(Goods[i].Cost)/stf(Goods[i].Weight)) // поиск ликвидного товара
