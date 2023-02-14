@@ -9524,7 +9524,7 @@ void CreateRatOfficer()//посадим в таверну самого Крыс�
 	DeleteAttribute(sld, "DontClearDead");
     LAi_SetCitizenType(sld);
    	LAi_SetSitTypeNoGroup(sld);
-    ChangeCharacterAddressGroup(sld, "Tortuga_tavern", "sit","sit3");
+    ChangeCharacterAddressGroup(sld, "Tortuga_tavern", "sit","sit2");
 }
 
 void Headhunter_Ratgulf(string qName)//высадились в заливе
