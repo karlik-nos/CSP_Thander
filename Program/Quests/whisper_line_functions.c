@@ -1562,9 +1562,8 @@ void WhisperSpawn_Chard()
 	SetCharacterPerk(sld, "Energaiser"); // скрытый перк дает 1.5 к приросту энергии, дается ГГ и боссам уровней
 }
 
-void WhisperSpawnPortman (ref npchar)
+void WhisperSpawnPortman(ref npchar)
 {
-	//pchar.Whisper.PortmanAtSea = true;
 	int difficulty = 5 * MOD_SKILL_ENEMY_RATE;
 	sld = GetCharacter(NPC_GenerateCharacter("Whisper_Portman_Captain", "off_eng_2", "man", "man", 55, ENGLAND, -1, true));
 	sld.mapEnc.worldMapShip = "quest_ship";
