@@ -10771,6 +10771,13 @@ void PKM_SvtvA_Gospod_nakazal(string qName)
 {	
 	LAi_SetActorType(pchar);
 }
+void PKM_SvtvA_Uchitel_smert(string qName)
+{	
+	sld = CharacterFromID("Satanist_Uchitel");
+	LAi_ActorAnimation(sld, "lay_2", "", 2.0);
+	//LAi_SetActorType(sld);
+	//LAi_ActorSetLayMode(sld);
+}
 
 //Sinistra "Странные вещи творятся на архипелаге" <--
 

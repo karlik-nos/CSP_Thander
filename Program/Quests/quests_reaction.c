@@ -10986,6 +10986,16 @@ void QuestComplete(string sQuestName, string qname)
 			DeleteAttribute(&locations[FindLocation("CommonRoom_MH4")], "box2");
 		break;
 		
+		case "PKM_SvtvA_TuremchikQuest":
+			DoQuestCheckDelay("PKM_SvtvA_TuremchikQuest2", 0.2);
+		break;
+		
+		case "PKM_SvtvA_TuremchikQuest2":
+			sld = CharacterFromID("PortPaxJailOff");
+			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "Разговор с тюремщиком";
+		break;
+		
 		case "PKM_SvtvA_TuremchikDialog":
 			sld = CharacterFromID("PortPaxJailOff");
 			sld.dialog.filename = "Common_Prison.c";

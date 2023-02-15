@@ -582,21 +582,101 @@ void ProcessDialogEvent()
 		
 		case "Разговор с тюремщиком_2":
 			dialog.text = "Вообще-то, у нас запрещены разговоры с заключёнными...";
-			link.l1 = "Но, позвольте! Я занимаюсь делом государственной важности!";
-			link.l1.go = "Разговор с тюремщиком_3";
-		break;
-		
-		case "Разговор с тюремщиком_3":
-			dialog.text = "Каким это ещё делом? О чём вы вообще говорите?!";
 			if (pchar.reputation <= 35)
 			{
 				link.l1 = "(доставая пистолет) Вы сейчас же проводите меня к пленнику, или, клянусь Богом, я убью вас!";
 				link.l1.go = "Угроза тюремщику_1";
 			}
+			else
+			{
+				link.l1 = "Но, позвольте! Я занимаюсь делом государственной важности!";
+				link.l1.go = "Разговор с тюремщиком_3";
+			}
+		break;
+		
+		case "Разговор с тюремщиком_3":
+			dialog.text = "Каким это ещё делом? О чём вы вообще говорите?!";
+			if (pchar.reputation >= 76)
+			{
+				link.l1 = "Вы, наверное, слышали о похищении детей, о том, что в последнее время в архипелаге творятся странные вещи? Так вот, ваш заключённый может помочь мне разобраться со всем этим!";
+				link.l1.go = "Уговариваем тюремщика_1";
+			}
+			else
+			{
+				link.l1 = "Вы, наверное, слышали о похищении детей, о том, что...";
+				link.l1.go = "Деньги тюремщику_1";
+			}
+		break;
+		
+		case "Уговариваем тюремщика_1":
+			dialog.text = "Ладно, ладно, убедили. Я сам не в восторге от того, что происходит. Можете поговорить с этим ублюдком, всё равно его после полудня вздёрнут.";
+			link.l1 = "Отлично! Спасибо вам!";
+			link.l1.go = "Деньги тюремщику_2";
+			pchar.questTemp.jailCanMove = true;
+			NextDiag.TempNode = "Уговариваем тюремщика_2";
+			
+			AddQuestRecord("PKM_Animists", "30");
+			
+			sld = CharacterFromID("Satanist_Uchitel");
+			sld.Dialog.Filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "Учитель_Спасение";
+		break;
+		
+		case "Уговариваем тюремщика_2":
+			dialog.text = "Я надеюсь, вы вытрясите из этого подонка всю информацию, которая вам так нужна.";
+			link.l1 = "Благодарю, офицер. Я уже в поиске его камеры.";
+			link.l1.go = "exit";
+			NextDiag.TempNode = "Уговариваем тюремщика_2";
+		break;
+		
+		case "Деньги тюремщику_1":
+			dialog.text = "Вы только зря теряете время. Хотя... Если вы окажите мне одну услугу...";
+			link.l1 = "Какую ещё услугу?";
+			link.l1.go = "Деньги тюремщику_2";
+		break;
+		
+		case "Деньги тюремщику_2":
+			dialog.text = "У моего сына скоро свадьба, хотелось бы отпраздновать это событие на широкую ногу... В общем, если вы хотите поговорить с узником, то за 40000 пиастров я с удовольствием разрешу вам сделать это.";
+			if (sti(pchar.Money) >= 40000)
+			{
+				link.l1 = "Вот ваши деньги.";
+				link.l1.go = "Деньги тюремщику_3_да";
+			}
+			link.l2 = "Боюсь, у меня не остаётся другого выбора... Защищайтесь!";
+			link.l2.go = "Деньги тюремщику_3_нет";
+		break;
+		
+		case "Деньги тюремщику_3_нет":
+			DialogExit();
+			pchar.questTemp.jailCanMove = true;
+			LAi_group_AttackGroup("FRANCE_CITIZENS", LAI_GROUP_PLAYER);
+			LAi_SetFightMode(pchar, true);
+		break;
+		
+		case "Деньги тюремщику_3_да":
+			dialog.text = "Хорошо, вы можете поговорить с заключённым.";
+			link.l1 = "...";
+			link.l1.go = "exit";
+			pchar.questTemp.jailCanMove = true;
+			NextDiag.TempNode = "Деньги тюремщику_4_да";
+			
+			AddQuestRecord("PKM_Animists", "29");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
+			
+			sld = CharacterFromID("Satanist_Uchitel");
+			sld.Dialog.Filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "Учитель_Спасение";
+		break;
+		
+		case "Деньги тюремщику_4_да":
+			dialog.text = "Что-то ещё?";
+			link.l1 = "Нет. Просто осматриваю тюрьму.";
+			link.l1.go = "exit";
+			NextDiag.TempNode = "Деньги тюремщику_4_да";
 		break;
 		
 		case "Угроза тюремщику_1":
-			dialog.text = "Вы за это ответите!";
+			dialog.text = "Что за... Вы за это ответите!";
 			link.l1 = "Возможно, но сейчас вы мой пленник. Так что сидите спокойно, пока я не освобожу заключённого.";
 			link.l1.go = "exit";
 			pchar.questTemp.jailCanMove = true;
@@ -653,13 +733,17 @@ void ProcessDialogEvent()
 			dialog.text = "На острове Мария Галанте, возле...";
 			link.l1 = "";
 			link.l1.go = "Учитель_Смерть_7";
+			npchar.lifeday = 0;
+			LAi_SetHP(npchar, 1.0, 1.0);
 		break;
 		
 		case "Учитель_Смерть_7":
 			dialog.text = "Кха... не-е-е-ет... гхм...";
 			link.l1 = "Что за?!";
 			link.l1.go = "Учитель_Смерть_8";
-			LAi_KillCharacter(npchar);
+			LAi_SetActorType(npchar);
+			LAi_ActorAnimation(npchar, "death_citizen_1", "", 2.0);
+			DoQuestFunctionDelay("PKM_SvtvA_Uchitel_smert", 2.2);
 		break;
 		
 		case "Учитель_Смерть_8":
@@ -673,6 +757,40 @@ void ProcessDialogEvent()
 			PChar.quest.PKM_SvtvA_TuremchikDialog.win_condition = "PKM_SvtvA_TuremchikDialog";
 			
 			//ПРОДОЛЖЕНИЕ СЮДА ПИСАТЬ (смена пещеры)
+		break;
+		
+		case "Учитель_Спасение":
+			dialog.text = "Что вам от меня нужно, грязные свиньи?!";
+			link.l1 = "Мы пришли освободить вас.";
+			link.l1.go = "Учитель_Спасение_1";
+		break;
+		
+		case "Учитель_Спасение_1":
+			dialog.text = "Как мило с вашей стороны. И с какой стати я удостоился такой милости?";
+			link.l1 = "Времени нет объяснять. В любую минуту могут обнаружить, что бумаги на ваше освобождение подделаны.";
+			link.l1.go = "Учитель_Спасение_2";
+		break;
+		
+		case "Учитель_Спасение_2":
+			dialog.text = "Даже так? Хорошо. Я разрешаю вам проводить меня до Сан-Хуана, а там решим, что делать с вами дальше.";
+			link.l1 = "Как скажете.";
+			link.l1.go = "Учитель_Спасение_3";
+		break;
+		
+		case "Учитель_Спасение_3":
+			dialog.text = "Даже так? Хорошо. Я разрешаю вам проводить меня до Сан-Хуана, а там решим, что делать с вами дальше.";
+			link.l1 = "Как скажете.";
+			link.l1.go = "Учитель_Спасение_4";
+		break;
+		
+		case "Учитель_Спасение_4":
+			DialogExit();
+			
+			AddQuestRecord("PKM_Animists", "31");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
+			
+			sld = CharacterFromID("Satanist_Uchitel");
+			
 		break;
 		
 	}

@@ -29,11 +29,13 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			AddQuestRecord("PKM_Animists", "27");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
 			
-			sld = CharacterFromID("PortPaxJailOff");	//ПЕРЕДЕЛАТЬ (НЕ РАБОТАЕТ)
-			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
-			sld.dialog.currentnode = "Разговор с тюремщиком";
+			PChar.quest.PKM_SvtvA_TuremchikQuest.win_condition.l1 = "location";
+			PChar.quest.PKM_SvtvA_TuremchikQuest.win_condition.l1.location = "PortPax_prison";
+			PChar.quest.PKM_SvtvA_TuremchikQuest.win_condition = "PKM_SvtvA_TuremchikQuest";
 			
 			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Uchitel", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, false));
+			sld.name = "Учитель";
+			sld.lastname = "";
 			sld.FaceId = 297;
 			LAi_SetStayType(sld);
 			sld.Dialog.Filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
