@@ -1094,7 +1094,7 @@ void ProcessDialogEvent()
 
     case "FStep_6":
 
-        dialog.text = "Выпьем... А это… такое... такое место... оно...";
+        dialog.text = "Выпьем... А это... такое... такое место... оно...";
     	link.l1 = "...";
         link.l1.go = "FStep_8";
        	link.l2 = "Ну? Что за место?!";
