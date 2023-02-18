@@ -940,7 +940,7 @@ void CalculateInfoDataF6()
 	// mc.Ship.Type = GenerateShipExt(SHIP_WAR_TARTANE, true, mc);
 
 	// 6 класс
-	// mc.Ship.Type = GenerateShipExt(SHIP_BERMSLOOP, true, mc);
+	// mc.Ship.Type = GenerateShipExt(SHIP_KETCH, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_SCHOONER_B, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_PINK, true, mc);
 	// mc.Ship.Type = GenerateShipExt(SHIP_LUGGER, true, mc);

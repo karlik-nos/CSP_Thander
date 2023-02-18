@@ -1479,11 +1479,11 @@ void SetShipPictureDataByShipTypeName(int N)
 /*	switch(sType)
 	{
 	// 7-й КЛАСС	(3 корабля)						
-	case "tartane":				BI_intNRetValue[0] = 0+0*32;	BI_intNRetValue[1] = 0+0*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Тартана
-	case "plot":				BI_intNRetValue[0] = 2+0*32;	BI_intNRetValue[1] = 2+0*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Плот
-    case "wartartane":			BI_intNRetValue[0] = 4+0*32;	BI_intNRetValue[1] = 4+0*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Баркас
+	case "tartane":				BI_intNRetValue[0] = 0+0*32;	BI_intNRetValue[1] = 0+0*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Баркас
+	case "plot":				BI_intNRetValue[0] = 2+0*32;	BI_intNRetValue[1] = 2+0*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Тартана
+    case "wartartane":			BI_intNRetValue[0] = 4+0*32;	BI_intNRetValue[1] = 4+0*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// фелука
 	// 6-й КЛАСС	(12 кораблей)
-	case "bermsloop":			BI_intNRetValue[0] = 6+0*32;	BI_intNRetValue[1] = 6+0*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Лёг. Шлюп
+	case "ketch":				BI_intNRetValue[0] = 6+0*32;	BI_intNRetValue[1] = 6+0*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Кеч
 	case "Schoone_b":			BI_intNRetValue[0] = 8+0*32;	BI_intNRetValue[1] = 8+0*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Торг. Шхуна
 	case "pink":				BI_intNRetValue[0] = 10+0*32;	BI_intNRetValue[1] = 10+0*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Лёг. Шлюп
     case "lugger":				BI_intNRetValue[0] = 12+0*32;	BI_intNRetValue[1] = 12+0*32 + 1;	BI_intNRetValue[2] = BI_ICONS_TEXTURE_SHIP1;	break;	// Люггер
