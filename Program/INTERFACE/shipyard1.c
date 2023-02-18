@@ -447,7 +447,7 @@ void FillShipyardTable()
 	switch (FIS_FilterState)
 	{
 	case 7:
-		{iStart = SHIP_BERMSLOOP; iEnd = SHIP_OCEAN;}
+		{iStart = SHIP_KETCH; iEnd = SHIP_OCEAN;}
 	break;
 	case 1:
 		{iStart = SHIP_POSEIDON; iEnd = SHIP_OCEAN;}
@@ -465,7 +465,7 @@ void FillShipyardTable()
 		{iStart = SHIP_POLACCA; iEnd = SHIP_SHNYAVA;}
 	break;
 	case 6:
-		{iStart = SHIP_BERMSLOOP; iEnd = SHIP_VEINARD;}
+		{iStart = SHIP_KETCH; iEnd = SHIP_VEINARD;}
 	break;
 	}
 	iEnd++;

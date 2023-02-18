@@ -70,7 +70,7 @@ void InitPsHeros()
 
 			if (rand(4) < 3)
 			{
-				ch.Ship.Type = GenerateShipExt((SHIP_BERMSLOOP + rand(11)), 0, ch);
+				ch.Ship.Type = GenerateShipExt((SHIP_KETCH + rand(11)), 0, ch);
 				SetBaseShipData(ch);
 				SetRandomNameToShip(ch);
 

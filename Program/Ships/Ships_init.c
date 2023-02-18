@@ -128,7 +128,7 @@ void InitShips()
 	refship.InertiaAccelerationZ	= 0.15;	refship.InertiaBrakingZ		= 0.05;
 
 	///////////////////////////////////////////////////////////////////////////
-	//// Tartane			Тартана
+	//// Tartane			Баркас
 	///////////////////////////////////////////////////////////////////////////
 	makeref(refShip,ShipsTypes[SHIP_TARTANE]);
 	refShip.Name								= "Tartane";
@@ -194,7 +194,7 @@ void InitShips()
 	refship.nation.spain	= true;
 
 	///////////////////////////////////////////////////////////////////////////
-	/// Plot			Тартанетта
+	/// Plot			Тартана
 	///////////////////////////////////////////////////////////////////////////
 	makeref(refShip,ShipsTypes[SHIP_PLOT]);
 	refShip.Name								= "Plot";
@@ -261,7 +261,7 @@ void InitShips()
 	refship.nation.spain	= true;
 
 	///////////////////////////////////////////////////////////////////////////
-	//// War Tartane			Гукор
+	//// War Tartane			Фелука
 	///////////////////////////////////////////////////////////////////////////
 	makeref(refShip,ShipsTypes[SHIP_WAR_TARTANE]);
 	refShip.Name								= "WarTartane";
@@ -289,7 +289,7 @@ void InitShips()
 	refship.Type.Merchant						= true;
 	refship.Type.War							= true;
 	refShip.sea_enchantment						= 4.0;
-	refShip.lowpolycrew							= 3;
+	refShip.lowpolycrew							= 5;
 	refShip.buildtime = 10;
 
 	refShip.Flags.Mast1.Flag1 = FLAG_SPECIAL;
@@ -298,11 +298,11 @@ void InitShips()
 	refShip.Massa = 50000.0;
 	refShip.Volume = 100.0;
 
-	refship.WaterLine					= 0.1;
+	refship.WaterLine					= -0.25;
 	refship.SpeedDependWeight			= 0.07;
 	refship.SubSeaDependWeight			= 0.4;
 	refship.TurnDependWeight			= 0.07;
-    refship.WindAgainstSpeed   = 7.0;//boal
+    refship.WindAgainstSpeed   = 9.0;//boal
 
 	refship.InertiaAccelerationX	= 3.0;	refship.InertiaBrakingX		= 2.0;
 	refship.InertiaAccelerationY	= 14;	refship.InertiaBrakingY		= 5;
@@ -332,10 +332,10 @@ void InitShips()
 	refship.nation.spain	= true;
 
 	///////////////////////////////////////////////////////////////////////////
-	/// Bermsloop		Тартарона
+	/// Ketch		Кеч Нормандия
 	///////////////////////////////////////////////////////////////////////////
-	makeref(refShip,ShipsTypes[SHIP_BERMSLOOP]);
-	refShip.Name            			= "Bermsloop";
+	makeref(refShip,ShipsTypes[SHIP_KETCH]);
+	refShip.Name            			= "Ketch";
 	refship.Soundtype					= "lugger";
 	refShip.Class						= 6;
 	refShip.Cannon          			= CANNON_TYPE_CANNON_LBS8;
@@ -343,9 +343,9 @@ void InitShips()
 	refShip.Weight						= Tonnes2CWT(150);
 	refShip.Capacity        			= 600;
 	refShip.MaxCannonDiff				= 1;
-	refShip.CannonsQuantity				= 8;
-	refShip.rcannon 							= 4;
-	refShip.lcannon 							= 4;
+	refShip.CannonsQuantity				= 10;
+	refShip.rcannon 							= 5;
+	refShip.lcannon 							= 5;
 	refShip.fcannon 							= 0;
 	refShip.bcannon 							= 0;
 	refShip.MaxCrew         				= 35;
@@ -366,11 +366,11 @@ void InitShips()
 	refship.Rocking.y = 0.45;
 	refship.Rocking.az = 0.02;
 
-	refship.WaterLine							= -0.25;
+	refship.WaterLine							= 0.1;
 	refship.SpeedDependWeight			= 0.1;
 	refship.SubSeaDependWeight			= 0.6;
 	refship.TurnDependWeight			= 0.1;
-	refship.WindAgainstSpeed   = 9.0;//boal
+	refship.WindAgainstSpeed   = 7.0;//boal
 	refship.CabinType          = "Cabin_Small"; // boal 28.03.05
 	refship.DeckType           			= "Low";
 
