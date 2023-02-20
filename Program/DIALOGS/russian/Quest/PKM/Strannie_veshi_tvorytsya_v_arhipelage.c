@@ -611,7 +611,7 @@ void ProcessDialogEvent()
 		case "Уговариваем тюремщика_1":
 			dialog.text = "Ладно, ладно, убедили. Я сам не в восторге от того, что происходит. Можете поговорить с этим ублюдком, всё равно его после полудня вздёрнут.";
 			link.l1 = "Отлично! Спасибо вам!";
-			link.l1.go = "Деньги тюремщику_2";
+			link.l1.go = "exit";
 			pchar.questTemp.jailCanMove = true;
 			NextDiag.TempNode = "Уговариваем тюремщика_2";
 			
@@ -697,6 +697,7 @@ void ProcessDialogEvent()
 			dialog.text = "Что вам от меня нужно?!";
 			link.l1 = "Скажи, где находится ваше логово, и я позволю умереть тебе быстро.";
 			link.l1.go = "Учитель_Смерть_1";
+			PChar.quest.PKM_SvtvA_TuremchikKonets.over = "yes";
 		break;
 		
 		case "Учитель_Смерть_1":
@@ -756,13 +757,17 @@ void ProcessDialogEvent()
 			PChar.quest.PKM_SvtvA_TuremchikDialog.win_condition.l1.location = PChar.location;
 			PChar.quest.PKM_SvtvA_TuremchikDialog.win_condition = "PKM_SvtvA_TuremchikDialog";
 			
-			//ПРОДОЛЖЕНИЕ СЮДА ПИСАТЬ (смена пещеры)
+			//ПРОДОЛЖЕНИЕ СЮДА ПИСАТЬ (смена пещеры)	
+			locations[FindLocation("Guadeloupe_deadlock")].models.day.charactersPatch = "jungle9_patch";
+			locations[FindLocation("Guadeloupe_deadlock")].models.night.charactersPatch = "jungle9_patch";
+			//Locations[FindLocation("Guadeloupe_deadlock")].models.always.l4 = "jungle9_wall2";
 		break;
 		
 		case "Учитель_Спасение":
 			dialog.text = "Что вам от меня нужно, грязные свиньи?!";
 			link.l1 = "Мы пришли освободить вас.";
 			link.l1.go = "Учитель_Спасение_1";
+			PChar.quest.PKM_SvtvA_TuremchikKonets.over = "yes";
 		break;
 		
 		case "Учитель_Спасение_1":
@@ -778,19 +783,25 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Учитель_Спасение_3":
-			dialog.text = "Даже так? Хорошо. Я разрешаю вам проводить меня до Сан-Хуана, а там решим, что делать с вами дальше.";
-			link.l1 = "Как скажете.";
-			link.l1.go = "Учитель_Спасение_4";
-		break;
-		
-		case "Учитель_Спасение_4":
 			DialogExit();
 			
 			AddQuestRecord("PKM_Animists", "31");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
 			
-			sld = CharacterFromID("Satanist_Uchitel");
+			PChar.quest.PKM_SvtvA_TuremchikDialog.win_condition.l1 = "ExitFromLocation";  //Выход из локации
+			PChar.quest.PKM_SvtvA_TuremchikDialog.win_condition.l1.location = PChar.location;
+			PChar.quest.PKM_SvtvA_TuremchikDialog.win_condition = "PKM_SvtvA_TuremchikDialog";
 			
+			sld = CharacterFromID("Satanist_Uchitel");
+			ChangeCharacterAddressGroup(sld, "PortPax_prison", "goto", "goto23");
+			LAi_SetActorType(sld);
+			LAi_ActorFollow(sld, pchar, "", -1);
+			AddPassenger(pchar, sld, true);
+			
+			//ПРОДОЛЖЕНИЕ СЮДА ПИСАТЬ (На Сан-Хуан)
+			PChar.quest.PKM_SvtvA_UchitelPassakir.win_condition.l1 = "location";
+			PChar.quest.PKM_SvtvA_UchitelPassakir.win_condition.l1.location = "PuertoRico";
+			PChar.quest.PKM_SvtvA_UchitelPassakir.win_condition = "PKM_SvtvA_UchitelPassakir";
 		break;
 		
 	}

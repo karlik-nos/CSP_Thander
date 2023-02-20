@@ -10988,6 +10988,8 @@ void QuestComplete(string sQuestName, string qname)
 		
 		case "PKM_SvtvA_TuremchikQuest":
 			DoQuestCheckDelay("PKM_SvtvA_TuremchikQuest2", 0.2);
+			
+			SetTimerCondition("PKM_SvtvA_TuremchikKonets", 0, 0, 1, false);
 		break;
 		
 		case "PKM_SvtvA_TuremchikQuest2":
@@ -10996,11 +10998,34 @@ void QuestComplete(string sQuestName, string qname)
 			sld.dialog.currentnode = "Разговор с тюремщиком";
 		break;
 		
+		case "PKM_SvtvA_TuremchikKonets":
+			sld = CharacterFromID("Satanist_Uchitel");
+			LAi_KillCharacter(sld);
+			
+			sld = CharacterFromID("PortPaxJailOff");
+			sld.dialog.filename = "Common_Prison.c";
+			sld.dialog.currentnode = "First_officer";
+			
+			CloseQuestHeader("PKM_Animists");
+		break;
+		
 		case "PKM_SvtvA_TuremchikDialog":
 			sld = CharacterFromID("PortPaxJailOff");
 			sld.dialog.filename = "Common_Prison.c";
 			sld.dialog.currentnode = "First_officer";
 		break;
+		
+		case "PKM_SvtvA_UchitelPassakir":
+			Log_info("ffffУ вас нет кл22");
+			Island_SetReloadEnableGlobal("PuertoRico", false);
+			bQuestDisableMapEnter = true;
+			
+			//DoQuestCheckDelay("PKM_SvtvA_UchitelNaPalube", 3.0);
+		break;
+		
+		//case "PKM_SvtvA_UchitelNaPalube":
+		//	DoQuestReloadToLocation("Ship_deck", "reload", "reload3", "PDM_PI_Skelety_on_Ship");
+		//break;
 		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////   	КВЕСТЫ "Пираты Карибского Моря" КОНЕЦ
