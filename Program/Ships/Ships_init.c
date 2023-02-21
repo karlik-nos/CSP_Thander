@@ -7354,11 +7354,11 @@ void InitShips()
 	refShip.Weight 								= Tonnes2CWT(1000);
 	refShip.Capacity 							= 3000;
 	refShip.MaxCannonDiff								= 4;
-	refShip.CannonsQuantity 							= 56;
-	refShip.rcannon 									= 26;
-	refShip.lcannon 									= 26;
+	refShip.CannonsQuantity 							= 60;
+	refShip.rcannon 									= 27;
+	refShip.lcannon 									= 27;
 	refShip.fcannon 									= 2;
-	refShip.bcannon 									= 2;
+	refShip.bcannon 									= 4;
 	refShip.MaxCrew 								= 340;
 	refShip.MinCrew 								= 68;
 	refShip.SpeedRate 						= 12.2;
@@ -10946,6 +10946,8 @@ void InitShips()
 	refship.Track2.LifeTime = 10.5;
 	refship.Track2.Width	= "16.0, 18.0";
 	refship.Track2.Speed	= "0.15, 0.25";
+
+	refShip.hullNums = 4; // LEO
 
 	///////////////////////////////////////////////////////////////////////////
 	//// SoleyRu			Королевский мановар
