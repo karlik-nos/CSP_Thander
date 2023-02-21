@@ -39,7 +39,7 @@ string PGG_Meet_GoodRep[MAX_PGG_MEET_REP] = {
 string PGG_Meet_BadRep[MAX_PGG_MEET_REP] = {
 	"А вот и ещё один пират!",
 	"Запахло порохом и кровью, флибустьер справа по борту!",
-	"Чувствую, запахло порохом… Джентльмены, к нам присоединился ещё один славный корсар, которому уж наверняка будет что порассказать на исповеди. Ха-ха-ха",
+	"Чувствую, запахло порохом... Джентльмены, к нам присоединился ещё один славный корсар, которому уж наверняка будет что порассказать на исповеди. Ха-ха-ха",
 	"Запахло порохом и кровью справа по борту!",
 	"TBD in InitDynamicValues",
 	"TBD in InitDynamicValues",
@@ -56,7 +56,7 @@ void InitDynamicValues(ref NPChar) {
 	isPGGInitiative = CheckAttribute(NPChar, "PGGAi.ActiveQuest");
 	if (NPChar.sex == "woman") PGGQuestID = "Gen_PGGQuest1" + NPChar.sex;
 
-	PGG_Stories[8] = "... Нет, джентльмены, это всё анекдоты… А вот история, в которой я собственнолично был" + NPCharSexPhrase(NPChar, "", "а") + " не только свидетель, а в некотором роде и участник. Направляюсь как-то в таверну Чарльстауна прямёхонько из дока, где наблюдал" + NPCharSexPhrase(NPChar, "", "а") + " кренгование своего старого 'Кондора', а навстречу мне из двери таверны вываливается сам капитан Шарп! Штормит его нещадно, бизань уже сорвало напрочь, и только блиндом он пытается маневрировать по ступеням. Не успел" + NPCharSexPhrase(NPChar, "", "а") + " я предложить ему услуги лоцмана, как перила под ним–хрясть!!! Хо-хо-хо-хо...\n",
+	PGG_Stories[8] = "... Нет, джентльмены, это всё анекдоты... А вот история, в которой я собственнолично был" + NPCharSexPhrase(NPChar, "", "а") + " не только свидетель, а в некотором роде и участник. Направляюсь как-то в таверну Чарльстауна прямёхонько из дока, где наблюдал" + NPCharSexPhrase(NPChar, "", "а") + " кренгование своего старого 'Кондора', а навстречу мне из двери таверны вываливается сам капитан Шарп! Штормит его нещадно, бизань уже сорвало напрочь, и только блиндом он пытается маневрировать по ступеням. Не успел" + NPCharSexPhrase(NPChar, "", "а") + " я предложить ему услуги лоцмана, как перила под ним–хрясть!!! Хо-хо-хо-хо...\n",
 	PGG_Stories[9] = "... Ничего не могу сказать о Летучем Голландце. Ни мне, ни кому-либо из моих матросов видеть его, слава Богу, не доводилось… Но был случай не менее загадочный. К востоку от Бермуды встретилась нам бригантина под всеми парусами, но шла она странным курсом – эдакими зигзагами. Я ничего такого не замышлял" + NPCharSexPhrase(NPChar, "", "а") + ", но шлюпку выслал" + NPCharSexPhrase(NPChar, "", "а") + ". Каково же было наше удивление, когда на борту не оказалось ни единой души!.. А в трюме – 1700 баррелей отличного вина!.. Вот что я называю удачей! И без единого выстрела! Ха-ха-ха..\n",
   PGG_Stories[10] = "... Всё же я склон" + NPCharSexPhrase(NPChar, "ен", "нa") + " думать, джентльмены, что все эти россказни о Летучем Голландце не более чем досужие выдумки трусливых торгашей, которые в каждом парусе на горизонте готовы видеть кровожадного капера с пьяным чудовищем на капитанском мостике, а в каждом встреченном люггере – предвестника несчастий...\n";
 	PGG_Stories[11] = "... Может быть кто помнит тот случай южнее Ки-Уэста, когда меня бимсом контузило?.. Хотя видимых повреждений и не было, – провалял" + NPCharSexPhrase(NPChar, "ся", "ась") + " я месяца два. " + NPCharSexPhrase(NPChar, "И тогдашняя моя пассия уговорила", "И тогдашний мой друг уговорил") + " меня исповедаться. Мол, с Божьей помощью дело на лад пойдёт... Ну, пош" + NPCharSexPhrase(NPChar, "ёл", "ла") + " я, а священник и спрашивает: 'А много ли ты людей погубил" + NPCharSexPhrase(NPChar, "", "а") + ", " + NPCharSexPhrase(NPChar, "сын мой", "дочь моя") + "? А много ли кораблей потопил" + NPCharSexPhrase(NPChar, "", "а") + "?' – 'Мно-ого', – отвечаю. А он не унимается: 'А много ли ты " + NPCharSexPhrase(NPChar, "жён", "мужчин") + " соблазнил" + NPCharSexPhrase(NPChar, "", "а") + "?'. Тут я и говорю: 'Падре, я же сюда не хвастаться приш" + NPCharSexPhrase(NPChar, "ёл", "ла") + "!'. Ха-ха-ха-ха...\n";
@@ -221,8 +221,8 @@ void ProcessDialogEvent()
 		if (CheckAttribute(NPChar, "onceGreeting")) {
 			Dialog.Text = "Ну, а меня здесь все знают! Я - " + GetFullName(NPChar);
 			if (sti(NPChar.Ship.Type) != SHIP_NOTUSED) {
-				sld = GetRealShip(sti(NPChar.Ship.Type));
-				Dialog.Text = Dialog.Text + ", капитан " + xiStr(sld.BaseName + "Gen") + " " + NPChar.Ship.Name;
+	Dialog.Text = Dialog.Text + ", капитан " + XI_ConvertString(RealShips[sti(npchar.Ship.Type)].BaseName + "Gen") + " '" + NPChar.Ship.Name + "'";
+
 			}
 			Dialog.Text = Dialog.Text + ". Приятно познакомиться, чем могу быть полез" + NPCharSexPhrase(NPChar, "ен", "на") + "?";
 			DeleteAttribute(NPChar, "onceGreeting");
@@ -711,8 +711,8 @@ void ProcessDialogEvent()
 	case "quest_onStay": // ПГГ сам подходит
 		chrDisableReloadToLocation = false;
 		SaveCurrentQuestDateParam("QuestTalk");
+		Dialog.Text = "Поосторожнее!!! О! Кажется, я знаю тебя, ты - известная личность! Наслышан" + NPCharSexPhrase(NPChar, "", "а") + ", наслышан" + NPCharSexPhrase(NPChar, "", "а") + "."; 
 
-		Dialog.Text = "Поосторожнее!!! О! Кажется, я знаю тебя, ты - известная личность! Наслышан" + NPCharSexPhrase(NPChar, "", "а") + ", наслышан" + NPCharSexPhrase(NPChar, "", "а") + ".";
 
 		if (CheckAttribute(NPChar, "meeting") && sti(NPChar.meeting))
 		{
@@ -731,9 +731,9 @@ void ProcessDialogEvent()
 				"Позвольте представиться. Я капитан " + GetFullName(PChar) + ".", 
 					"Позвольте представиться. Я капитан " + GetFullName(PChar) + ".", 
 				"Позвольте представиться. Я капитан " + GetFullName(PChar) + ".", 
-				"Не имел" + GetSexPhrase("","а") + " чести быть вам представленн" + GetSexPhrase("ым","ой") + 
+				"Не имел" + GetSexPhrase("","а") + " чести быть вам представленн" + GetSexPhrase("ым","ой") +  
 				". Я капитан корабля '" + PChar.Ship.Name + "' под флагом " + NationNameGenitive(sti(PChar.nation)) + 
-				". Моё имя " + GetFullName(PChar) + "."
+				". Моё имя - " + GetFullName(PChar) + "."
 			)
 		);
 		link.l1.go = "Quest_1_Meeting";
@@ -741,11 +741,11 @@ void ProcessDialogEvent()
 
 	//=========== Первый квест ==========
 	case "Quest_1_Meeting":
-		sld = GetRealShip(sti(NPChar.Ship.Type));
-		Dialog.Text = "Я - " + GetFullName(NPChar) + ", капитан " + xiStr(sld.BaseName + "Gen") + " " + NPChar.Ship.Name + 
+Dialog.Text = "Я - " + GetFullName(NPChar) + ", капитан " + XI_ConvertString(RealShips[sti(npchar.Ship.Type)].BaseName + "Gen") + " '" + NPChar.Ship.Name + "'"
+
 		NPCharSexPhrase(NPChar, 
 			NPCharRepPhrase(NPChar, ". Самый известный корсар всего испанского Мэйна.", ". Обычный моряк."), 
-			NPCharRepPhrase(NPChar, ". Самая известная покорительница морей на всех Карибах.", " Самая обычная девушка-пират.")
+			NPCharRepPhrase(NPChar, ". Самая известная покорительница морей на всех Карибах.", ". Самая обычная девушка-пират.")
 		);
 		link.l1 = "Да, теперь я тебя запомню.";
 		link.l1.go = "Quest_1_Work";
@@ -950,7 +950,7 @@ void ProcessDialogEvent()
 		} else {
 			Dialog.Text = RandPhraseSimple(
 				"Добро пожаловать на борт, капитан!",
-				"Ну, вот и славно, теперь я уверен" + GetSexPhrase("","а") + " - лишних ушей нет, мои матросы уже в курсе."
+				"Ну, вот и славно, теперь я уверен" + NPCharGetSexPhrase(NPChar, "", "а") + " - лишних ушей нет, мои матросы уже в курсе."
 			) + " Предложение такое – взять немного бесхозного добра.";
 		}
 		link.l1 = RandPhraseSimple(
