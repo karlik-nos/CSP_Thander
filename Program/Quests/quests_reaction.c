@@ -220,11 +220,6 @@ void QuestComplete(string sQuestName, string qname)
 				//LAi_RemoveCheckMinHP(sld);  можно пальнуть в спину, тогда по идее будет бой
 				LAi_type_actor_Reset(sld);
 				LAi_ActorGoToLocation(sld, "reload", sTemp, "none", "", "", "", 4.0);
-
-				sld = characterFromID(PChar.HunterCost.TempHunterType + "LandHunter02" + i);
-				//LAi_RemoveCheckMinHP(sld);  можно пальнуть в спину, тогда по идее будет бой
-				LAi_type_actor_Reset(sld);
-				LAi_ActorGoToLocation(sld, "reload", sTemp, "none", "", "", "", 4.0);
 			}
         break;
 		case "GoAway_PGGHunters_Land":
