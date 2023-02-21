@@ -1159,11 +1159,10 @@ void ProcessDialogEvent()
 
 		case "BurntShip19":
 			sld = &Characters[GetCompanionIndex(PChar, sti(NPChar.Quest.BurntShip.ShipCompanionIndex))];
-			//cn = GetShipSellPrice(sld, CharacterFromID(NPChar.city + "_shipyarder")) * 3;
-			cn = GetShipSellPrice(sld, CharacterFromID(NPChar.city + "_shipyarder")) * 2; // было x3 от продажной
+			cn = GetShipSellPrice(sld, CharacterFromID(NPChar.city + "_shipyarder")) * 1.2;
 			rRealShip = GetRealShip(GetCharacterShipType(sld));
-			if (sti(rRealShip.Stolen)) cn *= 3; // "ворованные" компенсируются
-
+			if (sti(rRealShip.Stolen)) cn *= 3;//"ворованные" компенсируются, но там вообще-то х4
+//почему считается цена привезенного корабля, а не цена сгоревшего? :)
 			dialog.text = "Да, великолепно! Я готов выдать ваше вознаграждение, " + FindRussianMoneyString(cn) + ". Именно так страховая контора оценила сгоревшее судно. Страховка выплачена кредитными сундуками - наличных денег нет, извините.";
 			link.l1 = "Э нет, такая сумма меня не устроит. Я уверен"+ GetSexPhrase("","а") +", что это судно стоит гораздо дороже.";
 			link.l1.go = "BurntShip21";
@@ -1178,7 +1177,7 @@ void ProcessDialogEvent()
 
 		case "BurntShip20_exit":
 			//AddMoneyToCharacter(PChar, sti(NPChar.Quest.BurntShip.Money));
-			TakeNItems(pchar, "chest", makeint(sti(NPChar.Quest.BurntShip.Money)/12000));
+			TakeNItems(pchar, "chest", makeint(sti(NPChar.Quest.BurntShip.Money)/15000 + 0.5));
 			Log_Info("Вы получили кредитные сундуки");
 			PlaySound("interface\important_item.wav");
 			sTitle = "BurntShipQuest" + NPChar.location;

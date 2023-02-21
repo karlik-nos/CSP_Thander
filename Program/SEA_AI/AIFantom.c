@@ -472,7 +472,7 @@ void Fantom_SetSails(ref rFantom, string sFantomType)
 void Fantom_SetBalls(ref rFantom, string sFantomType)
 {
 	int iKClass = 7 - GetCharacterShipClass(rFantom);
-	float fK = 1;	
+	float fK = 2;	
 	
 	int nShipType = sti(rFantom.ship.type);
 	ref refBaseShip = GetRealShip(nShipType);
@@ -501,7 +501,7 @@ void Fantom_SetBalls(ref rFantom, string sFantomType)
 	iKClass = iKClass * fK;
     // boal 20.01.2004 -->
 	Fantom_SetCharacterGoods(rFantom, GOOD_BALLS,    MakeInt(19 * iCannons * fK + rand(MakeInt(10 * iKClass))), 0);
-	Fantom_SetCharacterGoods(rFantom, GOOD_BOMBS,    MakeInt(18 * iCannons * fK + rand(MakeInt(20 * iKClass))), 0);
+	Fantom_SetCharacterGoods(rFantom, GOOD_BOMBS,    MakeInt(11 * iCannons * fK + rand(MakeInt(20 * iKClass))), 0);
 	Fantom_SetCharacterGoods(rFantom, GOOD_KNIPPELS, MakeInt(9 * iCannons * fK + rand(MakeInt(10 * iKClass))), 0);
 	Fantom_SetCharacterGoods(rFantom, GOOD_GRAPES,   MakeInt(7 * iCannons * fK + rand(MakeInt(10 * iKClass))), 0);
 	Fantom_SetCharacterGoods(rFantom, GOOD_POWDER,   MakeInt(35 * iCannons * fK + rand(MakeInt(30 * iKClass))), 0);

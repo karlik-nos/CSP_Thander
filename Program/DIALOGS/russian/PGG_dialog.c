@@ -221,8 +221,7 @@ void ProcessDialogEvent()
 		if (CheckAttribute(NPChar, "onceGreeting")) {
 			Dialog.Text = "Ну, а меня здесь все знают! Я - " + GetFullName(NPChar);
 			if (sti(NPChar.Ship.Type) != SHIP_NOTUSED) {
-				sld = GetRealShip(sti(NPChar.Ship.Type));
-				Dialog.Text = Dialog.Text + ", капитан " + xiStr(sld.BaseName + "Gen") + " " + NPChar.Ship.Name;
+				Dialog.Text = Dialog.Text + ", капитан " + XI_ConvertString(RealShips[sti(npchar.Ship.Type)].BaseName + "Gen") + " '" + NPChar.Ship.Name + "'";
 			}
 			Dialog.Text = Dialog.Text + ". Приятно познакомиться, чем могу быть полез" + NPCharSexPhrase(NPChar, "ен", "на") + "?";
 			DeleteAttribute(NPChar, "onceGreeting");
@@ -711,8 +710,7 @@ void ProcessDialogEvent()
 	case "quest_onStay": // ПГГ сам подходит
 		chrDisableReloadToLocation = false;
 		SaveCurrentQuestDateParam("QuestTalk");
-
-		Dialog.Text = "Поосторожнее!!! О! Кажется, я знаю тебя, ты - известная личность! Наслышан" + NPCharSexPhrase(NPChar, "", "а") + ", наслышан" + NPCharSexPhrase(NPChar, "", "а") + ".";
+		Dialog.Text = "Поосторожнее!!! О! Кажется, я знаю тебя, ты - известная личность! Наслышан" + NPCharSexPhrase(NPChar, "", "а") + ", наслышан" + NPCharSexPhrase(NPChar, "", "а") + "."; 
 
 		if (CheckAttribute(NPChar, "meeting") && sti(NPChar.meeting))
 		{
@@ -731,9 +729,9 @@ void ProcessDialogEvent()
 				"Позвольте представиться. Я капитан " + GetFullName(PChar) + ".", 
 					"Позвольте представиться. Я капитан " + GetFullName(PChar) + ".", 
 				"Позвольте представиться. Я капитан " + GetFullName(PChar) + ".", 
-				"Не имел" + GetSexPhrase("","а") + " чести быть вам представленн" + GetSexPhrase("ым","ой") + 
+				"Не имел" + GetSexPhrase("","а") + " чести быть вам представленн" + GetSexPhrase("ым","ой") +
 				". Я капитан корабля '" + PChar.Ship.Name + "' под флагом " + NationNameGenitive(sti(PChar.nation)) + 
-				". Моё имя " + GetFullName(PChar) + "."
+				". Моё имя - " + GetFullName(PChar) + "."
 			)
 		);
 		link.l1.go = "Quest_1_Meeting";
@@ -741,11 +739,10 @@ void ProcessDialogEvent()
 
 	//=========== Первый квест ==========
 	case "Quest_1_Meeting":
-		sld = GetRealShip(sti(NPChar.Ship.Type));
-		Dialog.Text = "Я - " + GetFullName(NPChar) + ", капитан " + xiStr(sld.BaseName + "Gen") + " " + NPChar.Ship.Name + 
+		Dialog.Text = "Я - " + GetFullName(NPChar) + ", капитан " + XI_ConvertString(RealShips[sti(npchar.Ship.Type)].BaseName + "Gen") + " '" + NPChar.Ship.Name + "'"
 		NPCharSexPhrase(NPChar, 
 			NPCharRepPhrase(NPChar, ". Самый известный корсар всего испанского Мэйна.", ". Обычный моряк."), 
-			NPCharRepPhrase(NPChar, ". Самая известная покорительница морей на всех Карибах.", " Самая обычная девушка-пират.")
+			NPCharRepPhrase(NPChar, ". Самая известная покорительница морей на всех Карибах.", ". Самая обычная девушка-пират.")
 		);
 		link.l1 = "Да, теперь я тебя запомню.";
 		link.l1.go = "Quest_1_Work";
@@ -950,7 +947,7 @@ void ProcessDialogEvent()
 		} else {
 			Dialog.Text = RandPhraseSimple(
 				"Добро пожаловать на борт, капитан!",
-				"Ну, вот и славно, теперь я уверен+ GetSexPhrase("","а") +" - лишних ушей нет, мои матросы уже в курсе."
+				"Ну, вот и славно, теперь я уверен" + NPCharSexPhrase(NPChar, "", "а") + " - лишних ушей нет, мои матросы уже в курсе."
 			) + " Предложение такое – взять немного бесхозного добра.";
 		}
 		link.l1 = RandPhraseSimple(

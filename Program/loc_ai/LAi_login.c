@@ -719,10 +719,11 @@ void GenerateSpySeeker(ref location)
 void GovernorManInviting()
 {
 	string sNationname;
+	if (CheckAttribute(pchar, "EquipedPatentId")) return;
 	for(int i = 0; i < 4; i++)
 	{
 		sNationname = GetNationNameByType(i));
-	if(sti(pchar.(sNationname).quest.mayor) >= 10 && !CheckAttribute(pchar, "EquipedPatentId") && findsubstr(pchar.location, "_town", 0) != -1 && sti(pchar.(sNationname).quest.mayor.done) == 0)
+		if (CheckAttribute(pchar, sNationname+".quest.mayor") && sti(pchar.(sNationname).quest.mayor) >= 10 && findsubstr(pchar.location, "_town", 0) != -1 && sti(pchar.(sNationname).quest.mayor.done) == 0)
 		{
 			int iChar = NPC_GenerateCharacter(sNationname+"_Governor_Man", "off_"+NationShortName(i)+"_1", "man", "man", sti(pchar.rank), i, 1, 0);
 			ref rChar = GetCharacter(iChar);

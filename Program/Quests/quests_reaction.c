@@ -437,7 +437,7 @@ void QuestComplete(string sQuestName, string qname)
             chrDisableReloadToLocation = true;
             Pchar.GenQuestFort.FarLocator = true;
 			sTemp = "officers"; // не везде есть! :(
-            for (i = 0; i < MAX_TOWN_CREW; i++)
+            for (i = 0; i < MAX_TOWN_CREW + MOD_SKILL_ENEMY_RATE/2; i++)
             {
 				sld = SetFantomSkeletForts(sTemp, "", "TOWN_BATTLE_SOLDIERS", "GhostShipCrew");
 				if (sld.location.locator == "")
@@ -456,9 +456,8 @@ void QuestComplete(string sQuestName, string qname)
             {
             	SetFantomDefenceForts("goto", "", iTemp, LAI_GROUP_PLAYER);
             }
-            //#20190505-03
-            int nTmpEsc = makeint(MOD_SKILL_ENEMY_RATE);
-            for (i = 0; i < nTmpEsc; i++)
+
+            for (i = MOD_SKILL_ENEMY_RATE/2; i < 6; i++)
             {
             	SetFantomDefenceForts("goto", "", iTemp, LAI_GROUP_PLAYER);
             }

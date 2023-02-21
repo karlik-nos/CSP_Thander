@@ -2352,6 +2352,8 @@ void InitIslands()
 		Islands[n].filespath.models = "islands\KhaelRoa";
 		Islands[n].refl_model = "KhaelRoa_refl";
 		Islands[n].locators = "KhaelRoa_locators";
+		Islands[n].ImmersionDistance = 4000;
+		Islands[n].ImmersionDepth = 10000;
 		Islands[n].colonyquantity = 0;
 		Islands[n].TexturePath = "LostShipsCity";
 		Islands[n].visible = true;
