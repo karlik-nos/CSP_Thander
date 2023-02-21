@@ -256,8 +256,8 @@ void ProcessDialogEvent()
 				npchar.PGGAi.location.town = GetCurrentTown();
 				npchar.PGGAi.IsPGG = true;
 				int n = 0;
-				int aShips[SHIP_SP_SANFELIPE];
-				for (i = 0; i <= SHIP_SP_SANFELIPE; i++)
+				int aShips[SHIP_OCEAN];
+				for (i = 0; i <= SHIP_OCEAN; i++)
 				{
 					if (CheckAttribute(&ShipsTypes[i], "Class") && sti(ShipsTypes[i].Class) == GetCharacterShipClass(PChar))
 					{

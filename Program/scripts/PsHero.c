@@ -70,7 +70,7 @@ void InitPsHeros()
 
 			if (rand(4) < 3)
 			{
-				ch.Ship.Type = GenerateShipExt((SHIP_BERMSLOOP + rand(11)), 0, ch);
+				ch.Ship.Type = GenerateShipExt((SHIP_KETCH + rand(11)), 0, ch);
 				SetBaseShipData(ch);
 				SetRandomNameToShip(ch);
 
@@ -1152,7 +1152,7 @@ void PGG_UpdateEquip(ref chr)
 	if (bShipNotUsed || bOk)
 	{
 		n = 0;
-		for (i = 0; i <= SHIP_SP_SANFELIPE; i++)
+		for (i = 0; i <= SHIP_OCEAN; i++)
 		{
 			if (CheckAttribute(&ShipsTypes[i], "Class") && sti(ShipsTypes[i].Class) >= iClass && prevClass > sti(ShipsTypes[i].Class))
 			{
