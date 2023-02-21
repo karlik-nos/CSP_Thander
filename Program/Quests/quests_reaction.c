@@ -220,11 +220,6 @@ void QuestComplete(string sQuestName, string qname)
 				//LAi_RemoveCheckMinHP(sld);  можно пальнуть в спину, тогда по идее будет бой
 				LAi_type_actor_Reset(sld);
 				LAi_ActorGoToLocation(sld, "reload", sTemp, "none", "", "", "", 4.0);
-
-				sld = characterFromID(PChar.HunterCost.TempHunterType + "LandHunter02" + i);
-				//LAi_RemoveCheckMinHP(sld);  можно пальнуть в спину, тогда по идее будет бой
-				LAi_type_actor_Reset(sld);
-				LAi_ActorGoToLocation(sld, "reload", sTemp, "none", "", "", "", 4.0);
 			}
         break;
 		case "GoAway_PGGHunters_Land":
@@ -437,7 +432,7 @@ void QuestComplete(string sQuestName, string qname)
             chrDisableReloadToLocation = true;
             Pchar.GenQuestFort.FarLocator = true;
 			sTemp = "officers"; // не везде есть! :(
-            for (i = 0; i < MAX_TOWN_CREW; i++)
+            for (i = 0; i < MAX_TOWN_CREW + MOD_SKILL_ENEMY_RATE/2; i++)
             {
 				sld = SetFantomSkeletForts(sTemp, "", "TOWN_BATTLE_SOLDIERS", "GhostShipCrew");
 				if (sld.location.locator == "")
@@ -456,9 +451,8 @@ void QuestComplete(string sQuestName, string qname)
             {
             	SetFantomDefenceForts("goto", "", iTemp, LAI_GROUP_PLAYER);
             }
-            //#20190505-03
-            int nTmpEsc = makeint(MOD_SKILL_ENEMY_RATE);
-            for (i = 0; i < nTmpEsc; i++)
+
+            for (i = MOD_SKILL_ENEMY_RATE/2; i < 6; i++)
             {
             	SetFantomDefenceForts("goto", "", iTemp, LAI_GROUP_PLAYER);
             }
@@ -8020,7 +8014,7 @@ void QuestComplete(string sQuestName, string qname)
 			SetQuestHeader("Pir_Line_6_Jackman");
 			AddQuestRecord("Pir_Line_6_Jackman", "4");
 			AddQuestUserData("Pir_Line_6_Jackman", "sSex", GetSexPhrase("уничтожил своего 'родственничка', похож он был на меня очень сильно. Кто он, откуда, чем занимался","уничтожила свою 'сестричку', похожа она была на меня очень сильно. Кто она, откуда, чем занималась"));
-			QuestSetCurrentNode("Jackman", "PL_Q6_after");
+			pchar.questTemp.piratesLine = "PL_Q6_AfterBattle";
 		break;
 
 

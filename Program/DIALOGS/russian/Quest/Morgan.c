@@ -1175,7 +1175,6 @@ void ProcessDialogEvent()
 			//сразу даём квест №6
 			SetQuestHeader("Pir_Line_6_Jackman");
 			AddQuestRecord("Pir_Line_6_Jackman", "1");
-			QuestSetCurrentNode("Jackman", "PL_Q6"); //даём ноду Джекмену
 		break;
 		//квест №7, охота на Соукинса
 		case "PL_Q7_begin":
@@ -1339,7 +1338,7 @@ void ProcessDialogEvent()
 		break;
 		case "PL_Q7_GoodWork_2":
 			dialog.text = "И что?";
-			link.l1 = "И не перехватил…";
+			link.l1 = "И не перехватил...";
 			link.l1.go = "PL_Q7_GoodWork_3";
 		break;
 		case "PL_Q7_GoodWork_3":

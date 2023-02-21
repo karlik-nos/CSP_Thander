@@ -81,7 +81,6 @@ void ProcessDialogEvent()
 					dialog.text = "Ты вернулся...";
 					link.l1 = "Я правда пытался тебе помочь и отнести деньги в церковь. Но как оказалось, таким как я добрые дела противопоказаны. В результате  моей попытки погибло много невинных. Забери свои деньги, я не в силах тебе помочь.";
 					link.l1.go = "ResultChurch_2";
-					LocatorReloadEnterDisable(pchar.HellSpawnLocation, "reload7_back", false);
 					break;
 				}
 			}

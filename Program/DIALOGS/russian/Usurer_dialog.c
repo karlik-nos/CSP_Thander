@@ -105,7 +105,7 @@ void ProcessDialogEvent()
 				break;
             }
 			//пиратка, квест №5, заглушка на возврат бабла -->
-			if (CheckAttribute(npchar, "PLQ5Money"))
+			if (CheckAttribute(npchar, "PLQ5Money") && CheckAttribute(pchar, "questTemp.piratesLine.PLQ5Money")) 
 			{
 				dialog.text = "Вы принесли мне мои 50 тысяч?";
 				link.l1 = "Нет ещё, я этим занимаюсь. Ждите.";

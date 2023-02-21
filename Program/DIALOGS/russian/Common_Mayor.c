@@ -1781,7 +1781,7 @@ void ProcessDialogEvent()
 						case 1:
 							pchar.GenQuest.SeekSpy.Terms = dRand(2) + 3; //сроки выполнения задания
 							pchar.GenQuest.SeekSpy.Money = ((dRand(8) + 2) * 150) + (sti(pchar.rank) * 200 + 2000); //вознаграждение
-							dialog.text = "Да, сейчас у меня есть для вас ответственное поручение. Я получил информацию о том, что в " + XI_ConvertString("Colony"+npchar.city+"Dat") + " находится вражеский лазутчик. Вам необходимо его разыскать.";
+							dialog.text = "Да, сейчас у меня есть для вас ответственное поручение. Я получил информацию о том, что в " + XI_ConvertString("Colony"+npchar.city+"Voc") + " находится вражеский лазутчик. Вам необходимо его разыскать.";
 							link.l1 = "Скажите, " + GetAddress_FormToNPC(NPChar) + ", а информация, полученная вами, достоверна?";
 							link.l1.go = "SeekSpy";
 						break;
@@ -1803,7 +1803,7 @@ void ProcessDialogEvent()
 								pchar.GenQuest.Intelligence.City = sTemp;
 								sTemp = ", что на " + XI_ConvertString(colonies[FindColony(pchar.GenQuest.Intelligence.City)].islandLable+"Gen");
 								dialog.text = "У меня есть для вас задание, сопряжённое с серьёзным риском. Мне нужно, чтобы вы пробрались в " + XI_ConvertString("Colony"+pchar.GenQuest.Intelligence.City+"Acc") + sTemp + ", встретились там с указанным человеком и доставили мне то, что он вам даст.";
-								link.l1 = "Хм, не сказал"+ GetSexPhrase("","а") +" бы, что в " + XI_ConvertString("Colony"+pchar.GenQuest.Intelligence.City+"Gen") + " будут рады меня видеть...";
+								link.l1 = "Хм, не сказал"+ GetSexPhrase("","а") +" бы, что в " + XI_ConvertString("Colony"+pchar.GenQuest.Intelligence.City+"Voc") + " будут рады меня видеть...";
 								link.l1.go = "Intelligence";
 							}
 						break;

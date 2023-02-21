@@ -14,7 +14,7 @@ float Whr_GetFloat(aref arRef, string sAttribute)
 	}
 
 	if (!CheckAttribute(&arRef, sAttribute)) return 0.0; //задолбало
-//Стоит ли такое делать? Надо же разобраться, почему в логах пишет ошибки
+
 	return stf(arRef.(sAttribute));
 }
 
@@ -27,9 +27,6 @@ int Whr_GetLong(aref arRef, string sAttribute)
 		int iMax = sti(arRef.(sAttribute).max);
 		return iMin + rand(iMax - iMin - 1);
 	}
-
-	if (!CheckAttribute(&arRef, sAttribute)) return 0; 
-//Стоит ли такое делать? Надо же разобраться, почему в логах пишет [error] [error] RUNTIME ERROR in weather\WhrUtils.c(30): missed attribute: Enable
 	return sti(arRef.(sAttribute));
 }
 

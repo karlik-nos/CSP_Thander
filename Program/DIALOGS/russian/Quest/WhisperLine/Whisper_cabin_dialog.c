@@ -199,6 +199,7 @@ void ProcessDialogEvent()
 		case "Portman_betray_chard_1":
 			AddQuestRecord("WhisperChardQuest", "5");
 			CloseQuestHeader("WhisperChardQuest");
+			pchar.Whisper.PortmanAtSea = true;//Отключаем подсказки по поиску Портмана - квест закрыт
 			TakeItemFromCharacter(pchar, "Bible");
 			Log_Info("Вы получили императорский топор");
 			GiveItem2Character(pchar, "topor_emperor");

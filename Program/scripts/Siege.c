@@ -320,32 +320,28 @@ int MakeSiegeSquadron(int ination)
 
 	while (i < SHIP_TYPES_QUANTITY)
 	{
-		if (!CheckAttribute(ShipsTypes[i], "CanEncounter"))
+		if (CheckAttribute(ShipsTypes[i], "CanEncounter") && ShipsTypes[i].CanEncounter == true)
 		{
-			if (ShipsTypes[i].CanEncounter != true)
+			if ((ShipsTypes[i].Type.War == true) && (ShipsTypes[i].nation.(sNation) == true))
 			{
-				break;
+				suitableShipTypes[usualShipTypesCount + bestShipTypesCount] = i;
+				bestShipTypesCount++;
 			}
-		}
-		if ((ShipsTypes[i].Type.War == true) && (ShipsTypes[i].nation.(sNation) == true))
-		{
-			suitableShipTypes[usualShipTypesCount + bestShipTypesCount] = i;
-			bestShipTypesCount++;
-		}
+		}		
 		i++;
 	}
 
-    int bestShipCount = rand(3) - 1;
+	int bestShipCount = rand(3) - 1;
 	if (bestShipCount < 0) bestShipCount = 0;
 	aData.ShipCount = 5 + rand(2);
 
 	Log_TestInfo("Default ship types count: " + usualShipTypesCount + " best ship types count: " + bestShipTypesCount);
 	Log_TestInfo("Best ships count in squadron: " + bestShipCount + " all ships count in squadron: " + aData.ShipCount);
 
-    int itmp = 0;
+	int itmp = 0;
 	int shipType;
 
-    Group_DeleteGroup(sGroup);
+	Group_DeleteGroup(sGroup);
 	Group_FindOrCreateGroup(sGroup);
 
     for (i = 1; i <= sti(aData.ShipCount); i++)
