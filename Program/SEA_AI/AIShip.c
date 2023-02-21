@@ -1251,7 +1251,7 @@ void Ship_CheckSituation()
 			else attackChar = sti(rCharacter.Ship.LastBallCharacter);
 			if (attackChar != -1)
 			{
-				if(CheckAttribute(Characters[attackChar],"IslandShips")) return;
+				if(CheckAttribute(Characters[attackChar],"IslandShips") || GetCharacter(attackChar) == rTargetedChar) return;
 				Group_SetEnemyToCharacter(sGroupID, attackChar);
 				SetCharacterRelationBoth(sti(rCharacter.index), attackChar, RELATION_ENEMY);
 				Group_SetTaskAttack(sGroupID, Ship_GetGroupID(GetCharacter(attackChar)));
