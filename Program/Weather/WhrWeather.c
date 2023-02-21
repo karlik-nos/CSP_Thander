@@ -209,11 +209,11 @@ void CreateWeatherEnvironment()
 		// search weather for hour
 		for (int i=0;i<MAX_WEATHERS;i++)
 		{
-			/*if (CheckAttribute(&Weathers[i], "Bak"))
+			if (CheckAttribute(&Weathers[i], "Bak.Sun.Ambient"))
 			{
 				Weathers[i].Sun.Ambient	= Weathers[i].Bak.Sun.Ambient;
 				Weathers[i].Sun.Color = Weathers[i].Bak.Sun.Color;
-			}*/
+			}
 			//navy --> чистим текущую погоду от остатков предыдущего дождя... иначе сохранненный дождь пойдет...
 			//или нужно всю погоду инитить заново... но лучше наверно так.
 			if (!bRain && sti(Weathers[i].Rain.NumDrops) > 0 && sti(Weathers[i].Rain.NumDrops) < 5100)
@@ -411,7 +411,7 @@ void CreateWeatherEnvironment()
 	bWeatherIsNight = Whr_GetLong(aCurWeather,"Night");
 	bWeatherIsLight = Whr_GetLong(aCurWeather,"Lights");
 	
-	/*if (CheckAttribute(loadedLocation, "type")) // Фикс освещения персонажей в тавернах.
+	if (CheckAttribute(loadedLocation, "type")) // Фикс освещения персонажей в тавернах.
 	{
 		if(loadedLocation.type == "tavern"
 					|| loadedLocation.type == "residence"
@@ -429,7 +429,7 @@ void CreateWeatherEnvironment()
 			aCurWeather.Sun.Ambient = argb(0,50,50,50);
 			aCurWeather.Sun.Color = argb(0,85,80,80); 
 		}
-	}*/
+	}
 
 	if(CheckAttribute(pchar, "wind.angle"))
 	{
