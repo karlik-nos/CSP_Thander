@@ -8014,7 +8014,7 @@ void QuestComplete(string sQuestName, string qname)
 			SetQuestHeader("Pir_Line_6_Jackman");
 			AddQuestRecord("Pir_Line_6_Jackman", "4");
 			AddQuestUserData("Pir_Line_6_Jackman", "sSex", GetSexPhrase("уничтожил своего 'родственничка', похож он был на меня очень сильно. Кто он, откуда, чем занимался","уничтожила свою 'сестричку', похожа она была на меня очень сильно. Кто она, откуда, чем занималась"));
-			QuestSetCurrentNode("Jackman", "PL_Q6_after");
+			pchar.questTemp.piratesLine = "PL_Q6_AfterBattle";
 		break;
 
 
