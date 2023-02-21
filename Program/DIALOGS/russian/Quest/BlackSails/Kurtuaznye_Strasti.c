@@ -80,7 +80,7 @@ void ProcessDialogEvent()
 			LAi_SetActorTypeNoGroup(sld);
 			LAi_ActorTurnToCharacter(npchar, sld);
 			LAi_ActorTurnToCharacter(sld, npchar);
-            dialog.text = "Кхгм… Да да, мы это сделаем, капитан.";
+            dialog.text = "Кхгм... Да да, мы это сделаем, капитан.";
             link.l1 = "";
 			link.l1.go = "BS_KS_6_1";
 		break;

@@ -1338,7 +1338,7 @@ void ProcessDialogEvent()
 		break;
 		case "PL_Q7_GoodWork_2":
 			dialog.text = "И что?";
-			link.l1 = "И не перехватил…";
+			link.l1 = "И не перехватил...";
 			link.l1.go = "PL_Q7_GoodWork_3";
 		break;
 		case "PL_Q7_GoodWork_3":
