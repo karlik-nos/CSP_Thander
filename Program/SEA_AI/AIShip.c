@@ -2057,7 +2057,7 @@ void Ship_ApplyCrewHitpoints(ref rOurCharacter, float fCrewHP)
 	// boal fix утопленников   <--
 }
 
-void Ship_ApplyCrewHitpointsWithCannon(ref rOurCharacter, float fCrewHP, float fCannonDamageMultiply, int iBallType)
+void Ship_ApplyCrewHitpointsWithCannon(ref rOurCharacter, float fCrewHP, int iBallType)
 {         // че-то распук метод "неподецки" - переделал 29.07.06 boal
 	if (LAi_IsImmortal(rOurCharacter))
 	{
@@ -2068,18 +2068,11 @@ void Ship_ApplyCrewHitpointsWithCannon(ref rOurCharacter, float fCrewHP, float f
 		fCrewHP = fCrewHP / MOD_Complexity_1_DMG;
 	}
 	ref rBaseShip = GetRealShip(GetCharacterShipType(rOurCharacter));
-	float fMinusC = sti(RealShips[sti(rOurCharacter.Ship.Type)].HullArmor)*0.04; //защищает так же как и броня корпуса, как бомбы - на 30%
-	//множитель картечи - 0,2*1,15
-	//log_info(FloatToString(fMinusC,2));
-	//Log_Info("fMinusC "+fMinusC);
-	if (fMinusC < 0.0) fMinusC = 0.0;
-	float fDamage = fCrewHP - fMinusC;
-	//Log_Info("fDamage "+fDamage);
-	if (iBallType == GOOD_GRAPES)
-	{
-		if(fDamage < 1)
-			fDamage = 1;//имитация огня по палубе/в пушки - а то совсем жирно будет
-	}
+
+	float fDamage = fCrewHP;
+//Log_Info("fDamage "+fDamage);
+	if (iBallType == GOOD_GRAPES) if(fDamage < 1) fDamage = 1;//имитация огня по палубе/в пушки - а то совсем жирно будет
+
 	float fMultiply = 1.0 - (0.5 * stf(rOurCharacter.TmpSkill.Defence)); // было 0.05 - что полная хрень, тк скил 0..1
 
 	if(CheckOfficersPerk(rOurCharacter, "Doctor2"))
@@ -2196,27 +2189,7 @@ void Ship_ApplyHullHitpointsWithCannon(ref rOurCharacter, float fHP, int iKillSt
 	if (sti(rOurCharacter.TmpPerks.ShipDefenseProfessional))	fMinus = 0.35;
 	if (CheckAttribute(&RealShips[sti(rOurCharacter.Ship.Type)], "Tuning.HullSpecial")) fMinus = fMinus+0.35;
 
-	int fMinusC = sti(RealShips[sti(rOurCharacter.Ship.Type)].HullArmor);
-	/*int shipclass = sti(RealShips[sti(rOurCharacter.Ship.Type)].Class);
-	switch (shipclass)
-	{
-		case 6: fMinusC = 12;
-		break;
-		case 5: fMinusC = 16;
-		break;
-		case 4: fMinusC = 20;
-		break;
-		case 3: fMinusC = 24;
-		break;
-		case 2: fMinusC = 32;
-		break;
-		case 1: fMinusC = 42;
-		break;
-	}*/
 	float fDam = fHP * (1.0 + fPlus - fMinus);
-	//Log_Info("До снижения "+fDam);
-	fDam = fDam - fMinusC;
-	//Log_Info("После снижения "+fDam);
 	if (fDam < 1.0) fDam = 1;
 	fCurHP = stf(rOurCharacter.Ship.HP) - fDam;
 	if (fCurHP <= 0.0)
@@ -2685,9 +2658,20 @@ void Ship_HullHitEvent()
     bool    isOurCompanion   = IsCompanion(rOurCharacter);
 
     if (bDead) return; // фикс, не нужно обсчитывать труп
-	// Cannon damage multiply
+
 	ref rCannon = GetCannonByType(sti(rBallCharacter.Ship.Cannons.Type));
 	float fCannonDamageMultiply = stf(rCannon.DamageMultiply);
+
+	float fMinusArmor = stf(RealShips[sti(rOurCharacter.Ship.Type)].HullArmor)/4.0;
+	if (fMinusArmor > fCannonDamageMultiply*0.75) fMinusArmor = fCannonDamageMultiply*0.75;//больше 75% урона броня не поглощает
+	fCannonDamageMultiply = (fCannonDamageMultiply - fMinusArmor);
+
+//Так броня урезает и криты. Увеличил их немного, но вообще-то там итак много было
+
+//Кулеврины получаются всё равно что пушки на пару калибров меньше, но с более быстрой перезарядкой			
+//с этим надо что-то делать			Вообще-то кулеврины должны дольше перезаряжаться. Не урезать урон, но уменьшить перезарядку??? - будет меньше дпс, но логично и одинаково эффективно против брони
+//для начала нужно убрать резкий скачок урона с 24 до 32			И ещё раз обсудить выпиливание возможности бермудить калибр. 
+//Если не выпиливаем, то урон пушек должен расти плавно на множитель, например х1.2 каждый следующий, если выпиливаем, то можно сохранить прибавки +4
 
 	//float fDistanceDamageMultiply = Bring2Range(1.2, 0.25, 0.0, stf(AIBalls.CurrentMaxBallDistance), stf(AIBalls.CurrentBallDistance));
 
@@ -2721,16 +2705,16 @@ void Ship_HullHitEvent()
 
     if (sti(rOurCharacter.TmpPerks.ShipDefenseProfessional) && rand(1000) < 700) { bSeriousBoom = false; }				// no seriouse boom
 
-    float fCrewDamage;
-	if (CheckAttribute(RealShips[sti(rOurCharacter.Ship.Type)],"Tuning.HighBort") && iBallType == GOOD_GRAPES) fCrewDamage = (stf(rBall.DamageCrew)*0.75) * fCannonDamageMultiply * AIShip_isPerksUse(rBallCharacter.TmpPerks.CrewDamageUp, 1.0, 1.15);
-	else fCrewDamage = stf(rBall.DamageCrew) * fCannonDamageMultiply * AIShip_isPerksUse(rBallCharacter.TmpPerks.CrewDamageUp, 1.0, 1.15);
-	//Log_Info("fCrewDamage "+fCrewDamage);
-	// fHP = fDistanceDamageMultiply * fCannonDamageMultiply * stf(rBall.DamageHull) * (8.0 + frnd() * 4.0); // LEO: Забекапил
-	fHP = fCannonDamageMultiply * stf(rBall.DamageHull);
+    float fCrewDamage = stf(rBall.DamageCrew) * fCannonDamageMultiply * AIShip_isPerksUse(rBallCharacter.TmpPerks.CrewDamageUp, 1.0, 1.15);
+	if (CheckAttribute(RealShips[sti(rOurCharacter.Ship.Type)],"Tuning.HighBort") && iBallType == GOOD_GRAPES) fCrewDamage = 0,75 * fCrewDamage;
+//Log_Info("fCrewDamage "+fCrewDamage);
+// fHP = fDistanceDamageMultiply * fCannonDamageMultiply * stf(rBall.DamageHull) * (8.0 + frnd() * 4.0); // LEO: Забекапил
+	fHP = fCannonDamageMultiply * stf(rBall.DamageHull) / 1.4;	//без НИ делим: 	было 	х1.5 	от ядер, х2.5 	от бомб
+	if (iBallType == GOOD_BOMBS) fHP *= 1.1;					//					стало 	х1,07	от ядер, х1.96	от бомб
 	if (bSeriousBoom)
 	{
-		fCrewDamage = fCrewDamage * 7.0;
-		fHP = fHP * 4.0; // 4.0
+		fCrewDamage = fCrewDamage * 8.0;
+		fHP = fHP * 6.0; // 4.0
 		if (iBallCharacterIndex == nMainCharacterIndex)
 		{
 			Log_SetStringToLog(LanguageConvertString(iSeaSectionLang, "Ship_critical"));
@@ -2766,7 +2750,7 @@ void Ship_HullHitEvent()
 	//Log_Info("fDistanceDamageMultiply "+fDistanceDamageMultiply);
 	if (CheckAttribute(RealShips[sti(rOurCharacter.Ship.Type)],"Tuning.HighBort") && iBallType != GOOD_GRAPES) fHP *= 1.35; // LEO: (fHP *= 1.25;) - этого мало оказалось
 	Ship_ApplyHullHitpointsWithCannon(rOurCharacter, fHP, KILL_BY_BALL, iBallCharacterIndex);
-	Ship_ApplyCrewHitpointsWithCannon(rOurCharacter, fCrewDamage, fCannonDamageMultiply, iBallType);
+	Ship_ApplyCrewHitpointsWithCannon(rOurCharacter, fCrewDamage, iBallType);
 
 	if (bInflame == true && fFirePlaceDistance < 4.0 && iFirePlaceIndex >= 0)
 	{

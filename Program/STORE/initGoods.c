@@ -7,7 +7,7 @@ void InitGoods()
 	Goods[GOOD_BALLS].Weight		= 1;
 	Goods[GOOD_BALLS].Units			= 20;
 	Goods[GOOD_BALLS].SpeedV0		= 1.0;
-	Goods[GOOD_BALLS].DamageHull	= 1.5;
+	Goods[GOOD_BALLS].DamageHull	= 1.5;		//ВНИМАНИЕ. в AIShip добавил множители, чтоб без НИ исправить. 		ядра 1.5/1.4=1.07		бомбы 2.5/1.4*1.1=1.965
 	Goods[GOOD_BALLS].DamageRig		= 0.0;
 	Goods[GOOD_BALLS].DamageCrew	= 0.025;
 	Goods[GOOD_BALLS].AfraidWater = 0;    // рудимент от к3
