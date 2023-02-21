@@ -760,7 +760,7 @@ void ProcessDialogEvent()
 			//ПРОДОЛЖЕНИЕ СЮДА ПИСАТЬ (смена пещеры)	
 			locations[FindLocation("Guadeloupe_deadlock")].models.day.charactersPatch = "jungle9_patch";
 			locations[FindLocation("Guadeloupe_deadlock")].models.night.charactersPatch = "jungle9_patch";
-			//Locations[FindLocation("Guadeloupe_deadlock")].models.always.l4 = "jungle9_wall2";
+			Locations[FindLocation("Guadeloupe_deadlock")].models.always.l4 = "jungle9_nowall";
 		break;
 		
 		case "Учитель_Спасение":
