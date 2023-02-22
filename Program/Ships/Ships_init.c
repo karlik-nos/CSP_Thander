@@ -2775,7 +2775,7 @@ void InitShips()
 	refship.Rocking.y = 0.5;
 	refship.Rocking.az = 0.04;
 
-	refship.WaterLine							= 0.3;
+	refship.WaterLine							= -0.25;
 	refship.SpeedDependWeight			= 0.2;
 	refship.SubSeaDependWeight			= 0.6;
 	refship.TurnDependWeight			= 0.2;
@@ -7354,10 +7354,10 @@ void InitShips()
 	refShip.Weight 								= Tonnes2CWT(1000);
 	refShip.Capacity 							= 3000;
 	refShip.MaxCannonDiff								= 4;
-	refShip.CannonsQuantity 							= 56;
-	refShip.rcannon 									= 26;
-	refShip.lcannon 									= 26;
-	refShip.fcannon 									= 2;
+	refShip.CannonsQuantity 							= 60;
+	refShip.rcannon 									= 27;
+	refShip.lcannon 									= 27;
+	refShip.fcannon 									= 4;
 	refShip.bcannon 									= 2;
 	refShip.MaxCrew 								= 340;
 	refShip.MinCrew 								= 68;
@@ -7809,7 +7809,7 @@ void InitShips()
 	refship.nation.pirate	= false;
 	refship.nation.spain	= false;
 
-	refShip.hullNums = 8; // LEO
+	refShip.hullNums = 5; // LEO
 
 	///////////////////////////////////////////////////////////////////////////
 	/// Alexis			Линкор 2-го класса
@@ -10879,7 +10879,7 @@ void InitShips()
 	refship.Soundtype					= "manowar";
 	refShip.Class						= 1;
 	refShip.Cannon          			= CANNON_TYPE_CANNON_LBS8;
-	refShip.MaxCaliber      			= 36;
+	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(3200);
 	refShip.Capacity        			= 5750;
 	refShip.MaxCannonDiff						= 0;
@@ -10946,6 +10946,8 @@ void InitShips()
 	refship.Track2.LifeTime = 10.5;
 	refship.Track2.Width	= "16.0, 18.0";
 	refship.Track2.Speed	= "0.15, 0.25";
+
+	refShip.hullNums = 4; // LEO
 
 	///////////////////////////////////////////////////////////////////////////
 	//// SoleyRu			Королевский мановар

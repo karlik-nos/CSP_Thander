@@ -209,7 +209,7 @@ void CreateWeatherEnvironment()
 		// search weather for hour
 		for (int i=0;i<MAX_WEATHERS;i++)
 		{
-			if (CheckAttribute(&Weathers[i], "Bak"))
+			if (CheckAttribute(&Weathers[i], "Bak.Sun.Ambient"))
 			{
 				Weathers[i].Sun.Ambient	= Weathers[i].Bak.Sun.Ambient;
 				Weathers[i].Sun.Color = Weathers[i].Bak.Sun.Color;
