@@ -38,6 +38,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			sld.lastname = "";
 			sld.FaceId = 297;
 			LAi_SetStayType(sld);
+			LAi_group_MoveCharacter(sld, "PIRATE_CITIZENS");
 			sld.Dialog.Filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
 			sld.dialog.currentnode = "Учитель_Смерть";
 			ChangeCharacterAddressGroup(sld, "PortPax_prison", "goto",  "goto9");

@@ -11056,13 +11056,41 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 		
 		case "PKM_SvtvA_UchitelvTaverne":
-			LAi_SetActorType(pchar);
 			sld = CharacterFromID("Satanist_Uchitel");
+			FantomMakeCoolFighter(sld, 12, 60, 60, BLADE_LONG, "", 100);
+			sld.SaveItemsForDead = true;
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(10)-2);
+			AddItems(sld, "jewelry1", 3);
 			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
 			sld.dialog.currentnode = "Обманываем Учителя_4";
 			ChangeCharacterAddressGroup(sld, "SanJuan_tavern_upstairs", "goto", "goto3");
-			DoQuestCheckDelay("PKM_SvtvA_UchitelNaPalube3", 1.6);
-			LAi_ActorDialogDelay(sld, pchar, "", 1.6);
+			LAi_ActorDialogNow(sld, Pchar, "", -1);
+		break;
+		
+		case "PKM_SvtvA_UbivaemUchitelya":
+			Island_SetReloadEnableGlobal("PuertoRico", true);
+			bQuestDisableMapEnter = false;
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
+			
+			AddQuestRecord("PKM_Animists", "33");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
+			
+			locations[FindLocation("Guadeloupe_deadlock")].models.day.charactersPatch = "jungle9_patch";
+			locations[FindLocation("Guadeloupe_deadlock")].models.night.charactersPatch = "jungle9_patch";
+			Locations[FindLocation("Guadeloupe_deadlock")].models.always.l4 = "jungle9_nowall";
+			
+			PChar.quest.LogovoSatanistov.win_condition.l1 = "location";
+			PChar.quest.LogovoSatanistov.win_condition.l1.location = "Cave_Satanists";
+			PChar.quest.LogovoSatanistov.win_condition = "LogovoSatanistov";
+		break;
+		
+		case "LogovoSatanistov":
+			//
 		break;
 		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////

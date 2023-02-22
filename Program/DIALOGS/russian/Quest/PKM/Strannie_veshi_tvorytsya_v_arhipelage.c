@@ -756,11 +756,14 @@ void ProcessDialogEvent()
 			PChar.quest.PKM_SvtvA_TuremchikDialog.win_condition.l1 = "ExitFromLocation";  //Выход из локации
 			PChar.quest.PKM_SvtvA_TuremchikDialog.win_condition.l1.location = PChar.location;
 			PChar.quest.PKM_SvtvA_TuremchikDialog.win_condition = "PKM_SvtvA_TuremchikDialog";
-			
-			//ПРОДОЛЖЕНИЕ СЮДА ПИСАТЬ (смена пещеры)	
+				
 			locations[FindLocation("Guadeloupe_deadlock")].models.day.charactersPatch = "jungle9_patch";
 			locations[FindLocation("Guadeloupe_deadlock")].models.night.charactersPatch = "jungle9_patch";
 			Locations[FindLocation("Guadeloupe_deadlock")].models.always.l4 = "jungle9_nowall";
+			
+			PChar.quest.LogovoSatanistov.win_condition.l1 = "location";
+			PChar.quest.LogovoSatanistov.win_condition.l1.location = "Cave_Satanists";
+			PChar.quest.LogovoSatanistov.win_condition = "LogovoSatanistov";
 		break;
 		
 		case "Учитель_Спасение":
@@ -837,10 +840,19 @@ void ProcessDialogEvent()
 			dialog.text = "Что?! Так ты...";
 			link.l1 = "Да, я не принадлежу к вашей братии. А теперь защищайся!";
 			link.l1.go = "Обманываем Учителя_7";
+			LAi_group_MoveCharacter(pchar, "PIRATE_CITIZENS");
 		break;
 		
 		case "Обманываем Учителя_7":
 			DialogExit();
+			
+			LAi_SetWarriorType(npchar);
+			LAi_group_Attack(characterFromId("Satanist_Uchitel"), Pchar);
+			LAi_SetFightMode(pchar, true);
+			
+			PChar.quest.PKM_SvtvA_UbivaemUchitelya.win_condition.l1 = "NPC_Death";
+			PChar.quest.PKM_SvtvA_UbivaemUchitelya.win_condition.l1.character = "Satanist_Uchitel";
+			PChar.quest.PKM_SvtvA_UbivaemUchitelya.win_condition = "PKM_SvtvA_UbivaemUchitelya";
 		break;
 		
 	}
