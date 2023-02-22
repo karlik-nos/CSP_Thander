@@ -7809,7 +7809,7 @@ void InitShips()
 	refship.nation.pirate	= false;
 	refship.nation.spain	= false;
 
-	refShip.hullNums = 8; // LEO
+	refShip.hullNums = 5; // LEO
 
 	///////////////////////////////////////////////////////////////////////////
 	/// Alexis			Линкор 2-го класса
