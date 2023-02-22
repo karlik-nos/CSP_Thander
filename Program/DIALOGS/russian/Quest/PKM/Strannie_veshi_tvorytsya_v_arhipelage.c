@@ -798,10 +798,49 @@ void ProcessDialogEvent()
 			LAi_ActorFollow(sld, pchar, "", -1);
 			AddPassenger(pchar, sld, true);
 			
-			//ПРОДОЛЖЕНИЕ СЮДА ПИСАТЬ (На Сан-Хуан)
 			PChar.quest.PKM_SvtvA_UchitelPassakir.win_condition.l1 = "location";
 			PChar.quest.PKM_SvtvA_UchitelPassakir.win_condition.l1.location = "PuertoRico";
 			PChar.quest.PKM_SvtvA_UchitelPassakir.win_condition = "PKM_SvtvA_UchitelPassakir";
+		break;
+		
+		case "Обманываем Учителя":
+			dialog.text = "Мы почти прибыли в Сан-Хуан, а ты пока ещё не успел"+GetSexPhrase("","а")+" зарекомендовать себя. Может быть ты исправишься?";
+			link.l1 = "Как скажете.";
+			link.l1.go = "Обманываем Учителя_2";
+		break;
+		
+		case "Обманываем Учителя_2":
+			dialog.text = "В таком случае, сразу после высадки я надеюсь увидеть вас в одной из комнат таверны.";
+			link.l1 = "Хорошо.";
+			link.l1.go = "Обманываем Учителя_3";
+		break;
+		
+		case "Обманываем Учителя_3":
+			DialogExit();
+			
+			DoQuestReloadToLocation("SanJuan_tavern_upstairs", "goto", "goto2", "PKM_SvtvA_UchitelvTaverne");
+		break;
+		
+		case "Обманываем Учителя_4":
+			dialog.text = "Да, я вижу, что вы не лукавите, и действительно связаны с нашим братством. Версия этого мальчишки полностью совпадает с вашей\nНе знаю, когда и где вы примкнули к нам, это сейчас и не важно\nВажно то, что нам необходимо срочно отправиться в наше убежище, так как подходит время для ритуала.\nДумаю, вы согласитесь спровадить меня и некоторых местных жителей в наш храм?";
+			link.l1 = "Разумеется. Скажите только, куда нам нужно отправляться.";
+			link.l1.go = "Обманываем Учителя_5";
+		break;
+		
+		case "Обманываем Учителя_5":
+			dialog.text = "Наш храм находится на острове Мария Галанте. Именно там мы и плани-и...";
+			link.l1 = "...Ну а теперь, когда я узнал"+GetSexPhrase("","а")+" всё, что мне необходимо, думаю, тебе пришло время умереть.";
+			link.l1.go = "Обманываем Учителя_6";
+		break;
+		
+		case "Обманываем Учителя_6":
+			dialog.text = "Что?! Так ты...";
+			link.l1 = "Да, я не принадлежу к вашей братии. А теперь защищайся!";
+			link.l1.go = "Обманываем Учителя_7";
+		break;
+		
+		case "Обманываем Учителя_7":
+			DialogExit();
 		break;
 		
 	}

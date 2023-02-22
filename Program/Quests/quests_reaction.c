@@ -9925,6 +9925,7 @@ void QuestComplete(string sQuestName, string qname)
 			ChangeCharacterAddressGroup(sld, PChar.location, "goto", "goto4");
 			sld.name = "Матрос";
 			sld.lastname = "";
+			sld.lifeday = 0;
 			LAi_SetActorType(sld);
 			sld.dialog.filename = "Quest/PDM/Cursed_Idol.c";
 			sld.dialog.currentnode = "Matros_preduprejdaet";
@@ -9934,6 +9935,8 @@ void QuestComplete(string sQuestName, string qname)
 			{
 				sTemp = "shipowner_"+(rand(28)+1);
 				sld = GetCharacter(NPC_GenerateCharacter("PDM_PI_Matrosiki_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				sld.lifeday = 0;
+				LAi_CharacterDisableDialog(sld);
 				PlaceCharacter(sld, "goto", "random");
 				LAi_SetWarriorType(sld);
 				LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
@@ -11016,16 +11019,51 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 		
 		case "PKM_SvtvA_UchitelPassakir":
-			Log_info("ffffУ вас нет кл22");
 			Island_SetReloadEnableGlobal("PuertoRico", false);
 			bQuestDisableMapEnter = true;
+			bDisableFastReload = true;
+			chrDisableReloadToLocation = true;
 			
-			//DoQuestCheckDelay("PKM_SvtvA_UchitelNaPalube", 3.0);
+			DoQuestCheckDelay("PKM_SvtvA_UchitelNaPalube", 3.0);
 		break;
 		
-		//case "PKM_SvtvA_UchitelNaPalube":
-		//	DoQuestReloadToLocation("Ship_deck", "reload", "reload3", "PDM_PI_Skelety_on_Ship");
-		//break;
+		case "PKM_SvtvA_UchitelNaPalube":
+			DoQuestReloadToLocation("Ship_deck", "goto", "goto4", "PKM_SvtvA_UchitelNaPalube2");
+		break;
+		
+		case "PKM_SvtvA_UchitelNaPalube2":
+			for (i=1; i<=4; i++)
+			{
+				sTemp = "shipowner_"+(rand(28)+1);
+				sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA__Matrosiki_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				sld.lifeday = 0;
+				LAi_CharacterDisableDialog(sld);
+				PlaceCharacter(sld, "goto", "random");
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
+			}
+			LAi_SetActorType(pchar);
+			sld = CharacterFromID("Satanist_Uchitel");
+			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "Обманываем Учителя";
+			ChangeCharacterAddressGroup(sld, "Ship_deck", "goto", "goto3");
+			DoQuestCheckDelay("PKM_SvtvA_UchitelNaPalube3", 2.8);
+			LAi_ActorDialogDelay(sld, pchar, "", 2.8);
+		break;
+		
+		case "PKM_SvtvA_UchitelNaPalube3":
+			LAi_SetPlayerType(pchar);
+		break;
+		
+		case "PKM_SvtvA_UchitelvTaverne":
+			LAi_SetActorType(pchar);
+			sld = CharacterFromID("Satanist_Uchitel");
+			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "Обманываем Учителя_4";
+			ChangeCharacterAddressGroup(sld, "SanJuan_tavern_upstairs", "goto", "goto3");
+			DoQuestCheckDelay("PKM_SvtvA_UchitelNaPalube3", 1.6);
+			LAi_ActorDialogDelay(sld, pchar, "", 1.6);
+		break;
 		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////   	КВЕСТЫ "Пираты Карибского Моря" КОНЕЦ
