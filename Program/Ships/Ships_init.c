@@ -2775,7 +2775,7 @@ void InitShips()
 	refship.Rocking.y = 0.5;
 	refship.Rocking.az = 0.04;
 
-	refship.WaterLine							= 0.3;
+	refship.WaterLine							= -0.25;
 	refship.SpeedDependWeight			= 0.2;
 	refship.SubSeaDependWeight			= 0.6;
 	refship.TurnDependWeight			= 0.2;
@@ -10879,7 +10879,7 @@ void InitShips()
 	refship.Soundtype					= "manowar";
 	refShip.Class						= 1;
 	refShip.Cannon          			= CANNON_TYPE_CANNON_LBS8;
-	refShip.MaxCaliber      			= 36;
+	refShip.MaxCaliber      			= 42;
 	refShip.Weight						= Tonnes2CWT(3200);
 	refShip.Capacity        			= 5750;
 	refShip.MaxCannonDiff						= 0;
