@@ -9269,7 +9269,7 @@ int InitItems()
 	itm.describe = "itmdescr_PKM_SvtvA_znachok";
 	itm.picIndex = 12;
 	itm.picTexture = "ITEMS_4";
-	itm.price = 1200;
+	itm.price = 66;
 	itm.weight = 0.1;
 	n++;
 	
@@ -9295,15 +9295,14 @@ int InitItems()
 	itm.ItemType = "QUESTITEMS";
 	n++;
 	
-	makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
-	itm.id = "PKM_SvtvA_pismo3";	//Письмо от отца Клермона
+	makeref(itm,Items[n]);
+	itm.id = "PKM_SvtvA_pismo3";	//Книга Хаоса
 	itm.name = "itmname_PKM_SvtvA_pismo3";
 	itm.describe = "itmdescr_PKM_SvtvA_pismo3";
-	itm.picIndex = 7;
-	itm.picTexture = "ITEMS_12";
-	itm.price = 0;
-	itm.weight = 0.1;
-	itm.ItemType = "QUESTITEMS";
+	itm.picIndex = 2;
+	itm.picTexture = "ITEMS_20";
+	itm.price = 5000;
+	itm.weight = 0.7;
 	n++;
 
 	//InitGunExt(id,	sAttr,  sBullet,  sGunPowder, DmgMin_NC, DmgMax_NC, DmgMin_C, DmgMax_C, EnergyP_NC, EnergyP_C, Stun_NC, Stun_C, MultiDamage, MisFire, SelfDamage, Explosion,Accuracy,ChargeSpeed,isDefault);

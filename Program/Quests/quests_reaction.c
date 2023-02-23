@@ -10975,7 +10975,8 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 		
 		case "PKM_SvtvA_IdemSledom":
-			pchar.GenQuestBox.CommonRoom_MH4.box2.items.icollection = 1;
+			pchar.GenQuestBox.CommonRoom_MH4.box2.items.PKM_SvtvA_znachok = 666;
+			pchar.GenQuestBox.CommonRoom_MH4.box2.items.PKM_SvtvA_pismo3 = 1;
 			
 			PChar.quest.PKM_SvtvA_IdemSledom.win_condition.l1 = "Timer";
 			PChar.quest.PKM_SvtvA_IdemSledom.win_condition.l1.date.hour = sti(GetTime() + 1);
@@ -11076,6 +11077,7 @@ void QuestComplete(string sQuestName, string qname)
 			bQuestDisableMapEnter = false;
 			bDisableFastReload = false;
 			chrDisableReloadToLocation = false;
+			pchar.location.from_sea = "SanJuan_town";
 			
 			AddQuestRecord("PKM_Animists", "33");
 			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
