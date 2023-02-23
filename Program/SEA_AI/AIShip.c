@@ -2706,7 +2706,7 @@ void Ship_HullHitEvent()
     if (sti(rOurCharacter.TmpPerks.ShipDefenseProfessional) && rand(1000) < 700) { bSeriousBoom = false; }				// no seriouse boom
 
     float fCrewDamage = stf(rBall.DamageCrew) * fCannonDamageMultiply * AIShip_isPerksUse(rBallCharacter.TmpPerks.CrewDamageUp, 1.0, 1.15);
-	if (CheckAttribute(RealShips[sti(rOurCharacter.Ship.Type)],"Tuning.HighBort") && iBallType == GOOD_GRAPES) fCrewDamage = 0,75 * fCrewDamage;
+	if (CheckAttribute(RealShips[sti(rOurCharacter.Ship.Type)],"Tuning.HighBort") && iBallType == GOOD_GRAPES) fCrewDamage = 0.75 * fCrewDamage;
 //Log_Info("fCrewDamage "+fCrewDamage);
 // fHP = fDistanceDamageMultiply * fCannonDamageMultiply * stf(rBall.DamageHull) * (8.0 + frnd() * 4.0); // LEO: Забекапил
 	fHP = fCannonDamageMultiply * stf(rBall.DamageHull) / 1.4;	//без НИ делим: 	было 	х1.5 	от ядер, х2.5 	от бомб
