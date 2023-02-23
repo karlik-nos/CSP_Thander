@@ -11092,7 +11092,81 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 		
 		case "LogovoSatanistov":
-			//
+			//Кухня
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Kuhnya_1", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
+			LAi_SetHP(sld, 1.0, 1.0);
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
+			LAi_SetSitType(sld);
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto32");
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
+			AddItems(sld, "food2", 12);
+			GiveItem2Character(sld, "mineral9");
+			AddItems(sld, "food3", 12);
+			LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
+			
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Kuhnya_2", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
+			LAi_SetHP(sld, 1.0, 1.0);
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
+			LAi_SetSitType(sld);
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto34");
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			GiveItem2Character(sld, "mineral9");
+			AddItems(sld, "mineral3", rand(7)-4);
+			AddItems(sld, "food5", 9);
+			GiveItem2Character(sld, "mineral9");
+			LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
+			
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Kuhnya_3", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
+			FantomMakeCoolFighter(sld, sti(pchar.rank), 50, 50, "blade5", "", 0);
+			LAi_SetHP(sld, 1.0, 1.0);
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
+			LAi_SetActorType(sld);
+			LAi_ActorAnimation(sld, "lay_2", "", 2.0);
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto36");
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
+			LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
+			
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Kuhnya_4", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
+			LAi_SetHP(sld, 1.0, 1.0);
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
+			LAi_SetSitType(sld);
+			sld.nonTable = true;
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto35");
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
+			LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
+			
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Kuhnya_5", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
+			LAi_SetHP(sld, 1.0, 1.0);
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
+			LAi_SetActorType(sld);
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto9");
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
+			LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
+			DoQuestFunctionDelay("PKM_SvtvA_SatanistNaKuhnePovernut", 1.0);
 		break;
 		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
