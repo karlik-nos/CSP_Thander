@@ -2014,7 +2014,7 @@ void ProcessDialogEvent()
 				Link.l2.go = "TravelToLeFransua";
 				Link.l3 = "Ла Вега";
 				Link.l3.go = "TravelToLaVega";
-				Link.l4 = "Пуэро-Принсипе";
+				Link.l4 = "Пуэрто-Принсипе";
 				Link.l4.go = "TravelToPuertoPrincipe";
 				Link.l5 = "Форт Оранж";
 				Link.l5.go = "TravelToFortOrange";
