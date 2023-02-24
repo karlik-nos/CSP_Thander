@@ -1934,15 +1934,15 @@ void ProcessDialogEvent()
 		break;
 
 		case "TakeMoreslaves2":
-			amount = GetSquadronGoods(Pchar, GOOD_SLAVES);
 			dialog.Text = "Отлично! Мои люди их заберут... Насчёт таможни и коменданта форта не беспокойтесь. У меня этот бизнес поставлен на широкую ногу, так что проблем не будет, и в контрабанде вас никто не обвинит.";
 			Link.l1 = "Смотрю, у вас здесь уже всё схвачено! Как насчёт оплаты?";
 			Link.l1.go = "TakesMoreslaves3";
-			RemoveCharacterGoods(Pchar, GOOD_SLAVES, amount);
 		break;
 
 		case "TakesMoreslaves3":
-			AddMoneyToCharacter(pchar, makeint(GetSquadronGoods(Pchar, GOOD_SLAVES) * 250));
+			amount = GetSquadronGoods(Pchar, GOOD_SLAVES);
+			RemoveCharacterGoods(Pchar, GOOD_SLAVES, amount);
+			AddMoneyToCharacter(pchar, makeint(amount * 250));
 			dialog.Text = "Пожалуйста, получите... Я слов на ветер не бросаю. Держитесь за меня, капитан, и скоро у вас будет столько пиастров, что для их перевозки понадобится целый галеон!";
 			Link.l1 = "Хорошо бы... Ну а что дальше?";
 			Link.l1.go = "Takeslaves_2";
