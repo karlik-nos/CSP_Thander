@@ -1941,7 +1941,7 @@ void ProcessDialogEvent()
 			RemoveCharacterGoods(Pchar, GOOD_SLAVES, amount);
 		break;
 
-		case "TakeMoreslaves3":
+		case "TakesMoreslaves3":
 			AddMoneyToCharacter(pchar, makeint(GetSquadronGoods(Pchar, GOOD_SLAVES) * 250));
 			dialog.Text = "Пожалуйста, получите... Я слов на ветер не бросаю. Держитесь за меня, капитан, и скоро у вас будет столько пиастров, что для их перевозки понадобится целый галеон!";
 			Link.l1 = "Хорошо бы... Ну а что дальше?";
