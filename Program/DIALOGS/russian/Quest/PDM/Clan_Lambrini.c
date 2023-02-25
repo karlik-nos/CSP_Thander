@@ -305,9 +305,9 @@ void ProcessDialogEvent()
 			Group_SetAddress("PDM_el_tib", "Maracaibo", "quest_ships", "reload_fort1");	//Установить местоположение
 			Group_LockTask("PDM_el_tib");
 
-			PChar.quest.PDM_CL_Antonio_Ubit.win_condition.l1 = "NPC_Death";
-			PChar.quest.PDM_CL_Antonio_Ubit.win_condition.l1.character = "PDM_CL_Antonio";
-			PChar.quest.PDM_CL_Antonio_Ubit.win_condition = "PDM_CL_Antonio_Ubit";
+//			PChar.quest.PDM_CL_Antonio_Ubit.win_condition.l1 = "NPC_Death";
+//			PChar.quest.PDM_CL_Antonio_Ubit.win_condition.l1.character = "PDM_CL_Antonio";
+//			PChar.quest.PDM_CL_Antonio_Ubit.win_condition = "PDM_CL_Antonio_Ubit";
 
 			PChar.quest.PDM_CL_Antonio_Ubit2.win_condition.l1 = "NPC_Death";
 			PChar.quest.PDM_CL_Antonio_Ubit2.win_condition.l1.character = "PDM_CL_Anto2";
