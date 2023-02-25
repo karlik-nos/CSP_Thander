@@ -11092,7 +11092,9 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 		
 		case "LogovoSatanistov":
-			//Кухня
+			chrDisableReloadToLocation = true;
+			
+			//КУХНЯ
 			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Kuhnya_1", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
 			LAi_SetHP(sld, 1.0, 1.0);
 			sld.DontChangeBlade = true;
@@ -11100,7 +11102,7 @@ void QuestComplete(string sQuestName, string qname)
 			sld.DeleteFood = true;
 			LAi_SetSitType(sld);
 			LAi_CharacterDisableDialog(sld);
-			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto32");
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "sit",  "sit32");
 			sld.SaveItemsForDead = true;
 			GiveItem2Character(sld, "PKM_SvtvA_znachok");
 			AddItems(sld, "mineral3", rand(7)-4);
@@ -11108,6 +11110,7 @@ void QuestComplete(string sQuestName, string qname)
 			GiveItem2Character(sld, "mineral9");
 			AddItems(sld, "food3", 12);
 			LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
+			sld.lifeday = 0;
 			
 			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Kuhnya_2", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
 			LAi_SetHP(sld, 1.0, 1.0);
@@ -11116,7 +11119,7 @@ void QuestComplete(string sQuestName, string qname)
 			sld.DeleteFood = true;
 			LAi_SetSitType(sld);
 			LAi_CharacterDisableDialog(sld);
-			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto34");
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "sit",  "sit34");
 			sld.SaveItemsForDead = true;
 			GiveItem2Character(sld, "PKM_SvtvA_znachok");
 			GiveItem2Character(sld, "mineral9");
@@ -11124,6 +11127,7 @@ void QuestComplete(string sQuestName, string qname)
 			AddItems(sld, "food5", 9);
 			GiveItem2Character(sld, "mineral9");
 			LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
+			sld.lifeday = 0;
 			
 			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Kuhnya_3", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
 			FantomMakeCoolFighter(sld, sti(pchar.rank), 50, 50, "blade5", "", 0);
@@ -11134,11 +11138,12 @@ void QuestComplete(string sQuestName, string qname)
 			LAi_SetActorType(sld);
 			LAi_ActorAnimation(sld, "lay_2", "", 2.0);
 			LAi_CharacterDisableDialog(sld);
-			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto36");
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "sit",  "sit36");
 			sld.SaveItemsForDead = true;
 			GiveItem2Character(sld, "PKM_SvtvA_znachok");
 			AddItems(sld, "mineral3", rand(7)-4);
 			LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
+			sld.lifeday = 0;
 			
 			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Kuhnya_4", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
 			LAi_SetHP(sld, 1.0, 1.0);
@@ -11148,11 +11153,12 @@ void QuestComplete(string sQuestName, string qname)
 			LAi_SetSitType(sld);
 			sld.nonTable = true;
 			LAi_CharacterDisableDialog(sld);
-			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto35");
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "sit",  "sit35");
 			sld.SaveItemsForDead = true;
 			GiveItem2Character(sld, "PKM_SvtvA_znachok");
 			AddItems(sld, "mineral3", rand(7)-4);
 			LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
+			sld.lifeday = 0;
 			
 			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Kuhnya_5", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
 			LAi_SetHP(sld, 1.0, 1.0);
@@ -11167,6 +11173,44 @@ void QuestComplete(string sQuestName, string qname)
 			AddItems(sld, "mineral3", rand(7)-4);
 			LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
 			DoQuestFunctionDelay("PKM_SvtvA_SatanistNaKuhnePovernut", 1.0);
+			sld.lifeday = 0;
+			
+			PChar.quest.PKM_SvtvA_KuhnyaStels1.win_condition.l1 = "NPC_Death";
+			PChar.quest.PKM_SvtvA_KuhnyaStels1.win_condition.l1.character = "Satanist_Kuhnya_1";
+			PChar.quest.PKM_SvtvA_KuhnyaStels1.function = "PKM_SvtvA_KuhnyaStels";
+			
+			PChar.quest.PKM_SvtvA_KuhnyaStels2.win_condition.l1 = "NPC_Death";
+			PChar.quest.PKM_SvtvA_KuhnyaStels2.win_condition.l1.character = "Satanist_Kuhnya_2";
+			PChar.quest.PKM_SvtvA_KuhnyaStels2.function = "PKM_SvtvA_KuhnyaStels";
+			
+			PChar.quest.PKM_SvtvA_KuhnyaStels3.win_condition.l1 = "NPC_Death";
+			PChar.quest.PKM_SvtvA_KuhnyaStels3.win_condition.l1.character = "Satanist_Kuhnya_3";
+			PChar.quest.PKM_SvtvA_KuhnyaStels3.function = "PKM_SvtvA_KuhnyaStels";
+			
+			PChar.quest.PKM_SvtvA_KuhnyaStels4.win_condition.l1 = "NPC_Death";
+			PChar.quest.PKM_SvtvA_KuhnyaStels4.win_condition.l1.character = "Satanist_Kuhnya_4";
+			PChar.quest.PKM_SvtvA_KuhnyaStels4.function = "PKM_SvtvA_KuhnyaStels";
+			
+			PChar.quest.PKM_SvtvA_KuhnyaStels5.win_condition.l1 = "NPC_Death";
+			PChar.quest.PKM_SvtvA_KuhnyaStels5.win_condition.l1.character = "Satanist_Kuhnya_5";
+			PChar.quest.PKM_SvtvA_KuhnyaStels5.function = "PKM_SvtvA_KuhnyaStels";
+			
+			//ТЮРЬМА
+			
+			//Клетка #1
+			sld = GetCharacter(NPC_GenerateCharacter("Plennik_u_satanistov_1", "barmen_6", "man", "man", sti(pchar.rank), PIRATE, -1, false));
+			LAi_SetStayType(sld);
+			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "Спасите, помогите";
+			sld.lifeday = 0;
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto20");
+			
+			sld = GetCharacter(NPC_GenerateCharacter("Plennik_u_satanistov_2", "officer_20", "man", "man", sti(pchar.rank), PIRATE, -1, false));
+			LAi_SetStayType(sld);
+			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "Спасите, помогите";
+			sld.lifeday = 0;
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto20");
 		break;
 		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////

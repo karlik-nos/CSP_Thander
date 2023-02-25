@@ -10780,8 +10780,42 @@ void PKM_SvtvA_SatanistNaKuhnePovernut(string qName)
 {	
 	sld = CharacterFromID("Satanist_Kuhnya_5");
 	LAi_SetActorType(sld);
-	LAi_ActorTurnToLocator(sld, "goto", "goto35");
+	LAi_ActorTurnToLocator(sld, "sit", "sit35");
 	LAi_ActorAnimation(sld, "dialog_stay14", "", 2.0);
+}
+void PKM_SvtvA_KuhnyaStels(string qName)
+{	
+	sld = CharacterFromID("Satanist_Kuhnya_1");
+	LAi_SetWarriorType(sld);
+	LAi_SetHP(sld, 180.0, 180.0);
+	LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
+	ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto", "goto42");
+	sld = CharacterFromID("Satanist_Kuhnya_2");
+	LAi_SetWarriorType(sld);
+	LAi_SetHP(sld, 180.0, 180.0);
+	LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
+	ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto", "goto41");
+	sld = CharacterFromID("Satanist_Kuhnya_3");
+	LAi_SetWarriorType(sld);
+	LAi_SetHP(sld, 180.0, 180.0);
+	LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
+	ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto", "goto39");
+	sld = CharacterFromID("Satanist_Kuhnya_4");
+	LAi_SetWarriorType(sld);
+	LAi_SetHP(sld, 180.0, 180.0);
+	LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
+	ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto", "goto38");
+	sld = CharacterFromID("Satanist_Kuhnya_5");
+	LAi_SetWarriorType(sld);
+	LAi_SetHP(sld, 180.0, 180.0);
+	LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
+	PChar.quest.PKM_SvtvA_KuhnyaStels1.over = "yes";
+	PChar.quest.PKM_SvtvA_KuhnyaStels2.over = "yes";
+	PChar.quest.PKM_SvtvA_KuhnyaStels3.over = "yes";
+	PChar.quest.PKM_SvtvA_KuhnyaStels4.over = "yes";
+	PChar.quest.PKM_SvtvA_KuhnyaStels5.over = "yes";
+	LAi_group_SetRelation("Satanist_Kuhnya", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+	LAi_group_FightGroups("Satanist_Kuhnya", LAI_GROUP_PLAYER, false);
 }
 
 //Sinistra "Странные вещи творятся на архипелаге" <--

@@ -855,5 +855,12 @@ void ProcessDialogEvent()
 			PChar.quest.PKM_SvtvA_UbivaemUchitelya.win_condition = "PKM_SvtvA_UbivaemUchitelya";
 		break;
 		
+		case "Спасите, помогите":
+			dialog.text = LinkRandPhrase("Спасите! Вытащите нас!", "Не бросайте нас здесь! Я не хочу умирать!", "Отоприте решётку! Я хочу выбраться отсюда!");
+			link.l1 = "...";
+			link.l1.go = "exit";
+			NextDiag.TempNode = "Спасите, помогите";
+		break;
+		
 	}
 }
