@@ -924,15 +924,15 @@ void ProcessDialogEvent()
 			switch(attrL)
 			{
 				case "speedrate":
-					attrL = "У его " + GetStrSmallRegister(XI_ConvertString(ShipsTypes[iTest].Name + "Acc")) + " скорость по ветру была более " + NPChar.Quest.BurntShip.ShipNeededValue + " узлов. Для капера это первейшая гордость была... Он просто велит своим молодчикам повесить меня на рее! Чёрт принёс его в нашу гавань вместе с его пиратской лоханкой...";
+					attrL = "У его " + GetStrSmallRegister(XI_ConvertString(ShipsTypes[iTest].Name + "Gen")) + " скорость по ветру была более " + NPChar.Quest.BurntShip.ShipNeededValue + " узлов. Для капера это первейшая гордость была... Он просто велит своим молодчикам повесить меня на рее! Чёрт принёс его в нашу гавань вместе с его пиратской лоханкой...";
 				break;
 
 				case "turnrate":
-					attrL = "У его " + GetStrSmallRegister(XI_ConvertString(ShipsTypes[iTest].Name + "Acc")) + " манёвренность была более " + NPChar.Quest.BurntShip.ShipNeededValue + " единиц. Это для вояки первейшая гордость была... Он велит засечь меня шпицрутенами! Чёрт его надоумил оставить у меня свою посудину...";
+					attrL = "У его " + GetStrSmallRegister(XI_ConvertString(ShipsTypes[iTest].Name + "Gen")) + " манёвренность была более " + NPChar.Quest.BurntShip.ShipNeededValue + " единиц. Это для вояки первейшая гордость была... Он велит засечь меня шпицрутенами! Чёрт его надоумил оставить у меня свою посудину...";
 				break;
 
 				case "capacity":
-					attrL = "У его " + GetStrSmallRegister(XI_ConvertString(ShipsTypes[iTest].Name + "Acc")) + " дедвейт был более " + NPChar.Quest.BurntShip.ShipNeededValue + " единиц водоизмещения. Для купца это первейшая гордость была... Он меня без суда четвертует. Чёрт его дёрнул именно у меня своё корыто оставить!";
+					attrL = "У его " + GetStrSmallRegister(XI_ConvertString(ShipsTypes[iTest].Name + "Gen")) + " дедвейт был более " + NPChar.Quest.BurntShip.ShipNeededValue + " единиц водоизмещения. Для купца это первейшая гордость была... Он меня без суда четвертует. Чёрт его дёрнул именно у меня своё корыто оставить!";
 				break;
 			}
 
@@ -978,15 +978,15 @@ void ProcessDialogEvent()
 			switch(attrL)
 			{
 				case "speedrate":
-					attrL = "скорости. У " + GetStrSmallRegister(XI_ConvertString(ShipsTypes[iTest].name + "Acc")) + " скорость по ветру должна быть не менее " + NPChar.Quest.BurntShip.ShipNeededValue;
+					attrL = "скорости. У " + GetStrSmallRegister(XI_ConvertString(ShipsTypes[iTest].name + "Gen")) + " скорость по ветру должна быть не менее " + NPChar.Quest.BurntShip.ShipNeededValue;
 				break;
 
 				case "turnrate":
-					attrL = "манёвренности. У " + GetStrSmallRegister(XI_ConvertString(ShipsTypes[iTest].name + "Acc")) + " манёвренность должна быть не менее " + NPChar.Quest.BurntShip.ShipNeededValue;
+					attrL = "манёвренности. У " + GetStrSmallRegister(XI_ConvertString(ShipsTypes[iTest].name + "Gen")) + " манёвренность должна быть не менее " + NPChar.Quest.BurntShip.ShipNeededValue;
 				break;
 
 				case "capacity":
-					attrL = "трюма. У " + GetStrSmallRegister(XI_ConvertString(ShipsTypes[iTest].name + "Acc")) + " трюм должен быть не менее " + NPChar.Quest.BurntShip.ShipNeededValue;
+					attrL = "трюма. У " + GetStrSmallRegister(XI_ConvertString(ShipsTypes[iTest].name + "Gen")) + " трюм должен быть не менее " + NPChar.Quest.BurntShip.ShipNeededValue;
 				break;
 			}
 
@@ -1250,7 +1250,7 @@ void ProcessDialogEvent()
 			pchar.questTemp.PortmansJornal.gem = GenQuestPortman_GenerateGem();
 		break;
 		case "PortmanQuest_2":
-			dialog.text = "Да, конечно! Его зовут " + npchar.quest.PortmansJornal.capName + ", он капитан " + GetStrSmallRegister(XI_ConvertString(npchar.quest.PortmansJornal.shipTapeName + "Acc")) + " с именем '" + npchar.quest.PortmansJornal.shipName + "'. Вышел он в море недавно, а направился в " + XI_ConvertString("Colony" + npchar.quest.PortmansJornal.city + "Acc") + ".";
+			dialog.text = "Да, конечно! Его зовут " + npchar.quest.PortmansJornal.capName + ", он капитан " + GetStrSmallRegister(XI_ConvertString(npchar.quest.PortmansJornal.shipTapeName + "Gen")) + " с именем '" + npchar.quest.PortmansJornal.shipName + "'. Вышел он в море недавно, а направился в " + XI_ConvertString("Colony" + npchar.quest.PortmansJornal.city + "Acc") + ".";
 			link.l1 = "Понятно. Ну что же, я его обязательно найду. Как быть с оплатой?";
 			link.l1.go = "PortmanQuest_3";
 		break;
@@ -1422,7 +1422,7 @@ void ProcessDialogEvent()
 					sCapitainId = GetAttributeName(arCapLocal);
 					sld = characterFromId(sCapitainId);
 					attrL = "l" + i;
-					link.(attrL) = GetFullName(sld) + ", капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Acc")) + " '" + sld.Ship.name + "'.";
+					link.(attrL) = GetFullName(sld) + ", капитан " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(sld.Ship.Type)].BaseName + "Gen")) + " '" + sld.Ship.name + "'.";
 					link.(attrL).go = "CapList_"+attrL;
 				}
 			}
