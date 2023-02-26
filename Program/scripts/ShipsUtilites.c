@@ -979,29 +979,29 @@ void SetShipyardStore(ref NPChar)
 		}
 	iTest_ship=rand(j6-1);
 	FillShipParamShipyard(NPChar, GenerateStoreShipExt(storeArray[iTest_ship], NPChar), "ship2");
-
 	iTest_ship=rand(j6-1);
 	FillShipParamShipyard(NPChar, GenerateStoreShipExt(storeArray[iTest_ship], NPChar), "ship3");//2 корабля 7 класса
+
+	int iRankReq = 0;
+	if (bRankRequirement) iRankReq = 4;//При опции требования ранга - корабли на верфи на 4 ранга позже
 
 	for (i=j6+1;i<j;i++)
 		{
 			j5=i;
 			if (sti(ShipsTypes[storeArray[i]].Class)==5) break;//ищем начало 5 класса
 		}
-	if (sti(PChar.rank)>=1)
-		{
-			iTest_ship=j6+rand(j5-j6-1);
-			FillShipParamShipyard(NPChar, GenerateStoreShipExt(storeArray[iTest_ship], NPChar), "ship4");
 
-			iTest_ship=j6+rand(j5-j6-1);
-			FillShipParamShipyard(NPChar, GenerateStoreShipExt(storeArray[iTest_ship], NPChar), "ship5");//2 корабля 6 класса
-		}
+	iTest_ship=j6+rand(j5-j6-1);
+	FillShipParamShipyard(NPChar, GenerateStoreShipExt(storeArray[iTest_ship], NPChar), "ship4");
+	iTest_ship=j6+rand(j5-j6-1);
+	FillShipParamShipyard(NPChar, GenerateStoreShipExt(storeArray[iTest_ship], NPChar), "ship5");//2 корабля 6 класса
+
 	for (i=j5+1;i<j;i++)
 	{
 		j4=i;
 		if (sti(ShipsTypes[storeArray[i]].Class)==4) break;//ищем начало 4 класса
 	}
-	if (sti(PChar.rank)>=5)
+	if (sti(PChar.rank)>=(iRankReq-7))//снижаю требования, 5 класс всегда доступен
 		{
 			iTest_ship=j5+rand(j4-j5-1);
 			FillShipParamShipyard(NPChar, GenerateStoreShipExt(storeArray[iTest_ship], NPChar), "ship6");
@@ -1018,7 +1018,7 @@ void SetShipyardStore(ref NPChar)
 			j3=i;
 			if (sti(ShipsTypes[storeArray[i]].Class)==3) break;//ищем начало 3 класса
 		}
-	if (sti(PChar.rank)>=10)
+	if (sti(PChar.rank)>=(iRankReq-2))//снижаю требования, 4 класс со второго ранга ГГ, если повышенные требования из-за опции
 		{
 			iTest_ship=j4+rand(j3-j4-1);
 			FillShipParamShipyard(NPChar, GenerateStoreShipExt(storeArray[iTest_ship], NPChar), "ship9");
@@ -1034,7 +1034,7 @@ void SetShipyardStore(ref NPChar)
 			j2=i;
 			if (sti(ShipsTypes[storeArray[i]].Class)==2) break;//ищем начало 2 класса
 		}
-	if (sti(PChar.rank)>=20)
+	if (sti(PChar.rank)>=(iRankReq+3))
 		{
 			iTest_ship=j3+rand(j2-j3-1);
 			FillShipParamShipyard(NPChar, GenerateStoreShipExt(storeArray[iTest_ship], NPChar), "ship12");
@@ -1047,12 +1047,12 @@ void SetShipyardStore(ref NPChar)
 			j1=i;
 			if (sti(ShipsTypes[storeArray[i]].Class)==1) break;//ищем начало 1 класса
 		}
-	if (sti(PChar.rank)>=25)
+	if (sti(PChar.rank)>=(iRankReq+9))
 		{
 			iTest_ship=j2+rand(j1-j2-1);
 			FillShipParamShipyard(NPChar, GenerateStoreShipExt(storeArray[iTest_ship], NPChar), "ship14");//корабль 2 класса
 		}
-	if (sti(PChar.rank)>=30)
+	if (sti(PChar.rank)>=(iRankReq+17))//на 1 ранг позже, чем через заказ на верфи
 		{
 			iTest_ship=j1+rand(j-j1-1);
 			FillShipParamShipyard(NPChar, GenerateStoreShipExt(storeArray[iTest_ship], NPChar), "ship15");//корабль 1 класса
