@@ -1734,7 +1734,7 @@ int LocationInitJamaica(int n)
 	locations[n].reload.l9.label = "PortOffice";
 	locations[n].reload.l9.close_for_night = 1;
 
-	locations[n].reload.l10.name = "reload18";
+	locations[n].reload.l10.name = "reload17";
 	locations[n].reload.l10.go = "FortOrange_church";
 	locations[n].reload.l10.emerge = "reload1";
 	locations[n].reload.l10.autoreload = "0";
@@ -2084,7 +2084,7 @@ int LocationInitJamaica(int n)
 	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "FortOrange_town";
-	locations[n].reload.l1.emerge = "reload18";
+	locations[n].reload.l1.emerge = "reload17";
 	locations[n].reload.l1.autoreload = "0";
 	locations[n].reload.l1.label = "Street";
 	LAi_LocationFightDisable(&locations[n], true);
