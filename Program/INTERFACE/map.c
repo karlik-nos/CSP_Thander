@@ -275,7 +275,7 @@ void wdmRecalcReloadToSea()
 				isSkipable = true;
 			}
 		}
-		if (!checkattribute(rEncounter, "v2")) {log_info("тест - старый энк"); continue;}//не рисуем, если энкаунтер по старой системе или одиночный
+		if (!checkattribute(rEncounter, "v2")) { continue;}//не рисуем, если энкаунтер по старой системе или одиночный
 		//Заполнение таблицы картинками корабликов
 		for(q = 1; q < 10; q++)//фикс - если первой ячейки нет - движок не рисует всю таблицу
 		{
