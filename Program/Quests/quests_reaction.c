@@ -11197,20 +11197,151 @@ void QuestComplete(string sQuestName, string qname)
 			
 			//ТЮРЬМА
 			
-			//Клетка #1
+			//Пленники
 			sld = GetCharacter(NPC_GenerateCharacter("Plennik_u_satanistov_1", "barmen_6", "man", "man", sti(pchar.rank), PIRATE, -1, false));
 			LAi_SetStayType(sld);
 			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
-			sld.dialog.currentnode = "Спасите, помогите";
+			sld.dialog.currentnode = "Спасите, помогите1";
 			sld.lifeday = 0;
+			LAi_SetImmortal(sld, true);
 			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto20");
 			
 			sld = GetCharacter(NPC_GenerateCharacter("Plennik_u_satanistov_2", "officer_20", "man", "man", sti(pchar.rank), PIRATE, -1, false));
 			LAi_SetStayType(sld);
 			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
-			sld.dialog.currentnode = "Спасите, помогите";
+			sld.dialog.currentnode = "Спасите, помогите2";
 			sld.lifeday = 0;
-			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto20");
+			LAi_SetImmortal(sld, true);
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto21");
+			
+			sld = GetCharacter(NPC_GenerateCharacter("Plennik_u_satanistov_3", "Priest_4", "man", "man", sti(pchar.rank), PIRATE, -1, false));
+			sld.name = "падре";
+			sld.lastname = "Домингес";
+			LAi_SetStayType(sld);
+			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "Домингес в клетке";
+			sld.lifeday = 0;
+			LAi_SetImmortal(sld, true);
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto22");
+			
+			sld = GetCharacter(NPC_GenerateCharacter("Plennik_u_satanistov_4", "Slave3", "man", "man", sti(pchar.rank), PIRATE, -1, false));
+			LAi_SetStayType(sld);
+			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "Спасите, помогите3";
+			sld.lifeday = 0;
+			LAi_SetImmortal(sld, true);
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto23");
+			
+			//Охрана
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Turma_1", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
+			LAi_SetGuardianType(sld);
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto3");
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
+			LAi_group_MoveCharacter(sld, "Satanist_Turma");
+			
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Turma_2", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
+			LAi_SetGuardianType(sld);
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto4");
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
+			LAi_group_MoveCharacter(sld, "Satanist_Turma");
+			
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Turma_3", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
+			LAi_SetGuardianType(sld);
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto19");
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
+			LAi_group_MoveCharacter(sld, "Satanist_Turma");
+			
+			
+			LAi_group_SetRelation("Satanist_Turma", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+			LAi_group_SetLookRadius("Satanist_Turma", 4.0);
+			LAi_group_SetHearRadius("Satanist_Turma", 2.0);
+			LAi_group_SetSayRadius("Satanist_Turma", 10.0);
+			
+			//ВХОД ЛОГОВА
+						
+			//Охрана входа
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Vhod_1", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
+			LAi_SetGuardianType(sld);
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto16");
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
+			LAi_group_MoveCharacter(sld, "Satanist_Vhod");
+			
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Vhod_2", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
+			LAi_SetGuardianType(sld);
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto17");
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
+			LAi_group_MoveCharacter(sld, "Satanist_Vhod");
+			
+			LAi_group_SetRelation("Satanist_Vhod", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+			LAi_group_SetLookRadius("Satanist_Vhod", 4.0);
+			LAi_group_SetHearRadius("Satanist_Vhod", 2.0);
+			LAi_group_SetSayRadius("Satanist_Vhod", 10.0);
+			
+			//Красивое убийство		
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Vhod_3", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
+			LAi_SetGuardianType(sld);
+			LAi_SetHP(sld, 1.0, 1.0);
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto7");
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
+			LAi_group_MoveCharacter(sld, "Satanist_Vhod2");
+			
+			LAi_group_SetRelation("Satanist_Vhod2", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+			LAi_group_SetLookRadius("Satanist_Vhod2", 4.0);
+			LAi_group_SetHearRadius("Satanist_Vhod2", 0.0);
+			LAi_group_SetSayRadius("Satanist_Vhod2", 0.0);
+			
+			//ТРОННЫЙ ЗАЛ
+			
+			//Князь Тьмы
+			/*sld = GetCharacter(NPC_GenerateCharacter("Knyaz_Tbmy", "Animists2", "man", "man", sti(pchar.rank) + 5 + MOD_SKILL_ENEMY_RATE, PIRATE, -1, true));
+			sld.name = "Князь";
+			sld.lastname = "Тьмы";
+			LAi_SetSitType(sld);
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, pchar.location, "sit",  "sit1");
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
+			LAi_group_MoveCharacter(sld, "Knyaz_Tbmy");*/
 		break;
 		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
