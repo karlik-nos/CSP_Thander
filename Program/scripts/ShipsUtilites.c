@@ -236,7 +236,8 @@ int GenerateShipExt(int iBaseType, bool isStolen, ref chr)
 	if (!CheckAttribute(rRealShip, "QuestShip"))
 		SetCabinTypeEx(rRealShip, sti(rRealShip.Class)); //Выдача случайной каюты по классу не квестовым - Gregg
 
-	rRealShip.Price	= GetShipPriceByTTH(iShip, chr);
+	rRealShip.Price	= GetShipPriceByTTH(iShip, chr); 
+	if (CheckAttribute(rRealShip, "QuestShip")) rRealShip.Price	= sti(rRealShip.Price) * 4;
 	if (sti(rRealShip.Price) <= 0) rRealShip.Price = 100;
 
 	rRealShip.Stolen = isStolen;  // ворованность
@@ -2175,7 +2176,7 @@ int GenerateShipTop(int iBaseType, bool isStolen, ref chr)
 
 	SetCabinTypeEx(rRealShip, sti(rRealShip.Class)); //Выдача случайной каюты по классу не квестовым - Gregg
 
-	rRealShip.Price	= GetShipPriceByTTH(iShip, chr);
+	rRealShip.Price	= GetShipPriceByTTH(iShip, chr)*4;//фикс - такая же цена как при заказе на верфи
 
 	if (sti(rRealShip.Price) <= 0) rRealShip.Price = 100;
 
