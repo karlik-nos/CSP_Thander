@@ -25,6 +25,7 @@ string sAdd[10] = {"","\nкорпус: ","","\nмачты: ","\nскорость
 void InitInterface_R(string iniName, ref _shipyarder)
 {
 	GameInterface.title = "titleShipyard";
+	SendMessage(&GameInterface,"ls",MSG_INTERFACE_INIT,iniName);
 
 	refNPCShipyard  = _shipyarder;
 
@@ -53,7 +54,6 @@ void InitInterface_R(string iniName, ref _shipyarder)
 	if (iTest != -1) {rColony = GetColonyByIndex(iTest);}
 	refStore = &stores[sti(rColony.StoreNum)];
 
-	SendMessage(&GameInterface,"ls",MSG_INTERFACE_INIT,iniName);
 	if (iTunPoints < 1) SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE, "TunSheme", -1, 1, 0);//если тюнинга нет из-за низкого навыка, отключаем клики по кнопкам
 
 	SetEventHandler("InterfaceBreak","ProcessExitCancel",0);
