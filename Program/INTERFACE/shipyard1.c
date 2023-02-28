@@ -24,11 +24,13 @@ string sAdd[10] = {"","\nкорпус: ","","\nмачты: ","\nскорость
 void InitInterface_R(string iniName, ref _shipyarder)
 {
 	GameInterface.title = "titleShipyard";
+	SendMessage(&GameInterface,"ls",MSG_INTERFACE_INIT,iniName);
 
 	refNPCShipyard  = _shipyarder;
 	sNation = GetNationNameByType(sti(refNPCShipyard.nation));
 
-	if (refNPCShipyard.id != "Pirates_shipyarder") {iYarderSkill = sti(refNPCShipyard.reputation)/2+50; iTunPoints = (iYarderSkill-41)/18;}
+	SetNodeUsing("Check_Material", false);
+	if (refNPCShipyard.id != "Pirates_shipyarder") {iYarderSkill = sti(refNPCShipyard.reputation)/2+50; iTunPoints = (iYarderSkill-41)/18; SetNodeUsing("Check_Material", true);}
 	//берём за навык кораблестроения репутацию верфиста и приводим к отрезку (56:100)
 
 	iShipPoints = 6 + iYarderSkill/6 - (MOD_SKILL_ENEMY_RATE)/3;//целые переменные делятся с округлением вниз
@@ -44,7 +46,6 @@ void InitInterface_R(string iniName, ref _shipyarder)
 	if (iTest != -1) {rColony = GetColonyByIndex(iTest);}
 	refStore = &stores[sti(rColony.StoreNum)];
 
-	SendMessage(&GameInterface,"ls",MSG_INTERFACE_INIT,iniName);
 	if (iTunPoints < 1) SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE, "TunSheme", -1, 1, 0);//если тюнинга нет из-за низкого навыка, отключаем клики по кнопкам
 
 	SetEventHandler("InterfaceBreak","ProcessExitCancel",0);
