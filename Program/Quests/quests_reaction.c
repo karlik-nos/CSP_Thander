@@ -3537,7 +3537,7 @@ void QuestComplete(string sQuestName, string qname)
                 LAi_LocationFightDisable(&Locations[FindLocation("Villemstad_Bank")], true); // вертаем запрет на боевки
                 sld = characterFromID("Villemstad_usurer");
                 ChangeCharacterAddressGroup(sld, "Villemstad_Bank", "goto", "goto1");
-	            LAi_SetBarmanType(sld);
+	            LAi_SetOwnerType(sld);
                 LAi_SetHP(sld, 80, 80); //вертаем ростовщика если убит
                 pchar.quest.Intelligence_Curacao_OutTown.over = "yes";
             }
@@ -5237,7 +5237,7 @@ void QuestComplete(string sQuestName, string qname)
         	sld.location	= "Villemstad_Bank";
         	sld.location.group = "barmen";
         	sld.location.locator = "stay";
-        	LAi_SetBarmanType(sld);
+        	LAi_SetOwnerType(sld);
         	LAi_group_MoveCharacter(sld, "HOLLAND_CITIZENS");
         break;
 
