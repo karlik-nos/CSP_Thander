@@ -243,10 +243,8 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 
 		case "shipyard_dlg":
 			dialog.Text = "Могу предложить работу со штучными заказами - улучшаю характеристики местным лоханкам. Здесь совершенно не умеют строить нормальные корабли.";
-			Link.l1 = "Замечательно! Мне как раз нужно довести до ума свой кораблик. Может взглянете, что можно сделать?";
-			Link.l1.go = "ship_tunning_start";
-			link.l2 = "Нет, мне не нужно улучшений, я хочу просто воспользоваться услугами верфи.";
-			link.l2.go = "shipyard";
+			link.l1 = "Нет, мне не нужно улучшений, я хочу просто воспользоваться услугами верфи.";
+			link.l1.go = "shipyard";
 
 			if (!CheckAttribute(npchar, "questTemp.ShipOrderTime"))
 			{
@@ -258,6 +256,8 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 				link.l5 = "Готов ли заказанный мною корабль?";
 				link.l5.go = "shiporder1";
 			}
+			Link.l2 = "Замечательно! Мне как раз нужно довести до ума свой кораблик. Может взглянете, что можно сделать?";
+			Link.l2.go = "ship_tunning_start";
 
 			if ((RealShips[sti(Pchar.Ship.Type)].name == "Flyingdutchman1") && (pchar.location.from_sea == "Pirates_town"))
 			{
