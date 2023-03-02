@@ -70,7 +70,7 @@ void InitPsHeros()
 
 			if (rand(4) < 3)
 			{
-				ch.Ship.Type = GenerateShipExt((SHIP_BERMSLOOP + rand(11)), 0, ch);
+				ch.Ship.Type = GenerateShipExt((SHIP_KETCH + rand(11)), 0, ch);
 				SetBaseShipData(ch);
 				SetRandomNameToShip(ch);
 
@@ -1152,7 +1152,7 @@ void PGG_UpdateEquip(ref chr)
 	if (bShipNotUsed || bOk)
 	{
 		n = 0;
-		for (i = 0; i <= SHIP_SP_SANFELIPE; i++)
+		for (i = 0; i <= SHIP_OCEAN; i++)
 		{
 			if (CheckAttribute(&ShipsTypes[i], "Class") && sti(ShipsTypes[i].Class) >= iClass && prevClass > sti(ShipsTypes[i].Class))
 			{
@@ -2133,7 +2133,7 @@ void PGG_Q1PlaceShipsNearIsland()
 	iNation = sti(PChar.GenQuest.PGG_Quest.Nation);
 	iLifeDay = sti(PChar.GenQuest.PGG_Quest.Days);
 
-	iRnd = 3 + rand(2);
+	iRnd = 3 + drand(2);
 	for (i = 0; i < iRnd; i++)
 	{
 		sCharId = "RandQuestCap_0" + i;
@@ -2178,7 +2178,7 @@ ref PGG_Q1CreateWarShip(string sCharId)
 	Fantom_SetCannons(chr, chr.EncType);
 	Fantom_SetBalls(chr, chr.EncType);
 	Fantom_SetGoods(chr, chr.EncType);
-	int iSpace = GetCharacterFreeSpace(chr, iGoods) / (1 + rand(9));
+	int iSpace = GetCharacterFreeSpace(chr, iGoods) / (4 + drand(2));
 	if (!CheckAttribute(PChar, "GenQuest.PGG_Quest.Goods.Qty")) PChar.GenQuest.PGG_Quest.Goods.Qty = 0;
 	PChar.GenQuest.PGG_Quest.Goods.Qty = sti(PChar.GenQuest.PGG_Quest.Goods.Qty) + iSpace;
 	Fantom_SetCharacterGoods(chr, iGoods, iSpace, 1);
@@ -2207,7 +2207,7 @@ ref PGG_Q1CreateTradeShip(string sCharId)
 
 	Fantom_SetCannons(chr, chr.EncType);
 	Fantom_SetBalls(chr, chr.EncType);
-	int iSpace = GetCharacterFreeSpace(chr, iGoods) / (1 + rand(1));
+	int iSpace = GetCharacterFreeSpace(chr, iGoods) * 3 / (3 + drand(2));//везде один и тот же дранд. Чем больше кораблей, тем меньше в каждом из трюмов, но общая сумма всё-таки больше
 	if (!CheckAttribute(PChar, "GenQuest.PGG_Quest.Goods.Qty")) PChar.GenQuest.PGG_Quest.Goods.Qty = 0;
 	PChar.GenQuest.PGG_Quest.Goods.Qty = sti(PChar.GenQuest.PGG_Quest.Goods.Qty) + iSpace;
 	Fantom_SetCharacterGoods(chr, iGoods, iSpace, 1);

@@ -265,19 +265,19 @@ void ProcessDialogEvent()
 			sld.greeting = "GR_Spainguard";
 			if (pchar.rank <= 9)
 			{
-				FantomMakeCoolSailor(sld, SHIP_BRIGHEAVY, "Эль Тибурон", CANNON_TYPE_CULVERINE_LBS16, 100, 100, 100);
+				FantomMakeCoolSailor(sld, SHIP_BRIG_NV, "Эль Тибурон", CANNON_TYPE_CULVERINE_LBS16, 100, 100, 100);
 			}
 			if (pchar.rank >= 10 && pchar.rank <= 14)
 			{
-				FantomMakeCoolSailor(sld, SHIP_FRIGATEMEDIUM, "Эль Тибурон", CANNON_TYPE_CULVERINE_LBS16, 100, 100, 100);
+				FantomMakeCoolSailor(sld, SHIP_POSTILLIONEN, "Эль Тибурон", CANNON_TYPE_CULVERINE_LBS16, 100, 100, 100);
 			}
 			if (pchar.rank >= 15 && pchar.rank <= 19)
 			{
-				FantomMakeCoolSailor(sld, SHIP_DUTCHPINNACE, "Эль Тибурон", CANNON_TYPE_CULVERINE_LBS24, 100, 100, 100);
+				FantomMakeCoolSailor(sld, SHIP_DEBRACKW, "Эль Тибурон", CANNON_TYPE_CULVERINE_LBS24, 100, 100, 100);
 			}
 			if (pchar.rank >= 20 && pchar.rank <= 25)
 			{
-				FantomMakeCoolSailor(sld, SHIP_FRIGATE_SAT, "Эль Тибурон", CANNON_TYPE_CULVERINE_LBS24, 100, 100, 100);
+				FantomMakeCoolSailor(sld, SHIP_CECILIA, "Эль Тибурон", CANNON_TYPE_CULVERINE_LBS24, 100, 100, 100);
 			}
 			if (pchar.rank >= 26 && pchar.rank <= 32)
 			{
@@ -285,7 +285,7 @@ void ProcessDialogEvent()
 			}
 			if (pchar.rank >= 33)
 			{
-				FantomMakeCoolSailor(sld, SHIP_SHARK, "Эль Тибурон", CANNON_TYPE_CANNON_LBS42, 100, 100, 100);
+				FantomMakeCoolSailor(sld, SHIP_ZEVENPROVINCIEN, "Эль Тибурон", CANNON_TYPE_CANNON_LBS42, 100, 100, 100);
 			}
 			sld.ship.Crew.Morale = Sila;								//Мораль
 			ChangeCrewExp(sld, "Sailors", Sila);						//Матросы

@@ -1562,9 +1562,8 @@ void WhisperSpawn_Chard()
 	SetCharacterPerk(sld, "Energaiser"); // скрытый перк дает 1.5 к приросту энергии, дается ГГ и боссам уровней
 }
 
-void WhisperSpawnPortman (ref npchar)
+void WhisperSpawnPortman(ref npchar)
 {
-	//pchar.Whisper.PortmanAtSea = true;
 	int difficulty = 5 * MOD_SKILL_ENEMY_RATE;
 	sld = GetCharacter(NPC_GenerateCharacter("Whisper_Portman_Captain", "off_eng_2", "man", "man", 55, ENGLAND, -1, true));
 	sld.mapEnc.worldMapShip = "quest_ship";
@@ -1618,7 +1617,7 @@ void WhisperSpawnPortman (ref npchar)
 	{
 		sld = GetCharacter(NPC_GenerateCharacter("Whisper_Portman_follower"+i, "off_eng_1", "man", "man", 30, ENGLAND, -1, true));
 		FantomMakeCoolFighter(sld, 50, 30 + difficulty, 30 + difficulty, "blade36", "pistol3", 10);
-		FantomMakeCoolSailor(sld, SHIP_SALAMANDER, "", CANNON_TYPE_CANNON_LBS24, 30 + difficulty, 30 + difficulty, 30 + difficulty);
+		FantomMakeCoolSailor(sld, SHIP_ESSEX, "", CANNON_TYPE_CANNON_LBS24, 30 + difficulty, 30 + difficulty, 30 + difficulty);
 		SetRandomNameToShip(sld);
 		sld.AlwaysSandbankManeuver = true;
 		sld.DontRansackCaptain = true;
@@ -2222,7 +2221,7 @@ void CaptureCapitol_SeaBattle()
 		if (i == 3) FantomMakeQuickSailor(sld, SHIP_REVENGE, "Евангелие", CANNON_TYPE_CANNON_LBS32, 50, 50, 50);
 		if (i == 4) FantomMakeQuickSailor(sld, SHIP_GALEON_H, "Плач Иеремии", CANNON_TYPE_CANNON_LBS32, 50, 50, 50);
 		if (i == 5) FantomMakeQuickSailor(sld, SHIP_FELIPE, "Притчи", CANNON_TYPE_CANNON_LBS32, 50, 50, 50);
-		if (i == 6) FantomMakeQuickSailor(sld, SHIP_WARGALLEON2, "Псалмы", CANNON_TYPE_CANNON_LBS32, 50, 50, 50);
+		if (i == 6) FantomMakeQuickSailor(sld, SHIP_GALEON_SANTIAGO, "Псалмы", CANNON_TYPE_CANNON_LBS32, 50, 50, 50);
 		if (i == 7) FantomMakeQuickSailor(sld, SHIP_GALEON_L, "Бытие", CANNON_TYPE_CANNON_LBS16, 50, 50, 50);
 
 		TakeNItems(sld, "Food5", 5);

@@ -105,7 +105,7 @@ void ProcessDialogEvent()
 				break;
             }
 			//пиратка, квест №5, заглушка на возврат бабла -->
-			if (CheckAttribute(npchar, "PLQ5Money"))
+			if (CheckAttribute(npchar, "PLQ5Money") && CheckAttribute(pchar, "questTemp.piratesLine.PLQ5Money")) 
 			{
 				dialog.text = "Вы принесли мне мои 50 тысяч?";
 				link.l1 = "Нет ещё, я этим занимаюсь. Ждите.";
@@ -3159,7 +3159,7 @@ void SlavetraderGalleonInWorld()
 	sName = pchar.questTemp.Slavetrader.ShipName;
 	sld = GetCharacter(NPC_GenerateCharacter("GaleonCap", "", "man", "man", 45, SPAIN, -1, true));
  	SetCaptanModelByEncType(sld, "war");
-	FantomMakeCoolSailor(sld, SHIP_WARSHIP, sName, CANNON_TYPE_CANNON_LBS32, 100, 100, 100);
+	FantomMakeCoolSailor(sld, SHIP_INGERMANLAND, sName, CANNON_TYPE_CANNON_LBS32, 100, 100, 100);
 	FantomMakeCoolFighter(sld, 45, 100, 100, "blade28", "pistol5", 100);//создание фантома кэпа
 	sld.Ship.Mode = "war";
 	DeleteAttribute(sld, "SinkTenPercent");

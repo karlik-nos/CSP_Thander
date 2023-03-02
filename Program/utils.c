@@ -402,11 +402,6 @@ string  xiStr(string _str) // просто сокращение
 	return XI_ConvertString(_str);
 }
 
-string  xiDStr(string _str) // просто сокращение
-{
-	return GetConvertStr(_str, "DialogSource.txt");
-}
-
 void Dev_Trace(string _str) // логи только в дев версии
 {
     if (MOD_BETTATESTMODE	==	"On")	Trace(_str);

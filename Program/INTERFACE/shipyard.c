@@ -1223,7 +1223,7 @@ void SetButtionsAccess()
     else
     {
         SetSelectable("BUTTON_BUY", false);
-		if (!checkAttribute(xi_refCharacter, "ship.soiling") xi_refCharacter.ship.soiling = 0;//фикс ошибок в логах
+		if (!checkAttribute(xi_refCharacter, "ship.soiling")) xi_refCharacter.ship.soiling = 0;//фикс ошибок в логах
         if (GetHullPercent(xi_refCharacter) < 100 || GetSailPercent(xi_refCharacter) < 100 || sti(xi_refCharacter.ship.soiling) > 0)
         {
             SetSelectable("BUTTON_REPAIR", true);

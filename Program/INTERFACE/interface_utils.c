@@ -958,7 +958,7 @@ void SetShipQualityTable(ref _chr, string _bar1, string _bar7, string _bar2, str
 	float fCrew = 100;
 	ref refShip = GetRealShip(iShip);
 
-	if (sti(refShip.BaseType) <= SHIP_SP_SANFELIPE)//рассчитываем качество только для НЕквестовых кораблей
+	if (sti(refShip.BaseType) <= SHIP_OCEAN)//рассчитываем качество только для НЕквестовых кораблей
 	{
 		ref rBaseShip = GetShipByType(sti(refShip.BaseType));
 		float fTemp;

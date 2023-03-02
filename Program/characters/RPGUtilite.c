@@ -2893,7 +2893,7 @@ void initNewMainCharacter()
     DeleteAttribute(pchar, "Ship");
     if (sti(ch.nation) != PIRATE)
 	{
-		pchar.Ship.Type = GenerateShipExt((SHIP_BERMSLOOP + rand(11)), 0, pchar);
+		pchar.Ship.Type = GenerateShipExt((SHIP_KETCH + rand(11)), 0, pchar);
 		SetBaseShipData(pchar);
 		pchar.Ship.Name = RandPhraseSimple(RandPhraseSimple(RandPhraseSimple(RandPhraseSimple(RandPhraseSimple(RandPhraseSimple(RandPhraseSimple(RandPhraseSimple("Быстрый вепрь", "Боевой тигр"), "Транспортер"), "Антилопа"), "Экстра"), "Молния"), "Дельфин"), "Загадочный"), "Ужасный");
 		SetCrewQuantityFull(pchar);
@@ -2906,7 +2906,7 @@ void initNewMainCharacter()
 	}
 	else
 	{
-		pchar.Ship.Type = GenerateShipExt((SHIP_BERMSLOOP + rand(11)), 0, pchar);
+		pchar.Ship.Type = GenerateShipExt((SHIP_KETCH + rand(11)), 0, pchar);
 		SetBaseShipData(pchar);
 		pchar.Ship.Name = "Возмездие";
 		SetCrewQuantityFull(pchar);

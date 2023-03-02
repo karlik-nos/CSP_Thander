@@ -1175,7 +1175,6 @@ void ProcessDialogEvent()
 			//сразу даём квест №6
 			SetQuestHeader("Pir_Line_6_Jackman");
 			AddQuestRecord("Pir_Line_6_Jackman", "1");
-			QuestSetCurrentNode("Jackman", "PL_Q6"); //даём ноду Джекмену
 		break;
 		//квест №7, охота на Соукинса
 		case "PL_Q7_begin":
@@ -1339,7 +1338,7 @@ void ProcessDialogEvent()
 		break;
 		case "PL_Q7_GoodWork_2":
 			dialog.text = "И что?";
-			link.l1 = "И не перехватил…";
+			link.l1 = "И не перехватил...";
 			link.l1.go = "PL_Q7_GoodWork_3";
 		break;
 		case "PL_Q7_GoodWork_3":
@@ -1531,7 +1530,7 @@ void ProcessDialogEvent()
 			pchar.TempPerks.QuestTroopers = true; //перк квестового десанта
 			characters[GetCharacterIndex("PortoBello_Mayor")].dialog.captureNode = "PQ8_MayorPortoBello"; //капитулянтская нода мэра
 			//Морган
-			FantomMakeCoolSailor(npchar, SHIP_BATTLESHIP, "Ужасающий", CANNON_TYPE_CANNON_LBS32, 90, 90, 90);
+			FantomMakeCoolSailor(npchar, SHIP_REDOUTABLE, "Ужасающий", CANNON_TYPE_CANNON_LBS32, 90, 90, 90);
             //pchar.nation = PIRATE;//фикс - чтобы не убегать из ПортРояля с боем
             LAi_SetActorType(NPChar);
             LAi_ActorSetStayMode(NPChar);
@@ -1546,7 +1545,7 @@ void ProcessDialogEvent()
 			SetCharacterRemovable(npchar, false);
 			//Джекмен
 			sld = characterFromId("Jackman");
-			FantomMakeCoolSailor(sld, SHIP_WARSHIP, "Фортунато", CANNON_TYPE_CULVERINE_LBS32, 90, 90, 90);
+			FantomMakeCoolSailor(sld, SHIP_INGERMANLAND, "Фортунато", CANNON_TYPE_CULVERINE_LBS32, 90, 90, 90);
 			sld.CompanionEnemyEnable = false;  // нет отпора при обстреле
 			SetCharacterRemovable(sld, false);
 			sld.Ship.Cargo.Goods.Food = 1000;

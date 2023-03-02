@@ -116,7 +116,7 @@ void ProcessDialogEvent()
 			DeleteAttribute(pchar, "DH_mercLeft");
 			pchar.location.from_sea = "Villemstad_town"
 			setWDMPointXZ(pchar.location.from_sea);  // коорд на карте
-			pchar.Ship.Type = GenerateShipExt(SHIP_EMPRESS, 0, pchar);
+			pchar.Ship.Type = GenerateShipExt(SHIP_SCHOONER_B, 0, pchar);
 			ref shTo = &RealShips[sti(Pchar.Ship.Type)];
 			shTo.SpeedRate        = 17.0;
 			shTo.HP = 1900;
