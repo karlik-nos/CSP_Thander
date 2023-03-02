@@ -2703,6 +2703,7 @@ void VSEnpcInit()
 	sld.name = "Джеки";
 	sld.lastname = "";
 	LAi_SetWarriorType(sld);
+	//LAi_SetMonkeyType(sld);
 	LAi_CharacterDisableDialog(sld);
 	ChangeCharacterAddressGroup(sld, "Guadeloupe_deadlock", "monsters", "monster6");
 	

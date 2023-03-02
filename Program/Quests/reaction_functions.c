@@ -10782,6 +10782,26 @@ void PKM_SvtvA_SatanistNaKuhnePovernut(string qName)
 	LAi_SetActorType(sld);
 	LAi_ActorTurnToLocator(sld, "sit", "sit35");
 	LAi_ActorAnimation(sld, "dialog_stay14", "", 2.0);
+	
+	sld = CharacterFromID("Satanist_1");
+	LAi_SetActorType(sld);
+	LAi_ActorAnimation(sld, "worship_2", "", 2.4);
+	
+	sld = CharacterFromID("Satanist_2");
+	LAi_SetActorType(sld);
+	LAi_ActorAnimation(sld, "worship_2", "", 2.4);
+	
+	sld = CharacterFromID("Satanist_3");
+	LAi_SetActorType(sld);
+	LAi_ActorAnimation(sld, "worship_2", "", 2.4);
+	
+	sld = CharacterFromID("Satanist_4");
+	LAi_SetActorType(sld);
+	LAi_ActorAnimation(sld, "worship_2", "", 2.4);
+	
+	sld = CharacterFromID("Satanist_5");
+	LAi_SetActorType(sld);
+	LAi_ActorAnimation(sld, "worship_2", "", 2.4);
 }
 void PKM_SvtvA_KuhnyaStels(string qName)
 {	

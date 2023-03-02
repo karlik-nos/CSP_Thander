@@ -11329,19 +11329,122 @@ void QuestComplete(string sQuestName, string qname)
 			//ТРОННЫЙ ЗАЛ
 			
 			//Князь Тьмы
-			/*sld = GetCharacter(NPC_GenerateCharacter("Knyaz_Tbmy", "Animists2", "man", "man", sti(pchar.rank) + 5 + MOD_SKILL_ENEMY_RATE, PIRATE, -1, true));
+			sld = GetCharacter(NPC_GenerateCharacter("Knyaz_Tbmy", "Animists2", "man", "man", sti(pchar.rank) + 5 + MOD_SKILL_ENEMY_RATE, PIRATE, -1, true));
 			sld.name = "Князь";
 			sld.lastname = "Тьмы";
-			LAi_SetSitType(sld);
+			LAi_SetHuberType(sld);
 			LAi_CharacterDisableDialog(sld);
-			ChangeCharacterAddressGroup(sld, pchar.location, "sit",  "sit1");
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "sit",  "sit1");	//Место появления
 			sld.SaveItemsForDead = true;
 			GiveItem2Character(sld, "PKM_SvtvA_znachok");
 			AddItems(sld, "mineral3", rand(7)-4);
 			sld.DontChangeBlade = true;
 			sld.DontChangeGun = true;
 			sld.DeleteFood = true;
-			LAi_group_MoveCharacter(sld, "Knyaz_Tbmy");*/
+			LAi_group_MoveCharacter(sld, "Knyaz_Tbmy");
+			
+			//Солдат#1
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_1", "Animists1", "man", "man_worship", sti(pchar.rank), PIRATE, -1, false));
+			//LAi_SetStayType(sld);
+			LAi_SetActorType(sld);
+			//LAi_ActorAnimation(sld, "worship_2", "", 2.4);
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto50");	//Место появления
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
+			LAi_group_MoveCharacter(sld, "Knyaz_Tbmy");	
+			
+			//Солдат#2
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_2", "Animists1", "man", "man_worship", sti(pchar.rank), PIRATE, -1, false));
+			//LAi_SetStayType(sld);
+			LAi_SetActorType(sld);
+			//LAi_ActorAnimation(sld, "worship_2", "", 2.4);
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto51");	//Место появления
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
+			LAi_group_MoveCharacter(sld, "Knyaz_Tbmy");
+			
+			//Солдат#3
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_3", "Animists1", "man", "man_worship", sti(pchar.rank), PIRATE, -1, false));
+			//LAi_SetStayType(sld);
+			LAi_SetActorType(sld);
+			//LAi_ActorAnimation(sld, "worship_2", "", 2.4);
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto52");	//Место появления
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
+			LAi_group_MoveCharacter(sld, "Knyaz_Tbmy");
+			
+			//Солдат#4
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_4", "Animists1", "man", "man_worship", sti(pchar.rank), PIRATE, -1, false));
+			//LAi_SetStayType(sld);
+			LAi_SetActorType(sld);
+			//LAi_ActorAnimation(sld, "worship_2", "", 2.4);
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto53");	//Место появления
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
+			LAi_group_MoveCharacter(sld, "Knyaz_Tbmy");
+			
+			//Солдат#5
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_5", "Animists1", "man", "man_worship", sti(pchar.rank), PIRATE, -1, false));
+			//LAi_SetStayType(sld);
+			LAi_SetActorType(sld);
+			//LAi_ActorAnimation(sld, "worship_2", "", 2.4);
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto54");	//Место появления
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
+			LAi_group_MoveCharacter(sld, "Knyaz_Tbmy");
+			
+			DoQuestFunctionDelay("PKM_SvtvA_SatanistNaKuhnePovernut", 1.0);
+			
+			//Солдат#6
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_6", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
+			LAi_SetStayType(sld);
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto55");	//Место появления
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
+			LAi_group_MoveCharacter(sld, "Knyaz_Tbmy");
+			
+			//Солдат#7
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_7", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
+			LAi_SetStayType(sld);
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto56");	//Место появления
+			sld.SaveItemsForDead = true;
+			GiveItem2Character(sld, "PKM_SvtvA_znachok");
+			AddItems(sld, "mineral3", rand(7)-4);
+			sld.DontChangeBlade = true;
+			sld.DontChangeGun = true;
+			sld.DeleteFood = true;
+			LAi_group_MoveCharacter(sld, "Knyaz_Tbmy");
 		break;
 		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
