@@ -1467,6 +1467,7 @@ void ProcessDialogEvent()
 			if (sti(sld.questSeekCap) > 0) sld.questSeekCap = sti(sld.questSeekCap)-1;
 			npchar.lifeDay = 0;
 			LAi_CharacterDisableDialog(npchar);
+			DeleteAttribute(npchar, "talker");
             DialogExit();
 		break;
 		case "SCQ_exit_clear":
@@ -1712,7 +1713,7 @@ void ProcessDialogEvent()
 			npchar.lifeday = 0;
 			LAi_CharacterDisableDialog(npchar);
 			LAi_SetCitizenType(npchar);
-			UnmarkCharacter(npchar);
+			DeleteAttribute(npchar, "talker");
 			DeleteAttribute(pchar, "StudentZachet");
 		break;
 		
@@ -2033,6 +2034,7 @@ void ProcessDialogEvent()
 			
 			npchar.lifeday = 0;
 			LAi_CharacterDisableDialog(npchar);
+			DeleteAttribute(npchar, "talker");
 		break;
 		
 		case "SCQ_Prytki_1":
@@ -2058,7 +2060,9 @@ void ProcessDialogEvent()
 			{
 				PlaceCharacter(sld, "reload", "random_must_be");
 			}
+			DeleteAttribute(sld, "talker");
 			LAi_SetStayType(sld);
+			sld.quest.questflag.model = "questionmarkB";
 		break;
 		
 		case "SCQ_Prytki_Dengi":		
@@ -2082,6 +2086,7 @@ void ProcessDialogEvent()
 			npchar.lifeday = 0;
 			LAi_CharacterDisableDialog(npchar);
 			LAi_SetCitizenType(npchar);
+			UnmarkCharacter(npchar);
 		break;
 		
 		/*case "SCQ_Prytki_Trah":
