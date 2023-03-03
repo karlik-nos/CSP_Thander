@@ -466,7 +466,7 @@ bool GenerateMapEncounter_Alone(string sCharacterID, ref iEncounterIndex)
 			DeleteAttribute(rEncounter, "Task.Target");
 		}
 	}
-	SetShipTypesForEnc_v2(rEncounter);
+	//SetShipTypesForEnc_v2(rEncounter);
 	GenerateMapEncounter_SetMapShipModel(rEncounter);
 
 	// create move point coordinates here
