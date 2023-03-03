@@ -61,6 +61,11 @@ void LAi_type_citizen_CharacterUpdate(aref chr, float dltTime)
 				{
 					chr.quest.questflag.model = "exclamationmarkY";
 					chr.quest.questflag.technique = "RandItem";
+					if (CheckAttribute(chr,"dialog.filename") && chr.dialog.filename == "Sailor.c")
+					{
+						chr.quest.questflag.model = "questionmarkI";
+						chr.quest.questflag.technique = "RandItem";
+					}
 				}
 				else
 				{
