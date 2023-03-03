@@ -10777,7 +10777,7 @@ void PKM_SvtvA_Uchitel_smert(string qName)
 	sld = CharacterFromID("Satanist_Uchitel");
 	LAi_ActorAnimation(sld, "lay_2", "", 2.0);
 }
-void PKM_SvtvA_SatanistNaKuhnePovernut(string qName)
+void PKM_SvtvA_SatanistyAnimation(string qName)
 {	
 	sld = CharacterFromID("Satanist_Kuhnya_5");
 	LAi_SetActorType(sld);
@@ -10837,6 +10837,46 @@ void PKM_SvtvA_KuhnyaStels(string qName)
 	PChar.quest.PKM_SvtvA_KuhnyaStels5.over = "yes";
 	LAi_group_SetRelation("Satanist_Kuhnya", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
 	LAi_group_FightGroups("Satanist_Kuhnya", LAI_GROUP_PLAYER, false);
+}
+void PKM_SvtvA_Temnota(string qName)
+{	
+	LAi_Fade("", "");
+}
+void PKM_SvtvA_RazgovorZKnyazem(string qName)
+{	
+	StartQuestMovie(true, false, true);
+	LAi_SetActorType(pchar);
+	DoQuestFunctionDelay("PKM_SvtvA_Temnota", 1.5);
+	DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem2", 2.0);
+	//DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem2", 0.1);
+	//LAi_Fade("", "");
+}
+void PKM_SvtvA_RazgovorZKnyazem2(string qName)
+{	
+	locCameraFromToPos(-3.00, 4.40, 8.00, true, -4.00, 1.74, 3.70);
+	DoQuestFunctionDelay("PKM_SvtvA_Temnota", 2.5);
+	DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem3", 3.0);
+	//DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem3", 0.1);
+	LAi_Fade("", "");
+}
+void PKM_SvtvA_RazgovorZKnyazem3(string qName)
+{	
+	locCameraFromToPos(-9.30, 8.00, -0.70, true, 13.00, -20.0, 0.00);
+	DoQuestFunctionDelay("PKM_SvtvA_Temnota", 2.7);
+	DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem4", 3.2);
+	//DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem4", 0.1);
+	//LAi_Fade("", "");
+}
+void PKM_SvtvA_RazgovorZKnyazem4(string qName)
+{	
+	locCameraFromToPos(-8.00, 2.90, -1.00, true, -30.00, 3.50, 3.70);
+	DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem5", 0.1);
+}
+void PKM_SvtvA_RazgovorZKnyazem5(string qName)
+{	
+	sld = CharacterFromID("James_Callow");
+	sld.dialog.filename = "Quest/PDM/Cursed_Idol.c";
+	sld.dialog.currentnode = "Vstrecha_4_1";
 }
 
 //Sinistra "Странные вещи творятся на архипелаге" <--

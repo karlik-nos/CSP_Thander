@@ -1,7 +1,7 @@
 ; ККС анимация мужских персонажей на базе скелета К:ГПК. Размер моделей оригинальный.
 ; edition by Metazot 10.09.10
 
-animation = man.an
+animation = man_worship.an
 
 data = "Turn speed", "6.3"
 
@@ -686,132 +686,133 @@ data = "Turn speed", "6.3"
 
 ; просто стоит - звука тут не будет №1
 [idle_1]
-	speed = 1.0
+	speed = 1.7
 	loop = false
 	type = normal
-	start_time = 1225
-	end_time = 1285
+	start_time = 8715
+	end_time = 8806
 	data = "Blend time", "1.0"		; sec
-	data = "Probability", "1.0"
+	data = "Probability", "0.1"
 	
 ; смахнуть пыль с рукава
 [idle_2]
-	speed = 1.0
+	speed = 1.7
 	loop = false
 	type = normal
-	start_time = 1970
-	end_time = 2040
+	start_time = 8715
+	end_time = 8806
 	data = "Blend time", "1.0"		; sec
 	data = "Probability", "0.1"
 	
 ; утереть лоб
 [idle_3]
-	speed = 1.0
+	speed = 1.7
 	loop = false
 	type = normal
-	start_time = 2040
-	end_time = 2101
+	start_time = 8715
+	end_time = 8806
 	data = "Blend time", "1.0"		; sec
 	data = "Probability", "0.1"
 
 ; посмотреть по сторонам без движения корпуса
 [idle_4]
-	speed = 1.0
+	speed = 1.7
 	loop = false
 	type = normal
-	start_time = 1477
-	end_time = 1537
+	start_time = 8715
+	end_time = 8806
 	data = "Blend time", "1.0"		; sec
 	data = "Probability", "0.1"
 
 ; посмотреть по сторонам с движение корпуса
 [idle_5]
-	speed = 1.0
+	speed = 1.7
 	loop = false
 	type = normal
-	start_time = 1537
-	end_time = 1602
+	start_time = 8715
+	end_time = 8806
 	data = "Blend time", "1.0"		; sec
 	data = "Probability", "0.1"
 
 ; стояние вертит головой немного
 [idle_6]
-	speed = 1.0
+	speed = 1.7
 	loop = false
 	type = normal
-	start_time = 1602
-	end_time = 1642
+	start_time = 8715
+	end_time = 8806
 	data = "Blend time", "1.0"		; sec
 	data = "Probability", "0.1"
 
 ; почесать затылок
 [idle_7]
-	speed = 1.0
+	speed = 1.7
 	loop = false
 	type = normal
-	start_time = 1642
-	end_time = 1692
+	start_time = 8715
+	end_time = 8806
 	data = "Blend time", "1.0"		; sec
 	data = "Probability", "0.1"
 
 ; почесать задницу
 [idle_8]
-	speed = 1.0
+	speed = 1.7
 	loop = false
 	type = normal
-	start_time = 1692
-	end_time = 1735
+	start_time = 8715
+	end_time = 8806
 	data = "Blend time", "1.0"		; sec
 	data = "Probability", "0.1"
 
 ; стояние упирает левую руку в бок
 [idle_9]
-	speed = 1.0
+	speed = 1.7
 	loop = false
 	type = normal
-	start_time = 1764
-	end_time = 1806
+	start_time = 8715
+	end_time = 8806
 	data = "Blend time", "1.0"		; sec
 	data = "Probability", "0.1"
 
 ; стояние упирает правую руку в бок
 [idle_10]
-	speed = 1.0
+	speed = 1.7
 	loop = false
 	type = normal
-	start_time = 1806
-	end_time = 1871
+	start_time = 8715
+	end_time = 8806
 	data = "Blend time", "1.0"		; sec
 	data = "Probability", "0.1"
 
 ; стояние упирает обе руки в бока
 [idle_11]
-	speed = 1.0
+	speed = 1.7
 	loop = false
 	type = normal
-	start_time = 1871
-	end_time = 1970
+	start_time = 8715
+	end_time = 8806
 	data = "Blend time", "1.0"		; sec
 	data = "Probability", "0.1"
 
  ; толчок правой рукой (открывание двери)
 [open_door]
-	speed = 1.0
+	speed = 1.7
 	loop = false
 	type = normal
-	start_time = 270
-	end_time = 310
-	data = "Blend time", "0.4"		; sec
-	;data = "Probability", "0.1"
+	start_time = 8715
+	end_time = 8806
+	data = "Blend time", "1.0"		; sec
+	data = "Probability", "0.1"
 
  ; поклон
 [bow]
-	speed = 1.0
+	speed = 1.7
 	loop = false
 	type = normal
-	start_time = 7300
-	end_time = 7335
-	data = "Blend time", "0.4"		; sec
+	start_time = 8715
+	end_time = 8806
+	data = "Blend time", "1.0"		; sec
+	data = "Probability", "0.1"
 
 
 
@@ -1804,7 +1805,7 @@ data = "Turn speed", "6.3"
 	data = "Blend time", "1.0"		; sec
 	data = "Probability", "0.1"
 	
-; поклоняется
+; кланяется
 [worship_2]
 	speed = 1.7
 	loop = false
@@ -1829,31 +1830,31 @@ data = "Turn speed", "6.3"
 ; РЕАКЦИЯ НА ПОРАЖЕНИЕ нет такой анимации
 
 [HitNoFight]
+	speed = 1.7
+	loop = false
 	type = normal
-	start_time = 8620
-	end_time = 8635	
-	speed = 1.4
-	loop = false	
-	data = "Blend time", "0.3"		; sec
-	event = "SndAlliace_hitnofight", 2057, normal	
+	start_time = 8715
+	end_time = 8806
+	data = "Blend time", "1.0"		; sec
+	data = "Probability", "0.1"
 	
 	
 [Ground_HitNoFight]
-	type = pingpong
-	start_time = 6515
-	end_time = 6517	
-	speed = 1.0
-	loop = false	
-	data = "Blend time", "0.3"		; sec
-	event = "SndAlliace_hitnofight", 6515, normal
+	speed = 1.7
+	loop = false
+	type = normal
+	start_time = 8715
+	end_time = 8806
+	data = "Blend time", "1.0"		; sec
+	data = "Probability", "0.1"
 		
 
 [HitNoFightSit]
-	type = pingpong
-	start_time = 3100
-	end_time = 3105	
-	speed = 0.1
-	loop = false	
-	data = "Blend time", "0.3"		; sec
-	event = "SndAlliace_hitnofight", 2952, normal	
+	speed = 1.7
+	loop = false
+	type = normal
+	start_time = 8715
+	end_time = 8806
+	data = "Blend time", "1.0"		; sec
+	data = "Probability", "0.1"
 	
