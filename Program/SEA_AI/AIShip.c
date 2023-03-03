@@ -2258,7 +2258,7 @@ void ShipDead(int iDeadCharacterIndex, int iKillStatus, int iKillerCharacterInde
 					if (isPgg && !isntPgg1 && !isntPgg2)
 					{
 						DeleteAttribute(PChar,"PGG_EnemyPP");
-						if(rKillerCharacter == pchar)
+						if(IsMainCharacter(rKillerCharacter))
 						{
 
 							PChar.PGG_Enemy = "1";
@@ -2284,7 +2284,7 @@ void ShipDead(int iDeadCharacterIndex, int iKillStatus, int iKillerCharacterInde
 					if (isPgg && !isntPgg1 && !isntPgg2)
 					{
 						DeleteAttribute(PChar,"PGG_EnemyPP");
-						if(rKillerCharacter == pchar)
+						if(IsMainCharacter(rKillerCharacter))
 						{
 							PChar.PGG_Enemy = "1";
 						}
@@ -2300,11 +2300,11 @@ void ShipDead(int iDeadCharacterIndex, int iKillStatus, int iKillerCharacterInde
 			        // boal statistic info 17.12.2003 -->
 	                Statistic_AddValue(rKillerCharacter, "KillAbordShip_" + rBaseShip.Class, 1);
 	                // boal statistic info 17.12.2003 <--
-					if (rKillerCharacter == pchar) FlagPerkForCapturedShip(rDead);
+					if (IsMainCharacter(rKillerCharacter)) FlagPerkForCapturedShip(rDead);
 					if (isPgg && !isntPgg1 && !isntPgg2)
 					{
 						DeleteAttribute(PChar,"PGG_EnemyPP");
-						if(rKillerCharacter == pchar)
+						if(IsMainCharacter(rKillerCharacter))
 						{
 
 							PChar.PGG_Enemy = "1";
@@ -4953,23 +4953,23 @@ void FlagPerkForCapturedShip(ref refChar)
 	switch(sti(refChar.nation))
 	{
 		case PIRATE:
-			sMessage = xiStr("NewFlagPirate");
+			sMessage = "Получен пиратский флаг";
 			sPerk = "FlagPir";
 		break;
 		case ENGLAND:
-			sMessage = xiStr("NewFlagEngland");
+			sMessage = "Получен английский флаг";
 			sPerk = "FlagEng";
 		break;
 		case SPAIN:
-			sMessage = xiStr("NewFlagSpain");
+			sMessage = "Получен испанский флаг";
 			sPerk = "FlagSpa";
 		break;
 		case FRANCE:
-			sMessage = xiStr("NewFlagFrance");
+			sMessage = "Получен французский флаг";
 			sPerk = "FlagFra";
 		break;
 		case HOLLAND:
-			sMessage = xiStr("NewFlagHolland");
+			sMessage = "Получен голландский флаг";
 			sPerk = "FlagHol";
 		break;
 	}
