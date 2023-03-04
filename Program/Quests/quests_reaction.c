@@ -11323,7 +11323,15 @@ void QuestComplete(string sQuestName, string qname)
 			PChar.quest.SCQ_Prytki_PokinuliZonu.win_condition = "SCQ_Prytki_PokinuliZonu";
 			
 			sld = CharacterFromID(pchar.DevushkaVPrytki);
-			sld.dialog.currentnode = "SCQ_Prytki_Dengi";
+			sld.dialog.currentnode = "SCQ_Prytki_Trah";
+			/*if (rand(3) = 3)
+			{
+				sld.dialog.currentnode = "SCQ_Prytki_Trah";
+			}
+			else
+			{
+				sld.dialog.currentnode = "SCQ_Prytki_Dengi";
+			}*/
 		break;
 		
 		case "SCQ_Prytki_VremyVishlo":
@@ -11334,6 +11342,8 @@ void QuestComplete(string sQuestName, string qname)
 			sld.lifeday = 0;
 			ChangeCharacterAddressGroup(sld, "none", "", "");
 			InterfaceStates.Buttons.Save.enable = true;
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
 			PChar.quest.SCQ_Prytki_PokinuliZonu.over = "yes";
 		break;
 		
@@ -11345,6 +11355,8 @@ void QuestComplete(string sQuestName, string qname)
 			sld.lifeday = 0;
 			ChangeCharacterAddressGroup(sld, "none", "", "");
 			InterfaceStates.Buttons.Save.enable = true;
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
 		break;
 		
 //========================  "Проверка знаний"  =======================
