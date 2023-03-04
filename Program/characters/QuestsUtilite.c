@@ -2634,6 +2634,7 @@ void VSEnpcInit()
 	sld = GetCharacter(NPC_GenerateCharacter("VSE_Admir_3", "sold_spa_3", "man", "man", 10, SPAIN, -1, true));
 	sld.Dialog.Filename = "Admiralty.c";
 	sld.dialog.currentnode = "Strajniki";
+	sld.CityType = "soldier";
 	LAi_SetPatrolType(sld);
 	LAi_SetImmortal(sld, true);
 	LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
