@@ -2050,6 +2050,8 @@ void ProcessDialogEvent()
 			SetLaunchFrameFormParam("На мгновение закрываем глаза...", "SCQ_Prytki_VremyPoshlo", 0, 2.5);
 			LaunchFrameForm();
 			InterfaceStates.Buttons.Save.enable = false;
+			bDisableFastReload = true;
+			chrDisableReloadToLocation = true;
 			
 			sld = CharacterFromID(pchar.DevushkaVPrytki);
 			if (rand(1) == 0)
@@ -2078,6 +2080,8 @@ void ProcessDialogEvent()
 			DeleteAttribute(pchar, "showTimer");
 			ClearAllLogStrings();
 			InterfaceStates.Buttons.Save.enable = true;
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
 			
 			AddMoneyToCharacter(pchar, sti(iMoney));
 			AddCharacterExpToSkill(pchar, "Sneak", 30);
@@ -2092,8 +2096,8 @@ void ProcessDialogEvent()
 			UnmarkCharacter(npchar);
 		break;
 		
-		/*case "SCQ_Prytki_Trah":
-			dialog.text = "Ой, хи-хи-хи. А вы хорош"+GetSexPhrase("ий","ая")+" сыщи"+GetSexPhrase("к","ца")+", капитан. Давай снимем комнату в таверне, я вознагражу тебя по достоинству.";
+		case "SCQ_Prytki_Trah":
+			dialog.text = "Ой, хи-хи-хи. А вы хорош"+GetSexPhrase("ий","ая")+" сыщи"+GetSexPhrase("к","ца")+", капитан. Давайте снимем комнату в таверне, я вознагражу вас по достоинству.";
 			link.l1 = "Ну пойдём.";
 			link.l1.go = "SCQ_Prytki_Trah_2";
 			DeleteAttribute(pchar, "showTimer");
@@ -2102,10 +2106,9 @@ void ProcessDialogEvent()
 		break;
 		
 		case "SCQ_Prytki_Trah_2":
-			DialogExit();
-			sld = CharacterFromID(pchar.DevushkaVPrytki);
-			LAi_SetActorType(sld);
-		break;*/
+			DoQuestReloadToLocation(npchar.city+"_tavern_upstairs", "quest", "quest4", "");
+			ChangeCharacterAddressGroup(npchar, npchar.location+"_tavern_upstairs", "quest", "quest3");
+		break;
 
 		//жещина разыскивает мужа-торговца
 		case "SCQ_Hasband":
