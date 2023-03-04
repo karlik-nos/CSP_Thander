@@ -1131,8 +1131,8 @@ void ProcessDialogEvent()
 				switch(npchar.quest.choice)
 				{
 					case "0":
-						dialog.text = LinkRandPhrase("Тебе понравилось?", "Ну, что скажешь? Всё в порядке?", "Как дела,"+ GetSexPhrase(" корсар, все"," все") +" нормально?");
-						Link.l1 = RandPhraseSimple(""+ GetSexPhrase("Конечно, всё в порядке","А ты и впрямь... умеешь") +".", ""+ GetSexPhrase("Все в норме, крошка","Ты знаешь, я вполне довольна") +".");
+						dialog.text = LinkRandPhrase("Тебе понравилось?", "Ну, что скажешь? Всё в порядке?", "Как дела,"+ GetSexPhrase(" корсар, всё"," всё") +" нормально?");
+						Link.l1 = RandPhraseSimple(""+ GetSexPhrase("Конечно, всё в порядке","А ты и впрямь... умеешь") +".", ""+ GetSexPhrase("Всё в норме, крошка","Ты знаешь, я вполне довольна") +".");
 						Link.l1.go = "exit";
 					break;
 					case "1":

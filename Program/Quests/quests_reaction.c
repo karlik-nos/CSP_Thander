@@ -11338,7 +11338,7 @@ void QuestComplete(string sQuestName, string qname)
 			
 			sld = CharacterFromID(pchar.DevushkaVPrytki);
 			sld.dialog.currentnode = "SCQ_Prytki_Trah";
-			/*if (rand(3) = 3)
+			/*if (rand(3) == 3)
 			{
 				sld.dialog.currentnode = "SCQ_Prytki_Trah";
 			}
@@ -11371,6 +11371,38 @@ void QuestComplete(string sQuestName, string qname)
 			InterfaceStates.Buttons.Save.enable = true;
 			bDisableFastReload = false;
 			chrDisableReloadToLocation = false;
+		break;
+		
+		case "SCQ_Prytki_V_Komnate":
+			sld = CharacterFromID(pchar.DevushkaVPrytki);
+			if (rand(2) == 2)
+			{
+				sld.dialog.currentnode = "SCQ_Prytki_Trah_3";
+			}
+			else
+			{
+				sld.dialog.currentnode = "SCQ_Prytki_Ooops_Eto_Lovushka";
+			}
+			LAi_SetActorType(sld);
+			LAi_ActorDialogNow(sld, Pchar, "", -1);
+		break;
+		
+		case "SCQ_Prytki_V_Komnate_Ooops_Eto_Lovushka":
+			LAi_SetPlayerType(pchar);
+			for (i=1; i<=2; i++)									//Количество
+			{
+				sTemp = "pirate_"+(rand(24)+1);					
+				sld = GetCharacter(NPC_GenerateCharacter("Bandit_Prytki_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
+				LAi_SetActorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+				ChangeCharacterAddressGroup(sld, pchar.location, "reload",  "reload1_back");
+				sld.dialog.filename = "Quest/ForAll_dialog.c";		//Название файла диалога
+				sld.dialog.currentnode = "SCQ_Prytki_Ooops_Eto_Lovushka_3";
+				LAi_ActorDialogNow(sld, Pchar, "", -1);
+			}
+			sld = CharacterFromID(pchar.DevushkaVPrytki);
+			LAi_SetActorType(sld);
+			LAi_ActorRunToLocation(sld, "reload", "reload1_back", "none", "", "", "", 1);
 		break;
 		
 //========================  "Проверка знаний"  =======================
