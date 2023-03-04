@@ -11350,13 +11350,13 @@ void QuestComplete(string sQuestName, string qname)
 		case "SCQ_Prytki_PokinuliZonu":
 			DeleteAttribute(pchar, "showTimer");
 			ClearAllLogStrings();
-			Log_info("Правило нарушено, девушка больше не играет с нами в прятки");
+			//Log_info("Правило нарушено, девушка больше не играет с нами в прятки");
 			sld = CharacterFromID(pchar.DevushkaVPrytki);
 			sld.lifeday = 0;
 			ChangeCharacterAddressGroup(sld, "none", "", "");
 			InterfaceStates.Buttons.Save.enable = true;
-			bDisableFastReload = false;
-			chrDisableReloadToLocation = false;
+			//bDisableFastReload = false;
+			//chrDisableReloadToLocation = false;
 		break;
 		
 		case "SCQ_Prytki_V_Komnate":
@@ -11384,7 +11384,7 @@ void QuestComplete(string sQuestName, string qname)
 				ChangeCharacterAddressGroup(sld, pchar.location, "reload",  "reload1_back");
 				sld.dialog.filename = "Quest/ForAll_dialog.c";		//Название файла диалога
 				sld.dialog.currentnode = "SCQ_Prytki_Ooops_Eto_Lovushka_3";
-				LAi_ActorDialogNow(sld, Pchar, "", -1);
+				//LAi_ActorDialogNow(sld, Pchar, "", -1);
 			}
 			sld = CharacterFromID(pchar.DevushkaVPrytki);
 			LAi_SetActorType(sld);
