@@ -177,7 +177,7 @@ void ProcessVersionCheck() // boal 271004
 
 			ref rLoc = LocFromID("FortOrange_town");//фикс локатора церкви в ФортОранж без НИ
 			rLoc.reload.l10.name = "reload17";
-			ref rLoc = LocFromID("FortOrange_church");
+			rLoc = LocFromID("FortOrange_church");
 			rLoc.reload.l1.emerge = "reload17";
 
 			ref sld = characterFromID("Pirates_trader");//фикс торговцев-барменов без НИ
