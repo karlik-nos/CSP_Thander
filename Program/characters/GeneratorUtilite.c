@@ -693,14 +693,15 @@ void SetFantomParamCommon(ref _pchar)
     //AntiCheat(_pchar);
 }
 
-void SetFantomParamEncout(ref _pchar)  // выдача сабель и НР отдельно
+void SetFantomParamEncout(ref _pchar)  // выдача сабель и НР отдельно	//TO DO - не используется - удалить функцию
 {
     CalculateAppropriateSkills(_pchar);
     SetFantomHP(_pchar);
     // тут трем накопивщиеся сабли и корабли 290704 BOAL -->
     DeleteAttribute(_pchar, "Items");
     DeleteAttribute(_pchar, "equip");
-    DeleteAttribute(_pchar, "perks.list");
+	//DeleteAttribute(_pchar, "perks.list");
+	DeleteAllPerksExceptChar(_pchar);
     //LAi_NPC_EquipPerk(_pchar, "fantom");
 	//GiveItem2Character(_pchar, "unarmed");
 	//EquipCharacterByItem(_pchar, "unarmed");
