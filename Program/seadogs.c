@@ -196,6 +196,7 @@ void ProcessVersionCheck() // boal 271004
 			//инит кораблей обновится сам
 			for(int j=0;j<REAL_SHIPS_QUANTITY;j++)//фикс без НИ ватерлинии и числа пушек у кораблей, уже сгенерировавшихся	//ВНИМАНИЕ - не проверялось. особенный риск, если загружать сейв с SHIP_HERCULES в море - проверить!!!
 			{
+				if (!checkattribute(RealShips[j], "basetype")) continue;
 				if (sti(RealShips[j].basetype) == SHIP_LUGGER) RealShips[j].WaterLine = -0.35;
 				if (sti(RealShips[j].basetype) == SHIP_NEPTUN) RealShips[j].WaterLine = -0.4;
 				if (sti(RealShips[j].basetype) == SHIP_HERCULES)
