@@ -2515,8 +2515,8 @@ void EncGirl_RapersChest(string qName)
 
 void EncGirl_TreasureLose(string qName)
 {
-	ref location = &Locations[FindLocation(pchar.GenQuest.EncGirl.Treasure.Location)];
-	string boxId = pchar.GenQuest.EncGirl.Treasure.Locator;
+	ref location = &Locations[FindLocation(pchar.GenQuest.TreasureEncGirl)];
+	string boxId = pchar.GenQuest.TreasureEncGirlBox;
 
 	pchar.quest.EncGirl_RapersTreasure.over = "yes";
 
