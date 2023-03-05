@@ -249,7 +249,7 @@ int Whr_InitNight(int n)
 	Weathers[n].Fog.Start = 10;
 	Weathers[n].Fog.Density = 0.0003;
 	Weathers[n].Fog.IslandDensity = 0.0002;
-	KetchWeathers[n].Fog.SeaDensity = 0.00006;
+	Weathers[n].Fog.SeaDensity = 0.00006;
 	Weathers[n].Fog.Color = argb(0,5,15,25);
 		
 	Weathers[n].Rain.NumDrops = 0;
@@ -437,7 +437,7 @@ int Whr_InitNight(int n)
 	Weathers[n].Fog.Start = 10;
 	Weathers[n].Fog.Density = 0.0003;
 	Weathers[n].Fog.IslandDensity = 0.0002;
-	KetchWeathers[n].Fog.SeaDensity = 0.00006;
+	Weathers[n].Fog.SeaDensity = 0.00006;
 	Weathers[n].Fog.Color = argb(0,5,15,25);
 	
 	Weathers[n].Rain.NumDrops = 0;
@@ -625,7 +625,7 @@ int Whr_InitNight(int n)
 	Weathers[n].Fog.Start = 10;
 	Weathers[n].Fog.Density = 0.0003;
 	Weathers[n].Fog.IslandDensity = 0.0002;
-	KetchWeathers[n].Fog.SeaDensity = 0.00006;
+	Weathers[n].Fog.SeaDensity = 0.00006;
 	Weathers[n].Fog.Color = argb(0,5,15,25);
 		
 	Weathers[n].Rain.NumDrops = 0;
@@ -813,7 +813,7 @@ int Whr_InitNight(int n)
 	Weathers[n].Fog.Start = 10;
 	Weathers[n].Fog.Density = 0.0003;
 	Weathers[n].Fog.IslandDensity = 0.0002;
-	KetchWeathers[n].Fog.SeaDensity = 0.00006;
+	Weathers[n].Fog.SeaDensity = 0.00006;
 	Weathers[n].Fog.Color = argb(0,5,15,25);
 	
 	Weathers[n].Rain.NumDrops = 0;
@@ -1001,7 +1001,7 @@ int Whr_InitNight(int n)
 	Weathers[n].Fog.Start = 10;
 	Weathers[n].Fog.Density = 0.0003;
 	Weathers[n].Fog.IslandDensity = 0.0002;
-	KetchWeathers[n].Fog.SeaDensity = 0.00006;
+	Weathers[n].Fog.SeaDensity = 0.00006;
 	Weathers[n].Fog.Color = argb(0,15,15,25);
 	
 	Weathers[n].Rain.NumDrops = 0;
