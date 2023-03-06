@@ -2157,18 +2157,29 @@ void ProcessDialogEvent()
 		
 		case "SCQ_Prytki_Ooops_Eto_Lovushka_2":
 			DialogExit();
-			DoQuestCheckDelay("SCQ_Prytki_V_Komnate_Ooops_Eto_Lovushka", 1.5);
+			DoQuestCheckDelay("SCQ_Prytki_V_Komnate_Ooops_Eto_Lovushka", 1.2);
 			LAi_SetActorType(pchar);
+			LAi_ActorTurnToLocator(PChar, "reload", "reload1");
 		break;
 		
-		/*case "SCQ_Prytki_Ooops_Eto_Lovushka_3":
+		case "SCQ_Prytki_Ooops_Eto_Lovushka_3":
 			dialog.text = "Эй, "+GetSexPhrase("мамонт вонючий","зайчик")+", отдавай всё ценное, что у тебя есть. А не то пожалеешь.";
 			link.l1 = "Ах, вот как... Такого я не ожидал"+GetSexPhrase("","а")+"... Ну что же, вы сами напросились!";
-			link.l1.go = "exit";
-		break;*/
+			link.l1.go = "SCQ_Prytki_Ooops_Eto_Lovushka_4";
+		break;
 		
 		case "SCQ_Prytki_Ooops_Eto_Lovushka_4":
-			
+			DialogExit();
+			for (i=1; i<=2; i++)
+			{
+				sld = CharacterFromID("Bandit_Prytki_"+i);
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+			}
+			LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+			LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);			//true - если помирить
+			LAi_group_SetCheck("EnemyFight", "SCQ_Prytki_V_Komnate_Final");
+			LAi_SetFightMode(pchar, true);
 		break;
 
 		//жещина разыскивает мужа-торговца
