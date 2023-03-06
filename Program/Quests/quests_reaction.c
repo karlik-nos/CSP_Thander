@@ -11324,14 +11324,14 @@ void QuestComplete(string sQuestName, string qname)
 			
 			sld = CharacterFromID(pchar.DevushkaVPrytki);
 			sld.dialog.currentnode = "SCQ_Prytki_Trah";
-			/*if (rand(3) == 3)
+			if (rand(3) == 3)
 			{
 				sld.dialog.currentnode = "SCQ_Prytki_Trah";
 			}
 			else
 			{
 				sld.dialog.currentnode = "SCQ_Prytki_Dengi";
-			}*/
+			}
 		break;
 		
 		case "SCQ_Prytki_VremyVishlo":
@@ -11363,11 +11363,11 @@ void QuestComplete(string sQuestName, string qname)
 			sld = CharacterFromID(pchar.DevushkaVPrytki);
 			if (rand(2) == 2)
 			{
-				sld.dialog.currentnode = "SCQ_Prytki_Trah_3";
+				sld.dialog.currentnode = "SCQ_Prytki_Ooops_Eto_Lovushka";
 			}
 			else
 			{
-				sld.dialog.currentnode = "SCQ_Prytki_Ooops_Eto_Lovushka";
+				sld.dialog.currentnode = "SCQ_Prytki_Trah_3";
 			}
 			LAi_SetActorType(sld);
 			LAi_ActorDialogNow(sld, Pchar, "", -1);
@@ -11375,20 +11375,29 @@ void QuestComplete(string sQuestName, string qname)
 		
 		case "SCQ_Prytki_V_Komnate_Ooops_Eto_Lovushka":
 			LAi_SetPlayerType(pchar);
-			for (i=1; i<=2; i++)									//Количество
+			for (i=1; i<=2; i++)
 			{
 				sTemp = "pirate_"+(rand(24)+1);					
 				sld = GetCharacter(NPC_GenerateCharacter("Bandit_Prytki_"+i, sTemp, "man", "man", sti(pchar.rank), PIRATE, -1, true));
 				LAi_SetActorType(sld);
-				LAi_group_MoveCharacter(sld, "EnemyFight");
 				ChangeCharacterAddressGroup(sld, pchar.location, "reload",  "reload1_back");
-				sld.dialog.filename = "Quest/ForAll_dialog.c";		//Название файла диалога
-				sld.dialog.currentnode = "SCQ_Prytki_Ooops_Eto_Lovushka_3";
-				//LAi_ActorDialogNow(sld, Pchar, "", -1);
 			}
 			sld = CharacterFromID(pchar.DevushkaVPrytki);
 			LAi_SetActorType(sld);
 			LAi_ActorRunToLocation(sld, "reload", "reload1_back", "none", "", "", "", 1);
+			sld = CharacterFromID("Bandit_Prytki_1");
+			sld.dialog.filename = "Quest/ForAll_dialog.c";
+			sld.dialog.currentnode = "SCQ_Prytki_Ooops_Eto_Lovushka_3";
+			LAi_ActorDialogNow(sld, Pchar, "", -1);
+		break;
+		
+		case "SCQ_Prytki_V_Komnate_Final":
+			InterfaceStates.Buttons.Save.enable = true;
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
+			AddCharacterExpToSkill(pchar, "FencingLight", 5);
+			AddCharacterExpToSkill(pchar, "Fencing", 5);
+			AddCharacterExpToSkill(pchar, "FencingHeavy", 5);
 		break;
 		
 //========================  "Проверка знаний"  =======================
