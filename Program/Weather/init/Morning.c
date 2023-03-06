@@ -56,7 +56,7 @@ int Whr_InitMorning(int n)
 	Weathers[n].Fog.Start = 10;
 	Weathers[n].Fog.Density = 0.0003;
 	Weathers[n].Fog.IslandDensity = 0.0002;
-	Weathers[n].Fog.SeaDensity = 0.000125;
+	Weathers[n].Fog.SeaDensity = 0.00006;
 	Weathers[n].Fog.Color = argb(0,70,65,55);
 	
 	Weathers[n].Rain.NumDrops = 0;
@@ -242,7 +242,7 @@ int Whr_InitMorning(int n)
 	Weathers[n].Fog.Start = 10;
 	Weathers[n].Fog.Density = 0.0003;
 	Weathers[n].Fog.IslandDensity = 0.0002;
-	Weathers[n].Fog.SeaDensity = 0.000125;
+	Weathers[n].Fog.SeaDensity = 0.00006;
 	Weathers[n].Fog.Color = argb(0,65,65,70);
 	
 	Weathers[n].Rain.NumDrops = 0;
@@ -428,7 +428,7 @@ int Whr_InitMorning(int n)
 	Weathers[n].Fog.Start = 10;
 	Weathers[n].Fog.Density = 0.0003;
 	Weathers[n].Fog.IslandDensity = 0.0002;
-	Weathers[n].Fog.SeaDensity = 0.000125;
+	Weathers[n].Fog.SeaDensity = 0.00006;
 	Weathers[n].Fog.Color = argb(0,100,110,131);
 	
 	Weathers[n].Rain.NumDrops = 0;
@@ -614,7 +614,7 @@ int Whr_InitMorning(int n)
 	Weathers[n].Fog.Start = 10;
 	Weathers[n].Fog.Density = 0.0003;
 	Weathers[n].Fog.IslandDensity = 0.0002;
-	Weathers[n].Fog.SeaDensity = 0.000125;
+	Weathers[n].Fog.SeaDensity = 0.00006;
 	Weathers[n].Fog.Color = argb(0,60,65,80);
 	
 	Weathers[n].Rain.NumDrops = 0;
@@ -800,7 +800,7 @@ int Whr_InitMorning(int n)
 	Weathers[n].Fog.Start = 10;
 	Weathers[n].Fog.Density = 0.0003;
 	Weathers[n].Fog.IslandDensity = 0.0002;
-	Weathers[n].Fog.SeaDensity = 0.000125;
+	Weathers[n].Fog.SeaDensity = 0.00006;
 	Weathers[n].Fog.Color = argb(0,156,195,232);
 	
 	Weathers[n].Rain.NumDrops = 0;

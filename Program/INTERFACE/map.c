@@ -128,7 +128,7 @@ void wdmRecalcReloadToSea()
 	int k = 0;//счетчик для строк таблицы с картинками корабликов
 	int iShipType, n, iS, q;
 	string sCol, sRow1, sRow2, sShip, sShipMode;
-	aref arShips, arShipModes;//типы кораблей в энке
+	aref arAttr, arShips, arShipModes;//типы кораблей в энке
 	//Encounters
 	int numEncounters = wdmGetNumberShipEncounters();
 	int isShipEncounterType = 0;
@@ -275,63 +275,82 @@ void wdmRecalcReloadToSea()
 				isSkipable = true;
 			}
 		}
-		if (!checkattribute(rEncounter, "v2")) {log_info("тест - старый энк"); continue;}//не рисуем, если энкаунтер по старой системе или одиночный
+
+		if (CheckAttribute(rEncounter, "CharacterID"))
+		{
+			string sGroupID = Characters[iNumWarShips].SeaAI.Group.Name;
+			ref rGroup = Group_FindOrCreateGroup(sGroupID);
+			if (!CheckAttribute(rGroup,"quest")) { trace("EncCheck map-interface. Broken group: " + sGroupID);}
+			else
+			{
+				makearef(arShips, rGroup.Quest);
+				iNumShips = GetAttributesNum(arShips);
+			}
+		}
+		else
+		{
+			makearef(arShips, rEncounter.shiptypes); 
+			//makearef(arShipModes, rEncounter.shipmodes); 
+			iNumShips = GetAttributesNum(arShips);
+		}
+//if (iNumShips>8) continue; //Золотой флот не рисуем, не умещается
 		//Заполнение таблицы картинками корабликов
 		for(q = 1; q < 10; q++)//фикс - если первой ячейки нет - движок не рисует всю таблицу
 		{
 			sCol = "td" + q;
-//			sRow1 = "tr" + (2*k + 1);
+			//sRow1 = "tr" + (2*k + 1);
 			sRow1 = "tr" + (k + 1);
 			GameInterface.TABLE_ENC.hr.(sCol).str = "";
 			GameInterface.TABLE_ENC.(sRow1).(sCol).str = "";
 			//sRow2 = "tr" + (2*k + 2);
 			//GameInterface.TABLE_ENC.(sRow2).(sCol).str = "";
 		}
-		makearef(arShips, rEncounter.shiptypes); 
-		makearef(arShipModes, rEncounter.shipmodes); 
-		for (iS=0; iS<GetAttributesNum(arShips); iS++)
+		for(iS=0; iS<iNumShips; iS++)
 		{
-			iShipType = GetAttributeValue(GetAttributeN(arShips, iS)); 
-			sShipMode = GetAttributeValue(GetAttributeN(arShipModes, iS));
-			n = iS + 6 - (iNumWarShips + iNumMerchantShips)/2;//9 колонок - центрируем от фактического числа кораблей
+			if (CheckAttribute(rEncounter, "CharacterID"))
+			{	//особые одиночные энкаунтеры
+				arAttr = GetAttributeN(arShips, iS);
+				iShipType = sti(RealShips[sti(Characters[sti(arAttr.index)].ship.type)].basetype);
+			}
+			else
+			{
+				iShipType = GetAttributeValue(GetAttributeN(arShips, iS));
+				//sShipMode = GetAttributeValue(GetAttributeN(arShipModes, iS));
+			}
+			n = iS + 6 - iNumShips/2;//9 колонок - центрируем от фактического числа кораблей
 			sCol = "td" + n;
-//			sRow1 = "tr" + (2*k + 1);
+			//sRow1 = "tr" + (2*k + 1);
 			sRow1 = "tr" + (k + 1);
 			sShip = shipstypes[iShipType].Name;
 			GameInterface.TABLE_ENC.(sRow1).(sCol).str = shipstypes[iShipType].Class;
-			//GameInterface.TABLE_ENC.(sRow1).(sCol).scale = 0.55;
-			GameInterface.TABLE_ENC.(sRow1).(sCol).textoffset = "-35,-16";
+			GameInterface.TABLE_ENC.(sRow1).(sCol).textoffset = "-35,-16"; 		//its(-35-24*(iNumShips%2))+",-16";
 			GameInterface.TABLE_ENC.(sRow1).(sCol).icon1.texture = "interfaces\\ships\\" + sShip + ".tga.tx";
 			GameInterface.TABLE_ENC.(sRow1).(sCol).icon1.width = 47;
 			GameInterface.TABLE_ENC.(sRow1).(sCol).icon1.height = 47;
-			GameInterface.TABLE_ENC.(sRow1).(sCol).icon1.offset = "-2,0";
+			GameInterface.TABLE_ENC.(sRow1).(sCol).icon1.offset = "-2,0";		//its(-2-24*(iNumShips%2))+",0";
 			//sRow2 = "tr" + (2*k + 2);
 			//GameInterface.TABLE_ENC.(sRow2).(sCol).str = XI_Convertstring(sShip);
 			//GameInterface.TABLE_ENC.(sRow2).(sCol).scale = 0.59;
 /*
-			GameInterface.TABLE_ENC.(sRow1).(sCol).icon2.group = "ICONS_SPEC";
-			switch (sShipMode)//крашит вторая иконка - взять из шрифта символ???
-			{
-			case "trade":	GameInterface.TABLE_ENC.(sRow1).(sCol).icon2.image = "commerce skill icon"; break;
-			case "war": 	GameInterface.TABLE_ENC.(sRow1).(sCol).icon2.image = "grappling skill icon"; break;
-			case "pirate": 	GameInterface.TABLE_ENC.(sRow1).(sCol).icon2.image = "exit button"; break;
-			}
-			GameInterface.TABLE_ENC.(sRow1).(sCol).icon2.width = 14;
-			GameInterface.TABLE_ENC.(sRow1).(sCol).icon2.height = 14;
-			GameInterface.TABLE_ENC.(sRow1).(sCol).icon2.offset = "-1,15";
+GameInterface.TABLE_ENC.(sRow1).(sCol).icon2.group = "ICONS_SPEC";
+switch (sShipMode)//крашит вторая иконка - взять из шрифта символ???
+{
+case "trade":	GameInterface.TABLE_ENC.(sRow1).(sCol).icon2.image = "commerce skill icon"; break;
+case "war": 	GameInterface.TABLE_ENC.(sRow1).(sCol).icon2.image = "grappling skill icon"; break;
+case "pirate": 	GameInterface.TABLE_ENC.(sRow1).(sCol).icon2.image = "exit button"; break;
+}
+GameInterface.TABLE_ENC.(sRow1).(sCol).icon2.width = 14;
+GameInterface.TABLE_ENC.(sRow1).(sCol).icon2.height = 14;
+GameInterface.TABLE_ENC.(sRow1).(sCol).icon2.offset = "-1, 15";		//its(-1-24*(iNumShips%2))+",15";
 */
-//fontlist1			= font_name_1 ... // из етого списка можно применять фонты в отдельных ячейках 
-//...									  // если поставить в скрипте атрибут .td<n>.fontidx = {0,1,...,N}
-//fontlistN			= font_name_N	  // без етого атрибута используется стандартный шрифт
-//разные шрифты для цифры класса и подписи названия типа???
 		}
-		sCol = "td" + (5 - (iNumWarShips + iNumMerchantShips)/2);
+		sCol = "td" + (5 - iNumShips/2);
 		GameInterface.TABLE_ENC.(sRow1).(sCol).icon.group  = "NATIONS";
 		GameInterface.TABLE_ENC.(sRow1).(sCol).icon.image = Nations[sti(rEncounter.Nation)].Name;//флаг эскадры сюда
 		GameInterface.TABLE_ENC.(sRow1).(sCol).icon.uv = "0,0,0,0";
 		GameInterface.TABLE_ENC.(sRow1).(sCol).icon.width = 48;
 		GameInterface.TABLE_ENC.(sRow1).(sCol).icon.height = 48;
-		GameInterface.TABLE_ENC.(sRow1).(sCol).icon.offset = "-3, -1";
+		GameInterface.TABLE_ENC.(sRow1).(sCol).icon.offset = "-3, -1";	//its(-3-24*(iNumShips%2))+", -1";
 		k++;
 	}
 	Table_UpdateWindow("TABLE_ENC");

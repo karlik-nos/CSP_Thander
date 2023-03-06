@@ -167,6 +167,51 @@ void ProcessVersionCheck() // boal 271004
             }
         }
     }
+
+	if (pchar.versionnumber == VERSION_NUMBER2 || pchar.versionnumber == VERSION_NUMBER2 + "  DEV") {log_info("РЕИНИТ не требуется");} //проверить, что строка правильно собирается
+	else
+	{
+		if (!CheckAttribute(pchar, "fixsaveNG0"))//для версии от 21 февраля
+		{
+			if (sti(pchar.rank)>2) DozorPrepare_2();//фикс дозора без НИ
+
+			ref rLoc = LocFromID("FortOrange_town");//фикс локатора церкви в ФортОранж без НИ
+			rLoc.reload.l10.name = "reload17";
+			rLoc = LocFromID("FortOrange_church");
+			rLoc.reload.l1.emerge = "reload17";
+
+			ref sld = characterFromID("Pirates_trader");//фикс торговцев-барменов без НИ
+			LAi_SetOwnerType(sld);
+			sld = characterFromID("Dominica_trader");
+			LAi_SetOwnerType(sld);
+			sld = characterFromID("FortOrange_trader");
+			LAi_SetOwnerType(sld);
+			sld = characterFromID("LaVega_trader");
+			LAi_SetOwnerType(sld);
+			sld = characterFromID("LeFransua_trader");
+			LAi_SetOwnerType(sld);
+			sld = characterFromID("PuertoPrincipe_trader");
+			LAi_SetOwnerType(sld);
+			//погода обновится сама
+			//инит кораблей обновится сам
+			for(int j=0;j<REAL_SHIPS_QUANTITY;j++)//фикс без НИ ватерлинии и числа пушек у кораблей, уже сгенерировавшихся	//ВНИМАНИЕ - не проверялось. особенный риск, если загружать сейв с SHIP_HERCULES в море - проверить!!!
+			{
+				if (!checkattribute(RealShips[j], "basetype")) continue;
+				if (sti(RealShips[j].basetype) == SHIP_LUGGER) RealShips[j].WaterLine = -0.35;
+				if (sti(RealShips[j].basetype) == SHIP_NEPTUN) RealShips[j].WaterLine = -0.4;
+				if (sti(RealShips[j].basetype) == SHIP_HERCULES)
+				{
+					RealShips[j].Cannons = sti(RealShips[j].Cannons)-4;
+					RealShips[j].CannonsQuantity = sti(RealShips[j].CannonsQuantity)-4;
+					RealShips[j].CannonsQuantityMax = sti(RealShips[j].CannonsQuantityMax)-4;
+					RealShips[j].fcannon = sti(RealShips[j].fcannon)-2;
+					RealShips[j].bcannon = sti(RealShips[j].bcannon)-2;
+				}
+			}
+
+			pchar.fixsaveNG0 = GetVerNum();
+		}
+	}
 }
 
 void ProcessCheat()
@@ -880,6 +925,7 @@ void OnLoad()
 	actLoadFlag = 0;
 	////
 	ProcessVersionCheck();
+
 	//#20181015-02
 	if(bSeaActive && !bMapEnter)
         Sound_OnSeaAlarm555(seaAlarmed, true);
