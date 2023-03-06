@@ -28,23 +28,24 @@ void InitInterface(string iniName)
 	InterfaceStack.SelectMenu_node = "LaunchQuestBook"; // запоминаем, что звать по Ф2
 	GameInterface.title = "titleQuestBook";
 
-	if(sti(Pchar.Ship.Type) != SHIP_NOTUSED)
-	{
-		string sTemp = RealShips[sti(Pchar.Ship.Type)].BaseName;
+	if(sti(Pchar.Ship.Type) != SHIP_NOTUSED && sti(RealShips[sti(Pchar.Ship.Type)].BaseType) <= SHIP_OCEAN)//не исследуем квестовые, и лодку с фортом
+	{	
+		sTemp = RealShips[sti(Pchar.Ship.Type)].BaseName;
 		Pchar.Encyclopedia.(sTemp) = "1";//тут не нужно это. Нужно было при входе на корабль вставлять такое, а не только при абордаже
-		if(bFillEncyShips) 
+	}
+	if(bFillEncyShips) 
+	{
+		aref aShips;
+		makearef(aShips, Pchar.Encyclopedia);
+		int Sum = GetAttributesNum(aShips);
+		if (Sum != sti(pchar.questTemp.shipsearchcount)) 
 		{
-			aref aShips;
-			makearef(aShips, Pchar.Encyclopedia);
-			int Sum = GetAttributesNum(aShips);
-			if (Sum != sti(pchar.questTemp.shipsearchcount)) 
-			{
-				pchar.questTemp.shipsearchcount = Sum;
-				log_info("Исследован корабль: " + XI_Convertstring(sTemp) + ". Исследовано - " + pchar.questTemp.shipsearchcount + " кораблей!");
-				if (pchar.questTemp.shipsearchcount == "124") UnlockAchievement("AchShipSearch",3);
-			}
+			pchar.questTemp.shipsearchcount = Sum;
+			log_info("Исследован корабль: " + XI_Convertstring(sTemp) + ". Исследовано - " + pchar.questTemp.shipsearchcount + " кораблей!");
+			if (pchar.questTemp.shipsearchcount == "124") UnlockAchievement("AchShipSearch",3);//почему 124? сумма же 125.
 		}
 	}
+
 	if (InterfaceStates.AltFont == "0") SendMessage(&GameInterface,"ls",MSG_INTERFACE_INIT,"RESOURCE\INI\INTERFACES\questbook_alt.ini");
 	else SendMessage(&GameInterface,"ls",MSG_INTERFACE_INIT,iniName);
 

@@ -209,6 +209,25 @@ void ProcessVersionCheck() // boal 271004
 				}
 			}
 
+			if(bFillEncyShips) 
+			{
+				int Sum = 0;
+				for (j=SHIP_LUGGERQUEST;j<=SHIP_FORT;j++)
+				{
+					DeleteAttribute(aShips, ShipsTypes[j].name);//стираем записи об исследовании квестовых, лодки, форта
+				}
+
+				aref aShips;
+				makearef(aShips, Pchar.Encyclopedia);
+				Sum = GetAttributesNum(aShips);//суммируем оставшиеся открытые корабли
+				if (Sum != sti(pchar.questTemp.shipsearchcount))
+				{
+					pchar.questTemp.shipsearchcount = Sum;
+					log_info("Исследовано - " + pchar.questTemp.shipsearchcount + " кораблей!");
+					if (pchar.questTemp.shipsearchcount == "124") UnlockAchievement("AchShipSearch",3);
+				}
+			}
+
 			pchar.fixsaveNG0 = GetVerNum();
 		}
 	}
