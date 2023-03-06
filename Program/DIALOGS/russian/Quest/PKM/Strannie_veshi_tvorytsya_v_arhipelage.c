@@ -701,7 +701,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Учитель_Смерть_1":
-			dialog.text = "Вы пытаетесь испугать меня?! За мной стоит Князь Тьмы! Я не боюсь смерти!";
+			dialog.text = "Вы пытаетесь испугать меня?! Я слуга сил хаоса! Я не боюсь смерти!";
 			link.l1 = "Хм... действительно...";
 			link.l1.go = "Учитель_Смерть_2";
 		break;
@@ -883,7 +883,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Домингес в клетке_2":
-			dialog.text = "Меня схватили сразу же после вашего отплытия из Сан-Хуана. Но я рад, что вы сумели отыскать логово этих бездушных язычников. В тронном зале сидит их главарь, Князь Тьмы. Вам нужно остановить его!";
+			dialog.text = "Меня схватили сразу же после вашего отплытия из Сан-Хуана. Но я рад, что вы сумели отыскать логово этих бездушных язычников. В тронном зале сидит их главарь, Чёрное Солнце. Вам нужно остановить его!";
 			link.l1 = "Не волнуйтесь, святой отец. Я здесь как раз для того, чтобы положить конец этой дьявольской секте.";
 			link.l1.go = "Домингес в клетке_3";
 		break;
@@ -900,6 +900,100 @@ void ProcessDialogEvent()
 			link.l1 = "...";
 			link.l1.go = "exit";
 			NextDiag.TempNode = "Домингес в клетке_4";
+		break;
+		
+		case "Лорд_Хаоса_1":
+			dialog.text = "Ты сдохнешь, и демоны спляшут на твоих костях, слизняк!";
+			link.l1 = "Ну да, конечно, вот прямо сейчас возьму и сдохну. Размечтался!";
+			link.l1.go = "Лорд_Хаоса_2";
+			//PlayVoice("Kopcapkz\Voices\Quest\Dark_teacher.wav");    ВЕРНУТЬ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		break;
+		
+		case "Лорд_Хаоса_2":
+			DialogExit();
+			
+			EndQuestMovie();
+			LAi_SetFightMode(pchar, true);
+			
+			LAi_group_SetRelation("Chernoe_Solntse", "Chernoe_Solntse_sluga", LAI_GROUP_FRIEND);
+			LAi_group_SetRelation("Chernoe_Solntse_sluga", "Chernoe_Solntse", LAI_GROUP_FRIEND);
+			
+			LAi_group_SetRelation("Chernoe_Solntse", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+			LAi_group_FightGroups("Chernoe_Solntse", LAI_GROUP_PLAYER, false);
+			
+			LAi_group_SetRelation("Chernoe_Solntse_sluga", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+			LAi_group_FightGroups("Chernoe_Solntse_sluga", LAI_GROUP_PLAYER, false);
+			LAi_group_SetCheck("Chernoe_Solntse_sluga", "PKM_SvtvA_Lord_Haos_Padet");
+			
+			sld = CharacterFromID("Chernoe_Solntse");
+			LAi_SetImmortal(sld, false);
+			LAi_SetWarriorType(sld);
+			LAi_group_MoveCharacter(sld, "Chernoe_Solntse");
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto57");
+			
+			for (i=1; i<=2; i++)
+			{
+				sld = CharacterFromID("Satanist_"+i);
+				LAi_SetImmortal(sld, false);
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "Chernoe_Solntse");
+			}			
+			for (i=1; i<=5; i++)
+			{
+				sld = CharacterFromID("Satanist_Oderjim_"+i);
+				LAi_SetImmortal(sld, false);
+				LAi_group_MoveCharacter(sld, "Chernoe_Solntse_sluga");
+			}
+			for (i=1; i<=3; i++)
+			{
+				sld = CharacterFromID("Satanist_Turma_"+i);
+				LAi_SetGuardianType(sld);
+				LAi_group_MoveCharacter(sld, "Chernoe_Solntse");
+			}
+			if (!CheckAttribute(pchar, "questTemp.PKM_SvtvA_Satanist_Kuhnya_Pobeda"))
+			{
+				for (i=1; i<=5; i++)
+				{
+					sld = CharacterFromID("Satanist_Kuhnya_"+i);
+					LAi_SetHP(sld, 180.0, 180.0);
+					LAi_SetWarriorType(sld);
+					LAi_group_MoveCharacter(sld, "Chernoe_Solntse");
+					LAi_group_SetRelation("Chernoe_Solntse", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+					LAi_group_SetLookRadius("Chernoe_Solntse", 10.0);
+					LAi_group_SetHearRadius("Chernoe_Solntse", 3.0);
+					LAi_group_SetSayRadius("Chernoe_Solntse", 1.0);
+					ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto8");
+				}
+			}
+			
+			PChar.quest.PKM_SvtvA_KuhnyaStels1.over = "yes";
+			PChar.quest.PKM_SvtvA_KuhnyaStels2.over = "yes";
+			PChar.quest.PKM_SvtvA_KuhnyaStels3.over = "yes";
+			PChar.quest.PKM_SvtvA_KuhnyaStels4.over = "yes";
+			PChar.quest.PKM_SvtvA_KuhnyaStels5.over = "yes";
+		break;
+		
+		case "Лорд_Хаоса_3":
+			dialog.text = "Нет! Этого не может быть!..";
+			link.l1 = "Что? Не ожидал, что кто-то разнесёт твоё мрачное убежище в клочья?";
+			link.l1.go = "Лорд_Хаоса_4";
+		break;
+		
+		case "Лорд_Хаоса_4":
+			dialog.text = "Это ещё не конец...";
+			link.l1 = "";
+			link.l1.go = "Лорд_Хаоса_5";
+		break;
+		
+		case "Лорд_Хаоса_5":
+			dialog.text = "";
+			link.l1 = "Э-э-э, ты куда? Трус!";
+			link.l1.go = "exit";
+			
+			sld = CharacterFromID("Chernoe_Solntse");
+			LAi_SetActorType(sld);
+			LAi_SetImmortal(sld, true);
+			LAi_ActorRunToLocation(sld, "goto", "goto28", "none", "", "", "PKM_SvtvA_Lord_Haos_Pobeda_no_ne_sovsem2", -1);
 		break;
 		
 	}

@@ -11170,23 +11170,23 @@ void QuestComplete(string sQuestName, string qname)
 			
 			PChar.quest.PKM_SvtvA_KuhnyaStels1.win_condition.l1 = "NPC_Death";
 			PChar.quest.PKM_SvtvA_KuhnyaStels1.win_condition.l1.character = "Satanist_Kuhnya_1";
-			PChar.quest.PKM_SvtvA_KuhnyaStels1.function = "PKM_SvtvA_KuhnyaStels";
+			PChar.quest.PKM_SvtvA_KuhnyaStels1.win_condition = "PKM_SvtvA_KuhnyaStels";
 			
 			PChar.quest.PKM_SvtvA_KuhnyaStels2.win_condition.l1 = "NPC_Death";
 			PChar.quest.PKM_SvtvA_KuhnyaStels2.win_condition.l1.character = "Satanist_Kuhnya_2";
-			PChar.quest.PKM_SvtvA_KuhnyaStels2.function = "PKM_SvtvA_KuhnyaStels";
+			PChar.quest.PKM_SvtvA_KuhnyaStels2.win_condition = "PKM_SvtvA_KuhnyaStels";
 			
 			PChar.quest.PKM_SvtvA_KuhnyaStels3.win_condition.l1 = "NPC_Death";
 			PChar.quest.PKM_SvtvA_KuhnyaStels3.win_condition.l1.character = "Satanist_Kuhnya_3";
-			PChar.quest.PKM_SvtvA_KuhnyaStels3.function = "PKM_SvtvA_KuhnyaStels";
+			PChar.quest.PKM_SvtvA_KuhnyaStels3.win_condition = "PKM_SvtvA_KuhnyaStels";
 			
 			PChar.quest.PKM_SvtvA_KuhnyaStels4.win_condition.l1 = "NPC_Death";
 			PChar.quest.PKM_SvtvA_KuhnyaStels4.win_condition.l1.character = "Satanist_Kuhnya_4";
-			PChar.quest.PKM_SvtvA_KuhnyaStels4.function = "PKM_SvtvA_KuhnyaStels";
+			PChar.quest.PKM_SvtvA_KuhnyaStels4.win_condition = "PKM_SvtvA_KuhnyaStels";
 			
 			PChar.quest.PKM_SvtvA_KuhnyaStels5.win_condition.l1 = "NPC_Death";
 			PChar.quest.PKM_SvtvA_KuhnyaStels5.win_condition.l1.character = "Satanist_Kuhnya_5";
-			PChar.quest.PKM_SvtvA_KuhnyaStels5.function = "PKM_SvtvA_KuhnyaStels";
+			PChar.quest.PKM_SvtvA_KuhnyaStels5.win_condition = "PKM_SvtvA_KuhnyaStels";
 			
 			//ТЮРЬМА
 			
@@ -11321,12 +11321,15 @@ void QuestComplete(string sQuestName, string qname)
 			
 			//ТРОННЫЙ ЗАЛ
 			
-			//Князь Тьмы
-			sld = GetCharacter(NPC_GenerateCharacter("Knyaz_Tbmy", "Animists2", "man", "man", sti(pchar.rank) + 5 + MOD_SKILL_ENEMY_RATE, PIRATE, -1, true));
-			sld.name = "Князь";
-			sld.lastname = "Тьмы";
+			//Чёрное Солнце
+			sld = GetCharacter(NPC_GenerateCharacter("Chernoe_Solntse", "Animists2", "man", "man", sti(pchar.rank) + 10 + MOD_SKILL_ENEMY_RATE, PIRATE, -1, true));
+			FantomMakeCoolFighter(sld, sti(pchar.rank) + 10 + MOD_SKILL_ENEMY_RATE, 100, 100, "katar", "pistol6", 1000);
+			LAi_SetHP(sld,600,600);
+			LAi_SetDltHealth(sld, 150.0);
+			sld.name = "Лорд Чёрное Солнце";
+			sld.lastname = "";
+			sld.FaceId = 297;
 			LAi_SetHuberType(sld);
-			LAi_CharacterDisableDialog(sld);
 			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "sit",  "sit1");
 			sld.SaveItemsForDead = true;
 			GiveItem2Character(sld, "PKM_SvtvA_znachok");
@@ -11334,14 +11337,17 @@ void QuestComplete(string sQuestName, string qname)
 			sld.DontChangeBlade = true;
 			sld.DontChangeGun = true;
 			sld.DeleteFood = true;
-			LAi_group_MoveCharacter(sld, "Knyaz_Tbmy");
+			LAi_group_MoveCharacter(sld, "Chernoe_Solntse");
 			LAi_SetImmortal(sld, true);
+			SetCharacterPerk(sld, "Energaiser");
+			GiveItem2Character(sld, "cirass3");
+			EquipCharacterbyItem(sld, "cirass3");
+			sld.SuperShooter  = true;
+			if (bHardBoss) sld.AlwaysReload = true;//перезарядка независимо от Дозарядки
 			
-			//Солдат#1
-			sld = GetCharacter(NPC_GenerateCharacter("Satanist_1", "Animists1", "man", "man_worship", sti(pchar.rank), PIRATE, -1, false));
-			//LAi_SetStayType(sld);
+			//Одержимый#1
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Oderjim_1", "Animists1", "man", "man_worship", sti(pchar.rank), PIRATE, -1, false));
 			LAi_SetActorType(sld);
-			//LAi_ActorAnimation(sld, "worship_2", "", 2.4);
 			LAi_CharacterDisableDialog(sld);
 			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto50");
 			sld.SaveItemsForDead = true;
@@ -11350,14 +11356,12 @@ void QuestComplete(string sQuestName, string qname)
 			sld.DontChangeBlade = true;
 			sld.DontChangeGun = true;
 			sld.DeleteFood = true;
-			LAi_group_MoveCharacter(sld, "Knyaz_Tbmy");	
+			LAi_group_MoveCharacter(sld, "Chernoe_Solntse_sluga");	
 			LAi_SetImmortal(sld, true);
 			
-			//Солдат#2
-			sld = GetCharacter(NPC_GenerateCharacter("Satanist_2", "Animists1", "man", "man_worship", sti(pchar.rank), PIRATE, -1, false));
-			//LAi_SetStayType(sld);
+			//Одержимый#2
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Oderjim_2", "Animists1", "man", "man_worship", sti(pchar.rank), PIRATE, -1, false));
 			LAi_SetActorType(sld);
-			//LAi_ActorAnimation(sld, "worship_2", "", 2.4);
 			LAi_CharacterDisableDialog(sld);
 			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto51");
 			sld.SaveItemsForDead = true;
@@ -11366,14 +11370,12 @@ void QuestComplete(string sQuestName, string qname)
 			sld.DontChangeBlade = true;
 			sld.DontChangeGun = true;
 			sld.DeleteFood = true;
-			LAi_group_MoveCharacter(sld, "Knyaz_Tbmy");
+			LAi_group_MoveCharacter(sld, "Chernoe_Solntse_sluga");
 			LAi_SetImmortal(sld, true);
 			
-			//Солдат#3
-			sld = GetCharacter(NPC_GenerateCharacter("Satanist_3", "Animists1", "man", "man_worship", sti(pchar.rank), PIRATE, -1, false));
-			//LAi_SetStayType(sld);
+			//Одержимый#3
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Oderjim_3", "Animists1", "man", "man_worship", sti(pchar.rank), PIRATE, -1, false));
 			LAi_SetActorType(sld);
-			//LAi_ActorAnimation(sld, "worship_2", "", 2.4);
 			LAi_CharacterDisableDialog(sld);
 			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto52");
 			sld.SaveItemsForDead = true;
@@ -11382,14 +11384,12 @@ void QuestComplete(string sQuestName, string qname)
 			sld.DontChangeBlade = true;
 			sld.DontChangeGun = true;
 			sld.DeleteFood = true;
-			LAi_group_MoveCharacter(sld, "Knyaz_Tbmy");
+			LAi_group_MoveCharacter(sld, "Chernoe_Solntse_sluga");
 			LAi_SetImmortal(sld, true);
 			
-			//Солдат#4
-			sld = GetCharacter(NPC_GenerateCharacter("Satanist_4", "Animists1", "man", "man_worship", sti(pchar.rank), PIRATE, -1, false));
-			//LAi_SetStayType(sld);
+			//Одержимый#4
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Oderjim_4", "Animists1", "man", "man_worship", sti(pchar.rank), PIRATE, -1, false));
 			LAi_SetActorType(sld);
-			//LAi_ActorAnimation(sld, "worship_2", "", 2.4);
 			LAi_CharacterDisableDialog(sld);
 			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto53");
 			sld.SaveItemsForDead = true;
@@ -11398,14 +11398,12 @@ void QuestComplete(string sQuestName, string qname)
 			sld.DontChangeBlade = true;
 			sld.DontChangeGun = true;
 			sld.DeleteFood = true;
-			LAi_group_MoveCharacter(sld, "Knyaz_Tbmy");
+			LAi_group_MoveCharacter(sld, "Chernoe_Solntse_sluga");
 			LAi_SetImmortal(sld, true);
 			
-			//Солдат#5
-			sld = GetCharacter(NPC_GenerateCharacter("Satanist_5", "Animists1", "man", "man_worship", sti(pchar.rank), PIRATE, -1, false));
-			//LAi_SetStayType(sld);
+			//Одержимый#5
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_Oderjim_5", "Animists1", "man", "man_worship", sti(pchar.rank), PIRATE, -1, false));
 			LAi_SetActorType(sld);
-			//LAi_ActorAnimation(sld, "worship_2", "", 2.4);
 			LAi_CharacterDisableDialog(sld);
 			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto54");
 			sld.SaveItemsForDead = true;
@@ -11414,11 +11412,11 @@ void QuestComplete(string sQuestName, string qname)
 			sld.DontChangeBlade = true;
 			sld.DontChangeGun = true;
 			sld.DeleteFood = true;
-			LAi_group_MoveCharacter(sld, "Knyaz_Tbmy");
+			LAi_group_MoveCharacter(sld, "Chernoe_Solntse_sluga");
 			LAi_SetImmortal(sld, true);
 			
-			//Солдат#6
-			sld = GetCharacter(NPC_GenerateCharacter("Satanist_6", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
+			//Солдат#1
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_1", "Animists1", "man", "man", sti(pchar.rank) + 3, PIRATE, -1, true));
 			LAi_SetStayType(sld);
 			LAi_CharacterDisableDialog(sld);
 			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto55");
@@ -11428,11 +11426,11 @@ void QuestComplete(string sQuestName, string qname)
 			sld.DontChangeBlade = true;
 			sld.DontChangeGun = true;
 			sld.DeleteFood = true;
-			LAi_group_MoveCharacter(sld, "Knyaz_Tbmy");
+			LAi_group_MoveCharacter(sld, "Chernoe_Solntse");
 			LAi_SetImmortal(sld, true);
 			
-			//Солдат#7
-			sld = GetCharacter(NPC_GenerateCharacter("Satanist_7", "Animists1", "man", "man", sti(pchar.rank), PIRATE, -1, true));
+			//Солдат#2
+			sld = GetCharacter(NPC_GenerateCharacter("Satanist_2", "Animists1", "man", "man", sti(pchar.rank) + 3, PIRATE, -1, true));
 			LAi_SetStayType(sld);
 			LAi_CharacterDisableDialog(sld);
 			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto",  "goto56");
@@ -11442,7 +11440,7 @@ void QuestComplete(string sQuestName, string qname)
 			sld.DontChangeBlade = true;
 			sld.DontChangeGun = true;
 			sld.DeleteFood = true;
-			LAi_group_MoveCharacter(sld, "Knyaz_Tbmy");
+			LAi_group_MoveCharacter(sld, "Chernoe_Solntse");
 			LAi_SetImmortal(sld, true);
 			
 			PChar.quest.PKM_SvtvA_Altar.win_condition.l1 = "locator";
@@ -11453,6 +11451,114 @@ void QuestComplete(string sQuestName, string qname)
 			
 			//
 			DoQuestFunctionDelay("PKM_SvtvA_SatanistyAnimation", 1.0);
+		break;
+		
+		case "PKM_SvtvA_KuhnyaStels":
+			PChar.quest.PKM_SvtvA_KuhnyaStels1.over = "yes";
+			PChar.quest.PKM_SvtvA_KuhnyaStels2.over = "yes";
+			PChar.quest.PKM_SvtvA_KuhnyaStels3.over = "yes";
+			PChar.quest.PKM_SvtvA_KuhnyaStels4.over = "yes";
+			PChar.quest.PKM_SvtvA_KuhnyaStels5.over = "yes";
+			sld = CharacterFromID("Satanist_Kuhnya_1");
+			LAi_SetWarriorType(sld);
+			LAi_SetHP(sld, 180.0, 180.0);
+			LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto", "goto42");
+			sld = CharacterFromID("Satanist_Kuhnya_2");
+			LAi_SetWarriorType(sld);
+			LAi_SetHP(sld, 180.0, 180.0);
+			LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto", "goto41");
+			sld = CharacterFromID("Satanist_Kuhnya_3");
+			LAi_SetWarriorType(sld);
+			LAi_SetHP(sld, 180.0, 180.0);
+			LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto", "goto39");
+			sld = CharacterFromID("Satanist_Kuhnya_4");
+			LAi_SetWarriorType(sld);
+			LAi_SetHP(sld, 180.0, 180.0);
+			LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
+			ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto", "goto38");
+			sld = CharacterFromID("Satanist_Kuhnya_5");
+			LAi_SetWarriorType(sld);
+			LAi_SetHP(sld, 180.0, 180.0);
+			LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
+			LAi_group_SetRelation("Satanist_Kuhnya", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+			LAi_group_FightGroups("Satanist_Kuhnya", LAI_GROUP_PLAYER, false);
+			LAi_group_SetCheck("Satanist_Kuhnya", "PKM_SvtvA_Satanist_Kuhnya_Pobeda");
+		break;
+		
+		case "PKM_SvtvA_Satanist_Kuhnya_Pobeda":
+			pchar.questTemp.PKM_SvtvA_Satanist_Kuhnya_Pobeda = true;
+			sld = CharacterFromID("Satanist_Kuhnya_1");
+			ChangeCharacterAddressGroup(sld, "none", "", "");
+			sld = CharacterFromID("Satanist_Kuhnya_2");
+			ChangeCharacterAddressGroup(sld, "none", "", "");
+			sld = CharacterFromID("Satanist_Kuhnya_3");
+			ChangeCharacterAddressGroup(sld, "none", "", "");
+			sld = CharacterFromID("Satanist_Kuhnya_4");
+			ChangeCharacterAddressGroup(sld, "none", "", "");
+			sld = CharacterFromID("Satanist_Kuhnya_5");
+			ChangeCharacterAddressGroup(sld, "none", "", "");
+		break;
+		
+		case "PKM_SvtvA_Lord_Haos_Padet":
+			Log_info("Лорд Чёрное Солнце слабеет!!!");
+			Log_info("Нельзя давать ему передышки!!!");
+			
+			sld = CharacterFromID("Chernoe_Solntse");
+			LAi_SetHP(sld,1200,1200);
+			LAi_SetCurHP(sld, 50.0);
+			LAi_SetDltHealth(sld, 3.0);
+			LAi_SetCheckMinHP(sld, 10, true, "PKM_SvtvA_Lord_Haos_Pobeda_no_ne_sovsem");
+			
+			if (!CheckAttribute(pchar, "questTemp.PKM_SvtvA_Satanist_Kuhnya_Pobeda"))
+			{
+				for (i=1; i<=5; i++)
+				{
+					sld = CharacterFromID("Satanist_Kuhnya_"+i);
+					LAi_SetWarriorType(sld);
+					LAi_group_MoveCharacter(sld, "Chernoe_Solntse");
+				}
+			}
+			for (i=1; i<=3; i++)
+			{
+				sld = CharacterFromID("Satanist_Turma_"+i);
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "Chernoe_Solntse");
+			}
+			for (i=1; i<=3; i++)
+			{
+				sld = CharacterFromID("Satanist_Vhod_"+i);
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "Chernoe_Solntse");
+			}
+			LAi_group_SetSayRadius("Chernoe_Solntse", 100.0);
+			LAi_group_SetRelation("Chernoe_Solntse", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+		break;
+		
+		case "PKM_SvtvA_Lord_Haos_Pobeda_no_ne_sovsem":		
+			DoQuestCheckDelay("hide_weapon", 1.2);
+			sld = CharacterFromID("Chernoe_Solntse");
+			LAi_SetActorType(sld);
+			LAi_group_MoveCharacter(sld, "Chernoe_Solntse_Mefisto");
+			sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "Лорд_Хаоса_3";
+			LAi_ActorDialogNow(sld, Pchar, "", -1);
+		break;
+		
+		case "PKM_SvtvA_Lord_Haos_Pobeda_no_ne_sovsem2":		
+			AddQuestRecord("PKM_Animists", "34");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
+			chrDisableReloadToLocation = false;
+			
+			for (i=1; i<=4; i++)
+			{
+				sld = CharacterFromID("Plennik_u_satanistov_"+i);
+				ChangeCharacterAddressGroup(sld, "none", "", "");
+				LAi_SetImmortal(sld, false);
+			}
+			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_Satanist_Kuhnya_Pobeda");
 		break;
 		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -10784,59 +10784,31 @@ void PKM_SvtvA_SatanistyAnimation(string qName)
 	LAi_ActorTurnToLocator(sld, "sit", "sit35");
 	LAi_ActorAnimation(sld, "dialog_stay14", "", 2.0);
 	
-	sld = CharacterFromID("Satanist_1");
+	sld = CharacterFromID("Satanist_Oderjim_1");
 	LAi_SetActorType(sld);
 	LAi_ActorAnimation(sld, "worship_2", "", 2.4);
 	
-	sld = CharacterFromID("Satanist_2");
+	sld = CharacterFromID("Satanist_Oderjim_2");
 	LAi_SetActorType(sld);
 	LAi_ActorAnimation(sld, "worship_2", "", 2.4);
 	
-	sld = CharacterFromID("Satanist_3");
+	sld = CharacterFromID("Satanist_Oderjim_3");
 	LAi_SetActorType(sld);
 	LAi_ActorAnimation(sld, "worship_2", "", 2.4);
 	
-	sld = CharacterFromID("Satanist_4");
+	sld = CharacterFromID("Satanist_Oderjim_4");
 	LAi_SetActorType(sld);
 	LAi_ActorAnimation(sld, "worship_2", "", 2.4);
 	
-	sld = CharacterFromID("Satanist_5");
+	sld = CharacterFromID("Satanist_Oderjim_5");
 	LAi_SetActorType(sld);
 	LAi_ActorAnimation(sld, "worship_2", "", 2.4);
-}
-void PKM_SvtvA_KuhnyaStels(string qName)
-{	
-	sld = CharacterFromID("Satanist_Kuhnya_1");
-	LAi_SetWarriorType(sld);
-	LAi_SetHP(sld, 180.0, 180.0);
-	LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
-	ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto", "goto42");
-	sld = CharacterFromID("Satanist_Kuhnya_2");
-	LAi_SetWarriorType(sld);
-	LAi_SetHP(sld, 180.0, 180.0);
-	LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
-	ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto", "goto41");
-	sld = CharacterFromID("Satanist_Kuhnya_3");
-	LAi_SetWarriorType(sld);
-	LAi_SetHP(sld, 180.0, 180.0);
-	LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
-	ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto", "goto39");
-	sld = CharacterFromID("Satanist_Kuhnya_4");
-	LAi_SetWarriorType(sld);
-	LAi_SetHP(sld, 180.0, 180.0);
-	LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
-	ChangeCharacterAddressGroup(sld, "Cave_Satanists", "goto", "goto38");
-	sld = CharacterFromID("Satanist_Kuhnya_5");
-	LAi_SetWarriorType(sld);
-	LAi_SetHP(sld, 180.0, 180.0);
-	LAi_group_MoveCharacter(sld, "Satanist_Kuhnya");
-	PChar.quest.PKM_SvtvA_KuhnyaStels1.over = "yes";
-	PChar.quest.PKM_SvtvA_KuhnyaStels2.over = "yes";
-	PChar.quest.PKM_SvtvA_KuhnyaStels3.over = "yes";
-	PChar.quest.PKM_SvtvA_KuhnyaStels4.over = "yes";
-	PChar.quest.PKM_SvtvA_KuhnyaStels5.over = "yes";
-	LAi_group_SetRelation("Satanist_Kuhnya", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
-	LAi_group_FightGroups("Satanist_Kuhnya", LAI_GROUP_PLAYER, false);
+	
+	sld = CharacterFromID("Chernoe_Solntse");
+	LAi_SetActorType(sld);
+	LAi_ActorSetHuberMode(sld);
+	
+	SetMusic("music_DeckWithReefs");
 }
 void PKM_SvtvA_Temnota(string qName)
 {	
@@ -10846,37 +10818,35 @@ void PKM_SvtvA_RazgovorZKnyazem(string qName)
 {	
 	StartQuestMovie(true, false, true);
 	LAi_SetActorType(pchar);
-	DoQuestFunctionDelay("PKM_SvtvA_Temnota", 1.5);
-	DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem2", 2.0);
-	//DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem2", 0.1);
-	//LAi_Fade("", "");
+	//DoQuestFunctionDelay("PKM_SvtvA_Temnota", 1.5);
+	//DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem2", 2.0);
+	DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem4", 0.1);
+	SetMusic("music_DeckWithReefs");
 }
 void PKM_SvtvA_RazgovorZKnyazem2(string qName)
 {	
-	locCameraFromToPos(-3.00, 4.40, 8.00, true, -4.00, 1.74, 3.70);
-	DoQuestFunctionDelay("PKM_SvtvA_Temnota", 2.5);
-	DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem3", 3.0);
-	//DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem3", 0.1);
-	LAi_Fade("", "");
+	locCameraFromToPos(-2.00, 4.40, 8.00, true, -4.00, 1.74, 3.70);
+	DoQuestFunctionDelay("PKM_SvtvA_Temnota", 3.0);
+	DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem3", 3.5);
 }
 void PKM_SvtvA_RazgovorZKnyazem3(string qName)
 {	
 	locCameraFromToPos(-9.30, 8.00, -0.70, true, 13.00, -20.0, 0.00);
-	DoQuestFunctionDelay("PKM_SvtvA_Temnota", 2.7);
-	DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem4", 3.2);
-	//DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem4", 0.1);
-	//LAi_Fade("", "");
+	DoQuestFunctionDelay("PKM_SvtvA_Temnota", 3.7);
+	DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem4", 4.2);
 }
 void PKM_SvtvA_RazgovorZKnyazem4(string qName)
 {	
 	locCameraFromToPos(-8.00, 2.90, -1.00, true, -30.00, 3.50, 3.70);
-	DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem5", 0.1);
+	DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem5", 1.5);
 }
 void PKM_SvtvA_RazgovorZKnyazem5(string qName)
 {	
-	sld = CharacterFromID("James_Callow");
-	sld.dialog.filename = "Quest/PDM/Cursed_Idol.c";
-	sld.dialog.currentnode = "Vstrecha_4_1";
+	LAi_SetPlayerType(pchar);
+	sld = CharacterFromID("Chernoe_Solntse");
+	sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+	sld.dialog.currentnode = "Лорд_Хаоса_1";
+	LAi_ActorDialogNow(sld, Pchar, "", -1);
 }
 
 //Sinistra "Странные вещи творятся на архипелаге" <--
