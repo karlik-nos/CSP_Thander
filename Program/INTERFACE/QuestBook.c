@@ -2376,7 +2376,7 @@ void FillShipInfoEncy(string _tabName)
 	makeref(refBaseShip,ShipsTypes[i]);
 	sShip = refBaseShip.Name;
 	chrefsp.Ship.Type = sShip;
-	if (!CheckAttribute(Pchar,"Encyclopedia."+sShip) && bFillEncyShips) continue;
+	if (i<SHIP_LUGGERQUEST && !CheckAttribute(Pchar,"Encyclopedia."+sShip) && bFillEncyShips) continue;//квестовые показываем! они же не идут в список достижения???
 
 	int nClass = sti(refBaseShip.Class);
 	string snation;
