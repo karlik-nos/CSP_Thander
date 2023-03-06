@@ -57,7 +57,7 @@ void ProcessDialogEvent()
             {
 				dialog.text = NPCStringReactionRepeat("У тебя ко мне дело? Нет? Тогда "+ GetSexPhrase("выметайся отсюда!","попрошу не отвлекать меня.") +"",
 	                         "Я, кажется, ясно выразился...", "Хотя я выразился и ясно, но ты продолжаешь отвлекать меня!",
-	                         "Хм, да ты не в меру "+ GetSexPhrase("хамовит, мон шер","нагла, деваха") +"...", "repeat", 30, npchar, Dialog.CurrentNode);
+	                         "Хм, да ты не в меру "+ GetSexPhrase("хамовит, мон шер","нагла, деваха") +"...", "repeat", 3, npchar, Dialog.CurrentNode);
 				link.l1 = HeroStringReactionRepeat("Уже ухожу.",
 	                                               "Да, " + npchar.name + ", совершенно ясно.",
 	                                               "Извини, " + npchar.name + "...",

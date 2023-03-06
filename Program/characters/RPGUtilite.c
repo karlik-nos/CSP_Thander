@@ -979,17 +979,14 @@ string GetReputationName(int reputation)
         return "REPUTATIONT_BAD_2";
     if(reputation<41)
         return "REPUTATIONT_BAD_1";
-    if(reputation<51)
-        return "REPUTATIONT_NEUTRAL";
     if(reputation<61)
-        return "REPUTATIONT_GOOD_1";
+        return "REPUTATIONT_NEUTRAL";
     if(reputation<71)
-        return "REPUTATIONT_GOOD_2";
+        return "REPUTATIONT_GOOD_1";
     if(reputation<81)
+        return "REPUTATIONT_GOOD_2";
+    if(reputation<91)
         return "REPUTATIONT_GOOD_3";
-    if(reputation<=90)
-        return "REPUTATIONT_GOOD_4";
-
 	return "REPUTATIONT_GOOD_4";
 }
 // to_do  del

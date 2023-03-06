@@ -970,7 +970,7 @@ void ProcessDialogEvent()
 		//=============================  даём или не даём работу - сундуки и должники
 		case "Loan_GiveWork":
             // проверка на проф пригодность -->
-            if (isBadReputation(pchar, 42))
+            if (isBadReputation(pchar, 40))
             {
                 dialog.text = RandSwear() + "Ты ведь " + GetFullName(pchar)+ ", не так ли? О тебе " +
                               RandPhraseSimple("ходят ужасные слухи","говорят не лучшим образом") + ", я не хочу иметь с тобой дело.";
@@ -1285,7 +1285,7 @@ void ProcessDialogEvent()
                 break;
             }
 			// проверка на проф пригодность -->
-            if (isBadReputation(pchar, 42))
+            if (isBadReputation(pchar, 40))
             {
                 dialog.text = RandSwear() + "Ты ведь " + GetFullName(pchar)+ ", не так ли? О тебе " +
                               RandPhraseSimple("ходят ужасные слухи","говорят не лучшим образом") + ", я не хочу иметь с тобой дело.";

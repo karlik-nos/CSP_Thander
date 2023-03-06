@@ -137,7 +137,7 @@ void InitInterface(string iniName)
     iHeroLose = 0;
     iHeroWin  = 0;
     iTurnGame = 1;
-	WaitDate("",0,0,0, 0, 15);
+	WaitDate("",0,0,0, 0, 5);
 	SetFormatedText("INFO_TEXT_DATE", GetQuestBookData());
     // новая игра
     NewGameBegin(true);
@@ -187,7 +187,7 @@ void Exit()
 			NPChar.Quest.HeroLose = (iHeroWin < iHeroLose); //navy -- в итоге проиграл или выйграл. (не по деньгам.)
 
 			bQuestCheckProcessFreeze = true;
-			//WaitDate("",0,0,0, 0, iTurnGame*15);
+			//WaitDate("",0,0,0, 0, iTurnGame*5);
 			bQuestCheckProcessFreeze = false;
 			RefreshLandTime();
 			EndCancelInterface(true);
@@ -220,7 +220,7 @@ void ProcessCommandExecute()
                 	dir_i_start = dir_i;
                     ClearDiceOnTable();
                     iTurnGame++;
-					WaitDate("",0,0,0, 0, 15);
+					WaitDate("",0,0,0, 0, 5);
 					SetFormatedText("INFO_TEXT_DATE", GetQuestBookData());
                     NewGameBegin(true);
                 }
@@ -484,7 +484,7 @@ void NewGameBegin(bool _newGame)
     {
         SetFormatedText("INFO_TEXT","Продолжаем игру. "+NewStr()+"Делаем ставки.");
     }
-	WaitDate("",0,0,0, 0, 5);
+	WaitDate("",0,0,0, 0, 2);
 	SetFormatedText("INFO_TEXT_DATE", XI_convertString("Date:") + GetQuestBookData());
     bSetRandDice = true;
     PostEvent("My_eStartGame", 1000);
@@ -1132,7 +1132,7 @@ void ContinueGame()
 	        iHeroWin++;
 	    }
 		SetFormatedText("INFO_TEXT",ResultStr);
-		WaitDate("",0,0,0, 0, 10);
+		WaitDate("",0,0,0, 0, 3);
      	RedrawDeck(true, true);
 		openExit = true;
 	    bLockClick = true;
@@ -1179,7 +1179,7 @@ void NewNextGame()
 		}
 	}
 	SetFormatedText("INFO_TEXT",ResultStr);
-	WaitDate("",0,0,0, 0, 10);
+	WaitDate("",0,0,0, 0, 3);
 	SetFormatedText("INFO_TEXT_DATE", XI_convertString("Date:") + GetQuestBookData());
 
 }
