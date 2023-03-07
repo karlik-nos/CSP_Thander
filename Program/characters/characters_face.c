@@ -52,7 +52,7 @@ void FaceMaker(aref rCharacter)
 		case "beatriceA":		rCharacter.FaceId = 0; break;
 		case "devlin":			rCharacter.FaceId = 1; break;
 		case "barmen_1":		rCharacter.FaceId = 2; break;
-		case "barmen_2":		rCharacter.FaceId = 3; break
+		case "barmen_2":		rCharacter.FaceId = 3; break;
 		case "barmen_3":		rCharacter.FaceId = 4; break;
 		case "barmen_4":		rCharacter.FaceId = 5; break;
 		case "barmen_5":		rCharacter.FaceId = 6; break;
