@@ -47,7 +47,7 @@ void ProcessDialogEvent()
 			sld.name = "Карла ";
 			sld.lastname = "";
 			sld.city = "Havana";
-			ChangeCharacterAddressGroup(sld, "Havana_tavern", "goto", "goto13");
+			ChangeCharacterAddressGroup(sld, "Havana_tavern", "goto", "goto5");
 			LAi_SetWaitressType(sld);
 			sld.dialog.filename   = "Quest/PDM/Ohota_na_vedmu.c";
 			sld.dialog.currentnode   = "First_Carla_1";
