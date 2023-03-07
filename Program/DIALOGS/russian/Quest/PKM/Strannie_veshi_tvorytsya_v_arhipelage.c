@@ -13,23 +13,14 @@ void ProcessDialogEvent()
 	switch(Dialog.CurrentNode)
 	{
 		case "Exit":
-			NextDiag.CurrentNode = NextDiag.TempNode;
-			DialogExit();
-		break;
-
-		case "First time":
-			dialog.text = "Что? Тоже решил посмеяться над бедными женщинами!?";
-			link.l1 = "А что, собственно, происходит?";
-			link.l1.go = "TEST_Verni_detey_1_TEST";
-			//PlayVoice("Kopcapkz\Voices\Quest\Dut_f_a_002.wav"); ПОТОМ НЕ ЗАБЫТЬ ВЕРНУТЬ!!!!!!!!!!!!! АААААААААААААААААААА
-		break;
-		
-		case "TEST_Verni_detey_1_TEST":		//ПОТОМ УДАЛИТЬ КЕЙС
-			dialog.text = "Режим теста активирован!";
-			link.l1 = "Слава поням!";
-			link.l1.go = "exit";
-			
-			pchar.questTemp.PKM_SvtvA_Dostavka_Malty = true;
+			NextDiag.CurrentNode = NextDiag.TempNode;										// 						АВТОРЫ И БЛАГОДАРНОСТИ
+			DialogExit();																	// Оригинальная идея квеста				    			 - Акелла
+		break;																				// Написанный с нуля код и переосмысление квеста 	 	 - Sinistra
+		case "First time":																	// Улучшенная и обновлённая локация "Логово Сатанистов"  - Nikk
+			dialog.text = "Что? Тоже решил посмеяться над бедными женщинами!?";				// Улучшенный и обновлённый корабль "Мефисто"		     - Noctus
+			link.l1 = "А что, собственно, происходит?";										// Новая анимация "Поклонения"							 - Antix
+			link.l1.go = "Verni_detey_1";													// Улучшенная и обновлённая иконка "Амулет Сатанистов"	 - LEOPARD
+			PlayVoice("Kopcapkz\Voices\Quest\Dut_f_a_002.wav");								// Новые текстуры моделей для "Мальтийца" и "Сатанистов" - Ерилейн
 		break;
 		
 		case "Verni_detey_1":
@@ -906,7 +897,7 @@ void ProcessDialogEvent()
 			dialog.text = "Ты сдохнешь, и демоны спляшут на твоих костях, слизняк!";
 			link.l1 = "Ну да, конечно, вот прямо сейчас возьму и сдохну. Размечтался!";
 			link.l1.go = "Лорд_Хаоса_2";
-			//PlayVoice("Kopcapkz\Voices\Quest\Dark_teacher.wav");    ВЕРНУТЬ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			PlayVoice("Kopcapkz\Voices\Quest\Dark_teacher.wav");
 		break;
 		
 		case "Лорд_Хаоса_2":
@@ -991,9 +982,43 @@ void ProcessDialogEvent()
 			link.l1.go = "exit";
 			
 			sld = CharacterFromID("Chernoe_Solntse");
+			sld.lifeday = 0;
 			LAi_SetActorType(sld);
 			LAi_SetImmortal(sld, true);
 			LAi_ActorRunToLocation(sld, "goto", "goto28", "none", "", "", "PKM_SvtvA_Lord_Haos_Pobeda_no_ne_sovsem2", -1);
+		break;
+		
+		case "Verni_detey_11":
+			dialog.text = "Вы вернулись? Где наши маленькие детки?";
+			link.l1 = "Ваши дети в полной безопасности. Сейчас их как раз переправляют на берег с моего судна.";
+			link.l1.go = "Verni_detey_12";
+		break;
+		
+		case "Verni_detey_12":
+			dialog.text = "О! Спасибо, спасибо вам, "+GetSexPhrase("добрый человек","добрая девушка")+"!";
+			link.l1 = "Да не за что.";
+			link.l1.go = "Verni_detey_13";
+		break;
+		
+		case "Verni_detey_13":
+			DialogExit();
+			AddCharacterExpToSkill(pchar, "Leadership", 100);
+			ChangeCharacterReputation(pchar, 12);
+			
+			sld = CharacterFromID("PKM_SvtvA_Devushka_1")
+			LAi_CharacterDisableDialog(sld);
+			sld.lifeday = 0;
+			LAi_SetCitizenType(sld);
+			
+			sld = CharacterFromID("PKM_SvtvA_Devushka_2")
+			LAi_CharacterDisableDialog(sld);
+			sld.lifeday = 0;
+			LAi_SetCitizenType(sld);
+			
+			sld = CharacterFromID("PKM_SvtvA_Devushka_3")
+			LAi_CharacterDisableDialog(sld);
+			sld.lifeday = 0;
+			LAi_SetCitizenType(sld);
 		break;
 		
 	}

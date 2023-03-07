@@ -10818,9 +10818,8 @@ void PKM_SvtvA_RazgovorZKnyazem(string qName)
 {	
 	StartQuestMovie(true, false, true);
 	LAi_SetActorType(pchar);
-	//DoQuestFunctionDelay("PKM_SvtvA_Temnota", 1.5);
-	//DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem2", 2.0);
-	DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem4", 0.1);
+	DoQuestFunctionDelay("PKM_SvtvA_Temnota", 1.5);
+	DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem2", 2.0);
 	SetMusic("music_DeckWithReefs");
 }
 void PKM_SvtvA_RazgovorZKnyazem2(string qName)

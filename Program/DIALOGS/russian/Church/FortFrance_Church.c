@@ -19,6 +19,12 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
                 link.l1 = "У меня письмо для вас.";
                 link.l1.go = "PKM_SvtvA_Ch2_1";
             }
+			if (CheckAttribute(pchar, "questTemp.PKM_SvtvA_Clermon_Final"))	//Квест "Странные вещи творятся на архипелаге"
+            {
+				dialog.text = "Сумели что-нибудь узнать, касаемо того дела, которое было вам поручено?";
+                link.l1 = "Более того, я и мои люди уничтожили секту.";
+                link.l1.go = "PKM_SvtvA_Ch3_1";
+            }
 		break;
 		
 		//Квест "Странные вещи творятся на архипелаге"
@@ -97,6 +103,14 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1 = "Что же, неплохо, совсем неплохо...";
 			link.l1.go = "exit";
 			AddDialogExitQuest("PKM_SvtvA_Нападение_в_церкви");
+		break;
+		case "PKM_SvtvA_Ch3_1":
+			AddMoneyToCharacter(pchar, 20000);
+			AddCharacterExpToSkill(pchar, "Leadership", 50);
+			dialog.text = "О, слава Богу! Вы сделали это! Я прикажу отслужить службу во имя этого знаменательного события!";
+			link.l1 = "А теперь, если простите меня, мне нужно идти.";
+			link.l1.go = "exit";
+			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_Clermon_Final");
 		break;
 		
 		

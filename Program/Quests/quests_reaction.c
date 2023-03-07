@@ -11508,8 +11508,8 @@ void QuestComplete(string sQuestName, string qname)
 			
 			sld = CharacterFromID("Chernoe_Solntse");
 			LAi_SetHP(sld,1200,1200);
-			LAi_SetCurHP(sld, 50.0);
-			LAi_SetDltHealth(sld, 3.0);
+			LAi_SetCurHP(sld, 500.0);
+			LAi_SetDltHealth(sld, 4.0);
 			LAi_SetCheckMinHP(sld, 10, true, "PKM_SvtvA_Lord_Haos_Pobeda_no_ne_sovsem");
 			
 			if (!CheckAttribute(pchar, "questTemp.PKM_SvtvA_Satanist_Kuhnya_Pobeda"))
@@ -11549,7 +11549,6 @@ void QuestComplete(string sQuestName, string qname)
 		
 		case "PKM_SvtvA_Lord_Haos_Pobeda_no_ne_sovsem2":		
 			AddQuestRecord("PKM_Animists", "34");
-			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
 			chrDisableReloadToLocation = false;
 			
 			for (i=1; i<=4; i++)
@@ -11559,6 +11558,76 @@ void QuestComplete(string sQuestName, string qname)
 				LAi_SetImmortal(sld, false);
 			}
 			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_Satanist_Kuhnya_Pobeda");
+			
+			PChar.quest.PKM_SvtvA_Bitva_s_Mefisto.win_condition.l1 = "location";
+			PChar.quest.PKM_SvtvA_Bitva_s_Mefisto.win_condition.l1.location = "Guadeloupe";
+			PChar.quest.PKM_SvtvA_Bitva_s_Mefisto.win_condition = "PKM_SvtvA_Bitva_s_Mefisto";
+		break;
+		
+		case "PKM_SvtvA_Bitva_s_Mefisto":
+			Island_SetReloadEnableGlobal("Guadeloupe", false);
+			bQuestDisableMapEnter = true;
+		
+			sld = GetCharacter(NPC_GenerateCharacter("Chernoe_Solntse2", "Animists2", "man", "man", sti(pchar.rank) + 10 + MOD_SKILL_ENEMY_RATE, PIRATE, -1, true));
+			FantomMakeCoolFighter(sld, sti(pchar.rank) + 10 + MOD_SKILL_ENEMY_RATE, 100, 100, "katar", "pistol6", 400);
+			AddCharacterHealth(sld, 30);
+			//LAi_SetHP(sld,600,600);
+			sld.name = "Лорд Чёрное Солнце";
+			sld.lastname = "";
+			sld.FaceId = 297;
+			//sld = CharacterFromID("Chernoe_Solntse");
+			FantomMakeCoolSailor(sld, SHIP_MEFISTO, "Мефисто", CANNON_TYPE_CANNON_LBS16, 100, 100, 100);
+			//FantomMakeCoolSailor(sld, SHIP_BRIGANTINE, "Мэри Селест", CANNON_TYPE_CANNON_LBS24, 50, 50, 50);
+			sld.DontRansackCaptain = true;
+			sld.DontHitInStorm = true;
+			sld.SinkTenPercent = false;
+			sld.AlwaysSandbankManeuver = true;
+			sld.SaveItemsForDead = true;
+			sld.AnalizeShips = true;
+			sld.GenQuest.CrewSatanistMode = true;
+			
+			GiveItem2Character(sld, "cirass3");
+			EquipCharacterbyItem(sld, "cirass3");
+			SetCharacterGoods(sld, GOOD_SLAVES, 300);
+			
+			Group_FindOrCreateGroup("Enemy_Attack");
+			Group_SetType("Enemy_Attack", "war");
+			Group_AddCharacter("Enemy_Attack", "Chernoe_Solntse2");
+
+			Group_SetGroupCommander("Enemy_Attack", "Chernoe_Solntse2");
+			Group_SetPursuitGroup("Enemy_Attack", PLAYER_GROUP);
+			Group_SetAddress("Enemy_Attack", "Guadeloupe", "quest_ships", "Quest_ship_1");
+			Group_LockTask("Enemy_Attack");
+			
+			PChar.quest.PKM_SvtvA_Bitva_s_Mefisto_Pobeda.win_condition.l1 = "NPC_Death";
+			PChar.quest.PKM_SvtvA_Bitva_s_Mefisto_Pobeda.win_condition.l1.character = "Chernoe_Solntse2";
+			PChar.quest.PKM_SvtvA_Bitva_s_Mefisto_Pobeda.win_condition = "PKM_SvtvA_Bitva_s_Mefisto_Pobeda";
+			AddQuestRecord("PKM_Animists", "35");
+		break;
+		
+		case "PKM_SvtvA_Bitva_s_Mefisto_Pobeda":		
+			CloseQuestHeader("PKM_Animists");
+			Island_SetReloadEnableGlobal("Guadeloupe", true);
+			bQuestDisableMapEnter = false;
+			
+			sld = CharacterFromID("SanJuan_Priest");
+			sld.name		= "падре Домингес";
+			sld.lastname = "";
+			
+			pchar.questTemp.PKM_SvtvA_Clermon_Final = true;
+			pchar.questTemp.PKM_SvtvA_Gubernator_Final = true;
+			
+			sld = CharacterFromID("PKM_SvtvA_Devushka_1")
+			sld.Dialog.Filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "Verni_detey_11";
+			
+			sld = CharacterFromID("PKM_SvtvA_Devushka_2")
+			sld.Dialog.Filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "Verni_detey_11";
+			
+			sld = CharacterFromID("PKM_SvtvA_Devushka_3")
+			sld.Dialog.Filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "Verni_detey_11";
 		break;
 		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////

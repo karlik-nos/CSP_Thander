@@ -14,6 +14,11 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 				link.l1 = "Я здесь по просьбе женщин, которые сидят в беседке у вашей резиденции.";
 				Link.l1.go = "PKM_Animists_1";
 			}
+			if (CheckAttribute(pchar, "questTemp.PKM_SvtvA_Gubernator_Final"))	//Sinistra квест "Странные вещи творятся на архипелаге"
+			{
+				link.l1 = "Ваше задание выполнено, и дети возвращены счастливым родителям.";
+				Link.l1.go = "PKM_SvtvA_Final";
+			}
 		break;
 
 		case "Cupture_after":
@@ -78,6 +83,15 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			LAi_SetSitType(sld);
 			LAi_group_MoveCharacter(sld, "HOLLAND_CITIZENS");
 			ChangeCharacterAddressGroup(sld, "Marigo_tavern", "sit", "sit3");			
+        break;
+		
+		case "PKM_SvtvA_Final":
+			dialog.text = "Удачное завершение этой неприятной истории. Рад вознаградить вас, капитан. Я знаю, на вас можно положиться в щекотливых делах.";
+			link.l1 = "Благодарю, минхер.";
+			link.l1.go = "exit";
+			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_Gubernator_Final");
+			AddMoneyToCharacter(pchar, 50000);
+            AddCharacterExpToSkill(pchar, "Leadership", 200);
         break;
 		
         //==> Одиннадцатый квест исп.линейки: разорение Виллемстада и Мариго.
