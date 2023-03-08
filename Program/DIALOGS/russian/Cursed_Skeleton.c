@@ -242,7 +242,7 @@ void SelectCursedRendom()
 		int howStore = 0;
 		for(n=0; n<MAX_COLONIES; n++)
 		{
-			if (colonies[n].nation != "none" && sti(colonies[n].nation) != PIRATE && colonies[n].id != "FortOrange")
+			if (colonies[n].nation != "none" && sti(colonies[n].nation) != PIRATE)
 			{
 				storeArray[howStore] = n;
 				howStore++;
