@@ -119,13 +119,13 @@ void ProcessDialogEvent()
 			if (!CheckAttribute(npchar, "quest.daily_sex") && sti(pchar.money) >= 10)
 			{
 				if (PChar.location == "SentJons_tavern" || PChar.location == "PortRoyal_tavern" || PChar.location == "Charles_tavern" || PChar.location == "Bridgetown_tavern" || 
-					PChar.location == "Portspein_tavern" || PChar.location == "Villemstad_tavern" || PChar.location == "Marigo_tavern" || PChar.location == "FortOrange_tavern" || 
-					PChar.location == "FortOrange_tavern" || PChar.location == "FortFrance_tavern" || PChar.location == "FortFrance_tavern" || PChar.location == "BasTer_tavern" || 
+					PChar.location == "PortSpein_tavern" || PChar.location == "Villemstad_tavern" || PChar.location == "Marigo_tavern" || PChar.location == "FortOrange_tavern" || 
+					PChar.location == "Nassau_tavern" || PChar.location == "FortFrance_tavern" || PChar.location == "BasTer_tavern" || PChar.location == "LeFransua_tavern" || 
 					PChar.location == "Tortuga_tavern" || PChar.location == "Caracas_tavern" || PChar.location == "Cumana_tavern" || PChar.location == "Cartahena_tavern" || 
 					PChar.location == "Maracaibo_tavern" || PChar.location == "PortoBello_tavern" || PChar.location == "SantaCatalina_tavern" || PChar.location == "Beliz_tavern" || 
 					PChar.location == "SantoDomingo_tavern" || PChar.location == "SanJuan_tavern" || PChar.location == "Santiago_tavern" || PChar.location == "Havana_tavern" || 
 					PChar.location == "PuertoPrincipe_tavern" || PChar.location == "PortPax_tavern" || PChar.location == "LaVega_tavern" || PChar.location == "Pirates_tavern" || 
-					PChar.location == "Panama_tavern" || PChar.location == "LeFransua_tavern")
+					PChar.location == "Panama_tavern")
 					{
 						Link.l3 = RandPhraseSimple("Милая, а давай снимем комнату и останемся вдвоём?","Дорогая, мне так хочется побыть с тобой наедине... может, снимем комнату и забудем обо всём на пару часов?");
 						Link.l3.go = "Mary_room_sex";
