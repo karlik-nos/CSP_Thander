@@ -2062,7 +2062,10 @@ void ProcessDialogEvent()
 			}
 			DeleteAttribute(sld, "talker");
 			LAi_SetStayType(sld);
-			sld.quest.questflag.model = "questionmarkB";
+			if(InterfaceStates.EnabledQuestsMarks)
+			{
+				sld.quest.questflag.model = "questionmarkB";
+			}
 		break;
 		
 		case "SCQ_Prytki_Dengi":		
@@ -2087,6 +2090,9 @@ void ProcessDialogEvent()
 			LAi_CharacterDisableDialog(npchar);
 			LAi_SetCitizenType(npchar);
 			UnmarkCharacter(npchar);
+			InterfaceStates.Buttons.Save.enable = true;
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
 		break;
 		
 		/*case "SCQ_Prytki_Trah":
