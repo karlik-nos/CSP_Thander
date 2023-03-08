@@ -770,7 +770,8 @@ int LocationInitPearl(int n)
 	//Always
 	locations[n].filespath.models = "locations\Outside\Jungles\Jungle9";
 	Locations[n].models.always.jungle = "jungle9";
-	Locations[n].models.always.bones = "jungle9_bones";
+	Locations[n].models.always.nowall = "jungle9_nowall";
+	//Locations[n].models.always.bones = "jungle9_bones";
 	Locations[n].models.always.jungle9_wall = "jungle9_wall";
 	Locations[n].models.always.locators = "jungle9_locators";		
 	Locations[n].models.always.grassPatch = "jungle9_grass";
@@ -813,7 +814,7 @@ int LocationInitPearl(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Locations[n].id = "Pearl_town_2";
 	locations[n].id.label = "Village";
-	locations[n].image = "loading\jonny_load\outside\pirateFort_plz.tga";
+	locations[n].image = "loading\jonny_load\outside\Pearl.tga";
 	locations[n].pearlVillage = true;
 	//Sound
 	locations[n].type = "jungle";
@@ -1191,8 +1192,7 @@ int LocationInitPearl(int n)
 	locations[n].filespath.models = "locations\inside\HutIndian1";
 	locations[n].models.always.mediumhouse01 = "Hut_1_inside";
 	locations[n].models.always.mediumhouse01.level = 65538;
-	locations[n].models.day.locators = "Hut_1_inside_locators";
-
+	locations[n].models.always.locators = "Hut_1_inside_locators";
 	locations[n].models.always.back = "..\inside_back2";
 	locations[n].models.always.back.level = 65529;
 	//Day
@@ -1240,7 +1240,7 @@ int LocationInitPearl(int n)
 	//Night
 	locations[n].models.night.charactersPatch = "Hut_2_inside_patch";
 	locations[n].models.night.locators = "Hut_2_inside_locators";
-	//locations[n].models.night.locators = "Hut_2_inside_ln";
+	locations[n].models.night.l2 = "Hut_2_inside_ln";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "false";
@@ -1276,13 +1276,13 @@ int LocationInitPearl(int n)
 	locations[n].models.always.back = "..\inside_back2";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	locations[n].models.day.locators = "Hut_2_inside_locators";
 	locations[n].models.day.charactersPatch = "Hut_2_inside_patch";
-	locations[n].models.night.locators = "Hut_2_inside_ln";
+	locations[n].models.day.locators = "Hut_2_inside_locators";
+	locations[n].models.day.l2 = "Hut_2_inside_ln";
 	//Night
 	locations[n].models.night.charactersPatch = "Hut_2_inside_patch";
 	locations[n].models.night.locators = "Hut_2_inside_locators";
-	locations[n].models.night.locators = "Hut_2_inside_ln";
+	locations[n].models.night.l2 = "Hut_2_inside_ln";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "false";
