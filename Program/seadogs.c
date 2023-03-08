@@ -168,10 +168,11 @@ void ProcessVersionCheck() // boal 271004
         }
     }
 
-	if (pchar.versionnumber == VERSION_NUMBER2 || pchar.versionnumber == VERSION_NUMBER2 + "  DEV") {log_info("РЕИНИТ не требуется");} //проверить, что строка правильно собирается
+	if (pchar.versionnumber == VERSION_NUMBER2 || pchar.versionnumber == VERSION_NUMBER2 + "  DEV") 
+	{}//{log_info("РЕИНИТ не требуется");}
 	else
 	{
-		if (!CheckAttribute(pchar, "fixsaveNG0"))//для версии от 21 февраля
+		if (!CheckAttribute(pchar, "fixsaveNG0") && HasSubStr(pchar.versionnumber, "21.02.2023"))//для версии от 21 февраля
 		{
 			if (sti(pchar.rank)>2) DozorPrepare_2();//фикс дозора без НИ
 
@@ -182,7 +183,7 @@ void ProcessVersionCheck() // boal 271004
 
 			ref sld = characterFromID("Pirates_trader");//фикс торговцев-барменов без НИ
 			LAi_SetOwnerType(sld);
-			sld = characterFromID("Dominica_trader");
+			sld = characterFromID("Dominica_trader");//в ините есть, но непися не находит...
 			LAi_SetOwnerType(sld);
 			sld = characterFromID("FortOrange_trader");
 			LAi_SetOwnerType(sld);
@@ -194,7 +195,7 @@ void ProcessVersionCheck() // boal 271004
 			LAi_SetOwnerType(sld);
 			//погода обновится сама
 			//инит кораблей обновится сам
-			for(int j=0;j<REAL_SHIPS_QUANTITY;j++)//фикс без НИ ватерлинии и числа пушек у кораблей, уже сгенерировавшихся	//ВНИМАНИЕ - не проверялось. особенный риск, если загружать сейв с SHIP_HERCULES в море - проверить!!!
+			for(int j=0;j<REAL_SHIPS_QUANTITY;j++)	//фикс без НИ ватерлинии и числа пушек у кораблей, уже сгенерировавшихся
 			{
 				if (!checkattribute(RealShips[j], "basetype")) continue;
 				if (sti(RealShips[j].basetype) == SHIP_LUGGER) RealShips[j].WaterLine = -0.35;
@@ -227,7 +228,105 @@ void ProcessVersionCheck() // boal 271004
 				}
 			}
 
-			pchar.fixsaveNG0 = GetVerNum();
+			int n = GetArraySize(&Items);
+			if (n != ITEMS_QUANTITY)//+6 предметов для странных дел
+			{
+				SetArraySize(&Items,ITEMS_QUANTITY);
+				SetArraySize(&itemModels,ITEMS_QUANTITY);
+
+				ref itm;
+				makeref(itm,Items[n]);
+				itm.id = "Joker";	// Джокер
+				itm.groupID = TALISMAN_ITEM_TYPE;
+				itm.name = "itmname_Joker";
+				itm.describe = "itmdescr_Joker";
+				itm.picIndex = 7;
+				itm.picTexture = "ITEMS_20";
+				itm.price = 25000;
+				itm.weight = 0.5;
+				itm.ItemType = "QUESTITEMS";
+				n++;
+			
+				makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
+				itm.id = "PKM_SvtvA_amulet";	//Амулет главного сатаниста
+				itm.name = "itmname_PKM_SvtvA_amulet";
+				itm.describe = "itmdescr_PKM_SvtvA_amulet";
+				itm.picIndex = 11;
+				itm.picTexture = "ITEMS_20";
+				itm.price = 30000;
+				itm.weight = 0.5;
+				n++;
+			
+				makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
+				itm.id = "PKM_SvtvA_znachok";	//Значок рядового сатаниста
+				itm.name = "itmname_PKM_SvtvA_znachok";
+				itm.describe = "itmdescr_PKM_SvtvA_znachok";
+				itm.picIndex = 12;
+				itm.picTexture = "ITEMS_4";
+				itm.price = 66;
+				itm.weight = 0.1;
+				n++;
+			
+				makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
+				itm.id = "PKM_SvtvA_pismo1";	//Письмо для падре Домингеса
+				itm.name = "itmname_PKM_SvtvA_pismo1";
+				itm.describe = "itmdescr_PKM_SvtvA_pismo1";
+				itm.picIndex = 7;
+				itm.picTexture = "ITEMS_12";
+				itm.price = 0;
+				itm.weight = 0.1;
+				itm.ItemType = "QUESTITEMS";
+				n++;
+			
+				makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
+				itm.id = "PKM_SvtvA_pismo2";	//Письмо для отца Клермона
+				itm.name = "itmname_PKM_SvtvA_pismo2";
+				itm.describe = "itmdescr_PKM_SvtvA_pismo2";
+				itm.picIndex = 7;
+				itm.picTexture = "ITEMS_12";
+				itm.price = 0;
+				itm.weight = 0.1;
+				itm.ItemType = "QUESTITEMS";
+				n++;
+			
+				makeref(itm,Items[n]);
+				itm.id = "PKM_SvtvA_pismo3";	//Книга Хаоса
+				itm.name = "itmname_PKM_SvtvA_pismo3";
+				itm.describe = "itmdescr_PKM_SvtvA_pismo3";
+				itm.picIndex = 2;
+				itm.picTexture = "ITEMS_20";
+				itm.price = 5000;
+				itm.weight = 0.7;
+				n++;
+
+				PKMQuestsInit();
+				//Джеки
+				sld = GetCharacter(NPC_GenerateCharacter("MG_Obezyana", "Koata1", "monkey", "monkey", 1, PIRATE, -1, false));
+				LAi_SetHP(sld, 1.0, 1.0);
+				sld.name = "Джеки";
+				sld.lastname = "";
+				LAi_SetWarriorType(sld);
+				//LAi_SetMonkeyType(sld);
+				LAi_CharacterDisableDialog(sld);
+				ChangeCharacterAddressGroup(sld, "Guadeloupe_deadlock", "monsters", "monster6");
+
+				PChar.quest.MG_ObezyanaKill.win_condition.l1 = "NPC_Death";
+				PChar.quest.MG_ObezyanaKill.win_condition.l1.character = "MG_Obezyana";
+				PChar.quest.MG_ObezyanaKill.win_condition = "MG_ObezyanaKill";
+
+				sld = characterFromID("PortRoyal_Priest");
+				sld.name	= "отец Бернард";
+				sld.lastname = "";
+				sld.model	= "Priest_2";
+				sld = characterFromID("FortFrance_Priest");
+				sld.name	= "отец Клермон";
+				sld.lastname = "";
+				sld = characterFromID("SanJuan_Priest");
+				sld.name	= "падре Домингес";
+				sld.lastname = "";
+			}
+
+			pchar.fixsaveNG0 = GetVerNum();//08.03.2023
 		}
 	}
 }
