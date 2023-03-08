@@ -287,7 +287,8 @@ void ProcessVersionCheck() // boal 271004
 				itm.weight = 0.7;
 				n++;
 
-				PKMQuestsInit();
+				//PKMQuestsInit();
+
 				//Джеки
 				sld = GetCharacter(NPC_GenerateCharacter("MG_Obezyana", "Koata1", "monkey", "monkey", 1, PIRATE, -1, false));
 				LAi_SetHP(sld, 1.0, 1.0);
