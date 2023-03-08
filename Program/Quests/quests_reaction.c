@@ -12782,12 +12782,14 @@ void QuestComplete(string sQuestName, string qname)
 		break;
 		
 		case "MG_ObezyanaSkelet":
-			sld = GetCharacter(NPC_GenerateCharacter("MG_Obezyana", "Koata1", "monkey", "monkey", 1, PIRATE, -1, false));
-			LAi_SetHP(sld, 1.0, 1.0);
+			sld = GetCharacter(NPC_GenerateCharacter("MG_ObezyanaSkelet", "Monkey", "monkey", "monkey", sti(pchar.rank), PIRATE, -1, true));
 			sld.name = "Джеки";
 			sld.lastname = "";
 			LAi_SetWarriorType(sld);
 			LAi_CharacterDisableDialog(sld);
+			LAi_group_MoveCharacter(sld, LAI_GROUP_MONSTERS);
+			//sld.RebirthPhantom = true;
+			LAi_SetLoginTime(sld, 21.99, 6.0);
 			ChangeCharacterAddressGroup(sld, "Guadeloupe_deadlock", "monsters", "monster6");
 		break;
 	}
