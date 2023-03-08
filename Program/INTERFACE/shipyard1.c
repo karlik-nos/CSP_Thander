@@ -19,16 +19,18 @@ int sundukSum;//на все апгрейды одинаковое колво с�
 int Tun_Mater1[10];//кол-во товар
 int Tun_Mater2[10];//кол-во предмет
 int Tun_Mater3[10];//кол-во деньги	//gold
-string sAdd[10] = {"","\nкорпус: ","","\nмачты: ","\nскорость: ","\nманёвренность: ","\nбейдевинд: ","\nдэдвейт: ","\nкоманда: ","\nкалибр: "};
+string sAdd[10] = {"","\nкорпус: ","","\nмачты: ","\nскорость: ","\nманёвренность: ","\nбейдевинд: ","\nдедвейт: ","\nкоманда: ","\nкалибр: "};
 
 void InitInterface_R(string iniName, ref _shipyarder)
 {
 	GameInterface.title = "titleShipyard";
+	SendMessage(&GameInterface,"ls",MSG_INTERFACE_INIT,iniName);
 
 	refNPCShipyard  = _shipyarder;
 	sNation = GetNationNameByType(sti(refNPCShipyard.nation));
 
-	if (refNPCShipyard.id != "Pirates_shipyarder") {iYarderSkill = sti(refNPCShipyard.reputation)/2+50; iTunPoints = (iYarderSkill-41)/18;}
+	SetNodeUsing("Check_Material", false);
+	if (refNPCShipyard.id != "Pirates_shipyarder") {iYarderSkill = sti(refNPCShipyard.reputation)/2+50; iTunPoints = (iYarderSkill-41)/18; SetNodeUsing("Check_Material", true);}
 	//берём за навык кораблестроения репутацию верфиста и приводим к отрезку (56:100)
 
 	iShipPoints = 6 + iYarderSkill/6 - (MOD_SKILL_ENEMY_RATE)/3;//целые переменные делятся с округлением вниз
@@ -44,7 +46,6 @@ void InitInterface_R(string iniName, ref _shipyarder)
 	if (iTest != -1) {rColony = GetColonyByIndex(iTest);}
 	refStore = &stores[sti(rColony.StoreNum)];
 
-	SendMessage(&GameInterface,"ls",MSG_INTERFACE_INIT,iniName);
 	if (iTunPoints < 1) SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE, "TunSheme", -1, 1, 0);//если тюнинга нет из-за низкого навыка, отключаем клики по кнопкам
 
 	SetEventHandler("InterfaceBreak","ProcessExitCancel",0);
@@ -213,7 +214,7 @@ void FillShipParam()
 		DeleteAttribute(rRealShip, "Untuned");
 
 		rRealShip.HP = stf(rBaseShip.HP) * (1 + Ship_Sheme[1]/10.0*SHIP_STAT_RANGE_REQUEST);
-		rRealShip.MastMultiplier = stf(rBaseShip.MastMultiplier) - (Ship_Sheme[3] * 0.03);
+		rRealShip.MastMultiplier = stf(rBaseShip.MastMultiplier) - (Ship_Sheme[3] * 0.03 * SHIP_STAT_RANGE_REQUEST/SHIP_STAT_RANGE_DRAFT);
 		rRealShip.SpeedRate = stf(rBaseShip.SpeedRate) * (1 + Ship_Sheme[4]/10.0*SHIP_STAT_RANGE_REQUEST);
 		rRealShip.TurnRate = stf(rBaseShip.TurnRate) * (1 + Ship_Sheme[5]/10.0*SHIP_STAT_RANGE_REQUEST);
 		rRealShip.WindAgainstSpeed = stf(rBaseShip.WindAgainstSpeed) * (1 + Ship_Sheme[6]/10.0*SHIP_STAT_RANGE_REQUEST);
@@ -576,19 +577,19 @@ void SetButtionsAccess()
 	if (iPriceOrder > sti(pchar.Money)) SetSelectable("BUTTON_BUY", false); else SetSelectable("BUTTON_BUY", true);
 	if (bRankRequirement)
 	{
-		if (iRank<6 && iClass<6) {SetSelectable("BUTTON_BUY", false); sText = "c 6 ранга";}
-		if (iRank<12 && iClass<5) {SetSelectable("BUTTON_BUY", false); sText = "c 12 ранга";}
-		if (iRank<20 && iClass<4) {SetSelectable("BUTTON_BUY", false); sText = "c 20 ранга";}
-		if (iRank<26 && iClass<3) {SetSelectable("BUTTON_BUY", false); sText = "c 26 ранга";}
-		if (iRank<33 && iClass<2) {SetSelectable("BUTTON_BUY", false); sText = "c 33 ранга";}
+//		if (iRank<-4 && iClass<6) {SetSelectable("BUTTON_BUY", false); sText = "c -4 ранга";}
+//		if (iRank<1 && iClass<5) {SetSelectable("BUTTON_BUY", false); sText = "c 1 ранга";}
+		if (iRank<6 && iClass<4) {SetSelectable("BUTTON_BUY", false); sText = "c 6 ранга";}
+		if (iRank<12 && iClass<3) {SetSelectable("BUTTON_BUY", false); sText = "c 12 ранга";}
+		if (iRank<20 && iClass<2) {SetSelectable("BUTTON_BUY", false); sText = "c 20 ранга";}
 	}
 	else
 	{
-		if (iRank<4 && iClass<6) {SetSelectable("BUTTON_BUY", false); sText = "c 4 ранга";}
-		if (iRank<9 && iClass<5) {SetSelectable("BUTTON_BUY", false); sText = "c 9 ранга";}
-		if (iRank<14 && iClass<4) {SetSelectable("BUTTON_BUY", false); sText = "c 14 ранга";}
-		if (iRank<19 && iClass<3) {SetSelectable("BUTTON_BUY", false); sText = "c 19 ранга";}
-		if (iRank<29 && iClass<2) {SetSelectable("BUTTON_BUY", false); sText = "c 29 ранга";}
+//		if (iRank<-8 && iClass<6) {SetSelectable("BUTTON_BUY", false); sText = "c -8 ранга";}
+//		if (iRank<-3 && iClass<5) {SetSelectable("BUTTON_BUY", false); sText = "c -3 ранга";}
+		if (iRank<2 && iClass<4) {SetSelectable("BUTTON_BUY", false); sText = "c 2 ранга";} 
+		if (iRank<8 && iClass<3) {SetSelectable("BUTTON_BUY", false); sText = "c 8 ранга";}
+		if (iRank<16 && iClass<2) {SetSelectable("BUTTON_BUY", false); sText = "c 16 ранга";}//снижаем требования ранга ГГ
 	}
 	if (refNPCShipyard.id != "Pirates_shipyarder" && sti(RealShips[iShip].basetype) >= SHIP_TRINITY && !CheckCharacterItem(Pchar, "patent_" + NationShortName(sti(refNPCShipyard.nation))) && sText == "Заказать")
 	{SetSelectable("BUTTON_BUY", false); sText = "нет патента";}

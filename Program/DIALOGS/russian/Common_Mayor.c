@@ -346,7 +346,7 @@ void ProcessDialogEvent()
 						//<<-- сдача найденного в борделе кольца
 						if (npchar.id == "Santiago_Mayor" && CheckAttribute(pchar, "PGGWhisperLetter"))
 						{
-							link.lPGGWhisper = "Слыхали, губернатор? В Пуэрто Принсипе встало на якорь судно, что принадлежит некой Виспер. Это же та ведьма, что сбежала из инквизиции?";
+							link.lPGGWhisper = "Слыхали, губернатор? В Пуэрто-Принсипе встало на якорь судно, что принадлежит некой Виспер. Это же та ведьма, что сбежала из инквизиции?";
         					link.lPGGWhisper.go = "PGGWhisper";
 						}
 
@@ -1801,7 +1801,7 @@ void ProcessDialogEvent()
 								pchar.GenQuest.Intelligence.Terms = dRand(10) + (42 - MOD_SKILL_ENEMY_RATE); //сроки выполнения задания
 								pchar.GenQuest.Intelligence.Money = ((dRand(4) + 6) * 1000) + (sti(pchar.rank) * 1000 + 10000); //вознаграждение
 								pchar.GenQuest.Intelligence.City = sTemp;
-								sTemp = ", что на " + XI_ConvertString(colonies[FindColony(pchar.GenQuest.Intelligence.City)].islandLable+"Gen");
+								sTemp = ", что на " + XI_ConvertString(colonies[FindColony(pchar.GenQuest.Intelligence.City)].islandLable+"Voc");
 								dialog.text = "У меня есть для вас задание, сопряжённое с серьёзным риском. Мне нужно, чтобы вы пробрались в " + XI_ConvertString("Colony"+pchar.GenQuest.Intelligence.City+"Acc") + sTemp + ", встретились там с указанным человеком и доставили мне то, что он вам даст.";
 								link.l1 = "Хм, не сказал"+ GetSexPhrase("","а") +" бы, что в " + XI_ConvertString("Colony"+pchar.GenQuest.Intelligence.City+"Voc") + " будут рады меня видеть...";
 								link.l1.go = "Intelligence";

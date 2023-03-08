@@ -109,6 +109,7 @@ void FillMapsTable()
 	if(CheckAttribute(pchar, "showlastmap")) { selectedId = pchar.showlastmap; }
 
 	GameInterface.TABLE_MAPS.hr.td1.str = "";
+	GameInterface.TABLE_MAPS.hr.td1.sorttype = "string";
 	SetFormatedText("STR_1", XI_ConvertString("Select map"));
 	Table_UpdateWindow("TABLE_MAPS");
 
@@ -150,7 +151,7 @@ void FillMapsTable()
 	GameInterface.TABLE_MAPS.select = iSelected;
 	CurRow   =  "tr" + (iSelected);
 	SetNewMapPicture();
-
+	SortTable("TABLE_MAPS", 1);
 	Table_UpdateWindow("TABLE_MAPS");
 	LanguageCloseFile(idLngFile);
 }

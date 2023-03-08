@@ -584,7 +584,7 @@ void InitShips()
 	refShip.Flags.Mast3.Flag1 = FLAG_ENSIGN;
 	refShip.Flags.Mast4.Flag1 = FLAG_ENSIGN;
 
-	refship.WaterLine							= 0;
+	refship.WaterLine							= -0.35;
 	refship.SpeedDependWeight			= 0.1;
 	refship.SubSeaDependWeight			= 0.6;
 	refship.TurnDependWeight			= 0.1;
@@ -3986,11 +3986,11 @@ void InitShips()
 	refShip.Weight						= Tonnes2CWT(1100);
 	refShip.Capacity        			= 4300;
 	refShip.MaxCannonDiff						= 3;
-	refShip.CannonsQuantity						= 40;
+	refShip.CannonsQuantity						= 36;
 	refShip.rcannon 							= 17;
 	refShip.lcannon 							= 17;
-	refShip.fcannon 							= 4;
-	refShip.bcannon 							= 2;
+	refShip.fcannon 							= 2;
+	refShip.bcannon 							= 0;
 	refShip.MaxCrew         				= 170;
 	refShip.MinCrew         				= 34;
 	refShip.SpeedRate				= 9.0;
@@ -6984,7 +6984,7 @@ void InitShips()
 	refship.Rocking.y = 0.4;
 	refship.Rocking.az = 0.02;
 
-	refShip.WaterLine = 0.0;
+	refShip.WaterLine = -0.4;
 	refShip.SpeedDependWeight = 0.3;
 	refShip.SubSeaDependWeight = 1.1;
 	refship.TurnDependWeight			= 0.2;

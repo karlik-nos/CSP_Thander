@@ -1251,7 +1251,7 @@ void Ship_CheckSituation()
 			else attackChar = sti(rCharacter.Ship.LastBallCharacter);
 			if (attackChar != -1)
 			{
-				if(CheckAttribute(Characters[attackChar],"IslandShips") || GetCharacter(attackChar) == rTargetedChar) return;
+				if(CheckAttribute(Characters[attackChar],"IslandShips") || attackChar == sti(rTargetedChar.index)) return;
 				Group_SetEnemyToCharacter(sGroupID, attackChar);
 				SetCharacterRelationBoth(sti(rCharacter.index), attackChar, RELATION_ENEMY);
 				Group_SetTaskAttack(sGroupID, Ship_GetGroupID(GetCharacter(attackChar)));
@@ -2258,7 +2258,7 @@ void ShipDead(int iDeadCharacterIndex, int iKillStatus, int iKillerCharacterInde
 					if (isPgg && !isntPgg1 && !isntPgg2)
 					{
 						DeleteAttribute(PChar,"PGG_EnemyPP");
-						if(rKillerCharacter == pchar)
+						if(IsMainCharacter(rKillerCharacter))
 						{
 
 							PChar.PGG_Enemy = "1";
@@ -2284,7 +2284,7 @@ void ShipDead(int iDeadCharacterIndex, int iKillStatus, int iKillerCharacterInde
 					if (isPgg && !isntPgg1 && !isntPgg2)
 					{
 						DeleteAttribute(PChar,"PGG_EnemyPP");
-						if(rKillerCharacter == pchar)
+						if(IsMainCharacter(rKillerCharacter))
 						{
 							PChar.PGG_Enemy = "1";
 						}
@@ -2300,11 +2300,11 @@ void ShipDead(int iDeadCharacterIndex, int iKillStatus, int iKillerCharacterInde
 			        // boal statistic info 17.12.2003 -->
 	                Statistic_AddValue(rKillerCharacter, "KillAbordShip_" + rBaseShip.Class, 1);
 	                // boal statistic info 17.12.2003 <--
-					if (rKillerCharacter == pchar) FlagPerkForCapturedShip(rDead);
+					if (IsMainCharacter(rKillerCharacter)) FlagPerkForCapturedShip(rDead);
 					if (isPgg && !isntPgg1 && !isntPgg2)
 					{
 						DeleteAttribute(PChar,"PGG_EnemyPP");
-						if(rKillerCharacter == pchar)
+						if(IsMainCharacter(rKillerCharacter))
 						{
 
 							PChar.PGG_Enemy = "1";
@@ -2706,7 +2706,7 @@ void Ship_HullHitEvent()
     if (sti(rOurCharacter.TmpPerks.ShipDefenseProfessional) && rand(1000) < 700) { bSeriousBoom = false; }				// no seriouse boom
 
     float fCrewDamage = stf(rBall.DamageCrew) * fCannonDamageMultiply * AIShip_isPerksUse(rBallCharacter.TmpPerks.CrewDamageUp, 1.0, 1.15);
-	if (CheckAttribute(RealShips[sti(rOurCharacter.Ship.Type)],"Tuning.HighBort") && iBallType == GOOD_GRAPES) fCrewDamage = 0,75 * fCrewDamage;
+	if (CheckAttribute(RealShips[sti(rOurCharacter.Ship.Type)],"Tuning.HighBort") && iBallType == GOOD_GRAPES) fCrewDamage = 0.75 * fCrewDamage;
 //Log_Info("fCrewDamage "+fCrewDamage);
 // fHP = fDistanceDamageMultiply * fCannonDamageMultiply * stf(rBall.DamageHull) * (8.0 + frnd() * 4.0); // LEO: Забекапил
 	fHP = fCannonDamageMultiply * stf(rBall.DamageHull) / 1.4;	//без НИ делим: 	было 	х1.5 	от ядер, х2.5 	от бомб
@@ -4953,23 +4953,23 @@ void FlagPerkForCapturedShip(ref refChar)
 	switch(sti(refChar.nation))
 	{
 		case PIRATE:
-			sMessage = xiStr("NewFlagPirate");
+			sMessage = "Получен пиратский флаг";
 			sPerk = "FlagPir";
 		break;
 		case ENGLAND:
-			sMessage = xiStr("NewFlagEngland");
+			sMessage = "Получен английский флаг";
 			sPerk = "FlagEng";
 		break;
 		case SPAIN:
-			sMessage = xiStr("NewFlagSpain");
+			sMessage = "Получен испанский флаг";
 			sPerk = "FlagSpa";
 		break;
 		case FRANCE:
-			sMessage = xiStr("NewFlagFrance");
+			sMessage = "Получен французский флаг";
 			sPerk = "FlagFra";
 		break;
 		case HOLLAND:
-			sMessage = xiStr("NewFlagHolland");
+			sMessage = "Получен голландский флаг";
 			sPerk = "FlagHol";
 		break;
 	}

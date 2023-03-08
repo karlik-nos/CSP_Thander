@@ -1420,8 +1420,8 @@ void ProcessDialogEvent()
 
 		case "loan_return":
 			addMoneyToCharacter(Pchar, -(makeint(Pchar.Quest.Loans.(NPC_Area).Result)));
-			iPastMonths = GetPastTime("Month", makeint(Pchar.Quest.Loans.(NPC_Area).StartYear),makeint(Pchar.Quest.Loans.(NPC_Area).StartMonth),makeint(Pchar.Quest.Loans.(NPC_Area).StartDay), makefloat(Pchar.Quest.Loans.(NPC_Area).StartTime), getDataYear(),getDataMonth(),GetDataDay(), GetTime());
-			AddCharacterExpToSkill(Pchar, "Leadership", Pchar.Quest.Loans.(NPC_Area).Sum / 12000 * iPastMonths);
+			int iPastDays = GetPastTime("days", makeint(Pchar.Quest.Loans.(NPC_Area).StartYear),makeint(Pchar.Quest.Loans.(NPC_Area).StartMonth),makeint(Pchar.Quest.Loans.(NPC_Area).StartDay), makefloat(Pchar.Quest.Loans.(NPC_Area).StartTime), getDataYear(),getDataMonth(),GetDataDay(), GetTime());
+			AddCharacterExpToSkill(Pchar, "Leadership", makeint(Pchar.Quest.Loans.(NPC_Area).Sum) / 5000 * ((iPastDays+15)/30) );//фикс - опыта начисляем, если прошло пару недель, увеличил бонус - проценты всё равно же платим, и больше чем прокачивая торговлю не сходя с места
 			DeleteAttribute(PChar, "quest.Loans_" + NPC_Area); // bug fix
 			DeleteAttribute(PChar, "quest.Loans." + NPC_Area);
 			Dialog.snd1 = "voice\USDI\USDI024";
@@ -1934,15 +1934,15 @@ void ProcessDialogEvent()
 		break;
 
 		case "TakeMoreslaves2":
-			amount = GetSquadronGoods(Pchar, GOOD_SLAVES);
 			dialog.Text = "Отлично! Мои люди их заберут... Насчёт таможни и коменданта форта не беспокойтесь. У меня этот бизнес поставлен на широкую ногу, так что проблем не будет, и в контрабанде вас никто не обвинит.";
 			Link.l1 = "Смотрю, у вас здесь уже всё схвачено! Как насчёт оплаты?";
 			Link.l1.go = "TakesMoreslaves3";
-			RemoveCharacterGoods(Pchar, GOOD_SLAVES, amount);
 		break;
 
-		case "TakeMoreslaves3":
-			AddMoneyToCharacter(pchar, makeint(GetSquadronGoods(Pchar, GOOD_SLAVES) * 250));
+		case "TakesMoreslaves3":
+			amount = GetSquadronGoods(Pchar, GOOD_SLAVES);
+			RemoveCharacterGoods(Pchar, GOOD_SLAVES, amount);
+			AddMoneyToCharacter(pchar, makeint(amount * 250));
 			dialog.Text = "Пожалуйста, получите... Я слов на ветер не бросаю. Держитесь за меня, капитан, и скоро у вас будет столько пиастров, что для их перевозки понадобится целый галеон!";
 			Link.l1 = "Хорошо бы... Ну а что дальше?";
 			Link.l1.go = "Takeslaves_2";

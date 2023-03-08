@@ -1660,60 +1660,77 @@ int GetPartitionAmount(string _param)
     if (!CheckAttribute(Pchar, _param)) return 0;
     return sti(Pchar.(_param));
 }
- 
-int cpos[7]={0,0,0,0,0,0,0};
-int cpostotal[7]={0,0,0,0,0,0,0};
-int cindex[7]={0,0,0,0,0,0,0};
+
 void SortCompanionsBy(string attrName) // сортируем по базовому атрибуту корабля
 {
-	int cn, notFoundCount;
-	int cq = GetCompanionQuantity(pchar);
-	if (cq <= 1) return;
-	
-	for(int i = 1; i < cq; i++)
-	{
-		cn = GetCompanionIndex(pchar, i);
-		if (cn == -1 || sti(characters[cn].ship.type) == SHIP_NOTUSED) continue;
+    Log_Info("123");
+    int ids[7];
+    int ids_num = 0;
 
-		ref rBaseShip = GetRealShip(sti(characters[cn].ship.type));
+    int cq = GetCompanionQuantity(pchar);
+    if (cq <= 1) return;
+
+    for(int i = 1; i < cq; i++) {
+        int cn = GetCompanionIndex(pchar, i);
+        if (cn == -1) {
+            continue;
+        }
+
+        if(sti(characters[cn].ship.type) == SHIP_NOTUSED) {
+            ids[ids_num] = cn;
+            ids_num++;
+            continue;
+        }
+
+        ref rBaseShip = GetRealShip(sti(characters[cn].ship.type));
 		if (!CheckAttribute(rBaseShip, attrName)) {
 			trace("ОШИБКА: не найден атрибут сортировки по '" + attrName + "' у корабля '" + rBaseShip.Name + "'");
-			notFoundCount++;
-			cpos[i-1] = notFoundCount;
-		} else {
-			cpos[i-1] = makeint(stf(rBaseShip.(attrName))*100.0);
+            return; // чтобы ничего не сломать
 		}
 
-		cindex[i-1] = GetCompanionIndex(pchar,i);
-	}
+        {
+			// insert
+            int j;
+            for(j = 0; j < ids_num; j++) {
+                bool insert = false;
+                int shipTypeLhs = sti(characters[ids[j]].ship.type);
+                if(shipTypeLhs == SHIP_NOTUSED) {
+                    // no ship
+                    insert = true;
+                } else {
+                    // check if greater or (equal+type is greater)
+                    ref rBaseShipLhs = GetRealShip(shipTypeLhs);
 
-	if (cq == notFoundCount) // атрибут не найден ни на одном корабле
-	{
-		trace("ОШИБКА: неверный атрибут сортировки '" + attrName + "'");
-		SortCompanionsBy("speedrate") // просто сортируем по скорости
-		return;
-	}
+                    int rhsVal = makeint(stf(rBaseShip.(attrName))*100.0);
+                    int lhsVal = makeint(stf(rBaseShipLhs.(attrName))*100.0);
 
-	for(i = 0; i < cq-1; i++)
-	{
-		int j = 0;
-		cpostotal[i] = cq-1;
-		while (j < cq-1)
-		{
-			if (j == i) {j++; continue;}
-			if (cpos[i] > cpos[j]) cpostotal[i] -= 1;
-			j++;
+                    bool valueLess = lhsVal < rhsVal;
+                    bool typeLess = sti(characters[ids[j]].ship.type) < sti(characters[cn].ship.type);
+                    bool valueEqTypeLess = rhsVal == lhsVal && typeLess;
+
+                    insert = valueLess || valueEqTypeLess;
+                }
+                if(insert) {
+                    // shift
+                    for(int k=ids_num; k>j; k--) {
+                        ids[k] = ids[k-1];
+                    }
+                    break;
+                }
+            }
+            ids[j] = cn;
+            ids_num++;
 		}
 	}
 
-	for(i = 1; i < cq; i++)
+    for(i = 0; i < ids_num; i++)
 	{
-		string compName = "id"+cpostotal[i-1];
-		pchar.Fellows.Companions.(compName) = cindex[i-1];
-		Event(EVENT_CHANGE_COMPANIONS,"");
+        string id = "id"+(i+1);
+	    pchar.Fellows.Companions.(id) = ids[i];
 	}
 
-	IDoExit(RC_INTERFACE_TO_SHIP);
+    Event(EVENT_CHANGE_COMPANIONS,"");
+    IDoExit(RC_INTERFACE_TO_SHIP);
 }
 
 void OnTableClick()

@@ -9,6 +9,9 @@ int shipIndex;
 int upgradevalue;
 int uptype = 0;
 string SellState = "Max";
+string sCabins[8] = {"Cabin_Small","New_Cabin1","Cabin_Medium","Cabin_Medium2","New_Cabin2","Cabin_Quest","Cabin","Cabin_Huge"};//берём из SetCabinTypeEx
+int iCabinsNum = 8;//число видов кают
+int iCurCabin = 0;
 
 int nCurScrollOfficerNum;
 
@@ -81,6 +84,7 @@ void InitInterface_R(string iniName, ref _shipyarder)
 	SetEventHandler("OpenShipUp","OpenShipUp",0);
 	SetEventHandler("CloseShipUp", "CloseShipUp",0);
 	SetEventHandler("ExitChangeHullMenu", "ExitChangeHullMenu",0);
+	SetEventHandler("ExitChangeCabinMenu", "ExitChangeCabinMenu",0);
 	SetEventHandler("CheckButtonChange","procCheckBoxChange",0);
 	SetEventHandler("SelectShipyard","SelectShipyard",0);
 	SetEventHandler("OnTableClick", "OnTableClick", 0);
@@ -160,6 +164,7 @@ void IDoExit(int exitCode)
 	DelEventHandler("OpenShipUp","OpenShipUp");
 	DelEventHandler("CloseShipUp","CloseShipUp");
 	DelEventHandler("ExitChangeHullMenu", "ExitChangeHullMenu");
+	DelEventHandler("ExitChangeCabinMenu", "ExitChangeCabinMenu");
 	DelEventHandler("CheckButtonChange","procCheckBoxChange");
 	DelEventHandler("SelectShipyard","SelectShipyard");
 	DelEventHandler("OnTableClick", "OnTableClick");
@@ -220,6 +225,13 @@ void ProcessCommandExecute()
 			}
 		break;
 
+		case "BUTTON_CABIN":
+			if (comName=="click" || comName=="activate")
+			{
+			    ShowChangeCABINMenu();
+			}
+		break;
+
 		case "CHANGE_HULL_LEFT":
 			if(comName=="click")
 			{
@@ -238,6 +250,27 @@ void ProcessCommandExecute()
 			if(comName=="click")
 			{
 				SetNewHullToCharacterShip();
+			}
+		break;
+
+		case "CHANGE_CABIN_LEFT":
+			if(comName=="click")
+			{
+				SelectChangeCABIN(true);
+			}
+		break;
+
+		case "CHANGE_CABIN_RIGHT":
+			if(comName=="click")
+			{
+				SelectChangeCABIN(false);
+			}
+		break;
+
+		case "CHANGE_CABIN_OK":
+			if(comName=="click")
+			{
+				SetNewCABINToCharacterShip();
 			}
 		break;
 
@@ -1189,6 +1222,7 @@ void SetButtionsAccess()
 	//#20180922-01
     SetSelectable("BUTTON_PAINT", true);
 	SetSelectable("SHIPSUP_BUTTON", true);
+	SetSelectable("BUTTON_CABIN", true);
 
     if (bShipyardOnTop)
     {
@@ -1196,6 +1230,7 @@ void SetButtionsAccess()
     	SetSelectable("BUTTON_SELL", false);
     	//#20180922-01
     	SetSelectable("BUTTON_PAINT", false);
+    	SetSelectable("BUTTON_CABIN", false);
 		SetSelectable("SHIPSUP_BUTTON", false);
     	if (shipIndex == -1)// проверка на цену
     	{
@@ -1234,6 +1269,7 @@ void SetButtionsAccess()
             SetSelectable("BUTTON_REPAIR", false);
             //#20180922-01
             SetSelectable("BUTTON_PAINT", false);
+            SetSelectable("BUTTON_CABIN", false);
 			SetSelectable("SHIPSUP_BUTTON", false);
         }
         else
@@ -1244,6 +1280,7 @@ void SetButtionsAccess()
     	        SetSelectable("BUTTON_SELL", false);
                 //#20180922-01
                 SetSelectable("BUTTON_PAINT", false);
+	            SetSelectable("BUTTON_CABIN", false);
 				SetSelectable("SHIPSUP_BUTTON", false);
     	    }
     	    else {
@@ -2771,9 +2808,111 @@ int CalculateHullChangePrice(int value)
 		break;
 	}
 }
-
 // Lugger: Смена разцветки корпуса <--
 
+//Смена каюты -->
+void ExitChangeCABINMenu()
+{
+	HideChangeCABINMenu();
+	OnShipScrollChange();
+}
+
+void HideChangeCABINMenu()
+{
+	XI_WindowShow("CHANGE_CABIN_WINDOW", false);
+	XI_WindowDisable("CHANGE_CABIN_WINDOW", true);
+	XI_WindowDisable("MAIN_WINDOW", false);
+	SetCurrentNode("TABLE_OTHER");
+	sMessageMode = "";
+}
+
+void ShowChangeCABINMenu()
+{
+	XI_WindowShow("CHANGE_CABIN_WINDOW", true);
+	XI_WindowDisable("CHANGE_CABIN_WINDOW", false);
+	XI_WindowDisable("MAIN_WINDOW", true);
+	SetCurrentNode("CHANGE_CABIN_CANCEL");
+
+	ref refShip = GetRealShip(sti(xi_refCharacter.Ship.Type));
+	for (int i=0;i<iCabinsNum;i++)
+	{
+		if (sti(refShip.Class)==7) break;
+		if (refShip.CabinType != sCabins[i]) continue;
+		iCurCabin = i; 
+		break;
+	}
+	SetChangeCABINInfo();
+}
+
+void SetChangeCABINInfo()
+{
+	string sTexture = GetShipTexturesForChangeCABIN();
+	SetNewPicture("CHANGE_CABIN_TYPE", sTexture);
+	int iMoney = CalculateCABINChangePrice();
+	SetFormatedText("CHANGE_CABIN_MONEY", "Цена: " + iMoney);
+
+	bool isNewCabin = true;
+	ref refShip = GetRealShip(sti(xi_refCharacter.Ship.Type));
+	if (!isCabinforClass(sti(refShip.Class))) 
+	{
+		isNewCabin = false;
+		SetFormatedText("CHANGE_CABIN_MONEY", "Эта каюта не подходит по размеру к кораблю.");
+	}
+	if (sti(refShip.Class)<7 && refShip.CabinType == sCabins[iCurCabin]) 
+	{
+		isNewCabin = false; 
+		SetFormatedText("CHANGE_CABIN_MONEY", "Это Ваша каюта.");
+	}
+
+	if (isNewCabin && sti(PChar.money) > iMoney) SetSelectable("CHANGE_CABIN_OK", true);
+											else SetSelectable("CHANGE_CABIN_OK", false);
+}
+
+bool isCabinforClass(int iClass)
+{
+	switch (iClass)
+	{
+	case 7: return false; break;
+	case 6: if (iCurCabin>-1 && iCurCabin<2) return true; break; 
+	case 5: if (iCurCabin>-1 && iCurCabin<2) return true; break;//№0-1
+	case 4: if (iCurCabin>1 && iCurCabin<5) return true; break;	//№2-4
+	case 3: if (iCurCabin>1 && iCurCabin<5) return true; break; 
+	case 2: if (iCurCabin>4 && iCurCabin<8) return true; break;	//№5-7
+	case 1: if (iCurCabin>4 && iCurCabin<8) return true; break; 
+	}
+	return false;
+}
+
+string GetShipTexturesForChangeCABIN()
+{
+	int nLoc = FindLocation(sCabins[iCurCabin]);
+	if (nLoc >= 0 && CheckAttribute(&Locations[nLoc],"image")) 
+	return Locations[nLoc].image;
+}
+
+void SelectChangeCABIN(bool bLeft)
+{
+	if (bLeft) iCurCabin--; else iCurCabin++;
+	if (iCurCabin < 0) iCurCabin = iCabinsNum-1;
+	if (iCurCabin == iCabinsNum) iCurCabin = 0;
+	SetChangeCABINInfo();
+}
+
+void SetNewCABINToCharacterShip()
+{
+	ref refShip = GetRealShip(sti(xi_refCharacter.Ship.Type));
+	refShip.CabinType = sCabins[iCurCabin];
+
+	int iMoney = CalculateCABINChangePrice();
+	AddMoneyToCharacter(PChar, -iMoney);
+	ExitChangeCABINMenu();
+}
+
+int CalculateCABINChangePrice()
+{	//10ая часть цены корабля с учётом наценки конкретного верфиста
+	return makeint(GetShipBuyPrice(sti(xi_refCharacter.Ship.Type), refNPCShipyard)/10);
+}
+//Смена каюты <--
 
 void OnTableClick()
 {

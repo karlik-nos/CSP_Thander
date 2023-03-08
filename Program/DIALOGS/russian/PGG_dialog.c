@@ -73,9 +73,9 @@ void InitDynamicValues(ref NPChar) {
 	PGG_Meet_BadRep[6] = "А вот и ещё од" + GetSexPhrase("ин баловень Фортуны","на морская волчица") + "!";
 	PGG_Meet_BadRep[7] = GetSexPhrase("Очередной джентльмен удачи","Очередная покорительница морей") + ", я полагаю.";
 
-  PGG_Meet_GoodRep[5] = "А вот и ещё од" + NPCharSexPhrase(NPChar, "ин  славный корсар, который не привык", "нa покорительница морских просторов, которая не привыкла") + " искать лёгких путей..."
+  PGG_Meet_GoodRep[5] = "А вот и ещё од" + GetSexPhrase("ин  славный корсар, который не привык", "нa покорительница морских просторов, которая не привыкла") + " искать лёгких путей..."
 	PGG_Meet_GoodRep[6] = "А вот и героическая личность, уже наслышан" + NPCharSexPhrase(NPChar, "", "a") + " о вас!";
-	PGG_Meet_GoodRep[7] = "Джентльмены, у " + IfPhraseSimple(isSetSail, "нас на корабле", "нашего столика") + " достойн" + NPCharSexPhrase(NPChar, "ый капитан", "aя морская волчица") + ", котор" + NPCharSexPhrase(NPChar, "ый", "aя") + " бывал" + NPCharSexPhrase(NPChar, "", "а") + " ещё не в таких переделках. О чём поведаете, уважаем" + NPCharSexPhrase(NPChar, "ый", "aя") + "?";
+	PGG_Meet_GoodRep[7] = "Джентльмены, у " + IfPhraseSimple(isSetSail, "нас на корабле", "нашего столика") + " достойн" + GetSexPhrase("ый капитан", "aя морская волчица") + ", котор" + GetSexPhrase("ый", "aя") + " бывал" + GetSexPhrase("", "а") + " ещё не в таких переделках. О чём поведаете, уважаем" + GetSexPhrase("ый", "aя") + "?";
 }
 
 void ProcessDialogEvent()
