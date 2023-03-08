@@ -719,6 +719,18 @@ void FillAboardCabinBox(ref _location, ref _npchar)
 		_location.box1.items.Lilarcor_Sword1 = 1);
         ok = false;
 	}
+	//Квест "Странные вещи творятся на архипелаге", Мефисто, драгоценности
+	if (_npchar.id == "Chernoe_Solntse2")
+	{
+        DeleteAttribute(_location, "box1");
+        _location.box1.money = 10000;
+		_location.box1.items.jewelry5 = 100+rand(20);
+        _location.box1.items.jewelry17 = 100+rand(20);
+        _location.box1.items.jewelry3 = 40+rand(10);
+		_location.box1.items.jewelry18 = 15+rand(10);
+		_location.box1.items.PKM_SvtvA_amulet = 1;
+        ok = false;
+	}
 
     if (ok) // не квестовый
     {

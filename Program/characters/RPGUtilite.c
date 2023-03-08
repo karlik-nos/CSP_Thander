@@ -1259,6 +1259,9 @@ int GetCharacterSkillSimple(ref _refCharacter, string skillName)
 		///////////// Иконки слева (Камни/бижутерия) <--
 
 		///////////// Иконки по центру (Комплексные бафы от идолов)  -->
+		skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_F_HEAVY, "PKM_SvtvA_amulet", 15);		// {Амулет Хаоса} 						(+15 тяжёлое оружие, +15 среднее оружие, -20 к авторитету)
+		skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_FENCING, "PKM_SvtvA_amulet", 15);		// {Амулет Хаоса} 						(+15 тяжёлое оружие, +15 среднее оружие, -20 к авторитету)
+		skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_LEADERSHIP, "PKM_SvtvA_amulet", -20);	// {Амулет Хаоса} 						(+15 тяжёлое оружие, +15 среднее оружие, -20 к авторитету)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_FORTUNE, "DeSouzaCross", 30);			// {Крест Антонио де Соуза} 			(+30 к везению, +20 к авторитету, +10 к торговле)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_LEADERSHIP, "DeSouzaCross", 20);		// {Крест Антонио де Соуза} 			(+30 к везению, +20 к авторитету, +10 к торговле)
     	skillN = skillN + SetCharacterSkillByItemEquipped(_refCharacter, skillName, SKILL_COMMERCE, "DeSouzaCross", 10);		// {Крест Антонио де Соуза} 			(+30 к везению, +20 к авторитету, +10 к торговле)

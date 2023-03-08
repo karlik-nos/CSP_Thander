@@ -83,6 +83,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1 = "Что вы хотите этим сказать?";
 			link.l1.go = "PKM_SvtvA_Ch2_2";
 			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_PismoKlermon");
+			TakeItemFromCharacter(pchar, "PKM_SvtvA_pismo2");
 		break;
 		case "PKM_SvtvA_Ch2_2":
 			dialog.text = "А, вы, наверное, ещё не знаете - человек, вручивший вам это письмо, был похищен. Боюсь, что случилось то, чего я так боялся.";

@@ -9255,12 +9255,14 @@ int InitItems()
 	
 	makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
 	itm.id = "PKM_SvtvA_amulet";	//Амулет главного сатаниста
+	itm.groupID = INDIAN_CENTER_ITEM_TYPE;
 	itm.name = "itmname_PKM_SvtvA_amulet";
 	itm.describe = "itmdescr_PKM_SvtvA_amulet";
 	itm.picIndex = 11;
 	itm.picTexture = "ITEMS_20";
 	itm.price = 30000;
-	itm.weight = 0.5;
+	itm.weight = 0.2;
+	itm.ItemType = "QUESTITEMS";
 	n++;
 	
 	makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
