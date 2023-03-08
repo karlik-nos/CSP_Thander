@@ -4329,7 +4329,7 @@ void InitShips()
 	refship.Rocking.y	= 0.5;
 	refship.Rocking.az	= 0.04;
 
-	refship.WaterLine	= -0.1;
+	refship.WaterLine	= -0.4;
 	refship.SpeedDependWeight		= 0.2;
 	refship.SubSeaDependWeight		= 0.6;
 	refship.TurnDependWeight		= 0.2;
