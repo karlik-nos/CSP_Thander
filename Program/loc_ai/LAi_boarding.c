@@ -85,8 +85,24 @@ void LAi_StartBoarding(int locType, ref echr, bool isMCAttack)
 	//ResetSoundScheme();
 	ResetSound(); // new
 	PauseAllSounds();
-	sTemp = RealShips[sti(echr.Ship.Type)].BaseName;
-	Pchar.Encyclopedia.(sTemp) = "1";
+
+	if(sti(RealShips[sti(echr.Ship.Type)].BaseType) <= SHIP_OCEAN)//не исследуем квестовые, и лодку с фортом
+	{	
+		sTemp = RealShips[sti(echr.Ship.Type)].BaseName;
+		Pchar.Encyclopedia.(sTemp) = "1";
+	}
+	if(bFillEncyShips) 
+	{
+		aref aShips;
+		makearef(aShips, Pchar.Encyclopedia);
+		int Sum = GetAttributesNum(aShips);
+		if (Sum != sti(pchar.questTemp.shipsearchcount)) 
+		{
+			pchar.questTemp.shipsearchcount = Sum;
+			log_info("Исследован корабль: " + XI_Convertstring(sTemp) + ". Исследовано - " + pchar.questTemp.shipsearchcount + " кораблей!");
+			if (pchar.questTemp.shipsearchcount == "124") UnlockAchievement("AchShipSearch",3);//почему 124? сумма же 125.
+		}
+	}
 
 	bQuestCheckProcessFreeze = true;//fix
 

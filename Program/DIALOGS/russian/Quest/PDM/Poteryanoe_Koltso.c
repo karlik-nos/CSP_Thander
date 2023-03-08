@@ -239,7 +239,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Pomenyt":
-			sld = CharacterFromID("Josephine_Lodet")
+			sld = CharacterFromID("Josephine_Lodet");
 			sld.dialog.currentnode   = "Konets";
 			NextDiag.CurrentNode = NextDiag.TempNode;
 			DialogExit();
@@ -259,9 +259,9 @@ void ProcessDialogEvent()
 			AddDialogExitQuest("PlaySex_1");
 			GiveItem2Character(pchar, "PDM_PK_Koltso");
 			chrDisableReloadToLocation = false;
-			sld = CharacterFromID("Josephine_Lodet")
+			sld = CharacterFromID("Josephine_Lodet");
 			sld.dialog.currentnode   = "Konets";
-			sld = CharacterFromID("PDM_PK_Francheska")
+			sld = CharacterFromID("PDM_PK_Francheska");
 			sld.dialog.currentnode   = "PosleTraha";
 
 			AddCharacterExpToSkill(pchar, "Sneak", 300);
@@ -287,7 +287,7 @@ void ProcessDialogEvent()
 			Lai_SetPlayerType(pchar);
 			LAi_SetFightMode(pchar, true);
 
-			sld = CharacterFromID("PDM_PK_Francheska")
+			sld = CharacterFromID("PDM_PK_Francheska");
 			LAi_SetHP(sld, 20.0, 20.0);
 			LAi_SetImmortal(sld, false);
 			sld.SaveItemsForDead = true
@@ -323,7 +323,7 @@ void ProcessDialogEvent()
 			AddCharacterExpToSkill(pchar, "Sailing", 100);
 			AddCharacterExpToSkill(pchar, "Leadership", 100);
 			ChangeCharacterReputation(pchar, 2);
-			sld = CharacterFromID("Josephine_Lodet")
+			sld = CharacterFromID("Josephine_Lodet");
 			sld.dialog.filename   = "Common_citizen.c";
 			sld.dialog.currentnode = "First Time";
 

@@ -409,7 +409,7 @@ void ProcessDialogEvent()
 			}
 			link.l1 = "Да, теперь никто не помешает тебе торговать в Маракайбо, Октавио. Прощай.";
 			link.l1.go = "exit";
-			sld = CharacterFromID("PDM_Octavio_Lambrini")
+			sld = CharacterFromID("PDM_Octavio_Lambrini");
 			sld.lifeday = 0;
 			AddMoneyToCharacter(pchar, sti(Plata1));
 			ChangeCharacterReputation(pchar, 2);
@@ -478,7 +478,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "Antonio_1_11":
-			sld = CharacterFromID("PDM_Octavio_Lambrini")
+			sld = CharacterFromID("PDM_Octavio_Lambrini");
 			sld.Dialog.Filename = "Quest/PDM/Clan_Lambrini.c";
 			sld.dialog.currentnode   = "Octavio_3_1";
 			DeleteAttribute(pchar, "questTemp.PDM_CL_Ishem");
@@ -540,7 +540,7 @@ void ProcessDialogEvent()
 			link.l1 = "Да, теперь никто не помешает тебе торговать в Маракайбо, Октавио. Прощай.";
 			link.l1.go = "exit";
 			NextDiag.TempNode = "Octavio_3_3_EsheRaz";
-			sld = CharacterFromID("PDM_Octavio_Lambrini")
+			sld = CharacterFromID("PDM_Octavio_Lambrini");
 			sld.lifeday = 0;
 			AddMoneyToCharacter(pchar, sti(Plata1));
 			ChangeCharacterReputation(pchar, -2);
@@ -697,7 +697,7 @@ void ProcessDialogEvent()
 
 			LAi_CharacterDisableDialog(sld);
 			DoQuestFunctionDelay("PDM_CL_Pokupatel_Uhodit", 1.5);
-			sld = CharacterFromID("PDM_CL_Antonio3")
+			sld = CharacterFromID("PDM_CL_Antonio3");
 			sld.Dialog.Filename = "Quest/PDM/Clan_Lambrini.c";
 			sld.dialog.currentnode   = "Antonio_5_1";
 			LAi_SetPlayerType(pchar);
@@ -734,7 +734,7 @@ void ProcessDialogEvent()
 			LocatorReloadEnterDisable("Shore37", "reload1_back", true);
 			LocatorReloadEnterDisable("Shore37", "boat", true);
 
-			sld = CharacterFromID("PDM_CL_Antonio3")
+			sld = CharacterFromID("PDM_CL_Antonio3");
 			LAi_SetActorType(sld);
 			ChangeCharacterAddressGroup(sld, "Shore37", "officers", "reload1_1");
 			LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);

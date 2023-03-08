@@ -346,7 +346,7 @@ void ProcessDialogEvent()
 			GiveItem2Character(PChar, "PDM_Trava_Tzes_Umrat");
 			AddQuestRecord("PDM_Aptekar", "8");
 
-			sld = CharacterFromID("Doktor_Alumnus")
+			sld = CharacterFromID("Doktor_Alumnus");
 			sld.dialog.filename   = "Quest/PDM/Aptekar.c";
 			sld.dialog.currentnode   = "Alumnus_Finish_Zadanie";
 		break;

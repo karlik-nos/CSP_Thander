@@ -275,6 +275,14 @@ void SetByDefault()
 	{
 		CheckButton_SetState("CHECK_SHOOTONLYENEMY",1,false);
 	}
+	if(bWorldAlivePause)
+	{
+		CheckButton_SetState("CHECK_WORLDPAUSE",1,true);
+	}
+	else
+	{
+		CheckButton_SetState("CHECK_WORLDPAUSE",1,false);
+	}
 	/*if(bModDamage)
 	{
 		CheckButton_SetState("CHECK_MOD_DAMAGE",1,true);
@@ -518,11 +526,18 @@ void IProcessFrame()
 	{
 		bShootOnlyEnemy = false;
 	}
+	if(SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE, "CHECK_WORLDPAUSE", 3, 1))
+	{
+		bWorldAlivePause = true;
+	}
+	else
+	{
+		bWorldAlivePause = false;
+	}
 	minval = makeint(5 + MOD_SKILL_ENEMY_RATE * 5 / 1.666666666);
 	if (minval < 10) minval = 10;
 	SetFormatedText("EXP_SLIDE_MIN", "Min\n"+makeint(15 + MOD_SKILL_ENEMY_RATE * 15 / 1.666666666));
 	SetFormatedText("EXP_SLIDE_MAX", "Max\n"+minval);
-	DumpAttributes(&GameInterface);
 	expval = 5+makeint(10*(1.0-stf(GameInterface.nodes.EXP_SLIDE.value)));
 	if (makeint(expval + MOD_SKILL_ENEMY_RATE * expval / 1.666666666) < 10) SetFormatedText("EXP_SLIDE_VALUE", "10");
 	else SetFormatedText("EXP_SLIDE_VALUE", ""+makeint(expval + MOD_SKILL_ENEMY_RATE * expval / 1.666666666));
@@ -1246,6 +1261,11 @@ void ShowInfo()
 			sHeader = XI_ConvertString("ShootOnlyEnemy");
 			sText1 = GetRPGText("ShootOnlyEnemy_hint");
 		break;
+		
+		case "CHECK_WORLDPAUSE":
+			sHeader = XI_ConvertString("WorldPause");
+			sText1 = GetRPGText("WorldPause_hint");
+		break;
 
 		case "CHECK_MOD_DAMAGE":
 			sHeader = XI_ConvertString("CHECK_MOD_DAMAGE");
@@ -1581,7 +1601,7 @@ void TmpI_ShowDefendersAmount()
 
 void StopBlind_Hint()
 {
-SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE,"NOOB_HINT_STR", 5, 0);
+	SendMessage(&GameInterface,"lsll",MSG_INTERFACE_MSG_TO_NODE,"NOOB_HINT_STR", 5, 0);
 }
 
 void DisableEnable_CheckProcess() // ugeen 2016

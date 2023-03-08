@@ -1526,13 +1526,13 @@ void ProcessDialogEvent()
 				break;
 			}
 		break;
-		// Проверка знаний
+		//Латынь - Sinistra
 		case "SCQ_ProverkaZnaniy":
 			dialog.text = "Скоро мне сдавать зачёт, а я даже не уверен в своих знаниях. Поможете мне?";
-			link.l1 = "Делать мне больше нечего...";
-			link.l1.go = "SCQ_exit";
-			link.l2 = "Э-э... А что делать-то надо?";
-			link.l2.go = "SCQ_ProverkaZnaniy_2";
+			link.l1 = "Э-э... А что делать-то надо?";
+			link.l1.go = "SCQ_ProverkaZnaniy_2";
+			link.l2 = "Делать мне больше нечего...";
+			link.l2.go = "SCQ_exit";
 		break;
 		
 		case "SCQ_ProverkaZnaniy_2":
@@ -2020,13 +2020,13 @@ void ProcessDialogEvent()
 			}
 		break;
 		
-		//девушка играет с нами в прятки
+		//Прятки - Sinistra
 		case "SCQ_Prytki":
-			dialog.text = "Вы закрываете глаза и считаете до пяти, а я прячусь в пределах города, и нельзя заходить в дома. Если найдёте меня, то я обещаю, что вы не уйдёте без награды.";
-			link.l1 = "Нет, я не собираюсь играть в эти детские игры... Найди лучше кого-нибудь другого.";
-			link.l1.go = "SCQ_Prytki_Net";
-			link.l2 = "Ну давай поиграем, хе-хе.";
-			link.l2.go = "SCQ_Prytki_1";
+			dialog.text = "Вы закрываете глаза и считаете до пяти, а я прячусь в пределах города. Если найдёте меня, то я обещаю, что вы не уйдёте без награды.";
+			link.l1 = "Ну давай поиграем, хе-хе.";
+			link.l1.go = "SCQ_Prytki_1";
+			link.l2 = "Нет, я не собираюсь играть в эти детские игры... Найди лучше кого-нибудь другого.";
+			link.l2.go = "SCQ_Prytki_Net";
 		break;
 		
 		case "SCQ_Prytki_Net":
@@ -2050,6 +2050,8 @@ void ProcessDialogEvent()
 			SetLaunchFrameFormParam("На мгновение закрываем глаза...", "SCQ_Prytki_VremyPoshlo", 0, 2.5);
 			LaunchFrameForm();
 			InterfaceStates.Buttons.Save.enable = false;
+			bDisableFastReload = true;
+			chrDisableReloadToLocation = true;
 			
 			sld = CharacterFromID(pchar.DevushkaVPrytki);
 			if (rand(1) == 0)
@@ -2077,7 +2079,6 @@ void ProcessDialogEvent()
 			PChar.quest.SCQ_Prytki_PokinuliZonu.over = "yes";
 			DeleteAttribute(pchar, "showTimer");
 			ClearAllLogStrings();
-			InterfaceStates.Buttons.Save.enable = true;
 			
 			AddMoneyToCharacter(pchar, sti(iMoney));
 			AddCharacterExpToSkill(pchar, "Sneak", 30);
@@ -2095,20 +2096,91 @@ void ProcessDialogEvent()
 			chrDisableReloadToLocation = false;
 		break;
 		
-		/*case "SCQ_Prytki_Trah":
-			dialog.text = "Ой, хи-хи-хи. А вы хорош"+GetSexPhrase("ий","ая")+" сыщи"+GetSexPhrase("к","ца")+", капитан. Давай снимем комнату в таверне, я вознагражу тебя по достоинству.";
+		case "SCQ_Prytki_Trah":
+			dialog.text = "Ой, хи-хи-хи. А вы хорош"+GetSexPhrase("ий","ая")+" сыщи"+GetSexPhrase("к","ца")+", капитан. Давайте снимем комнату в таверне, я вознагражу вас по достоинству.";
 			link.l1 = "Ну пойдём.";
 			link.l1.go = "SCQ_Prytki_Trah_2";
+			link.l2 = "Прости, девчуля, но я тут вспомнил"+GetSexPhrase("","а")+", что у меня есть незаконченные дела. Мне пора.";
+			link.l2.go = "SCQ_Prytki_Dengi_Final";
+			
+			Event("QuestDelayExit","sl", "", 0);
+			PChar.quest.SCQ_Prytki_PokinuliZonu.over = "yes";
 			DeleteAttribute(pchar, "showTimer");
 			ClearAllLogStrings();
-			InterfaceStates.Buttons.Save.enable = true;
+			UnmarkCharacter(npchar);
+			
+			AddCharacterExpToSkill(pchar, "Sneak", 30);
+			AddCharacterExpToSkill(pchar, "Fortune", 30);
 		break;
 		
 		case "SCQ_Prytki_Trah_2":
+			DoQuestReloadToLocation(npchar.city+"_tavern_upstairs", "quest", "quest4", "SCQ_Prytki_V_Komnate");
+			ChangeCharacterAddressGroup(npchar, npchar.city+"_tavern_upstairs", "quest", "quest3");
+		break;
+		
+		case "SCQ_Prytki_Trah_3":
+			dialog.text = "Ах, капитан, мне так нетерпиться оказаться в ваших горячих объятиях...";
+			link.l1 = "Ну иди сюда, крошка...";
+			link.l1.go = "exit";
+			
+			NextDiag.TempNode = "SCQ_Prytki_Trah_4";
+			AddDialogExitQuest("PlaySex_1");
+			
+			AddCharacterHealth(pchar, 5);
+			LAi_SetCurHPMax(pchar);
+			ChangeCharacterReputation(pchar, -1);
+			AddCharacterExpToSkill(pchar, "Leadership", 30);
+			AddCharacterExpToSkill(pchar, "Fencing", -15);
+			AddCharacterExpToSkill(pchar, "Pistol", -15);
+			if (sti(pchar.money) >= 10) AddMoneyToCharacter(pchar, -10);			
+			LAi_SetStayType(npchar);
+			npchar.lifeday = 0;
+			
+			InterfaceStates.Buttons.Save.enable = true;
+			bDisableFastReload = false;
+			chrDisableReloadToLocation = false;
+		break;
+		
+		case "SCQ_Prytki_Trah_4":
+			dialog.text = "Это было великолепно!";
+			link.l1 = "Я рад"+GetSexPhrase("","а")+", киска. Мне тоже понравилось.";
+			link.l1.go = "exit";
+			LAi_CharacterDisableDialog(npchar);
+		break;
+		
+		case "SCQ_Prytki_Ooops_Eto_Lovushka":
+			dialog.text = "";
+			link.l1 = "Ну вот мы и одни... Так о какой награде ты говорила?";
+			link.l1.go = "SCQ_Prytki_Ooops_Eto_Lovushka_2";
+			npchar.lifeday = 0;
+		break;
+		
+		case "SCQ_Prytki_Ooops_Eto_Lovushka_2":
 			DialogExit();
-			sld = CharacterFromID(pchar.DevushkaVPrytki);
-			LAi_SetActorType(sld);
-		break;*/
+			DoQuestCheckDelay("SCQ_Prytki_V_Komnate_Ooops_Eto_Lovushka", 1.2);
+			LAi_SetActorType(pchar);
+			LAi_ActorTurnToLocator(PChar, "reload", "reload1");
+		break;
+		
+		case "SCQ_Prytki_Ooops_Eto_Lovushka_3":
+			dialog.text = "Эй, "+GetSexPhrase("мамонт вонючий","зайчик")+", отдавай всё ценное, что у тебя есть. А не то пожалеешь.";
+			link.l1 = "Ах, вот как... Такого я не ожидал"+GetSexPhrase("","а")+"... Ну что же, вы сами напросились!";
+			link.l1.go = "SCQ_Prytki_Ooops_Eto_Lovushka_4";
+		break;
+		
+		case "SCQ_Prytki_Ooops_Eto_Lovushka_4":
+			DialogExit();
+			for (i=1; i<=2; i++)
+			{
+				sld = CharacterFromID("Bandit_Prytki_"+i);
+				LAi_SetWarriorType(sld);
+				LAi_group_MoveCharacter(sld, "EnemyFight");
+			}
+			LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+			LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);			//true - если помирить
+			LAi_group_SetCheck("EnemyFight", "SCQ_Prytki_V_Komnate_Final");
+			LAi_SetFightMode(pchar, true);
+		break;
 
 		//жещина разыскивает мужа-торговца
 		case "SCQ_Hasband":

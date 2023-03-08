@@ -776,7 +776,8 @@ void SaveStartGameParam()
 	optref.StartGameParam.bModDamage      		 = bModDamage;
 	optref.StartGameParam.bShootOnlyEnemy		 = bShootOnlyEnemy;
 	optref.StartGameParam.iStealthSystem         = iStealthSystem;
-    // иначе сброс галки может быть optref.StartGameParam.bWorldAlivePause       = bWorldAlivePause;
+    // иначе сброс галки может быть 
+	optref.StartGameParam.bWorldAlivePause       = bWorldAlivePause;
 
     optref.StartGameParam.HeroType         = NullCharacter.HeroParam.HeroType;
     optref.StartGameParam.Nation           = NullCharacter.HeroParam.Nation;
@@ -899,7 +900,7 @@ void LoadStartGameParam()
     }
     if (CheckAttribute(optref, "StartGameParam.bWorldAlivePause"))
 	{
-    	//bWorldAlivePause = sti(optref.StartGameParam.bWorldAlivePause);
+    	bWorldAlivePause = sti(optref.StartGameParam.bWorldAlivePause);
     }
     //////
     if (CheckAttribute(optref, "StartGameParam.HeroType"))

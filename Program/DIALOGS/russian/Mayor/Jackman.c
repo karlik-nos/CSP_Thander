@@ -216,7 +216,7 @@ void ProcessDialogEvent()
         case "I_know_you_good":
             dialog.text = NPCStringReactionRepeat(GetFullName(pchar) + ", рад тебя видеть! Зачем пожаловал"+ GetSexPhrase("","а") +" на этот раз?",
                          "Ну что тебе ещё?", "Долго это будет продолжаться? Если тебе делать нечего, не отвлекай других!",
-                         "Ты "+ GetSexPhrase("хороший капер","хорошая девушка") +", поэтому живи пока. Но общаться и разговаривать с тобой я больше не желаю.", "repeat", 10, npchar, Dialog.CurrentNode);
+                         "Ты "+ GetSexPhrase("хороший капер","хорошая девушка") +", поэтому живи пока. Но общаться и разговаривать с тобой я больше не желаю.", "repeat", 1, npchar, Dialog.CurrentNode);
 			link.l1 = HeroStringReactionRepeat("Да, собственно, просто так заглянул"+ GetSexPhrase("","а") +", проведать. Ничего по делу нет.",
                                                "Ничего, просто так...",
                                                "Хорошо, Джекмен, извини...",
@@ -594,7 +594,7 @@ void ProcessDialogEvent()
 			dialog.text = NPCStringReactionRepeat("М-да, знаменитое стало корыто, что и говорить... А тебе-то зачем понадобилась эта шебека?",
 				"Мы уже говорили об этой шебеке.",
 				"Опять про то же?",
-                "Что?! Опять?! Ну с меня хватит...", "repeat", 10, npchar, Dialog.CurrentNode);
+                "Что?! Опять?! Ну с меня хватит...", "repeat", 1, npchar, Dialog.CurrentNode);
 			link.l1 = HeroStringReactionRepeat("Да видишь ли, очень ей интересуются одна группа товарищей...",
 				"Да, Джекмен, верно.",
                 "Хм, ноты попутал"+ GetSexPhrase("","а") +", пардон...",
