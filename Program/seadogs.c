@@ -234,19 +234,6 @@ void ProcessVersionCheck() // boal 271004
 				SetArraySize(&Items,ITEMS_QUANTITY);
 				SetArraySize(&itemModels,ITEMS_QUANTITY);
 
-				ref itm;
-				makeref(itm,Items[n]);
-				itm.id = "Joker";	// Джокер
-				itm.groupID = TALISMAN_ITEM_TYPE;
-				itm.name = "itmname_Joker";
-				itm.describe = "itmdescr_Joker";
-				itm.picIndex = 7;
-				itm.picTexture = "ITEMS_20";
-				itm.price = 25000;
-				itm.weight = 0.5;
-				itm.ItemType = "QUESTITEMS";
-				n++;
-			
 				makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
 				itm.id = "PKM_SvtvA_amulet";	//Амулет главного сатаниста
 				itm.name = "itmname_PKM_SvtvA_amulet";
