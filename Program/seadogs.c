@@ -233,7 +233,8 @@ void ProcessVersionCheck() // boal 271004
 			{
 				SetArraySize(&Items,ITEMS_QUANTITY);
 				SetArraySize(&itemModels,ITEMS_QUANTITY);
-
+				
+				ref itm;
 				makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
 				itm.id = "PKM_SvtvA_amulet";	//Амулет главного сатаниста
 				itm.name = "itmname_PKM_SvtvA_amulet";
