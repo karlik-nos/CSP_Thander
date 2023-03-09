@@ -8207,11 +8207,11 @@ void InitShips()
 	refship.Track2.Speed	= "0.15, 0.25";
 
 	//Nation
-    refship.nation.england	= true;
-	refship.nation.france	= true;
-	refship.nation.holland	= true;
+    refship.nation.england	= false;
+	refship.nation.france	= false;
+	refship.nation.holland	= false;
 	refship.nation.pirate	= true;
-	refship.nation.spain	= true;
+	refship.nation.spain	= false;
 
 	///////////////////////////////////////////////////////////////////////////
 	/// Poseidon			Линкор
