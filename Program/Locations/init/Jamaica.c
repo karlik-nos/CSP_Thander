@@ -1645,10 +1645,12 @@ int LocationInitJamaica(int n)
 	locations[n].citizens = true;
 	locations[n].soldiers = true;
 	LAi_LocationFantomsGen(&locations[n], true);
+	//==> флаг генерации квестодателя по розыску кэпов, int значение - шанс что сам заговорит(1-10)
+	locations[n].questSeekCap = 8;
 	//Sound
 	locations[n].type = "town";
 	Locations[n].townsack = "FortOrange";
-    locations[n].fastreload = "FortOrange";
+	locations[n].fastreload = "FortOrange";
 	locations[n].islandId = "Jamaica";
 	locations[n].houseEnc = true; //для энкаунтеров в домах
 	//Models
