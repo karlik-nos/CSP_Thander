@@ -1253,7 +1253,6 @@ void CreateIndianVillage(aref loc) // Sinistra: деревня индейцев
 			SetNPCQuestDate(loc, "indian_date");
 			int i, iMassive;
 			int iRank = sti(pchar.rank)+MOD_SKILL_ENEMY_RATE+5;
-			int grp = sti(loc.indianVillage);
 			int num = rand(2)+6; //кол-во 
 			ref chr;
 			string model[10];		
@@ -1265,8 +1264,8 @@ void CreateIndianVillage(aref loc) // Sinistra: деревня индейцев
 			model[5] = "Itza_6";
 			model[6] = "Itza_7";
 			model[7] = "Itza_8";
-			model[8] = "Itza_4";
-			model[9] = "Itza_6";
+			model[8] = "Miskito_1";
+			model[9] = "Miskito_2";
 			i = 0;
 			
 			while(i < num)
@@ -1274,7 +1273,7 @@ void CreateIndianVillage(aref loc) // Sinistra: деревня индейцев
 				iMassive = rand(9);
 				if (model[iMassive] != "")
 				{
-					chr = GetCharacter(NPC_GenerateCharacter("Itza"+grp+"_"+i, model[iMassive], "man", "man", iRank, SPAIN, 1, true, "native"));
+					chr = GetCharacter(NPC_GenerateCharacter("Itza"+"_"+i, model[iMassive], "man", "man", iRank, PIRATE, 1, false));
 					SetFantomParamFromRank(chr, iRank, true);
 					chr.name = GetIndianName(MAN);
 					chr.lastname = "";
@@ -1284,13 +1283,12 @@ void CreateIndianVillage(aref loc) // Sinistra: деревня индейцев
 					chr.dialog.Filename = "indian_dialog.c";
 					chr.dialog.currentnode = "IndianMan";
 					chr.greeting = "indian_male";
-					GiveItem2Character(chr, LinkRandPhrase("slave_01","slave_02","topor_05"));
-					EquipCharacterbyItem(chr, LinkRandPhrase("slave_01","slave_02","topor_05"));
-					chr.city = "SantaCatalina"; //НЗГ Санта-Каталины
-					if (grp == 3) chr.city = "Maracaibo"; // Addon 2016-1 Jason Пиратская линейка
+					GiveItem2Character(chr, LinkRandPhrase("topor_05","topor_05","topor_05"));
+					EquipCharacterbyItem(chr, LinkRandPhrase("topor_05","topor_05","topor_05"));
+					//chr.city = "SantaCatalina"; //НЗГ Санта-Каталины
 					PlaceCharacter(chr, "goto", "random");
 					LAi_SetWarriorType(chr);
-					LAi_group_MoveCharacter(chr, "ItzaGroup"+grp);
+					LAi_group_MoveCharacter(chr, "ItzaIndian");
 					i++;
 					model[iMassive] = "";
 				}
@@ -1299,41 +1297,37 @@ void CreateIndianVillage(aref loc) // Sinistra: деревня индейцев
 			{
 				for (i=1; i<=2; i++)
 				{
-					chr = GetCharacter(NPC_GenerateCharacter("ItzaSit"+grp+"_"+i, "Itza_"+(rand(7)+1), "man", "man", iRank, SPAIN, 1, true, "native"));
-					SetFantomParamFromRank(chr, iRank, true);
+					chr = GetCharacter(NPC_GenerateCharacter("ItzaSit"+"_"+i, "Itza_"+(rand(7)+1), "man", "man", iRank, PIRATE, 1, false));
+					SetFantomParamFromRank(chr, iRank, false);
 					chr.name = GetIndianName(MAN);
 					chr.lastname = "";
 					chr.dialog.Filename = "Indian_dialog.c";
 					chr.dialog.currentnode = "IndianMan";
 					chr.greeting = "indian_male";
-					GiveItem2Character(chr, LinkRandPhrase("slave_01","slave_02","topor_05"));
-					EquipCharacterbyItem(chr, LinkRandPhrase("slave_01","slave_02","topor_05"));
-					chr.city = "SantaCatalina"; //НЗГ Санта-Каталины
-					if (grp == 3) chr.city = "Maracaibo"; // Addon 2016-1 Jason Пиратская линейка
-					ChangeCharacterAddressGroup(chr, loc.id, "sit", "ground"+i);
+					//chr.city = "SantaCatalina"; //НЗГ Санта-Каталины
+					ChangeCharacterAddressGroup(chr, "IndianVillage", "sit", "ground"+i);
 					LAi_SetGroundSitType(chr);
-					LAi_group_MoveCharacter(chr, "ItzaGroup"+grp);
+					LAi_group_MoveCharacter(chr, "ItzaIndian");
 				}
 			}
 			for (i=1; i<=3; i++) // женщины
 			{
-				chr = GetCharacter(NPC_GenerateCharacter("ItzaWoman"+grp+"_"+i, "squaw_"+i, "woman", "woman_B", 10, ENGLAND, 1, true, "citizen"));
-				SetFantomParamFromRank(chr, 10, true);
+				chr = GetCharacter(NPC_GenerateCharacter("ItzaWoman"+"_"+i, "squaw_"+i, "woman", "towngirl3", 10, PIRATE, 1, false));
+				SetFantomParamFromRank(chr, 10, false);
 				chr.name = GetIndianName(WOMAN);
 				chr.lastname = "";
 				LAi_SetLoginTime(chr, 6.0, 21.99);
 				chr.dialog.Filename = "Indian_dialog.c";
 				chr.dialog.currentnode = "IndianWoman";
-				//chr.greeting = "cit_common";
+				chr.greeting = "cit_common";
 				RemoveAllCharacterItems(chr, true);
-				chr.city = "SantaCatalina"; //НЗГ Санта-Каталины
-				if (grp == 3) chr.city = "Maracaibo"; // Addon 2016-1 Jason Пиратская линейка
+				//chr.city = "SantaCatalina"; //НЗГ Санта-Каталины
 				PlaceCharacter(chr, "goto", "random");
 				LAi_SetCitizenType(chr);
-				LAi_group_MoveCharacter(chr, "ItzaGroup"+grp);
+				LAi_group_MoveCharacter(chr, "ItzaIndian");
 			}
-			LAi_group_SetLookRadius("ItzaGroup"+grp, 16);
-			LAi_group_SetHearRadius("ItzaGroup"+grp, 10);				
+			LAi_group_SetLookRadius("ItzaGroup", 16);
+			LAi_group_SetHearRadius("ItzaGroup", 10);				
 		}
 	}
 }
