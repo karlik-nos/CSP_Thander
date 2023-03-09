@@ -56,6 +56,7 @@ extern void InitCharactersTables();
 extern void InitCharactersNames();
 extern void InitPiratesNames();
 extern void InitGeneratorNames();
+extern void InitIndianNames();
 extern void CreateCharacters();
 
 extern void ActiveF4Control(); // boal debuger

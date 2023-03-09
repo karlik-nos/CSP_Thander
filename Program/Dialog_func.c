@@ -1194,3 +1194,12 @@ String ChangeNameCase(String _nameType, String _name, String _toCase)
 	return "";
 }
 // <-- Warship 07.08.09
+string GetIndianName(int Sex) //Jason имена индейцев
+{
+	string nameid;
+	
+	if (Sex == MAN) nameid = "l" + rand(99);
+	else nameid = "l" + (100+rand(68));
+
+	return Names.Indian.(nameId);
+}

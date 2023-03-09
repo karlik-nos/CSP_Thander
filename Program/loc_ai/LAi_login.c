@@ -253,6 +253,7 @@ void LAi_CharacterPostLogin(ref location)
 		CreateMayak(location);
 		CreateBrothels(location);
 		CreatePearlVillage(location);
+		CreateIndianVillage(location);
 		CreateInsideHouseEncounters(location);
 		CreateInsideResidenceEncounters(location);
 		CreateSkladInsideEncounters(location);

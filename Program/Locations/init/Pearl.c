@@ -1120,6 +1120,7 @@ int LocationInitPearl(int n)
 	Locations[n].id = "IndianVillage";
 	locations[n].id.label = "Village";
 	locations[n].image = "loading\jonny_load\outside\IndianVillage.tga";
+	locations[n].IndianVillage = true;
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Mein";
