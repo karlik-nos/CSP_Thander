@@ -1285,7 +1285,7 @@ void CreateIndianVillage(aref loc) // Sinistra: деревня индейцев
 					chr.greeting = "indian_male";
 					GiveItem2Character(chr, LinkRandPhrase("topor_05","topor_05","topor_05"));
 					EquipCharacterbyItem(chr, LinkRandPhrase("topor_05","topor_05","topor_05"));
-					//chr.city = "SantaCatalina"; //НЗГ Санта-Каталины
+					chr.city = "SantaCatalina"; //НЗГ Санта-Каталины
 					PlaceCharacter(chr, "goto", "random");
 					LAi_SetWarriorType(chr);
 					LAi_group_MoveCharacter(chr, "ItzaIndian");
@@ -1304,7 +1304,7 @@ void CreateIndianVillage(aref loc) // Sinistra: деревня индейцев
 					chr.dialog.Filename = "Indian_dialog.c";
 					chr.dialog.currentnode = "IndianMan";
 					chr.greeting = "indian_male";
-					//chr.city = "SantaCatalina"; //НЗГ Санта-Каталины
+					chr.city = "SantaCatalina"; //НЗГ Санта-Каталины
 					ChangeCharacterAddressGroup(chr, "IndianVillage", "sit", "ground"+i);
 					LAi_SetGroundSitType(chr);
 					LAi_group_MoveCharacter(chr, "ItzaIndian");
@@ -1321,13 +1321,22 @@ void CreateIndianVillage(aref loc) // Sinistra: деревня индейцев
 				chr.dialog.currentnode = "IndianWoman";
 				chr.greeting = "cit_common";
 				RemoveAllCharacterItems(chr, true);
-				//chr.city = "SantaCatalina"; //НЗГ Санта-Каталины
+				chr.city = "SantaCatalina"; //НЗГ Санта-Каталины
 				PlaceCharacter(chr, "goto", "random");
 				LAi_SetCitizenType(chr);
 				LAi_group_MoveCharacter(chr, "ItzaIndian");
 			}
 			LAi_group_SetLookRadius("ItzaGroup", 16);
-			LAi_group_SetHearRadius("ItzaGroup", 10);				
+			LAi_group_SetHearRadius("ItzaGroup", 10);
+			
+			chr = GetCharacter(NPC_GenerateCharacter("ItzaKrasavitsa", "TribeWife", "woman", "YokoDias", iRank, PIRATE, 1, false));
+			chr.name = "Шоко";
+			chr.lastname = "";
+			chr.dialog.Filename = "Indian_dialog.c";
+			chr.dialog.currentnode = "IndianWoman";
+			LAi_SetCitizenType(chr);
+			ChangeCharacterAddressGroup(chr, "IndianVillage", "quest", "teleport1");
+			
 		}
 	}
 }
