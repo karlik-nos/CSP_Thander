@@ -110,7 +110,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 
 		case "PKM_SvtvA_Ch1_4_Dobro":
-			dialog.text = "Хм, смотрю "+GetFullName(CharacterFromID("FortFrance_Priest"))+" действительно не зря поручил вам это дело...";
+			dialog.text = "Хм, смотрю, "+GetFullName(CharacterFromID("FortFrance_Priest"))+" действительно не зря поручил вам это дело...";
 			link.l1 = "Это ещё не всё. Обыскав тела нападавших, мне удалось найти на шее у каждого из них странные медальоны.";
 			link.l1.go = "PKM_SvtvA_Ch1_5_Dobro";
 		break;
@@ -167,6 +167,8 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			Group_SetType("PKM_SvtvA_Malta", "war");
 			Group_AddCharacter("PKM_SvtvA_Malta", "Maltese");
 			Group_SetTaskAttack("PKM_SvtvA_Malta", "PKM_SvtvA_TL");
+			SetCharacterGoods(sld, GOOD_FOOD, 500);
+			SetCharacterGoods(sld, GOOD_FRUITS, 700);
 
 			Group_SetGroupCommander("PKM_SvtvA_Malta", "Maltese");
 			Group_SetAddress("PKM_SvtvA_Malta", "SentMartin", "quest_ships", "Quest_ship_7");

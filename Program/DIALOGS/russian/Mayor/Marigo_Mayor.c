@@ -90,7 +90,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1 = "Благодарю, минхер.";
 			link.l1.go = "exit";
 			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_Gubernator_Final");
-			AddMoneyToCharacter(pchar, 50000);
+			AddMoneyToCharacter(pchar, 30000);
             AddCharacterExpToSkill(pchar, "Leadership", 200);
         break;
 		

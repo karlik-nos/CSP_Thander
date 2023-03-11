@@ -106,8 +106,8 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			AddDialogExitQuest("PKM_SvtvA_Нападение_в_церкви");
 		break;
 		case "PKM_SvtvA_Ch3_1":
-			AddMoneyToCharacter(pchar, 20000);
-			AddCharacterExpToSkill(pchar, "Leadership", 50);
+			AddMoneyToCharacter(pchar, 50000);
+			AddCharacterExpToSkill(pchar, "Leadership", 100);
 			dialog.text = "О, слава Богу! Вы сделали это! Я прикажу отслужить службу во имя этого знаменательного события!";
 			link.l1 = "А теперь, если простите меня, мне нужно идти.";
 			link.l1.go = "exit";

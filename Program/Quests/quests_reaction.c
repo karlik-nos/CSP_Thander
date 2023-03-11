@@ -10681,6 +10681,46 @@ void QuestComplete(string sQuestName, string qname)
 
 //========================  Квест "Странные вещи творятся на архипелаге"  =============================
 
+		case "PKM_SvtvA_SpawnQuest":
+			//******Странные вещи творятся на архипелаге******
+			//Девушки ищут детей
+			sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA_Devushka_1", "girl_9", "woman", "woman", 1, HOLLAND, -1, false));
+			sld.name	= "Жаннеке";
+			sld.lastname	= "Блинкерхоф";
+			sld.Dialog.Filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "First time";
+			LAi_SetStayType(sld);
+			LAi_SetLoginTime(sld, 6.0, 21.99);
+			LAi_SetImmortal(sld, true);
+			sld.City = "Marigo";
+			LAi_group_MoveCharacter(sld, "HOLLAND_CITIZENS");
+			ChangeCharacterAddressGroup(sld,"Marigo_town","quest","quest4");
+			
+			sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA_Devushka_2", "girl_6", "woman", "woman", 1, HOLLAND, -1, false));
+			sld.name	= "Райан";
+			sld.lastname	= "Леккерс";
+			sld.Dialog.Filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "First time";
+			LAi_SetStayType(sld);
+			LAi_SetLoginTime(sld, 6.0, 21.99);
+			LAi_SetImmortal(sld, true);
+			sld.City = "Marigo";
+			LAi_group_MoveCharacter(sld, "HOLLAND_CITIZENS");
+			ChangeCharacterAddressGroup(sld,"Marigo_town","quest","quest5");
+			
+			sld = GetCharacter(NPC_GenerateCharacter("PKM_SvtvA_Devushka_3", "girl_1", "woman", "woman", 1, HOLLAND, -1, false));
+			sld.name	= "Лизбет";
+			sld.lastname	= "Шефольд";
+			sld.Dialog.Filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+			sld.dialog.currentnode = "First time";
+			LAi_SetStayType(sld);
+			LAi_SetLoginTime(sld, 6.0, 21.99);
+			LAi_SetImmortal(sld, true);
+			sld.City = "Marigo";
+			LAi_group_MoveCharacter(sld, "HOLLAND_CITIZENS");
+			ChangeCharacterAddressGroup(sld,"Marigo_town","quest","quest3");
+		break;
+
 		case "PKM_SvtvA_SprositKapitanov_v_more":
 			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_SprositKapitanov_v_more");
 		break;
