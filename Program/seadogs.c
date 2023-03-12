@@ -182,9 +182,76 @@ void ProcessVersionCheck() // boal 271004
 			rLoc = LocFromID("FortOrange_church");
 			rLoc.reload.l1.emerge = "reload17";
 
+			rLoc = LocFromID("Shore35");//фикс локаторов перехода ФортОранжа для квестов без НИ
+			rLoc.reload.l1.name = "gate_back";
+			rLoc = LocFromID("FortOrange_ExitTown");
+			rLoc.reload.l2.name = "reload3";
+			rLoc.reload.l2.emerge = "gate_back";
+			rLoc = LocFromID("FortOrange_town");
+			rLoc.questSeekCap = 8;
+			rLoc.reload.l1.name = "gate_back";
+			rLoc.reload.l1.emerge = "reload3";
+			rLoc.reload.l2.emerge = "gate_back";
+
+			//новое ПЛЖ
+			rLoc = LocFromID("Shore51");//коронадо
+			rLoc.reload.l1.go = "Pearl_town_2";
+			rLoc.reload.l1.emerge = "reload2";
+			rLoc.reload.l1.label = "Pearl";
+			rLoc.locators_radius.reload.reload2_back = 2;
+
+			rLoc = LocFromID("Pearl_Jungle_06");
+			rLoc.reload.l1.go = "Pearl_Jungle_07";
+			rLoc.reload.l1.emerge = "reload2";
+			rLoc.reload.l1.label = "Jungle";
+			rLoc.reload.l3.go = "Pearl_Jungle_08";
+			rLoc.reload.l3.emerge = "reload2";
+			rLoc.reload.l3.label = "jungle";
+
+			rLoc = LocFromID("Pearl_CaveEntrance");
+			rLoc.reload.l1.emerge = "reload1";
+
+			rLoc = LocFromID("Pearl_town_2");
+			rLoc.image = "loading\jonny_load\outside\Pearl.tga";
+			rLoc.filespath.models = "locations\Outside\Villagepearl";
+			rLoc.models.always.pirateFort = "Pearl";
+			rLoc.models.always.locators = "Pearl_locators";
+			rLoc.models.always.grassPatch = "Pearl_grass";
+			rLoc.models.day.charactersPatch = "Pearl_patch";
+			rLoc.models.day.fonars = "Pearl_fd";
+			rLoc.models.night.charactersPatch = "Pearl_patch";
+			rLoc.models.night.fonars = "Pearl_fn";
+			rLoc.reload.l1.go = "Pearl_Jungle_07";
+			rLoc.reload.l2.name = "reload2_back";
+			rLoc.reload.l2.go = "Shore51";
+			rLoc.reload.l2.label = "Jungle";
+			rLoc.reload.l2.autoreload = 1;
+			rLoc.locators_radius.reload.reload2_back = 2;
+			rLoc.reload.l3.name = "reloadH2";
+			rLoc.reload.l3.go = "PearlTown2_Townhall";
+			rLoc.reload.l4.name = "reloadH5";
+			rLoc.reload.l4.go = "PearlTown2_House6";
+			rLoc.reload.l5.name = "reloadH4";
+			rLoc.reload.l5.go = "PearlTown2_HK2";
+			rLoc.reload.l6.name = "reloadH1";
+			rLoc.reload.l6.go = "PearlTown2_Hut1";
+			rLoc.reload.l7.name = "reloadH3";
+			rLoc.reload.l7.go = "PearlTown2_Hut1";
+			rLoc.reload.l7.emerge = "reload2";
+			rLoc.reload.l7.label = "house";
+
+			rLoc = LocFromID("PearlTown2_Townhall");
+			rLoc.reload.l1.emerge = "reloadH2";
+
+			rLoc = LocFromID("PearlTown2_House6");
+			rLoc.reload.l1.emerge = "reloadH5";
+
+			rLoc = LocFromID("Temple_h");//фикс травы у Кхаэль Роа
+			rLoc.models.always.grassPatch.texture = "grass\algaeU1.tga.tx";
+
 			ref sld = characterFromID("Pirates_trader");//фикс торговцев-барменов без НИ
 			LAi_SetOwnerType(sld);
-			sld = characterFromID("Dominica_trader");//в ините есть, но непися не находит...
+			sld = characterFromID("Dominica_trader");//в ините есть, но непися не находит...	это странно.
 			LAi_SetOwnerType(sld);
 			sld = characterFromID("FortOrange_trader");
 			LAi_SetOwnerType(sld);
@@ -194,13 +261,21 @@ void ProcessVersionCheck() // boal 271004
 			LAi_SetOwnerType(sld);
 			sld = characterFromID("PuertoPrincipe_trader");
 			LAi_SetOwnerType(sld);
+
 			//погода обновится сама
-			//инит кораблей обновится сам
+
+			//инит кораблей обновится сам?
+
 			for(int j=0;j<REAL_SHIPS_QUANTITY;j++)	//фикс без НИ ватерлинии и числа пушек у кораблей, уже сгенерировавшихся
 			{
+
 				if (!checkattribute(RealShips[j], "basetype")) continue;
+				if (sti(RealShips[j].Class) == 7) RealShips[j].CabinType = "New_Cabin3";//каюты тартанам, заводы - рабочим
 				if (sti(RealShips[j].basetype) == SHIP_LUGGER) RealShips[j].WaterLine = -0.35;
 				if (sti(RealShips[j].basetype) == SHIP_NEPTUN) RealShips[j].WaterLine = -0.4;
+				if (sti(RealShips[j].basetype) == SHIP_REQUIN) RealShips[j].WaterLine = -0.4;
+				if (sti(RealShips[j].basetype) == SHIP_LUGGER_H) RealShips[j].hullNums = 5;
+
 				if (sti(RealShips[j].basetype) == SHIP_HERCULES)
 				{
 					RealShips[j].Cannons = sti(RealShips[j].Cannons)-4;
@@ -230,10 +305,10 @@ void ProcessVersionCheck() // boal 271004
 			}
 
 			int n = GetArraySize(&Items);
-			if (n != ITEMS_QUANTITY)//+6 предметов для странных дел
+			if (n != ITEMS_QUANTITY)//+5 предметов для странных дел
 			{
 				SetArraySize(&Items,ITEMS_QUANTITY);
-				SetArraySize(&itemModels,ITEMS_QUANTITY);
+				SetArraySize(&itemModels,ITEMS_QUANTITY);//ХЗ, что это...
 				
 				ref itm;
 				makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
@@ -287,34 +362,432 @@ void ProcessVersionCheck() // boal 271004
 				itm.price = 5000;
 				itm.weight = 0.7;
 				n++;
-
-				//PKMQuestsInit();
-
-				//Джеки
-				sld = GetCharacter(NPC_GenerateCharacter("MG_Obezyana", "Koata1", "monkey", "monkey", 1, PIRATE, -1, false));
-				LAi_SetHP(sld, 1.0, 1.0);
-				sld.name = "Джеки";
-				sld.lastname = "";
-				LAi_SetWarriorType(sld);
-				//LAi_SetMonkeyType(sld);
-				LAi_CharacterDisableDialog(sld);
-				ChangeCharacterAddressGroup(sld, "Guadeloupe_deadlock", "monsters", "monster6");
-
-				PChar.quest.MG_ObezyanaKill.win_condition.l1 = "NPC_Death";
-				PChar.quest.MG_ObezyanaKill.win_condition.l1.character = "MG_Obezyana";
-				PChar.quest.MG_ObezyanaKill.win_condition = "MG_ObezyanaKill";
-
-				sld = characterFromID("PortRoyal_Priest");
-				sld.name	= "отец Бернард";
-				sld.lastname = "";
-				sld.model	= "Priest_2";
-				sld = characterFromID("FortFrance_Priest");
-				sld.name	= "отец Клермон";
-				sld.lastname = "";
-				sld = characterFromID("SanJuan_Priest");
-				sld.name	= "падре Домингес";
-				sld.lastname = "";
 			}
+			//Джеки
+			sld = GetCharacter(NPC_GenerateCharacter("MG_Obezyana", "Koata1", "monkey", "monkey", 1, PIRATE, -1, false));
+			LAi_SetHP(sld, 1.0, 1.0);
+			sld.name = "Джеки";
+			sld.lastname = "";
+			LAi_SetWarriorType(sld);
+			//LAi_SetMonkeyType(sld);
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, "Guadeloupe_deadlock", "monsters", "monster6");
+
+			PChar.quest.MG_ObezyanaKill.win_condition.l1 = "NPC_Death";
+			PChar.quest.MG_ObezyanaKill.win_condition.l1.character = "MG_Obezyana";
+			PChar.quest.MG_ObezyanaKill.win_condition = "MG_ObezyanaKill";
+
+			sld = characterFromID("PortRoyal_Priest");
+			sld.name	= "отец Бернард";
+			sld.lastname = "";
+			sld.model	= "Priest_2";
+			sld = characterFromID("FortFrance_Priest");
+			sld.name	= "отец Клермон";
+			sld.lastname = "";
+			sld = characterFromID("SanJuan_Priest");
+			sld.name	= "падре Домингес";
+			sld.lastname = "";
+
+			PKMQuestsInit();
+
+			n = GetArraySize(&locations);	//nLocationsNum	//старое число локаций
+			SetArraySize(&locations, 900);	//MAX_LOCATIONS
+
+			Locations[n].id = "New_Cabin3"; //НОВАЯ КАЮТА
+			Locations[n].id.label = "cabine";
+			Locations[n].filespath.models = "locations\decks\nc_cabin3";
+		    Locations[n].image = "loading\jonny_load\inside ship\nc_cabin3.tga";
+			locations[n].type = "boarding_cabine";
+			Locations[n].models.always.l1 = "nc_cabin3";
+			Locations[n].models.always.window = "nc_cabin3_glass";
+			Locations[n].models.always.window.tech = "LocationWindows";
+			Locations[n].models.always.window.level = 65531;
+			Locations[n].models.day.vlight = "nc_cabin3_rays";
+			Locations[n].models.day.vlight.uvslide.v0 = -0.05;
+		    Locations[n].models.day.vlight.uvslide.v1 = 0.0;
+			Locations[n].models.day.vlight.tech = "LocationWaterFall";
+			Locations[n].models.day.vlight.level = 99950;
+			Locations[n].models.day.locators = "nc_cabin3_ld";
+			Locations[n].models.day.charactersPatch = "nc_cabin3_pd";
+			Locations[n].models.night.locators = "nc_cabin3_ln";
+			Locations[n].models.night.charactersPatch = "nc_cabin3_pn";
+			Locations[n].environment.sea = "true";
+			Locations[n].environment.weather = "true";
+			Locations[n].locators_radius.reload.reload1 = 0.5;
+		    Locations[n].locators_radius.rld.loc0 = 0.5;
+		    Locations[n].locators_radius.rld.loc1 = 0.5;
+		    Locations[n].locators_radius.box.box1 = 0.6;
+		    Locations[n].boarding = "true";
+			Locations[n].boarding.nextdeck = "";
+			Locations[n].camshuttle = 1;
+			Locations[n].boarding.locatorNum = 1;
+			Locations[n].CabinType = true;
+			locations[n].environment.weather.rain = false;
+			Locations[n].boarding.Loc.Hero = "loc0";
+		    Locations[n].boarding.Loc.Capt = "loc1";
+			n++;
+
+			Locations[n].id = "My_New_Cabin3"; // peace
+			Locations[n].id.label = "cabine";
+			Locations[n].filespath.models = "locations\decks\nc_cabin3";
+		    Locations[n].image = "loading\jonny_load\inside ship\nc_cabin3.tga";
+			locations[n].type = "ship_cabin"; // nc_mod
+			Locations[n].models.always.l1 = "nc_cabin3";
+			Locations[n].models.always.window = "nc_cabin3_glass";
+			Locations[n].models.always.window.tech = "LocationWindows";
+			Locations[n].models.always.window.level = 65531;
+			Locations[n].models.day.vlight = "nc_cabin3_rays";
+			Locations[n].models.day.vlight.uvslide.v0 = -0.05;
+		    Locations[n].models.day.vlight.uvslide.v1 = 0.0;
+			Locations[n].models.day.vlight.tech = "LocationWaterFall";
+			Locations[n].models.day.vlight.level = 99950;
+			Locations[n].models.day.locators = "nc_cabin3_ld";
+			Locations[n].models.day.charactersPatch = "nc_cabin3_pd";
+			Locations[n].models.night.locators = "nc_cabin3_ln";
+			Locations[n].models.night.charactersPatch = "nc_cabin3_pn";
+			Locations[n].environment.sea = "true";
+			Locations[n].environment.weather = "true";
+			locations[n].box1 = Items_MakeTime(0, 1, 1, 2003);
+			Locations[n].locators_radius.reload.reload1 = 0.5;
+		    Locations[n].locators_radius.rld.loc0 = 0.5;
+		    Locations[n].locators_radius.rld.loc1 = 0.5;
+		    Locations[n].locators_radius.box.box1 = 0.6;
+		    LAi_LocationFightDisable(&Locations[n], true);
+		    Locations[n].reload.l1.name = "reload1";
+			Locations[n].reload.l1.go = "My_Deck";
+			Locations[n].reload.l1.emerge = "reload1";
+			Locations[n].reload.l1.label = "Deck.";
+			Locations[n].boarding = "true";
+			Locations[n].camshuttle = 1;
+			locations[n].environment.weather.rain = false;
+			n++;
+
+			locations[n].id = "Pearl_Jungle_07";//+9 локаций в ПЛЖ
+			locations[n].id.label = "Jungle";
+			locations[n].image = "loading\jonny_load\jungle\Jungle10.tga";
+			locations[n].type = "jungle";
+			locations[n].islandId = "Mein";
+			locations[n].islandIdAreal = "Pearl";
+			locations[n].filespath.models = "locations\Outside\Jungles\Jungle10";
+			Locations[n].models.always.jungle = "jungle10";
+			Locations[n].models.always.locators = "jungle10_locators";
+			Locations[n].models.always.grassPatch = "jungle10_grass";
+			Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";
+			Locations[n].models.always.l1 = "plan1";
+			Locations[n].models.always.l1.level = 9;
+			Locations[n].models.always.l1.tech = "DLightModel";
+			Locations[n].models.always.l2 = "plan2";
+			Locations[n].models.always.l2.level = 8;
+			Locations[n].models.always.l2.tech = "DLightModel";
+			Locations[n].models.always.l3 = "plan3";
+			Locations[n].models.always.l3.level = 7;
+			Locations[n].models.always.l3.tech = "DLightModel";
+			locations[n].models.day.charactersPatch = "jungle10_patch";
+			locations[n].models.night.charactersPatch = "jungle10_patch";
+			locations[n].environment.weather = "true";
+			locations[n].environment.sea = "false";
+			locations[n].reload.l1.name = "reload1_back";
+			locations[n].reload.l1.go = "Pearl_town_2";
+			locations[n].reload.l1.emerge = "reload1";
+			locations[n].reload.l1.autoreload = "1";
+			locations[n].reload.l1.label = "Village";
+			locations[n].locators_radius.reload.reload1_back = 2;
+			locations[n].reload.l2.name = "reload2_back";
+			locations[n].reload.l2.go = "Pearl_Jungle_06";
+			locations[n].reload.l2.emerge = "reload1";
+			locations[n].reload.l2.autoreload = "1";
+			locations[n].reload.l2.label = "Jungle";
+			locations[n].locators_radius.reload.reload2_back = 2;
+			n++;
+		
+			locations[n].id = "Pearl_Jungle_08";
+			locations[n].id.label = "Jungle";
+			locations[n].image = "loading\jonny_load\jungle\Jungle7.tga";
+			locations[n].DisableEncounters = true;
+			locations[n].type = "jungle";
+			locations[n].islandId = "Mein";
+			locations[n].islandIdAreal = "Pearl";
+			locations[n].filespath.models = "locations\Outside\Jungles\Jungle7";
+			Locations[n].models.always.jungle = "jungle7";
+			Locations[n].models.always.locators = "jungle7_locators";
+			Locations[n].models.always.grassPatch = "jungle7_grass";
+			Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";
+			Locations[n].models.always.l1 = "plan1";
+			Locations[n].models.always.l1.level = 9;
+			Locations[n].models.always.l1.tech = "DLightModel";
+			Locations[n].models.always.l2 = "plan2";
+			Locations[n].models.always.l2.level = 8;
+			Locations[n].models.always.l2.tech = "DLightModel";
+			Locations[n].models.always.l3 = "plan3";
+			Locations[n].models.always.l3.level = 7;
+			Locations[n].models.always.l3.tech = "DLightModel";
+			locations[n].models.day.charactersPatch = "jungle7_patch";
+			locations[n].models.night.charactersPatch = "jungle7_patch";
+			locations[n].environment.weather = "true";
+			locations[n].environment.sea = "false";
+			locations[n].reload.l1.name = "reload2_back";
+			locations[n].reload.l1.go = "Pearl_Jungle_06";
+			locations[n].reload.l1.emerge = "reload3";
+			locations[n].reload.l1.autoreload = "1";
+			locations[n].reload.l1.label = "Jungle";
+			locations[n].locators_radius.reload.reload2_back = 2;
+			locations[n].reload.l2.name = "reload1_back";
+			locations[n].reload.l2.go = "Pearl_Jungle_09";
+			locations[n].reload.l2.emerge = "reload1";
+			locations[n].reload.l2.autoreload = "1";
+			locations[n].reload.l2.label = "Jungle";
+			locations[n].locators_radius.reload.reload1_back = 2; 
+			locations[n].reload.l3.name = "reload3_back";
+			locations[n].reload.l3.go = "IndianVillage";
+			locations[n].reload.l3.emerge = "reload1";
+			locations[n].reload.l3.autoreload = "1";
+			locations[n].reload.l3.label = "IndianVillage";
+			locations[n].locators_radius.reload.reload3_back = 2;
+			n++;
+		
+			locations[n].id = "Pearl_Jungle_09";
+			locations[n].id.label = "Jungle";
+			locations[n].image = "loading\jonny_load\jungle\Jungle9.tga";
+			locations[n].DisableEncounters = true;
+			locations[n].type = "jungle";
+			locations[n].islandId = "Mein";
+			locations[n].islandIdAreal = "Pearl";
+			locations[n].filespath.models = "locations\Outside\Jungles\Jungle9";
+			Locations[n].models.always.jungle = "jungle9";
+			Locations[n].models.always.nowall = "jungle9_nowall";
+			Locations[n].models.always.jungle9_wall = "jungle9_wall";
+			Locations[n].models.always.locators = "jungle9_locators";		
+			Locations[n].models.always.grassPatch = "jungle9_grass";
+			Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";	
+			Locations[n].models.always.l1 = "plan1";
+			Locations[n].models.always.l1.level = 9;
+			Locations[n].models.always.l1.tech = "DLightModel";
+			Locations[n].models.always.l2 = "plan2";
+			Locations[n].models.always.l2.level = 8;
+			Locations[n].models.always.l2.tech = "DLightModel";
+			Locations[n].models.always.l3 = "plan3";
+			Locations[n].models.always.l3.level = 7;
+			Locations[n].models.always.l3.tech = "DLightModel";	
+			locations[n].models.day.charactersPatch = "jungle9_patch2";
+			locations[n].models.night.charactersPatch = "jungle9_patch2";	
+			locations[n].environment.weather = "true";
+			locations[n].environment.sea = "false";
+			locations[n].reload.l1.name = "reload1_back";
+			locations[n].reload.l1.go = "Pearl_Jungle_08";
+			locations[n].reload.l1.emerge = "reload1";
+			locations[n].reload.l1.autoreload = "1";
+			locations[n].reload.l1.label = "Jungle";
+			locations[n].locators_radius.reload.reload1_back = 2;
+			locations[n].private1.key = "keyMorgan";
+			locations[n].private1.key.delItem = true;
+			locations[n].private1.items.Map_Best = 1;
+			locations[n].private1.items.icollection = 1;
+			locations[n].private1.items.jewelry9 = 500;
+			locations[n].private1.items.Map_Best = 1;
+			n++;
+		
+			locations[n].id = "PearlTown2_HK2";
+			locations[n].filespath.models = "locations\inside\Smallhome";
+			locations[n].id.label = "House";
+			locations[n].image = "loading\jonny_load\inside\Smallhome_k2.tga";
+			locations[n].MustSetReloadBack = true;
+			locations[n].townsack = "Pearl_town_2";
+			locations[n].lockWeather = "Inside";
+			locations[n].type = "house";
+			locations[n].islandId = "Mein";
+			locations[n].islandIdAreal = "Pearl";
+			locations[n].models.always.locators = "SH_l";
+			locations[n].models.always.tavern = "SH";
+			locations[n].models.always.tavern.level = 65538;
+			locations[n].models.always.window = "SH_w";
+			locations[n].models.always.window.tech = "LocationWindows";
+			locations[n].models.always.window.level = 65539;
+			locations[n].models.always.back = "..\inside_back";
+			locations[n].models.always.back.level = 65529;
+			locations[n].models.day.charactersPatch = "SH_p";
+			locations[n].models.night.charactersPatch = "SH_p";
+			locations[n].environment.weather = "true";
+			locations[n].environment.sea = "false";
+			locations[n].reload.l1.name = "reload1";
+			locations[n].reload.l1.go = "Pearl_town_2";
+			locations[n].reload.l1.emerge = "reloadH4";
+			locations[n].reload.l1.autoreload = "0";
+			locations[n].reload.l1.label = "Street";
+			LAi_LocationFightDisable(&locations[n], true);
+			n++;
+		
+			locations[n].id = "PearlTown2_Hut1";
+			locations[n].id.label = "House";
+			locations[n].image = "loading\jonny_load\inside\Hut1_KNS.tga";
+			locations[n].MustSetReloadBack = true;
+			locations[n].townsack = "LaVega";
+			locations[n].lockWeather = "Inside";
+			locations[n].islandId = "Hispaniola";
+			locations[n].type = "house";
+			locations[n].fastreload = "LaVega";
+			locations[n].filespath.models = "locations\inside\Hut1_KNS";
+			locations[n].models.always.locators = "Hut1_locators";
+			locations[n].models.always.tavern = "Hut1";
+			locations[n].models.always.tavern.level = 65538;
+			locations[n].models.always.window = "Hut1_window";
+			locations[n].models.always.window.tech = "LocationWindows";
+			locations[n].models.always.window.level = 65539;
+			locations[n].models.always.back = "..\inside_back";
+			locations[n].models.always.back.level = 65529;
+			locations[n].models.day.charactersPatch = "Hut1_patch";
+			locations[n].models.night.charactersPatch = "Hut1_patch";
+			locations[n].environment.weather = "true";
+			locations[n].environment.sea = "false";
+			Locations[n].QuestlockWeather = "23 Hour";
+			locations[n].reload.l1.name = "reload1";
+			locations[n].reload.l1.go = "Pearl_town_2";
+			locations[n].reload.l1.emerge = "reloadH1";
+			locations[n].reload.l1.autoreload = "0";
+			locations[n].reload.l1.label = "Street";
+			locations[n].reload.l2.name = "reload2";
+			locations[n].reload.l2.go = "Pearl_town_2";
+			locations[n].reload.l2.emerge = "reloadH3";
+			locations[n].reload.l2.autoreload = "0";
+			locations[n].reload.l2.label = "Street";
+			n++;
+		
+			Locations[n].id = "IndianVillage";
+			locations[n].id.label = "Village";
+			locations[n].image = "loading\jonny_load\outside\IndianVillage.tga";
+			locations[n].IndianVillage = true;
+			locations[n].type = "jungle";
+			locations[n].islandId = "Mein";
+			locations[n].islandIdAreal = "IndianVillage";
+			Locations[n].filespath.models = "locations\Outside\IndianVillage";
+			Locations[n].models.always.pirateFort = "village";
+			Locations[n].models.always.locators = "village_locators";
+			Locations[n].models.always.grassPatch = "village_grass";
+			Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";
+			Locations[n].models.always.l1 = "plan1";
+			Locations[n].models.always.l1.level = 9;
+			Locations[n].models.always.l1.tech = "DLightModel";
+			Locations[n].models.always.l2 = "plan2";
+			Locations[n].models.always.l2.level = 8;
+			Locations[n].models.always.l2.tech = "DLightModel";
+			Locations[n].models.always.l3 = "plan3";
+			Locations[n].models.always.l3.level = 7;
+			Locations[n].models.always.l3.tech = "DLightModel";
+			locations[n].models.day.charactersPatch = "village_patch";
+			locations[n].models.night.charactersPatch = "village_patch";
+			locations[n].environment.weather = "true";
+			locations[n].environment.sea = "false";
+			Locations[n].reload.l1.name = "reload1_back";
+			Locations[n].reload.l1.go = "Pearl_Jungle_08";
+			Locations[n].reload.l1.emerge = "reload3";
+			Locations[n].reload.l1.label = "Jungle";
+			Locations[n].reload.l1.autoreload = 1;
+			Locations[n].locators_radius.reload.reload1_back = 2;
+			Locations[n].reload.l2.name = "reload2";
+			Locations[n].reload.l2.go = "Indian_Hut1";
+			Locations[n].reload.l2.emerge = "reload1";
+			Locations[n].reload.l2.label = "Hut";
+			Locations[n].reload.l2.autoreload = 0;
+			Locations[n].reload.l3.name = "reload3";
+			Locations[n].reload.l3.go = "Indian_Hut2";
+			Locations[n].reload.l3.emerge = "reload1";
+			Locations[n].reload.l3.label = "Hut";
+			Locations[n].reload.l3.autoreload = 0;
+			Locations[n].reload.l4.name = "reload4";
+			Locations[n].reload.l4.go = "Indian_Hut3";
+			Locations[n].reload.l4.emerge = "reload1";
+			Locations[n].reload.l4.label = "Hut";
+			Locations[n].reload.l4.autoreload = 0;
+			n++;
+		
+			locations[n].id = "Indian_Hut1";
+			locations[n].id.label = "Village";
+			locations[n].image = "loading\jonny_load\inside\IndianHut1.tga";
+			locations[n].townsack = "Pearl_town_2";
+			locations[n].lockWeather = "Inside";
+			locations[n].type = "Hut";
+			locations[n].islandId = "Mein";
+			locations[n].islandIdAreal = "IndianVillage";
+			locations[n].filespath.models = "locations\inside\HutIndian1";
+			locations[n].models.always.mediumhouse01 = "Hut_1_inside";
+			locations[n].models.always.mediumhouse01.level = 65538;
+			locations[n].models.always.locators = "Hut_1_inside_locators";
+			locations[n].models.always.back = "..\inside_back2";
+			locations[n].models.always.back.level = 65529;
+			locations[n].models.day.charactersPatch = "Hut_1_inside_patch";
+			locations[n].models.night.charactersPatch = "Hut_1_inside_patch";
+			locations[n].environment.weather = "true";
+			locations[n].environment.sea = "false";
+			locations[n].reload.l1.name = "reload1";
+			locations[n].reload.l1.go = "IndianVillage";
+			locations[n].reload.l1.emerge = "reload2";
+			locations[n].reload.l1.autoreload = "0";
+			locations[n].reload.l1.label = "IndianVillage";
+			LAi_LocationFightDisable(&locations[n], true);
+			n++;
+		
+			locations[n].id = "Indian_Hut2";
+			locations[n].id.label = "Village";
+			locations[n].image = "loading\jonny_load\inside\IndianHut2.tga";
+			locations[n].townsack = "Pearl_town_2";
+			locations[n].lockWeather = "Inside";
+			locations[n].type = "Hut";
+			locations[n].islandId = "Mein";
+			locations[n].islandIdAreal = "IndianVillage";
+			locations[n].filespath.models = "locations\inside\HutIndian2";
+			locations[n].models.always.Hut_2_inside = "Hut_2_inside";
+			locations[n].models.always.Hut_2_inside.level = 65538;
+			Locations[n].models.always.Hut_2_insiderand = "Hut_2_inside_rand_1";
+			locations[n].models.always.Hut_2_back = "Hut_2_back";
+			locations[n].models.always.Hut_2_back.level = 65538; 
+			locations[n].models.always.back = "..\inside_back2";
+			locations[n].models.always.back.level = 65529;
+			locations[n].models.day.charactersPatch = "Hut_2_inside_patch";
+			locations[n].models.day.locators = "Hut_2_inside_locators";
+			locations[n].models.night.charactersPatch = "Hut_2_inside_patch";
+			locations[n].models.night.locators = "Hut_2_inside_locators";
+			locations[n].models.night.l2 = "Hut_2_inside_ln";
+			locations[n].environment.weather = "true";
+			locations[n].environment.sea = "false";
+			locations[n].reload.l1.name = "reload1";
+			locations[n].reload.l1.go = "IndianVillage";
+			locations[n].reload.l1.emerge = "reload3";
+			locations[n].reload.l1.autoreload = "0";
+			locations[n].reload.l1.label = "IndianVillage";
+			LAi_LocationFightDisable(&locations[n], true);
+			n++;
+		
+			locations[n].id = "Indian_Hut3";
+			locations[n].id.label = "Village";
+			locations[n].image = "loading\jonny_load\inside\IndianHut2.tga";
+			locations[n].townsack = "Pearl_town_2";
+			locations[n].lockWeather = "Inside";
+			locations[n].type = "Hut";
+			locations[n].islandId = "Mein";
+			locations[n].islandIdAreal = "IndianVillage";
+			locations[n].filespath.models = "locations\inside\HutIndian2";
+			locations[n].models.always.Hut_2_inside = "Hut_2_inside";
+			locations[n].models.always.Hut_2_inside.level = 65538;
+			Locations[n].models.always.Hut_2_insiderand = "Hut_2_inside_rand_2";
+			locations[n].models.always.back = "..\inside_back2";
+			locations[n].models.always.back.level = 65529;
+			locations[n].models.day.charactersPatch = "Hut_2_inside_patch";
+			locations[n].models.day.locators = "Hut_2_inside_locators";
+			locations[n].models.day.l2 = "Hut_2_inside_ln";
+			locations[n].models.night.charactersPatch = "Hut_2_inside_patch";
+			locations[n].models.night.locators = "Hut_2_inside_locators";
+			locations[n].models.night.l2 = "Hut_2_inside_ln";
+			locations[n].environment.weather = "true";
+			locations[n].environment.sea = "false";
+			locations[n].reload.l1.name = "reload1";
+			locations[n].reload.l1.go = "IndianVillage";
+			locations[n].reload.l1.emerge = "reload4";
+			locations[n].reload.l1.autoreload = "0";
+			locations[n].reload.l1.label = "IndianVillage";
+			LAi_LocationFightDisable(&locations[n], true);
+			n++;
+
+			nLocationsNum = n;//чтобы знать, сколько локаций в массиве фактически. Не обязательно совпадает с MAX_LOCATIONS
+			Trace("Number of locations: " + nLocationsNum);
 
 			pchar.fixsaveNG0 = GetVerNum();//08.03.2023
 		}

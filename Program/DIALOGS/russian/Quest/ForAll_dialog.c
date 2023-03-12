@@ -838,7 +838,7 @@ void ProcessDialogEvent()
 			GetPerlShore(); //где промысел ведётся
 			sTemp = "";
 			if (CheckAttribute(pchar, "questTemp.Sharp.PearlAreal.add")) sTemp = pchar.questTemp.Sharp.PearlAreal.add;
-			dialog.text = "Значит, слушай. Есть на " + XI_ConvertString(pchar.questTemp.Sharp.PearlAreal + "Dat") + " место, под названием " + GetConvertStr(pchar.questTemp.Sharp.PearlAreal.Shore, "LocLables.txt") +
+			dialog.text = "Значит, слушай. Есть на " + XI_ConvertString(pchar.questTemp.Sharp.PearlAreal + "Voc") + " место, под названием " + GetConvertStr(pchar.questTemp.Sharp.PearlAreal.Shore, "LocLables.txt") +
 				sTemp + ". Если ты успеешь туда за " + FindRussianDaysString(sti(pchar.questTemp.Sharp.PearlAreal.terms)) + ", то ловцы жемчуга будут там.";
 			link.l1 = "Понял"+ GetSexPhrase("","а") +". Спасибо тебе, Бартоломью.";
 			link.l1.go = "DeckSharp_7";
@@ -863,7 +863,7 @@ void ProcessDialogEvent()
 			AddQuestUserData("SharpPearl", "sSex", GetSexPhrase("","а"));
 			AddQuestUserData("SharpPearl", "sSex1", GetSexPhrase("Ой, капитана Шарпа!","Ловеласа Барти..."));
 			AddQuestUserData("SharpPearl", "iDay", FindRussianDaysString(sti(pchar.questTemp.Sharp.PearlAreal.terms)));
-			AddQuestUserData("SharpPearl", "sAreal", XI_ConvertString(pchar.questTemp.Sharp.PearlAreal + "Dat"));
+			AddQuestUserData("SharpPearl", "sAreal", XI_ConvertString(pchar.questTemp.Sharp.PearlAreal + "Voc"));
 			AddQuestUserData("SharpPearl", "sTarget", GetConvertStr(pchar.questTemp.Sharp.PearlAreal.Shore, "LocLables.txt") + sTemp);
 			pchar.quest.SeaPearl_login.win_condition.l1 = "location";
 			pchar.quest.SeaPearl_login.win_condition.l1.location = pchar.questTemp.Sharp.PearlAreal.Island;
