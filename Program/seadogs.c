@@ -181,9 +181,20 @@ void ProcessVersionCheck() // boal 271004
 			rLoc = LocFromID("FortOrange_church");
 			rLoc.reload.l1.emerge = "reload17";
 
+			rLoc = LocFromID("Shore35");//фикс локаторов перехода ФортОранжа для квестов без НИ
+			rLoc.reload.l1.name = "gate_back";
+			rLoc = LocFromID("FortOrange_ExitTown");
+			rLoc.reload.l2.name = "reload3";
+			rLoc.reload.l2.emerge = "gate_back";
+			rLoc = LocFromID("FortOrange_town");
+			rLoc.questSeekCap = 8;
+			rLoc.reload.l1.name = "gate_back";
+			rLoc.reload.l1.emerge = "reload3";
+			rLoc.reload.l2.emerge = "gate_back";
+
 			ref sld = characterFromID("Pirates_trader");//фикс торговцев-барменов без НИ
 			LAi_SetOwnerType(sld);
-			sld = characterFromID("Dominica_trader");//в ините есть, но непися не находит...
+			sld = characterFromID("Dominica_trader");//в ините есть, но непися не находит...	это странно.
 			LAi_SetOwnerType(sld);
 			sld = characterFromID("FortOrange_trader");
 			LAi_SetOwnerType(sld);
@@ -193,13 +204,21 @@ void ProcessVersionCheck() // boal 271004
 			LAi_SetOwnerType(sld);
 			sld = characterFromID("PuertoPrincipe_trader");
 			LAi_SetOwnerType(sld);
+
 			//погода обновится сама
-			//инит кораблей обновится сам
+
+			//инит кораблей обновится сам?
+
 			for(int j=0;j<REAL_SHIPS_QUANTITY;j++)	//фикс без НИ ватерлинии и числа пушек у кораблей, уже сгенерировавшихся
 			{
+
 				if (!checkattribute(RealShips[j], "basetype")) continue;
+				if (sti(RealShips[j].Class) == 7) RealShips[j].CabinType = "New_Cabin3";//каюты тартанам, заводы - рабочим
 				if (sti(RealShips[j].basetype) == SHIP_LUGGER) RealShips[j].WaterLine = -0.35;
 				if (sti(RealShips[j].basetype) == SHIP_NEPTUN) RealShips[j].WaterLine = -0.4;
+				if (sti(RealShips[j].basetype) == SHIP_REQUIN) RealShips[j].WaterLine = -0.4;
+				if (sti(RealShips[j].basetype) == SHIP_LUGGER_H) RealShips[j].hullNums = 5;
+
 				if (sti(RealShips[j].basetype) == SHIP_HERCULES)
 				{
 					RealShips[j].Cannons = sti(RealShips[j].Cannons)-4;
@@ -229,10 +248,10 @@ void ProcessVersionCheck() // boal 271004
 			}
 
 			int n = GetArraySize(&Items);
-			if (n != ITEMS_QUANTITY)//+6 предметов для странных дел
+			if (n != ITEMS_QUANTITY)//+5 предметов для странных дел
 			{
 				SetArraySize(&Items,ITEMS_QUANTITY);
-				SetArraySize(&itemModels,ITEMS_QUANTITY);
+				SetArraySize(&itemModels,ITEMS_QUANTITY);//ХЗ, что это...
 				
 				ref itm;
 				makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
@@ -286,34 +305,107 @@ void ProcessVersionCheck() // boal 271004
 				itm.price = 5000;
 				itm.weight = 0.7;
 				n++;
-
-				//PKMQuestsInit();
-
-				//Джеки
-				sld = GetCharacter(NPC_GenerateCharacter("MG_Obezyana", "Koata1", "monkey", "monkey", 1, PIRATE, -1, false));
-				LAi_SetHP(sld, 1.0, 1.0);
-				sld.name = "Джеки";
-				sld.lastname = "";
-				LAi_SetWarriorType(sld);
-				//LAi_SetMonkeyType(sld);
-				LAi_CharacterDisableDialog(sld);
-				ChangeCharacterAddressGroup(sld, "Guadeloupe_deadlock", "monsters", "monster6");
-
-				PChar.quest.MG_ObezyanaKill.win_condition.l1 = "NPC_Death";
-				PChar.quest.MG_ObezyanaKill.win_condition.l1.character = "MG_Obezyana";
-				PChar.quest.MG_ObezyanaKill.win_condition = "MG_ObezyanaKill";
-
-				sld = characterFromID("PortRoyal_Priest");
-				sld.name	= "отец Бернард";
-				sld.lastname = "";
-				sld.model	= "Priest_2";
-				sld = characterFromID("FortFrance_Priest");
-				sld.name	= "отец Клермон";
-				sld.lastname = "";
-				sld = characterFromID("SanJuan_Priest");
-				sld.name	= "падре Домингес";
-				sld.lastname = "";
 			}
+			//Джеки
+			sld = GetCharacter(NPC_GenerateCharacter("MG_Obezyana", "Koata1", "monkey", "monkey", 1, PIRATE, -1, false));
+			LAi_SetHP(sld, 1.0, 1.0);
+			sld.name = "Джеки";
+			sld.lastname = "";
+			LAi_SetWarriorType(sld);
+			//LAi_SetMonkeyType(sld);
+			LAi_CharacterDisableDialog(sld);
+			ChangeCharacterAddressGroup(sld, "Guadeloupe_deadlock", "monsters", "monster6");
+
+			PChar.quest.MG_ObezyanaKill.win_condition.l1 = "NPC_Death";
+			PChar.quest.MG_ObezyanaKill.win_condition.l1.character = "MG_Obezyana";
+			PChar.quest.MG_ObezyanaKill.win_condition = "MG_ObezyanaKill";
+
+			sld = characterFromID("PortRoyal_Priest");
+			sld.name	= "отец Бернард";
+			sld.lastname = "";
+			sld.model	= "Priest_2";
+			sld = characterFromID("FortFrance_Priest");
+			sld.name	= "отец Клермон";
+			sld.lastname = "";
+			sld = characterFromID("SanJuan_Priest");
+			sld.name	= "падре Домингес";
+			sld.lastname = "";
+
+			PKMQuestsInit();
+//ПРОВЕРИТЬ - локации реинитятся сами или нет	при запуске игры в лог вписываются данные инита локаций. Но ещё до загрузки сейва.
+			n = GetArraySize(&locations);	//nLocationsNum	//старое число локаций
+			SetArraySize(&locations, 900);	//MAX_LOCATIONS
+
+			Locations[n].id = "New_Cabin3"; //НОВАЯ КАЮТА
+			Locations[n].id.label = "cabine";
+			Locations[n].filespath.models = "locations\decks\nc_cabin3";
+		    Locations[n].image = "loading\jonny_load\inside ship\nc_cabin3.tga";
+			locations[n].type = "boarding_cabine";
+			Locations[n].models.always.l1 = "nc_cabin3";
+			Locations[n].models.always.window = "nc_cabin3_glass";
+			Locations[n].models.always.window.tech = "LocationWindows";
+			Locations[n].models.always.window.level = 65531;
+			Locations[n].models.day.vlight = "nc_cabin3_rays";
+			Locations[n].models.day.vlight.uvslide.v0 = -0.05;
+		    Locations[n].models.day.vlight.uvslide.v1 = 0.0;
+			Locations[n].models.day.vlight.tech = "LocationWaterFall";
+			Locations[n].models.day.vlight.level = 99950;
+			Locations[n].models.day.locators = "nc_cabin3_ld";
+			Locations[n].models.day.charactersPatch = "nc_cabin3_pd";
+			Locations[n].models.night.locators = "nc_cabin3_ln";
+			Locations[n].models.night.charactersPatch = "nc_cabin3_pn";
+			Locations[n].environment.sea = "true";
+			Locations[n].environment.weather = "true";
+			Locations[n].locators_radius.reload.reload1 = 0.5;
+		    Locations[n].locators_radius.rld.loc0 = 0.5;
+		    Locations[n].locators_radius.rld.loc1 = 0.5;
+		    Locations[n].locators_radius.box.box1 = 0.6;
+		    Locations[n].boarding = "true";
+			Locations[n].boarding.nextdeck = "";
+			Locations[n].camshuttle = 1;
+			Locations[n].boarding.locatorNum = 1;
+			Locations[n].CabinType = true;
+			locations[n].environment.weather.rain = false;
+			Locations[n].boarding.Loc.Hero = "loc0";
+		    Locations[n].boarding.Loc.Capt = "loc1";
+			n++;
+
+			Locations[n].id = "My_New_Cabin3"; // peace
+			Locations[n].id.label = "cabine";
+			Locations[n].filespath.models = "locations\decks\nc_cabin3";
+		    Locations[n].image = "loading\jonny_load\inside ship\nc_cabin3.tga";
+			locations[n].type = "ship_cabin"; // nc_mod
+			Locations[n].models.always.l1 = "nc_cabin3";
+			Locations[n].models.always.window = "nc_cabin3_glass";
+			Locations[n].models.always.window.tech = "LocationWindows";
+			Locations[n].models.always.window.level = 65531;
+			Locations[n].models.day.vlight = "nc_cabin3_rays";
+			Locations[n].models.day.vlight.uvslide.v0 = -0.05;
+		    Locations[n].models.day.vlight.uvslide.v1 = 0.0;
+			Locations[n].models.day.vlight.tech = "LocationWaterFall";
+			Locations[n].models.day.vlight.level = 99950;
+			Locations[n].models.day.locators = "nc_cabin3_ld";
+			Locations[n].models.day.charactersPatch = "nc_cabin3_pd";
+			Locations[n].models.night.locators = "nc_cabin3_ln";
+			Locations[n].models.night.charactersPatch = "nc_cabin3_pn";
+			Locations[n].environment.sea = "true";
+			Locations[n].environment.weather = "true";
+			locations[n].box1 = Items_MakeTime(0, 1, 1, 2003);
+			Locations[n].locators_radius.reload.reload1 = 0.5;
+		    Locations[n].locators_radius.rld.loc0 = 0.5;
+		    Locations[n].locators_radius.rld.loc1 = 0.5;
+		    Locations[n].locators_radius.box.box1 = 0.6;
+		    LAi_LocationFightDisable(&Locations[n], true);
+		    Locations[n].reload.l1.name = "reload1";
+			Locations[n].reload.l1.go = "My_Deck";
+			Locations[n].reload.l1.emerge = "reload1";
+			Locations[n].reload.l1.label = "Deck.";
+			Locations[n].boarding = "true";
+			Locations[n].camshuttle = 1;
+			locations[n].environment.weather.rain = false;
+			n++;
+			nLocationsNum = n;//чтобы знать, сколько локаций в массиве фактически. Не обязательно совпадает с MAX_LOCATIONS
+			Trace("Number of locations: " + nLocationsNum);
 
 			pchar.fixsaveNG0 = GetVerNum();//08.03.2023
 		}

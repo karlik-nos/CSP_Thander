@@ -411,7 +411,7 @@ void CreateWeatherEnvironment()
 	bWeatherIsNight = Whr_GetLong(aCurWeather,"Night");
 	bWeatherIsLight = Whr_GetLong(aCurWeather,"Lights");
 	
-	if (CheckAttribute(loadedLocation, "type")) // Фикс освещения персонажей в тавернах.
+	if (IsEntity(loadedLocation) && CheckAttribute(loadedLocation, "type")) //Фикс освещения персонажей в тавернах.
 	{
 		if(loadedLocation.type == "tavern"
 					|| loadedLocation.type == "residence"
@@ -1284,7 +1284,7 @@ bool Whr_isRainEnable()
 		}
 		/*else
 		{
-			if (CheckAttribute(loadedLocation, "type"))
+			if (IsEntity(loadedLocation) && CheckAttribute(loadedLocation, "type"))
 			{
 				// тип помещение
 				if(loadedLocation.type == "residence"
