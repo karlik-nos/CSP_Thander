@@ -1244,6 +1244,103 @@ void CreatePearlVillage(aref loc)
 	}
 }
 
+void CreateIndianVillage(aref loc) // Sinistra: деревня индейцев
+{
+	if (CheckAttribute(loc, "indianVillage"))
+	{
+		if (CheckNPCQuestDate(loc, "indian_date"))
+		{
+			SetNPCQuestDate(loc, "indian_date");
+			int i, iMassive;
+			int iRank = sti(pchar.rank)+MOD_SKILL_ENEMY_RATE+5;
+			int num = rand(2)+6; //кол-во 
+			ref chr;
+			string model[10];		
+			model[0] = "Itza_1";
+			model[1] = "Itza_2";
+			model[2] = "Itza_3";
+			model[3] = "Itza_4";
+			model[4] = "Itza_5";
+			model[5] = "Itza_6";
+			model[6] = "Itza_7";
+			model[7] = "Itza_8";
+			model[8] = "Miskito_1";
+			model[9] = "Miskito_2";
+			i = 0;
+			
+			while(i < num)
+			{
+				iMassive = rand(9);
+				if (model[iMassive] != "")
+				{
+					chr = GetCharacter(NPC_GenerateCharacter("Itza"+"_"+i, model[iMassive], "man", "man", iRank, PIRATE, 1, false));
+					SetFantomParamFromRank(chr, iRank, true);
+					chr.name = GetIndianName(MAN);
+					chr.lastname = "";
+					LAi_SetLoginTime(chr, 6.0, 21.99);
+					LAi_CharacterReincarnation(chr, true, true);
+					LAi_SetReincarnationRankStep(chr, MOD_SKILL_ENEMY_RATE+2); 
+					chr.dialog.Filename = "indian_dialog.c";
+					chr.dialog.currentnode = "IndianMan";
+					chr.greeting = "indian_male";
+					GiveItem2Character(chr, LinkRandPhrase("topor_05","topor_05","topor_05"));
+					EquipCharacterbyItem(chr, LinkRandPhrase("topor_05","topor_05","topor_05"));
+					chr.city = "SantaCatalina"; //НЗГ Санта-Каталины
+					PlaceCharacter(chr, "goto", "random");
+					LAi_SetWarriorType(chr);
+					LAi_group_MoveCharacter(chr, "ItzaIndian");
+					i++;
+					model[iMassive] = "";
+				}
+			}
+			if (rand(1) == 1) // сидячие у костерка
+			{
+				for (i=1; i<=2; i++)
+				{
+					chr = GetCharacter(NPC_GenerateCharacter("ItzaSit"+"_"+i, "Itza_"+(rand(7)+1), "man", "man", iRank, PIRATE, 1, false));
+					SetFantomParamFromRank(chr, iRank, false);
+					chr.name = GetIndianName(MAN);
+					chr.lastname = "";
+					chr.dialog.Filename = "Indian_dialog.c";
+					chr.dialog.currentnode = "IndianMan";
+					chr.greeting = "indian_male";
+					chr.city = "SantaCatalina"; //НЗГ Санта-Каталины
+					ChangeCharacterAddressGroup(chr, "IndianVillage", "sit", "ground"+i);
+					LAi_SetGroundSitType(chr);
+					LAi_group_MoveCharacter(chr, "ItzaIndian");
+				}
+			}
+			for (i=1; i<=3; i++) // женщины
+			{
+				chr = GetCharacter(NPC_GenerateCharacter("ItzaWoman"+"_"+i, "squaw_"+i, "woman", "towngirl3", 10, PIRATE, 1, false));
+				SetFantomParamFromRank(chr, 10, false);
+				chr.name = GetIndianName(WOMAN);
+				chr.lastname = "";
+				LAi_SetLoginTime(chr, 6.0, 21.99);
+				chr.dialog.Filename = "Indian_dialog.c";
+				chr.dialog.currentnode = "IndianWoman";
+				chr.greeting = "cit_common";
+				RemoveAllCharacterItems(chr, true);
+				chr.city = "SantaCatalina"; //НЗГ Санта-Каталины
+				PlaceCharacter(chr, "goto", "random");
+				LAi_SetCitizenType(chr);
+				LAi_group_MoveCharacter(chr, "ItzaIndian");
+			}
+			LAi_group_SetLookRadius("ItzaGroup", 16);
+			LAi_group_SetHearRadius("ItzaGroup", 10);
+			
+			chr = GetCharacter(NPC_GenerateCharacter("ItzaKrasavitsa", "TribeWife", "woman", "YokoDias", iRank, PIRATE, 1, false));
+			chr.name = "Шоко";
+			chr.lastname = "";
+			chr.dialog.Filename = "Indian_dialog.c";
+			chr.dialog.currentnode = "IndianWoman";
+			LAi_SetCitizenType(chr);
+			ChangeCharacterAddressGroup(chr, "IndianVillage", "quest", "teleport1");
+			
+		}
+	}
+}
+
 void CreateInsideHouseEncounters(aref loc)
 {
 	if (CheckAttribute(loc, "MustSetReloadBack") && loc.id.label == "house" && !IsLocationCaptured(loc.fastreload+"_town"))

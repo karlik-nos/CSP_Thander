@@ -1983,6 +1983,15 @@ void StartLanguageSetting(string lngID)
 	} else {
 		Trace("Error! Can`t Load Segment: " + segmentName);
 	}
+	
+	segmentName = "Characters\" + LanguageGetLanguage() + "\Indian_names.c";
+	if( LoadSegment(segmentName) )
+	{
+		InitIndianNames();
+		UnloadSegment(segmentName);
+	} else {
+		Trace("Error! Can`t Load Segment: " + segmentName);
+	}
 
 	segmentName = "Characters\" + LanguageGetLanguage() + "\Generator_names.c";
 	if( LoadSegment(segmentName) )
