@@ -1147,7 +1147,7 @@ void BI_SetPossibleCommands()
 		//BattleInterface.Commands.CCommand.enable		= GetCompanionQuantity(pchar)>1;
 		//BattleInterface.Commands.Ability.enable			= true;
 		//  проверка на 7 класс
-		if (sti(RealShips[sti(pchar.Ship.Type)].BaseType) > SHIP_WAR_TARTANE)
+		if (sti(RealShips[sti(pchar.Ship.Type)].BaseType) >= SHIP_TARTANE)
         {
             BattleInterface.Commands.Cabin.enable		= true;
         }

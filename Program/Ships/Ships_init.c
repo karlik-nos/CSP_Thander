@@ -691,6 +691,8 @@ void InitShips()
 	refship.nation.pirate	= true;
 	refship.nation.spain	= true;
 
+	refShip.hullNums = 5; // LEO
+
 	///////////////////////////////////////////////////////////////////////////
 	/// Speedy			Ср. Шлюп
 	///////////////////////////////////////////////////////////////////////////
@@ -4329,7 +4331,7 @@ void InitShips()
 	refship.Rocking.y	= 0.5;
 	refship.Rocking.az	= 0.04;
 
-	refship.WaterLine	= -0.1;
+	refship.WaterLine	= -0.4;
 	refship.SpeedDependWeight		= 0.2;
 	refship.SubSeaDependWeight		= 0.6;
 	refship.TurnDependWeight		= 0.2;
@@ -8207,11 +8209,11 @@ void InitShips()
 	refship.Track2.Speed	= "0.15, 0.25";
 
 	//Nation
-    refship.nation.england	= true;
-	refship.nation.france	= true;
-	refship.nation.holland	= true;
+    refship.nation.england	= false;
+	refship.nation.france	= false;
+	refship.nation.holland	= false;
 	refship.nation.pirate	= true;
-	refship.nation.spain	= true;
+	refship.nation.spain	= false;
 
 	///////////////////////////////////////////////////////////////////////////
 	/// Poseidon			Линкор

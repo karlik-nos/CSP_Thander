@@ -92,6 +92,22 @@ void ProcessDialogEvent()
     			link.l1.go = "quests";
                 link.l2 = "Ничего особенного, просто "+ GetSexPhrase("зашёл","зашла") +" поприветствовать вас!";
     			link.l2.go = "exit";
+				//--> Квест ***Странные вещи творятся на архипелаге*** Sinistra
+				if (CheckAttribute(pchar, "questTemp.PKM_SvtvA_Znakomstvo_s_Malta") && (npchar.id == "Maltese"))
+				{
+					dialog.text = "Капитан, даже не знаю, как вас благодарить! Если бы не вы, мой корабль и вся его команда уже лежали бы в морской пучине. Меня зовут Жаквин де Массе, рыцарь мальтийского ордена.";
+					link.l1 = "Очень приятно, Жаквин. А я "+GetFullName(pchar)+".";
+					link.l1.go = "PKM_SvtvA_ZsM_1";
+					DeleteAttribute(link, "l2");
+				}
+				if (CheckAttribute(pchar, "questTemp.PKM_SvtvA_Znakomstvo_s_Malta2") && (npchar.id == "Maltese"))
+				{
+					dialog.text = "Во имя всех святых! Нам нельзя терять время, нужно спешить на Пуэрто Рико.";
+					link.l1 = "Да, Жаквин, ты прав.";
+					link.l1.go = "exit";
+					DeleteAttribute(link, "l2");
+				}
+				//<-- Квест ***Странные вещи творятся на архипелаге*** Sinistra
             }
             else
             {
@@ -139,6 +155,13 @@ void ProcessDialogEvent()
 	    			link.l11.go = "Antonio_1_4";
 				}
 				//<-- Квест ***Клан Ламбрини*** Sinistra
+				//--> Квест ***Странные вещи творятся на архипелаге*** Sinistra
+				if (CheckAttribute(pchar, "questTemp.PKM_SvtvA_SprositKapitanov_v_more"))
+				{
+	    			link.l10 = "Меня интересует чёрный фрегат, который покинул порт этой ночью. Вы что-нибудь знаете о нём?";
+	    			link.l10.go = "PKM_SvtvA_Deti_Plachut";
+				}
+				//<-- Квест ***Странные вещи творятся на архипелаге*** Sinistra
     			link.l5 = "Желаете развеяться?";
 			    link.l5.go = "Play_Game";
                 link.l9 = "Думаю, мне пора!";
@@ -153,6 +176,39 @@ void ProcessDialogEvent()
                 Diag.TempNode = "Go_away_Good";
 			}
         break;
+		//--> Квест ***Странные вещи творятся на архипелаге*** Sinistra
+		case "PKM_SvtvA_Deti_Plachut":
+			dialog.text = "Я понятия не имею... но несколько моих людей, следивших за ним, уверяли, что когда этот корабль поднял якорь, то услышали детский плач, доносившийся до них с палубы.";
+			link.l1 = "Понятно. Ладно, мне уже пора.";
+			link.l1.go = "PKM_SvtvA_Deti_Plachut_2";
+		break;
+		case "PKM_SvtvA_Deti_Plachut_2":
+			DialogExit();
+			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_SprositKapitanov_v_more");
+			AddQuestRecord("PKM_Animists", "5");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("","а"));
+		break;
+		
+		case "PKM_SvtvA_ZsM_1":
+			dialog.text = "Так это вы тот самый капитан, о котором меня предупредили посредством голубиной почты.";
+			link.l1 = "Вы правы в своих догадках. У меня указание сопроводить вас до Пуэрто Рико.";
+			link.l1.go = "PKM_SvtvA_ZsM_2";
+		break;
+		case "PKM_SvtvA_ZsM_2":
+			dialog.text = "Хорошо. В таком случае, мы можем отправиться в путь.";
+			link.l1 = "Отлично! Тогда не будем мешкать!";
+			link.l1.go = "PKM_SvtvA_ZsM_3";
+		break;
+		case "PKM_SvtvA_ZsM_3":
+			DialogExit();
+			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_Znakomstvo_s_Malta");
+			pchar.questTemp.PKM_SvtvA_Znakomstvo_s_Malta2 = true;
+			pchar.questTemp.PKM_SvtvA_Dostavka_Malty = true;
+			SetCompanionIndex(pchar, -1, sti(NPChar.index));
+			AddQuestRecord("PKM_Animists", "18");
+			AddQuestUserData("PKM_Animists", "sSex", GetSexPhrase("ся","ась"));
+		break;
+		//<-- Квест ***Странные вещи творятся на архипелаге*** Sinistra
 		//--> Квест ***Клан Ламбрини*** Sinistra
 		case "Antonio_Bitva":
 			bDisableFastReload = true;

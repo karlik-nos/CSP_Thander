@@ -587,10 +587,12 @@ void initStartState2Character(ref ch)
 	SelectSlavetraderRendom(); //это непосредственно выбор
 	// ==> квест Изабеллы
 	IsabellaInit();
-	//==>квест История давней дружбы Lipsar
+	// ==> квест История давней дружбы Lipsar
 	SilencePriceInit();
 	// ==> Квесты Проклятие Дальних Морей Sinistra
 	PDMQuestsInit();
+	// ==> Квесты Пираты Карибского Моря
+	PKMQuestsInit();
 	// ==> Квесты Корсары: Сундук Мертвеца
 	KSMQuestsInit();
 	// ==> Все остальные НПС
