@@ -1525,7 +1525,7 @@ int LocationInitJamaica(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 	//Reload map
-	locations[n].reload.l1.name = "reload2_back";
+	locations[n].reload.l1.name = "gate_back";
 	locations[n].reload.l1.go = "FortOrange_Town";
 	locations[n].reload.l1.emerge = "reload9";
 	locations[n].reload.l1.autoreload = "0";
@@ -1620,9 +1620,9 @@ int LocationInitJamaica(int n)
 	locations[n].reload.l1.label = "Jungle";
 	locations[n].locators_radius.reload.reload1_back = 2.0;
 
-    Locations[n].reload.l2.name = "reload2";
+    Locations[n].reload.l2.name = "reload3";
 	Locations[n].reload.l2.go = "FortOrange_town";
-	Locations[n].reload.l2.emerge = "reload19";
+	Locations[n].reload.l2.emerge = "gate_back";
 	Locations[n].reload.l2.autoreload = "0";
 	Locations[n].reload.l2.label = "Street";
 	locations[n].locators_radius.reload.reload2_back = 1.8;
@@ -1645,10 +1645,12 @@ int LocationInitJamaica(int n)
 	locations[n].citizens = true;
 	locations[n].soldiers = true;
 	LAi_LocationFantomsGen(&locations[n], true);
+	//==> флаг генерации квестодателя по розыску кэпов, int значение - шанс что сам заговорит(1-10)
+	locations[n].questSeekCap = 8;
 	//Sound
 	locations[n].type = "town";
 	Locations[n].townsack = "FortOrange";
-    locations[n].fastreload = "FortOrange";
+	locations[n].fastreload = "FortOrange";
 	locations[n].islandId = "Jamaica";
 	locations[n].houseEnc = true; //для энкаунтеров в домах
 	//Models
@@ -1680,16 +1682,16 @@ int LocationInitJamaica(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "false";
 	//Reload map
-	Locations[n].reload.l1.name = "reload19";
+	Locations[n].reload.l1.name = "gate_back";
 	Locations[n].reload.l1.go = "FortOrange_ExitTown";
-	Locations[n].reload.l1.emerge = "reload2";
+	Locations[n].reload.l1.emerge = "reload3";
 	Locations[n].reload.l1.autoreload = "0";
 	Locations[n].reload.l1.label = "ExitTown";
 	locations[n].locators_radius.reload.reload1 = 1.8;
 
 	locations[n].reload.l2.name = "reload9";
 	locations[n].reload.l2.go = "Shore35";
-	locations[n].reload.l2.emerge = "reload2";
+	locations[n].reload.l2.emerge = "gate_back";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Shore35";
 

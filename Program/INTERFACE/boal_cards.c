@@ -133,7 +133,7 @@ void InitInterface(string iniName)
     // новая игра
     NewGameBegin();
     iTurnGame = 1; // игра первая
-	WaitDate("",0,0,0, 0, 15);
+	WaitDate("",0,0,0, 0, 5);
 	SetFormatedText("INFO_TEXT_DATE", GetQuestBookData());
     iHeroLose = 0;
     iHeroWin  = 0;
@@ -190,7 +190,7 @@ void Exit()
 			Statistic_AddValue(Pchar, "GameCards_Lose", iHeroLose);
 
 			bQuestCheckProcessFreeze = true;
-			//WaitDate("",0,0,0, 0, iTurnGame*15);
+			//WaitDate("",0,0,0, 0, iTurnGame*5);
 			bQuestCheckProcessFreeze = false;
 			RefreshLandTime();
 			EndCancelInterface(true);
@@ -227,7 +227,7 @@ void Exit2()
 		if (npchar.id == "BlackBeardNPC" && iHeroWin >= 3) npchar.Cards = true;
 
 		bQuestCheckProcessFreeze = true;
-		//WaitDate("",0,0,0, 0, iTurnGame*15);
+		//WaitDate("",0,0,0, 0, iTurnGame*5);
 		bQuestCheckProcessFreeze = false;
 		RefreshLandTime();
 		EndCancelInterface(true);
@@ -256,7 +256,7 @@ void ProcessCommandExecute()
                         dir_i = -dir_i_start;
                         dir_i_start = dir_i;
                         iTurnGame++;
-						WaitDate("",0,0,0, 0, 15);
+						WaitDate("",0,0,0, 0, 5);
 						SetFormatedText("INFO_TEXT_DATE", GetQuestBookData());
                         NewGameBegin();
                         openExit = false;

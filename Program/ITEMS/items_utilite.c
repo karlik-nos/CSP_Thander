@@ -474,7 +474,7 @@ void TryReadBook()
 
 		AddCharacterExpToSkill(pchar, arItm.skill, BookBonus(sBook));
 		int idLngFile = LanguageOpenFile("ItemsDescribe.txt");
-		Log_Info(GetFullName(pchar) + " изучил книгу '" + LanguageConvertString(idLngFile, arItm.name) + "' и увеличил навык '" + XI_ConvertString(arItm.skill) + "'");
+		Log_Info(GetFullName(pchar) + " изучил"+GetSexPhrase("","а")+" книгу '" + LanguageConvertString(idLngFile, arItm.name) + "' и увеличил"+GetSexPhrase("","а")+" навык '" + XI_ConvertString(arItm.skill) + "'");
 		LanguageCloseFile(idLngFile);
 
 		RemoveCharacterEquip(pchar, BOOK_ITEM_TYPE);

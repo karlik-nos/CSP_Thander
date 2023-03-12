@@ -1768,7 +1768,7 @@ void PGG_OnInit_WorkOnStore(ref rTmpl)
 
 	iGood = sti(chr.PGGAi.Task.Target.Goods);
 	oPrm.PsHero_Name = GetFullName(chr);
-	oPrm.Good = XI_ConvertString(Goods[iGood].name);
+	oPrm.Good = XI_ConvertString(Goods[iGood].name + "Gen");
 	oPrm.Town_Name = XI_ConvertString("Colony" + chr.PGGAi.Task.Target + "Acc");
 	if (chr.sex == "woman") ttttstr = LanguageConvertString(LanguageOpenFile("RumourTexts.txt"), rTmpl.curtid+"W");
 	ttttstr = GetAssembledString(ttttstr, &oPrm);

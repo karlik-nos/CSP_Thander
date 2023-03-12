@@ -10,7 +10,7 @@ void QuestDuelCheckPossibility(ref loc)
 	if(loc.type != "town") { return; }
 
 	if(loc.id == "Bridgetown_Plantation" || loc.id == "Pirates_town" || loc.id == "Caiman_town" || loc.id == "LeFransua_town"
-	|| loc.id == "FortOrange_town" || loc.id == "LaVega_ExitTown" || loc.id == "LaVega_town" || loc.id == "PuertoPrincipe_town"
+	|| loc.id == "LaVega_ExitTown" || loc.id == "LaVega_town" || loc.id == "PuertoPrincipe_town"
 	|| loc.id == "Caiman_ExitTown") { return; }
 
 	if(!GetCanTakeDuelQuest(loc)) { return; }
@@ -1353,7 +1353,7 @@ void ShipWreckInTown(string qName)
 	RemovePassenger(PChar, chr);
 
 	string sLocator = "reload1_back";
-	if(PChar.location == "Pirates_town" || PChar.location == "PuertoPrincipe_town" || PChar.location == "LaVega_town" || PChar.location == "LeFransua_town" || PChar.location == "FortOrange_town")
+	if(PChar.location == "Pirates_town" || PChar.location == "PuertoPrincipe_town" || PChar.location == "LaVega_town" || PChar.location == "LeFransua_town")
 	{
 		sLocator = "reload1";
 	}
