@@ -479,9 +479,12 @@ void FaceMaker(aref rCharacter)
 		case "PGG_Devlin_0":	rCharacter.FaceId = 1; break;
 		case "PGG_ShMor_0":		rCharacter.FaceId = 508; break;
 		case "PGG_Mary":		rCharacter.FaceId = 517; break;
-		case "ozg_green":		rCharacter.FaceId = 287; break;
+		case "ozg_green":		rCharacter.FaceId = 287; break;	//Джеймс Кэллоу
 		case "PGG_Chard_0":		rCharacter.FaceId = 211; break;
 		case "PGG_Tich_0":		rCharacter.FaceId = 540; break;
+		case "Maltese":			rCharacter.FaceId = 296; break;	//Мальтиец Жаквин де Массе
+		case "Animists1":		rCharacter.FaceId = 297; break;	//Сатанист
+		case "Animists2":		rCharacter.FaceId = 297; break;	//Лорд Чёрное Солнце
 		else rCharacter.FaceId 	= 478; break;
 	}
 	if (InterfaceStates.VISUAL_CIRASS && !CheckAttribute(rCharacter,"VISUAL_CIRASS"))
@@ -522,8 +525,8 @@ void FaceMaker(aref rCharacter)
 	}
 }
 
-//Создадим вражеских фантомов - команда для ЛГ
-string GetRandSkelModel()
+//Создадим вражеских фантомов
+string GetRandSkelModel()	//Рыболюди (Летучий Голландец)
 {
 	string emodel = "mummy";
 
@@ -537,7 +540,7 @@ string GetRandSkelModel()
     return emodel;
 }
 
-string GetRandSkelModelClassic()
+string GetRandSkelModelClassic()	//Скелеты
 {
 	string emodel = "mummy";
 
@@ -547,6 +550,17 @@ string GetRandSkelModelClassic()
         case 1: emodel = "Skel2";   break;
         case 2: emodel = "Skel3";   break;
         case 3: emodel = "Skel4";   break;
+    }
+    return emodel;
+}
+
+string GetRandSatanistMode()	//Сатанисты
+{
+	string emodel = "mummy";
+
+	switch (rand(0))
+    {
+        case 0: emodel = "animists1";   break;
     }
     return emodel;
 }

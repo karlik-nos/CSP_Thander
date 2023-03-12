@@ -719,6 +719,18 @@ void FillAboardCabinBox(ref _location, ref _npchar)
 		_location.box1.items.Lilarcor_Sword1 = 1);
         ok = false;
 	}
+	//Квест "Странные вещи творятся на архипелаге", Мефисто, драгоценности
+	if (_npchar.id == "Chernoe_Solntse2")
+	{
+        DeleteAttribute(_location, "box1");
+        _location.box1.money = 10000;
+		_location.box1.items.jewelry5 = 100+rand(20);
+        _location.box1.items.jewelry17 = 100+rand(20);
+        _location.box1.items.jewelry3 = 40+rand(10);
+		_location.box1.items.jewelry18 = 15+rand(10);
+		_location.box1.items.PKM_SvtvA_amulet = 1;
+        ok = false;
+	}
 
     if (ok) // не квестовый
     {
@@ -2486,8 +2498,8 @@ void SilencePriceInit()
 void PDMQuestsInit()
 {
 	ref sld;
-	//******Альбрех Пальцфер Sinistra******
-	//Альбрех Пальцфер
+	//******Альбрехт Цальпфер Sinistra******
+	//Альбрехт Цальпфер
 	sld = GetCharacter(NPC_GenerateCharacter("Albreht_Zalpfer", "Mechanic", "man", "man", 6, ENGLAND, -1, false));
 	sld.name	= "Альбрехт";
 	sld.lastname	= "Цальпфер";
@@ -2598,6 +2610,16 @@ void PDMQuestsInit()
 	sld.City = "Marigo";
 	ChangeCharacterAddressGroup(sld,"Farmacia","barmen","stay");
 }
+//Пираты Карибского Моря
+void PKMQuestsInit()
+{
+	//******Странные вещи творятся на архипелаге******
+	//Девушки ищут детей
+	pchar.quest.PKM_SvtvA_SpawnQuest.win_condition.l1 = "Rank";
+	pchar.quest.PKM_SvtvA_SpawnQuest.win_condition.l1.value = 10;
+	pchar.quest.PKM_SvtvA_SpawnQuest.win_condition.l1.operation = ">=";
+	PChar.quest.PKM_SvtvA_SpawnQuest.win_condition = "PKM_SvtvA_SpawnQuest";
+}
 //Сундук Мертвеца
 void KSMQuestsInit()
 {
@@ -2640,6 +2662,7 @@ void VSEnpcInit()
 	LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
 	sld.city = "SantoDomingo";
 	ChangeCharacterAddressGroup(sld,"SantoDomingo_Admiralty","goto","goto2");
+	
 	//Глаша уборщица в резиденции Мариго
 	sld = GetCharacter(NPC_GenerateCharacter("CleanUpGrandmatha", "BaynesWife", "woman", "towngirl", 1, Holland, -1, false));
 	ChangeCharacterAddressGroup(sld, "Marigo_hall", "goto", "goto11");
@@ -2651,11 +2674,26 @@ void VSEnpcInit()
 	sld.city = "Marigo";
 	sld.dialog.filename = "Janitor.c";
 	sld.dialog.currentnode = "First";
+	
 	//Девушка с нежданным наследством
 	pchar.quest.CSP_NN_SpawnGirl.win_condition.l1 = "Rank";
 	pchar.quest.CSP_NN_SpawnGirl.win_condition.l1.value = 10;
 	pchar.quest.CSP_NN_SpawnGirl.win_condition.l1.operation = ">=";
 	PChar.quest.CSP_NN_SpawnGirl.function = "UnexpectedInheritance";
+	
+	//Джеки
+	sld = GetCharacter(NPC_GenerateCharacter("MG_Obezyana", "Koata1", "monkey", "monkey", 1, PIRATE, -1, false));
+	LAi_SetHP(sld, 1.0, 1.0);
+	sld.name = "Джеки";
+	sld.lastname = "";
+	LAi_SetWarriorType(sld);
+	//LAi_SetMonkeyType(sld);
+	LAi_CharacterDisableDialog(sld);
+	ChangeCharacterAddressGroup(sld, "Guadeloupe_deadlock", "monsters", "monster6");
+	
+	PChar.quest.MG_ObezyanaKill.win_condition.l1 = "NPC_Death";
+	PChar.quest.MG_ObezyanaKill.win_condition.l1.character = "MG_Obezyana";
+	PChar.quest.MG_ObezyanaKill.win_condition = "MG_ObezyanaKill";
 }
 void OfficerGirlInit()
 {

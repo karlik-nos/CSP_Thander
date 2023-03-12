@@ -1062,6 +1062,7 @@ void Dead_AddLoginedCharacter(aref chr)
 				TakeNItems(chref, "food3", -10);
 				TakeNItems(chref, "food4", -10);
 				TakeNItems(chref, "food5", -10);
+				TakeItemFromCharacter(chref, "spyglass3");
 			}
 
 	        //BLI_UpdateOfficers();// fix проверки на офов, не пропадала иконка

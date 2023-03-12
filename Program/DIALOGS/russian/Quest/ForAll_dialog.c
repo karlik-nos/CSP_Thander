@@ -2177,7 +2177,7 @@ void ProcessDialogEvent()
 				LAi_group_MoveCharacter(sld, "EnemyFight");
 			}
 			LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
-			LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);			//true - если помирить
+			LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);
 			LAi_group_SetCheck("EnemyFight", "SCQ_Prytki_V_Komnate_Final");
 			LAi_SetFightMode(pchar, true);
 		break;

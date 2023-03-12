@@ -577,6 +577,14 @@ void LAi_ActorSetLayMode(aref chr)
 	EndChangeCharacterActions(chr);
 }
 
+//Установить анимацию губернатора
+void LAi_ActorSetHuberMode(aref chr)
+{
+	if(LAi_type_actor_Error(chr, false)) return;
+	chr.chr_ai.type.mode = "sit";
+	LAi_SetHuberSitAnimation(chr);
+}
+
 //------------------------------------------------------------------------------------------
 //Внутреннии функции
 //------------------------------------------------------------------------------------------
