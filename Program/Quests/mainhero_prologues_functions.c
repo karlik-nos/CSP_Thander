@@ -901,7 +901,7 @@ void ATpr_OboronaSD_12(string qName)
         ChangeCharacterAddressGroup(sld, "SantoDomingo_ExitTown", "rld",  "loc0");
     }
 	LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
-	LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);			//true - если помирить
+	LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);
 	LAi_group_SetCheck("EnemyFight", "ATpr_3Volna");
 	DoQuestFunctionDelay("ATpr_OboronaSD_13", 3.0);
 	DoQuestFunctionDelay("ATpr_OboronaSD_12_1", 7.3);

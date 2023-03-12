@@ -912,16 +912,6 @@ void ProcessDialogEvent()
 			EndQuestMovie();
 			LAi_SetFightMode(pchar, true);
 			
-			LAi_group_SetRelation("Chernoe_Solntse", "Chernoe_Solntse_sluga", LAI_GROUP_FRIEND);
-			LAi_group_SetRelation("Chernoe_Solntse_sluga", "Chernoe_Solntse", LAI_GROUP_FRIEND);
-			
-			LAi_group_SetRelation("Chernoe_Solntse", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
-			LAi_group_FightGroups("Chernoe_Solntse", LAI_GROUP_PLAYER, false);
-			
-			LAi_group_SetRelation("Chernoe_Solntse_sluga", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
-			LAi_group_FightGroups("Chernoe_Solntse_sluga", LAI_GROUP_PLAYER, false);
-			LAi_group_SetCheck("Chernoe_Solntse_sluga", "PKM_SvtvA_Lord_Haos_Padet");
-			
 			sld = CharacterFromID("Chernoe_Solntse");
 			LAi_SetImmortal(sld, false);
 			LAi_SetWarriorType(sld);
@@ -968,6 +958,16 @@ void ProcessDialogEvent()
 			PChar.quest.PKM_SvtvA_KuhnyaStels3.over = "yes";
 			PChar.quest.PKM_SvtvA_KuhnyaStels4.over = "yes";
 			PChar.quest.PKM_SvtvA_KuhnyaStels5.over = "yes";
+			
+			LAi_group_SetRelation("Chernoe_Solntse", "Chernoe_Solntse_sluga", LAI_GROUP_FRIEND);
+			LAi_group_SetRelation("Chernoe_Solntse_sluga", "Chernoe_Solntse", LAI_GROUP_FRIEND);
+			
+			LAi_group_SetRelation("Chernoe_Solntse", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+			LAi_group_FightGroups("Chernoe_Solntse", LAI_GROUP_PLAYER, true);
+			
+			//LAi_group_SetRelation("Chernoe_Solntse_sluga", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+			//LAi_group_FightGroups("Chernoe_Solntse_sluga", LAI_GROUP_PLAYER, true);
+			LAi_group_SetCheck("Chernoe_Solntse_sluga", "PKM_SvtvA_Lord_Haos_Padet");
 		break;
 		
 		case "Лорд_Хаоса_3":

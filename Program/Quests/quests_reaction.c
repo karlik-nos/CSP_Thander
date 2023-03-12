@@ -10657,7 +10657,7 @@ void QuestComplete(string sQuestName, string qname)
 				ChangeCharacterAddressGroup(sld, pchar.location, "randitem",  "randitem10");
 			}
 			LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
-			LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);			//true - если помирить
+			LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, false);
 			LAi_group_SetCheck("EnemyFight", "PDM_Apt_Canibaly_Pobeda");
 		break;
 		
@@ -11351,7 +11351,7 @@ void QuestComplete(string sQuestName, string qname)
 			sld = GetCharacter(NPC_GenerateCharacter("Chernoe_Solntse", "Animists2", "man", "man", sti(pchar.rank) + 10 + MOD_SKILL_ENEMY_RATE, PIRATE, -1, true));
 			FantomMakeCoolFighter(sld, sti(pchar.rank) + 10 + MOD_SKILL_ENEMY_RATE, 100, 100, "katar", "pistol6", 1000);
 			LAi_SetHP(sld,600,600);
-			LAi_SetDltHealth(sld, 150.0);
+			LAi_SetDltHealth(sld, 130.0);
 			sld.name = "Лорд Чёрное Солнце";
 			sld.lastname = "";
 			sld.FaceId = 297;
