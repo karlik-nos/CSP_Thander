@@ -245,6 +245,9 @@ void ProcessVersionCheck() // boal 271004
 			rLoc = LocFromID("PearlTown2_House6");
 			rLoc.reload.l1.emerge = "reloadH5";
 
+			rLoc = LocFromID("Temple_h");//фикс травы у Кхаэль Роа
+			rLoc.models.always.grassPatch.texture = "grass\algaeU1.tga.tx";
+
 			ref sld = characterFromID("Pirates_trader");//фикс торговцев-барменов без НИ
 			LAi_SetOwnerType(sld);
 			sld = characterFromID("Dominica_trader");//в ините есть, но непися не находит...	это странно.
