@@ -1262,6 +1262,12 @@ string LAi_GetBoardingModel(ref rCharacter, ref ani)
 		ani = "man";
 		return model;
     }
+	if (CheckAttribute(rCharacter, "GenQuest.CrewSatanistMode"))
+    {
+        model = GetRandSatanistMode();
+		ani = "man";
+		return model;
+    }
     if (CheckAttribute(rCharacter, "OZG") == true)
     {
         model = "OZG_" + (rand(8) + 1);

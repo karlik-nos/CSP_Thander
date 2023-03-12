@@ -220,6 +220,13 @@ void ProcessDialogEvent()
 				}
 				break;
 			}
+			//========================  Квест "Странные вещи творятся на архипелаге" ==>
+			if (CheckAttribute(pchar, "questTemp.PKM_SvtvA_NevisPortMan_1"))
+			{
+				link.l1 = "Меня интересует, не заходило ли в порт судно - чёрный фрегат.";
+				link.l1.go = "PKM_BlackFregat";
+			}
+			//========================  Квест "Странные вещи творятся на архипелаге" <==
 
 			dialog.text = "Прекрасно. Я к вашим услугам, " + GetFullName(PChar) + ".";
 			if(NPChar.city != "Pirates")
@@ -348,6 +355,15 @@ void ProcessDialogEvent()
 			Link.l15 = "Благодарю. До свидания.";
 			Link.l15.go = "exit";
 		break;
+		
+		//========================  Квест "Странные вещи творятся на архипелаге" ==>
+		case "PKM_BlackFregat":
+			dialog.text = "Чёрный фрегат? А имени у корабля нет? Как я по-вашему должен ответить, если в моём документе указаны все корабли с их именем, а не с цветом корпуса. Я не могу ничего больше вам сказать.";
+			link.l1 = "Извините, пойду дальше искать.";
+			link.l1.go = "exit";
+			DeleteAttribute(pchar, "questTemp.PKM_SvtvA_NevisPortMan_1");
+		break;
+		//========================  Квест "Странные вещи творятся на архипелаге" <==	
 
 		case "Whisper_chard_quest":
 			SaveCurrentNpcQuestDateParam(npchar,"Whisper.LastSeenPortman");

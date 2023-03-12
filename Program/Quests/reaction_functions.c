@@ -10735,6 +10735,121 @@ void LambriniPGG_Tavern(string qName)
 }
 //Sinistra Клан Ламбрини <--
 
+//Sinistra "Странные вещи творятся на архипелаге" -->
+
+void PKM_SvtvA_Malta_na_pomosh(string qName)
+{	
+	sld = GetCharacter(NPC_GenerateCharacter("Maltese", "Maltese", "man", "man", sti(pchar.rank), SPAIN, -1, true));
+	FantomMakeCoolFighter(sld, sti(pchar.rank), 30, 30, "blade44", "pistol1", 400);
+	SetSPECIAL(sld, 10, 6, 8, 10, 8, 5, 6);
+	SetSelfSkill(sld, 18, 21, 70, 3, 40);
+	SetShipSkill(sld, 60, 12, 18, 17, 32, 41, 60, 31, 26);
+	//LAi_SetHP(sld, 2000.0, 2000.0);
+	sld.name = "Жаквин";
+	sld.lastname = "де Массе";
+	sld.FaceId = 296;
+	sld.loyality = 20;
+	LAi_SetWarriorType(sld);
+	LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
+	ChangeCharacterAddressGroup(sld, pchar.location, "reload",  "reload1_back");
+	
+	Log_info("Жаквин де Массе пришёл к вам на помощь!");
+	
+	PChar.quest.PKM_SvtvA_MalteseMertv.win_condition.l1 = "NPC_Death";
+	PChar.quest.PKM_SvtvA_MalteseMertv.win_condition.l1.character = "Maltese";
+	PChar.quest.PKM_SvtvA_MalteseMertv.win_condition = "PKM_SvtvA_MalteseMertv";
+}
+void PKM_SvtvA_Malta_na_pomosh_2(string qName)
+{	
+	LAi_SetPlayerType(pchar);
+	sld = CharacterFromID("FortFrance_Priest");
+	LAi_SetActorType(sld);
+	sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+	sld.dialog.currentnode = "Победа_в Церкви";
+	LAi_ActorDialogNow(sld, Pchar, "", -1);
+}
+void PKM_SvtvA_Gospod_nakazal(string qName)
+{	
+	LAi_SetActorType(pchar);
+}
+void PKM_SvtvA_Uchitel_smert(string qName)
+{	
+	sld = CharacterFromID("Satanist_Uchitel");
+	LAi_ActorAnimation(sld, "lay_2", "", 2.0);
+}
+void PKM_SvtvA_SatanistyAnimation(string qName)
+{	
+	sld = CharacterFromID("Satanist_Kuhnya_5");
+	LAi_SetActorType(sld);
+	LAi_ActorTurnToLocator(sld, "sit", "sit35");
+	LAi_ActorAnimation(sld, "dialog_stay14", "", 2.0);
+	
+	sld = CharacterFromID("Satanist_Oderjim_1");
+	LAi_SetActorType(sld);
+	LAi_ActorAnimation(sld, "worship_2", "", 2.4);
+	
+	sld = CharacterFromID("Satanist_Oderjim_2");
+	LAi_SetActorType(sld);
+	LAi_ActorAnimation(sld, "worship_2", "", 2.4);
+	
+	sld = CharacterFromID("Satanist_Oderjim_3");
+	LAi_SetActorType(sld);
+	LAi_ActorAnimation(sld, "worship_2", "", 2.4);
+	
+	sld = CharacterFromID("Satanist_Oderjim_4");
+	LAi_SetActorType(sld);
+	LAi_ActorAnimation(sld, "worship_2", "", 2.4);
+	
+	sld = CharacterFromID("Satanist_Oderjim_5");
+	LAi_SetActorType(sld);
+	LAi_ActorAnimation(sld, "worship_2", "", 2.4);
+	
+	sld = CharacterFromID("Chernoe_Solntse");
+	LAi_SetActorType(sld);
+	LAi_ActorSetHuberMode(sld);
+	
+	SetMusic("music_DeckWithReefs");
+}
+void PKM_SvtvA_Temnota(string qName)
+{	
+	LAi_Fade("", "");
+}
+void PKM_SvtvA_RazgovorZKnyazem(string qName)
+{	
+	StartQuestMovie(true, false, true);
+	LAi_SetActorType(pchar);
+	DoQuestFunctionDelay("PKM_SvtvA_Temnota", 1.5);
+	DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem2", 2.0);
+	SetMusic("music_DeckWithReefs");
+}
+void PKM_SvtvA_RazgovorZKnyazem2(string qName)
+{	
+	locCameraFromToPos(-2.00, 4.40, 8.00, true, -4.00, 1.74, 3.70);
+	DoQuestFunctionDelay("PKM_SvtvA_Temnota", 3.0);
+	DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem3", 3.5);
+}
+void PKM_SvtvA_RazgovorZKnyazem3(string qName)
+{	
+	locCameraFromToPos(-9.30, 8.00, -0.70, true, 13.00, -20.0, 0.00);
+	DoQuestFunctionDelay("PKM_SvtvA_Temnota", 3.7);
+	DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem4", 4.2);
+}
+void PKM_SvtvA_RazgovorZKnyazem4(string qName)
+{	
+	locCameraFromToPos(-8.00, 2.90, -1.00, true, -30.00, 3.50, 3.70);
+	DoQuestFunctionDelay("PKM_SvtvA_RazgovorZKnyazem5", 1.5);
+}
+void PKM_SvtvA_RazgovorZKnyazem5(string qName)
+{	
+	LAi_SetPlayerType(pchar);
+	sld = CharacterFromID("Chernoe_Solntse");
+	sld.dialog.filename = "Quest/PKM/Strannie_veshi_tvorytsya_v_arhipelage.c";
+	sld.dialog.currentnode = "Лорд_Хаоса_1";
+	LAi_ActorDialogNow(sld, Pchar, "", -1);
+}
+
+//Sinistra "Странные вещи творятся на архипелаге" <--
+
 //Sinistra Мэри и Шарль -->
 bool SharleMaryIsHere()	//Проверка на Мэри абордажника
 {
