@@ -191,6 +191,8 @@ void ProcessVersionCheck() // boal 271004
 			rLoc.reload.l1.name = "gate_back";
 			rLoc.reload.l1.emerge = "reload3";
 			rLoc.reload.l2.emerge = "gate_back";
+			rLoc = LocFromID("Temple_h");//фикс травы у Кхаэль Роа
+			rLoc.models.always.grassPatch.texture = "grass\algaeU1.tga.tx";
 
 			ref sld = characterFromID("Pirates_trader");//фикс торговцев-барменов без НИ
 			LAi_SetOwnerType(sld);
