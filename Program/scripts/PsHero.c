@@ -2252,7 +2252,6 @@ void PGG_Q1PGGDead(string qName)
 		PChar.Quest.PGGQuest1_Time2Late.Over = "yes";
 		PChar.Quest.PGGQuest1_Time2Fight.Over = "yes";
 
-		DeleteAttribute(PChar, "GenQuest.PGG_Quest");
 	}
 	else
 	{
@@ -2268,6 +2267,7 @@ void PGG_Q1PGGDead(string qName)
 	PChar.Quest.PGGQuest1_Time2Fight.Over = "yes";
 	if (chr.sex != "woman")CloseQuestHeader("Gen_PGGQuest1");
 	else CloseQuestHeader("Gen_PGGQuest1woman");
+	DeleteAttribute(PChar, "GenQuest.PGG_Quest");
 }
 
 void PGG_Q1CheckStartState(string qName)
