@@ -411,7 +411,7 @@ void CreateWeatherEnvironment()
 	bWeatherIsNight = Whr_GetLong(aCurWeather,"Night");
 	bWeatherIsLight = Whr_GetLong(aCurWeather,"Lights");
 	
-	if (IsEntity(loadedLocation) && CheckAttribute(loadedLocation, "type")) //Фикс освещения персонажей в тавернах.
+	if (CheckAttribute(loadedLocation, "type")) //Фикс освещения персонажей в тавернах.
 	{
 		if(loadedLocation.type == "tavern"
 					|| loadedLocation.type == "residence"

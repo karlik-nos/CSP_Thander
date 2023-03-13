@@ -304,65 +304,76 @@ void ProcessVersionCheck() // boal 271004
 				}
 			}
 
-			int n = GetArraySize(&Items);
-			if (n != ITEMS_QUANTITY)//+5 предметов для странных дел
-			{
-				SetArraySize(&Items,ITEMS_QUANTITY);
-				SetArraySize(&itemModels,ITEMS_QUANTITY);//ХЗ, что это...
-				
-				ref itm;
-				makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
-				itm.id = "PKM_SvtvA_amulet";	//Амулет главного сатаниста
-				itm.name = "itmname_PKM_SvtvA_amulet";
-				itm.describe = "itmdescr_PKM_SvtvA_amulet";
-				itm.picIndex = 11;
-				itm.picTexture = "ITEMS_20";
-				itm.price = 30000;
-				itm.weight = 0.5;
-				n++;
-			
-				makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
-				itm.id = "PKM_SvtvA_znachok";	//Значок рядового сатаниста
-				itm.name = "itmname_PKM_SvtvA_znachok";
-				itm.describe = "itmdescr_PKM_SvtvA_znachok";
-				itm.picIndex = 12;
-				itm.picTexture = "ITEMS_4";
-				itm.price = 66;
-				itm.weight = 0.1;
-				n++;
-			
-				makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
-				itm.id = "PKM_SvtvA_pismo1";	//Письмо для падре Домингеса
-				itm.name = "itmname_PKM_SvtvA_pismo1";
-				itm.describe = "itmdescr_PKM_SvtvA_pismo1";
-				itm.picIndex = 7;
-				itm.picTexture = "ITEMS_12";
-				itm.price = 0;
-				itm.weight = 0.1;
-				itm.ItemType = "QUESTITEMS";
-				n++;
-			
-				makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
-				itm.id = "PKM_SvtvA_pismo2";	//Письмо для отца Клермона
-				itm.name = "itmname_PKM_SvtvA_pismo2";
-				itm.describe = "itmdescr_PKM_SvtvA_pismo2";
-				itm.picIndex = 7;
-				itm.picTexture = "ITEMS_12";
-				itm.price = 0;
-				itm.weight = 0.1;
-				itm.ItemType = "QUESTITEMS";
-				n++;
-			
-				makeref(itm,Items[n]);
-				itm.id = "PKM_SvtvA_pismo3";	//Книга Хаоса
-				itm.name = "itmname_PKM_SvtvA_pismo3";
-				itm.describe = "itmdescr_PKM_SvtvA_pismo3";
-				itm.picIndex = 2;
-				itm.picTexture = "ITEMS_20";
-				itm.price = 5000;
-				itm.weight = 0.7;
-				n++;
-			}
+			int n = GetArraySize(&Items);//+5 предметов для странных дел
+			SetArraySize(&Items,ITEMS_QUANTITY);
+			SetArraySize(&itemModels,ITEMS_QUANTITY);//ХЗ, что это...
+ref itm;
+for(j=n; j<ITEMS_QUANTITY; j++)
+{
+	makeref(itm,Items[j]);
+	itm.id = "item"+(j+1);
+	itm.describe = "";
+	itm.index = j;
+	itm.model = "";
+	itm.shown = false;
+	itm.startLocation = "";
+	itm.startLocator = "";
+	itm.useLocation = "";
+	itm.useLocator = "";
+	itm.describe = "";
+    itm.Weight = 0.0; // boal
+    itm.uniq  = false;
+    itm.price = 1;
+    itm.ItemType = "VARIETY";
+}
+			makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
+			itm.id = "PKM_SvtvA_amulet";	//Амулет главного сатаниста
+			itm.name = "itmname_PKM_SvtvA_amulet";
+			itm.describe = "itmdescr_PKM_SvtvA_amulet";
+			itm.picIndex = 11;
+			itm.picTexture = "ITEMS_20";
+			itm.price = 30000;
+			itm.weight = 0.5;
+			n++;
+			makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
+			itm.id = "PKM_SvtvA_znachok";	//Значок рядового сатаниста
+			itm.name = "itmname_PKM_SvtvA_znachok";
+			itm.describe = "itmdescr_PKM_SvtvA_znachok";
+			itm.picIndex = 12;
+			itm.picTexture = "ITEMS_4";
+			itm.price = 66;
+			itm.weight = 0.1;
+			n++;
+			makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
+			itm.id = "PKM_SvtvA_pismo1";	//Письмо для падре Домингеса
+			itm.name = "itmname_PKM_SvtvA_pismo1";
+			itm.describe = "itmdescr_PKM_SvtvA_pismo1";
+			itm.picIndex = 7;
+			itm.picTexture = "ITEMS_12";
+			itm.price = 0;
+			itm.weight = 0.1;
+			itm.ItemType = "QUESTITEMS";
+			n++;
+			makeref(itm,Items[n]);	//Квест "Странные вещи творятся на архипелаге"
+			itm.id = "PKM_SvtvA_pismo2";	//Письмо для отца Клермона
+			itm.name = "itmname_PKM_SvtvA_pismo2";
+			itm.describe = "itmdescr_PKM_SvtvA_pismo2";
+			itm.picIndex = 7;
+			itm.picTexture = "ITEMS_12";
+			itm.price = 0;
+			itm.weight = 0.1;
+			itm.ItemType = "QUESTITEMS";
+			n++;
+			makeref(itm,Items[n]);
+			itm.id = "PKM_SvtvA_pismo3";	//Книга Хаоса
+			itm.name = "itmname_PKM_SvtvA_pismo3";
+			itm.describe = "itmdescr_PKM_SvtvA_pismo3";
+			itm.picIndex = 2;
+			itm.picTexture = "ITEMS_20";
+			itm.price = 5000;
+			itm.weight = 0.7;
+			n++;
+
 			//Джеки
 			sld = GetCharacter(NPC_GenerateCharacter("MG_Obezyana", "Koata1", "monkey", "monkey", 1, PIRATE, -1, false));
 			LAi_SetHP(sld, 1.0, 1.0);
@@ -392,7 +403,101 @@ void ProcessVersionCheck() // boal 271004
 
 			n = GetArraySize(&locations);	//nLocationsNum	//старое число локаций
 			SetArraySize(&locations, 900);	//MAX_LOCATIONS
+//базовый инит для новых локаций
+ref loc;
+for(int i = n; i < 881; i++)
+{
+	makeref(loc, Locations[i]);
+	DeleteAttribute(loc, "");
+	loc.id = "";
+	loc.index = i;
+	loc.image = "jonny_load\sea\sea_"+rand(3)+".tga";
+	loc.music = "enplav.ogg";
+	loc.locators_radius.reload = 1.0;
+	loc.locators_radius.rld = 1.0;
+	loc.locators_radius.camdetector = 1.0;
+	loc.locators_radius.camera = 0.3;
+	loc.locators_radius.characters = 0.5;
+	loc.locators_radius.goto = 0.5;
+	loc.locators_radius.sit = 0.5;
+	loc.locators_radius.item = 0.5;
+	loc.locators_radius.officers = 0.5;
+	loc.locators_radius.merchant = 1.0;
+	loc.locators_radius.box = 1.0;
+	loc.locators_radius.candles = 0.1;
+	loc.locators_radius.candles_medium = 0.2;
+	loc.locators_radius.chandeliers = 0.5;
+	loc.locators_radius.heaters = 1.0;
+	loc.locators_radius.torchlightes = 0.3;
+	loc.locators_radius.torchlightes_o = 0.3;
+	loc.locators_radius.fonar = 0.4;
+	loc.locators_radius.outside = 2.0;
+	loc.locators_radius.incas_light = 0.8;
+	loc.locators_radius.incas_sky = 1.0;
+	loc.locators_radius.randitem = 1.5;
+	loc.locators_radius.waitress = 1.0;
+	loc.locators_radius.tables = 0.5;
+	loc.locators_radius.barmen = 1.0;
+	loc.locators_radius.lamp = 0.2;
+	loc.locators_radius.blueteleport = 0.2;
+	loc.locators_radius.redteleport = 0.2;
+	loc.locators_radius.greenteleport = 0.2;
+	loc.locators_radius.magsteleport = 0.2;
+	loc.locators_radius.EncDetector = 8.0;
+	loc.locators_radius.Enc01 = 0.5;
+	loc.locators_radius.Enc02 = 0.5;
+	loc.locators_radius.Enc03 = 0.5;
+	loc.locators_radius.Enc04 = 0.5;
+	loc.locators_radius.teleport = 1.0;
+	loc.locators_radius.quest = 1.0;
 
+	// видимость новых (и старых) локаторов
+	loc.locators_radius.Actor = 1.0;
+	loc.locators_radius.ships_other = 1.0;
+	loc.locators_radius.ships = 1.0;
+	loc.locators_radius.Genres = 1.0;
+
+	if (MOD_BETTATESTMODE == "On")
+	{// чтоб было видно в отладке Boal 18.08.06
+		loc.locators_radius.soldiers = 0.5;
+		loc.locators_radius.patrol = 0.5;
+		loc.locators_radius.Smugglers = 0.5;
+		loc.locators_radius.monsters = 0.5;
+		loc.locators_radius.prison = 0.2;
+	}
+
+	//Day dynamic light
+	loc.models.day.lights.candles = "candle";
+	loc.models.day.lights.candles_medium = "candelabrum";
+	loc.models.day.lights.chandeliers = "chandelier";
+	loc.models.day.lights.heaters = "heater";
+	loc.models.day.lights.torchlightes = "torchlight";
+	loc.models.day.lights.outside = "outside_day";
+	loc.models.day.lights.incas_light = "incas";
+	loc.models.day.lights.incas_sky = "incasskyday";
+	loc.models.day.lights.lamp = "lamp";
+	loc.models.day.lights.blueteleport = "blueteleport";
+	loc.models.day.lights.redteleport = "redteleport";
+	loc.models.day.lights.greenteleport = "greenteleport";
+	loc.models.day.lights.magsteleport = "magsteleport";
+
+	//Night dynamic light
+	loc.models.night.lights.candles = "candle";
+	loc.models.night.lights.candles_medium = "candelabrum";
+	loc.models.night.lights.chandeliers = "chandelier";
+	loc.models.night.lights.heaters = "heater";
+	loc.models.night.lights.torchlightes = "torchlight";
+	loc.models.night.lights.torchlightes_o = "torchlight";
+	loc.models.night.lights.fonar = "lamp";
+	loc.models.night.lights.outside = "outside_night";
+	loc.models.night.lights.incas_light = "incas";
+	loc.models.night.lights.incas_sky = "incasskynight";
+	loc.models.night.lights.lamp = "lamp";
+	loc.models.night.lights.blueteleport = "blueteleport";
+	loc.models.night.lights.redteleport = "redteleport";
+	loc.models.night.lights.greenteleport = "greenteleport";
+	loc.models.night.lights.magsteleport = "magsteleport";
+}
 			Locations[n].id = "New_Cabin3"; //НОВАЯ КАЮТА
 			Locations[n].id.label = "cabine";
 			Locations[n].filespath.models = "locations\decks\nc_cabin3";
@@ -788,6 +893,10 @@ void ProcessVersionCheck() // boal 271004
 
 			nLocationsNum = n;//чтобы знать, сколько локаций в массиве фактически. Не обязательно совпадает с MAX_LOCATIONS
 			Trace("Number of locations: " + nLocationsNum);
+
+			string segmentName = "Characters\" + LanguageGetLanguage() + "\Indian_names.c";
+			if( LoadSegment(segmentName) )	{InitIndianNames(); UnloadSegment(segmentName);} 
+				else {Trace("Error! Can`t Load Segment: " + segmentName);}
 
 			pchar.fixsaveNG0 = GetVerNum();//08.03.2023
 		}
