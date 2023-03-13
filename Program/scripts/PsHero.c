@@ -2724,6 +2724,7 @@ void PGG_Q1AfterShoreFight()
 	if(!CheckAttribute(PChar,"PGG_EnemyPP"))
 	{
 		DoQuestCheckDelay("hide_weapon", 2.0);
+		ChangeCharacterAddressGroup(chr,pchar.location,"reload", "sea");
 		PChar.Quest.PGGQuest1_PGGDead.Over = "yes";
 		chr.Dialog.CurrentNode = "Quest_1_SharePrise";
 		LAi_SetImmortal(chr, false);

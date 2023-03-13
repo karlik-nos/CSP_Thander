@@ -633,7 +633,7 @@ void ProcessDialogEvent()
 			break; // локация не подходит
 		}
 
-		if (findsubstr(NPChar.mapEnc.Name, "торговцев" , 0) != -1) // ПГГ с прицепом
+		if (CheckAttribute(NPChar, "mapEnc") && findsubstr(NPChar.mapEnc.Name, "торговцев" , 0) != -1) // ПГГ с прицепом
 		{
 			Dialog.Text = "У меня сейчас своих дел хватает. Ты же видишь, что я плыву не " + NPCharSexPhrase(NPChar, "один", "одна") + "?";
 			link.l1 = "Понятно...";
